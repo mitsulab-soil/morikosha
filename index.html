@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>杜工舎｜土木・造園・建築の会社のためのホームページ制作</title>
+<meta name="description" content="埼玉県の杜工舎（もりこうしゃ）。元・埼玉県庁の土木技術職員が、土木・造園・建築の会社のホームページを10万円でお作りします。サンプル3案からお選びいただき、記入シートをご返送いただくだけ。打ち合わせも前金もありません。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   杜工舎（もりこうしゃ）
+   設計の核：屋号「杜」＝ 木 ＋ 土。土と木で「土木」。
+   配色は墨（緑に寄せた黒）・和紙・杜の緑。土色は分解図にだけ使う。
+   ============================================================ */
+
+:root{
+  --sumi:#1C1E1B;        /* 墨。わずかに緑を含む黒 */
+  --sumi-2:#4C534B;      /* 補助文字 */
+  --sumi-3:#7E857C;      /* 弱い文字 */
+  --washi:#FAFAF7;       /* 和紙 */
+  --washi-2:#F1F1EB;     /* 一段沈めた面 */
+  --line:#DEDED6;
+  --line-2:#C4C4B9;
+  --mori:#2E4A37;        /* 杜の緑。差し色 */
+  --tsuchi:#8C6A3C;      /* 土。分解図でのみ使う */
+  --w:900px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --sumi:#E8EAE5;
+    --sumi-2:#A8B0A6;
+    --sumi-3:#7E857C;
+    --washi:#151815;
+    --washi-2:#1E221E;
+    --line:#2E332E;
+    --line-2:#414741;
+    --mori:#8FC0A0;
+    --tsuchi:#C9A272;
+  }
+}
+:root[data-theme="dark"]{
+  --sumi:#E8EAE5;
+  --sumi-2:#A8B0A6;
+  --sumi-3:#7E857C;
+  --washi:#151815;
+  --washi-2:#1E221E;
+  --line:#2E332E;
+  --line-2:#414741;
+  --mori:#8FC0A0;
+  --tsuchi:#C9A272;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--washi);
+  color:var(--sumi);
+  font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  font-size:16px;
+  line-height:1.95;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;}
+a:focus-visible{outline:2px solid var(--mori);outline-offset:3px;}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 28px;}
+
+/* ---------- ヘッダー ---------- */
+.head{
+  border-bottom:1px solid var(--line);
+  background:var(--washi);
+  position:sticky;top:0;z-index:50;
+}
+.head-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px;}
+.brand{text-decoration:none;display:flex;align-items:baseline;gap:12px;}
+.brand .ja{
+  font-family:"Zen Old Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:700;font-size:23px;letter-spacing:.2em;
+}
+.brand .yomi{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;
+  letter-spacing:.18em;color:var(--sumi-3);
+}
+.nav{display:flex;gap:26px;}
+.nav a{
+  font-size:13px;text-decoration:none;color:var(--sumi-2);
+  letter-spacing:.06em;padding-bottom:2px;
+  border-bottom:1px solid transparent;transition:border-color .2s,color .2s;
+}
+.nav a:hover{color:var(--sumi);border-bottom-color:var(--mori);}
+
+/* ---------- ヒーロー ---------- */
+.hero{padding:92px 0 84px;border-bottom:1px solid var(--line);}
+.hero .place{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;
+  letter-spacing:.2em;color:var(--mori);margin:0 0 34px;
+}
+.hero h1{
+  font-family:"Zen Old Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:700;font-size:clamp(29px,5.4vw,50px);
+  line-height:1.55;letter-spacing:.06em;margin:0 0 30px;text-wrap:balance;
+}
+.hero .lead{
+  font-size:16px;line-height:2.15;color:var(--sumi-2);
+  max-width:30em;margin:0;
+}
+
+/* ---------- 屋号の分解図 ---------- */
+.kanji{
+  margin:64px 0 0;padding:36px 0 30px;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.kanji-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(14px,4vw,34px);flex-wrap:wrap;
+}
+.kanji-ch{
+  font-family:"Zen Old Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:900;font-size:clamp(46px,10vw,86px);line-height:1;
+}
+.kanji-ch.c-mori{color:var(--mori);}
+.kanji-ch.c-ki{color:var(--sumi);}
+.kanji-ch.c-tsuchi{color:var(--tsuchi);}
+.kanji-op{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:clamp(20px,3.6vw,30px);color:var(--sumi-3);
+}
+.kanji-note{
+  text-align:center;margin:26px auto 0;max-width:32em;
+  font-size:14.5px;line-height:2.05;color:var(--sumi-2);
+}
+.kanji-note b{color:var(--sumi);font-weight:700;}
+
+/* ---------- セクション ---------- */
+.sec{padding:84px 0;border-bottom:1px solid var(--line);}
+.sec-2{background:var(--washi-2);}
+.sec-in{display:grid;grid-template-columns:132px 1fr;gap:44px;align-items:start;}
+.sec-label{position:sticky;top:104px;}
+.sec-label .en{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;
+  letter-spacing:.2em;color:var(--mori);display:block;margin-bottom:10px;
+}
+.sec-label h2{
+  font-family:"Zen Old Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:700;font-size:19px;letter-spacing:.14em;margin:0;line-height:1.7;
+}
+.sec-body .lead{
+  margin:0 0 36px;font-size:15.5px;line-height:2.15;
+  color:var(--sumi-2);max-width:38em;
+}
+h3{
+  font-family:"Zen Old Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:700;font-size:17px;letter-spacing:.08em;
+  margin:34px 0 10px;line-height:1.7;
+}
+p{margin:0 0 16px;max-width:38em;}
+
+/* ---------- サンプル ---------- */
+.samples{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:0 0 26px;}
+.sample{
+  border:1px solid var(--line-2);background:var(--washi);
+  text-decoration:none;display:flex;flex-direction:column;
+  transition:border-color .18s,transform .18s;
+}
+.sample:hover,.sample:focus-visible{border-color:var(--mori);transform:translateY(-2px);}
+.sample .thumb{aspect-ratio:16/10;border-bottom:1px solid var(--line);overflow:hidden;}
+.sample .thumb svg{width:100%;height:100%;display:block;}
+.sample .body{padding:16px 18px 18px;}
+.sample .for{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;
+  letter-spacing:.14em;color:var(--mori);margin-bottom:7px;
+}
+.sample .name{
+  font-family:"Zen Old Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:700;font-size:18px;letter-spacing:.1em;margin-bottom:6px;
+}
+.sample .desc{font-size:13px;color:var(--sumi-2);line-height:1.9;}
+
+/* ---------- 進め方（実際の順序なので番号を振る） ---------- */
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;}
+.steps li{
+  counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:18px;
+  padding:17px 0;border-bottom:1px solid var(--line);
+}
+.steps li:first-child{border-top:1px solid var(--line-2);}
+.steps li::before{
+  content:counter(s);
+  font-family:"IBM Plex Mono",monospace;font-size:12px;
+  color:var(--mori);padding-top:5px;
+}
+.steps b{
+  display:block;
+  font-family:"Zen Old Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:700;font-size:16px;letter-spacing:.06em;margin-bottom:3px;
+}
+.steps span{font-size:14px;color:var(--sumi-2);line-height:2;}
+
+/* ---------- 料金 ---------- */
+.tbl{overflow-x:auto;margin:0 0 22px;}
+table{
+  width:100%;border-collapse:collapse;font-size:14.5px;
+  border-top:1px solid var(--line-2);
+}
+th,td{
+  border-bottom:1px solid var(--line);padding:15px 14px 15px 0;
+  text-align:left;vertical-align:top;line-height:1.9;
+}
+td.p{
+  text-align:right;white-space:nowrap;padding-right:0;
+  font-family:"IBM Plex Mono",monospace;font-weight:500;
+  font-variant-numeric:tabular-nums;
+}
+tr.main td:first-child{font-weight:700;}
+tr.main td.p{color:var(--mori);font-size:16px;}
+td small{display:block;font-size:12.5px;color:var(--sumi-3);line-height:1.75;}
+.fineprint{font-size:13.5px;color:var(--sumi-3);max-width:40em;}
+
+.note{
+  border-left:2px solid var(--mori);padding:2px 0 2px 20px;
+  margin:26px 0 0;font-size:14.5px;line-height:2.05;color:var(--sumi-2);
+  max-width:40em;
+}
+.note b{color:var(--sumi);}
+
+/* ---------- つくる人 ---------- */
+.prof{display:grid;grid-template-columns:1fr;gap:30px;}
+.prof dl{
+  margin:0;display:grid;grid-template-columns:82px 1fr;
+  gap:0 18px;font-size:14.5px;border-top:1px solid var(--line-2);
+}
+.prof dt{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.14em;color:var(--mori);padding:15px 0 0;
+}
+.prof dd{
+  margin:0;padding:14px 0;color:var(--sumi-2);line-height:1.95;
+  border-bottom:1px solid var(--line);
+}
+
+/* ---------- お問い合わせ ---------- */
+.contact{border:1px solid var(--line-2);padding:36px 32px;background:var(--washi);}
+.contact .cap{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.18em;color:var(--sumi-3);margin-bottom:14px;
+}
+.contact .mail{
+  font-family:"Zen Old Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:700;font-size:clamp(19px,3.4vw,27px);text-decoration:none;
+  border-bottom:1px solid var(--mori);word-break:break-all;
+  display:inline-block;line-height:1.5;
+}
+.contact .sub{margin:18px 0 0;font-size:14px;color:var(--sumi-2);}
+
+/* ---------- フッター ---------- */
+.foot{padding:44px 0 30px;font-size:12.5px;color:var(--sumi-3);}
+.foot-nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:16px;}
+.foot-nav a{text-decoration:none;}
+.foot-nav a:hover{color:var(--mori);}
+.foot .sig{font-family:"IBM Plex Mono",monospace;letter-spacing:.04em;}
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width:840px){
+  .sec-in{grid-template-columns:1fr;gap:22px;}
+  .sec-label{position:static;display:flex;align-items:baseline;gap:14px;
+             border-bottom:1px solid var(--line-2);padding-bottom:12px;}
+  .sec-label .en{margin-bottom:0;}
+  .samples{grid-template-columns:1fr;}
+}
+@media (max-width:620px){
+  .nav{display:none;}
+  .head-in{height:62px;}
+  .sec{padding:58px 0;}
+  .hero{padding:60px 0 56px;}
+  .prof dl{grid-template-columns:1fr;}
+  .prof dt{padding:14px 0 0;}
+  .prof dd{padding:2px 0 14px;}
+  .contact{padding:26px 22px;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{transition:none !important;animation:none !important;}
+}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div class="wrap head-in">
+    <a class="brand" href="#top">
+      <span class="ja">杜工舎</span>
+      <span class="yomi">MORIKOSHA</span>
+    </a>
+    <nav class="nav">
+      <a href="#service">ホームページ制作</a>
+      <a href="#flow">進め方</a>
+      <a href="#price">料金</a>
+      <a href="#profile">つくる人</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="place">埼玉県／杜工舎（もりこうしゃ）</p>
+    <h1>つくって、<br>手を入れて、育てる。</h1>
+    <p class="lead">土木・造園・建築の会社さまのホームページをお作りしています。元は埼玉県庁で、8年間、道路と河川と公園の工事を監督していました。</p>
+
+    <figure class="kanji">
+      <div class="kanji-row" aria-hidden="true">
+        <span class="kanji-ch c-mori">杜</span>
+        <span class="kanji-op">＝</span>
+        <span class="kanji-ch c-ki">木</span>
+        <span class="kanji-op">＋</span>
+        <span class="kanji-ch c-tsuchi">土</span>
+      </div>
+      <figcaption class="kanji-note">
+        杜は、木へんに土と書きます。<b>土と木で、杜。</b><br>
+        自然にできた「森」とちがって、<b>人が手を入れて育てる林</b>のことです。
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="service">
+  <div class="wrap sec-in">
+    <div class="sec-label">
+      <span class="en">SERVICE</span>
+      <h2>ホームページ制作</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">若い方は、応募する前に会社を検索します。求人票で興味を持った人が、会社名で調べて何も出てこないと、そこで止まってしまう。応募という行動の、ひとつ手前の話です。</p>
+
+      <p>建築・土木・測量技術者の有効求人倍率は6.05倍。全職業の平均が1.11倍ですから、およそ5.5倍の採用難です（厚生労働省「一般職業紹介状況」令和8年5月・常用／除パート）。そのうえで、転職者の90.3%が応募する前に企業の採用サイトを見ています（株式会社カケハシスカイ調べ・2024年）。</p>
+
+      <h3>デザインは3案からお選びいただきます</h3>
+      <p>実際に動くページです。3案とも載せる項目は同じですので、業種に関わらずお好みでお選びいただけます。スマートフォンからもご覧ください。</p>
+
+      <div class="samples">
+        <a class="sample" href="https://sample-a-＿＿＿.pages.dev/" target="_blank" rel="noopener">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true">
+              <rect width="320" height="200" fill="#16232E"></rect>
+              <g fill="none" stroke="#3A5163" stroke-width="1">
+                <path d="M-10 150 C 60 132, 110 146, 170 128 S 270 108, 330 122"></path>
+                <path d="M-10 130 C 60 110, 110 126, 170 106 S 270 86, 330 100"></path>
+                <path d="M-10 110 C 60 88, 110 106, 170 84 S 270 64, 330 78"></path>
+              </g>
+              <rect x="26" y="52" width="3" height="26" fill="#E3A008"></rect>
+              <g fill="#E9EEF1"><rect x="40" y="54" width="120" height="9"></rect><rect x="40" y="70" width="86" height="9"></rect></g>
+              <g fill="#5B6E7C"><rect x="40" y="94" width="150" height="4"></rect><rect x="40" y="104" width="120" height="4"></rect></g>
+            </svg>
+          </div>
+          <div class="body">
+            <div class="for">土木・建設</div>
+            <div class="name">A案「直」</div>
+            <div class="desc">白と鉄紺。数字と表で実直に見せます。</div>
+          </div>
+        </a>
+
+        <a class="sample" href="https://sample-b-＿＿＿.pages.dev/" target="_blank" rel="noopener">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true">
+              <rect width="320" height="200" fill="#F0EDE3"></rect>
+              <g fill="none" stroke="#8E9880" stroke-width="1.2" stroke-linecap="round">
+                <path d="M244 176 L244 96"></path><path d="M244 128 C 228 118, 218 102, 212 84"></path><path d="M244 114 C 262 104, 272 88, 276 70"></path>
+              </g>
+              <g fill="none" stroke="#5A6B4A" stroke-width="1" opacity=".6">
+                <ellipse cx="222" cy="76" rx="26" ry="17"></ellipse><ellipse cx="270" cy="62" rx="22" ry="15"></ellipse><ellipse cx="248" cy="48" rx="28" ry="18"></ellipse>
+              </g>
+              <g fill="#23261F"><rect x="30" y="60" width="104" height="10"></rect><rect x="30" y="78" width="72" height="10"></rect></g>
+              <g fill="#8A8D80"><rect x="30" y="104" width="140" height="4"></rect><rect x="30" y="114" width="112" height="4"></rect></g>
+              <path d="M30 176 L180 176" stroke="#C3BDAB" fill="none"></path>
+            </svg>
+          </div>
+          <div class="body">
+            <div class="for">造園</div>
+            <div class="name">B案「庭」</div>
+            <div class="desc">生成りと墨。季節の仕事の一覧つき。</div>
+          </div>
+        </a>
+
+        <a class="sample" href="https://sample-c-＿＿＿.pages.dev/" target="_blank" rel="noopener">
+          <div class="thumb">
+            <svg viewBox="0 0 320 200" aria-hidden="true">
+              <rect width="320" height="200" fill="#FFFFFF"></rect>
+              <g fill="none" stroke="#1A1A18" stroke-width="1.2">
+                <path d="M196 166 L196 106 L250 74 L304 106 L304 166"></path><path d="M196 106 L304 106"></path>
+              </g>
+              <g fill="none" stroke="#C6C3BA" stroke-width="0.9">
+                <path d="M180 166 L318 166"></path><path d="M250 166 L250 74"></path><path d="M196 136 L304 136"></path>
+              </g>
+              <g fill="none" stroke="#A97B4F" stroke-width="1.3"><rect x="210" y="118" width="24" height="16"></rect><rect x="266" y="118" width="24" height="16"></rect></g>
+              <g fill="#1A1A18"><rect x="24" y="58" width="112" height="11"></rect><rect x="24" y="77" width="80" height="11"></rect></g>
+              <g fill="#9A9A93"><rect x="24" y="106" width="132" height="4"></rect><rect x="24" y="116" width="104" height="4"></rect></g>
+            </svg>
+          </div>
+          <div class="body">
+            <div class="for">建築</div>
+            <div class="name">C案「白」</div>
+            <div class="desc">白と墨。図面のような段組みです。</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="note">
+        月額だけで作れるホームページのサービスもありますが、それらは<b>解約するとサイトが消えます</b>。杜工舎は、完成したデータそのものをお渡しします。運用をおやめになっても、他社に引き継いでいただいても、ホームページは<b>御社のものとして残ります</b>。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-2" id="flow">
+  <div class="wrap sec-in">
+    <div class="sec-label">
+      <span class="en">FLOW</span>
+      <h2>進め方</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">お打ち合わせのためにお伺いすることはありません。ご要望を一から伺って設計する進め方をしていない分、料金を抑えています。</p>
+      <ol class="steps">
+        <li><div><b>デザインを1つお選びください</b><span>A案・B案・C案から。3案とも載せる項目は同じです。</span></div></li>
+        <li><div><b>ご記入シートを埋めてください</b><span>エクセルの黄色いセルだけ。書きにくい欄は空欄で構いません。こちらで文案をご用意します。</span></div></li>
+        <li><div><b>写真をお送りください</b><span>スマートフォンで撮ったもので十分です。5〜10枚あれば形になります。</span></div></li>
+        <li><div><b>2週間以内にお渡しします</b><span>文言の誤りと写真の差し替えは2回まで無料。お支払いはそのあと2週間以内で結構です。</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="price">
+  <div class="wrap sec-in">
+    <div class="sec-label">
+      <span class="en">PRICE</span>
+      <h2>料金</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">表示はすべて税込です。追加料金が後から発生することはありません。<b>前金はいただきません。</b>完成品をご覧になってからのお支払いです。</p>
+      <div class="tbl">
+        <table>
+          <tr class="main">
+            <td>ホームページ作成<br><small>1ページ構成・スマートフォン対応。HTMLデータ一式を納品します。</small></td>
+            <td class="p">100,000円</td>
+          </tr>
+          <tr>
+            <td>運用管理<br><small>サーバー・ドメインと更新期限の管理、月1回の更新代行、初回の公開作業。いつでも解約できます。</small></td>
+            <td class="p">月 15,000円</td>
+          </tr>
+          <tr>
+            <td>ドメイン使用料<br><small>実費。御社名義でご契約いただきます。</small></td>
+            <td class="p">実費</td>
+          </tr>
+          <tr>
+            <td>記事・施工実績の追加</td>
+            <td class="p">1記事 15,000円</td>
+          </tr>
+          <tr>
+            <td>デザインの改修</td>
+            <td class="p">30,000円〜</td>
+          </tr>
+          <tr>
+            <td>公開設定の代行<br><small>運用管理をご契約の場合は含まれます。</small></td>
+            <td class="p">30,000円</td>
+          </tr>
+        </table>
+      </div>
+      <p class="fineprint">ホームページ制作の相場は、制作会社に依頼した場合で平均85万円・中央値49万円（PRONIアイミツ調べ）、建設業の会社案内サイト（5ページ前後）で30万〜60万円が一般的です。</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-2" id="profile">
+  <div class="wrap sec-in">
+    <div class="sec-label">
+      <span class="en">PROFILE</span>
+      <h2>つくる人</h2>
+    </div>
+    <div class="sec-body">
+      <div class="prof">
+        <dl>
+          <dt>屋号</dt><dd>杜工舎（もりこうしゃ）</dd>
+          <dt>氏名</dt><dd>上原 光瑛（うえはら みつあき）</dd>
+          <dt>学歴</dt><dd>埼玉大学 工学部 建設工学科 卒業</dd>
+          <dt>職歴</dt><dd>埼玉県庁 土木技術職として8年勤務<br>公園整備、道路・河川の工事監督、令和元年東日本台風の災害復旧に従事</dd>
+          <dt>資格</dt><dd>1級土木施工管理技士補（第一次検定合格・二次検定 受験予定）</dd>
+          <dt>現在</dt><dd>農業法人に在籍</dd>
+        </dl>
+        <div>
+          <h3>なぜこの仕事をしているか</h3>
+          <p>県庁で8年間、工事を発注し、監督する側にいました。現場で顔を合わせた会社の多くが、若い人が入ってこないという同じ悩みを抱えていました。</p>
+          <p>いま籍を置いている農業も、同じです。人手が足りない。募集をかけても来ない。その現実を、自分のいる会社でも見ています。</p>
+          <p>その一段手前を埋める仕事なら、自分にもできると考えました。工事写真の選び方も、施工事例の書き方も、現場の言葉でお作りします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap sec-in">
+    <div class="sec-label">
+      <span class="en">CONTACT</span>
+      <h2>お問い合わせ</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">ご質問だけでも構いません。「写真がない」「文章が書けない」というご相談もよくいただきます。</p>
+      <div class="contact">
+        <div class="cap">MAIL</div>
+        <a class="mail" href="mailto:＿＿＿＿＿＿＿＿">＿＿＿＿＿＿＿＿</a>
+        <p class="sub">2営業日以内にご返信いたします。<br>お電話をご希望の場合は、その旨をお書き添えください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <nav class="foot-nav">
+      <a href="#service">ホームページ制作</a>
+      <a href="#price">料金</a>
+      <a href="./legal.html">特定電子メール法に基づく表示</a>
+      <a href="./privacy.html">プライバシーポリシー</a>
+    </nav>
+    <div class="sig">杜工舎　上原 光瑛　／　埼玉県</div>
+  </div>
+</footer>
+
+</body>
+</html>
