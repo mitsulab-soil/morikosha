@@ -582,6 +582,9 @@ tr.main td.p{color:var(--mori);font-size:clamp(19px,2.2vw,23px);}
 td small{display:block;font-size:12.5px;font-weight:400;color:var(--ink-3);line-height:1.8;margin-top:3px;}
 
 /* 公開設定の代行の手順 */
+.fine-lead{font-size:14px;color:var(--ink-2);line-height:2;margin:14px 0 0;}
+.mono-in{font-family:var(--ff-mono);font-size:.92em;background:var(--paper-3);padding:1px 5px;border-radius:2px;}
+.steps-lite dd span b{font-weight:700;color:var(--ink);}
 .steps-lite dl{
   margin:20px 0 22px;display:grid;grid-template-columns:34px minmax(0,1fr);
   gap:0 18px;border-top:1px solid var(--rule-2);
@@ -1084,15 +1087,21 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
       <p>お渡しするのはHTMLファイルです。<br>ご自身でサーバーに置ける方は、この代行は必要ありません。</p>
       <p>「やり方が分からない」「触るのが不安」という場合に、<br>インターネット上に公開するところまでをこちらで済ませます。</p>
 
+      <p class="fine-lead">ご自身でなさる場合、実際の作業は次の5つです。<br>手順を隠さずに書きますので、ご覧になってから決めてください。</p>
+
       <div class="steps-lite rv">
         <dl>
-          <dt>1</dt><dd><b>サーバーとドメインのご契約をお手伝いします</b><span>どこの会社が良いか、どのプランで足りるかをお伝えし、お申し込みの画面を一緒に進めます。契約は必ず御社名義で、IDとパスワードは御社で保管していただきます。</span></dd>
-          <dt>2</dt><dd><b>ドメインとサーバーをつなぎます</b><span>「www.〇〇.co.jp と入力したら御社のページが出る」状態にする設定です。ここがいちばん間違えやすいところで、実際にお困りになる方が多い作業です。</span></dd>
-          <dt>3</dt><dd><b>ホームページを設置して、鍵マークを付けます</b><span>納品したファイルをサーバーに置き、https（アドレス欄の鍵マーク）を有効にします。これが無いと、ブラウザによっては「保護されていない通信」と表示されます。</span></dd>
+          <dt>1</dt><dd><b>サーバーとドメインを契約する</b><span>レンタルサーバー会社で申し込み、支払い方法を登録します。あわせて独自ドメイン（〇〇.co.jp など）を取得し、<b>Whois情報公開代行</b>にチェックを入れます。ここを外すと、登録した住所と電話番号が誰でも見られる状態で公開されます。契約は必ず御社名義で、IDとパスワードは御社で保管していただきます。</span></dd>
+          <dt>2</dt><dd><b>ドメインをサーバーに向ける（ネームサーバーの変更）</b><span>ドメイン会社の管理画面で、ネームサーバーを <span class="mono-in">ns1.〜 / ns2.〜</span> のようなサーバー会社の値に書き換えます。<b>変更が世界中に行き渡るまで数時間から最大72時間</b>かかり、その間はつながったりつながらなかったりします。この待ち時間を知らずに「失敗した」と設定を戻してしまい、余計に長引く方が多い作業です。</span></dd>
+          <dt>3</dt><dd><b>サーバー側にドメインを登録して、SSL証明書を発行する</b><span>サーバーの管理画面でドメインを追加し、無料SSL（https＝アドレス欄の鍵マーク）を発行します。<b>2の反映が終わる前に申し込むと発行に失敗し</b>、時間をあけて申し込み直すことになります。順番と待ち時間が決まっている作業です。</span></dd>
+          <dt>4</dt><dd><b>ファイルをサーバーに転送する</b><span>FTPソフト（FileZilla など）を入れ、ホスト名・ユーザー名・パスワード・ポート番号を設定して接続します。納品したファイルを <span class="mono-in">public_html/</span> のような決まった場所に置きます。<b>1階層ちがう場所に置くと、ページは表示されません。</b></span></dd>
+          <dt>5</dt><dd><b>アドレスを1つに統一して、Googleに登録する</b><span><span class="mono-in">http</span> と <span class="mono-in">https</span>、<span class="mono-in">www</span> のあり・なしは、検索エンジンからは<b>別々のサイトに見えています</b>。<span class="mono-in">.htaccess</span> という設定ファイルを置いて1つに寄せます。そのうえで Google Search Console に登録し、サイトマップを送信します。ここまでやって、はじめて検索に載る準備が整います。</span></dd>
         </dl>
       </div>
 
-      <p>ここまでで <b>30,000円</b>、一度きりです。月々いただくものはありません。</p>
+      <p class="fine-lead">1と4だけなら、パソコンに慣れた方であればご自身でできます。<br>時間がかかるのは2・3・5で、<b>やり直しのたびに反映待ちが発生する</b>のがこの作業の面倒なところです。</p>
+
+      <p>この5つをこちらで済ませて <b>50,000円</b>、一度きりです。月々いただくものはありません。</p>
       <p>サーバーとドメインの利用料は御社のお支払いになります。<br>目安はあわせて年1万円前後です。<br>御社名義の契約なので、ホームページは御社の手元に残ります。</p>
 
     </div>
