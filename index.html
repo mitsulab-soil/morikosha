@@ -759,7 +759,7 @@ h3{font-weight:500;}
 }
 @media(prefers-reduced-motion:reduce){.tt-ph img,.tt-c,.cta,.btn,.dl-btn{transition:none;}.tt-c:hover .tt-ph img{transform:none;}}
 
-/* ══════════ 複数ページ ── mitsulab と同じハッシュ切替 ══════════ */
+/* ══════════ 複数ページ ── ハッシュ切替 ══════════ */
 .page-only{display:none;}
 .page-only.active{display:block;}
 .nav a.active{color:var(--mori);}
@@ -860,8 +860,8 @@ body:not([data-page="hp"]) .mcta{display:none;}
 }
 </style>
 
-<!-- mitsulab の現行デザイン言語を、杜工舎の内容に翻訳した並行案 -->
-<style id="mitsulab-skin">
+<!-- 杜工舎の並行案 -->
+<style id="mori-skin">
 :root{
   color-scheme:dark;
   --paper:#03060F;
@@ -877,7 +877,7 @@ body:not([data-page="hp"]) .mcta{display:none;}
   --mori-tint:rgba(92,200,224,.08);
 }
 html{background:#03060F;color:var(--ink);}
-body.skin-mitsulab{
+body.skin-mori{
   background:
     radial-gradient(1100px 700px at 5% -10%,rgba(92,200,224,.09),transparent 58%),
     radial-gradient(900px 620px at 100% 105%,rgba(92,200,224,.055),transparent 60%),
@@ -887,7 +887,7 @@ body.skin-mitsulab{
   font-feature-settings:"palt";
   -webkit-font-smoothing:antialiased;
 }
-body.skin-mitsulab::before{
+body.skin-mori::before{
   content:"";
   position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.28;
   background-image:
@@ -898,196 +898,196 @@ body.skin-mitsulab::before{
   background-size:54px 54px,54px 54px,173px 173px,227px 227px;
   mask-image:linear-gradient(to bottom,black,transparent 72%);
 }
-body.skin-mitsulab .head,
-body.skin-mitsulab main,
-body.skin-mitsulab footer,
-body.skin-mitsulab .colo,
-body.skin-mitsulab .mcta{position:relative;z-index:1;}
+body.skin-mori .head,
+body.skin-mori main,
+body.skin-mori footer,
+body.skin-mori .colo,
+body.skin-mori .mcta{position:relative;z-index:1;}
 
-/* navigation ── mitsulab のフロスト帯と日英二段タブ */
-body.skin-mitsulab .head{
+/* navigation ── フロスト帯と日英二段タブ */
+body.skin-mori .head{
   height:64px;background:rgba(8,13,20,.88);
   border-color:rgba(255,255,255,.09);
   -webkit-backdrop-filter:blur(20px) saturate(150%);
   backdrop-filter:blur(20px) saturate(150%);
 }
-body.skin-mitsulab .head-in{height:64px;max-width:1320px;}
-body.skin-mitsulab .brand .ja{
+body.skin-mori .head-in{height:64px;max-width:1320px;}
+body.skin-mori .brand .ja{
   color:var(--ink);font-family:"Cormorant Garamond","Yu Mincho",serif;
   font-style:italic;font-weight:500;font-size:23px;letter-spacing:.08em;
 }
-body.skin-mitsulab .brand .en{color:var(--ink-3);font-family:"Cormorant Garamond",serif;font-style:italic;}
-body.skin-mitsulab .brand-mark{filter:brightness(0) invert(1);opacity:.88;width:23px;height:28px;object-fit:contain;}
-body.skin-mitsulab .nav{align-self:stretch;gap:4px;}
-body.skin-mitsulab .nav a{
+body.skin-mori .brand .en{color:var(--ink-3);font-family:"Cormorant Garamond",serif;font-style:italic;}
+body.skin-mori .brand-mark{filter:brightness(0) invert(1);opacity:.88;width:23px;height:28px;object-fit:contain;}
+body.skin-mori .nav{align-self:stretch;gap:4px;}
+body.skin-mori .nav a{
   min-width:94px;height:100%;padding:11px 12px 8px;
   display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;
   color:var(--ink-2);line-height:1.1;font-family:"Yu Mincho","Noto Serif JP",serif;
   font-size:12px;letter-spacing:.08em;
 }
-body.skin-mitsulab .nav a small{
+body.skin-mori .nav a small{
   display:block;color:var(--ink-3);font:italic 8px/1 "Cormorant Garamond",serif;
   letter-spacing:.28em;
 }
-body.skin-mitsulab .nav a::after{height:1px;background:var(--mori);left:22%;bottom:0;}
-body.skin-mitsulab .nav a:hover,
-body.skin-mitsulab .nav a.active{color:var(--mori);}
-body.skin-mitsulab .nav a.active small{color:var(--ink-2);}
-body.skin-mitsulab .cta{
+body.skin-mori .nav a::after{height:1px;background:var(--mori);left:22%;bottom:0;}
+body.skin-mori .nav a:hover,
+body.skin-mori .nav a.active{color:var(--mori);}
+body.skin-mori .nav a.active small{color:var(--ink-2);}
+body.skin-mori .cta{
   background:transparent;border-color:rgba(92,200,224,.52);color:var(--mori);
   font:500 11px/1 "Yu Mincho","Noto Serif JP",serif;letter-spacing:.1em;
 }
-body.skin-mitsulab .cta::after{content:"CONTACT";display:block;margin-top:5px;font:italic 7px/1 "Cormorant Garamond",serif;letter-spacing:.3em;color:var(--ink-3);}
-body.skin-mitsulab .cta:hover,
-body.skin-mitsulab .cta.active{background:rgba(92,200,224,.12);border-color:var(--mori);color:var(--ink);}
+body.skin-mori .cta::after{content:"CONTACT";display:block;margin-top:5px;font:italic 7px/1 "Cormorant Garamond",serif;letter-spacing:.3em;color:var(--ink-3);}
+body.skin-mori .cta:hover,
+body.skin-mori .cta.active{background:rgba(92,200,224,.12);border-color:var(--mori);color:var(--ink);}
 
 /* about hero ── 闇の中の接点、細線、発光 */
-body.skin-mitsulab .about-hero{
+body.skin-mori .about-hero{
   min-height:calc(100vh - 64px);background:transparent;border-color:var(--rule);
 }
-body.skin-mitsulab .about-hero::before{
+body.skin-mori .about-hero::before{
   content:"MORIKOSHA  /  CONNECTING WORK AND PEOPLE";
   position:absolute;right:-2.5em;top:50%;transform:rotate(90deg) translateY(-50%);
   transform-origin:center;color:rgba(92,200,224,.23);
   font:500 9px/1 "JetBrains Mono",monospace;letter-spacing:.35em;
 }
-body.skin-mitsulab .about-hero::after{
+body.skin-mori .about-hero::after{
   content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
   background:linear-gradient(90deg,transparent,var(--mori),transparent);opacity:.42;
 }
-body.skin-mitsulab .about-hero-in{min-height:calc(100vh - 64px);}
-body.skin-mitsulab .page-kicker{
+body.skin-mori .about-hero-in{min-height:calc(100vh - 64px);}
+body.skin-mori .page-kicker{
   color:var(--mori);font-family:"JetBrains Mono",monospace;opacity:.78;
 }
-body.skin-mitsulab .about-title-frame{
+body.skin-mori .about-title-frame{
   background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
   border:1px solid rgba(255,255,255,.07);
   box-shadow:0 32px 90px -50px rgba(92,200,224,.48),inset 0 1px rgba(255,255,255,.05);
   -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
 }
-body.skin-mitsulab .about-title-frame::before{
+body.skin-mori .about-title-frame::before{
   content:"INTERFACE / 01";position:absolute;right:18px;top:16px;
   color:var(--mori);font:500 7px/1 "JetBrains Mono",monospace;letter-spacing:.25em;opacity:.68;
 }
-body.skin-mitsulab .about-title-frame h1{
+body.skin-mori .about-title-frame h1{
   color:var(--ink);font-family:"Shippori Mincho","Yu Mincho","Noto Serif JP",serif;
   font-weight:300;text-shadow:0 0 34px rgba(92,200,224,.09);
 }
-body.skin-mitsulab .frame-corner::before,
-body.skin-mitsulab .frame-corner::after{background:var(--mori);box-shadow:0 0 12px rgba(92,200,224,.42);}
-body.skin-mitsulab .about-lead{color:var(--ink-2);}
-body.skin-mitsulab .about-graphic{filter:drop-shadow(0 0 34px rgba(92,200,224,.12));}
-body.skin-mitsulab .about-graphic::before,
-body.skin-mitsulab .about-graphic::after{border-color:rgba(92,200,224,.3);}
-body.skin-mitsulab .ag-line{background:linear-gradient(90deg,transparent,var(--mori),transparent);box-shadow:0 0 10px rgba(92,200,224,.4);}
-body.skin-mitsulab .ag-node{background:#03060F;border-color:var(--mori);box-shadow:0 0 15px rgba(92,200,224,.5);}
-body.skin-mitsulab .ag-node-2{background:var(--mori);}
-body.skin-mitsulab .ag-label{color:var(--mori);font-family:"JetBrains Mono",monospace;}
+body.skin-mori .frame-corner::before,
+body.skin-mori .frame-corner::after{background:var(--mori);box-shadow:0 0 12px rgba(92,200,224,.42);}
+body.skin-mori .about-lead{color:var(--ink-2);}
+body.skin-mori .about-graphic{filter:drop-shadow(0 0 34px rgba(92,200,224,.12));}
+body.skin-mori .about-graphic::before,
+body.skin-mori .about-graphic::after{border-color:rgba(92,200,224,.3);}
+body.skin-mori .ag-line{background:linear-gradient(90deg,transparent,var(--mori),transparent);box-shadow:0 0 10px rgba(92,200,224,.4);}
+body.skin-mori .ag-node{background:#03060F;border-color:var(--mori);box-shadow:0 0 15px rgba(92,200,224,.5);}
+body.skin-mori .ag-node-2{background:var(--mori);}
+body.skin-mori .ag-label{color:var(--mori);font-family:"JetBrains Mono",monospace;}
 
 /* sections ── 中央タイトル＋ガラスカード */
-body.skin-mitsulab .about-body,
-body.skin-mitsulab .sec,
-body.skin-mitsulab .sec-tint,
-body.skin-mitsulab .page-profile,
-body.skin-mitsulab .page-contact,
-body.skin-mitsulab .erabo-hero{background:transparent;border-color:var(--rule);}
-body.skin-mitsulab .about-intro{max-width:880px;margin-inline:auto;text-align:center;}
-body.skin-mitsulab .about-intro h2,
-body.skin-mitsulab .erabo-hero h1{
+body.skin-mori .about-body,
+body.skin-mori .sec,
+body.skin-mori .sec-tint,
+body.skin-mori .page-profile,
+body.skin-mori .page-contact,
+body.skin-mori .erabo-hero{background:transparent;border-color:var(--rule);}
+body.skin-mori .about-intro{max-width:880px;margin-inline:auto;text-align:center;}
+body.skin-mori .about-intro h2,
+body.skin-mori .erabo-hero h1{
   color:var(--ink);font-family:"Shippori Mincho","Yu Mincho","Noto Serif JP",serif;
   font-weight:300;letter-spacing:.12em;
 }
-body.skin-mitsulab .about-intro>p:last-child,
-body.skin-mitsulab .erabo-lead,
-body.skin-mitsulab .contact-intro p{color:var(--ink-2);}
-body.skin-mitsulab .shead{
+body.skin-mori .about-intro>p:last-child,
+body.skin-mori .erabo-lead,
+body.skin-mori .contact-intro p{color:var(--ink-2);}
+body.skin-mori .shead{
   display:block;text-align:center;margin-bottom:56px!important;
 }
-body.skin-mitsulab .shead::after{display:none;}
-body.skin-mitsulab .sh-no{
+body.skin-mori .shead::after{display:none;}
+body.skin-mori .sh-no{
   display:block;width:auto;height:auto;border:0;margin:0 0 13px;
   color:var(--mori);font:600 9px/1 "JetBrains Mono",monospace;letter-spacing:.34em;
 }
-body.skin-mitsulab .shead h2{
+body.skin-mori .shead h2{
   color:var(--ink);font-family:"Shippori Mincho","Yu Mincho","Noto Serif JP",serif;
   font-weight:400;font-size:clamp(25px,3vw,36px);letter-spacing:.13em;
 }
-body.skin-mitsulab .sh-en{
+body.skin-mori .sh-en{
   display:block;margin:10px 0 0;padding:0;color:var(--mori);
   font:italic 13px/1 "Cormorant Garamond",serif;letter-spacing:.28em;
 }
-body.skin-mitsulab .w-state{text-align:center;color:var(--ink);font-family:"Shippori Mincho","Yu Mincho",serif;font-weight:300;}
-body.skin-mitsulab .w-lead{text-align:center;color:var(--ink-2);}
+body.skin-mori .w-state{text-align:center;color:var(--ink);font-family:"Shippori Mincho","Yu Mincho",serif;font-weight:300;}
+body.skin-mori .w-lead{text-align:center;color:var(--ink-2);}
 
-body.skin-mitsulab .service-step,
-body.skin-mitsulab .tt-c,
-body.skin-mitsulab .waku,
-body.skin-mitsulab .erabo-price,
-body.skin-mitsulab .contact,
-body.skin-mitsulab .why-card{
+body.skin-mori .service-step,
+body.skin-mori .tt-c,
+body.skin-mori .waku,
+body.skin-mori .erabo-price,
+body.skin-mori .contact,
+body.skin-mori .why-card{
   position:relative;background:rgba(9,16,24,.68);color:var(--ink);
   border:1px solid rgba(92,200,224,.26);
   box-shadow:inset 0 1px rgba(255,255,255,.035),0 22px 60px -46px rgba(92,200,224,.5);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
 }
-body.skin-mitsulab .service-step::before,
-body.skin-mitsulab .tt-c::before,
-body.skin-mitsulab .waku::before,
-body.skin-mitsulab .erabo-price::before{
+body.skin-mori .service-step::before,
+body.skin-mori .tt-c::before,
+body.skin-mori .waku::before,
+body.skin-mori .erabo-price::before{
   content:"";position:absolute;left:-1px;top:-1px;width:12px;height:12px;
   border-left:1px solid var(--mori);border-top:1px solid var(--mori);pointer-events:none;
 }
-body.skin-mitsulab .service-step::after,
-body.skin-mitsulab .tt-c::after,
-body.skin-mitsulab .waku::after,
-body.skin-mitsulab .erabo-price::after{
+body.skin-mori .service-step::after,
+body.skin-mori .tt-c::after,
+body.skin-mori .waku::after,
+body.skin-mori .erabo-price::after{
   content:"";position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;
   border-right:1px solid var(--mori);border-bottom:1px solid var(--mori);pointer-events:none;
 }
-body.skin-mitsulab .service-step:hover,
-body.skin-mitsulab .tt-c:hover{background:rgba(12,22,31,.86);border-color:rgba(92,200,224,.6);box-shadow:0 18px 70px -35px rgba(92,200,224,.35);}
-body.skin-mitsulab .service-step h3,
-body.skin-mitsulab .tt-ja,
-body.skin-mitsulab .waku-t,
-body.skin-mitsulab .erabo-price strong{color:var(--ink);}
-body.skin-mitsulab .service-step p,
-body.skin-mitsulab .tt-g,
-body.skin-mitsulab .tt-e,
-body.skin-mitsulab .waku p,
-body.skin-mitsulab .erabo-process p{color:var(--ink-2);}
-body.skin-mitsulab .service-no,
-body.skin-mitsulab .service-go,
-body.skin-mitsulab .tt-yomi,
-body.skin-mitsulab .erabo-process>li>span{color:var(--mori);}
-body.skin-mitsulab .service-go,
-body.skin-mitsulab .tt-k,
-body.skin-mitsulab .tt-more{border-color:var(--rule);}
-body.skin-mitsulab .service-join::before{background:linear-gradient(90deg,transparent,var(--mori),transparent);}
-body.skin-mitsulab .service-join i{background:var(--mori);box-shadow:0 0 14px rgba(92,200,224,.6);}
+body.skin-mori .service-step:hover,
+body.skin-mori .tt-c:hover{background:rgba(12,22,31,.86);border-color:rgba(92,200,224,.6);box-shadow:0 18px 70px -35px rgba(92,200,224,.35);}
+body.skin-mori .service-step h3,
+body.skin-mori .tt-ja,
+body.skin-mori .waku-t,
+body.skin-mori .erabo-price strong{color:var(--ink);}
+body.skin-mori .service-step p,
+body.skin-mori .tt-g,
+body.skin-mori .tt-e,
+body.skin-mori .waku p,
+body.skin-mori .erabo-process p{color:var(--ink-2);}
+body.skin-mori .service-no,
+body.skin-mori .service-go,
+body.skin-mori .tt-yomi,
+body.skin-mori .erabo-process>li>span{color:var(--mori);}
+body.skin-mori .service-go,
+body.skin-mori .tt-k,
+body.skin-mori .tt-more{border-color:var(--rule);}
+body.skin-mori .service-join::before{background:linear-gradient(90deg,transparent,var(--mori),transparent);}
+body.skin-mori .service-join i{background:var(--mori);box-shadow:0 0 14px rgba(92,200,224,.6);}
 
 /* HP の大扉 ── 写真群を深い藍の奥へ沈める */
-body.skin-mitsulab .top{background:#03060F;}
-body.skin-mitsulab .top-bg{opacity:.28;filter:saturate(.7) contrast(1.1);}
-body.skin-mitsulab .top-veil{background:linear-gradient(180deg,rgba(3,6,15,.38),rgba(3,6,15,.74));}
-body.skin-mitsulab .top::after{background:linear-gradient(180deg,transparent,#03060F);}
-body.skin-mitsulab .top-fuda{
+body.skin-mori .top{background:#03060F;}
+body.skin-mori .top-bg{opacity:.28;filter:saturate(.7) contrast(1.1);}
+body.skin-mori .top-veil{background:linear-gradient(180deg,rgba(3,6,15,.38),rgba(3,6,15,.74));}
+body.skin-mori .top::after{background:linear-gradient(180deg,transparent,#03060F);}
+body.skin-mori .top-fuda{
   padding:30px 38px;border:1px solid rgba(92,200,224,.18);
   background:rgba(3,6,15,.42);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
   color:var(--ink);font-family:"Shippori Mincho","Yu Mincho",serif;font-weight:300;
   box-shadow:0 28px 90px -48px rgba(92,200,224,.56);
 }
-body.skin-mitsulab .top-fuda::before,
-body.skin-mitsulab .top-fuda::after{
+body.skin-mori .top-fuda::before,
+body.skin-mori .top-fuda::after{
   content:"";position:absolute;width:18px;height:18px;pointer-events:none;
 }
-body.skin-mitsulab .top-fuda::before{left:-1px;top:-1px;border-left:1px solid var(--mori);border-top:1px solid var(--mori);}
-body.skin-mitsulab .top-fuda::after{right:-1px;bottom:-1px;border-right:1px solid var(--mori);border-bottom:1px solid var(--mori);}
-body.skin-mitsulab .top-fuda span{text-shadow:0 0 22px rgba(92,200,224,.16);}
-body.skin-mitsulab .top-fuda span::before,
-body.skin-mitsulab .top-fuda span::after{content:none;}
+body.skin-mori .top-fuda::before{left:-1px;top:-1px;border-left:1px solid var(--mori);border-top:1px solid var(--mori);}
+body.skin-mori .top-fuda::after{right:-1px;bottom:-1px;border-right:1px solid var(--mori);border-bottom:1px solid var(--mori);}
+body.skin-mori .top-fuda span{text-shadow:0 0 22px rgba(92,200,224,.16);}
+body.skin-mori .top-fuda span::before,
+body.skin-mori .top-fuda span::after{content:none;}
 
-/* えらぼっと ── mitsulab の線画・界面グラフィック */
-body.skin-mitsulab .erabo-map{
+/* えらぼっと ── 線画・界面グラフィック */
+body.skin-mori .erabo-map{
   background:
     linear-gradient(rgba(92,200,224,.035) 1px,transparent 1px),
     linear-gradient(90deg,rgba(92,200,224,.035) 1px,transparent 1px),
@@ -1095,57 +1095,57 @@ body.skin-mitsulab .erabo-map{
   background-size:32px 32px;border-color:rgba(92,200,224,.25);
   box-shadow:inset 0 0 70px rgba(92,200,224,.025);
 }
-body.skin-mitsulab .em-q,
-body.skin-mitsulab .em-result{background:#07101A;border-color:var(--mori);color:var(--ink);box-shadow:0 0 22px rgba(92,200,224,.12);}
-body.skin-mitsulab .em-line{background:linear-gradient(90deg,var(--mori),rgba(92,200,224,.15));}
-body.skin-mitsulab .erabo-process{border-color:var(--rule-2);}
-body.skin-mitsulab .erabo-process li,
-body.skin-mitsulab .erabo-price>div{border-color:var(--rule);}
+body.skin-mori .em-q,
+body.skin-mori .em-result{background:#07101A;border-color:var(--mori);color:var(--ink);box-shadow:0 0 22px rgba(92,200,224,.12);}
+body.skin-mori .em-line{background:linear-gradient(90deg,var(--mori),rgba(92,200,224,.15));}
+body.skin-mori .erabo-process{border-color:var(--rule-2);}
+body.skin-mori .erabo-process li,
+body.skin-mori .erabo-price>div{border-color:var(--rule);}
 
 /* buttons, FAQ, footer */
-body.skin-mitsulab .btn,
-body.skin-mitsulab .dl-btn{
+body.skin-mori .btn,
+body.skin-mori .dl-btn{
   border-color:rgba(92,200,224,.5);color:var(--mori);background:rgba(92,200,224,.025);
 }
-body.skin-mitsulab .btn:hover,
-body.skin-mitsulab .dl-btn:hover,
-body.skin-mitsulab .btn-fill{background:var(--mori);border-color:var(--mori);color:#031018;}
-body.skin-mitsulab .btn-fill:hover{background:var(--mori-2);border-color:var(--mori-2);color:#031018;}
-body.skin-mitsulab .step-t,
-body.skin-mitsulab .ind-chips,
-body.skin-mitsulab .pv-bar,
-body.skin-mitsulab .pv-desc,
-body.skin-mitsulab .faq details,
-body.skin-mitsulab .colo{border-color:var(--rule);}
-body.skin-mitsulab .st-n,
-body.skin-mitsulab .pt-n,
-body.skin-mitsulab .q-n{color:var(--mori);}
-body.skin-mitsulab .step-t h3,
-body.skin-mitsulab .q-t,
-body.skin-mitsulab .contact .mail{color:var(--ink);}
-body.skin-mitsulab .step-p,
-body.skin-mitsulab .faq .ans,
-body.skin-mitsulab .contact .sub{color:var(--ink-2);}
-body.skin-mitsulab .colo{background:rgba(5,9,15,.88);}
-body.skin-mitsulab .colo h2,
-body.skin-mitsulab .colo p,
-body.skin-mitsulab .colo dd{color:var(--ink-2);}
-body.skin-mitsulab .colo dt,
-body.skin-mitsulab .colo .fine{color:var(--ink-3);}
-body.skin-mitsulab .mcta{background:rgba(3,6,15,.94);border-color:var(--rule);}
+body.skin-mori .btn:hover,
+body.skin-mori .dl-btn:hover,
+body.skin-mori .btn-fill{background:var(--mori);border-color:var(--mori);color:#031018;}
+body.skin-mori .btn-fill:hover{background:var(--mori-2);border-color:var(--mori-2);color:#031018;}
+body.skin-mori .step-t,
+body.skin-mori .ind-chips,
+body.skin-mori .pv-bar,
+body.skin-mori .pv-desc,
+body.skin-mori .faq details,
+body.skin-mori .colo{border-color:var(--rule);}
+body.skin-mori .st-n,
+body.skin-mori .pt-n,
+body.skin-mori .q-n{color:var(--mori);}
+body.skin-mori .step-t h3,
+body.skin-mori .q-t,
+body.skin-mori .contact .mail{color:var(--ink);}
+body.skin-mori .step-p,
+body.skin-mori .faq .ans,
+body.skin-mori .contact .sub{color:var(--ink-2);}
+body.skin-mori .colo{background:rgba(5,9,15,.88);}
+body.skin-mori .colo h2,
+body.skin-mori .colo p,
+body.skin-mori .colo dd{color:var(--ink-2);}
+body.skin-mori .colo dt,
+body.skin-mori .colo .fine{color:var(--ink-3);}
+body.skin-mori .mcta{background:rgba(3,6,15,.94);border-color:var(--rule);}
 
 /* サンプルUIは暗い外枠にし、各デザインそのものの色は保持 */
-body.skin-mitsulab .pv-in{color:var(--ink);}
-body.skin-mitsulab .pv-stage{background:#07101A;}
-body.skin-mitsulab .pv-bar label,
-body.skin-mitsulab .ind-chips label{color:var(--ink-2);border-color:var(--rule-2);background:rgba(255,255,255,.025);}
-body.skin-mitsulab .pv-nav{background:rgba(3,6,15,.88);border-color:var(--rule-2);}
-body.skin-mitsulab .pv-nav::before{border-color:var(--ink);}
-body.skin-mitsulab .pv-desc p,
-body.skin-mitsulab .tt-note{color:var(--ink-2);}
+body.skin-mori .pv-in{color:var(--ink);}
+body.skin-mori .pv-stage{background:#07101A;}
+body.skin-mori .pv-bar label,
+body.skin-mori .ind-chips label{color:var(--ink-2);border-color:var(--rule-2);background:rgba(255,255,255,.025);}
+body.skin-mori .pv-nav{background:rgba(3,6,15,.88);border-color:var(--rule-2);}
+body.skin-mori .pv-nav::before{border-color:var(--ink);}
+body.skin-mori .pv-desc p,
+body.skin-mori .tt-note{color:var(--ink-2);}
 
-/* 2026-09-11 ── mitsulab の方向性を保ちながら、より平明で人に近い表現へ */
-body.skin-mitsulab{
+/* 2026-09-11 ── より平明で人に近い表現へ */
+body.skin-mori{
   --mori:#78C7D5;
   --mori-2:#A1DDE6;
   background:
@@ -1153,267 +1153,267 @@ body.skin-mitsulab{
     radial-gradient(760px 520px at 96% 102%,rgba(120,199,213,.045),transparent 65%),
     #050912;
 }
-body.skin-mitsulab::before{
+body.skin-mori::before{
   opacity:1;
   background:
     radial-gradient(ellipse at 18% 8%,rgba(120,199,213,.045),transparent 38%),
     radial-gradient(ellipse at 82% 72%,rgba(120,199,213,.025),transparent 42%);
   mask-image:none;
 }
-body.skin-mitsulab .about-hero{position:relative;background:#050912;}
-body.skin-mitsulab .about-hero::before{display:none;}
-body.skin-mitsulab .about-bg{
+body.skin-mori .about-hero{position:relative;background:#050912;}
+body.skin-mori .about-hero::before{display:none;}
+body.skin-mori .about-bg{
   position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;
 }
-body.skin-mitsulab .about-bg>.top-bg{
+body.skin-mori .about-bg>.top-bg{
   inset:-5%;opacity:.45;filter:saturate(.76) brightness(.75) contrast(.98);
   transform:scale(1.04);
 }
-body.skin-mitsulab .about-bg .show-card .ph{opacity:1;}
-body.skin-mitsulab .about-bg .show-card .tag{display:none;}
-body.skin-mitsulab .about-bg .show-track:hover{animation-play-state:running!important;}
-body.skin-mitsulab .about-shade{
+body.skin-mori .about-bg .show-card .ph{opacity:1;}
+body.skin-mori .about-bg .show-card .tag{display:none;}
+body.skin-mori .about-bg .show-track:hover{animation-play-state:running!important;}
+body.skin-mori .about-shade{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   background:
     linear-gradient(90deg,rgba(5,9,18,.92) 0%,rgba(5,9,18,.76) 48%,rgba(5,9,18,.62) 100%),
     linear-gradient(180deg,rgba(5,9,18,.24),rgba(5,9,18,.58));
 }
-body.skin-mitsulab .about-hero-in{position:relative;z-index:2;}
-body.skin-mitsulab .about-title-frame{
+body.skin-mori .about-hero-in{position:relative;z-index:2;}
+body.skin-mori .about-title-frame{
   border-color:rgba(255,255,255,.11);
   background:rgba(5,9,18,.62);
   box-shadow:0 26px 80px -48px rgba(0,0,0,.9);
   -webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);
 }
-body.skin-mitsulab .about-title-frame::before{content:none;}
-body.skin-mitsulab .frame-corner{width:42px;height:42px;opacity:.72;}
-body.skin-mitsulab .about-title-frame h1{
+body.skin-mori .about-title-frame::before{content:none;}
+body.skin-mori .frame-corner{width:42px;height:42px;opacity:.72;}
+body.skin-mori .about-title-frame h1{
   font-size:clamp(38px,4.9vw,66px);line-height:1.65;letter-spacing:.075em;
   text-shadow:0 2px 28px rgba(0,0,0,.45);
 }
-body.skin-mitsulab .about-lead{color:rgba(232,238,245,.88);text-shadow:0 2px 18px rgba(0,0,0,.7);}
+body.skin-mori .about-lead{color:rgba(232,238,245,.88);text-shadow:0 2px 18px rgba(0,0,0,.7);}
 
 /* 抽象的な菱形を、仕事─杜工舎─人の一本の線へ簡略化 */
-body.skin-mitsulab .about-graphic{aspect-ratio:auto;height:150px;max-width:430px;}
-body.skin-mitsulab .about-graphic::before,
-body.skin-mitsulab .about-graphic::after{display:none;}
-body.skin-mitsulab .ag-line-1{left:9%;right:9%;top:50%;transform:none;}
-body.skin-mitsulab .ag-line-2{display:none;}
-body.skin-mitsulab .ag-node{top:calc(50% - 5px);}
-body.skin-mitsulab .ag-node-1{left:8%;}
-body.skin-mitsulab .ag-node-2{left:calc(50% - 5px);}
-body.skin-mitsulab .ag-node-3{right:8%;}
-body.skin-mitsulab .ag-node-2::after{
+body.skin-mori .about-graphic{aspect-ratio:auto;height:150px;max-width:430px;}
+body.skin-mori .about-graphic::before,
+body.skin-mori .about-graphic::after{display:none;}
+body.skin-mori .ag-line-1{left:9%;right:9%;top:50%;transform:none;}
+body.skin-mori .ag-line-2{display:none;}
+body.skin-mori .ag-node{top:calc(50% - 5px);}
+body.skin-mori .ag-node-1{left:8%;}
+body.skin-mori .ag-node-2{left:calc(50% - 5px);}
+body.skin-mori .ag-node-3{right:8%;}
+body.skin-mori .ag-node-2::after{
   content:"杜工舎";position:absolute;left:50%;top:22px;transform:translateX(-50%);
   width:max-content;color:var(--ink);font:400 12px/1 "Yu Mincho","Noto Serif JP",serif;letter-spacing:.18em;
 }
-body.skin-mitsulab .ag-label-1{left:5%;top:66%;}
-body.skin-mitsulab .ag-label-2{right:5%;bottom:auto;top:66%;}
+body.skin-mori .ag-label-1{left:5%;top:66%;}
+body.skin-mori .ag-label-2{right:5%;bottom:auto;top:66%;}
 
 /* 物語 ── 技術年表ではなく、二つの現場から生まれた理由を読む */
-body.skin-mitsulab .origin-story{
+body.skin-mori .origin-story{
   margin:0 auto clamp(82px,9vw,132px);padding:clamp(56px,7vw,88px) 0;
   border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
 }
-body.skin-mitsulab .origin-head{max-width:760px;margin:0 auto 54px;text-align:center;}
-body.skin-mitsulab .origin-head h3{
+body.skin-mori .origin-head{max-width:760px;margin:0 auto 54px;text-align:center;}
+body.skin-mori .origin-head h3{
   margin:0;color:var(--ink);font-family:"Shippori Mincho","Yu Mincho","Noto Serif JP",serif;
   font-size:clamp(27px,3.6vw,44px);font-weight:300;line-height:1.75;letter-spacing:.09em;
 }
-body.skin-mitsulab .origin-visuals{
+body.skin-mori .origin-visuals{
   display:grid;grid-template-columns:1.08fr .92fr;gap:12px;
   margin:0 0 clamp(52px,6vw,74px);
 }
-body.skin-mitsulab .origin-visuals figure{
+body.skin-mori .origin-visuals figure{
   position:relative;min-width:0;margin:0;overflow:hidden;background:#08121b;
   border:1px solid rgba(255,255,255,.1);
 }
-body.skin-mitsulab .origin-visuals figure:first-child{transform:translateY(18px);}
-body.skin-mitsulab .origin-visuals img{
+body.skin-mori .origin-visuals figure:first-child{transform:translateY(18px);}
+body.skin-mori .origin-visuals img{
   display:block;width:100%;height:clamp(230px,28vw,390px);object-fit:cover;
   filter:saturate(.76) brightness(.76) contrast(1.04);
   transition:filter .6s ease,transform 1s cubic-bezier(.2,.7,.2,1);
 }
-body.skin-mitsulab .origin-visuals figure:hover img{
+body.skin-mori .origin-visuals figure:hover img{
   filter:saturate(.9) brightness(.86) contrast(1.02);transform:scale(1.015);
 }
-body.skin-mitsulab .origin-visuals figcaption{
+body.skin-mori .origin-visuals figcaption{
   position:absolute;left:0;right:0;bottom:0;padding:38px 24px 20px;
   color:rgba(240,244,248,.9);font-size:12px;line-height:1.7;letter-spacing:.04em;
   background:linear-gradient(180deg,transparent,rgba(3,7,13,.9));
 }
-body.skin-mitsulab .origin-visuals figcaption span{
+body.skin-mori .origin-visuals figcaption span{
   display:block;margin-bottom:7px;color:var(--mori);
   font:500 8px/1 "JetBrains Mono",monospace;letter-spacing:.2em;
 }
-body.skin-mitsulab .origin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,54px);}
-body.skin-mitsulab .origin-item{padding-top:25px;border-top:1px solid rgba(120,199,213,.45);}
-body.skin-mitsulab .origin-item>span{
+body.skin-mori .origin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,54px);}
+body.skin-mori .origin-item{padding-top:25px;border-top:1px solid rgba(120,199,213,.45);}
+body.skin-mori .origin-item>span{
   display:block;margin-bottom:20px;color:var(--mori);
   font:500 9px/1 "JetBrains Mono",monospace;letter-spacing:.2em;
 }
-body.skin-mitsulab .origin-item h4{
+body.skin-mori .origin-item h4{
   margin:0 0 16px;color:var(--ink);font-family:"Yu Mincho","Noto Serif JP",serif;
   font-size:19px;font-weight:400;letter-spacing:.05em;line-height:1.7;
 }
-body.skin-mitsulab .origin-item p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:2.15;}
-body.skin-mitsulab .origin-close{
+body.skin-mori .origin-item p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:2.15;}
+body.skin-mori .origin-close{
   margin:58px 0 0;text-align:center;color:var(--ink);
   font-family:"Yu Mincho","Noto Serif JP",serif;font-size:clamp(18px,2.2vw,25px);line-height:2;letter-spacing:.08em;
 }
 
 /* 五つの型ではなく、五つの日本の美意識から会社の佇まいを選ぶ */
-body.skin-mitsulab .top-sub{
+body.skin-mori .top-sub{
   max-width:580px;margin:28px auto 0;color:rgba(237,242,247,.86);
   font:400 13px/2 "Yu Mincho","Noto Serif JP",serif;letter-spacing:.11em;
   text-align:center;text-shadow:0 2px 20px rgba(0,0,0,.72);
 }
-body.skin-mitsulab .beauty-five{
+body.skin-mori .beauty-five{
   display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);
   gap:clamp(42px,6vw,82px);align-items:center;
   margin:clamp(64px,8vw,108px) 0 clamp(72px,9vw,124px);
   padding:clamp(42px,5vw,68px);border:1px solid rgba(255,255,255,.1);
   background:radial-gradient(560px 320px at 0 0,rgba(120,199,213,.065),transparent 72%),rgba(255,255,255,.018);
 }
-body.skin-mitsulab .beauty-copy h3{
+body.skin-mori .beauty-copy h3{
   margin:0 0 22px;color:var(--ink);
   font:300 clamp(25px,3.15vw,40px)/1.72 "Shippori Mincho","Yu Mincho",serif;
   letter-spacing:.075em;
 }
-body.skin-mitsulab .beauty-copy>p:not(.page-kicker){margin:0;color:var(--ink-2);font-size:13.5px;line-height:2.15;}
-body.skin-mitsulab .beauty-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:start;}
-body.skin-mitsulab .beauty-grid figure{
+body.skin-mori .beauty-copy>p:not(.page-kicker){margin:0;color:var(--ink-2);font-size:13.5px;line-height:2.15;}
+body.skin-mori .beauty-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:start;}
+body.skin-mori .beauty-grid figure{
   position:relative;grid-column:span 2;min-width:0;margin:0;
   border:1px solid rgba(255,255,255,.11);background:#07101a;overflow:hidden;
 }
-body.skin-mitsulab .beauty-grid figure:nth-child(4){grid-column:2 / span 2;}
-body.skin-mitsulab .beauty-grid figure:nth-child(5){grid-column:4 / span 2;}
-body.skin-mitsulab .beauty-grid img{
+body.skin-mori .beauty-grid figure:nth-child(4){grid-column:2 / span 2;}
+body.skin-mori .beauty-grid figure:nth-child(5){grid-column:4 / span 2;}
+body.skin-mori .beauty-grid img{
   display:block;width:100%;aspect-ratio:1.52/1;object-fit:cover;
   filter:saturate(.76) brightness(.84) contrast(1.02);transition:filter .45s ease,transform .7s ease;
 }
-body.skin-mitsulab .beauty-grid figure:hover img{filter:saturate(.94) brightness(.95);transform:scale(1.025);}
-body.skin-mitsulab .beauty-grid figcaption{
+body.skin-mori .beauty-grid figure:hover img{filter:saturate(.94) brightness(.95);transform:scale(1.025);}
+body.skin-mori .beauty-grid figcaption{
   display:flex;align-items:baseline;justify-content:space-between;gap:8px;
   padding:12px 13px 13px;border-top:1px solid rgba(255,255,255,.08);
 }
-body.skin-mitsulab .beauty-grid figcaption b{color:var(--ink);font:400 20px/1 "Yu Mincho","Noto Serif JP",serif;}
-body.skin-mitsulab .beauty-grid figcaption span{color:var(--ink-3);font-size:9px;letter-spacing:.08em;}
+body.skin-mori .beauty-grid figcaption b{color:var(--ink);font:400 20px/1 "Yu Mincho","Noto Serif JP",serif;}
+body.skin-mori .beauty-grid figcaption span{color:var(--ink-3);font-size:9px;letter-spacing:.08em;}
 
 /* 施工事例が増える場所 */
-body.skin-mitsulab .case-place{
+body.skin-mori .case-place{
   display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;align-items:stretch;margin-top:56px;
 }
-body.skin-mitsulab .case-place article{
+body.skin-mori .case-place article{
   padding:30px 26px;border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.022);
 }
-body.skin-mitsulab .case-place article>span{color:var(--mori);font:500 9px/1 "JetBrains Mono",monospace;letter-spacing:.2em;}
-body.skin-mitsulab .case-place h3{margin:25px 0 13px;color:var(--ink);font:400 18px/1.65 "Yu Mincho","Noto Serif JP",serif;letter-spacing:.05em;}
-body.skin-mitsulab .case-place p{margin:0;color:var(--ink-2);font-size:13px;line-height:2;}
-body.skin-mitsulab .case-place>i{position:relative;}
-body.skin-mitsulab .case-place>i::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(120,199,213,.5);}
-body.skin-mitsulab .case-place>i::after{content:"";position:absolute;right:0;top:calc(50% - 3px);width:6px;height:6px;border-top:1px solid var(--mori);border-right:1px solid var(--mori);transform:rotate(45deg);}
-body.skin-mitsulab .case-place-close{margin:42px 0 0;text-align:center;color:var(--ink-2);font-family:"Yu Mincho","Noto Serif JP",serif;font-size:15px;line-height:2;}
+body.skin-mori .case-place article>span{color:var(--mori);font:500 9px/1 "JetBrains Mono",monospace;letter-spacing:.2em;}
+body.skin-mori .case-place h3{margin:25px 0 13px;color:var(--ink);font:400 18px/1.65 "Yu Mincho","Noto Serif JP",serif;letter-spacing:.05em;}
+body.skin-mori .case-place p{margin:0;color:var(--ink-2);font-size:13px;line-height:2;}
+body.skin-mori .case-place>i{position:relative;}
+body.skin-mori .case-place>i::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(120,199,213,.5);}
+body.skin-mori .case-place>i::after{content:"";position:absolute;right:0;top:calc(50% - 3px);width:6px;height:6px;border-top:1px solid var(--mori);border-right:1px solid var(--mori);transform:rotate(45deg);}
+body.skin-mori .case-place-close{margin:42px 0 0;text-align:center;color:var(--ink-2);font-family:"Yu Mincho","Noto Serif JP",serif;font-size:15px;line-height:2;}
 
 /* 選定結果を比較・提案へ運ぶ */
-body.skin-mitsulab .decision-output{
+body.skin-mori .decision-output{
   display:grid;grid-template-columns:minmax(0,.88fr) minmax(420px,1.12fr);
   gap:clamp(42px,7vw,90px);align-items:center;margin-top:clamp(72px,9vw,120px);
   padding:clamp(36px,5vw,62px);border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.022);
 }
-body.skin-mitsulab .decision-copy h3{
+body.skin-mori .decision-copy h3{
   margin:0 0 20px;color:var(--ink);font:300 clamp(24px,3vw,38px)/1.75 "Shippori Mincho","Yu Mincho",serif;letter-spacing:.08em;
 }
-body.skin-mitsulab .decision-copy>p:not(.page-kicker){margin:0 0 27px;color:var(--ink-2);font-size:14px;line-height:2.1;}
-body.skin-mitsulab .decision-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:12px;}
-body.skin-mitsulab .decision-flow span{
+body.skin-mori .decision-copy>p:not(.page-kicker){margin:0 0 27px;color:var(--ink-2);font-size:14px;line-height:2.1;}
+body.skin-mori .decision-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:12px;}
+body.skin-mori .decision-flow span{
   min-height:112px;padding:20px 12px;border:1px solid rgba(120,199,213,.36);
   display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
   color:var(--ink);font:400 13px/1.6 "Yu Mincho","Noto Serif JP",serif;
 }
-body.skin-mitsulab .decision-flow span i{
+body.skin-mori .decision-flow span i{
   margin-bottom:11px;color:var(--mori);font:500 8px/1 "JetBrains Mono",monospace;letter-spacing:.18em;
 }
-body.skin-mitsulab .decision-flow>b{color:rgba(120,199,213,.7);font-weight:300;}
+body.skin-mori .decision-flow>b{color:rgba(120,199,213,.7);font-weight:300;}
 
 /* シリーズは、過剰な個別カード化を避けて四分類だけ見せる */
-body.skin-mitsulab .series-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:18px;margin-top:56px;}
-body.skin-mitsulab .series-group{
+body.skin-mori .series-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:18px;margin-top:56px;}
+body.skin-mori .series-group{
   padding:30px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.018);
 }
-body.skin-mitsulab .series-group:nth-child(3),
-body.skin-mitsulab .series-group:nth-child(4){padding-block:26px;}
-body.skin-mitsulab .series-no{color:var(--mori);font:500 9px/1 "JetBrains Mono",monospace;letter-spacing:.2em;}
-body.skin-mitsulab .series-group h3{margin:20px 0 18px;color:var(--ink);font:400 19px/1.5 "Yu Mincho","Noto Serif JP",serif;}
-body.skin-mitsulab .series-group ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0;}
-body.skin-mitsulab .series-group li{
+body.skin-mori .series-group:nth-child(3),
+body.skin-mori .series-group:nth-child(4){padding-block:26px;}
+body.skin-mori .series-no{color:var(--mori);font:500 9px/1 "JetBrains Mono",monospace;letter-spacing:.2em;}
+body.skin-mori .series-group h3{margin:20px 0 18px;color:var(--ink);font:400 19px/1.5 "Yu Mincho","Noto Serif JP",serif;}
+body.skin-mori .series-group ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0;}
+body.skin-mori .series-group li{
   padding:7px 11px;border:1px solid var(--rule);color:var(--ink-2);font-size:12px;letter-spacing:.03em;
 }
-body.skin-mitsulab .series-note{max-width:860px;margin:32px auto 0;color:var(--ink-3);font-size:12px;line-height:2;text-align:center;}
+body.skin-mori .series-note{max-width:860px;margin:32px auto 0;color:var(--ink-3);font-size:12px;line-height:2;text-align:center;}
 
 @media(max-width:1100px){
-  body.skin-mitsulab .nav a{min-width:auto;padding-inline:8px;font-size:10.5px;}
-  body.skin-mitsulab .nav a small{font-size:6.5px;}
+  body.skin-mori .nav a{min-width:auto;padding-inline:8px;font-size:10.5px;}
+  body.skin-mori .nav a small{font-size:6.5px;}
 }
 @media(max-width:900px){
-  body.skin-mitsulab .head{height:56px;}
-  body.skin-mitsulab .head-in{height:56px;}
-  body.skin-mitsulab .menu-btn i{background:var(--ink);}
-  body.skin-mitsulab .origin-grid{grid-template-columns:1fr;gap:34px;}
-  body.skin-mitsulab .beauty-five{grid-template-columns:1fr;}
-  body.skin-mitsulab .decision-output{grid-template-columns:1fr;}
-  body.skin-mitsulab .series-grid{grid-template-columns:1fr;}
+  body.skin-mori .head{height:56px;}
+  body.skin-mori .head-in{height:56px;}
+  body.skin-mori .menu-btn i{background:var(--ink);}
+  body.skin-mori .origin-grid{grid-template-columns:1fr;gap:34px;}
+  body.skin-mori .beauty-five{grid-template-columns:1fr;}
+  body.skin-mori .decision-output{grid-template-columns:1fr;}
+  body.skin-mori .series-grid{grid-template-columns:1fr;}
 }
 @media(max-width:620px){
-  body.skin-mitsulab .about-hero::before{display:none;}
-  body.skin-mitsulab .about-bg>.top-bg{inset:-2% -45%;opacity:.32;transform:scale(1.08);}
-  body.skin-mitsulab .about-shade{background:linear-gradient(180deg,rgba(5,9,18,.68),rgba(5,9,18,.82));}
-  body.skin-mitsulab .about-copy{min-width:0;width:100%;}
-  body.skin-mitsulab .about-title-frame{width:100%;padding:36px 20px;background:rgba(5,9,18,.7);}
-  body.skin-mitsulab .about-title-frame::before{right:12px;top:11px;font-size:6px;}
-  body.skin-mitsulab .about-title-frame h1{white-space:normal;font-size:27px;line-height:1.72;letter-spacing:.02em;}
-  body.skin-mitsulab .about-lead{max-width:100%;font-size:13.5px;line-height:2;}
-  body.skin-mitsulab .about-graphic{width:100%;max-width:100%;height:120px;justify-self:stretch;}
-  body.skin-mitsulab .origin-story{padding-block:52px;margin-bottom:68px;}
-  body.skin-mitsulab .origin-head{text-align:left;margin-bottom:42px;}
-  body.skin-mitsulab .origin-head h3{font-size:27px;}
-  body.skin-mitsulab .origin-item{padding-top:21px;}
-  body.skin-mitsulab .origin-visuals{grid-template-columns:1fr;gap:10px;margin-bottom:52px;}
-  body.skin-mitsulab .origin-visuals figure:first-child{transform:none;}
-  body.skin-mitsulab .origin-visuals img{height:220px;}
-  body.skin-mitsulab .origin-visuals figcaption{padding:34px 17px 15px;font-size:11px;}
-  body.skin-mitsulab .origin-close{text-align:left;margin-top:44px;font-size:16.5px;letter-spacing:.025em;}
-  body.skin-mitsulab .top-sub{margin-top:20px;padding-inline:8px;font-size:11px;line-height:1.9;letter-spacing:.075em;}
-  body.skin-mitsulab .beauty-five{grid-template-columns:1fr;margin:64px 0 76px;padding:30px 20px;gap:38px;}
-  body.skin-mitsulab .beauty-copy h3{font-size:25px;}
-  body.skin-mitsulab .beauty-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
-  body.skin-mitsulab .beauty-grid figure,
-  body.skin-mitsulab .beauty-grid figure:nth-child(4),
-  body.skin-mitsulab .beauty-grid figure:nth-child(5){grid-column:auto;}
-  body.skin-mitsulab .beauty-grid figure:nth-child(5){grid-column:1 / -1;width:calc(50% - 5px);justify-self:center;}
-  body.skin-mitsulab .beauty-grid figcaption{padding:11px 10px;}
-  body.skin-mitsulab .beauty-grid figcaption b{font-size:18px;}
-  body.skin-mitsulab .beauty-grid figcaption span{font-size:8px;}
-  body.skin-mitsulab .case-place{grid-template-columns:1fr;margin-top:40px;}
-  body.skin-mitsulab .case-place>i{height:38px;}
-  body.skin-mitsulab .case-place>i::before{left:50%;right:auto;top:0;bottom:0;width:1px;height:auto;}
-  body.skin-mitsulab .case-place>i::after{right:auto;left:calc(50% - 3px);top:auto;bottom:0;transform:rotate(135deg);}
-  body.skin-mitsulab .decision-output{padding:30px 22px;gap:38px;}
-  body.skin-mitsulab .decision-flow{grid-template-columns:1fr;gap:0;}
-  body.skin-mitsulab .decision-flow span{min-height:auto;width:100%;padding:17px;}
-  body.skin-mitsulab .decision-flow>b{height:30px;display:grid;place-items:center;transform:rotate(90deg);}
-  body.skin-mitsulab .series-group{padding:25px 20px;}
-  body.skin-mitsulab .shead{margin-bottom:38px!important;}
-  body.skin-mitsulab .sh-en{padding:0;margin-top:9px;font-size:11px;}
-  body.skin-mitsulab .top-fuda{padding:26px 20px;}
+  body.skin-mori .about-hero::before{display:none;}
+  body.skin-mori .about-bg>.top-bg{inset:-2% -45%;opacity:.32;transform:scale(1.08);}
+  body.skin-mori .about-shade{background:linear-gradient(180deg,rgba(5,9,18,.68),rgba(5,9,18,.82));}
+  body.skin-mori .about-copy{min-width:0;width:100%;}
+  body.skin-mori .about-title-frame{width:100%;padding:36px 20px;background:rgba(5,9,18,.7);}
+  body.skin-mori .about-title-frame::before{right:12px;top:11px;font-size:6px;}
+  body.skin-mori .about-title-frame h1{white-space:normal;font-size:27px;line-height:1.72;letter-spacing:.02em;}
+  body.skin-mori .about-lead{max-width:100%;font-size:13.5px;line-height:2;}
+  body.skin-mori .about-graphic{width:100%;max-width:100%;height:120px;justify-self:stretch;}
+  body.skin-mori .origin-story{padding-block:52px;margin-bottom:68px;}
+  body.skin-mori .origin-head{text-align:left;margin-bottom:42px;}
+  body.skin-mori .origin-head h3{font-size:27px;}
+  body.skin-mori .origin-item{padding-top:21px;}
+  body.skin-mori .origin-visuals{grid-template-columns:1fr;gap:10px;margin-bottom:52px;}
+  body.skin-mori .origin-visuals figure:first-child{transform:none;}
+  body.skin-mori .origin-visuals img{height:220px;}
+  body.skin-mori .origin-visuals figcaption{padding:34px 17px 15px;font-size:11px;}
+  body.skin-mori .origin-close{text-align:left;margin-top:44px;font-size:16.5px;letter-spacing:.025em;}
+  body.skin-mori .top-sub{margin-top:20px;padding-inline:8px;font-size:11px;line-height:1.9;letter-spacing:.075em;}
+  body.skin-mori .beauty-five{grid-template-columns:1fr;margin:64px 0 76px;padding:30px 20px;gap:38px;}
+  body.skin-mori .beauty-copy h3{font-size:25px;}
+  body.skin-mori .beauty-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  body.skin-mori .beauty-grid figure,
+  body.skin-mori .beauty-grid figure:nth-child(4),
+  body.skin-mori .beauty-grid figure:nth-child(5){grid-column:auto;}
+  body.skin-mori .beauty-grid figure:nth-child(5){grid-column:1 / -1;width:calc(50% - 5px);justify-self:center;}
+  body.skin-mori .beauty-grid figcaption{padding:11px 10px;}
+  body.skin-mori .beauty-grid figcaption b{font-size:18px;}
+  body.skin-mori .beauty-grid figcaption span{font-size:8px;}
+  body.skin-mori .case-place{grid-template-columns:1fr;margin-top:40px;}
+  body.skin-mori .case-place>i{height:38px;}
+  body.skin-mori .case-place>i::before{left:50%;right:auto;top:0;bottom:0;width:1px;height:auto;}
+  body.skin-mori .case-place>i::after{right:auto;left:calc(50% - 3px);top:auto;bottom:0;transform:rotate(135deg);}
+  body.skin-mori .decision-output{padding:30px 22px;gap:38px;}
+  body.skin-mori .decision-flow{grid-template-columns:1fr;gap:0;}
+  body.skin-mori .decision-flow span{min-height:auto;width:100%;padding:17px;}
+  body.skin-mori .decision-flow>b{height:30px;display:grid;place-items:center;transform:rotate(90deg);}
+  body.skin-mori .series-group{padding:25px 20px;}
+  body.skin-mori .shead{margin-bottom:38px!important;}
+  body.skin-mori .sh-en{padding:0;margin-top:9px;font-size:11px;}
+  body.skin-mori .top-fuda{padding:26px 20px;}
 }
 @media(prefers-reduced-motion:reduce){
-  body.skin-mitsulab *,body.skin-mitsulab *::before,body.skin-mitsulab *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;}
+  body.skin-mori *,body.skin-mori *::before,body.skin-mori *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;}
 }
 </style>
 <link rel="stylesheet" href="assets/morikosha-light.css">
 </head>
-<body class="skin-mitsulab">
+<body class="skin-mori">
 
 <a class="skip" href="#main">本文へskip</a>
 
@@ -1958,6 +1958,13 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
     if(pages.indexOf(id) >= 0) return {page:id, anchor:null};
     if(hpAnchors[id]) return {page:"hp", anchor:id};
     if(id === "erabot-sample") return {page:"erabot", anchor:id};
+    /* ページ名でも既知のアンカーでもない # は、その要素があれば、そこへ飛ばす。
+       要素が別ページの中（.page-only）にあれば、そのページを開いてから飛ぶ。 */
+    var el = id && document.getElementById(id);
+    if(el){
+      var po = el.closest(".page-only");
+      return {page: po ? po.getAttribute("data-page") : "about", anchor:id};
+    }
     return {page:"about", anchor:null};
   }
   function show(route, move){
@@ -1977,7 +1984,16 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
     if(move !== false){
       requestAnimationFrame(function(){
         var el = route.anchor && document.getElementById(route.anchor);
-        if(el) el.scrollIntoView({block:"start",behavior:"instant"}); else window.scrollTo({top:0,left:0,behavior:"instant"});
+        if(el){
+          el.scrollIntoView({block:"start",behavior:"instant"});
+          /* 飛んだあとに上の写真が読み込まれると行き先が押し下げられるので、
+             読み込みが終わった時点で、もう一度合わせる。 */
+          if(document.readyState !== "complete"){
+            window.addEventListener("load", function(){
+              el.scrollIntoView({block:"start",behavior:"instant"});
+            }, {once:true});
+          }
+        } else window.scrollTo({top:0,left:0,behavior:"instant"});
       });
     }
   }
