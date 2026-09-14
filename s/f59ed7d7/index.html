@@ -263,6 +263,35 @@ table.info td,table.rec td{padding:14px 10px;}
 .foot{padding:56px 0 26px;}
 }
 @media (max-width:500px){.seasons{grid-template-columns:1fr;}}
+
+/* ── 頭の帯：社名と電話番号を、1行のまま崩さない（2026-09-14、みつさんの指示） ──
+   実在の会社名は長い（「株式会社松浪・コンストラクトデザイン一級建築士事務所」26字）。
+   社名・目次6つ・電話番号を横に詰めると、社名と電話番号が2行に折れていた
+   （幅1200pxで、見本6本のうち5本）。メールの絵とPDFはこの幅で撮っている。
+   ① 折り返させない ② 社名の長さで字を小さくする（nm-m/l/xl、d2 が付ける）
+   ③ それでも詰まる幅では、下の小さな script が目次の間を詰め→電話の注記を消し→目次を畳む（fit-1〜4）。 */
+.logo{flex:none;}
+.logo .ja{white-space:nowrap;}
+.logo .ja .nw{display:inline-block;}
+.head-tel{flex:none;}
+.head-tel .num{white-space:nowrap;}
+.nav{min-width:0;}
+.head.nm-m .logo .ja{font-size:19px;letter-spacing:.12em;}
+.head.nm-l .logo .ja{font-size:17px;letter-spacing:.07em;}
+.head.nm-xl .logo .ja{font-size:15.5px;letter-spacing:.03em;}
+.head.fit-1 .nav{gap:18px;}
+.head.fit-1 .nav a{font-size:12px;letter-spacing:.05em;}
+.head.fit-2 .head-tel .cap{display:none;}
+.head.fit-3 .nav{display:none;}
+.head.fit-4 .logo .en{display:none;}
+.head.fit-4 .head-tel .num{font-size:17px;}
+@media (max-width:760px){
+.logo{flex:1 1 auto;min-width:0;}
+.head .logo .ja,.head.nm-m .logo .ja,.head.nm-l .logo .ja,.head.nm-xl .logo .ja{white-space:normal;text-wrap:balance;line-height:1.35;}
+.head.nm-m .logo .ja{font-size:17px;letter-spacing:.08em;}
+.head.nm-l .logo .ja{font-size:15px;letter-spacing:.04em;}
+.head.nm-xl .logo .ja{font-size:14px;letter-spacing:.02em;}
+}
 </style>
 </head>
 <style>
@@ -316,11 +345,21 @@ b.addEventListener("pointerdown",function(e){d=true;b.setPointerCapture(e.pointe
 b.addEventListener("pointermove",function(e){if(!d)return;b.style.left=(bx+e.clientX-sx)+"px";b.style.top=(by+e.clientY-sy)+"px";b.style.right="auto";b.style.bottom="auto";});
 b.addEventListener("pointerup",function(){d=false;});})();</script>
 
-<header class="head"><div class="wrap head-in">
-<a class="logo" href="#top"><span class="ja">髙津戸建設工業株式会社</span><span class="en"></span></a>
+<header class="head nm-m"><div class="wrap head-in">
+<a class="logo" href="#top" aria-label="髙津戸建設工業株式会社"><span class="ja"><span class="nw">髙津戸建設工業</span><span class="nw">株式会社</span></span><span class="en"></span></a>
 <nav class="nav"><a href="#works">事業内容</a><a href="#feats">選ばれる理由</a><a href="#msg">代表挨拶</a><a href="#comp">会社概要</a><a href="#t2">採用情報</a><a href="#contact">お問い合わせ</a></nav>
 <div class="head-tel"><div class="num">045-842-3589</div><div class="cap">受付 8:00 - 17:00 ／ 日祝休</div></div>
-</div></header>
+</div></header><script>(function(){var h=document.querySelector('.head');if(!h)return;
+var L=h.querySelector('.logo'),N=h.querySelector('.nav'),T=h.querySelector('.head-tel'),I=h.querySelector('.head-in');
+function on(e){return e&&getComputedStyle(e).display!=='none';}
+function tight(){if(!I||!L)return false;if(I.scrollWidth>I.clientWidth+1)return true;
+var a=L.getBoundingClientRect(),c=on(T)?T.getBoundingClientRect():null;
+if(on(N)){if(N.scrollWidth>N.clientWidth+1)return true;var b=N.getBoundingClientRect();if(a.right>b.left-20)return true;if(c&&b.right>c.left-20)return true;}
+else if(c&&a.right>c.left-24)return true;return false;}
+function fit(){for(var i=1;i<=4;i++)h.classList.remove('fit-'+i);if(window.innerWidth<=760)return;
+for(var k=1;k<=4&&tight();k++)h.classList.add('fit-'+k);}
+fit();window.addEventListener('load',fit);window.addEventListener('resize',fit);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);})();</script>
 <section class="hero" id="top"><div class="hero-img"><img src="../_写真/a-hero.jpg" alt="霧の中に立つ橋脚"></div><div class="hero-veil"></div>
 <div class="wrap hero-in"><div class="kicker">神奈川県横浜市／土木工事業　創業 昭和◯◯年</div><h1>この街の、<br>当たり前をつくる。</h1><p>昭和◯◯年の創業以来、横浜市を中心に、道路と河川の整備に携わってきました。完成すれば当たり前になる。その当たり前を、私たちがつくっています。</p></div></section>
 <section class="sec" id="works"><div class="wrap">
