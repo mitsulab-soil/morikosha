@@ -17,21 +17,21 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"杜工舎","alternateName":"もりこうしゃ","url":"https://morikosha.com/","email":"info@morikosha.com","description":"つくる側が持つ仕事と知識を、探す人・選ぶ人へつなぐWebの工房。まちを作る会社のホームページ制作と、商品選定Webアプリ『えらぼっと』を提供。","areaServed":{"@type":"AdministrativeArea","name":"埼玉県"},"founder":{"@type":"Person","name":"上原 光瑛"},"priceRange":"¥9,800〜¥198,000"}</script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ffffff'/%3E%3Ctext x='32' y='47' font-size='50' font-family='serif' font-weight='700' text-anchor='middle' fill='%232F5D3F'%3E杜%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"杜工舎","alternateName":"もりこうしゃ","url":"https://morikosha.com/","email":"info@morikosha.com","description":"つくる側が持つ仕事と知識を、探す人・選ぶ人へつなぐWebの工房。まちを作る会社のホームページ制作と、商品選定Webアプリ『えらぼっと』を提供。","areaServed":{"@type":"Country","name":"日本"},"founder":{"@type":"Person","name":"上原 光瑛"},"priceRange":"¥100,000〜¥198,000"}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23070A0E'/%3E%3Ctext x='32' y='47' font-size='50' font-family='serif' font-weight='700' text-anchor='middle' fill='%235CC8E0'%3E杜%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap">
-<script>document.documentElement.className='js';</script>
+<script>document.documentElement.className='js';if(location.hash)document.documentElement.style.scrollBehavior='auto';</script>
 <style>
 /* ══════════════════════════════════════════════════════════════════
    杜工舎 ── 営業サイトの装い（2026-09-06 全面組み直し）
 
    よりどころは、売り物と同じ「日本の美意識」。
    決めごとは4つだけ。
-     1. 直線と面と余白で組む。角を丸めない。影で浮かせない
-     2. 色は、生成りの紙・墨・杜の緑。それに落款の朱をひと粒
-     3. 章立ては漢数字（一〜六）。全ページ同じ頭で通す
+     1. 直線と面と余白で組む。角丸は用いてよい。影で浮かせない
+     2. 色は夜の地と水色の差し色ひと系。決めごとは、末尾の id="yo" の style が持つ
+     3. 章立ては漢数字。全ページ同じ頭で通す
      4. 動きは「静かに現れる」一手と、TOPの奥をゆっくり流れる見本だけ
    ══════════════════════════════════════════════════════════════════ */
 
@@ -900,6 +900,24 @@ body:not([data-page="hp"]) .mcta{display:none;}
   --glass:rgba(255,255,255,.055);
   --glass-2:rgba(255,255,255,.075);
 
+  /* 囲みの段 ── 2026-09-21。同じ役の囲みが角丸3種（10/12/14px）・内側余白6種
+     （1280pxで 18/22/28/42/48/76px）に散っていて、頁を行き来すると同じ設計に
+     見えなかった。段を2つだけ決めて、以後はここだけを見る。
+       札（--r-card / --pad-card）  … 並べるもの・釦・囲みの中の小箱
+                                      .tt-c .shigoto-c .erabo-map .waku-flow .btn .cta .dl-btn
+       枠（--r-big  / --pad-big）   … 段の幅いっぱいに1つ置くもの
+                                      .waku .contact .dl .faq .erabo-price .erabo-process .service-step .thd
+     丸（--r-pill）は「段」ではなく形。円（.em-q の 50%）も同じく形。
+     ※ 3段目を作らないこと。新しい囲みは、どちらかの段に入れる。
+     値の決めかた：いま一番多い値をそのまま段にした。
+       --pad-big  1280px で 42px ＝ .waku・.dl の現状。狭い側の床20pxは .waku の現状。
+       --pad-card 1280px で 22px ＝ .shigoto-c の現状。狭い側は現状より広くならない値。 */
+  --r-card:12px;
+  --r-big:16px;
+  --r-pill:99px;
+  --pad-card:clamp(16px,1.8vw,22px);
+  --pad-big:clamp(20px,3.4vw,42px);
+
   --ff-body:"Inter","Noto Sans JP","Hiragino Sans","Yu Gothic UI",sans-serif;
   --ff-min:"Shippori Mincho","Noto Serif JP","Hiragino Mincho ProN",serif;
   --ff-mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -917,14 +935,28 @@ body{
   font-family:var(--ff-body);
   font-size:16px;line-height:1.85;letter-spacing:.02em;
   font-feature-settings:"palt";
+  /* 紙（明るい地）のころの平滑化指定が index.html に残っている。
+     暗い地に明るい字を置くと字が痩せ、細い添えのコントラストが実質落ちるので打ち消す */
+  -webkit-font-smoothing:auto;
 }
 ::selection{background:var(--mori);color:var(--mori-ink);}
 a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{outline:2px solid var(--mori);outline-offset:3px;}
 .skip{background:var(--mori);color:var(--mori-ink);}
 
-/* 面は地の光を通す。章ごとの塗り分けはやめ、わずかな濃淡だけ残す */
+/* 面は地の光を通す。章ごとの塗り分けはやめる（2026-09-21 に濃淡も外した）。
+   .sec-tint の白2.2%は「章ひとつぶんの帯」のつもりだったが、当たっている場所が頁ごとに違い、
+   実測（1280px）では地そのものが5ページで揃っていなかった。
+     杜工舎とは … .sec-tint なし            → 全面が #070A0E
+     HP作成     … 二 なぜ の916pxだけ        → 帯
+     えらぼっと … 扉の下から842px            → 帯
+     代表プロフィール … 章が1つ＝頁ぜんぶ（y69から3166px） → 全面が明るい
+     お問い合わせ     … 章が1つ＝頁ぜんぶ（y69から1324px） → 全面が明るい
+   帯のつもりが2ページでは「地の色」になっていた。濃淡をやめれば5ページとも同じ地になる。
+   章の切れ目は、中央に積んだ章の頭（漢数字／題／英字）がすでに受け持っている。
+   border-block も外す ── プロフィールとお問い合わせでは頭の帯の罫（y68）の1px下に
+   もう1本引かれ、二重線になっていた。 */
 .sec,.about-hero,.about-body,.erabo-hero,.top{background:transparent;}
-.sec-tint{background:rgba(255,255,255,.022);border-block:1px solid var(--rule);}
+.sec-tint{background:transparent;border-block:0;}
 .colo{background:transparent;border-top:1px solid var(--rule);}
 
 /* ══════════ 頭 ── 二段書きの札 ══════════ */
@@ -936,7 +968,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
 .head-in{height:68px;gap:clamp(16px,2.6vw,34px);}
 .brand-mark{filter:brightness(0) invert(1);opacity:.92;}   /* 黒い杜の印を、そのまま白く抜く */
 .brand .ja{font-family:var(--ff-min);font-weight:600;font-size:20px;letter-spacing:.22em;color:var(--ink);}
-.brand .en{font-family:var(--ff-en);font-style:italic;font-size:11px;letter-spacing:.24em;color:var(--ink-3);}
+.brand .en{font-family:var(--ff-en);font-style:italic;font-size:12px;letter-spacing:.24em;color:var(--ink-3);}
 .nav{gap:clamp(8px,1.8vw,26px);}
 .nav a{
   display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
@@ -944,22 +976,27 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
 }
 .nav a::after{display:none;}
 .nav .tb-ja{font-family:var(--ff-min);font-size:14px;font-weight:400;letter-spacing:.12em;line-height:1.3;}
+/* 英字の添えは 8.6px では画面で字形が潰れる。読み手は50〜60代が多いので、小さい段の床を
+   12px（hp_qa.py が「小さい字」と数える境）まで上げ、太さも500に置く。2026-09-20 に 11px から */
 .nav .tb-en{
-  font-family:var(--ff-en);font-style:italic;font-weight:400;
-  font-size:8.6px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);line-height:1.2;
+  font-family:var(--ff-en);font-style:italic;font-weight:500;
+  font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);line-height:1.2;
 }
 .nav a:hover{color:var(--ink);}
 .nav a:hover .tb-en{color:var(--ink-2);}
 .nav a.active{color:var(--mori);}
 .nav a.active .tb-ja{font-weight:500;}
 .nav a.active .tb-en{color:var(--mori);opacity:.85;}
+/* 2026-09-21: 帯69pxに対して札が65.2px（上1.4／下2.4）で、水色の塊が帯の天地に張り付いて見えた。
+   二段書きの高さを詰めるのではなく、上下の余白を削って帯の中に収める */
 .cta{
-  display:inline-flex;flex-direction:column;align-items:center;gap:1px;
+  display:inline-flex;flex-direction:column;align-items:center;gap:0;
   background:var(--mori);border:1px solid var(--mori);color:var(--mori-ink);
-  padding:8px 18px;border-radius:6px;font-family:var(--ff-min);letter-spacing:.12em;
+  padding:6px 18px;border-radius:var(--r-card);font-family:var(--ff-min);letter-spacing:.12em;
+  line-height:1.25;
 }
 .cta .tb-ja{font-size:13px;letter-spacing:.12em;}
-.cta .tb-en{font-family:var(--ff-en);font-style:italic;font-size:8.2px;letter-spacing:.28em;text-transform:uppercase;color:var(--mori-ink);opacity:.72;}
+.cta .tb-en{font-family:var(--ff-en);font-style:italic;font-weight:500;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--mori-ink);opacity:.85;}
 .cta:hover,.cta.active{background:var(--mori-2);border-color:var(--mori-2);color:var(--mori-ink);box-shadow:0 0 0 3px rgba(92,200,224,.14);}
 .menu-btn i{background:var(--ink);}
 
@@ -968,10 +1005,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
 .mnav .mlink{border-bottom:1px solid var(--rule);}
 .mnav .mlink .i{color:var(--mori);font-family:var(--ff-mono);}
 .mnav .mlink .e{
-  display:block;margin-top:3px;font-family:var(--ff-en);font-style:italic;
-  font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);
+  display:block;margin-top:3px;font-family:var(--ff-en);font-style:italic;font-weight:500;
+  font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);
 }
-.mnav-foot{color:var(--ink-3);}
+/* 開くメニューの足の info@ は、携帯でメールを開く唯一の入口なのに 10px・高さ13pxで、
+   指では当たらなかった。字を上げ、行そのものに44pxの箱を持たせる */
+.mnav-foot{color:var(--ink-3);font-size:12.5px;}
+.mnav-foot a{display:inline-block;min-height:44px;line-height:44px;font-size:13px;}
+.mnav-close{min-height:44px;padding:10px 0 10px 14px;}
 
 /* 画面下の連絡（携帯） */
 .mcta{background:rgba(7,10,14,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--rule);}
@@ -992,41 +1033,96 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
   letter-spacing:.2em;text-indent:.2em;color:var(--mori);opacity:.92;
 }
 .sh-no::after{content:"";width:1px;height:20px;background:var(--rule-2);}
-.shead h2{
-  font-family:var(--ff-min);font-weight:600;
+/* h2 と h1 を同じ組みで扱う。代表プロフィールとお問い合わせは、章の題字がそのページの h1 */
+.shead h2,.shead h1{
+  margin:0;font-family:var(--ff-min);font-weight:600;
   font-size:clamp(24px,3.4vw,40px);letter-spacing:.06em;line-height:1.4;color:var(--ink);
 }
 .sh-en{
+  /* Cormorant の斜体で、全ページ・全幅にかならず出るのはこの札だけ。太さを400に置いて
+     「読み込まれる斜体は400の一本」という当てが、どの幅でも外れないようにする
+     （小さい添え ── .nav/.cta/.mnav の英字 ── だけ500にしている） */
   order:3;display:block;width:auto;padding:0;margin:0;
-  font-family:var(--ff-en);font-style:italic;font-weight:500;
+  font-family:var(--ff-en);font-style:italic;font-weight:400;
   font-size:clamp(14px,1.7vw,18px);letter-spacing:.1em;text-transform:none;color:var(--mori);opacity:.92;
 }
-.page-kicker{font-family:var(--ff-mono);letter-spacing:.3em;color:var(--mori);opacity:.85;}
+.page-kicker{font-family:var(--ff-mono);font-size:12px;letter-spacing:.3em;color:var(--mori);opacity:.85;}
 .w-state,.about-title-frame h1,.about-intro h2,.erabo-hero h1,.top-fuda{font-family:var(--ff-min);}
-.w-lead,.lead,.about-lead,.erabo-lead{color:var(--ink-2);}
+/* 2〜4行の短い段落は、行の長さをChromeに均してもらう。「理由は／3つ。」の泣き別れを防ぐ */
+.w-lead,.lead,.about-lead,.erabo-lead{color:var(--ink-2);text-wrap:balance;}
+
+/* 扉の左段が狭く（1280で526px）、題字が「を、」「に。」の2字だけの行に割れていた。
+   左右の比を入れ替えて左段を広げ、あわせて題字の上限を段に入る大きさで止める */
+@media(min-width:901px){
+  .about-hero-in,.erabo-hero-in{grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr);gap:clamp(40px,4.5vw,72px);}
+}
+.erabo-hero h1{font-size:clamp(32px,3.6vw,50px);text-wrap:balance;}
+
+/* 「一 ホームページデザイン」だけ、章の頭と本文の距離が38px（他の7章は64px）だった */
+#works .shead{margin-bottom:clamp(40px,5vw,66px);}
+
+/* 入口（杜工舎とは）だけ章の頭が左寄せの別形だった。apply() で .shead に組み替えたので、
+   囲いの幅を外して他の4ページと同じ「中央に積む」形にそろえる */
+.about-intro{max-width:none;}
+.about-intro>p:last-child{margin-inline:auto;}
+
+/* 手順の所要時間（「すぐ」「約10分」）。携帯では本文の次の行に単語が1つ浮いて、
+   どの手順に掛かる言葉か切れて見えていた。札の形を与えて手順に結びつける */
+.step-p i{display:inline-block;margin:0 0 0 10px;padding:2px 10px;
+  border:1px solid var(--rule-2);border-radius:var(--r-pill);font-family:var(--ff-mono);font-style:normal;
+  font-size:12px;letter-spacing:.1em;color:var(--mori);}
 
 /* ══════════ 囲み ── 光を少し通す面 ══════════ */
+/* ここから下の囲みは、すべて :root の2段（--r-card/--pad-card と --r-big/--pad-big）で書く。
+   直の px を書き足さないこと。書き足した時点で「頁ごとに違う設計」に戻る。 */
 .waku,.sec-tint .waku{
   background:var(--glass);
   -webkit-backdrop-filter:saturate(180%) blur(12px);backdrop-filter:saturate(180%) blur(12px);
-  border:1px solid var(--rule);border-radius:14px;
+  border:1px solid var(--rule);border-radius:var(--r-big);padding:var(--pad-big);
 }
 .waku-t,.sec-tint .waku-t{
   background:transparent!important;color:var(--ink);
   font-family:var(--ff-min);border-bottom:1px solid var(--rule);
 }
+/* 代表プロフィールの囲みの見出しは h2（ページの h1 の直下）にした。h3 と同じ大きさに固定する */
+.waku-t{font-size:clamp(17px,2vw,20px);}
 .waku-su,.sec-tint .waku-su{
   background:var(--glass);border:1px solid var(--rule);border-left:3px solid var(--mori);
 }
-.waku-flow{background:rgba(255,255,255,.03);border:1px solid var(--rule);border-radius:10px;}
-.waku-flow .wf{border-color:var(--rule-2);}
+.waku-flow{background:rgba(255,255,255,.03);border:1px solid var(--rule);
+  border-radius:var(--r-card);padding:var(--pad-card);}
+/* 中身は札なので、業種の札と同じ丸に寄せる（角丸0はサイトでここ1か所だけだった）。
+   公開設定の代行でこちらが引き受ける作業の一覧なので、字も小さい段の床（12px）に上げる */
+.waku-flow .wf{border-color:var(--rule-2);border-radius:var(--r-pill);font-size:12px;max-width:100%;}
+.waku-flow .wf em{font-size:12px;}
+/* 320pxでは「.htaccess で www と https を統一」の札だけ4pxはみ出す。
+   字を下げずに、この札だけ折り返しを許す（丸のまま2行になる） */
+@media(max-width:360px){.waku-flow .wf{white-space:normal;text-align:center;}}
 .waku-flow .wf i{color:var(--mori);}
 .waku-price{border-top:1px solid var(--rule);}
-.waku-price b{color:var(--mori);}
+/* 金額は5ページとも白（--ink）に統一する。水色はリンク・章の頭・章の番号に残す。
+   hpの料金表が白、hp本文が水色、えらぼっとが水色と、3つの装いに割れていた */
+.waku-price b{color:var(--ink);}
+.erabo-price strong{color:var(--ink);}
+/* 色だけ白にそろえて、大きさが取り残されていた。HP作成の 100,000円 が 13.5px（本文より小さい）、
+   えらぼっとの 198,000円 が 28px で、同じ会社の同じ「値段」に見えない。明朝・白・500 で同じ段に置く */
+.tbl td.p{font-size:clamp(17px,1.6vw,20px);font-weight:500;white-space:nowrap;}
+.erabo-price strong{font-size:clamp(17px,1.6vw,20px);}
+/* 注記と前書きが1行75〜88字あった。日本語が行頭に目を戻せる幅で止める（文章は一字も変えない） */
+.waku p,.waku-lead,.waku-su p,.pf-note,.pcard-sub,.tt-note,.tt-lead,.contact .sub,.erabo-price>p,
+.pt p,.dl-d,.pf-yaku li{max-width:44em;}
+/* 中央揃えの親の中では、幅を狭めた箱が左に寄る。お問い合わせの枠は中央組みなので、
+   .about-intro>p と同じ手当てをして枠の中心に戻す（実測 cx415 → 640） */
+.contact .sub{margin-inline:auto;}
+/* 同じ箱に入る段落は同じ実寸で止める。44em は字の大きさごとに解けるので、
+   五案の前書き(594px)と後書き(572px)で右端が22pxずれていた */
+.tt-lead,.tt-note{max-width:620px;}
 
 /* 五案の札 */
 .tt-c{
-  background:var(--glass);border:1px solid var(--rule);border-radius:12px;overflow:hidden;
+  /* 中の余白は --tt-pad（元CSSが .tt-k/.tt-g/.tt-more で使う）。札の段に合わせる */
+  --tt-pad:var(--pad-card);
+  background:var(--glass);border:1px solid var(--rule);border-radius:var(--r-card);overflow:hidden;
   transition:border-color .25s,background .25s,transform .25s,box-shadow .25s;
 }
 .tt-c:hover{
@@ -1035,71 +1131,180 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
 }
 .tt-ja{font-family:var(--ff-min);color:var(--ink);}
 .tt-yomi,.tt-e{color:var(--ink-3);}
+.tt-yomi{font-size:12px;}
 .tt-more{border-top:1px solid var(--rule);color:var(--mori);}
 .tt-ph::after{background:rgba(4,12,18,.86);color:var(--ink);}
 .tt-ph img{filter:saturate(.96);}
+/* 621〜1023px でも3列のままで、768pxでは説明文が1行17字まで痩せていた。
+   中くらいの幅は2列に畳む（5枚目だけ中央に残るのは、1024px以上の組み方と同じ考え方） */
+@media(min-width:621px) and (max-width:1023px){
+  .tt-row{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .tt-row>.tt-c{grid-column:span 2;}
+  .tt-row>.tt-c:nth-child(4){grid-column:3 / span 2;}
+  .tt-row>.tt-c:nth-child(5){grid-column:2 / span 2;}
+}
 
 /* 表・値段・比較 */
+/* 地→カード→表の行 が、ほとんど同じ濃さで3枚重なっていた。表の地は透かし、線と見出し行で分ける */
+/* border-collapse:collapse の表には border-radius が効かず、「角丸で囲った表」は一度も
+   画面に出ていなかった。出ている姿（横罫だけの裸の表）に合わせて、意図と実装を一致させる */
 .tbl table,.waku .tbl table{
-  background:var(--glass);border:1px solid var(--rule);border-radius:10px;overflow:hidden;border-top:1px solid var(--rule);
+  background:transparent;border:0;border-top:1px solid var(--rule);
 }
 .tbl th,.tbl td{border-color:var(--rule)!important;}
+/* 囲みの見出し（.waku-t）の下罫と、表の上罫が 22px しか離れておらず、料金の2枠とも
+   見出しの下に細い線が2本引かれていた（1280px・430px とも同じ22px）。罫は見出しの1本に任せる。
+   ── 横罫を数える道具で拾った、サイトで唯一の二重線 */
+.waku-t + .tbl table{border-top:0;}
 .tbl th{background:rgba(255,255,255,.05);color:var(--ink);}
-.pcard{border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--glass);}
+/* 携帯では、2列（品名＋説明／金額）のまま横に並べると説明が1行8〜12字まで潰れる。
+   金額は white-space:nowrap の17〜20px なので、375pxでは幅の3割を金額が持っていく。
+   560px以下では行を縦に積み、説明に幅を全部渡す（表の中身も並びも変えない）。
+   ※ 料金表は hp の2つだけで、どちらも見出し行（th）が無いので積んでも意味は崩れない。
+     見出し行のある表を足すときは、この規則の外に置くこと。 */
+@media(max-width:560px){
+  .tbl table,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%;}
+  .tbl tr{border-bottom:1px solid var(--rule);}
+  .tbl td{border-bottom-width:0;padding:18px 0 0;}
+  .tbl td.p{text-align:left;padding:8px 0 18px;}
+}
+/* 「なぜホームページが必要か？」01・02・03 の上の線だけ純白だった。線に字の色は使わない */
+.pt{border-top-color:var(--rule-2);}
+/* .pcard はいま公開ページに1つも出ていない（元CSSだけが持っている）。戻したときに
+   段から外れないよう、札の段に合わせておく */
+.pcard{border:1px solid var(--rule);border-radius:var(--r-card);overflow:hidden;background:var(--glass);}
 .pcard-m{background:var(--mori-tint);}
 .pcard-o{border-left:1px solid var(--rule);}
 .pcard-plus{background:var(--paper-2);border:1px solid var(--rule);color:var(--mori);}
 .pcard-num,.pcard-num-s{color:var(--ink);}
-.cmp-bar,.vs-bar{background:rgba(255,255,255,.07);border-radius:99px;}
-.cmp-bar i,.vs-bar i{background:var(--rule-2);border-radius:99px;}
+.cmp-bar,.vs-bar{background:rgba(255,255,255,.07);border-radius:var(--r-pill);}
+.cmp-bar i,.vs-bar i{background:var(--rule-2);border-radius:var(--r-pill);}
 .cmp-row.key .cmp-bar i,.vs-mori .vs-bar i{background:var(--mori);}
 
 /* 業種の札 */
-.ind-chip{background:transparent;border-color:var(--rule-2);border-radius:99px;color:var(--ink-2);}
+.ind-chip{background:transparent;border-color:var(--rule-2);border-radius:var(--r-pill);color:var(--ink-2);}
 .ind-chip:hover{background:var(--mori-tint);border-color:var(--mori);color:var(--ink);}
 
 /* よくあるご質問 */
-.faq{border-top:1px solid var(--rule-2);}
+/* ここだけ枠が無く、罫1本の裸の一覧だった。HP作成の頁では、上の「三 料金」が .waku の枠、
+   下の「ご記入シート」が .dl の枠で、あいだの四 だけが枠なし ── 同じ頁の中で設計が割れていた。
+   「他を枠なしにそろえる」は採らない。枠を外すと .waku（料金）・.contact・.dl まで裸になり、
+   夜の地に浮かぶ面という装いの決めごと（冒頭の1.）そのものを捨てることになるため。
+   枠を与える側に決めた。左右だけ --pad-big を入れ、上下は各問の padding に任せる
+   （.erabo-process と同じ組み方）。最後の問の下罫は、枠の下辺と二重になるので消す。 */
+.faq{
+  background:var(--glass);border:1px solid var(--rule);
+  border-radius:var(--r-big);padding:0 var(--pad-big);
+}
 .faq details{border-bottom:1px solid var(--rule);}
+.faq details:last-child{border-bottom:0;}
 .faq summary:hover .q-t{color:var(--mori);}
 .q-i{color:var(--mori);}
 
 /* お問い合わせ */
+/* ここだけ枠線が水色1.4pxで、線の濃さが実質3系統になっていた。他の囲みと同じ白の線に戻す
+   （水色は中のメールの下線と :hover に残るので、目立たなくはならない） */
 .contact{
-  background:rgba(8,12,18,.55);border:1.4px solid rgba(92,200,224,.34);border-radius:16px;
+  background:var(--glass);border:1px solid var(--rule);
+  border-radius:var(--r-big);padding:var(--pad-big);
 }
 .contact .mail{color:var(--ink);border-bottom-color:var(--mori);}
+/* 矢印は .6em なので、375pxでは 11.5px まで落ちていた。比は保ったまま12pxで床を置く */
+.contact .mail .arw{font-size:max(12px,.6em);}
 .contact .mail:hover{color:var(--mori);}
-.btn,.dl-btn{border-radius:8px;}
+.btn,.dl-btn{border-radius:var(--r-card);}   /* 釦も札の段（:root の決めごと）で丸める */
 .btn{border:1px solid var(--rule-2);color:var(--ink);background:transparent;}
 .btn:hover{border-color:var(--mori);color:var(--mori);background:var(--mori-tint);}
 .dl-btn{background:var(--mori);color:var(--mori-ink);border:1px solid var(--mori);}
 .dl-btn:hover{background:var(--mori-2);color:var(--mori-ink);}
-.dl{background:var(--glass);border:1px solid var(--rule);border-radius:14px;}
+.dl{background:var(--glass);border:1px solid var(--rule);border-radius:var(--r-big);padding:var(--pad-big);}
 .dl-tag{color:var(--mori);}
 
 /* 扉（見本が流れる） */
 .top-veil{background:linear-gradient(180deg,rgba(7,10,14,.42),rgba(7,10,14,.8))!important;}
 .top::after{background:linear-gradient(180deg,rgba(7,10,14,0),var(--paper))!important;}
-.show-card .ph{opacity:.5;}
-.show-card .ph .tag{background:rgba(4,12,18,.8);color:var(--ink);}
+/* 沈めるのは写真だけ。札まで巻き添えで半透明にしていたので、業種の札が 3.5〜4.5:1 まで
+   落ちていた（地を #070A0E と見なす hp_qa.py では出ない。写真の明るさを測っていないため）。
+   札は .ph の子なので、opacity を img へ移せば巻き添えを免れる */
+.show-card .ph{opacity:1;}
+.show-card img{opacity:.5;}
+.show-card .ph .tag{background:rgba(4,12,18,.88);color:var(--ink);}
+/* 9.5px の明朝は、夜の地でヘアラインが消えかける。札は見出しではないので本文の書体にする */
+.show-card .ph .tag,.tt-ph .tag{font-family:var(--ff-body);font-size:12px;letter-spacing:.06em;}
+/* 題字が枠の上に寄り、下が150px間延びしていた（1440×900 の実測で、題字の中心が扉の中心より
+   134px上）。位置の基準の .top-in に元CSSの min-height:380px が効いていて、top:50% が
+   「380pxの半分＝190px」を指していたのが原因。.top の clamp(480px,72vh,680px) を
+   そのまま受け取らせると、画面の高さが変わっても扉の中央にそろう */
+@media(min-width:901px){
+  .top .top-main,.top .top-in{min-height:inherit;}
+  .top-fuda{top:50%;transform:translate(-50%,-50%);}
+}
+/* 900px以下では元CSSが .top::after（扉の底のぼかし）を display:none にしており、下へ回った
+   見本の帯が直線でぶつ切りに見えていた。ぼかしを帯そのものに貼れば、幅が変わっても切り口に付いてくる */
+@media(max-width:900px){
+  .top-bg::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;z-index:2;
+    background:linear-gradient(180deg,rgba(7,10,14,0),var(--paper));pointer-events:none;}
+}
+/* 621〜900px では題字の最終行（〜1018px）が画面下の追従バー（969〜1024px）に隠れていた。
+   帯と題字のあいだを52px詰めて、1画面目に題字が収まるようにする */
+@media(min-width:621px) and (max-width:900px){
+  .top-bg{margin-top:0;padding-bottom:4px;}
+  .top-in{padding-top:8px;}
+}
+/* 扉のカード24枚は全数 tabindex="-1" なので、.top-bg には焦点が入らない。
+   :focus-within で流れを止める規則は一度も発火しないため置かない
+   （動きに弱い人の設定では、元CSSの prefers-reduced-motion が止める） */
 
 /* 杜工舎とは（入口） */
 .about-hero{border-bottom:1px solid var(--rule);}
-.about-title-frame h1{color:var(--ink);}
+/* 扉が画面の高さいっぱいに伸び、1440×820 でも値段・見本・申込みが1画面目に1つも入らなかった。
+   上限を620pxで止めて、次の「01 / PLACE HP作成」の札を折り返しに掛ける */
+@media(min-width:901px){.about-hero,.about-hero-in{min-height:min(620px,calc(100vh - 76px));}}
+/* ── 値段と次の一手を、扉の中に入れる（HTML は ABOUT_KANAME）────────────
+   営業メールの着地は #about。ところが1画面目は題字と一文だけだった。直す前の実測：
+     1280×800 … 扉だけで692px（画面の87%）。値段「1ページ、10万円、買い切り」の行は
+                 画面の下 647px 先。押せるものは頭の帯の札だけ
+     430×932  … 値段の行は y=856〜921 まで上がるが、追従バー（877〜932）が
+                 その上に重なって読めない
+
+   扉の中身（.about-copy）が 435px → 580px と145px増えるので、その分だけ上下の
+   空きを詰める。扉の丈は 1280×800 で 692px → 714px、1440×820 で 753px。
+   ※ ここの padding を戻すときは、必ず 1280×800 で「見本を見る」の釦が
+     画面内に残っているかを測ってからにすること。 */
+@media(min-width:901px){.about-hero-in{padding-block:clamp(48px,5.2vw,74px);}}
+.about-kane{
+  margin:26px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;
+}
+.about-kane b{
+  font-family:var(--ff-min);font-weight:600;font-size:clamp(21px,2.1vw,26px);
+  letter-spacing:.08em;color:var(--ink);
+}
+.about-kane .k{font-size:13px;line-height:1.9;letter-spacing:.02em;color:var(--ink-3);}
+.about-go{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 0;}
+.about-go a{min-height:46px;}
+/* .btn の地色・字色は、あとに来る夜の .btn{...} が .btn-fill ごと上書きしてしまう。
+   ここは .about-go との2つ組みで書いて、確実に勝たせる */
+.about-go .go-mihon{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}
+.about-go .go-mihon:hover{background:var(--mori-2);border-color:var(--mori-2);color:var(--mori-ink);}
+.about-go .go-toi{background:transparent;border-color:var(--rule-2);color:var(--ink);}
+.about-go .go-toi:hover{border-color:var(--mori);color:var(--mori);background:var(--mori-tint);}
+/* nowrap のまま自分の段を131pxはみ出し、囲みの罫が題字を囲めていなかった。
+   段に入る大きさで頭打ちにする（nowrap は外さない。外すと「見つかるかた／ちに。」と割れる） */
+.about-title-frame h1{color:var(--ink);font-size:clamp(32px,3.7vw,52px);}
 .frame-corner::before,.frame-corner::after{background:var(--mori);}
 .about-graphic::before,.about-graphic::after{border-color:var(--rule-2);}
 .ag-node{background:var(--paper);border-color:var(--mori);}
-.ag-label{color:var(--ink-3);font-family:var(--ff-mono);}
+.ag-label{color:var(--ink-3);font-family:var(--ff-mono);font-size:12px;font-weight:500;}
 .service-step{
-  background:var(--glass);border:1px solid var(--rule);border-radius:14px;
+  background:var(--glass);border:1px solid var(--rule);
+  border-radius:var(--r-big);padding:var(--pad-big);
   transition:border-color .25s,background .25s,transform .25s,box-shadow .25s;
 }
 .service-step:hover{
   background:var(--glass-2);border-color:rgba(92,200,224,.3);
   transform:translateY(-2px);box-shadow:0 10px 26px rgba(92,200,224,.06);
 }
-.service-no{font-family:var(--ff-mono);color:var(--mori);}
+.service-no{font-family:var(--ff-mono);font-size:12px;color:var(--mori);}
 .service-step h3{font-family:var(--ff-min);color:var(--ink);}
 .service-go{color:var(--mori);}
 .service-join i{background:var(--rule-2);}
@@ -1107,32 +1312,120 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
 
 /* えらぼっとの図 */
 .em-q,.em-result,.erabo-map,.erabo-process,.erabo-price{
-  background:var(--glass);border:1px solid var(--rule);border-radius:12px;
+  background:var(--glass);border:1px solid var(--rule);border-radius:var(--r-card);
 }
+/* 段の幅いっぱいに1つ置くものは「枠」。とくに .erabo-price は、HP作成の料金（.waku）と
+   同じ「料金の枠」でありながら、角丸も内側余白も別物だった（12px/48px 対 14px/42px）。
+   同じ役は同じ値にする。 */
+.erabo-process,.erabo-price{border-radius:var(--r-big);}
+.erabo-price{padding:var(--pad-big);}
+/* 枠と角丸は付いたが、この2つだけ内側の余白が四辺とも0で、手順の「01」が枠線に触れていた。
+   左右は枠の段（--pad-big）。上下は各手順の padding に任せる（.faq と同じ組み方） */
+.erabo-process{padding:0 var(--pad-big);}
+.erabo-process li:last-child{border-bottom:0;}   /* 残すと枠の下辺と二重線になる */
+.erabo-map{padding:var(--pad-card);}
+.erabo-process>li>span{font-size:12px;}
 .em-line{background:var(--rule-2);}
 
+/* 図の3本の線は、円の右端から ±25度 回した1本線で描いてあった。
+   長さが枠の幅まかせなので、どの幅でも札に届いていない。実測（枠の内側を測った値）
+     1440/1280px … 線は約50pxしか伸びず、札の50〜70px手前で宙に途切れる
+     901〜1060px … 線の長さが0〜4pxになり、「候補」の札が円に16px重なる
+     768px       … 札の17px手前で止まる
+   角度と長さを幅に委ねるのをやめ、3行の格子に置き換える（行56px・行間36px ＝
+   行の中心どうしが必ず92px）。円・札・線の位置はすべて格子が決めるので、
+   どの幅でも線は円から札まで繋がる。
+   ※ 触るときは、行の高さ56pxと行間36pxを変えたら ::after の92pxも同じだけ直すこと。
+     この3つの数字がずれると、縦の枝が横の線と離れる。 */
+.erabo-map{
+  display:grid;
+  grid-template-columns:auto minmax(28px,1fr) auto;
+  grid-template-rows:repeat(3,56px);
+  row-gap:36px;column-gap:0;
+  align-content:center;min-height:320px;
+}
+.em-q,.em-result{position:static;left:auto;right:auto;top:auto;}
+.em-q{grid-column:1;grid-row:1/4;align-self:center;justify-self:start;
+  width:clamp(96px,10vw,126px);height:auto;aspect-ratio:1;}
+.em-result{grid-column:3;justify-self:end;width:clamp(88px,9vw,112px);height:56px;}
+.em-result-1{grid-row:1;}.em-result-2{grid-row:2;}.em-result-3{grid-row:3;}
+/* left/right/top は元の絶対配置の値が残っている。relative のままだとそのぶん
+   ずれる（実測で右に160px・下に180px流れた）ので、三辺とも auto に戻す */
+.em-line{position:relative;left:auto;right:auto;top:auto;
+  grid-column:2;align-self:center;justify-self:stretch;
+  width:auto;height:1px;transform:none;}
+.em-line-a{grid-row:1;}.em-line-b{grid-row:2;}.em-line-c{grid-row:3;}
+/* 円から出た幹（縦）を、上下の札の高さまで伸ばして横線に継ぐ */
+.em-line-a::after,.em-line-c::after{
+  content:"";position:absolute;left:0;width:1px;height:92px;background:var(--rule-2);
+}
+.em-line-a::after{top:0;}
+.em-line-c::after{bottom:0;}
+
 /* 見本のポップアップ */
-.thd{background:var(--paper-2);border:1px solid var(--rule);border-radius:14px;overflow:hidden;}
+/* 2026-09-21: overflow:hidden が正本の overflow:auto を打ち消しており、
+   1280×800 のノートPCで「向いている業種」と「この型の実物を見る」が画面の外に出たまま
+   指でも滾車でも送れなかった（1280×700で173px、375×667で180px切れる）。
+   角丸を保ったまま送れるように auto に戻す。ここを hidden に戻さないこと。 */
+.thd{background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--r-big);
+  overflow:auto;-webkit-overflow-scrolling:touch;max-height:min(88vh,860px);overscroll-behavior:contain;}
 .thd::backdrop{background:rgba(2,5,9,.78);}
-.thd-x button{background:rgba(255,255,255,.06);border:1px solid var(--rule);color:var(--ink);border-radius:99px;}
+/* 閉じる「×」は、白い見本写真の右上に重なる位置にある（.thd-x は top:0 right:0）。
+   半透明の白い面（rgba(255,255,255,.06)）だと淡・粋のような明るい見本では字が写真に溶け、
+   実測で 1.05:1 ＝ ほぼ見えなかった。面を地の色で塗りつぶす（#070A0E × #E8EEF5 で約17:1）。
+   角丸のダイアログは overflow:hidden なので、隅から少し離して丸を欠けさせない。
+   ※ ここを再び半透明に戻さないこと。売り物を見せる画面の唯一の出口が消える。 */
+.thd-x{top:10px;right:10px;}
+.thd-x button{background:var(--paper);border:1px solid var(--rule);color:var(--ink);border-radius:var(--r-pill);}
 .thd-ja{font-family:var(--ff-min);}
-.thd-go{color:var(--mori);}
+/* PC幅では、見本写真がポップアップの幅の半分（920px中498px）しか占めず、右が空の地だった。
+   aspect-ratio:880/578 と max-height:38vh の掛け合わせで高さが先に頭打ちになり、
+   幅がそれに引きずられていたため。高さを決めて幅いっぱいに敷く（切り取りは object-fit:cover、
+   object-position:top center のままなので、見本の題字は残る）。携帯（720px以下）は元のまま */
+/* 見本のポップアップの写真。560〜720px では aspect-ratio と max-height の組み合わせで
+   高さを詰めると幅まで縮み、右に暗い空白ができて「画像が壊れた」ように見えていた。
+   幅は常に埋め、はみ出す分は中で切る（2026-09-21） */
+.thd-ph{width:100%;}
+.thd-ph img{width:100%;height:100%;object-fit:cover;}
+@media(min-width:561px) and (max-width:720px){.thd-ph{aspect-ratio:auto;height:30vh;max-height:none;}}
+@media(min-width:721px){.thd-ph{aspect-ratio:auto;height:38vh;max-height:none;}}
+/* 低いノートPC（1280×800・1024×768）では、開いた時点で「実物を見る」が枠の外にあった。
+   画面が低いときは写真を削って、押しどころまで1画面に入れる */
+@media(min-width:721px) and (max-height:820px){.thd-ph{height:26vh;}}
+@media(min-width:721px) and (max-height:700px){.thd-ph{height:20vh;}}
+/* 「この型の実物を見る」が 232×29px で、指の基準44pxを下回っていた */
+.thd-go{color:var(--mori);display:inline-flex;align-items:center;min-height:44px;}
+/* ポップアップの中だけ、字の床が 9.5px（「向いている業種」「新しいタブで開く」）と
+   10〜11px（DESIGN 1・読み）のまま残っていた。点検道具（hp_qa.py）はダイアログを開かないので
+   この字は数に出てこない ── summary.txt が「問題なし」でも、ここは自分で開いて確かめること。
+   奥付や注記と同じ 12px にそろえる（文章は一字も変えない） */
+.thd-no,.thd-yomi,.thd-m b,.thd-go i{font-size:12px;}
 
 /* 見本の中身は白のまま見せる（売り物そのものなので、地の色を被せない） */
-.smp,.pv-frame{background:#fff;border-radius:10px;overflow:hidden;}
-.pv-nav{background:rgba(255,255,255,.06);border-color:var(--rule-2);color:var(--ink);border-radius:99px;}
+.smp,.pv-frame{background:#fff;border-radius:var(--r-card);overflow:hidden;}
+.pv-nav{background:rgba(255,255,255,.06);border-color:var(--rule-2);color:var(--ink);border-radius:var(--r-pill);}
 .pv-nav:hover{background:rgba(255,255,255,.14);border-color:var(--mori);}
 .pv-bar{color:var(--ink-3);}
 
 /* 奥付 */
-.colo dt{color:var(--ink-3);}
-.cap2{font-family:var(--ff-mono);color:var(--mori);opacity:.8;}
+/* 特定電子メール法に基づく表示は「読ませる字」。営業メールの署名からここへ直接飛ばしている。
+   サイトで一番小さい 10.5〜11.5px のままにしない */
+.colo .fine{font-size:12.5px;line-height:2;}
+.colo dt,.colo dd,.colo p{font-size:13px;}
+.colo dt{color:var(--ink-2);}
+.cap2{font-family:var(--ff-mono);font-size:12px;color:var(--mori);opacity:.8;}
+/* いちばん丁寧に読んでほしい2種類 ── 追加で掛かるお金と、数字の出どころ ── が、サイトで
+   一番小さい 9〜12px で組まれていた。奥付と同じ 12.5px にそろえる（文章は一字も変えない） */
+.waku-note,.waku-note small,.waku-fine,.pt-src,.tbl td small,.dl-d,.st-d{font-size:12.5px;}
+.pt-src{line-height:1.85;}
+/* 釦の下段「ご記入シート.xlsx」が 9px（サイト全体の最小）。何が落ちてくるかを言う唯一の字 */
+.dl-b2{font-size:12px;letter-spacing:.04em;opacity:.9;}
 
 /* ══════════ 代表プロフィール ══════════ */
 .pf-head{text-align:center;margin:0 0 clamp(30px,4vw,46px);}
 .pf-yago{
-  display:inline-block;border:0;padding:0;font-family:var(--ff-mono);font-size:10.5px;
-  letter-spacing:.34em;text-indent:.34em;color:var(--mori);opacity:.8;margin:0 0 14px;
+  display:inline-block;border:0;padding:0;font-family:var(--ff-mono);font-size:12px;
+  letter-spacing:.24em;text-indent:.24em;color:var(--mori);opacity:.8;margin:0 0 14px;
 }
 .pf-name{
   margin:0;font-family:var(--ff-min);font-weight:600;
@@ -1145,15 +1438,19 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
 .pf-role{
   margin:16px 0 0;font-size:13px;letter-spacing:.08em;color:var(--ink-2);
 }
-.pf-body{max-width:960px;margin:0 auto clamp(30px,4vw,44px);}
+/* サイトで一番長い散文が1行64字で組まれていた。15px×42字＝630px で止める。
+   em で書けば、携帯で字の大きさを変えたときも幅が追従する */
+.pf-body{max-width:min(100%,42em);margin:0 auto clamp(30px,4vw,44px);}
 .pf-body p{margin:0 0 1.35em;font-size:15px;line-height:2.15;color:var(--ink-2);letter-spacing:.03em;text-wrap:pretty;}
 .pf-body p:last-child{margin-bottom:0;}
 .pf-body b{color:var(--ink);font-weight:600;}
-/* 年表は、もとの縦線と点を残したまま、幅だけ「令和6年度」が入るように広げる */
-.cv2::before{left:calc(5.6em + 11px);background:var(--rule);}
-.cv2 li{grid-template-columns:5.6em minmax(0,1fr);gap:0 34px;padding:0 0 24px;}
-.cv2 li::before{left:calc(5.6em + 8px);width:6px;height:6px;background:var(--mori);top:10px;}
-.cv2 i{font-family:var(--ff-mono);font-size:11px;letter-spacing:.06em;color:var(--mori);opacity:.85;padding-top:3px;}
+/* 年表は、もとの縦線と点を残したまま幅だけ整える。左列を em（li の継承した16px）で取って
+   いたため、12pxで描く日付の実寸（「2024年度」で52px）に対して常に30px余り、そのぶん
+   本文欄が痩せていた。日付の実寸に合う固定値にする */
+.cv2::before{left:calc(64px + 11px);background:var(--rule);}
+.cv2 li{grid-template-columns:64px minmax(0,1fr);gap:0 28px;padding:0 0 24px;}
+.cv2 li::before{left:calc(64px + 8px);width:6px;height:6px;background:var(--mori);top:10px;}
+.cv2 i{font-family:var(--ff-mono);font-size:12px;letter-spacing:.06em;color:var(--mori);opacity:.85;padding-top:3px;}
 .cv2 span{font-size:13.5px;line-height:2;color:var(--ink-2);}
 .cv2 span b{color:var(--ink);font-weight:600;}
 .pf-list{list-style:none;margin:0;padding:0;}
@@ -1162,7 +1459,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
   font-size:14px;line-height:1.95;color:var(--ink-2);position:relative;
 }
 .pf-list li:last-child{border-bottom:0;padding-bottom:0;}
-.pf-list li::before{content:"";position:absolute;left:0;top:1.35em;width:7px;height:1px;background:var(--mori);}
+/* 1.35em(18.9px) だと、字の中心（padding11px＋行の半分13.65px＝24.65px）より5.7px上にずれ、
+   箇条書きの印ではなく脱字記号に見えていた */
+.pf-list li::before{content:"";position:absolute;left:0;top:calc(11px + .95em);width:7px;height:1px;background:var(--mori);}
 .pf-list b{color:var(--ink);font-weight:600;}
 .pf-note{margin:16px 0 0;font-size:12.5px;line-height:1.95;color:var(--ink-3);}
 .pf-yaku{counter-reset:yk;list-style:none;margin:0;padding:0;}
@@ -1179,33 +1478,197 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
 
 /* 杜工舎のしごと（四つの入口） */
 .shigoto{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:clamp(34px,4.4vw,52px) 0 0;}
-.shigoto-c{background:var(--glass);border:1px solid var(--rule);border-radius:12px;padding:22px 20px;}
+.shigoto-c{background:var(--glass);border:1px solid var(--rule);
+  border-radius:var(--r-card);padding:var(--pad-card);}
 .shigoto-c .v{display:block;font-family:var(--ff-min);font-size:19px;letter-spacing:.14em;color:var(--ink);margin-bottom:4px;}
-.shigoto-c .e{display:block;font-family:var(--ff-en);font-style:italic;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--mori);opacity:.9;margin-bottom:12px;}
+.shigoto-c .e{display:block;font-family:var(--ff-en);font-style:italic;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--mori);opacity:.9;margin-bottom:12px;}
 .shigoto-c p{margin:0;font-size:13px;line-height:1.95;color:var(--ink-2);}
-.shigoto-c .n{display:inline-block;margin-top:10px;font-family:var(--ff-mono);font-size:10px;letter-spacing:.16em;color:var(--ink-3);border:1px solid var(--rule);border-radius:99px;padding:2px 9px;}
+.shigoto-c .n{display:inline-block;margin-top:10px;font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3);border:1px solid var(--rule);border-radius:var(--r-pill);padding:3px 10px;}
+/* 4枚のうち2枚は準備中。売っている2枚と同じ重さで並ぶと、事業の半分が未提供に見える。
+   影や枠は増やさず、重さだけ下げる */
+/* 2026-09-21: opacity で札ごと薄くすると、中の字も薄くなって 2.63:1（要4.5）まで落ちた。
+   重さを下げるのは面と字の「色」で行い、読めなさは持ち込まない */
+.shigoto-c:has(.n){background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.07);}
+.shigoto-c:has(.n) .v{color:var(--ink-2);}
+.shigoto-c:has(.n) .e{color:var(--ink-3);opacity:1;}
+.shigoto-c:has(.n) p{color:var(--ink-3);}
 @media(max-width:900px){.shigoto{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:560px){.shigoto{grid-template-columns:1fr;}}
 
-@media(max-width:900px){
-  /* 携帯では札と申込みの釦を畳む（元のCSSの display:none を、あとから足したこの段で消さないため） */
-  .nav,.cta{display:none!important;}
-  .head-in{height:60px;}
-  .brand{white-space:nowrap;}
-  .brand .ja{font-size:18px;letter-spacing:.2em;}
+/* ══════════ 2026-09-21 の直し（4周目の指摘） ══════════ */
+
+/* 広い画面で、囲みの中身が左半分で終わり、罫だけが右へ伸びていた（経歴・資格・手順）。
+   読む列に止め木を入れる。囲みの幅は変えない */
+/* 2026-09-21: 52emの止め木を入れたら、囲みの見出しの罫だけ箱いっぱいに伸びて
+   項目の罫と185〜192pxずれた。見出しの罫も同じ列に合わせる */
+.cv2,.pf-list,.pf-yaku,.erabo-process{max-width:52em;}
+.waku:has(.cv2) .waku-t,.waku:has(.pf-list) .waku-t,.waku:has(.pf-yaku) .waku-t{max-width:52em;}
+
+/* お問い合わせは、章の頭とメールの札が中央なのに本文2段落だけ左端にいて、
+   視線が中央→左→中央と振られていた。本文も中央の列に入れる */
+.contact .sub,.contact-intro{max-width:44em;margin-inline:auto;}
+/* 2026-09-21: 中央ぞろえは広い画面だけにする。携帯で中央にすると、
+   3〜4行の本文で目が戻る左端が無くなる（5ページでこの頁だけ中央になっていた） */
+@media(min-width:901px){ .contact-intro p{text-align:center;} }
+
+/* えらぼっとの選定図。621〜900px で図だけ中央に寄り、段の軸が2本になっていた。
+   また 621〜1023px では円（96px）に対し字が16pxのままで、縁いっぱいに詰まっていた */
+@media(min-width:621px) and (max-width:900px){
+  /* 2026-09-21: 図だけ中央に寄って段の軸が2本になっていたのを直したが、
+     幅いっぱいに伸ばしたため枝の列が570pxの空白になった。左端をそろえたまま、幅は元に戻す */
+  .erabo-map{justify-self:start;width:min(100%,520px);}
 }
+@media(min-width:621px) and (max-width:1023px){
+  .em-q{font-size:13px;}
+}
+
+/* 手順の本文が、番号や見出しより左から始まっていた（左端が4つ並ぶ）。見出しと同じ位置にそろえる。
+   2026-09-21: 元のCSSの打ち消しは max-width:640px なので、こちらも640pxで合わせる
+   （620pxにしていたため 621〜640px だけ本文が左端に戻っていた） */
+@media(max-width:640px){
+  .step-p{padding-left:44px;}
+}
+
+/* 金額と受賞名が語の途中で割れていた（「50,000円、一／度きりです」「全建／賞（災害枠・都市部門）」）。
+   括弧と中黒の前後で行を割らない */
+.waku-fine,.pf-list,.cv2 span,.waku-note{line-break:strict;word-break:normal;overflow-wrap:anywhere;}
+
+@media(max-width:900px){
+  /* 2026-09-21: 扉の .top{display:flex} が .page-only.active{display:block} に負けて、
+     題字を上に出す order が死んでいた。768px では題字の天が788px＝追従バーより下で、
+     タブレットと横持ちのスマホでは商品頁の題字が1画面目に1文字も入らなかった */
+  .top.page-only.active{display:flex;flex-direction:column;}
+  /* 携帯では札だけ畳む。頭の申込みの釦は残す ──
+     読んでいる途中で押せるのは、この釦と画面下の追従バーの2つだけになる */
+  .nav{display:none!important;}
+  /* 杜工舎とは・えらぼっと・代表プロフィールでは、画面の中で唯一の申込み導線。
+     指の基準44pxを確保する（実寸110×41pxだった）。角丸もPCと同じ10pxにそろえ、
+     幅が変わっても同じ役目の釦が同じ形で出るようにする */
+  .cta{
+    display:inline-flex!important;flex-direction:row;align-items:center;
+    min-height:44px;padding:10px 14px;border-radius:var(--r-card);margin-right:4px;
+  }
+  .cta .tb-ja{font-size:12.5px;letter-spacing:.06em;}
+  .cta .tb-en{display:none;}
+  .head-in{height:60px;}
+  /* 屋号は携帯で唯一の「先頭に戻る」導線。指で押せる44pxを確保する（高さ33pxしか無かった） */
+  .brand{white-space:nowrap;align-items:center;min-height:44px;}
+  .brand .ja{font-size:18px;letter-spacing:.2em;}
+  /* 三本線が1pxのヘアラインで「＝」に見え、押せるものに見えなかった */
+  .menu-btn i{height:1.5px;}
+  .menu-btn i:first-child{top:16px;}
+  .menu-btn i:last-child{bottom:16px;}
+  /* 追従バーの値段。1画面目でいちばん小さい字だったのを、隣の釦と同じ段まで上げる */
+  .mcta .f{font-size:13px;line-height:1.35;letter-spacing:.01em;color:var(--ink);}
+  /* 帯は画面の端まで引いてあるのに、釦が右端の166〜224px手前で終わっていた（621〜900px）。
+     375pxでは既に幅いっぱいなので、携帯の見え方は変わらない */
+  /* 2026-09-21: 帯の中で釦が x=0〜430（画面の端ぴったり）に置かれ、12pxの角丸が隅で切れていた。
+     帯に内側の余白を持たせ、釦を浮かせる。押しどころの高さは変えない */
+  .mcta{padding:6px 10px calc(6px + env(safe-area-inset-bottom));gap:8px;align-items:center;}
+  .mcta a.btn-fill{flex:1 1 56%;border-radius:var(--r-card);}
+  .mcta .f{padding-left:4px;}
+  /* 値段の札から料金表へ行けるようにする（文言は一字も変えない）。押しどころは44px */
+  .mcta a.f{display:flex;align-items:center;min-height:44px;color:var(--ink);
+    text-decoration:none;border-bottom:1px solid var(--rule-2);}
+  /* 杜工舎とは（3,268px）・えらぼっと（3,568px）・代表プロフィール（4,317px）は、
+     読み終えた先に申込みの受け皿が無く、法定表示が続いていた。値段の札だけ畳んで釦を出す。
+     お問い合わせ頁では自分自身への導線になるので出さない */
+  body:not([data-page="hp"]) .mcta{display:flex;}
+  body:not([data-page="hp"]) .mcta .f{display:none;}
+  body:not([data-page="hp"]) .mcta a.btn-fill{flex:1;}
+  body[data-page="contact"] .mcta{display:none;}
+  /* バーが出ない頁にだけ、バー用の下駄（56px）を外す */
+  body[data-page="contact"]{padding-bottom:0;}
+  /* お問い合わせと代表プロフィールの下に、押すものの無い空きが約190px残っていた */
+  .page-profile,.page-contact{min-height:0;}
+}
+/* PC幅では .page-contact に min-height:calc(100vh - 76px) が効いている。中身（章の頭＋
+   前書き＋枠）は 1280px で879pxしかないので、display:block のままだと余りがぜんぶ下に落ちる。
+   実測（1280×1400）── 上の空き110px に対して、枠の下から奥付まで445px。
+   丈を縮めるのではなく（画面いっぱいに立てる形は5ページ共通の作り）、余りを上下に等分する。
+   代表プロフィールも同じ組みにしておく（中身が3,166pxあるので見え方は変わらないが、
+   「同じ役の頁は同じ組み」を崩さないため）。 */
+@media(min-width:901px){
+  /* .active を必ず付けて書くこと。素の .page-profile では、元CSSの .page-only{display:none}
+     より後ろに来るぶんだけ勝ってしまい、5ページが同時に出る */
+  .page-profile.active,.page-contact.active{display:flex;flex-direction:column;justify-content:center;}
+  .page-profile>.sec-in,.page-contact>.sec-in{width:100%;}
+}
+@media(max-width:430px){
+  /* 頭に申込みの釦を戻したぶん、屋号の英字を畳んで幅を空ける */
+  .brand .en{display:none;}
+}
+@media(max-width:360px){
+  /* 320pxで札の中が「お問い合わ／せ」と2行に割れ、頭の帯から上下にはみ出していた。
+     字を小さくするのではなく、頭の中の空きと札の内側を詰めて場所をつくる */
+  .head-in{gap:10px;}
+  .cta{padding:8px 11px;}
+  .cta .tb-ja{white-space:nowrap;}
+  .menu-btn{flex:none;min-width:44px;}   /* 320pxで38pxまで縮んでいた */
+}
+/* 動きに弱い人の設定で、ここだけ取りこぼしていた（元CSSの並びに .service-step が無い） */
+@media(prefers-reduced-motion:reduce){
+  .service-step,.tt-c{transition:none;}
+  .service-step:hover,.tt-c:hover{transform:none;box-shadow:none;}
+}
+/* ハッシュで頁を替えたあと、固定の頭のぶんだけ下がった位置で止まっていた（scrollY=69px） */
+#hp,#erabot{scroll-margin-top:68px;}
+@media(max-width:900px){#hp,#erabot{scroll-margin-top:60px;}}
+/* 営業メールの署名が29回使う #legal は .sec ではない素の div で、scroll-margin が
+   1つも当たっていなかった（着地が毎回280〜715pxずれる） */
+#legal{scroll-margin-top:76px;}
+@media(max-width:900px){#legal{scroll-margin-top:62px;}}
+
+/* 「なぜホームページが必要か？」は 821px で3列から1列へ一気に落ち、768pxでは1枚707px幅に
+   13pxの字で1行54字（サイト最長）、821〜960pxでは逆に1行18字まで痩せていた。
+   あいだに2列の段を挟むと、768pxで26字・1023pxで36字に収まる */
+@media(min-width:761px) and (max-width:1023px){
+  .pts{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+.pt h3{text-wrap:balance;}   /* 「AIが、他人の言葉で説明する」の「る」が1字だけ次の行に落ちていた */
 @media(max-width:620px){
   .shead{gap:8px;flex-wrap:nowrap;margin-bottom:34px;}
   .sh-no{width:auto;height:auto;font-size:14px;gap:6px;}
   .sh-no::after{height:14px;}
   .shead h2{font-size:22px;letter-spacing:.05em;}
   .sh-en{display:block;width:auto;padding-left:0;margin-top:0;font-size:14px;}
-  .cv2::before{left:calc(5em + 9px);}
-  .cv2 li{grid-template-columns:5em minmax(0,1fr);gap:0 24px;}
-  .cv2 li::before{left:calc(5em + 6px);}
-  .cv2 i{font-size:10px;}
+  /* 日付欄が5em＝80pxあるのに、中の日付の実幅は48px。そのしわ寄せで本文欄が181pxしかなく、
+     13pxの字で1行14字まで痩せていた（同じ頁の略歴は22字/行） */
+  .cv2::before{left:calc(62px + 9px);}
+  .cv2 li{grid-template-columns:62px minmax(0,1fr);gap:0 18px;}
+  .cv2 li::before{left:calc(62px + 6px);}
+  .cv2 i{font-size:12px;}
   .cv2 span{font-size:13px;}
-  .pf-body p{font-size:14px;line-height:2.05;}
+  .pf-body p{font-size:15px;line-height:2.1;}   /* 14px は、サイトで一番長い散文には小さい */
+  .waku-t{font-size:16px;}
+  /* WORK／PEOPLE の菱形は情報を持たないのに、1画面目の31%（高さ290px）を占めていた。
+     携帯では畳んで「01 / PLACE HP作成…10万円」の札を1画面目に入れる。
+     写真ではなくCSSで描いた線画なので、素材の決めごとには触れない */
+  .about-graphic{display:none;}
+  /* 1画面目（430×932）に「1ページ、10万円、買い切り」の行が44px届いていなかった。
+     文面は触らず、扉と章のあいだを62px詰めて折り返しの上に入れる */
+  .about-hero-in{padding-block:28px 12px;gap:0;}
+  .about-body{padding-block:46px;}
+  .about-intro{margin-bottom:34px;}
+  #works .shead{margin-bottom:34px;}
+  /* nowrap の題字が 32px で頭打ちになり、幅304pxのまま縮まないため、320pxでは「。」が
+     画面の外に出ていた。狭い側だけ下限を外す（nowrap は外さない ──
+     外すと「見つかるかた／ちに。」と泣き別れる） */
+  .about-title-frame h1{font-size:min(32px,7.4vw);}
+  /* 値段と次の一手。.btn の素のまま（内側26px・字間.18em）だと釦2つで335.8pxになり、
+     375pxの段の内幅327pxに収まらず縦に積む。字は12.5pxのまま、内側と字間だけ詰めて
+     横に並べる（272.8px）。押しどころの46pxは保つ */
+  .about-kane{margin-top:22px;gap:4px 12px;}
+  .about-go{gap:10px;margin-top:18px;}
+  .about-go a{padding:12px 16px;letter-spacing:.1em;gap:8px;}
+}
+/* 320px では、上の詰めかたでも釦2つが 272.8px になり、段の内幅272pxを 0.8px だけ
+   超えて縦に積む。積むと2つ目（お問い合わせ）の下端が、320×568 の実測で
+   追従バー（513〜568）に1pxかぶった。字の大きさは変えず、内側だけ3pxずつ詰めて
+   1行に戻す（260.8px）。
+   ※ この規則は上の max-width:620px より後ろに置くこと。前に置くと620pxの側が勝つ。 */
+@media(max-width:360px){
+  .about-go a{padding:12px 13px;}
 }
 </style>
 </head>
@@ -1215,7 +1678,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
 
 <header class="head">
   <div class="wrap head-in">
-    <a class="brand" href="#top"><img class="brand-mark" src="data:image/png;base64,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" alt="" width="79" height="96">
+    <a class="brand" href="#about"><img class="brand-mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE8AAABgCAYAAABczi9lAAA33klEQVR42u29d5xdVdU+/qy9T7m9zZ3eS6ZPeu8JCYRQQjFBQAggBkSaFF9BXyexoYJKRJTyKgqKmoj0FkpCCKElEAhJKGkzmUmZTJ+59Zyz1++POwPRn0oo8vp9P5587ufeZO6cs7POWns961nlSPz7HDT84a677nJxMllZ21jlP3XuJNqwaWvyb7/zn+NvDl3XUVRUcG0w5H/ZH/R1hUKB1qxwcPv8Y+Zcu2vTU8H/CPDvaxzd3tzsyc3N/r3h0lk3NAbAbo+Ls3PCnJ0d5vFjG1+/aOnSMgDiPwL84BBEhPLS4m9ITbDQKK0b0jFdhvL63Mof8DpCo7TLY/KUCWNv0zXt30b7xL+B1qmbbrrJ3TcwuIQEKSFIAiSklJRMpWggHhMQkKlUSiWs5JTv3/BfpQCY+T/aJwDgzNNOqw2HgkmpEQtDsNAES12wbkrWDMnCICadHJfH4GmTxy0d+l3576R59BlomZw1a5Y2dF1t1qxZAgD6Bwa0VDppMAOSBHRNQtMkHEdBCgFNamCH2ePxKN2lAwBmzZpFswBtSIhy8eLF8n/VnBcvxr9qAX91TqK/vkRz8zJPNBJ6VTelMj2GQxoYAuz2muzxmSx0Yn/A6wSCPq6rqzzlQ7abz0yAGgDcvmyZ7p4+3Tj33HNjR5iEAsBHLEgM/V19DMExM4spUyackJ2dNa6rs7s8EY/vL84peODBp556hVbcER8/tuk3b7y1Y3w6nXZ0TRdW2oKUMiMJZieZSguN5IEcf9amHdil7lm5MvDTu+74glKqTsFxCgvz1/nY/cLqJ544PHzNz2TTbt240b3k9ONvnzp11Jc2bdrk+Ruzpk9wZwkALjp3cWFBQe5jHp+bQ5EAR7KCHAj4uKa6MtZQP+KXq1atkouPPTYSiYZehQBDwiINNjQ4yLyzYWpcUVFxHgCUlRUvKSspfK2qspTDkQBHs0MciQQSM6ZN3Dhn+qQvf1bOUAKgtv5+5fe6goe7um9YvfqP51eUFfHsOfP3vvnmm4MAsPiEuYVxyz5t5Mi6eEtLe9dRCpAyW8GxkcfWPP9wR2fXbNu2nWQqxalUSiWTaSZBHAmH6jY+tz729MYX102dMv65/v7+SWnLKmaGgAIJScJluAaL8vKv39vS+suJYxrHDQzGV0td5nT19FBv/wDqqkeogN9nGIbuPdjRccrkCWNeeW/X3p1HWMu/zmmMGzdOnz1zfPOZSxY9NmZM3a7svCCHo/72ioqK825qbo5Go75N5RWlXFSY3z172rirmZmO8sagqqzsCt2QTDrSwgALnVhoxJDgaE4kWV1dEc+KBLvOPvvUosz+16yNHFn9xcL8vIdKigteqampXH722WfnD/1MVFWUPhEK+VlqMlFaUsy+gIe9frfKy8tSE8c3vXXCcbN21taUP/pZ7H8CADZv3mxVlpT/PplM5Ph9/qBlOVZsMFGwf3/7r793y80b46n0uMNdhx0Gtrr85gNHsTACoJhZDMQHP2fZDoMglAJ0TYPH7QIE0N3bY+7au9cVSyQir7++43hd19Hff3Bsb8/AtKSTFikr7erq7h71+uYXL9R1HY888uBJ+w8dmtc/OKgUO654MgbLshGLJSgWT1DH4e5ob1+/IaWoWrx4sW9I6/61DqS5uVkAwLILzjhm0UnzOwtLcljqZBPAUhIbLmlnZQXVrOmT5x0lxiIAWPXjH7sjkdAeSDAZ5JAEmy6dAyEfQ0MGvxlwhAYVCPreqqmuuiMrK5TUTcnSEEwaWGhgv9/D84+ZeWNJUf4+EFhopIRGrOmC3R6T3R6Tc3OjPLqp9uDUSWNfmT557Cs/b272fVbeVwDQAeCxx1ZlT5gw6j6Xy1QAbE3IVF5utho9qu7t5mXLPEe5GAFAMrOeG83aCAmHDNikg4dhCBnEpIOFnhGEx+tmqQuGAAudbKkLRzOEkjrZJKFCQT+HQoGEpmuW0MjRdGIIcDDoZb/fwzk5UZWTm2WVlhS1LDntpGnMTIsXL/6s8B/hxMXzSnJyot/wuM0WKYhNw+BZ06fyjKmTeP7cWV84Ci/2//POlSUlX9INyRCwSCeHdFKkk4JOigyyAHBRUeFAaVlZJwiONEkJnVjoxFKXLHSwMEgB4Nzs6K7GuupnAbDUYGkGOVIXyudzK8PUUi6PwWPHNv2KhPiHzvFTxXmrVi2WN9+8d0x/X/dZb7z05hdTVqo3GAomc6JZh7PCYcfn8x4qyM/76W2/uud3zExEpP6J4JSmaZg3b0bl4f0HozYJz/Tpkx5dvfqh3/b09C61HPuvDIkEaS6Pq6uqvKz51ddfXwEBwQALEBwATJzZtZiJJNRgIpY7tqjpnn37D8bjidgJluMADsMMmciOZhmD8VhfIhG7D8w494xTKn0+34j9He0BM6W/+Kc1a/Z96uq2atUq+dRjD9zQ2t52bUvLvqsuvfzcO4uKxtDrr7+UG4vF+NXHnjn03Pbtgx8CPAkAz5s3uWnrmzuXDybiM5RSAVZsugxjx4J5c87f+OprEwb6Bq5M2+lSIthE1KEb2hqXadzY3n54ZyQS3tTb3ztaSGJiIRT4feGRALNiNjVD1FSUzznlc7Neufs3j3y1dzB2siSRowlwKBR+0XCZP3vzzR0vV5SWntnV0/3TUNCf43aZ7T6/916fz6uXlJXdevfdf9r1qYJoZvb89pabqv9x2LZYfpipTp80aWQg4D8wBHIZGhgSNglwSUnB41JKMLN5xcUX15yw4NizZ8yYfNEN3/nG7E2bHs8nIuTn5/6XphELHZZuahk4o2WgDTTYIHB+Qc6jtzc3ewAgc76e0O23/KDp6YdXFR7h/ALBgO8d3dAYBAWBlM/vGSwuzOXRI2vXbty4yj3MIf5LQDMAam5uFkNe+MMuIoQQyM+N3jMktBQZUKSTErpwIOEUFuYe2LDhAf+4ceOiBQW5t7m9Zqvh0pJNjbW948Y07Z87a9qVm9o3eSKR0DsgsJTCKijIt/0Bn+3ymMrrc3NNTdXeBSfPrQcIxx0377ipk8ffX1SYvWf0qPq9jfWV2xvrR1zNvEmfM21ag8/nTuqGVDKzJ7LHa6qGxhH2iBHFfZddtnTykQjjUzHfj3kyAoCNrRvd0ezwNggo6HCgg0kjlrpwSEIVFGRvXrr0zNpAwLuNdGLoGc10e00WGnE4HOALL1w6esKECaN9Pm9XY0MNNzXVcXFJPuflRfn4Y+esX//0Y/UAMG3auNmhsD+tuyTrhmBNl1xTXcG1NRU8fkzd6oUL50z1eFw9ICipkwqH/ez2miovL4snjm88cO2VF4zPCO+Th2/asOWuWLHiY+8BRW2AFMI5ci8hAhhQUgjN7/c9/fjja5b3x2L1EEgTQQeBbOWwkOQMDMbkG29svey119744ujRtRPrqkYcM5hKufe07CkaN3L0utmN49bNnLcwxsxaTl7WV3sHBnQIpCVJTQqi3r4+rqwod15/Y+vnBhPp14SQr5DAfAV2kumUVI7irp5eDgR8wXffaU39uzDJDECUTpuWsG1nGwkCGDy0FTvKUZppGvvDgcie7t7e0yDgEMEY1ljLsclhlrZyqGXv3uPfePpp32UXXpDcd/BQ4N1du4qUTUVvv7dz/DnXXJMCgHkzZpTEY4lpIDABOitHOEpRT2+f2LN3rzR0TQUDwZkNDXX3aVIjdqAlkmnSdF14PG4R9If+/N+nLH4bgFix4rNhXY5Ge0V1ddki3dRsaFDQoCDAXp8rNW5c05mlJSW3kQBDhw0dTAYYBjEMsDSEggAXF+V33PDtb45pqBuxqbgkn4UA5+ZHefLkMW/Pnzfj+a9fffm4mpqaGo/XHaPMOZTQwaZLY5kBzEpqguvqKuMvrlszIi8ve2ko7N/j9rlS+UU5+0fUlP100aJFob+JOmiYTP1fzbVeccVFZdm50bchwZoprZycrHXTpo0eJaVEQUHeGtCw8IjJEEMvYmEKhzQ4lRUl646bO/364uI89vhcad0lbdJgZ+dlpUpLC3nUyLp77/zxjyM+v6eddDAMKKETa0YmKtFMTQHgkSPrYs89/dDYYaewYMHMCT/9UfNoKeWHUWr0WZotAeDm5q9GaqrL7/jNb+/dEIsNlmoyQ6PrupayU9z08sv3R6E4DjG0F2awEZgBMAGKFTOEnXb27trbckJHZxfHk0mpwBIE2dPTo7Xsa3da29oW7DrcHhUkXwEDgkgpm1FaXIIRlZVwbAdSF0ilE3HNMduamy/xFZVkf7W+adzX17+6dfVXLr34oa//99WTiIiHnePZZ58dGD264cIxYxpOEkLwZ5UQy8CZnzaH8vKiL/gCHtbdGkPLmCQNedMMgVn8Zm1N1RYADB2KhigpoRGTBpY6cSQS2Hr8sTNOd3uNQUgwTCgM0VdD6UhbMwSPHt349Snjx091uUwmDUpIUl6flysry1gawpYGcX5+9IWnHvlzxflfOu/Fs887h0/7/BJeuOgkPmXxYl5y1hmJpUvPvhYATjllYV1xUf4z4XCQ3R6Ta2srzvyoiSXxCRwNP/LbP5/c1d07dXAwbtuOwyQ+EK0UQqUd29ndsq9J03W33+9tISYQg0FgIsDUjVhWVuTR42cdc3xXV/8AAC8EmBhEyPxhYkgpZHYkHJs1Y3L61S1bNoaDwZukkACBY7EYdu3ay45SUtcN+D2+H/358TXn9Q3EJnd0dKZjsZgCCWVZKad/IOZiyG/+9n/+Z0xPT+w9KUR/MplyUsmUchzne3feeWcuAOdo5fJxhcdEhJ7u3pEMpSiTaiAeximZD0IIAgjc19PzwoJ5cy/2ebwWAJi6zjnRLJSVlL7bWF/3uz8+9FCbL+g6qAlNgaEAcjKpWWYiOLbjWCSE4TK93bZto+Nw57Uj6+u+53a5ldvj4oKCXGSFQoNF+QVf2bmn9cHOzp7JqXRaaZompZBiKFyWBLb7+vsDG19+cdFzzz1nG4aZFY2GpNDhaLos37/3vf9au3atNhR10b8UqjBhEAAxDyvccMRPYDCUYtKFxtFo9LV16zdcF4vFDQBIW7Y43NWD93bvHrPlja1/mDN7yjM1NXU94XDkBl1qki2WbIOUYnJsllJouib1Z5595MmHm5ubfSWlxTfveGfnhalUSoABt9uNgvx8mjFjUqdSCiw4LKQUBJByFOAArABp6OTymGowOVBEBESiYQSDARUI+MSBQwfsp59be8Xtt668FoBavnw5HRVV/jHDOC7ML/R19/ScpViBIIiJjsAArADA0I1d1ZVlb+5u2Xeh5dhMBGLBUBmPATvtOI5yKhXJt7e+se3GwoLcAQERlEIOuE2jKxgMbCorLfnDBRcsu/ae1au7N2/efKvX67kkkYz7klaabMumWGJQKccxfR6f5+G//Grz8xvfmOPYXOE4NmdAkxqOI9nn90qfz3f/plc2r58wZmSRJDG3pKjQOXS4Q3Yc7iKvxzVpztxpj9188y8OflgORHxMwdkAeOyECS/6/L42KAhAWQRWDDCBHcVQgoQoKy7848HDnbWJZCrjWz9QThCBLcsWkqi3acSITcyM449fsKaupmJ1eWnR/TWVlb84Zf785du3v/ut6667rmfJycdV19VWLerr61OslDJ1HUQAmEQ8Hoff76msHTn3MJR6GcykHCjQ8P9eOUo5MpVKdfqCgT80NzdrMRffWlicvy4cDuk1VXUiHIigff8hf/fhnssFET5tzSMAqrW11d3W1hZetWpV54iqii2xwdiJjuP4lMMEBWKG0KQUkVD48T/ddudVDzz6yOzuvr4JLJiJSRAIRJkEMBHITtupssriG+y0s+yll19etaulZWFvb9+M3r7+43fs2nXh6JENh9r3H9o0etzocF9P7zmHDncEYokECSIyTQPpdJoYzHbaiW56eX3BqNEjV+7Z23IiEUWZwBAEIYTQhLDzs7M/t/LHP3v1ueeeU7u270q88eaOe35+68ri2GCioKSkuK+3t7+1pbVt1OdPXnTv5q1bB/6Z9omPWM3EY8Y0XjBl6oQNzzy7ZkN+fs6qcDicnj59wuiCnNwbsyLBN4J+/76scHhNdXn5knvv/eOZkxcu7I9mRx80TYNYZSh4HnK5lPEKCoISBpkVu/bu+VZ3b7+hFBy328O5OVF2HIe37Xj7lhGV5ct/97vVO1Np6yeGbpDH7VFejwcBvw8kBFjB6entpd2795Zfe+0397g85qmGSRulBGsCcJnaTo/HuOjWW297kgA8tfG+Bb9+6JZrzrvojMt9hutxj2n80Emnz73pmq9N8vndD699ecPDEycuCAwl+emToGpBRKqmpuLclta23ybSKUgh4XV7UFJU0F1UXHLmE088tYZ5j2v58t9oAFx33XX7VbFY8nN5eVk/2rF99/9Es0Kru/v7P2crh4mgACIGCwmBipLiH0UjWc9ufvPNJ2xWigABlRGv2+PiZDJFQb/fPmvJ6ePmHb9o5/e+862X3n5vV4NpmA6zQ739/VI5TLnRyAvTZsxZsHr16sHhhZ+8YEG9N+wKTq4ete2KFSv6AeAnf/zed02P8Y24nYBMaUh0x19u3dZ61+2/uPv2IU8rpk+b8DuP2zNYWz/qsltuuSX997TvaJM56oQT5o1Yu+6FTfFYIkAGOaxYaEI4Xo9H5OflDo5uqJ/6x/se3nblledX/OUvTz4wODDYlLJS8Hp9vVOnTDnjscfWrIlGQz/r6eu/0HFsNzMgBPXmZGU/cuBgxzmFhXkLDnYcejxlW0xM5DZcADHiySQiobBjGEJOHDf2ioceeeqW/7rmkqUPP7rmro7ObtiWBY/b5Wi6/tCM+jnnTTi33t3RF7uABNd6DHfnrPHTfjG96ZhdQ3wP3Xz/D+fu7z2wxlYKbNvKpbkpEsiS5dlFbRHlOmXOnCWvEQFSSr700gvLQqG8/StWrEh/3D1PEBHbtnVOLBZfZLoNJ522JWXwrkil05yIJ12Gy/3GgQMHN/d09t6XSKcnxWLxNAMYiA16Dh3sOH3u3FmR3/zld9/Z+Oz6BwXT7uzs7Lsqystbbdvi3NxwpKK03Gnb377QsmyTRMYLKCgoVkhbaTY1nUxD39HWfujJFza+umXC+IbY4EBMWgp/Ki0tXP72jl0/PPO/T67f3XH4sbi0lljkjGKNpuxraz1v2nFTX1v/yPO7jzuuwfXCzq2/GXTiJYlEUimG5nGbwtRcVnlhcbg/1uetr3zwL6tWrZKrVq3il1/e3Pvcc885H8bnfQggBpTlVIHAQooMsDsCk6TSKe7rG6g855zFsx966PE5Pb39jtBgqKH8Q3dXr+eFF1+6+vpLv9a7adOW7wJ4dcKEUV96881t18TjcV03tEs7Orp2aLoeQyIZBIgt5QAqcx2HFXoGBsjr8bZfeN4ZM5TNPb9f/eBN6bR1Ewmgs6MTv/j9DeG3DrX+KUnOCDvuWJJIsLKdOMmAj8w7Vq/+ydg9qqvMgjU+nXZYEAkHjP7EICKekDjQvZ85jTQAbNu2jYfxK9EnhCrMgGXbMh5PoL9vECwygFgTAiBAkaKBgX7f29t2fEk3dLwPDzLvRAaprq5u55VXX/3y1VdfUjpmzJi6vXvbbiWCTgK2rWx1uKunbiA2UCA0ARBYCDgkoAhwCERSCOxp3fflhx5/Zs36DS8+9tMbv3/59791bZlylAlAdCbji22DRqQd22ZAB5HUpSFt5XBeTu7GxYuv6gVEnjSEnslMMgkCBEm09x3ErkMtIEmHAKChYTsNKQ1/0giDmBlC03ZqmkYkMwCIh4JAgIgV2DQN397W/SP6+wdAMuNKCQQaAnZEJBOJJKZPn9B38GD7qd09PbplpRwSpDFBQA4RLbYCO0qwzZJtCFaQ7LBIOzZ2t+yr6jjc6Wpp31/869/es/L5F19dxcwMQPX291crVkoSE5hhpW0kU2kiBu3ev2cSAMNmJwUAUjBpGjEPZejStgUSglKWtW0o5fWpEQMMQDTVVD1uGEaSHabhiIyHkTtJCgdDG9NWCmnL+iAvOxyyMZiZEQmH95991iW9yWRqtmLFtlJQQzeXiAAHiESCfaMa639WkJf3m9ycrCfyolm/KikufkIjyUKSoxmSFdh+bcsW3rO3pXUYSghNHiSwUI4COw6Ygf7+QUqkk0qTWqSnZ7fJKXpbKD5MUjKBQcRIO7ZSkmU6kT5spOkVZqYhs/3UhKeeXPvCjrzc3G9IISgTNbMiCIeZhc/rad302pY7Nam1qQ+oATAN7RwKiGZFUFJS/FgqlQYJkT0sMkGAAGGoQFsREAS4KJlM52pSTx840PmlrHD4NwRkSBvFJIgECeKunp6JP/jBdX4A7LXkOtMxbBAJEnCEwYp1toUmhAZtY/iNitg3z/t+uyGNRw23QYphE4QjBAnhCMdk7ctLT7vsXSLi5cuXf2LhEQCSQnB9bcXSSDR4r2G44iXFhXdKEgIMoZSSmpRWbV31ly+44IymcCRkEmUEQQATswNAscMympW165prrlptO7YhpNidYWHYkSSZSDAYDisIgjzQ1n7gtK6u7uP3Hzh4cmNjzSNNTY39UsiE7bBUYEsp5ShmoZgeaG7+Sc+VV16Zv+KqGzdVFld80eNyEUyWpEN4/W7dzca6no6Zi/f7Nxu8h11uvfa/pIVDutvQhSmkTiIWFu6zms//4X2bmPU3X7w3l4iOqtqePgwYl5eWXnGg48DNmUCeUF5c9GcFeqe1dd/FjnKCBfkFvzZdRrqjo+PitJXSrLSdUVXFkFKAFSMYDPZkZ4Vj+bk5LzDB6OuPP7t9x46VqXRaED7IuXncnvbi4oJHd+7ec47DymBm9nk8WkVp6Yu64Xp061tvfVOxcoEZHrfnzframl+07GtbqGly6uyZU1ZvefmNtdPOm1vLETpBpdnlJ8/DZ0376bf3d153Wso5tIIgHOEYl2zqzBlIU9e9jlIDIQSvaf7iDc+9+dQlF0T9wfNJM6vIXfqFvIbzn+HmZkErVqiPKjwBQM2ZNq3hlS2vbYrFEqbUpcOsKC8nW1ZVlP0gnkzcKR2tcXdb61XdvT2zhCDYtsOmbsDn81JBYcFTqWTqL0RCJJOJr4BVnZRae3dPb9HChQsekFJ74v4HHjjTtu0JAODzel6qrq66fcuWt26IxRMVkFAgIg2Cy0tL1PkXnHvSr3/9m95kPHWy2+16m8go3be/9b9SVtKrazpcholEKomQ379+yakLLrrlmnP2UPXC1MOPXzkjobrXQSQFEYMcV8LFvhPa23+xocx9k3HcudfGdj5z/i1BfeBSh3UY/lJYWt4BiMjM3MZzdw7V53yk2JaICAcPHTghbVmuIcigCSGos6tbvfHWjssXn7AgubN17+zOnq5ZDpRlscMkQGnb4u7eXiQTSaOtbf9t/f292fv2tdd39/TxwUOHispKS7ikuLRIEtw/+M63m487dsb4KZOnTejrix2ze3fLBAYqsrJCjoAQxCAiYtMwxKsvvHD5zl2tL7XtP3h9bn7RSy3tLV9PJJNeBmzLttlxlON1e+20Y898Zv2rv/vCiuUmFi+WKRU/j/SESCbTVjoNx3Zi7hQN3F9R/c1Zx517bezd9dfNMlTnVyzLUomU4yTTumPa+/Od9P5pALBu3XL5Ufc8JiL0DfTl5+VE2WWaMDL0j0hbNsXicc/v/vzwjwYGB89jQBFBAzKohAmkwGjZ1zamvLzk5t6e/uXRSBhut0lKMe9taaE77rhj/KOPPfnTp5555rI1T76w49lnn92+ceNGPRwMjU4mU5xOWzAMHVII2I6D/QcPCrfL25cJe6G9994711h22gMJmyA0XdNJMUvHcTTbsq0Dhw6N27Tp8Dd41SqlWE2w08y25ci0lZKWYzuOHAj2DrbfsfIxNvVUy/EBU1E63sWcaJOp7tdA6S4lbDsMALM/hsMgZoaUenr/wQ4k0ynE00lYjgMhiQQRDw4OnsqAH4AAEwkmQBGGYw+lHPe+ffu/aCsFENDb10eWY1EikYTX61a2suzNW15fePLC+ZcTEcaNG2dLSZuIgIGBGJKpFBzF0CRRd3efev7Fl0bd++MfZwFkJxPJemZmIgiAYds2kqkkBhKDGEwkxMBgnAXkNGBfQSoZK7BSaZKCMmV7BOFYgh2kzcqiVg+zVUpssQBDmlmA5ieHNWGpRBcArPs43paZkRvNel0MGzwN4xYGSUoHg+E1PAz0hsroxDARTwTLsbW+gX5f2k7jUGcXUml7qHmFcbirW/T194v9Bw+517/w4pVXf/nLeUTEAX/gFUPXCQIgQTZDObajFEkSDvPBs66+uo8IcBzHYIDAmXW6XCZoCPIYmkYCRNFI1ivt7e94ScAUOiA1AUEChu6DbniJWbnj6Zf9YijdJKUGgs0u04WB/u4+uHPWZsz2H/ed/CPhKQB0xjkLHg74/FugIAFYRGQzA1JorcFwYKUYkisPZTEUDVVaMLMkQZqUEBnGGMGAH163B5bjQCkHQkooxWy6XYmZC6bZABDSzHVul2uDICFZsUYgKYTQskLhN5tG1l1ARLZSinRDP5jZIcAEgm3Z71PTNHQrW9vbI4WF8w7ouhYnQcwgSBJIWymk00k2jaANzOuDpLehbCJIh5yE7dcOCybjweJRl7dzM8SKf+JtxT8BxnTttT+O1VSVnu/3eVtIQWfFmiY0hLyBH6xfv3Fdbk7kV0SU2eY+OBxiomgo63636X6aGWAilUglEUsl4IBhswKDWdck+zzu9pNOOqsXgHh0w4beyVNGL87Pzv5udiTyYCQYvrMor/CSefOnHfvkk8/tBaAREft8vo2CJIFJEQlYtpVJurFC2rHZgQLDiWmaPiCl/yW36SJm5TjMcGzbcbkMEsL1+pLxkb4UhR7sS+hJn9cx/EGf3p3KWheTtd9iELCc+ePS8AyA9u0/dPC4WZMf7OodCGiadnDUyMa7jpk156negZ4JoVBwTCqRrk/EkzpJUgAUmKXP6z3Q3d0z4+ln1nj3tbUtZKUcx1GslAIJUiCwoxTpUgqXbvzPV6+6Zv3wNd97r2VwYDC2NpVK/zEeTzzc29e36a233o0NJXCUUora2/e/vmPbW2ckU8koC7ZARJIpw68CiiBkViTr1UsvveyJkrKiTal015mKkj7H4ZTPaxrMgY6Uq+FEsfDR2MUnntjVc3jnK5pKBhKc80e77L+/XD12UdfyfwJRPgoZKgE4hq4jOyf643gifozj2EXJtBW20mlRUVb6fG/fYLiru6sRAvCYrnhNddWs8uIS//Z33/nhrl0tY5lYKlaZjFkmIQ5TasjNzvruwzeu/E7jkiXWXXfdZf7kphsuFqT1bdm67bfDC1+7dq38wfeWn5lKpwv6e3uLQGgqKc75pg1/64YN6x8fiA3WZ7Tug33XUcwBv0/Nnz1tzn0PPvn86oe/vpTFgf8xXJamLG87gqPnT7Dbg2QfvMlxUj6XP3972jP5zuKmz61lBi1f3kz/zFw/EpMshFA5eVkrOw53Xa6GvCeGUrM+j7ujpqrq8fd27qlPW1ZlTXXVEq/Xk9r61vYnB2IxfzDgO5SXk317V09vvVKIaIKSpq7tzYpk3b91+ztPO46CpmnIzQ79ZjCeWqrrBtxu+cfFi4+5bPLkU3uuv/7q23p7Bi7Myc2OWVZ6Q3/fwHGmadrFhQUXZucVP/LSxo1XxxOxhQyV6zC6QsHge729vfMSyZQ3Lyd77YpvXHX5sku/vu2hJ755iqP6xykq+8W0rFgDUu8+bKoel2Vn8r4JUZDSssfOi1Qu3dDc3CyORnhHlV0b1dBwrOnSHeiwyCQHRqaWhIyhCk+/np4wbszFU6dOLZgyZfwYr9cdgwTDQMpwazxxXNPXdF0HM0sp5V+1jK5a1WyMGFH6c5fXYM2UKZfbcAoLCn7GzGLSpFGzq2sq2O1zOYGQL+nxuZKGS7OlTioU8nNT04ilALBs2TLPJUuX5jGzq7y8+A5pCCV0skgjLi0r2nXssVPnDF+vdfOdVe3PnT146NnjuX3NiVb706c6bU8usA+sOzO2f+N1a1ue/2YDMhVM4mgrQ//RoZiZotHQ5SnLynBuzIL+KhSBY+i67vW6gs9veHm/z+++P5ZMeEjCAUiz0jbSjrr2a5dd9gci2jfc4ALAOvnkBfU3fPePN9uONV9qUqUtSzIkhQK+t4lIjWyoq9zbso8tx4JlSVMNUVhEUAPxGLq7en9y2gkzN95xxx3vAYjvbW0t7e8f/BwrNcSfCrutrb3C0LRvMvOLq1cvsSjx1sUBLebtS+sWq7hGJEj3lViObdkstVIyoqMBbEOGEP1ErArfvPzKoGVZVUPo930mdLg2gEjI/OycdEN91bapY8cU245Tl0EvQhBDgKD2tOyJPPrsozMAUFVVlQ7AmnXMpNkvvPDS00xiftAftKUQgsEwdI3chhwAAGnIFChDb7BiqPcXAOFYSpmmGXHYnDbMAL27d+8xg7HBMBMpZpCgDLkRT8VzLrng9IIlS1Y7sPqLHIdZN4O6pmkkCYDmGxTuwq2aO9vlCuamj5YQ/VDVTCVdLGio4fgIdeNhss5m7jjcY/d1Jd82PHqe0IQHDOKhzDYDsCxb+NxeHwDeuXNnatEJCxa++9buJ+KJRP6+toPp1rb9Ih5POJoUMhzy7ZwybvITmXYB6hIQGd5yqJTjgzWAevoGmDUa/mfWDc2nMpE8gwBLOQIC6Ozsbly7YdPCTOOMb5cuiRxbHtS8lR2sLIXY3rCyeiWZRbc6qbQXAFZ/Qj6PAYjrb7yxz+P2PieISIDUBwmK980a0tA77lm1qq2zr8PrKFtmgqYhRowBgoZgMKv7q1/9qnv6lEmX796z9zZB8pDb5UFXV4/R29cvJEkZDYV2V5aWLL3lrrsOA8D8qXNe87jchzNZZ+ahErUMNBbgZDLBW7durV88VBpLkhzKLPADpotBHpeb8/Pz+gEgwdFHkghC9xX0UNbMH0D6iKTOhhksTfe1ZA30dLQDwOKjYJM/VPOUUpg3Y/aKgNfXpmzWiNkWRA4BDjssXW6DskPhG4goVVJSctilGz2ZrA+DWbFgEuWlZfYxx8xKbNvy6g1dXZ1TEml70bcuWlFXVTXi1MrKsvtzo9nrqisrf73x3vsa1j6/aePQEAf9+ytXdvgD3sc1QaSGUyaZJTMAZTtK+NyBbfdlKvEdTXNt1DRtQCkWw4aiHMXJVBr7D3UKImDE7G+9nOCcdWSEDse5eBX0yLsgA4rMqC7js9Oxgc0AgOUf3h1wtB3bPH3y5Gnb39129+BgvMJWCgSCYeixaFb4mra2Q7cxMzRNIhDwvdDd1zeZNGJ2WGaHw052NFsGA/4rPn/6KY8+8OhjM5tGNT3zs5/d0ZqpG/5KwTvbW+cDVr9yHPu1N/es2blz5/vl/iNHjmzcuevdTfFk0iQiCwTBigUACnh9WxYtOuGs9es3XOJ2e17dsePde8pKi7cc6DjUxICjHFswoHxun1ZVXnHaa2+88WDGWh7L7tgZWyJFIEDpvRe4ndaq3pj5LSNU8utozXnt/5Km5osv/kJOdXnxVXl5WXfm5eQ0L1gwq+jnP2rOmz9ryvLpE0b/6tlHH5xWUVF2AyjTCSQMWL6Aybk5EfvYOTPPys3JetTrd3FebrRz4bHHLBiCLNrZZ59+5vnnL67//OnHjzdNAyeddGzVhLFNX6qvr/zKFRddVFZVXv45r8fdaRqZUUk+v8fOy8t+9vTTF00NhPxrc3IiXFiQx5MmjZu9ePEpSwoKc1nTiYUGNkzJNdWVDzMzaVLi+iuX5Z9xxhllANDb8khF25t3L97z0g9P4SFTP8ou9o/fs0FEEEKgsrJyUTDg6wwEPJwVCfC4UU0tZ3/+9C/kZEUeN1waS0NwVUVR7NKLl15eWlr4I5np/kkD4OxoVsdJJx3XcMR5BQDUjhixLODzdnq8LtZ1yY31I/p/uOK6GbNmTSyaNHb0JSPra6867piZU0zTRH5u9k1CEuumTGi6xtGsyAbTNDBl0pjvFxbmtOblR3eWlOSv2rhxlXvO9EnjioryV0fC/pZQ0N9fWJjzh7XM2t8wSfSvLuTWiQgjKiuvD4eCHA6FeoqKCrYUFOQdME2DG+prVvGhQ77i0ryf19dX/Oqic8+c+N3rr8wPBD2dIDjCIEU6WVInrq2tuEcIgfp6GJlkc8PppstgCDA02EIKKzc7iyvLSw6ccMJxM45cSE1N5WzTbSQhYQtJQ30fnvTEiWMnA8B1112WfftNN0WllJg6dfzJobAvBgEmARaSWDc0J5oV2dJYWzWfmcVnUQkvAGD69AnHlJUWWGWlBR3l5cVrI5HQ4byc7C6v1xOvKC95+4vnnjvyyOEzx8yavsDtdjEEhhuRFSScaHYoNmfqpJMB4NRT5+eEwv49QxX1NulgzRBMItPxWFpSuI6ZJQD93cfeNXNzs9dBgoUkO1NdL1QoHOBJk8affmRX48xJk+oCQe8BSLDUkRY6KWmIzPWjWTxh3OhfDQUL//I+DJZSoq2l7asDsUHZl+hzHe7qGuModvoGBj2GrrlGNTZucWBN/O53ry9kZr25uVkIQxv4KwREICGJO7t7Pdvf3blUCIG33tg1dzAWL8swM5mw0HYUvF6vkJp0Eonk9DnTJp0IwFr75l9c6VSqFMNlfsxQSiGVTNnKshQArq+v15mZWg+0fS0Wi+cJgp1pcmBiVkQAJdMJp6unZ/bcuXOzPs4wB/FRm1Zs2/Ymk+l6gMlluF1ej+EpLy1qYygKR8L8xlvbF23e9PqyY8dPEM3NGXgxdWr9Gz6f63USIGRSHO9LMs1qgIgQS8ZHKocVvc/kZ8KJtJUmBYW+gQHZH4tVA8DGzZvdlu3oQ7lfQqYBhSKR4IGF8xdsBqBt375dAcBgLFHjKOahzgS8D6kFOJFMynQq2b9o0aLEJ+l6POrj7RdeEBCsEvE0QJo9MDjg7uzaPk4KCcu21f72g66GmuoOu9/qXLECClgBAIPFpfl/ln39YxxWfESFFUmi3KEihINCknAcUiQABkEQkLYz5Ru2Y6O3r88NAPu6unIs2wqBPugpAsCplNX+g5tvbv3bFGqGsM1Q9qBM19/QGAIeiMfD27a9ZHxUJfqomscARMOMmQPM6r34YIq7u3pNZREECWZS2Le/HaYpYbplRbSkRN+1aVPwuuuurr/0onMnzps54xWX6bJYAUxwGKSI4IRD/nQ6bcmqquqHPV53HxOTog9qNkhkanBdLrM3ryDvTwBk+769YwF4QORkynrY0aQUHo+rpbGxblFtdeXKKRNHnQIAXq/bYcViiIt1lGJQxtpZgCgUCPZNn3584qMK7mNTVBWlRZ8PR0IspLA0Xdq6S1PSIBs6VFZ20Dn9lOO/VFya/+26+qpdlRUl8alTxqZOPmnBYyTIkYbItNBrYJdH5wmjG4ZnP6GsrOQy3aUxNFiU6YpU0GFJU3JRUV7z8PcaGqqn+fyeYa/MQhJnZYVfO+2Uhd8yTCOl65LHjml8TNM0NDXVLSoqzHvH43WzP+Bjt8dlQ4CFRlxZVZK44isXHzfk2OhoAoozzzwxeuKJJ3o+NlxhZpmXF71L0ySDwDIz+oN1Q3JlRdkN0ezIA7opM7MGAM7OjViRSIiDQf+2MaMaLw34vetDYd+u4uL8uy+77OxAbW3lVY311c3f+951ubm50dtEBg9a0OFIU3B+Yc6fNE1HQ0P1GY2N1d9a/MXFkdLS4qv8Ac+OYNC/Iz8/+8eXX355SV3NiMdJEJNGVkVl6fO//OkNZQDw2D33BGbOnHbWtKkTV9bWjHgtEPBzfn7OO8cdN2v2UUZaAgCmjRtXMmXS6IcuuODzBZ90qIOoKC2+Mj8v++VAwNcWCYeera0fcWZObvRu0sGkI00GHOkSijQ4AFRBXu5mr8cNZqZly5ZFhRCoqio50eU2WTcEh0KB7SeccEJjTl70Fs2QrJmaU1SUt5KZZX19zWKXx2DD1Lm0pPAhKSWam5s9y5YtCxIRxoxsOMnrdbHb43K8PpcyXBoXluTvrKmp/PbdN97oHYZOc+ZMraypqZyzcOGc0g9xmgIfDDcUK1euDOTmZb04anR9mpmDRPSpTMYQp86fn6NpGsaPHz/BdBtMOhwaYptFZpSlIkns83njCxfOH32EBlNpSeEfSZIiiRgIXFxcdI9pGCgsyPlZSVH+L4QQuOCCC/zRaGQXAPZ43dbY0Y3J44+f2XTEGmReTvYfpEZKN6UtdWLDpSu318Uul8GTxo96gJmNv+MgxdHG/KWlBbeVlRbyxPGjVzXV135l7JiGRz/xGMsjQ5uc7MijpBHDgJ1pHc1M5tFMjUmHY3g0Naqp9qvDC1+7dq0rNze6HQQmnWxIOIGgb/CMRYuKR46sbRxRVvJNAGLq1EkLTbfBpJFjmJpl6JIbG2uvGwbDixcfGwkEfAdJgoUGNTyDSjelDYJdXVXR9tyTD5YfMeZEfljT8syZM0dUlpd+u6FhxKhTTz12VGPDCGv8uMadkazgOx6vm5saagbFJ5wvMNxeSeecdlr2wGBsLCsGMYlh7o0BOOyAQbBSNinbOW/Dhg1+AOrdd98Vtu3I97v+CEink97W/XtGJQZSnrRtR9HcjH37WufalsUEUgwI3TCdyvLSA8MQZd++7rGpdCoHAAuRYR5BAm63S4ZCAbYcK+tXd989GQBWr149vG7+R950/txpx7fu3bk+loz99959rY9ve+vdXyetlPb2zncrB+N91T6fxwmHQ9anFc9xf/xQmAiev76fGemxAiQJAgNd3b3Bzc895wKAsGUJJmhHGA+DmNN2qtDweDQWwqV///sqlUrXOpmuNbLSNhm6BtNttgwPp9nX2na+ZVvEBMWZwkKAGYOxOBNBug2zv6a6+uBQhzd/GBzLyfe/oLu1W1N2wrJtK3/nzpaxe3a3wrYVuww3CvJzZTgUefxTC4alx9/PQOrIlltQpsdsKFPJzFC6YXRcfv31XQBo8Ve+Eneb5lZBlGn4I1DaVnSoq3eKpmm5SjnuGTOmzB8YjM0VQrAmBXm9HuXxuBDr6pYfVGHKTHX2+9XrDCEJihmDsRgPxAbda9dvPH327OVHVUb8+98/0b/zvbbvFucXbq6pqmUQLGUTQxGi0ay+kSMbL3j48SfP+jSEpwCIv/zliYM+r/fFITlZmWLk4TALynaUI4lENBJ5Yuj3dCJSPp/v97quCzgMEDnKYbu/d3B2Mj44UQoUHGw/8MNEPOnWpLTdbjcppaTH67v3kenHPAtAdxyHyivL7jJ1k+BAKobDw8EEwI7j2L19A/6uzs7+OXPIPorAgBcvhmSlEA1lf5sUo6aqUo9GQ0ophfb2Du3xx58ZPXfO9KZPlW2ZNGZMnd/vbSM5NCNPIzX8WTck52RHX5o3b2oBAGiaBmY2mVmPRiO3a7rGw9+NZgVbqqsrfpaTnb2+oqz0Fk2XPPSKRyLhB5ctWxYdNtnhqRUFBXkrXe7MhCDQ0PUl2OMxuSA/79krrlga+igzpIaHOJxz1uIzFp20YO+ik4/l0xYdzxXlpaloVvjNsrLC1+lT5vp48rhxTfsPtl3XNzB4YiKZ9gtByu12vxf2BX5zzgWn3fbtb/+sd/78GfPfe2/vl7xuV2E4HNl25tmf++Uvf/mrkq5DXSdJQwbHNVavfGtn64TDHZ1XXX/RxfW3/fkPSzTN0IoL8mIur3tAKjq0c8+eBT19/dWGy6CAL/CnrVu3PzhqVMNxscH45zq7uhdY6XReIBjYFA4H18yde+zKW2+9tetjhFcEgK+5ZGlePK0mjaiqSu9qa+26/fbfvjJqVH3jv4Tvk1Ji6RmLysaNHDl92rSJo268OwNSAaCpofrKaDTEPr+bs8IBDoeC8UgkNFhbW/0d3TDe16TiwsLvBPy+1NpVq3wAUDOi8rJg0H/A43VxKOTnkpJC1g2NTbfBoZCfFyw4ZilAkELg4osvzpk3b14T/zVTTP8vzM//R6wsTRg78sRgwJsewmKW0MkxXUaMBNjlNnhMU933J06cGFi1apXMy8n5ldft5muuuSRv3tSpBYGgNw4C+/xeJ4PnyCEJmyRs3dDswoLcxJlLFp30d66tfeJxb4z3R2geMdlNfBZClADEz5ubfZFQYKtuSjZcmk1Ds/Ey75mhq5UVxYevvvrSciJCJBJeZxoGz5w0pu6SpUvzvD73IEmyXR5DZWpRMsP3hSYYAlZWJMizZkxaceSIps9k1O+/6FD4YES6+svzz1YnUqnazDAflvRB8QGYMk1Ahzo6Iw898OgVX/vaZSXxeLzWcmwc6h2c9NbOdyYIIi8zy2Q6jUxhd6aeAmCYpqF03ejp7+9/78iupX/5gOnPypbTsTQBkLbtsG07mT5UHl4EKeUAPrc7WZATffq++x6Zbjt2rlIKXV3dZ4f83rb83JyvZ2WF94hM8bHDYJZSsCBSjm0bPo+r47Ut2/90xI3D/5nH1Fx99dXenGjoFcpMd7RgwIIGW2pkC5nZ8+pGVFwLAHUjyufphm5DgKO5kduGT7Rw4TGLIllBJpkZGawbkr0+T7KmsmzHuKbaC49y0iT+n3xoyLQJoxqCQd9bQ4QnQwNLTbDX6+poqK2+UGS4cTG6sXG+Yeo2JDi/MPuXQ6lBvb6+3pgza9o1jfW1T0QioURRUd5gU0PtygceuLfgH4z3xf8lDcSxxx4bGVFRfF5padHtpaUlt5WXFl09a/LkqiNzKnXV1afohsaQ4NycyN3DQv2AwTngHT9+/JiTTjqu4ShGu/3f0sC/jQ6OnOo9RMefoxkZJjqaHblf++ChSX8XIvxvPQ9I+4yvNzyjRDiO81eDboZeEgCcdDp7mF1QjpNjWZZORNYR3z0yzFIf1s7+f+npU8N82vDLPsI7MhGBBRUxZ0oBLcsKLVmyxPP3Gqj/t73qv9suy0IIpBKpGuXwUL6W8zvb26P/jvua+DdzKHzLLbeE07bVOKyhip1g66H24v88qvAocsKjm+rmmab+Pq0kNOLy8tKr/l2edfa/6TA+9EjEE3WGYe7XTWOQFQDFXiKqzMwuYP6P8P7+4QBAUVn2vSPqGh/Mzc1N9R84QD3pPkMpM7V7995/u7Dr/wN6zMLqS8B9NQAAAABJRU5ErkJggg==" alt="" width="79" height="96">
       <span class="ja">杜工舎</span>
       <span class="en">MORIKOSHA</span>
     </a>
@@ -1247,7 +1710,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
   </div>
 </nav>
 
-<main id="main">
+<main id="main" style="scroll-margin-top:76px">
 
 <!-- ══════════ 杜工舎とは ── サイトの入口 ══════════ -->
 <section class="about-hero page-only page-about active" id="about" data-page="about">
@@ -1260,6 +1723,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
         <h1>いい仕事を、<br>見つかるかたちに。</h1>
       </div>
       <p class="about-lead">杜工舎は、つくる側が持つ仕事と知識を、<br class="pc">探す人・選ぶ人へつなぐWebの工房です。</p>
+      <p class="about-kane"><b>1ページ 10万円</b><span class="k">税込・買い切り・月々いただくものはありません。</span></p>
+      <div class="about-go">
+        <a class="btn go-mihon" href="#works">見本を見る <span class="arw">→</span></a>
+        <a class="btn go-toi" href="#contact">お問い合わせ <span class="arw">→</span></a>
+      </div>
     </div>
     <div class="about-graphic" aria-hidden="true">
       <span class="ag-line ag-line-1"></span><span class="ag-line ag-line-2"></span>
@@ -1272,8 +1740,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
 <section class="about-body page-only page-about active" data-page="about">
   <div class="wrap">
     <div class="about-intro rv">
-      <p class="page-kicker">WHAT WE DO</p>
-      <h2>場所をつくり、<br>選べる仕組みをつくる。</h2>
+      <div class="shead"><span class="sh-no">場</span><h2>場所をつくり、<br>選べる仕組みをつくる。</h2><span class="sh-en">What We Do</span></div>
       <p>会社や商品のよさは、知っている人の内側に留まりがちです。杜工舎は、その情報をWebで届く形に整え、必要としている人との間に入口をつくります。</p>
     </div>
     <div class="service-path rv rv-d1">
@@ -1340,7 +1807,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
     </div>
     <div class="sec-body">
       <p class="w-state rv">仕事が伝わる、会社の一枚。</p>
-      <p class="w-lead rv rv-d1">ご記入シートと写真をいただいてから<b>2週間で制作</b>いたします。</p>
+      <p class="w-lead rv rv-d1">ご記入シートと写真をいただいてから、<b>2週間ほど</b>で制作いたします。</p>
 
 
 
@@ -1382,14 +1849,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible,label:focus-visible{o
 #pv-sp:checked ~ .pv-frame .pv-stage{background:var(--paper-3);}
 #pv-sp:checked ~ .pv-frame .pv-stage .pv-scale{width:390px;margin:0 auto;border-left:1px solid var(--rule);border-right:1px solid var(--rule);}
 #pv-sp:checked ~ .pv-bar label[for=pv-sp],#pv-pc:checked ~ .pv-bar label[for=pv-pc]{background:var(--ink);color:var(--paper);}
-img[data-ph],img[data-photo]{background-size:cover;background-position:center;background-repeat:no-repeat;}#pi-doboku:checked ~ .ind-chips label[for=pi-doboku]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-doboku:focus-visible ~ .ind-chips label[for=pi-doboku]{outline:2px solid var(--mori);outline-offset:3px;}#pi-doboku:checked ~ .pv-cards[data-ind="doboku"]{display:block;}#pi-sokuryo:checked ~ .ind-chips label[for=pi-sokuryo]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-sokuryo:focus-visible ~ .ind-chips label[for=pi-sokuryo]{outline:2px solid var(--mori);outline-offset:3px;}#pi-sokuryo:checked ~ .pv-cards[data-ind="sokuryo"]{display:block;}#pi-kenchiku:checked ~ .ind-chips label[for=pi-kenchiku]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-kenchiku:focus-visible ~ .ind-chips label[for=pi-kenchiku]{outline:2px solid var(--mori);outline-offset:3px;}#pi-kenchiku:checked ~ .pv-cards[data-ind="kenchiku"]{display:block;}#pi-sekkei:checked ~ .ind-chips label[for=pi-sekkei]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-sekkei:focus-visible ~ .ind-chips label[for=pi-sekkei]{outline:2px solid var(--mori);outline-offset:3px;}#pi-sekkei:checked ~ .pv-cards[data-ind="sekkei"]{display:block;}#pi-setsubi:checked ~ .ind-chips label[for=pi-setsubi]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-setsubi:focus-visible ~ .ind-chips label[for=pi-setsubi]{outline:2px solid var(--mori);outline-offset:3px;}#pi-setsubi:checked ~ .pv-cards[data-ind="setsubi"]{display:block;}#pi-denki:checked ~ .ind-chips label[for=pi-denki]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-denki:focus-visible ~ .ind-chips label[for=pi-denki]{outline:2px solid var(--mori);outline-offset:3px;}#pi-denki:checked ~ .pv-cards[data-ind="denki"]{display:block;}#pi-tosou:checked ~ .ind-chips label[for=pi-tosou]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-tosou:focus-visible ~ .ind-chips label[for=pi-tosou]{outline:2px solid var(--mori);outline-offset:3px;}#pi-tosou:checked ~ .pv-cards[data-ind="tosou"]{display:block;}#pi-zoen:checked ~ .ind-chips label[for=pi-zoen]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-zoen:focus-visible ~ .ind-chips label[for=pi-zoen]{outline:2px solid var(--mori);outline-offset:3px;}#pi-zoen:checked ~ .pv-cards[data-ind="zoen"]{display:block;}#pi-kaitai:checked ~ .ind-chips label[for=pi-kaitai]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-kaitai:focus-visible ~ .ind-chips label[for=pi-kaitai]{outline:2px solid var(--mori);outline-offset:3px;}#pi-kaitai:checked ~ .pv-cards[data-ind="kaitai"]{display:block;}#pi-unso:checked ~ .ind-chips label[for=pi-unso]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-unso:focus-visible ~ .ind-chips label[for=pi-unso]{outline:2px solid var(--mori);outline-offset:3px;}#pi-unso:checked ~ .pv-cards[data-ind="unso"]{display:block;}#pi-nogyo:checked ~ .ind-chips label[for=pi-nogyo]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-nogyo:focus-visible ~ .ind-chips label[for=pi-nogyo]{outline:2px solid var(--mori);outline-offset:3px;}#pi-nogyo:checked ~ .pv-cards[data-ind="nogyo"]{display:block;}#pi-shokudo:checked ~ .ind-chips label[for=pi-shokudo]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-shokudo:focus-visible ~ .ind-chips label[for=pi-shokudo]{outline:2px solid var(--mori);outline-offset:3px;}#pi-shokudo:checked ~ .pv-cards[data-ind="shokudo"]{display:block;}#pi-bar:checked ~ .ind-chips label[for=pi-bar]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-bar:focus-visible ~ .ind-chips label[for=pi-bar]{outline:2px solid var(--mori);outline-offset:3px;}#pi-bar:checked ~ .pv-cards[data-ind="bar"]{display:block;}#pi-biyo:checked ~ .ind-chips label[for=pi-biyo]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-biyo:focus-visible ~ .ind-chips label[for=pi-biyo]{outline:2px solid var(--mori);outline-offset:3px;}#pi-biyo:checked ~ .pv-cards[data-ind="biyo"]{display:block;}#pi-jinja:checked ~ .ind-chips label[for=pi-jinja]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-jinja:focus-visible ~ .ind-chips label[for=pi-jinja]{outline:2px solid var(--mori);outline-offset:3px;}#pi-jinja:checked ~ .pv-cards[data-ind="jinja"]{display:block;}#pi-jiin:checked ~ .ind-chips label[for=pi-jiin]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-jiin:focus-visible ~ .ind-chips label[for=pi-jiin]{outline:2px solid var(--mori);outline-offset:3px;}#pi-jiin:checked ~ .pv-cards[data-ind="jiin"]{display:block;}#pi-kosho:checked ~ .ind-chips label[for=pi-kosho]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-kosho:focus-visible ~ .ind-chips label[for=pi-kosho]{outline:2px solid var(--mori);outline-offset:3px;}#pi-kosho:checked ~ .pv-cards[data-ind="kosho"]{display:block;}#pi-juku:checked ~ .ind-chips label[for=pi-juku]{background:var(--mori);border-color:var(--mori);color:#fff;}#pi-juku:focus-visible ~ .ind-chips label[for=pi-juku]{outline:2px solid var(--mori);outline-offset:3px;}#pi-juku:checked ~ .pv-cards[data-ind="juku"]{display:block;}</style>
+img[data-ph],img[data-photo]{background-size:cover;background-position:center;background-repeat:no-repeat;}#pi-doboku:checked ~ .ind-chips label[for=pi-doboku]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-doboku:focus-visible ~ .ind-chips label[for=pi-doboku]{outline:2px solid var(--mori);outline-offset:3px;}#pi-doboku:checked ~ .pv-cards[data-ind="doboku"]{display:block;}#pi-sokuryo:checked ~ .ind-chips label[for=pi-sokuryo]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-sokuryo:focus-visible ~ .ind-chips label[for=pi-sokuryo]{outline:2px solid var(--mori);outline-offset:3px;}#pi-sokuryo:checked ~ .pv-cards[data-ind="sokuryo"]{display:block;}#pi-kenchiku:checked ~ .ind-chips label[for=pi-kenchiku]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-kenchiku:focus-visible ~ .ind-chips label[for=pi-kenchiku]{outline:2px solid var(--mori);outline-offset:3px;}#pi-kenchiku:checked ~ .pv-cards[data-ind="kenchiku"]{display:block;}#pi-sekkei:checked ~ .ind-chips label[for=pi-sekkei]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-sekkei:focus-visible ~ .ind-chips label[for=pi-sekkei]{outline:2px solid var(--mori);outline-offset:3px;}#pi-sekkei:checked ~ .pv-cards[data-ind="sekkei"]{display:block;}#pi-setsubi:checked ~ .ind-chips label[for=pi-setsubi]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-setsubi:focus-visible ~ .ind-chips label[for=pi-setsubi]{outline:2px solid var(--mori);outline-offset:3px;}#pi-setsubi:checked ~ .pv-cards[data-ind="setsubi"]{display:block;}#pi-denki:checked ~ .ind-chips label[for=pi-denki]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-denki:focus-visible ~ .ind-chips label[for=pi-denki]{outline:2px solid var(--mori);outline-offset:3px;}#pi-denki:checked ~ .pv-cards[data-ind="denki"]{display:block;}#pi-tosou:checked ~ .ind-chips label[for=pi-tosou]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-tosou:focus-visible ~ .ind-chips label[for=pi-tosou]{outline:2px solid var(--mori);outline-offset:3px;}#pi-tosou:checked ~ .pv-cards[data-ind="tosou"]{display:block;}#pi-zoen:checked ~ .ind-chips label[for=pi-zoen]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-zoen:focus-visible ~ .ind-chips label[for=pi-zoen]{outline:2px solid var(--mori);outline-offset:3px;}#pi-zoen:checked ~ .pv-cards[data-ind="zoen"]{display:block;}#pi-kaitai:checked ~ .ind-chips label[for=pi-kaitai]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-kaitai:focus-visible ~ .ind-chips label[for=pi-kaitai]{outline:2px solid var(--mori);outline-offset:3px;}#pi-kaitai:checked ~ .pv-cards[data-ind="kaitai"]{display:block;}#pi-unso:checked ~ .ind-chips label[for=pi-unso]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-unso:focus-visible ~ .ind-chips label[for=pi-unso]{outline:2px solid var(--mori);outline-offset:3px;}#pi-unso:checked ~ .pv-cards[data-ind="unso"]{display:block;}#pi-nogyo:checked ~ .ind-chips label[for=pi-nogyo]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-nogyo:focus-visible ~ .ind-chips label[for=pi-nogyo]{outline:2px solid var(--mori);outline-offset:3px;}#pi-nogyo:checked ~ .pv-cards[data-ind="nogyo"]{display:block;}#pi-shokudo:checked ~ .ind-chips label[for=pi-shokudo]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-shokudo:focus-visible ~ .ind-chips label[for=pi-shokudo]{outline:2px solid var(--mori);outline-offset:3px;}#pi-shokudo:checked ~ .pv-cards[data-ind="shokudo"]{display:block;}#pi-bar:checked ~ .ind-chips label[for=pi-bar]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-bar:focus-visible ~ .ind-chips label[for=pi-bar]{outline:2px solid var(--mori);outline-offset:3px;}#pi-bar:checked ~ .pv-cards[data-ind="bar"]{display:block;}#pi-biyo:checked ~ .ind-chips label[for=pi-biyo]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-biyo:focus-visible ~ .ind-chips label[for=pi-biyo]{outline:2px solid var(--mori);outline-offset:3px;}#pi-biyo:checked ~ .pv-cards[data-ind="biyo"]{display:block;}#pi-jinja:checked ~ .ind-chips label[for=pi-jinja]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-jinja:focus-visible ~ .ind-chips label[for=pi-jinja]{outline:2px solid var(--mori);outline-offset:3px;}#pi-jinja:checked ~ .pv-cards[data-ind="jinja"]{display:block;}#pi-jiin:checked ~ .ind-chips label[for=pi-jiin]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-jiin:focus-visible ~ .ind-chips label[for=pi-jiin]{outline:2px solid var(--mori);outline-offset:3px;}#pi-jiin:checked ~ .pv-cards[data-ind="jiin"]{display:block;}#pi-kosho:checked ~ .ind-chips label[for=pi-kosho]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-kosho:focus-visible ~ .ind-chips label[for=pi-kosho]{outline:2px solid var(--mori);outline-offset:3px;}#pi-kosho:checked ~ .pv-cards[data-ind="kosho"]{display:block;}#pi-juku:checked ~ .ind-chips label[for=pi-juku]{background:var(--mori);border-color:var(--mori);color:var(--mori-ink);}#pi-juku:focus-visible ~ .ind-chips label[for=pi-juku]{outline:2px solid var(--mori);outline-offset:3px;}#pi-juku:checked ~ .pv-cards[data-ind="juku"]{display:block;}</style>
 <div class="pv rv"><div class="pv-in">
 <input class="pv-r" type="radio" name="pv-ind" id="pi-doboku" checked><input class="pv-r" type="radio" name="pv-ind" id="pi-sokuryo"><input class="pv-r" type="radio" name="pv-ind" id="pi-kenchiku"><input class="pv-r" type="radio" name="pv-ind" id="pi-sekkei"><input class="pv-r" type="radio" name="pv-ind" id="pi-setsubi"><input class="pv-r" type="radio" name="pv-ind" id="pi-tosou"><input class="pv-r" type="radio" name="pv-ind" id="pi-zoen">
 <div class="step-t"><span class="st-n">1</span><h3>業種を選ぶ</h3><span class="st-d">御社に近いものをどれでも</span></div><p class="step-p">下の一覧から、御社に近い業種を押してください。その業種の5案が出ます。<i>すぐ</i></p>
 <div class="ind-chips" role="group" aria-label="業種を選ぶ"><label class="ind-chip" for="pi-doboku">土木</label><label class="ind-chip" for="pi-sokuryo">測量</label><label class="ind-chip" for="pi-kenchiku">建築</label><label class="ind-chip" for="pi-sekkei">建築設計</label><label class="ind-chip" for="pi-setsubi">設備</label><label class="ind-chip" for="pi-tosou">塗装</label><label class="ind-chip" for="pi-zoen">造園</label></div>
 <div class="step-t"><span class="st-n">2</span><h3>好きなデザインを選ぶ</h3><span class="st-d">見本を押すと、実物が新しいタブで開きます</span></div><p class="step-p">淡・玄・雅・粋・理の5案から1つ。載せる項目はどれも同じ、選ぶのは見た目だけ。<i>約10分</i></p>
 <p class="tt-lead">日本の美意識からとった五つの型です。飾りを削り、時代が変わっても古びないものだけを残しました。</p>
-<div class="pv-cards" data-ind="doboku"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/doboku-1.html" target="_blank" rel="noopener"><img src="assets/card-doboku-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った土木の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/doboku-2.html" target="_blank" rel="noopener"><img src="assets/card-doboku-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った土木の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、濃さの変わらない一枚の膜を掛けて、同じ闇に沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/doboku-3.html" target="_blank" rel="noopener"><img src="assets/card-doboku-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った土木の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/doboku-4.html" target="_blank" rel="noopener"><img src="assets/card-doboku-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った土木の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/doboku-5.html" target="_blank" rel="noopener"><img src="assets/card-doboku-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った土木の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="sokuryo"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/sokuryo-1.html" target="_blank" rel="noopener"><img src="assets/card-sokuryo-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った測量の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sokuryo-2.html" target="_blank" rel="noopener"><img src="assets/card-sokuryo-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った測量の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、濃さの変わらない一枚の膜を掛けて、同じ闇に沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sokuryo-3.html" target="_blank" rel="noopener"><img src="assets/card-sokuryo-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った測量の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sokuryo-4.html" target="_blank" rel="noopener"><img src="assets/card-sokuryo-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った測量の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sokuryo-5.html" target="_blank" rel="noopener"><img src="assets/card-sokuryo-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った測量の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="kenchiku"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/kenchiku-1.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った建築の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/kenchiku-2.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った建築の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、濃さの変わらない一枚の膜を掛けて、同じ闇に沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/kenchiku-3.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った建築の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/kenchiku-4.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った建築の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/kenchiku-5.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った建築の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="sekkei"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/sekkei-1.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った建築設計の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sekkei-2.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った建築設計の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、濃さの変わらない一枚の膜を掛けて、同じ闇に沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sekkei-3.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った建築設計の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sekkei-4.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った建築設計の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sekkei-5.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った建築設計の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="setsubi"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/setsubi-1.html" target="_blank" rel="noopener"><img src="assets/card-setsubi-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った設備の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/setsubi-2.html" target="_blank" rel="noopener"><img src="assets/card-setsubi-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った設備の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、濃さの変わらない一枚の膜を掛けて、同じ闇に沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/setsubi-3.html" target="_blank" rel="noopener"><img src="assets/card-setsubi-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った設備の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/setsubi-4.html" target="_blank" rel="noopener"><img src="assets/card-setsubi-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った設備の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/setsubi-5.html" target="_blank" rel="noopener"><img src="assets/card-setsubi-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った設備の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="tosou"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/tosou-1.html" target="_blank" rel="noopener"><img src="assets/card-tosou-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った塗装の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/tosou-2.html" target="_blank" rel="noopener"><img src="assets/card-tosou-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った塗装の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、濃さの変わらない一枚の膜を掛けて、同じ闇に沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/tosou-3.html" target="_blank" rel="noopener"><img src="assets/card-tosou-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った塗装の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/tosou-4.html" target="_blank" rel="noopener"><img src="assets/card-tosou-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った塗装の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/tosou-5.html" target="_blank" rel="noopener"><img src="assets/card-tosou-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った塗装の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="zoen"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/zoen-1.html" target="_blank" rel="noopener"><img src="assets/card-zoen-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った造園の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/zoen-2.html" target="_blank" rel="noopener"><img src="assets/card-zoen-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った造園の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、濃さの変わらない一枚の膜を掛けて、同じ闇に沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/zoen-3.html" target="_blank" rel="noopener"><img src="assets/card-zoen-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った造園の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/zoen-4.html" target="_blank" rel="noopener"><img src="assets/card-zoen-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った造園の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/zoen-5.html" target="_blank" rel="noopener"><img src="assets/card-zoen-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った造園の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><p class="tt-note">五案とも、載せる項目は同じです。会社概要も、事業内容も、採用情報も、すべて入ります。写真も文章も御社のものに入れ替わり、<b>色も御社に合わせて無料でお変えします</b>ので、同じ型を選んだ会社と並べても、同じサイトには見えません。<br><b>選んでいただくのは、かたちだけ。</b>だから、良いものを、安く、早くお渡しできます。</p>
+<div class="pv-cards" data-ind="doboku"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/doboku-1.html" target="_blank" rel="noopener"><img src="assets/card-doboku-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った土木の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/doboku-2.html" target="_blank" rel="noopener"><img src="assets/card-doboku-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った土木の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、下へ向かって濃くなる膜を掛けて、同じ深さに沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/doboku-3.html" target="_blank" rel="noopener"><img src="assets/card-doboku-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った土木の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/doboku-4.html" target="_blank" rel="noopener"><img src="assets/card-doboku-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った土木の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/doboku-5.html" target="_blank" rel="noopener"><img src="assets/card-doboku-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った土木の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="sokuryo"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/sokuryo-1.html" target="_blank" rel="noopener"><img src="assets/card-sokuryo-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った測量の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sokuryo-2.html" target="_blank" rel="noopener"><img src="assets/card-sokuryo-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った測量の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、下へ向かって濃くなる膜を掛けて、同じ深さに沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sokuryo-3.html" target="_blank" rel="noopener"><img src="assets/card-sokuryo-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った測量の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sokuryo-4.html" target="_blank" rel="noopener"><img src="assets/card-sokuryo-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った測量の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sokuryo-5.html" target="_blank" rel="noopener"><img src="assets/card-sokuryo-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った測量の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="kenchiku"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/kenchiku-1.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った建築の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/kenchiku-2.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った建築の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、下へ向かって濃くなる膜を掛けて、同じ深さに沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/kenchiku-3.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った建築の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/kenchiku-4.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った建築の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/kenchiku-5.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った建築の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="sekkei"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/sekkei-1.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った建築設計の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sekkei-2.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った建築設計の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、下へ向かって濃くなる膜を掛けて、同じ深さに沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sekkei-3.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った建築設計の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sekkei-4.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った建築設計の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/sekkei-5.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った建築設計の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="setsubi"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/setsubi-1.html" target="_blank" rel="noopener"><img src="assets/card-setsubi-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った設備の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/setsubi-2.html" target="_blank" rel="noopener"><img src="assets/card-setsubi-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った設備の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、下へ向かって濃くなる膜を掛けて、同じ深さに沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/setsubi-3.html" target="_blank" rel="noopener"><img src="assets/card-setsubi-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った設備の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/setsubi-4.html" target="_blank" rel="noopener"><img src="assets/card-setsubi-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った設備の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/setsubi-5.html" target="_blank" rel="noopener"><img src="assets/card-setsubi-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った設備の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="tosou"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/tosou-1.html" target="_blank" rel="noopener"><img src="assets/card-tosou-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った塗装の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/tosou-2.html" target="_blank" rel="noopener"><img src="assets/card-tosou-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った塗装の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、下へ向かって濃くなる膜を掛けて、同じ深さに沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/tosou-3.html" target="_blank" rel="noopener"><img src="assets/card-tosou-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った塗装の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/tosou-4.html" target="_blank" rel="noopener"><img src="assets/card-tosou-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った塗装の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/tosou-5.html" target="_blank" rel="noopener"><img src="assets/card-tosou-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った塗装の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><div class="pv-cards" data-ind="zoen"><div class="tt-row"><div class="tt-c"><a class="tt-ph" href="preview/zoen-1.html" target="_blank" rel="noopener"><img src="assets/card-zoen-1.jpg" width="880" height="578" loading="lazy" alt="淡のデザインで作った造園の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">淡</span><span class="tt-yomi">あわい</span><span class="tt-e">雨に洗われた白と、雨脚。</span></span><span class="tt-g">淡は、色や音がすこしだけ残っている状態を指します。言い切らないこと、すべてを見せないことを、日本は美しいとしてきました。雨上がりの空を一枚の紙にしました。飾りの罫は、一本も引いていません。</span><button class="tt-more" type="button" data-thm="1" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/zoen-2.html" target="_blank" rel="noopener"><img src="assets/card-zoen-2.jpg" width="880" height="578" loading="lazy" alt="玄のデザインで作った造園の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">玄</span><span class="tt-yomi">げん</span><span class="tt-e">写真を、闇に沈めて。</span></span><span class="tt-g">玄は黒であり、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。見せないことで、かえって深く見せる。写真に、下へ向かって濃くなる膜を掛けて、同じ深さに沈めました。</span><button class="tt-more" type="button" data-thm="2" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/zoen-3.html" target="_blank" rel="noopener"><img src="assets/card-zoen-3.jpg" width="880" height="578" loading="lazy" alt="雅のデザインで作った造園の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">雅</span><span class="tt-yomi">みやび</span><span class="tt-e">灯のような墨に、金の細線。</span></span><span class="tt-g">雅は、荒々しさを削いだあとに残る美しさの名です。声を張らず、急がず、細部にだけ心を配る。夜の座敷のしつらえを思って組みました。写真は紙に貼らず、金の細い枠に掛けています。</span><button class="tt-more" type="button" data-thm="3" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/zoen-4.html" target="_blank" rel="noopener"><img src="assets/card-zoen-4.jpg" width="880" height="578" loading="lazy" alt="粋のデザインで作った造園の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">粋</span><span class="tt-yomi">いき</span><span class="tt-e">藍の、細い縦線だけ。</span></span><span class="tt-g">粋は、飾りを削って、それでも残るもののことです。九鬼周造は、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。ですから、細い縦の線だけで組みました。何を足すかではなく、何を残すかで決めています。</span><button class="tt-more" type="button" data-thm="4" aria-haspopup="dialog">デザイン詳細 ＋</button></div><div class="tt-c"><a class="tt-ph" href="preview/zoen-5.html" target="_blank" rel="noopener"><img src="assets/card-zoen-5.jpg" width="880" height="578" loading="lazy" alt="理のデザインで作った造園の見本を新しいタブで開く"></a><span class="tt-k"><span class="tt-ja">理</span><span class="tt-yomi">り</span><span class="tt-e">一本の筋を、通す。</span></span><span class="tt-g">縦に流れる言葉と、整えた余白。題字と社名を縦に組み、本文は横書きで読みやすく。掛軸を思わせる紙と表装が、仕事への姿勢を静かに伝えます。</span><button class="tt-more" type="button" data-thm="5" aria-haspopup="dialog">デザイン詳細 ＋</button></div></div></div><p class="tt-note">五案とも、載せる項目は同じです。会社概要も、事業内容も、採用情報も、すべて入ります。写真も文章も御社のものに入れ替わり、<b>色も御社に合わせて無料でお変えします</b>ので、同じ型を選んだ会社と並べても、同じサイトには見えません。<br><b>選んでいただくのは、かたちだけ。</b>だから、良いものを、安く、早くお渡しできます。</p>
 
 </div></div>
 <!--SAMPLES_END-->
@@ -1416,9 +1883,9 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
       </div>
 
 <dialog class="thd" id="thd-1" aria-labelledby="thd-t-1"><form method="dialog" class="thd-x"><button aria-label="閉じる">×</button></form><div class="thd-in"><div class="thd-ph"><img src="assets/card-doboku-1.jpg" width="880" height="578" loading="lazy" alt="淡の見本"></div><div class="thd-b"><p class="thd-no">DESIGN 1</p><p class="thd-k" id="thd-t-1"><span class="thd-ja">淡</span><span class="thd-yomi">あわい</span></p><p class="thd-e">雨に洗われた白と、雨脚。</p><p class="thd-d">淡は、色や音がすこしだけ残っている状態を指す言葉です。言い切らないこと、すべてを見せないことを、日本は長く美しいとしてきました。その感覚を、雨上がりの空として一枚の紙にしました。地は雨に洗われた白、扉には斜めの雨脚が二枚だけ。文字は細い明朝で、飾りの罫は一本も引いていません。引かないと決めたので、節の変わり目は余白の広さだけで示しています。5案のなかで、余白をいちばん大きく取った型です。</p><p class="thd-m"><b>向いている業種</b>設計事務所や造園業など、丁寧さや情緒を静かに伝えたい会社に向いています。</p><a class="thd-go" href="preview/doboku-1.html" target="_blank" rel="noopener">この型の実物を見る<i>新しいタブで開く ↗</i></a></div></div></dialog>
-<dialog class="thd" id="thd-2" aria-labelledby="thd-t-2"><form method="dialog" class="thd-x"><button aria-label="閉じる">×</button></form><div class="thd-in"><div class="thd-ph"><img src="assets/card-doboku-2.jpg" width="880" height="578" loading="lazy" alt="玄の見本"></div><div class="thd-b"><p class="thd-no">DESIGN 2</p><p class="thd-k" id="thd-t-2"><span class="thd-ja">玄</span><span class="thd-yomi">げん</span></p><p class="thd-e">写真を、闇に沈めて。</p><p class="thd-d">玄は黒を指し、同時に、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。日本の美意識では、見せないことが、かえって深く見せることがあります。その考えを、扉の写真に当てました。写真の上に、濃さの変わらない一枚の膜を掛けてあります。濃くしたり薄くしたりせず、端から端まで同じ闇に沈めることで、写真は消えずに、静かに奥へ退がります。左に銀の細い軸を一本だけ通しました。本文と小見出しは等幅で組み、機械のような正確さを出しています。黒は一色ではなく、青みを含んだ階調です。</p><p class="thd-m"><b>向いている業種</b>設計事務所・塗装・建築（設計）など、意匠性と静かな凄みで選ばれたい会社向け。</p><a class="thd-go" href="preview/doboku-2.html" target="_blank" rel="noopener">この型の実物を見る<i>新しいタブで開く ↗</i></a></div></div></dialog>
+<dialog class="thd" id="thd-2" aria-labelledby="thd-t-2"><form method="dialog" class="thd-x"><button aria-label="閉じる">×</button></form><div class="thd-in"><div class="thd-ph"><img src="assets/card-doboku-2.jpg" width="880" height="578" loading="lazy" alt="玄の見本"></div><div class="thd-b"><p class="thd-no">DESIGN 2</p><p class="thd-k" id="thd-t-2"><span class="thd-ja">玄</span><span class="thd-yomi">げん</span></p><p class="thd-e">写真を、闇に沈めて。</p><p class="thd-d">玄は黒を指し、同時に、奥が深くて容易には見えないものを指します。幽玄の玄、玄人の玄。日本の美意識では、見せないことが、かえって深く見せることがあります。その考えを、扉の写真に当てました。写真の上に、下へ向かってゆっくり濃くなる膜を掛けてあります。明るい写真も暗い写真も同じ深さに沈むので、写真は消えずに、静かに奥へ退がります。左に銀の細い軸を一本だけ通しました。本文と小見出しは等幅で組み、機械のような正確さを出しています。黒は一色ではなく、青みを含んだ階調です。</p><p class="thd-m"><b>向いている業種</b>設計事務所・塗装・建築（設計）など、意匠性と静かな凄みで選ばれたい会社向け。</p><a class="thd-go" href="preview/doboku-2.html" target="_blank" rel="noopener">この型の実物を見る<i>新しいタブで開く ↗</i></a></div></div></dialog>
 <dialog class="thd" id="thd-3" aria-labelledby="thd-t-3"><form method="dialog" class="thd-x"><button aria-label="閉じる">×</button></form><div class="thd-in"><div class="thd-ph"><img src="assets/card-doboku-3.jpg" width="880" height="578" loading="lazy" alt="雅の見本"></div><div class="thd-b"><p class="thd-no">DESIGN 3</p><p class="thd-k" id="thd-t-3"><span class="thd-ja">雅</span><span class="thd-yomi">みやび</span></p><p class="thd-e">灯のような墨に、金の細線。</p><p class="thd-d">雅は、荒々しさを削いだあとに残る美しさを指す言葉です。声を張らず、急がず、細部にだけ心を配る。宮廷の人びとが千年かけて磨いたその感覚を、夜の座敷のしつらえとして組みました。地は蝋燭の灯のような暖かい墨。金は面には使わず、細い線と小さな字にだけ置いています。写真は紙に貼らず、金の細い枠に掛けました。掛軸を床に掛けるのと同じで、断ち落とさないのは5案でこの型だけです。字間をゆったり取ったのは、急がずに読んでいただきたいからです。</p><p class="thd-m"><b>向いている業種</b>創業の古い建設会社・造園・社寺関係など、歴史と格式を前に出したい会社に向いています。</p><a class="thd-go" href="preview/doboku-3.html" target="_blank" rel="noopener">この型の実物を見る<i>新しいタブで開く ↗</i></a></div></div></dialog>
-<dialog class="thd" id="thd-5" aria-labelledby="thd-t-5"><form method="dialog" class="thd-x"><button aria-label="閉じる">×</button></form><div class="thd-in"><div class="thd-ph"><img src="assets/card-doboku-5.jpg" width="880" height="578" loading="lazy" alt="理の見本"></div><div class="thd-b"><p class="thd-no">DESIGN 5</p><p class="thd-k" id="thd-t-5"><span class="thd-ja">理</span><span class="thd-yomi">り</span></p><p class="thd-e">一本の筋を、通す。</p><p class="thd-d">縦に流れる言葉と、整えた余白。題字・社名・節見出しを縦に組み、文章や連絡先は横書きで読みやすく保ちます。紙の色と掛軸を思わせる表装で、仕事への姿勢を静かに伝えるデザインです。</p><p class="thd-m"><b>こんな印象を伝えたいときに</b>落ち着き、丁寧さ、一貫した仕事への姿勢。建築・土木・造園から、文化に関わるお店まで。</p><a class="thd-go" href="preview/doboku-5.html" target="_blank" rel="noopener">この型の実物を見る<i>新しいタブで開く ↗</i></a></div></div></dialog>
+<dialog class="thd" id="thd-5" aria-labelledby="thd-t-5"><form method="dialog" class="thd-x"><button aria-label="閉じる">×</button></form><div class="thd-in"><div class="thd-ph"><img src="assets/card-doboku-5.jpg" width="880" height="578" loading="lazy" alt="理の見本"></div><div class="thd-b"><p class="thd-no">DESIGN 5</p><p class="thd-k" id="thd-t-5"><span class="thd-ja">理</span><span class="thd-yomi">り</span></p><p class="thd-e">一本の筋を、通す。</p><p class="thd-d">縦に流れる言葉と、整えた余白。題字・社名・節見出しを縦に組み、文章や連絡先は横書きで読みやすく保ちます。紙の色と掛軸を思わせる表装で、仕事への姿勢を静かに伝えるデザインです。</p><p class="thd-m"><b>向いている業種</b>落ち着き、丁寧さ、一貫した仕事への姿勢。建築・土木・造園から、文化に関わるお店まで。</p><a class="thd-go" href="preview/doboku-5.html" target="_blank" rel="noopener">この型の実物を見る<i>新しいタブで開く ↗</i></a></div></div></dialog>
 <dialog class="thd" id="thd-4" aria-labelledby="thd-t-4"><form method="dialog" class="thd-x"><button aria-label="閉じる">×</button></form><div class="thd-in"><div class="thd-ph"><img src="assets/card-doboku-4.jpg" width="880" height="578" loading="lazy" alt="粋の見本"></div><div class="thd-b"><p class="thd-no">DESIGN 4</p><p class="thd-k" id="thd-t-4"><span class="thd-ja">粋</span><span class="thd-yomi">いき</span></p><p class="thd-e">藍の、細い縦線だけ。</p><p class="thd-d">粋は、飾りを削って、それでも残るもののことです。九鬼周造は『「いき」の構造』で、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。細いほうが、粋なのです。ですから、この型は細い縦の線だけで組みました。太い字はどこにも使わず、罫はすべて一本の細さにそろえています。色の面を張るのは、足もとの一か所だけ。何を足すかではなく、何を残すかで決めた型です。余計なものを持たない会社に向きます。</p><p class="thd-m"><b>向いている業種</b>電気工事・設備・測量・土木施工など、段取りの正確さと反応の速さで信頼を得る仕事に向きます。</p><a class="thd-go" href="preview/doboku-4.html" target="_blank" rel="noopener">この型の実物を見る<i>新しいタブで開く ↗</i></a></div></div></dialog>
 
     </div>
@@ -1440,17 +1907,17 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
         <div class="pt">
           <span class="pt-n">01</span>
           <h3>人が採れない</h3>
-          <p>建築・土木・測量技術者の有効求人倍率は <b>6.05倍</b>。全職業の平均1.11倍の、およそ5.5倍の採用難です。そのうえ転職を考えた人の <b>90.3%</b> が、応募する前に企業の採用ページを見ています。求人票を見て興味を持った方が、会社名で検索して何も出てこず、そこで止まる。応募という行動の、ひとつ手前の話です。<small class="pt-src">有効求人倍率は厚生労働省「一般職業紹介状況」令和8年5月・常用（除パート）。採用サイトの閲覧率は株式会社カケハシスカイ調べ（2024年）。</small></p>
+          <p>建築・土木・測量技術者の有効求人倍率は <b>6.05倍</b>。全職業の平均1.11倍の、およそ5.5倍の採用難です。そのうえ、直近1年以内に転職した25〜49歳の <b>90.3%</b> が、応募する前に採用サイトを見ています。求人票を見て興味を持った方が、会社名で検索して何も出てこず、そこで止まる。応募という行動の、ひとつ手前の話です。<small class="pt-src">有効求人倍率は厚生労働省「一般職業紹介状況」令和8年5月・常用（除パート）。採用サイトの閲覧率は株式会社カケハシスカイ調べ（2024年、直近1年以内に転職した25〜49歳 515人）。</small></p>
         </div>
         <div class="pt">
           <span class="pt-n">02</span>
           <h3>仕事の入口が細る</h3>
-          <p>元請の審査、施主の下調べ、同業からの紹介。どれも会社名で検索するところから始まります。仕事で製品やサービスを調べる人の <b>58.3%</b> が、企業のホームページを情報源にしています。その場で何ができる会社か分からなければ、次の候補に移られます。実績が並んだ1枚が、その先へ進む入口になります。<small class="pt-src">トライベック・ブランド戦略研究所「BtoBサイト調査 2025」（2024年調査・複数回答）。</small></p>
+          <p>元請の審査、施主の下調べ、同業からの紹介。どれも会社名で検索するところから始まります。その場で何ができる会社か分からなければ、次の候補に移られます。実績が並んだ1枚が、その先へ進む入口になります。</p>
         </div>
         <div class="pt">
           <span class="pt-n">03</span>
           <h3>AIが、他人の言葉で説明する</h3>
-          <p>ChatGPTなどのAIで調べる人が増えています。生成AIを使ったことがある人は <b>26.7%</b>。1年で約3倍に増えました。ホームページがないと、AIは口コミなど<b>他人が書いた情報</b>だけを見て会社を説明します。1ページでも自社の正式な情報を置いておくことが、AI時代の名刺になります。<small class="pt-src">生成AIの利用経験は総務省「令和7年版 情報通信白書」（2024年度・個人）。</small></p>
+          <p>ChatGPTなどのAIで調べる人が増えています。生成AIを使ったことがある人は <b>52.2%</b>。1年で約2倍に増えました。ホームページがないと、AIは口コミなど<b>他人が書いた情報</b>だけを見て会社を説明します。1ページでも自社の正式な情報を置いておくことが、AI時代の名刺になります。<small class="pt-src">生成AIの利用経験は総務省「令和8年版 情報通信白書」（20〜69歳）。</small></p>
         </div>
       </div>
 
@@ -1483,7 +1950,7 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
             </tbody>
           </table>
         </div>
-        <p class="waku-note">すべて税込・追加料金なし。<b>前金はいただかず、お支払いは完成品をご覧になってから。データは御社のものです。</b><br><small>公開後は、御社名義でご契約いただくサーバーとドメインの利用料（あわせて年8,000〜20,000円ほど）だけがかかります。当方が受け取るものではありません。</small></p>
+        <p class="waku-note">すべて税込。制作にあたって、これ以外にいただくものはありません。<b>前金はいただかず、お支払いは完成品をご覧になってから。データは御社のものです。</b><br><small>公開後は、御社名義でご契約いただくサーバーとドメインの利用料（あわせて年8,000〜20,000円ほど）だけがかかります。当方が受け取るものではありません。</small></p>
       </div>
 
       <div class="waku rv">
@@ -1543,7 +2010,7 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
     <div>
       <p class="page-kicker">ERABOT / PRODUCT SELECTION</p>
       <h1>メーカーの知識を、<br>選べる仕組みに。</h1>
-      <p class="erabo-lead">つくった人には分かる。でも、お客様には分からない。御社の商品知識と選び分けのノウハウを、誰でも使えるWeb上の選定フローに変換します。</p>
+      <p class="erabo-lead">つくった人には分かる。でも、お客さまには分からない。御社の商品知識と選び分けのノウハウを、誰でも使えるWeb上の選定フローに変換します。</p>
       <a class="btn btn-fill" href="preview/erabot-demo.html" target="_blank" rel="noopener">地面固定具の作例を試す <span class="arw">↗</span></a>
     </div>
     <div class="erabo-map" aria-label="条件から3つの商品候補へ絞り込む図">
@@ -1556,7 +2023,7 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
 <section class="sec page-only page-erabot" data-page="erabot">
   <div class="wrap">
     <div class="shead rv"><span class="sh-no">一</span><h2>選定知識まで設計します</h2><span class="sh-en">SERVICE</span></div>
-    <p class="lead lead-w rv">質問を置ける道具だけを渡すのではなく、杜工舎が商品群を調べ、お客様が迷う分岐を見つけ、設問と配点を設計します。条件に合う3案を、選定理由とともに提示する完成品としてお渡しします。</p>
+    <p class="lead lead-w rv">質問を置ける道具だけを渡すのではなく、杜工舎が商品群を調べ、お客さまが迷う分岐を見つけ、設問と配点を設計します。条件に合う3案を、選定理由とともに提示する完成品としてお渡しします。</p>
     <ol class="erabo-process rv">
       <li><span>01</span><div><h3>商品群を調べる</h3><p>御社のECと資料から、選び分けに必要な条件を整理します。</p></div></li>
       <li><span>02</span><div><h3>質問と配点を設計する</h3><p>専門知識を5〜7問へ翻訳し、条件ごとの優先順位を組みます。</p></div></li>
@@ -1582,7 +2049,7 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
   <div class="wrap sec-in">
     <div class="shead rv">
       <span class="sh-no">人</span>
-      <h2>代表プロフィール</h2>
+      <h1>代表プロフィール</h1>
       <span class="sh-en">About the Founder</span>
     </div>
     <div class="sec-body">
@@ -1595,27 +2062,27 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
       </div>
 
       <div class="pf-body rv">
-        <p>1995年、埼玉県に生まれる。2018年3月、埼玉大学工学部建設工学科を卒業。同年4月から8年間、<b>埼玉県庁の土木技術職</b>として、道路・河川・斜面・公園といった社会インフラの工事監督と維持管理、災害復旧に従事した。</p>
+        <p>2018年3月、埼玉大学工学部建設工学科を卒業。同年4月から8年間、<b>埼玉県庁の土木技術職</b>として、道路・河川・斜面・公園といった社会インフラの工事監督と維持管理、災害復旧に従事した。</p>
         <p>仕事は、設計の照査から積算、入札後の現場監督、完成検査まで。担当した工事のひとつに、<b>令和元年東日本台風</b>で崩れた斜面の地すべり復旧がある。現場の担当として工事を進め、この工事は<b>令和6年度 全建賞（災害枠・都市部門）</b>に選ばれた。発注する側に8年いたので、工事がどう進み、書類とお金のどこで手が止まるかを、体で知っている。</p>
         <p>2026年3月に県庁を退職。いまは農業法人に籍を置き、畑に出ている。建設の現場でも、農業の現場でも、同じ言葉を聞いた。「人が来ない」「いい仕事をしているのに、外から見えない」。仕事の中身は確かなのに、それを外から確かめる手立てがない ── 足りないのは腕ではなく、<b>伝わる形</b>だと考えるようになった。</p>
-        <p>2026年8月、<b>杜工舎（もりこうしゃ）</b>を開業。会社の仕事を1ページのホームページに整え（見せる）、製品の違いを誰でもたどれる選定の仕組みに変える（選ぶ）。材料にするのは、公表されている一次情報 ── 法令、公的統計、業界団体の名簿、メーカーが公開している仕様。<b>出典と、いつの時点のものかを画面に出す</b>。分からないことは、分からないと書く。</p>
+        <p><b>杜工舎（もりこうしゃ）</b>を開業。会社の仕事を1ページのホームページに整え（見せる）、製品の違いを誰でもたどれる選定の仕組みに変える（選ぶ）。材料にするのは、公表されている一次情報 ── 法令、公的統計、業界団体の名簿、メーカーが公開している仕様。<b>出典と、いつの時点のものかを画面に出す</b>。分からないことは、分からないと書く。</p>
         <p>現場の判断を、データで支える。それが杜工舎の仕事である。</p>
       </div>
 
       <div class="waku rv">
-        <h3 class="waku-t">経歴</h3>
+        <h2 class="waku-t">経歴</h2>
         <ul class="cv2">
-          <li><i>2018.3</i><span><b>埼玉大学 工学部 建設工学科</b> 卒業</span></li>
-          <li><i>2018.4</i><span><b>埼玉県庁 入庁</b>（土木技術職）<br>公園の整備、道路・河川の工事監督と維持管理、令和元年東日本台風の災害復旧に従事</span></li>
-          <li><i>令和6年度</i><span>担当した地すべり復旧工事が <b>全建賞（災害枠・都市部門）</b> に選ばれる</span></li>
-          <li><i>2026.3</i><span><b>埼玉県庁 退職</b>（8年間勤務）</span></li>
-          <li><i>2026.4</i><span><b>農業法人 入社</b>（在籍中）</span></li>
-          <li><i>2026.8</i><span><b>杜工舎 開業</b>（さいたま市）</span></li>
+          <li><i>2018年</i><span><b>埼玉大学 工学部 建設工学科</b> 卒業</span></li>
+          <li><i>2018年</i><span><b>埼玉県庁 入庁</b>（土木技術職）<br>公園の整備、道路・河川の工事監督と維持管理、令和元年東日本台風の災害復旧に従事</span></li>
+          <li><i>2024年度</i><span>担当した地すべり復旧工事が <b>全建賞（災害枠・都市部門）</b> に選ばれる</span></li>
+          <li><i>2026年</i><span><b>埼玉県庁 退職</b>（8年間勤務）</span></li>
+          <li><i>2026年</i><span><b>農業法人 入社</b>（在籍中）</span></li>
+          <li><i>2026年</i><span><b>杜工舎 開業</b>（さいたま市）</span></li>
         </ul>
       </div>
 
       <div class="waku rv">
-        <h3 class="waku-t">資格・講習</h3>
+        <h2 class="waku-t">資格・講習</h2>
         <ul class="pf-list">
           <li><b>1級土木施工管理技士補</b> ── 1級土木施工管理技術検定 第一次検定 合格</li>
           <li><b>準中型自動車免許</b>（5t限定）</li>
@@ -1626,14 +2093,14 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
       </div>
 
       <div class="waku waku-su rv">
-        <h3 class="waku-t">杜工舎をはじめた想い</h3>
+        <h2 class="waku-t">杜工舎をはじめた想い</h2>
         <p class="waku-lead">県庁で8年間、工事を発注し、監督する側にいました。現場で顔を合わせた会社の多くが、若い人が入ってこないという同じ悩みを抱えていました。</p>
-        <p class="waku-lead">いま籍を置いている農業も、個人事業で関わることの多い造園業も同じです。人手が足りない。募集をかけても来ない。その現実を、身近で感じています。</p>
+        <p class="waku-lead">いま籍を置いている農業も、造園の現場も同じです。人手が足りない。募集をかけても来ない。その現実を、身近で感じています。</p>
         <p class="waku-lead" style="margin-bottom:0;">仕事や商品・サービスを探している人に届く入口をつくり、社会に喜びが増えることを目指して杜工舎を開業しました。</p>
       </div>
 
       <div class="waku rv">
-        <h3 class="waku-t">仕事の進め方</h3>
+        <h2 class="waku-t">仕事の進め方</h2>
         <ol class="pf-yaku">
           <li><b>事実だけを載せます</b>御社からいただいた情報と、公表されている資料だけで組みます。埋まらない項目は、想像で埋めずに載せません。</li>
           <li><b>分かることと、分からないことを分けます</b>「必ず」「保証します」とは書きません。数字を出すときは、出どころと時点をそばに書きます。</li>
@@ -1666,19 +2133,19 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
         <details>
           <summary><span class="q-i">Q2</span><span class="q-t">文章が苦手です。</span><span class="x" aria-hidden="true"></span></summary>
           <div class="a">
-            <p>ご記入シートで業種をお選びいただくと、その業種のサンプルページで実際に使っている文章が、記入欄の右側に表示されます。それを参考に、御社のことに書き換えてご記入ください。各項目には記入のワンポイントアドバイスも付けております。空欄のままご返送いただいた項目は掲載いたしません。</p>
+            <p>ご記入シートで業種をお選びいただくと、その業種のサンプルページで実際に使っている文章が、記入欄の右側に表示されます。それを参考に、御社のことに書き換えてご記入ください。各項目には記入のワンポイントアドバイスを添えています。空欄のままご返送いただいた項目は掲載いたしません。</p>
           </div>
         </details>
         <details>
           <summary><span class="q-i">Q3</span><span class="q-t">打ち合わせなしで、本当にできますか？</span><span class="x" aria-hidden="true"></span></summary>
           <div class="a">
-            <p>はい。ご記入シートと写真だけで作れる設計にしています。「何度もお伺いしてご要望を伺う」という進め方をしていない、という意味ですので、メールでのご質問はいつでも歓迎です。</p>
+            <p>はい。ご記入シートと写真だけで作れる設計にしています。「何度も訪問してご要望をうかがう」という進め方をしていない、という意味ですので、メールでのご質問はいつでも歓迎です。</p>
           </div>
         </details>
         <details>
           <summary><span class="q-i">Q4</span><span class="q-t">毎月の費用はかかりますか？</span><span class="x" aria-hidden="true"></span></summary>
           <div class="a">
-            <p>当方にお支払いいただく月々の費用は、ありません。制作費のお支払いで完了です。月額の管理契約はお受けしていません。</p>
+            <p>ホームページ制作について、当方にお支払いいただく月々の費用はありません。制作費のお支払いで完了です。</p>
             <p>公開後にかかるのは、御社名義でご契約いただくサーバーとドメインの利用料だけです（あわせて年8,000〜20,000円ほど）。これは御社から各社へ直接お支払いいただくもので、当方が受け取るものではありません。</p>
             <p>文言を直したい、記事を足したい、といったご相談は、そのつどお受けします。使わなければ費用は発生しません。</p>
           </div>
@@ -1711,7 +2178,7 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
   <div class="wrap sec-in">
     <div class="shead rv">
       <span class="sh-no">便</span>
-      <h2>お問い合わせ</h2>
+      <h1>お問い合わせ</h1>
       <span class="sh-en">CONTACT</span>
     </div>
     <div class="sec-body">
@@ -1722,7 +2189,7 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
       <div class="contact rv">
         <div class="cap2">MAIL</div>
         <a class="mail" href="mailto:info@morikosha.com?subject=%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%9A%E3%83%BC%E3%82%B8%E5%88%B6%E4%BD%9C%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87&body=%E4%BC%9A%E7%A4%BE%E5%90%8D%EF%BC%9A%0A%E6%A5%AD%E7%A8%AE%EF%BC%9A%0A%E7%8F%BE%E5%9C%A8%E3%81%AE%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%9A%E3%83%BC%E3%82%B8%EF%BC%9A%E3%81%82%E3%82%8A%EF%BC%88URL%EF%BC%9A%E3%80%80%EF%BC%89%EF%BC%8F%E3%81%AA%E3%81%97%0A%E6%B0%97%E3%81%AB%E3%81%AA%E3%82%8B%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%EF%BC%88%E4%BB%BB%E6%84%8F%EF%BC%89%EF%BC%9A%0A%E3%81%94%E7%9B%B8%E8%AB%87%E5%86%85%E5%AE%B9%EF%BC%9A%0A">info@morikosha.com<span class="arw" aria-hidden="true">↗</span></a>
-        <p class="sub">2営業日以内にご返信いたします。<br>お電話をご希望の場合は、その旨をお書き添えください。</p>
+        <p class="sub">2営業日以内のご返信を心がけています。<br>お電話をご希望の場合は、その旨をお書き添えください。</p>
       </div>
     </div>
   </div>
@@ -1760,7 +2227,7 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
 
 <!-- ══════════ モバイルの追従ボタン ══════════ -->
 <div class="mcta" id="mcta">
-  <span class="f">10万円・前金なし・2週間</span>
+  <a class="f" href="#price">10万円・前金なし・2週間</a>
   <a class="btn btn-fill" href="#contact">お問い合わせ <span class="arw">→</span></a>
 </div>
 
@@ -1786,9 +2253,14 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
     var el = id && document.getElementById(id);
     if(el){
       var po = el.closest(".page-only");
-      return {page: po ? po.getAttribute("data-page") : "about", anchor:id};
+      /* 2026-09-21: どのページにも属さない飛び先（#main・#legal・#privacy）のとき、
+         いままで about に飛ばしていた。キーボードで「本文へskip」を押した人が、
+         読んでいたページを失っていた（erabot/profile/contact/hp の4ページで再現）。
+         ページに属さない飛び先は、いまのページのまま、その場所へ動かす。 */
+      var now = document.body.getAttribute("data-page");
+      return {page: po ? po.getAttribute("data-page") : (now || "about"), anchor:id};
     }
-    return {page:"about", anchor:null};
+    return {page: document.body.getAttribute("data-page") || "about", anchor:null};
   }
   function show(route, move){
     document.body.setAttribute("data-page", route.page);
@@ -1826,7 +2298,37 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
     else location.hash = "about";
   });
   window.addEventListener("hashchange", function(){ show(target(), true); });
-  show(target(), false);
+  /* 着地 ここから */
+  var r0 = target();
+  show(r0, false);
+  if(r0.anchor){
+    /* 書体と画像が届くたびに上の丈が変わるので、落ち着くまで置き直す。
+       読み手が自分で動かしたら、そこで止める */
+    var stop = false;
+    var land = function(){
+      if(stop) return;
+      var el = document.getElementById(r0.anchor);
+      if(el) el.scrollIntoView({block:"start", behavior:"instant"});
+    };
+    var ro = window.ResizeObserver
+      ? new ResizeObserver(function(){ if(!stop) land(); })
+      : null;
+    ["wheel","touchstart","keydown","mousedown"].forEach(function(t){
+      window.addEventListener(t, function(){ stop = true; if(ro) ro.disconnect(); },
+        {passive:true, once:true});
+    });
+    requestAnimationFrame(function(){ requestAnimationFrame(land); });
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(land);
+    /* 時間ではなく「丈が変わったら」で置き直す。書体や画像がいつ届くかは分からない */
+    if(ro) ro.observe(document.documentElement);
+    window.addEventListener("load", land);
+  }
+  /* <head> で切った滑りを、読み込みが終わったら戻す。飛び先の無いハッシュ
+     （#profile など）で開いたときも必ず戻す ── 戻さないと頁の中のリンクが滑らない */
+  var unfreeze = function(){ document.documentElement.style.scrollBehavior = ""; };
+  if(document.readyState === "complete") setTimeout(unfreeze, 0);
+  else window.addEventListener("load", function(){ setTimeout(unfreeze, 0); });
+  /* 着地 ここまで */
 })();
 </script>
 
@@ -1983,8 +2485,27 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
     nav.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
     document.documentElement.style.overflow = 'hidden';   /* 後ろが動かないように */
+    /* 2026-09-21: ここで即 focus() を呼んでいたが、.mnav は visibility を .3s かけて
+       切り替えるため、その瞬間はまだ visibility:hidden。見えない要素に焦点は移らないので
+       黙って失敗し、キーボードの人は覆いの裏に焦点が残ったままメニューを操作できなかった。
+       見えるようになってから焦点を入れる（transitionend が来ない場合に備えて保険も置く）。 */
     var a = nav.querySelector('a, button');
-    if (a) a.focus();
+    if (a) {
+      /* 見えるようになるまで毎フレーム試し、焦点が本当に入ったら終わる。
+         transitionend は子要素のぶんが先に上がってくることがあり、
+         その1回で打ち切ると（まだ visibility:hidden なので）焦点が入らないまま終わる。 */
+      var tries = 0;
+      var put = function(){
+        if (!nav.classList.contains('open')) return;
+        var cs = getComputedStyle(nav);
+        if (cs.visibility !== 'hidden' && cs.opacity !== '0') {
+          a.focus();
+          if (document.activeElement === a) return;
+        }
+        if (++tries < 45) requestAnimationFrame(put);
+      };
+      requestAnimationFrame(put);
+    }
   }
   function close(){
     nav.classList.remove('open');
