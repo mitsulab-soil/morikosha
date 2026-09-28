@@ -286,6 +286,27 @@ table.info td{padding:13px 10px;font-size:13px;}
 .logo .en{letter-spacing:.2em;}
 .head-tel .num{font-size:14.5px;}}
 </style>
+<style id="mk-go">
+/* 見本から杜工舎へ戻る道（skin_akari.py が全109枚に共通で入れる。手で書かない） */
+.smp-go{display:flex;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid;
+  border-color:currentColor;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;}
+.smp-go a{flex:1 1 0;min-width:0;min-height:44px;display:flex;align-items:center;
+  justify-content:center;text-align:center;font-size:11px;font-weight:500;letter-spacing:.06em;
+  line-height:1.35;color:inherit;text-decoration:none;border:1px solid;border-color:currentColor;
+  padding:4px 6px;cursor:pointer;}
+.smp-go a:hover,.smp-go a:focus-visible{background:rgba(128,128,128,.3);}
+/* 頭の帯（まとめ・えらぼっとの作例）では、札の足ではなく横に並べる */
+.hd .smp-go,.mast .smp-go{margin:0 0 0 14px;padding:0;border:0;flex:0 0 auto;align-self:center;}
+.hd .smp-go a,.mast .smp-go a{flex:0 0 auto;padding:4px 12px;}
+/* 携帯では札が 168px まで縮むので、2つ並べると「杜工舎と／は」と割れる（430pxの写真で確認）。
+   札の幅をひと回りだけ広げて、2つとも1行に収める。札は納品時に消す表示なので、
+   売り物のデザインそのものには触っていない。 */
+@media (max-width:640px){
+  .smp-badge{max-width:196px;}
+  .smp-go a{font-size:10px;letter-spacing:.01em;padding:4px 4px;white-space:nowrap;}
+}
+@media print{.smp-go{display:none;}}
+</style>
 </head>
 <style>
 .smp-badge{position:fixed;top:96px;right:16px;z-index:200;max-width:250px;background:rgba(18,21,18,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;padding:11px 15px 10px;border:1px solid rgba(255,255,255,.14);font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.6;}
@@ -332,6 +353,7 @@ table.info td{padding:13px 10px;font-size:13px;}
 <span class="l1">デザインサンプル</span>
 <span class="l2">建築　DESIGN 3「雅」</span>
 <small>社名・写真・文章はすべて架空です。実在の企業・団体とは関係ありません。納品時にはこの表示を削除します。</small>
+<span class="smp-go"><a href="../index.html">杜工舎とは</a><a href="../index.html#price">料金を見る</a></span>
 </div>
 <script>(function(){var b=document.querySelector(".smp-badge");if(!b)return;var d=false,sx,sy,bx,by;
 b.addEventListener("pointerdown",function(e){d=true;b.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;var r=b.getBoundingClientRect();bx=r.left;by=r.top;});
@@ -377,4 +399,9 @@ b.addEventListener("pointerup",function(){d=false;});})();</script>
 <nav class="foot-nav"><a href="#works">事業内容</a><a href="#feats">選ばれる理由</a><a href="#msg">代表挨拶</a><a href="#comp">会社概要</a><a href="#t2">採用情報</a><a href="#contact">お問い合わせ</a></nav></div>
 <div class="wrap copy">© 株式会社杜工務店（このサイトはデザインサンプルです。社名・人物・数値はすべて架空のもので、実在する企業・団体とは一切関係ありません）<br>掲載写真は商用利用可のフリー素材です。このままお使いいただくことも、御社の写真に差し替えることもできます。</div>
 </footer>
+<script id="mk-go-js">
+/* 戻る道 ここから */(function(){var g=document.querySelectorAll(".smp-go a");
+for(var i=0;i<g.length;i++){g[i].addEventListener("pointerdown",function(e){e.stopPropagation();});}
+})();/* 戻る道 ここまで */
+</script>
 </body></html>
