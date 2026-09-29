@@ -785,7 +785,7 @@ h1::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;bor
 
         <footer class="rep__foot">
           <p>選定は、専門家が設計した条件ロジックと重み付けによって行っています。
-          商品名・仕様・参考単価・引抜抵抗値はサンプル値であり、実在の製品性能を示すものではありません。
+          商品名・仕様・参考単価・引抜抵抗値は説明用に設定した値であり、実在の製品性能を示すものではありません。
           引抜抵抗は地盤条件で大きく変動します。断面図・商品図は形状を示す模式図です。</p>
         </footer>
       </article>
@@ -817,7 +817,7 @@ h1::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;bor
     <button id="toStart">最初に戻る</button>
     <a href="../index.html#erabot" style="font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;color:var(--ink-2);text-decoration:none">杜工舎へ戻る</a>
     <p class="foot__note">えらぼっと｜メーカーの知識を、選べる仕組みに。　提供 杜工舎　選定は、専門家が設計した条件ロジックと重み付けによって行っています。<br>
-    商品名・仕様・参考単価・引抜抵抗値はサンプル値であり、実在の製品性能を示すものではありません。断面図・商品図は形状を示す模式図です。</p>
+    商品名・仕様・参考単価・引抜抵抗値は説明用に設定した値であり、実在の製品性能を示すものではありません。断面図・商品図は形状を示す模式図です。</p>
   </footer>
 </div>
 
@@ -2597,8 +2597,10 @@ function productCard(p,i,pct,q,S,t3,qs,top,qt){
       <div class="pc--con"><p class="pc__h">デメリット</p><ul>${p.cons.map(c=>`<li>${c.t}<i>${c.fix}</i></li>`).join("")}</ul></div>
     </div>
     <div class="cd__cta">
-      <a class="btn ${isTop?"":"btn--ghost"} cd__btn" href="${p.url}" data-buy="${p.id}">
-        <span>商品ページを見る</span><span class="btn__arrow">→</span></a>
+      ${real?`<a class="btn ${isTop?"":"btn--ghost"} cd__btn" href="${p.url}" data-buy="${p.id}">
+        <span>商品ページを見る</span><span class="btn__arrow">→</span></a>`
+      :`<button type="button" class="btn ${isTop?"":"btn--ghost"} cd__btn" data-buy="${p.id}">
+        <span>商品ページを見る</span><span class="btn__arrow">→</span></button>`}
       <p class="cd__url">${real?p.url:`導入時に御社の商品ページへ繋がります　<code>例 https://example.co.jp/items/${p.id.toLowerCase()}</code>`}</p>
     </div></article>`;
 }
@@ -2681,9 +2683,7 @@ function finish(){
       countUp(small?{set textContent(v){el.firstChild.nodeValue=num(v)}}:el, to, 900+i*40);
     });
   },140);
-  $$("#s-result [data-buy]").forEach(a=>a.addEventListener("click",e=>{
-    if(a.getAttribute("href")==="#"){ e.preventDefault(); flashBuy(a); }
-  }));
+  $$("#s-result button[data-buy]").forEach(b=>b.addEventListener("click",()=>flashBuy(b)));
 }
 const legendHTML=t3=>t3.map((p,i)=>
   `<span><i style="border-top-color:${SERIES[i]};border-top-style:${i===0?"solid":i===1?"dashed":"dotted"}"></i>`
@@ -2715,10 +2715,13 @@ function outOfScope(){
   $("#asTool").textContent="";
   show("s-result");
 }
-function flashBuy(a){
-  const n=a.parentNode.querySelector(".buy__note"), t=n.textContent;
-  n.textContent="デモのため未接続です。導入時は御社の商品ページへ遷移します。";
-  setTimeout(()=>n.textContent=t,2600);
+/* 商品ページのURLがまだ無い品目：押すと、ボタンの下の行に品番と品名を静かに出すだけ（遷移しない） */
+function flashBuy(b){
+  const n=b.parentNode.querySelector(".cd__url"), p=P.find(x=>x.id===b.dataset.buy);
+  if(!n||!p) return;
+  if(!n.dataset.t) n.dataset.t=n.innerHTML;
+  n.textContent=p.id+"　"+p.name;
+  clearTimeout(n._t); n._t=setTimeout(()=>{ n.innerHTML=n.dataset.t; },2600);
 }
 /* 施工上の注意は地盤だけでなく、用途・傾斜・風にも紐づける */
 function fieldNotes(){
