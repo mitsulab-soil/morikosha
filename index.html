@@ -6,7 +6,7 @@
 <title>ホームページ制作 1ページ98,000円（税込）｜杜工舎（さいたま市）</title>
 <meta name="description" content="杜工舎は、つくる側が持つ仕事と知識を、探す人・選ぶ人へつなぐWebの工房です。まちを作る会社のホームページ制作と、商品選定Webアプリ『えらぼっと』を提供します。">
 <link rel="canonical" href="https://morikosha.com/">
-<meta name="theme-color" content="#FAF8F2">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://morikosha.com/">
 <meta property="og:site_name" content="杜工舎">
@@ -24,7 +24,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FAF8F2'/%3E%3Ctext x='32' y='47' font-size='50' font-family='serif' font-weight='700' text-anchor='middle' fill='%232E5741'%3E杜%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
 <script>document.documentElement.className='js';if(location.hash)document.documentElement.style.scrollBehavior='auto';</script>
 <style>
 
@@ -2924,6 +2924,204 @@ body[data-page="erabot"] .go-mihon-era{display:inline-flex;}
   border:1px solid var(--rule-ui);border-radius:var(--r-card);}
 .btn-copy:hover{border-color:var(--mori);color:var(--mori);background:var(--mori-tint);}
 .btn-copy[data-done="1"]{border-color:var(--mori);color:var(--mori);background:var(--mori-tint);}
+
+/* ══════════════════════════════════════════════════════════════════
+   澄（すみ）── 2026-09-29、みつさんの「Appleのホームページを参考に、洗練されたデザインに」で重ねた層
+
+   明（あかり）の骨組み（ページの切り替え・札・実測で潰した不具合）はそのまま残し、
+   その上に「色・書体・面・余白」だけを塗り直す。skin_akari.py が SKIN の末尾にこのファイルを足す。
+
+   決めごとは5つ。
+     1. 地は白（#FFFFFF）と、ごく薄い灰（#F5F5F7）の2段だけ。章ごとに白と灰を交互に置く
+     2. 字は墨の3段（#1D1D1F／#424245／#6E6E73）。差し色は杜の緑の一系だけ
+     3. 書体は端末の標準ゴシック（Macなら SF Pro＋ヒラギノ角ゴ、それ以外は Noto Sans JP）ひとつ。
+        明朝・英字の斜体・等幅は使わない。大きさと太さだけで段をつける
+     4. 見出しは大きく太く、字間は詰める。本文は17px
+     5. 囲みは線を引かず、面の色の差と大きな角丸（18px／28px）だけで示す。影は使わない
+   ══════════════════════════════════════════════════════════════════ */
+
+:root{
+  --paper:#FFFFFF;
+  --paper-2:#F5F5F7;
+  --card:#F5F5F7;
+
+  --ink:#1D1D1F;          /* 白の上 16.8:1 */
+  --ink-2:#424245;        /* 白の上 10.2:1 */
+  --ink-3:#6E6E73;        /* 白の上 5.1:1／灰の上 4.6:1 ── これより薄い字は置かない */
+
+  --rule:#E8E8ED;
+  --rule-2:#D2D2D7;
+  --rule-ui:#86868B;      /* 押せるものの輪郭。白の上 3.6:1 */
+
+  --mori:#2E5741;
+  --mori-2:#22452F;
+  --mori-tint:#EDF3EF;
+  --mori-ink:#FFFFFF;
+
+  --r-card:18px;
+  --r-big:28px;
+  --pad-card:clamp(22px,2.6vw,30px);
+  --pad-big:clamp(28px,3.6vw,48px);
+
+  --ff-sans:-apple-system,BlinkMacSystemFont,"SF Pro JP","SF Pro Text","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+  --ff-body:var(--ff-sans);
+  --ff-min:var(--ff-sans);
+  --ff-en:var(--ff-sans);
+  --ff-mono:var(--ff-sans);
+}
+
+html,body{background:#FFFFFF;}
+body{
+  color:var(--ink);
+  font-size:17px;line-height:1.76;letter-spacing:.01em;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+
+/* ── 字間と斜体をいっせいに戻す ──
+   明の装いは明朝のために .12〜.28em の字間と英字の斜体を各所に持っている。
+   ゴシック一本では字がばらけて見えるので、ここで一律に畳む。
+   :not(#_) は詳細度を id 1つぶん上げるためだけの書き方（どの要素にも当たる） */
+html body *:not(#_){letter-spacing:inherit;font-style:normal;}
+html body :is(h1,h2,h3):not(#_){letter-spacing:0;}
+
+/* ── 頭の帯 ── すりガラス。背を低く、字を小さく */
+html body .head:not(#_){
+  background:rgba(255,255,255,.78);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid rgba(0,0,0,.08);box-shadow:none;
+}
+html body .head-in:not(#_){height:56px;}
+html body .brand .ja:not(#_){font-weight:600;font-size:18px;letter-spacing:.06em;}
+html body .brand .en:not(#_){display:none;}
+html body .nav .tb-ja:not(#_){font-size:13px;font-weight:400;letter-spacing:.02em;color:var(--ink-2);}
+html body .nav .tb-en:not(#_),html body .cta .tb-en:not(#_){display:none;}
+html body .nav a:hover .tb-ja:not(#_){color:var(--ink);}
+html body .nav a.active .tb-ja:not(#_){color:var(--ink);font-weight:600;}
+html body .nav a.active:not(#_)::after{display:none;}
+html body .cta:not(#_){
+  border-radius:980px;padding:7px 16px;min-height:0;
+  background:var(--mori);border-color:var(--mori);color:#fff;
+}
+html body .cta .tb-ja:not(#_){font-size:13px;font-weight:500;letter-spacing:.02em;}
+html body .cta.active:not(#_)::after{display:none;}
+html body .mnav .mlink .e:not(#_){display:none;}
+html body .mnav .mlink .t:not(#_){font-weight:600;}
+html body .mcta:not(#_){background:rgba(255,255,255,.8);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);}
+
+/* ── 地 ── 白と灰を章ごとに交互に置く */
+html body .sec-tint:not(#_){background:var(--paper-2);--card:#FFFFFF;}
+html body .about-hero:not(#_){border-bottom:0;}
+html body .colo:not(#_){background:var(--paper-2);border-top:0;}
+html body .colo:not(#_) *{font-size:12px;line-height:1.75;color:var(--ink-3);}
+html body .colo:not(#_) :is(h2,h3,h4,b,strong){color:var(--ink);font-weight:600;}
+
+/* ── 章の頭 ── 番号は落とし、英字は題の上の小さな添えにする */
+html body .shead:not(#_){display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;}
+html body .sh-no:not(#_){display:none;}
+html body .sh-en:not(#_){
+  order:-1;margin:0;font-size:15px;font-weight:600;line-height:1.4;
+  letter-spacing:.02em;text-transform:none;color:var(--mori);opacity:1;
+}
+html body :is(.shead h2,.shead h1):not(#_){
+  font-size:clamp(32px,4.4vw,56px);font-weight:700;line-height:1.18;color:var(--ink);text-wrap:balance;
+}
+html body .page-kicker:not(#_){font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--mori);opacity:1;}
+
+/* ── 大見出し ── */
+html body :is(.about-title-frame h1,.erabo-hero h1,.top-fuda,.w-state):not(#_){
+  font-weight:700;line-height:1.12;color:var(--ink);
+}
+html body :is(.about-title-frame h1,.erabo-hero h1,.top-fuda):not(#_){font-size:clamp(40px,6vw,80px);}
+html body :is(h3,.waku-t,.step-t,.tt-ja,.thd-ja):not(#_){font-weight:700;}
+
+/* ── 杜工舎とは の扉 ── 中央に積む。飾りの枠と図は外す */
+html body .about-hero-in:not(#_){display:flex;flex-direction:column;align-items:center;text-align:center;}
+html body .about-copy:not(#_){max-width:880px;margin-inline:auto;display:flex;flex-direction:column;align-items:center;}
+html body .about-graphic:not(#_),html body .frame-corner:not(#_){display:none;}
+html body .about-title-frame:not(#_){padding:0;margin:14px 0 0;border:0;}
+html body .about-lead:not(#_){font-size:clamp(18px,1.7vw,22px);line-height:1.7;color:var(--ink-2);margin-top:24px;}
+html body .about-kane:not(#_){justify-content:center;flex-wrap:wrap;}
+html body .about-kane b:not(#_){font-weight:700;}
+html body .about-go:not(#_){justify-content:center;}
+
+/* ── 釦 ── 丸い札。塗りは緑、もう一方は緑の輪郭 */
+html body :is(.btn,.dl-btn):not(#_){
+  border-radius:980px;font-size:15px;font-weight:500;letter-spacing:.01em;
+  padding:11px 24px;min-height:44px;
+}
+html body .btn:not(#_){border:1px solid var(--mori);color:var(--mori);background:transparent;}
+html body .btn:hover:not(#_){background:var(--mori-tint);color:var(--mori);border-color:var(--mori);}
+html body :is(.btn.btn-fill,.about-go .go-mihon,.dl-btn):not(#_){background:var(--mori);border-color:var(--mori);color:#fff;}
+html body :is(.btn.btn-fill,.about-go .go-mihon,.dl-btn):hover:not(#_){background:var(--mori-2);border-color:var(--mori-2);color:#fff;}
+html body .about-go .go-toi:not(#_){background:transparent;border-color:var(--mori);color:var(--mori);}
+
+/* ── 囲み ── 線は引かず、面の色と角丸だけ */
+html body :is(.service-step,.waku,.dl,.tt-c,.erabo-price,.pf-card,.pcard,.shigoto-c):not(#_){
+  background:var(--card);border-color:transparent;box-shadow:none;
+}
+html body :is(.service-step,.waku,.dl,.erabo-price):not(#_){border-radius:var(--r-big);}
+html body .service-join:not(#_){opacity:0;}
+html body .service-no:not(#_){font-size:13px;font-weight:600;color:var(--mori);}
+html body .service-step h3:not(#_){font-size:clamp(24px,2.4vw,32px);line-height:1.25;}
+html body .service-step:hover:not(#_){background:var(--card);transform:translateY(-2px);}
+html body .service-go:not(#_){color:var(--mori);font-weight:500;border-top:0;}
+
+/* 表と一覧の罫は、白の上でも見える薄さに */
+html body :is(.tbl th,.tbl td):not(#_){border-color:var(--rule-2)!important;}
+html body .tbl th:not(#_){background:transparent;font-weight:600;}
+html body .faq details:not(#_){border-bottom:1px solid var(--rule-2);}
+html body .faq .q-t:not(#_){font-weight:600;}
+
+/* ── 本文 ── */
+html body .lead:not(#_){font-size:clamp(18px,1.6vw,21px);line-height:1.7;color:var(--ink-2);}
+html body .show-card .ph .tag:not(#_),html body .tt-ph .tag:not(#_){
+  background:rgba(255,255,255,.9);border:0;border-radius:980px;color:var(--ink);font-weight:500;
+}
+
+/* ── 章の呼吸 ── 少しだけ広く */
+html body .sec:not(#_){padding-block:clamp(80px,7.2vw,120px);}
+@media(max-width:620px){
+  html body .sec:not(#_){padding-block:64px;}
+  html body :is(.about-title-frame h1,.erabo-hero h1,.top-fuda):not(#_){font-size:clamp(34px,9.6vw,44px);}
+  html body :is(.shead h2,.shead h1):not(#_){font-size:clamp(28px,7.6vw,34px);}
+  body{font-size:16px;}
+}
+@media(max-width:900px){
+  html body .head-in:not(#_){height:52px;}
+}
+@media (prefers-reduced-motion:reduce){
+  html body .service-step:hover:not(#_){transform:none;}
+}
+
+/* ── 仕上げ（2026-09-29 目で見て直したもの） ── */
+/* ページを切り替えたとき、読み上げのために題へ焦点を送っている（tabindex="-1"）。
+   操作で触ったものではないので、焦点の輪は出さない */
+html body [tabindex="-1"]:focus:not(#_){outline:none;}
+/* 値段は2行に積む ── 大きい値段、その下に小さく但し書き */
+html body .about-kane:not(#_){flex-direction:column;align-items:center;gap:2px;margin-top:28px;}
+html body .about-kane b:not(#_){font-size:clamp(22px,2vw,28px);}
+html body .top-fuda-box .about-kane:not(#_){margin-top:18px;}
+/* 章末の釦 ── 罫を外し、お問い合わせだけを塗る（明のときと同じ役割分担） */
+html body .sec-end:not(#_){border-top:0;}
+html body .sec-end .go-toi:not(#_){background:var(--mori);border-color:var(--mori);color:#fff;}
+html body .sec-end .go-toi:hover:not(#_){background:var(--mori-2);border-color:var(--mori-2);color:#fff;}
+html body .sec-end .go-mihon:not(#_){background:transparent;border-color:var(--mori);color:var(--mori);}
+/* えらぼっとの扉は右に図があるので、題を一段小さく */
+html body .erabo-hero h1:not(#_){font-size:clamp(36px,4.8vw,64px);}
+/* えらぼっとの料金 ── 金額の包み（.nw）が項目名の13pxを拾って小さくなっていた */
+html body .erabo-price strong .nw:not(#_){font-size:inherit;color:inherit;font-weight:inherit;}
+html body .erabo-price strong:not(#_){font-weight:600;}
+/* 奥付 ── 灰の章の直後に来ても境目が分かるように細い罫 */
+html body .colo:not(#_){border-top:1px solid var(--rule-2);}
+/* えらぼっとの扉は左寄せの組みなので、値段と釦も左にそろえる（杜工舎とは・HP作成は中央） */
+html body .erabo-hero .about-kane:not(#_){align-items:flex-start;}
+html body .erabo-hero .about-go:not(#_){justify-content:flex-start;}
+/* 本文の行間 ── 明のころの 2.0 前後が残っている所を 1.8 にそろえる */
+html body :is(.about-intro p,.lead,.waku p,.pt p,.erabo-price>p):not(#_){line-height:1.8;}
+/* 下の追従バーの札は1行で収める */
+html body .mcta a.btn-fill:not(#_){white-space:nowrap;}
+html body[data-page="hp"] .mcta a.btn-fill:not(#_){flex:0 0 auto;padding-inline:22px;}
+html body :is(.erabo-lead,.w-lead,.about-lead,.contact-intro p,.dl-d,.pf-body p,.pf-yaku li,.service-step p,.step-p,.contact .sub,.sub,.tt-lead,.tt-note):not(#_){line-height:1.8;}
 </style>
 </head>
 <body>
@@ -3299,8 +3497,9 @@ img[data-ph],img[data-photo]{background-size:cover;background-position:center;ba
     <div class="erabo-price rv">
       <div><span>初期制作</span><strong><span class="nw">198,000円（税込）</span></strong></div>
       <div><span>月額利用・保守</span><strong><span class="nw">9,800円／月（税込）</span></strong></div>
+      <div><span>納期</span><strong>2週間ほど</strong></div>
       <div><span>契約期間</span><strong>1年</strong></div>
-      <p>業界・商品調査、設問・配点設計、商品データ登録、Webアプリ制作、既存サイトへの設置、初期修正を含みます。契約期間中、同一商品群・同一の選定ロジックを競合他社へ提供しません。契約期間の満了後の取り扱いは、お申し込み時にお知らせします。</p>
+      <p>業界・商品調査、設問・配点設計、商品データ登録、Webアプリ制作、既存サイトへの設置、初期修正を含みます。契約期間中、同一商品群・同一の選定ロジックを競合他社へ提供しません。契約期間の満了後も、納品したWebアプリ（HTML）はそのままお使いいただけます。ただし満了後は、同一商品群・同一の選定ロジックを競合他社へ提供しない取り決めは終了します。</p>
     </div>
   </div>
 </section>
