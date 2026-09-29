@@ -20,241 +20,241 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"杜工舎","alternateName":"もりこうしゃ","url":"https://morikosha.com/","email":"info@morikosha.com","description":"つくる側が持つ仕事と知識を、探す人・選ぶ人へつなぐWebの工房。まちを作る会社のホームページ制作と、商品選定Webアプリ『えらぼっと』を提供。","areaServed":{"@type":"Country","name":"日本"},"founder":{"@type":"Person","name":"上原 光瑛"},"priceRange":"¥98,000〜¥198,000","address":{"@type":"PostalAddress","addressCountry":"JP","addressRegion":"埼玉県","addressLocality":"さいたま市大宮区","streetAddress":"高鼻町３丁目"}}</script>
 <script type="application/ld+json" data-faq="1">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"写真がありません。それでも作れますか？","acceptedAnswer":{"@type":"Answer","text":"作れます。スマートフォンで撮ったもので十分です。現場の様子、重機、完成した構造物、事務所や社屋。このあたりが5〜10枚あれば形になります。きれいに撮る必要はありません。むしろ、実際の現場の写真のほうが伝わります。 ご用意が難しい部分は、サンプルで使っている写真（商用利用できるフリー素材）をそのまま使えます。"}},{"@type":"Question","name":"文章が苦手です。","acceptedAnswer":{"@type":"Answer","text":"ご記入シートで業種をお選びいただくと、その業種のサンプルページで実際に使っている文章が、記入欄の右側に表示されます。それを参考に、御社のことに書き換えてご記入ください。各項目には記入のワンポイントアドバイスを添えています。空欄のままご返送いただいた項目は掲載いたしません。"}},{"@type":"Question","name":"打ち合わせなしで、本当にできますか？","acceptedAnswer":{"@type":"Answer","text":"はい。ご記入シートと写真だけで作れる設計にしています。「何度も訪問してご要望をうかがう」という進め方をしていない、という意味ですので、メールでのご質問はいつでも歓迎です。"}},{"@type":"Question","name":"毎月の費用はかかりますか？","acceptedAnswer":{"@type":"Answer","text":"ホームページ制作について、当方にお支払いいただく月々の費用はありません。制作費のお支払いで完了です。 公開後にかかるのは、御社名義でご契約いただくサーバーとドメインの利用料だけです（あわせて年8,000〜20,000円ほど）。これは御社から各社へ直接お支払いいただくもので、当方が受け取るものではありません。 文言を直したい、記事を足したい、といったご相談は、そのつどお受けします。使わなければ費用は発生しません。"}},{"@type":"Question","name":"他社と同じデザインになりませんか？","acceptedAnswer":{"@type":"Answer","text":"同じ型を複数の会社さまにご提供しています。それが、この価格の理由です。ただし、写真・文章・会社情報はすべて御社のものに入れ替わり、配色も御社に合わせて無料で変えられますので、並べて見比べても同じサイトには見えません。"}},{"@type":"Question","name":"埼玉県外ですが、頼めますか？","acceptedAnswer":{"@type":"Answer","text":"お受けできます。やり取りはメールとデータで完結しますので、全国どちらからでもご依頼いただけます。"}},{"@type":"Question","name":"サンプルの文章は変えられますか？","acceptedAnswer":{"@type":"Answer","text":"変えられます。レイアウトはそのままに、文章はすべて御社の内容で作ります。 お渡ししたあと2週間のご確認の期間中は、1回に限り無償で直します。その期間を過ぎたあとは、文章の修正・写真の入れ替えを1回20,000円（税込）で承ります。"}}]}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ECEBE7'/%3E%3Ctext x='32' y='47' font-size='50' font-family='serif' font-weight='700' text-anchor='middle' fill='%232E5741'%3E杜%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="assets/site/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Jost:wght@400;500&family=Cormorant+Garamond:wght@400;500&display=swap">
 <script>document.documentElement.classList.add('js');</script>
 <style>
 /* ══════════════════════════════════════════════════════════════════
-   杜工舎 本体サイト ── 2026-09-29 ゼロから組み直した版
-   みつさんの指示「https://rakugei.jp/ を参考に、ゼロベースで作り替えて」。
+   杜工舎 本体サイト ── 2026-09-29（第2版）
+   みつさんの指示「rakugei.jp をベースにデザインを作り替えて。内容はこれまでを踏襲」。
 
    決めごと
-     1. 地は暖かい薄灰（--ground）。読ませる面は白（--paper）。濃い面は炭（--char）の1色だけ
-     2. 差し色は杜の緑（--mori）ひと系。押せるものと、ごく小さな印にだけ使う
-     3. 書体は3つ。日本語は明朝、英字の見出しは字間を広げたゴシックの大文字、英語の添えは細いセリフ
-     4. 写真は全面か、白い囲みと互い違いに重ねる。角は丸めない。影は付けない
+     1. 地は無彩色の灰（--ground #EBEBEB）。読ませる面は白。濃い面は炭（--char）
+     2. 色は灰・白・炭と写真だけ。差し色を持たない。押せるものは「文字＋長い線」で示す
+     3. 書体は3つ。日本語は明朝（字間を広く）、英字の札は細い大文字、英語の本文は細いセリフ（淡い灰）
+     4. 日本語と英語を左右に並べる。写真は全面か、白い囲みと互い違いに重ねる。角丸・影なし
      5. 字の床は12px。押せるものは44px以上
    ══════════════════════════════════════════════════════════════════ */
 
 :root{
-  --ground:#ECEBE7;
-  --ground-2:#E2E0DA;
+  --ground:#EBEBEB;
+  --ground-2:#E0E0E0;
   --paper:#FFFFFF;
-  --char:#23282A;
-  --char-2:#2E3437;
+  --char:#262A2C;
+  --char-2:#313638;
+  --char-3:#1E2123;
 
-  --ink:#1E2122;      /* 薄灰の上 14.5:1 */
-  --ink-2:#44494B;    /* 薄灰の上  8.4:1 */
-  --ink-3:#62676A;    /* 薄灰の上  5.0:1／白の上 5.9:1 ── これより薄い字は置かない */
-  --on-char:#ECEDEA;  /* 炭の上 13.6:1 */
-  --on-char-2:#B4BABC;/* 炭の上  7.9:1 */
+  --ink:#222425;      /* 灰の上 13.1:1 */
+  --ink-2:#45494B;    /* 灰の上  7.9:1 */
+  --ink-3:#62666A;    /* 灰の上  4.9:1／白の上 5.9:1 ── これより薄い字は置かない */
+  --on-char:#ECEDEC;
+  --on-char-2:#B3B8BA; /* 炭の上 7.6:1 */
 
-  --line:#CBC8C0;
-  --line-ui:#8D8F8C;  /* 押せるものの輪郭（3:1以上） */
-
-  --mori:#2E5741;
-  --mori-2:#23452F;
+  --line:#C9C9C9;
+  --line-ui:#8A8C8D;
 
   --ff-ja:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
-  --ff-label:"Jost","Helvetica Neue",Arial,"Hiragino Sans",sans-serif;
+  --ff-label:"Jost","Helvetica Neue",Arial,sans-serif;
   --ff-en:"Cormorant Garamond","Times New Roman",serif;
 
-  --shell:1200px;
-  --gut:clamp(20px,4vw,56px);
-  --sec:clamp(88px,10vw,150px);
-  --hd:84px;
+  --shell:1180px;
+  --gut:clamp(20px,5vw,72px);
+  --sec:clamp(96px,11vw,170px);
+  --hd:72px;
 }
 
 *,*::before,*::after{box-sizing:border-box;}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hd) + 8px);-webkit-text-size-adjust:100%;}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
-body{
-  margin:0;background:var(--ground);color:var(--ink);
-  font-family:var(--ff-ja);font-size:16px;line-height:2;letter-spacing:.08em;
-  font-feature-settings:"palt" 0;
-  -webkit-font-smoothing:antialiased;
-}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--ff-ja);
+  font-size:15px;line-height:2.1;letter-spacing:.12em;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 img{display:block;max-width:100%;height:auto;}
 a{color:inherit;}
 h1,h2,h3,h4,p,ul,ol,dl,dd,figure{margin:0;}
 ul,ol{padding:0;list-style:none;}
 button{font:inherit;color:inherit;}
-:focus-visible{outline:2px solid var(--mori);outline-offset:3px;}
-.char :focus-visible,.hero :focus-visible,.hd:not(.is-solid) :focus-visible{outline-color:#fff;}
-.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+.char :focus-visible,.hero :focus-visible,.hd:not(.is-solid) :focus-visible,.tab:focus-visible,.colo :focus-visible{outline-color:#fff;}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--char);color:#fff;padding:10px 16px;font-size:14px;text-decoration:none;}
 .skip:focus{top:12px;}
 .nw{white-space:nowrap;}
-.wrap{max-width:var(--shell);margin-inline:auto;padding-inline:var(--gut);}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+.wrap{max-width:calc(var(--shell) + var(--gut) * 2);margin-inline:auto;padding-inline:var(--gut);}
 
-/* ── 英字の札 ── */
-.lb{font-family:var(--ff-label);font-weight:500;font-size:13px;letter-spacing:.28em;text-transform:uppercase;line-height:1.4;}
-.en{font-family:var(--ff-en);font-size:17px;line-height:1.9;letter-spacing:.04em;color:var(--ink-3);}
+.lb{font-family:var(--ff-label);font-weight:400;font-size:13px;letter-spacing:.3em;text-transform:uppercase;line-height:1.4;}
+.en{font-family:var(--ff-en);font-size:16.5px;line-height:1.95;letter-spacing:.05em;color:var(--ink-3);}
+.en-h{font-family:var(--ff-en);font-size:clamp(19px,1.7vw,23px);line-height:1.75;letter-spacing:.08em;color:var(--ink-3);}
 
 /* ══════════ 頭 ══════════ */
-.hd{position:fixed;inset:0 0 auto 0;z-index:40;height:var(--hd);
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  padding-inline:clamp(20px,3vw,40px);color:var(--ink);background:rgba(255,255,255,.96);
-  border-bottom:1px solid rgba(0,0,0,.06);transition:background .35s,color .35s,border-color .35s;}
-.js .hd:not(.is-solid){background:transparent;color:#fff;border-bottom-color:transparent;}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-height:44px;}
-.brand svg{width:26px;height:32px;flex:none;}
-.brand .b-ja{font-size:21px;font-weight:600;letter-spacing:.22em;line-height:1;}
-.brand .b-en{font-family:var(--ff-label);font-size:12px;letter-spacing:.3em;line-height:1;opacity:.9;}
-.brand .b-t{display:flex;flex-direction:column;gap:6px;}
-.nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,34px);}
-.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;min-height:44px;justify-content:center;position:relative;}
-.nav a .lb{font-size:12px;letter-spacing:.24em;}
-.nav a .ja{font-size:12px;letter-spacing:.1em;line-height:1.2;opacity:.85;}
-.nav a::after{content:"";position:absolute;left:50%;bottom:2px;width:0;height:1px;background:currentColor;transition:width .3s,left .3s;}
-.nav a:hover::after{left:25%;width:50%;}
-.nav .nav-cta{border:1px solid currentColor;padding:6px 16px;}
-.nav .nav-cta::after{display:none;}
-.menu-btn{display:none;background:none;border:0;width:48px;height:48px;padding:12px;cursor:pointer;}
+.hd{position:fixed;inset:0 0 auto 0;z-index:40;height:var(--hd);display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding-inline:clamp(20px,2.4vw,36px);background:rgba(255,255,255,.97);color:var(--ink);transition:background .4s,color .4s,height .4s,padding .4s;}
+.logo-s{display:flex;align-items:center;gap:12px;text-decoration:none;min-height:44px;}
+.logo-s .logo-img{width:auto;height:40px;flex:none;}
+.logo-s .j{font-size:17px;font-weight:600;letter-spacing:.24em;line-height:1;}
+.logo-s .w{font-family:var(--ff-label);font-size:13px;letter-spacing:.24em;line-height:1;}
+.logo-b{display:none;}
+.nav{display:flex;align-items:center;gap:clamp(18px,2.6vw,44px);}
+.nav a{position:relative;display:flex;align-items:center;min-height:44px;text-decoration:none;font-family:var(--ff-label);font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;}
+.nav a::after{content:"";position:absolute;left:50%;bottom:6px;width:0;height:1px;background:currentColor;transform:translateX(-50%);transition:width .3s;}
+.nav a:hover::after,.nav a.cur::after{width:22px;}
+.menu-btn{display:none;background:none;border:0;width:48px;height:48px;padding:13px 10px;cursor:pointer;}
 .menu-btn i{display:block;height:1px;background:currentColor;margin:7px 0;}
 
-.mnav{position:fixed;inset:0;z-index:60;background:var(--char);color:var(--on-char);
-  display:none;flex-direction:column;padding:24px var(--gut) 40px;overflow:auto;}
+/* 扉の上にいるあいだ ── 大きな紋のロゴと白い字。巻いたら細い白い帯へ */
+.js .hd:not(.is-solid){background:transparent;color:#fff;height:210px;align-items:flex-start;padding-top:44px;}
+.js .hd:not(.is-solid) .logo-s{display:none;}
+.js .hd:not(.is-solid) .logo-b{display:flex;}
+.logo-b{flex-direction:column;align-items:center;gap:12px;text-decoration:none;}
+.seal{border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex:none;}
+.logo-b .seal{width:120px;height:120px;}
+.logo-b .seal .logo-img{width:auto;height:100px;margin-top:4px;}
+.seal-s{width:44px;height:44px;}
+.seal-s .logo-img{width:auto;height:38px;}
+.logo-b .j{font-size:22px;font-weight:600;letter-spacing:.3em;line-height:1;padding-left:.3em;text-shadow:0 1px 10px rgba(0,0,0,.3);}
+.logo-b .w{font-family:var(--ff-label);font-size:12px;letter-spacing:.3em;line-height:1;padding-left:.3em;}
+.js .hd:not(.is-solid) .nav{margin-top:40px;}
+.js .hd:not(.is-solid) .nav a{text-shadow:0 1px 8px rgba(0,0,0,.35);}
+
+.mnav{position:fixed;inset:0;z-index:60;background:var(--char);color:var(--on-char);display:none;flex-direction:column;padding:20px var(--gut) 40px;overflow:auto;}
 .mnav.open{display:flex;}
 .mnav-top{display:flex;justify-content:space-between;align-items:center;min-height:56px;}
 .mnav-close{background:none;border:1px solid var(--on-char-2);min-height:44px;padding:0 16px;cursor:pointer;font-size:14px;letter-spacing:.12em;}
-.mnav ol{margin-top:28px;}
-.mnav li a{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);text-decoration:none;font-size:19px;letter-spacing:.14em;}
+.mnav ol{margin-top:24px;}
+.mnav li a{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);text-decoration:none;font-size:18px;letter-spacing:.16em;}
 .mnav li a .lb{color:var(--on-char-2);font-size:12px;}
 .mnav-mail{margin-top:28px;font-size:14px;color:var(--on-char-2);}
 .mnav-mail a{color:var(--on-char);display:inline-block;min-height:44px;line-height:44px;}
 
 /* ══════════ 扉 ══════════ */
-.hero{position:relative;height:min(100svh,900px);min-height:560px;background:#1b1f20;color:#fff;overflow:hidden;}
+.hero{position:relative;height:100svh;min-height:600px;max-height:1100px;background:#1b1e1f;color:#fff;overflow:hidden;}
 .hero-ph{position:absolute;inset:0;margin:0;}
-.hero-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.6s ease;}
-.hero-ph img.on{opacity:1;}
-.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(90deg,rgba(15,18,19,.45) 0%,rgba(15,18,19,0) 45%),
-             linear-gradient(180deg,rgba(15,18,19,.55) 0%,rgba(15,18,19,.08) 28%,rgba(15,18,19,.12) 60%,rgba(15,18,19,.62) 100%);}
-.hero-copy{position:absolute;z-index:2;left:clamp(40px,12vw,220px);top:50%;transform:translateY(-46%);
-  writing-mode:vertical-rl;font-size:clamp(28px,3.2vw,44px);font-weight:500;letter-spacing:.34em;line-height:1.9;
-  text-shadow:0 1px 18px rgba(0,0,0,.35);}
-.hero-copy span{display:block;white-space:nowrap;}
-.hero-copy span+span{margin-right:.2em;padding-top:2.2em;}
-.hero-foot{position:absolute;z-index:2;left:clamp(20px,3vw,40px);right:clamp(20px,3vw,40px);bottom:clamp(24px,4vw,48px);
-  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;}
-.hero-lead{max-width:30em;font-size:14px;line-height:2;letter-spacing:.1em;text-shadow:0 1px 10px rgba(0,0,0,.4);}
-.scroll{display:flex;align-items:center;gap:12px;writing-mode:vertical-rl;font-family:var(--ff-label);font-size:12px;letter-spacing:.3em;text-transform:uppercase;}
-.scroll::after{content:"";width:1px;height:64px;background:rgba(255,255,255,.7);}
+.hero-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity 1.8s ease,transform 8s linear;}
+.hero-ph img.on{opacity:1;transform:scale(1);}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,0) 34%,rgba(0,0,0,0) 72%,rgba(0,0,0,.3) 100%);}
+.dots{position:absolute;z-index:2;right:clamp(14px,2vw,30px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;}
+.dots button{width:44px;height:30px;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;color:#fff;}
+.dots button::before{content:"";width:7px;height:7px;border:1px solid currentColor;transform:rotate(45deg);}
+.dots button[aria-current="true"]::before{background:currentColor;}
+.dots .num{font-family:var(--ff-label);font-size:12px;letter-spacing:.14em;margin-top:8px;}
+.scroll{position:absolute;z-index:2;left:clamp(18px,2.4vw,36px);bottom:0;display:flex;flex-direction:column;align-items:center;gap:14px;
+  font-family:var(--ff-label);font-size:12px;letter-spacing:.32em;text-shadow:0 1px 8px rgba(0,0,0,.4);}
+.scroll span{writing-mode:vertical-rl;}
+.scroll::after{content:"";width:1px;height:90px;background:rgba(255,255,255,.8);}
 
 /* ══════════ 章の頭 ══════════ */
 .sec{padding-block:var(--sec);}
-.sh{margin-bottom:clamp(40px,5vw,72px);}
-.sh .lb{font-size:clamp(16px,1.5vw,19px);letter-spacing:.3em;}
-.sh-ja{margin-top:clamp(28px,3.4vw,44px);font-size:clamp(22px,2.4vw,30px);font-weight:500;letter-spacing:.16em;line-height:1.75;text-wrap:balance;}
-.sh-c{text-align:center;}
+.sec-h{font-family:var(--ff-label);font-size:clamp(17px,1.5vw,20px);letter-spacing:.32em;text-transform:uppercase;font-weight:400;margin-bottom:clamp(44px,5vw,72px);}
+.sec-h.c{text-align:center;padding-left:.32em;}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,110px);}
+.pair+.pair{margin-top:clamp(36px,4vw,56px);}
+.ja-h{font-size:clamp(20px,1.9vw,25px);font-weight:500;letter-spacing:.22em;line-height:1.9;text-wrap:balance;}
+.ja-b p+p{margin-top:1.3em;}
+.en p+p{margin-top:1.1em;}
+.sub-h{margin-top:clamp(80px,9vw,140px);}
+.sub-h .ja-h{font-size:clamp(18px,1.6vw,21px);}
+.sub-en{margin-top:clamp(32px,4vw,48px);}
 
-.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);}
-.two p+p{margin-top:1.4em;}
-.body-ja{font-size:16px;line-height:2.1;letter-spacing:.1em;}
+/* ── 値段の一行と、文字＋線のリンク ── */
+.kane{margin-top:44px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px;}
+.kane b{font-size:clamp(20px,1.9vw,25px);font-weight:600;letter-spacing:.14em;}
+.kane small{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;}
+.go{display:flex;flex-wrap:wrap;gap:12px 48px;margin-top:30px;}
+.ln{display:inline-flex;align-items:center;gap:18px;min-height:48px;text-decoration:none;font-size:14px;letter-spacing:.18em;color:inherit;}
+.ln::after{content:"";width:80px;height:1px;background:currentColor;transition:width .35s;}
+.ln:hover::after{width:120px;}
+.box-ln{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:54px;padding:0 30px;background:var(--char);color:#fff;text-decoration:none;font-size:14px;letter-spacing:.16em;border:0;cursor:pointer;}
+.box-ln:hover{background:#000;}
+.box-ln small{display:block;font-family:var(--ff-label);font-size:12px;letter-spacing:.18em;opacity:.85;}
 
-/* ── 値段の一行と釦 ── */
-.kane{margin-top:40px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;}
-.kane b{font-size:clamp(22px,2.2vw,28px);font-weight:600;letter-spacing:.12em;}
-.kane small{font-size:13px;color:var(--ink-3);letter-spacing:.06em;}
-.go{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:52px;padding:0 28px;
-  border:1px solid var(--ink);color:var(--ink);background:transparent;text-decoration:none;cursor:pointer;
-  font-size:14px;letter-spacing:.16em;transition:background .25s,color .25s;}
-.btn:hover{background:var(--ink);color:#fff;}
-.btn.fill{background:var(--mori);border-color:var(--mori);color:#fff;}
-.btn.fill:hover{background:var(--mori-2);border-color:var(--mori-2);}
-.btn .ar{font-family:var(--ff-label);}
-.char .btn{border-color:var(--on-char);color:var(--on-char);}
-.char .btn:hover{background:var(--on-char);color:var(--char);}
+/* ══════════ 写真のスライダー（ABOUT） ══════════ */
+.slider{position:relative;margin-top:clamp(64px,7vw,110px);}
+.slides{position:relative;aspect-ratio:16/8;overflow:hidden;background:var(--ground-2);}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease;}
+.slides img.on{opacity:1;}
+.arrows{position:absolute;right:0;bottom:0;display:flex;}
+.arrows button{width:64px;height:64px;border:0;background:var(--paper);cursor:pointer;font-family:var(--ff-label);font-size:20px;line-height:1;}
+.arrows button+button{border-left:1px solid var(--line);}
+.arrows button:hover{background:var(--ground);}
+.slider figcaption{margin-top:12px;font-size:12px;color:var(--ink-3);letter-spacing:.08em;min-height:1.9em;}
 
 /* ══════════ 写真の帯 ══════════ */
-.band{position:relative;height:clamp(300px,42vw,560px);overflow:hidden;background:#222;}
+.band{position:relative;height:clamp(320px,40vw,560px);overflow:hidden;background:#222;}
 .band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-.band::after{content:"";position:absolute;inset:0;background:rgba(12,14,15,.34);}
-.band .lb{position:absolute;z-index:1;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
-  color:#fff;font-size:clamp(20px,2.4vw,30px);letter-spacing:.36em;text-shadow:0 1px 12px rgba(0,0,0,.35);}
-.band .lb small{font-family:var(--ff-ja);font-size:14px;letter-spacing:.24em;text-transform:none;}
-.wide-ph{margin-top:clamp(56px,7vw,100px);}
-.wide-ph img{width:100%;aspect-ratio:16/7;object-fit:cover;}
-.wide-ph figcaption{margin-top:12px;font-size:12px;color:var(--ink-3);letter-spacing:.06em;}
+.band::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.3);}
+.band p{position:absolute;z-index:1;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;
+  font-family:var(--ff-label);font-size:clamp(22px,2.4vw,32px);letter-spacing:.4em;padding-left:.4em;text-transform:uppercase;text-shadow:0 1px 14px rgba(0,0,0,.3);}
 
 /* ══════════ 互い違い（写真と白い囲み） ══════════ */
-.stag{display:grid;grid-template-columns:repeat(12,1fr);align-items:start;}
-.stag+.stag{margin-top:clamp(72px,9vw,140px);}
-.stag .ph{grid-column:1 / 8;grid-row:1;}
-.stag .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;}
-.stag .card{grid-column:7 / 13;grid-row:1;margin-top:clamp(80px,12vw,180px);position:relative;z-index:1;
-  background:var(--paper);padding:clamp(32px,4.4vw,64px);display:grid;grid-template-columns:1fr auto;gap:clamp(20px,3vw,44px);}
-.stag.rev .ph{grid-column:6 / 13;}
-.stag.rev .card{grid-column:1 / 7;}
-.vt{writing-mode:vertical-rl;display:flex;gap:14px;align-items:flex-start;}
-.vt h3{font-size:clamp(24px,2.3vw,30px);font-weight:500;letter-spacing:.26em;line-height:1.3;}
-.vt .lb{font-size:12px;letter-spacing:.3em;color:var(--ink-3);}
-.card .no{font-family:var(--ff-label);font-size:12px;letter-spacing:.3em;color:var(--mori);}
-.card p{font-size:15px;line-height:2.05;letter-spacing:.08em;}
-.card .no+p{margin-top:18px;}
-.card .price{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-size:15px;letter-spacing:.08em;}
+.stag{position:relative;display:grid;grid-template-columns:repeat(12,1fr);align-items:start;margin-top:clamp(72px,9vw,140px);}
+.stag .ph{grid-column:1 / 8;grid-row:1;margin-left:calc(var(--gut) * -1);}
+.stag .ph img{width:100%;aspect-ratio:3/2;object-fit:cover;}
+.stag .card{grid-column:7 / 13;grid-row:1;margin-top:clamp(120px,14vw,220px);position:relative;z-index:1;margin-right:calc(var(--gut) * -1);
+  background:var(--paper);padding:clamp(40px,4.6vw,72px) clamp(32px,4vw,64px);display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,3vw,48px);}
+.stag.rev .ph{grid-column:6 / 13;margin-left:0;margin-right:calc(var(--gut) * -1);}
+.stag.rev .card{grid-column:1 / 7;margin-right:0;margin-left:calc(var(--gut) * -1);}
+.vt{display:flex;flex-direction:row-reverse;gap:10px;align-items:flex-start;}
+.vt h3{writing-mode:vertical-rl;font-size:clamp(22px,2vw,27px);font-weight:500;letter-spacing:.3em;line-height:1.3;}
+.vt .lb{writing-mode:vertical-rl;font-family:var(--ff-en);text-transform:none;letter-spacing:.14em;font-size:14px;color:var(--ink-3);}
+.card .no{font-family:var(--ff-label);font-size:12px;letter-spacing:.3em;color:var(--ink-3);}
+.card p{font-size:14.5px;line-height:2.15;letter-spacing:.1em;}
+.card .no+p{margin-top:14px;}
+.card p+p{margin-top:1em;}
+.card .price{margin-top:24px;padding-top:18px;border-top:1px solid var(--line);}
 .card .price b{font-weight:600;}
-.more{display:inline-flex;align-items:center;gap:14px;margin-top:26px;min-height:44px;text-decoration:none;
-  font-family:var(--ff-label);font-size:13px;letter-spacing:.24em;text-transform:uppercase;}
-.more::after{content:"";width:40px;height:1px;background:currentColor;transition:width .3s;}
-.more:hover::after{width:64px;}
-.more .ja{font-family:var(--ff-ja);text-transform:none;letter-spacing:.12em;font-size:14px;}
+.card .ln{margin-top:18px;}
+
+/* ══════════ 見本を散らす ══════════ */
+.scatter{position:relative;height:clamp(620px,72vw,1040px);margin-top:clamp(40px,5vw,72px);}
+.scatter a{position:absolute;display:block;overflow:hidden;background:var(--ground-2);}
+.scatter img{width:100%;height:100%;object-fit:cover;transition:transform 1s ease;}
+.scatter a:hover img{transform:scale(1.04);}
+.scatter a span{position:absolute;left:0;bottom:0;background:var(--paper);font-size:12px;letter-spacing:.16em;padding:4px 12px;}
+.sc1{left:calc(var(--gut) * -1);top:12%;width:24%;aspect-ratio:880/578;}
+.sc2{left:32%;top:0;width:18%;aspect-ratio:880/578;}
+.sc3{left:44%;top:9%;width:40%;aspect-ratio:880/578;z-index:1;}
+.sc4{left:6%;top:47%;width:22%;aspect-ratio:880/578;}
+.sc5{left:22%;top:56%;width:44%;aspect-ratio:880/578;z-index:1;}
+.sc6{right:calc(var(--gut) * -1);top:62%;width:26%;aspect-ratio:880/578;}
+.scatter-cap{text-align:center;margin-top:clamp(28px,3vw,48px);}
 
 /* ══════════ 見本（WORKS） ══════════ */
-.works-lead{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:end;}
-.works-lead .sh{margin-bottom:0;}
-.step{margin-top:clamp(56px,7vw,96px);}
-.step-h{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 20px;padding-bottom:16px;border-bottom:1px solid var(--line);}
-.step-h .n{font-family:var(--ff-label);font-size:13px;letter-spacing:.2em;color:var(--mori);}
-.step-h h3{font-size:clamp(19px,1.8vw,22px);font-weight:500;letter-spacing:.14em;}
-.step-h .d{font-size:13px;color:var(--ink-3);letter-spacing:.06em;}
-.step-p{margin-top:18px;font-size:15px;line-height:2;max-width:46em;}
-.step-p i{font-style:normal;display:inline-block;margin-left:10px;padding:0 10px;border:1px solid var(--line-ui);font-size:12px;letter-spacing:.08em;line-height:24px;}
-
+.step{margin-top:clamp(64px,7vw,110px);}
+.step-h{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 22px;padding-bottom:16px;border-bottom:1px solid var(--ink);}
+.step-h .n{font-family:var(--ff-label);font-size:13px;letter-spacing:.2em;}
+.step-h h3{font-size:clamp(18px,1.6vw,21px);font-weight:500;letter-spacing:.18em;}
+.step-h .d{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;}
+.step-p{margin-top:18px;font-size:14.5px;line-height:2.05;max-width:46em;}
+.step-p i{font-style:normal;display:inline-block;margin-left:10px;padding:0 10px;border:1px solid var(--line-ui);font-size:12px;letter-spacing:.1em;line-height:24px;}
 .inds{position:relative;}
 .inds input{position:absolute;opacity:0;pointer-events:none;}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
-.chip{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid var(--line-ui);background:transparent;
-  font-size:14px;letter-spacing:.12em;cursor:pointer;transition:background .2s,color .2s;}
+.chip{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid var(--line-ui);font-size:14px;letter-spacing:.14em;cursor:pointer;transition:background .2s,color .2s;}
 .chip:hover{background:var(--paper);}
-.dz-list{display:none;margin-top:36px;grid-template-columns:repeat(6,1fr);gap:clamp(20px,2.4vw,36px);}
+.dz-list{display:none;margin-top:40px;grid-template-columns:repeat(6,1fr);gap:clamp(20px,2.4vw,36px);}
 .dz{grid-column:span 2;background:var(--paper);display:flex;flex-direction:column;}
 .dz:nth-child(4){grid-column:2 / span 2;}
 .dz:nth-child(5){grid-column:4 / span 2;}
 .dz-ph{display:block;overflow:hidden;background:var(--ground-2);}
-.dz-ph img{width:100%;aspect-ratio:880/578;object-fit:cover;transition:transform .8s ease;}
+.dz-ph img{width:100%;aspect-ratio:880/578;object-fit:cover;transition:transform .9s ease;}
 .dz-ph:hover img{transform:scale(1.03);}
-.dz-b{padding:22px 24px 8px;flex:1;}
+.dz-b{padding:24px 26px 6px;flex:1;}
 .dz-k{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
-.dz-ja{font-size:30px;font-weight:600;letter-spacing:.1em;line-height:1.2;}
-.dz-yomi{font-size:12px;color:var(--ink-3);letter-spacing:.14em;}
-.dz-e{margin-top:10px;font-size:15px;letter-spacing:.1em;}
-.dz-g{margin-top:12px;font-size:13.5px;line-height:1.95;color:var(--ink-2);letter-spacing:.06em;}
-.dz-f{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 24px 14px;border-top:1px solid var(--line);margin:14px 24px 0;padding-inline:0;}
-.dz-f button,.dz-f a{min-height:44px;display:inline-flex;align-items:center;background:none;border:0;padding:0;cursor:pointer;
-  font-size:13px;letter-spacing:.1em;text-decoration:none;color:var(--mori);}
-.dz-f a:hover,.dz-f button:hover{text-decoration:underline;text-underline-offset:4px;}
-.dz-note{margin-top:40px;font-size:15px;line-height:2.05;max-width:46em;}
+.dz-ja{font-size:30px;font-weight:500;letter-spacing:.12em;line-height:1.2;}
+.dz-yomi{font-family:var(--ff-label);font-size:12px;color:var(--ink-3);letter-spacing:.16em;}
+.dz-e{margin-top:10px;font-size:14.5px;letter-spacing:.12em;}
+.dz-g{margin-top:12px;font-size:13px;line-height:2;color:var(--ink-2);letter-spacing:.08em;}
+.dz-f{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:14px 26px 0;padding:4px 0 12px;border-top:1px solid var(--line);}
+.dz-f button,.dz-f a{min-height:44px;display:inline-flex;align-items:center;background:none;border:0;padding:0;cursor:pointer;font-size:12.5px;letter-spacing:.12em;text-decoration:none;}
+.dz-f a:hover,.dz-f button:hover{text-decoration:underline;text-underline-offset:5px;}
+.dz-note{margin-top:44px;font-size:14.5px;line-height:2.1;max-width:48em;}
 .dz-note b{font-weight:600;}
+.sheet,.send{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px;background:var(--paper);padding:clamp(26px,3.2vw,44px);}
+.sheet>div,.send>div{flex:1 1 360px;}
+.sheet h4,.send h4{font-size:16px;font-weight:500;letter-spacing:.14em;}
+.sheet p,.send p{margin-top:8px;font-size:13.5px;line-height:2;color:var(--ink-2);}
 
-.sheet{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:20px 40px;background:var(--paper);padding:clamp(24px,3vw,40px);}
-.sheet-t{flex:1 1 320px;}
-.sheet-t h4{font-size:17px;font-weight:500;letter-spacing:.12em;}
-.sheet-t p{margin-top:8px;font-size:14px;line-height:1.95;color:var(--ink-2);}
-.dl{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 26px;background:var(--mori);color:#fff;text-decoration:none;letter-spacing:.1em;font-size:14px;}
-.dl:hover{background:var(--mori-2);}
-.dl small{display:block;font-family:var(--ff-label);font-size:12px;letter-spacing:.16em;opacity:.9;}
-
-.send{margin-top:22px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px 40px;background:var(--paper);padding:clamp(24px,3vw,40px);}
-.send h4{font-size:17px;font-weight:500;letter-spacing:.1em;}
-.send p{margin-top:8px;font-size:14px;line-height:1.95;color:var(--ink-2);}
-
-/* 業種ごとの5案を出し分ける（JS が無くても動くように、ラジオの印で切り替える）
-   規則は hp_build.py が業種の数だけ書き足す */
 #pi-doboku:checked ~ .step .dz-list[data-ind="doboku"]{display:grid;}
 #pi-doboku:checked ~ .step .chips label[for="pi-doboku"]{background:var(--ink);color:#fff;border-color:var(--ink);}
 #pi-doboku:focus-visible ~ .step .chips label[for="pi-doboku"]{outline:2px solid var(--mori);outline-offset:3px;}
@@ -312,167 +312,159 @@ button{font:inherit;color:inherit;}
 
 /* ── デザイン詳細（dialog） ── */
 .thd{border:0;padding:0;max-width:min(760px,calc(100vw - 32px));width:100%;background:var(--paper);color:var(--ink);max-height:calc(100svh - 32px);}
-.thd::backdrop{background:rgba(20,24,25,.72);}
+.thd::backdrop{background:rgba(20,22,23,.74);}
 .thd-in{position:relative;}
 .thd-x{position:absolute;top:10px;right:10px;z-index:2;width:48px;height:48px;border:0;background:var(--paper);cursor:pointer;font-size:22px;line-height:1;}
 .thd-ph img{width:100%;aspect-ratio:880/578;object-fit:cover;}
-.thd-b{padding:clamp(24px,4vw,44px);}
-.thd-no{font-family:var(--ff-label);font-size:12px;letter-spacing:.3em;color:var(--mori);}
+.thd-b{padding:clamp(24px,4vw,48px);}
+.thd-no{font-family:var(--ff-label);font-size:12px;letter-spacing:.3em;color:var(--ink-3);}
 .thd-k{display:flex;align-items:baseline;gap:12px;margin-top:10px;}
-.thd-ja{font-size:34px;font-weight:600;letter-spacing:.1em;line-height:1.2;}
+.thd-ja{font-size:34px;font-weight:500;letter-spacing:.12em;line-height:1.2;}
 .thd-yomi{font-size:13px;color:var(--ink-3);}
-.thd-e{margin-top:10px;font-size:17px;letter-spacing:.1em;}
-.thd-d{margin-top:16px;font-size:14.5px;line-height:2.05;color:var(--ink-2);}
-.thd-m{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:14px;line-height:1.9;}
+.thd-e{margin-top:10px;font-size:16px;letter-spacing:.12em;}
+.thd-d{margin-top:16px;font-size:14px;line-height:2.1;color:var(--ink-2);}
+.thd-m{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.95;}
 .thd-m b{display:block;font-weight:600;margin-bottom:4px;}
-.thd-go{display:inline-flex;align-items:center;gap:10px;margin-top:22px;min-height:48px;padding:0 22px;background:var(--mori);color:#fff;text-decoration:none;font-size:14px;letter-spacing:.1em;}
-.thd-go small{font-size:12px;opacity:.9;}
+.thd-go{display:inline-flex;align-items:center;gap:10px;margin-top:22px;min-height:50px;padding:0 24px;background:var(--char);color:#fff;text-decoration:none;font-size:14px;letter-spacing:.12em;}
+.thd-go small{font-size:12px;opacity:.85;}
 
-/* ══════════ 理由（WHY） ══════════ */
-.why{background:var(--paper);}
-.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,64px);}
-.rs .n{font-family:var(--ff-en);font-size:48px;line-height:1;color:var(--mori);letter-spacing:0;}
-.rs h3{margin-top:18px;font-size:19px;font-weight:500;letter-spacing:.12em;line-height:1.7;}
-.rs p{margin-top:14px;font-size:14.5px;line-height:2.05;letter-spacing:.06em;}
+/* ══════════ WHY ══════════ */
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,64px);margin-top:clamp(48px,5vw,72px);}
+.rs{border-top:1px solid var(--ink);padding-top:22px;}
+.rs .n{font-family:var(--ff-en);font-size:44px;line-height:1;letter-spacing:.04em;}
+.rs h3{margin-top:18px;font-size:17px;font-weight:500;letter-spacing:.16em;line-height:1.8;}
+.rs p{margin-top:14px;font-size:14px;line-height:2.1;letter-spacing:.08em;}
 .rs p b{font-size:1.25em;font-weight:600;}
-.rs .src{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;line-height:1.85;color:var(--ink-3);letter-spacing:.02em;}
+.rs .src{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;line-height:1.9;color:var(--ink-3);letter-spacing:.03em;}
 
-/* ══════════ 料金 ══════════ */
-.plans{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);align-items:start;}
-.plan{background:var(--paper);padding:clamp(28px,3.6vw,52px);}
-.plan h3{font-size:18px;font-weight:500;letter-spacing:.14em;padding-bottom:18px;border-bottom:1px solid var(--ink);}
+/* ══════════ PRICE ══════════ */
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);align-items:start;margin-top:clamp(48px,5vw,72px);}
+.plan{background:var(--paper);padding:clamp(30px,3.8vw,56px);}
+.plan h3{font-size:17px;font-weight:500;letter-spacing:.18em;padding-bottom:18px;border-bottom:1px solid var(--ink);}
 .row{display:grid;grid-template-columns:1fr auto;gap:6px 24px;padding:22px 0;border-bottom:1px solid var(--line);}
-.row h4{font-size:16px;font-weight:600;letter-spacing:.1em;}
-.row .p{font-size:clamp(19px,1.8vw,23px);font-weight:600;letter-spacing:.06em;white-space:nowrap;text-align:right;}
-.row p{grid-column:1 / -1;font-size:13.5px;line-height:1.95;color:var(--ink-2);}
-.plan .fine{margin-top:18px;font-size:13.5px;line-height:2;color:var(--ink-2);}
+.row h4{font-size:15px;font-weight:600;letter-spacing:.12em;}
+.row .p{font-size:clamp(18px,1.7vw,22px);font-weight:600;letter-spacing:.08em;white-space:nowrap;text-align:right;}
+.row p{grid-column:1 / -1;font-size:13px;line-height:2;color:var(--ink-2);}
+.plan .fine{margin-top:18px;font-size:13px;line-height:2.05;color:var(--ink-2);}
 .plan .fine b{color:var(--ink);font-weight:600;}
 .plan .fine+.fine{margin-top:10px;}
-.daiko{margin-top:clamp(32px,4vw,56px);background:var(--paper);padding:clamp(28px,3.6vw,52px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);}
-.daiko h3{font-size:18px;font-weight:500;letter-spacing:.14em;}
-.daiko p{font-size:14.5px;line-height:2.05;}
+.daiko{margin-top:clamp(32px,4vw,56px);background:var(--paper);padding:clamp(30px,3.8vw,56px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);}
+.daiko h3{font-size:17px;font-weight:500;letter-spacing:.18em;}
+.daiko p{font-size:14px;line-height:2.1;}
 .daiko p+p{margin-top:12px;}
-.flow{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
-.flow li{font-size:12.5px;letter-spacing:.04em;line-height:1.6;padding:6px 12px;border:1px solid var(--line-ui);background:var(--ground);}
+.flow{display:flex;flex-wrap:wrap;gap:8px;}
+.flow li{font-size:12.5px;letter-spacing:.05em;line-height:1.6;padding:6px 12px;border:1px solid var(--line-ui);background:var(--ground);}
 .flow+p{margin-top:18px;}
 
 /* ══════════ えらぼっと ══════════ */
-.erabo-top{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:center;}
-.erabo-top h2{font-size:clamp(28px,3.4vw,44px);font-weight:500;letter-spacing:.14em;line-height:1.6;margin-top:28px;}
-.erabo-top .lead{margin-top:28px;font-size:16px;line-height:2.1;}
-.diagram{background:var(--paper);padding:clamp(20px,3vw,40px);}
+.diagram{background:var(--paper);padding:clamp(20px,3vw,44px);}
 .diagram svg{width:100%;height:auto;}
-.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:clamp(56px,7vw,96px);border-top:1px solid var(--ink);}
-.proc li{padding:26px clamp(14px,2vw,28px) 10px 0;}
-.proc li+li{padding-left:clamp(14px,2vw,28px);border-left:1px solid var(--line);}
-.proc .n{font-family:var(--ff-label);font-size:12px;letter-spacing:.24em;color:var(--mori);}
-.proc h3{margin-top:12px;font-size:17px;font-weight:500;letter-spacing:.1em;}
-.proc p{margin-top:10px;font-size:14px;line-height:1.95;color:var(--ink-2);}
-.erabo-intro{margin-top:clamp(40px,5vw,64px);max-width:46em;font-size:15px;line-height:2.05;}
-.erabo-plan{margin-top:clamp(40px,5vw,64px);background:var(--paper);padding:clamp(28px,3.6vw,52px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,64px);}
+.proc{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(64px,7vw,110px);border-top:1px solid var(--ink);}
+.proc li{padding:26px clamp(14px,2vw,30px) 10px 0;}
+.proc li+li{padding-left:clamp(14px,2vw,30px);border-left:1px solid var(--line);}
+.proc .n{font-family:var(--ff-label);font-size:12px;letter-spacing:.24em;color:var(--ink-3);}
+.proc h3{margin-top:12px;font-size:16px;font-weight:500;letter-spacing:.14em;}
+.proc p{margin-top:10px;font-size:13.5px;line-height:2;color:var(--ink-2);}
+.erabo-plan{margin-top:clamp(56px,6vw,90px);background:var(--paper);padding:clamp(30px,3.8vw,56px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);}
+.erabo-plan h3{font-size:17px;font-weight:500;letter-spacing:.18em;margin-top:14px;}
 .erabo-plan dl{border-top:1px solid var(--ink);}
 .erabo-plan dl div{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);}
-.erabo-plan dt{font-size:14px;letter-spacing:.1em;}
-.erabo-plan dd{font-size:clamp(17px,1.6vw,20px);font-weight:600;letter-spacing:.06em;text-align:right;}
-.erabo-plan p{font-size:14px;line-height:2.05;color:var(--ink-2);}
+.erabo-plan dt{font-size:14px;letter-spacing:.12em;}
+.erabo-plan dd{font-size:clamp(16px,1.5vw,19px);font-weight:600;letter-spacing:.08em;text-align:right;}
+.erabo-plan p{margin-top:18px;font-size:13.5px;line-height:2.1;color:var(--ink-2);}
 
-/* ══════════ 見本を散らす ══════════ */
-.scatter{position:relative;display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(26px,3vw,44px);gap:0 clamp(12px,1.6vw,24px);}
-.scatter a{display:block;position:relative;overflow:hidden;background:var(--ground-2);}
-.scatter img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;}
-.scatter a:hover img{transform:scale(1.04);}
-.scatter a span{position:absolute;left:0;bottom:0;background:var(--paper);font-size:12px;letter-spacing:.14em;padding:4px 10px;}
-.sc1{grid-column:1 / 4;grid-row:1 / 5;}
-.sc2{grid-column:5 / 9;grid-row:3 / 8;}
-.sc3{grid-column:10 / 13;grid-row:1 / 5;}
-.sc4{grid-column:2 / 5;grid-row:7 / 11;}
-.sc5{grid-column:9 / 13;grid-row:7 / 12;}
-.sc6{grid-column:5 / 8;grid-row:10 / 14;}
-.scatter-cap{text-align:center;margin-top:clamp(40px,5vw,64px);}
-
-/* ══════════ 代表（PROFILE） ══════════ */
-.pf{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);}
-.pf-name{font-size:clamp(28px,2.8vw,36px);font-weight:500;letter-spacing:.24em;line-height:1.4;}
-.pf-roma{margin-top:10px;font-family:var(--ff-en);font-size:18px;letter-spacing:.14em;color:var(--ink-3);}
-.pf-role{margin-top:18px;font-size:14px;letter-spacing:.08em;line-height:1.9;}
-.pf-body p{font-size:15.5px;line-height:2.15;letter-spacing:.08em;}
+/* ══════════ PROFILE（参考サイトの COMPANY の形） ══════════ */
+.company{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,6vw,110px);align-items:start;}
+.company .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;}
+.company figcaption{margin-top:12px;font-family:var(--ff-label);font-size:12px;letter-spacing:.16em;color:var(--ink-3);}
+.info .lb{font-size:15px;margin-bottom:26px;}
+.info dl div{display:grid;grid-template-columns:8em 1fr;gap:12px;padding:5px 0;font-size:13.5px;line-height:1.95;}
+.info dt{letter-spacing:.14em;}
+.info dd{letter-spacing:.1em;}
+.info dl.en{margin-top:34px;}
+.info dl.en div{font-size:15.5px;}
+.info dl.en dt{letter-spacing:.06em;}
+.pf-name{margin-top:clamp(80px,9vw,130px);display:flex;align-items:baseline;gap:10px 24px;flex-wrap:wrap;}
+.pf-name b{font-size:clamp(24px,2.4vw,32px);font-weight:500;letter-spacing:.3em;}
+.pf-name span{font-family:var(--ff-en);font-size:18px;letter-spacing:.16em;color:var(--ink-3);}
+.pf-name small{font-size:13px;letter-spacing:.12em;color:var(--ink-2);}
+.pf-body{margin-top:28px;}
+.pf-body p{font-size:15px;line-height:2.2;letter-spacing:.1em;}
 .pf-body p+p{margin-top:1.3em;}
 .pf-body .strong{font-weight:600;}
-.tbl{margin-top:clamp(48px,6vw,80px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(24px,6vw,96px);}
-.tbl h3{font-size:18px;font-weight:500;letter-spacing:.16em;}
+.tbl{margin-top:clamp(56px,6vw,90px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(24px,6vw,110px);}
+.tbl h3{font-size:17px;font-weight:500;letter-spacing:.2em;}
 .tbl h3 .lb{display:block;margin-bottom:10px;font-size:12px;color:var(--ink-3);}
-.tbl dl div{display:grid;grid-template-columns:7.5em 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);}
-.tbl dl div:first-child{border-top:1px solid var(--line);}
+.tbl dl div{display:grid;grid-template-columns:7em 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);}
+.tbl dl div:first-child,.tbl ul li:first-child,.ways li:first-child{border-top:1px solid var(--line);}
 .tbl dt{font-family:var(--ff-label);font-size:13px;letter-spacing:.1em;color:var(--ink-3);padding-top:3px;}
-.tbl dd{font-size:15px;line-height:1.95;}
-.tbl dd small{display:block;font-size:13px;color:var(--ink-2);line-height:1.85;margin-top:2px;}
-.tbl ul li{padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.9;}
-.tbl ul li:first-child{border-top:1px solid var(--line);}
-.tbl ul li small{display:block;font-size:13px;color:var(--ink-2);}
-.tbl .note{margin-top:16px;font-size:13.5px;line-height:1.95;color:var(--ink-2);}
+.tbl dd{font-size:14.5px;line-height:1.95;}
+.tbl dd small,.tbl ul li small{display:block;font-size:12.5px;color:var(--ink-2);line-height:1.85;margin-top:2px;}
+.tbl ul li{padding:14px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.9;}
+.tbl .note{margin-top:16px;font-size:13px;line-height:2;color:var(--ink-2);}
 .ways li{padding:18px 0;border-bottom:1px solid var(--line);}
-.ways li:first-child{border-top:1px solid var(--line);}
-.ways h4{font-size:16px;font-weight:600;letter-spacing:.1em;}
-.ways p{margin-top:6px;font-size:14px;line-height:1.95;color:var(--ink-2);}
+.ways h4{font-size:15px;font-weight:600;letter-spacing:.12em;}
+.ways p{margin-top:6px;font-size:13.5px;line-height:2;color:var(--ink-2);}
 .labs{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.labs div{background:var(--paper);padding:22px 24px;}
-.labs h4{font-size:17px;font-weight:500;letter-spacing:.14em;}
+.labs div{background:var(--paper);padding:24px 26px;}
+.labs h4{font-size:16px;font-weight:500;letter-spacing:.16em;}
 .labs h4 .lb{margin-left:10px;font-size:12px;color:var(--ink-3);}
-.labs p{margin-top:8px;font-size:14px;line-height:1.9;color:var(--ink-2);}
+.labs p{margin-top:8px;font-size:13.5px;line-height:1.95;color:var(--ink-2);}
 .labs .soon{display:inline-block;margin-top:12px;font-size:12px;letter-spacing:.14em;border:1px solid var(--line-ui);padding:2px 10px;color:var(--ink-2);}
 
-/* ══════════ よくある質問 ══════════ */
-.faq{background:var(--paper);}
-.qa{max-width:900px;margin-inline:auto;border-top:1px solid var(--ink);}
+/* ══════════ Q&A ══════════ */
+.qa{max-width:920px;margin-inline:auto;border-top:1px solid var(--ink);}
 .qa details{border-bottom:1px solid var(--line);}
-.qa summary{list-style:none;display:grid;grid-template-columns:3.2em 1fr 24px;align-items:center;gap:12px;padding:22px 0;cursor:pointer;min-height:44px;}
+.qa summary{list-style:none;display:grid;grid-template-columns:3.4em 1fr 24px;align-items:center;gap:12px;padding:22px 0;cursor:pointer;min-height:44px;}
 .qa summary::-webkit-details-marker{display:none;}
-.qa .qn{font-family:var(--ff-en);font-size:22px;color:var(--mori);}
-.qa .qt{font-size:16px;letter-spacing:.1em;line-height:1.7;}
-.qa summary::after{content:"";width:12px;height:12px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transform:rotate(45deg);margin-top:-6px;transition:transform .3s;}
+.qa .qn{font-family:var(--ff-en);font-size:22px;}
+.qa .qt{font-size:15px;letter-spacing:.14em;line-height:1.8;}
+.qa summary::after{content:"";width:11px;height:11px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transform:rotate(45deg);margin-top:-6px;transition:transform .3s;}
 .qa details[open] summary::after{transform:rotate(-135deg);margin-top:6px;}
-.qa .qa-a{padding:0 0 26px 3.2em;margin-left:12px;}
-.qa .qa-a p{font-size:14.5px;line-height:2.05;color:var(--ink-2);}
+.qa .qa-a{padding:0 0 26px calc(3.4em + 12px);}
+.qa .qa-a p{font-size:14px;line-height:2.1;color:var(--ink-2);}
 .qa .qa-a p+p{margin-top:10px;}
 
-/* ══════════ お問い合わせ ══════════ */
+/* ══════════ CONTACT ══════════ */
 .char{background:var(--char);color:var(--on-char);}
-.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
-.contact-in{padding:var(--sec) var(--gut);max-width:680px;margin-left:auto;width:100%;}
-.contact .sh .lb{color:var(--on-char);}
-.contact p{font-size:15px;line-height:2.05;color:var(--on-char-2);}
+.contact{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);}
+.contact-in{padding:var(--sec) var(--gut);max-width:720px;margin-left:auto;width:100%;}
+.contact .sec-h{color:var(--on-char);}
+.contact p{font-size:14px;line-height:2.1;color:var(--on-char-2);}
+.contact .en{color:var(--on-char-2);font-size:15px;margin-top:6px;}
 .contact p+p{margin-top:12px;}
-.mail{margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,.18);}
+.mail{margin-top:40px;}
 .mail .lb{font-size:12px;color:var(--on-char-2);}
-.mail-a{display:inline-flex;align-items:center;gap:12px;margin-top:10px;font-family:var(--ff-en);font-size:clamp(26px,3vw,38px);letter-spacing:.02em;color:var(--on-char);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);min-height:44px;}
+.mail-a{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;padding-bottom:10px;font-family:var(--ff-en);font-size:clamp(24px,2.6vw,34px);letter-spacing:.04em;color:var(--on-char);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);min-height:52px;}
 .mail-a:hover{border-bottom-color:var(--on-char);}
-.copy{margin-left:14px;vertical-align:middle;min-height:44px;padding:0 16px;background:transparent;border:1px solid var(--on-char-2);color:var(--on-char);cursor:pointer;font-size:13px;letter-spacing:.1em;}
-.mail small{display:block;margin-top:14px;font-size:13px;color:var(--on-char-2);line-height:1.9;}
-.contact .kane{margin-top:28px;}
-.contact .kane b{font-size:20px;}
+.copy{margin-top:16px;min-height:44px;padding:0 18px;background:transparent;border:1px solid var(--on-char-2);color:var(--on-char);cursor:pointer;font-size:12.5px;letter-spacing:.12em;}
+.mail small{display:block;margin-top:14px;font-size:12.5px;color:var(--on-char-2);line-height:1.9;}
+.contact .kane b{font-size:19px;}
 .contact .kane small{color:var(--on-char-2);}
-.contact-ph{position:relative;min-height:420px;}
-.contact-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.tiles{display:grid;grid-template-columns:1fr 1fr;align-content:stretch;}
+.tiles img{width:100%;height:100%;aspect-ratio:1/1;object-fit:cover;}
 
-/* ══════════ 奥付（#legal） ══════════ */
-.colo{background:var(--ground);padding:clamp(64px,7vw,100px) 0 clamp(96px,9vw,120px);}
+/* ══════════ 奥付（#legal）とコピーライト ══════════ */
+.colo{background:var(--char-3);color:var(--on-char-2);padding:clamp(56px,6vw,90px) 0;}
 .colo-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);}
-.colo h2{font-size:15px;font-weight:600;letter-spacing:.12em;}
-.colo p,.colo dd,.colo dt{font-size:12.5px;line-height:1.95;color:var(--ink-2);letter-spacing:.04em;}
+.colo h2{font-size:14px;font-weight:500;letter-spacing:.14em;color:var(--on-char);}
+.colo p,.colo dd,.colo dt{font-size:12.5px;line-height:1.95;letter-spacing:.05em;}
 .colo p{margin-top:10px;}
 .colo dl{margin-top:12px;}
-.colo dl div{display:grid;grid-template-columns:6em 1fr;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);}
-.colo dt{color:var(--ink);}
-.colo-foot{margin-top:56px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
-.colo-foot .brand{color:var(--ink);}
-.colo-foot small{font-family:var(--ff-label);font-size:12px;letter-spacing:.2em;color:var(--ink-3);}
+.colo dl div{display:grid;grid-template-columns:6em 1fr;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+.colo dt{color:var(--on-char);}
+.copyright{background:var(--char-2);color:var(--on-char-2);text-align:center;padding:18px var(--gut) 20px;font-family:var(--ff-label);font-size:12px;letter-spacing:.2em;text-transform:uppercase;}
 
-/* ── スマホの追従バー ── */
+/* 右下に固定する札（参考サイトの nobegane の位置） */
+.tab{position:fixed;right:0;bottom:clamp(20px,5vh,56px);z-index:30;display:flex;align-items:center;gap:16px;min-height:56px;padding:0 26px 0 22px;
+  background:var(--char);color:#fff;text-decoration:none;font-size:13.5px;letter-spacing:.14em;transition:padding .3s,opacity .3s;}
+.tab::after{content:"";width:30px;height:1px;background:#fff;}
+.tab:hover{padding-right:34px;}
+
 .mcta{display:none;}
 
 /* ══════════ 幅ごと ══════════ */
 @media (max-width:1024px){
-  .nav a .ja{display:none;}
   .dz-list{grid-template-columns:repeat(2,1fr);}
   .dz,.dz:nth-child(4),.dz:nth-child(5){grid-column:auto;}
   .reasons{grid-template-columns:1fr;max-width:640px;}
@@ -481,49 +473,54 @@ button{font:inherit;color:inherit;}
   .proc li:nth-child(n+3){border-top:1px solid var(--line);}
 }
 @media (max-width:900px){
-  :root{--hd:64px;}
+  :root{--hd:62px;}
   .nav{display:none;}
   .menu-btn{display:block;}
-  .brand .b-ja{font-size:19px;}
-  .two,.works-lead,.plans,.daiko,.erabo-top,.erabo-plan,.pf,.tbl,.colo-in,.contact{grid-template-columns:1fr;}
-  .works-lead{align-items:start;}
+  .js .hd:not(.is-solid){height:150px;padding-top:24px;}
+  .logo-b .seal{width:88px;height:88px;}
+  .logo-b .seal .logo-img{height:74px;}
+  .logo-b .j{font-size:18px;}
+  .pair,.plans,.daiko,.erabo-plan,.tbl,.colo-in,.contact,.company{grid-template-columns:1fr;}
   .stag{display:block;}
-  .stag .card{margin:-56px 0 0 clamp(20px,6vw,64px);}
-  .stag.rev .card{margin:-56px clamp(20px,6vw,64px) 0 0;}
-  .hero-copy{left:auto;right:clamp(20px,6vw,48px);font-size:clamp(24px,6.4vw,34px);}
-  .hero-lead{display:none;}
-  .contact-ph{min-height:300px;order:-1;}
+  .stag .ph,.stag.rev .ph{margin:0 calc(var(--gut) * -1);}
+  .stag .card{margin:-64px calc(var(--gut) * -1) 0 clamp(24px,8vw,80px);}
+  .stag.rev .card{margin:-64px clamp(24px,8vw,80px) 0 calc(var(--gut) * -1);}
   .contact-in{margin:0;max-width:none;}
+  .tiles{grid-template-columns:repeat(3,1fr);}
   .labs{grid-template-columns:1fr;}
+  .scatter{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .scatter a{position:static;width:auto;aspect-ratio:880/578;}
+  .scatter .sc3,.scatter .sc5{grid-column:1 / -1;}
+  .tab{display:none;}
 }
 @media (max-width:620px){
-  body{font-size:15px;}
+  body{font-size:14.5px;letter-spacing:.08em;}
   .dz-list{grid-template-columns:1fr;}
   .proc{grid-template-columns:1fr;}
   .proc li,.proc li+li{padding-left:0;border-left:0;}
   .proc li+li{border-top:1px solid var(--line);}
-  .stag .card{grid-template-columns:1fr;margin:-40px 0 0 16px;}
-  .stag.rev .card{margin:-40px 16px 0 0;}
-  .vt{writing-mode:horizontal-tb;flex-direction:column;gap:6px;order:-1;}
-  .vt h3{letter-spacing:.16em;}
-  .scatter{grid-auto-rows:22px;}
-  .scatter a span{display:none;}
+  .stag .card{grid-template-columns:1fr;padding:36px 26px;}
+  .vt{flex-direction:column;gap:4px;}
+  .vt h3,.vt .lb{writing-mode:horizontal-tb;}
+  .vt h3{letter-spacing:.2em;}
+  .slides{aspect-ratio:4/3;}
+  .arrows button{width:52px;height:52px;}
   .row{grid-template-columns:1fr;}
   .row .p{text-align:left;}
-  .send{grid-template-columns:1fr;}
-  .tbl dl div{grid-template-columns:5.5em 1fr;}
-  .qa summary{grid-template-columns:2.4em 1fr 20px;}
-  .qa .qa-a{padding-left:0;margin-left:0;}
-  .copy{margin:14px 0 0;display:block;}
-  .mail-a{font-size:24px;}
+  .tbl dl div,.info dl div{grid-template-columns:6em 1fr;}
+  .qa summary{grid-template-columns:2.6em 1fr 20px;}
+  .qa .qa-a{padding-left:0;}
+  .mail-a{font-size:22px;}
+  .tiles{grid-template-columns:1fr 1fr;}
+  .ln::after{width:48px;}
   .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;gap:10px;align-items:center;
-    padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);
     transform:translateY(110%);transition:transform .35s;}
   .mcta.on{transform:none;}
   .mcta a{text-decoration:none;}
-  .mcta .f{flex:1;font-size:13px;line-height:1.5;letter-spacing:.04em;min-height:44px;display:flex;align-items:center;color:var(--ink);}
-  .mcta .b{flex:none;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;background:var(--mori);color:#fff;font-size:14px;letter-spacing:.1em;white-space:nowrap;}
-  .colo{padding-bottom:120px;}
+  .mcta .f{flex:1;font-size:12.5px;line-height:1.5;letter-spacing:.04em;min-height:44px;display:flex;align-items:center;color:var(--ink);}
+  .mcta .b{flex:none;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;background:var(--char);color:#fff;font-size:13.5px;letter-spacing:.1em;white-space:nowrap;}
+  .copyright{padding-bottom:96px;}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;}
@@ -534,25 +531,28 @@ button{font:inherit;color:inherit;}
 <a class="skip" href="#main">本文へ移動</a>
 
 <header class="hd" id="hd">
-  <a class="brand" href="#top" aria-label="杜工舎 ページの先頭へ"><svg viewBox="0 0 79 96" aria-hidden="true" focusable="false"><path d="M 39.5 6.0 A 10.1 10.1 0 0 1 54.6 11.9 A 11.7 11.7 0 0 1 65.0 27.6 A 12.9 12.9 0 0 1 67.0 48.3 A 13.3 13.3 0 0 1 57.0 67.2 A 10.5 10.5 0 0 1 44.5 78.5 A 6.2 6.2 0 0 1 34.5 78.5 A 10.5 10.5 0 0 1 22.0 67.2 A 13.3 13.3 0 0 1 12.0 48.3 A 12.9 12.9 0 0 1 14.0 27.6 A 11.7 11.7 0 0 1 24.4 11.9 A 10.1 10.1 0 0 1 39.5 6.0 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M39.5 58V94" fill="none" stroke="currentColor" stroke-width="6"/></svg><span class="b-t"><span class="b-ja">杜工舎</span><span class="b-en" aria-hidden="true">MORIKOSHA</span></span></a>
+  <a class="logo-b" href="#top" aria-label="杜工舎 ページの先頭へ"><span class="seal"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""></span><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
+  <a class="logo-s" href="#top" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
   <nav class="nav" aria-label="ページ内の案内">
-    <a href="#about"><span class="lb" aria-hidden="true">About</span><span class="ja">杜工舎とは</span></a>
-    <a href="#works"><span class="lb" aria-hidden="true">Works</span><span class="ja">見本</span></a>
-    <a href="#price"><span class="lb" aria-hidden="true">Price</span><span class="ja">料金</span></a>
-    <a href="#erabot"><span class="lb" aria-hidden="true">Erabot</span><span class="ja">えらぼっと</span></a>
-    <a href="#profile"><span class="lb" aria-hidden="true">Profile</span><span class="ja">代表</span></a>
-    <a class="nav-cta" href="#contact"><span class="lb" aria-hidden="true">Contact</span><span class="ja">お問い合わせ</span></a>
+    <a href="#about" title="杜工舎とは">About</a>
+    <a href="#service" title="ふたつの仕事">Service</a>
+    <a href="#works" title="ホームページの見本">Works</a>
+    <a href="#price" title="料金">Price</a>
+    <a href="#erabot" title="えらぼっと作成">Erabot</a>
+    <a href="#profile" title="代表プロフィール">Profile</a>
+    <a href="#contact" title="お問い合わせ">Contact</a>
   </nav>
   <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="メニューを開く"><i></i><i></i><i></i></button>
 </header>
 
 <nav class="mnav" id="mnav" aria-label="メニュー">
   <div class="mnav-top">
-    <span class="brand"><svg viewBox="0 0 79 96" aria-hidden="true" focusable="false"><path d="M 39.5 6.0 A 10.1 10.1 0 0 1 54.6 11.9 A 11.7 11.7 0 0 1 65.0 27.6 A 12.9 12.9 0 0 1 67.0 48.3 A 13.3 13.3 0 0 1 57.0 67.2 A 10.5 10.5 0 0 1 44.5 78.5 A 6.2 6.2 0 0 1 34.5 78.5 A 10.5 10.5 0 0 1 22.0 67.2 A 13.3 13.3 0 0 1 12.0 48.3 A 12.9 12.9 0 0 1 14.0 27.6 A 11.7 11.7 0 0 1 24.4 11.9 A 10.1 10.1 0 0 1 39.5 6.0 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M39.5 58V94" fill="none" stroke="currentColor" stroke-width="6"/></svg><span class="b-t"><span class="b-ja">杜工舎</span></span></span>
+    <span class="logo-s"><span class="seal seal-s"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""></span><span class="j">杜工舎</span></span>
     <button class="mnav-close" id="mnav-close" type="button">閉じる ×</button>
   </div>
   <ol>
     <li><a href="#about">杜工舎とは<span class="lb" aria-hidden="true">About</span></a></li>
+    <li><a href="#service">ふたつの仕事<span class="lb" aria-hidden="true">Service</span></a></li>
     <li><a href="#works">ホームページの見本<span class="lb" aria-hidden="true">Works</span></a></li>
     <li><a href="#price">料金<span class="lb" aria-hidden="true">Price</span></a></li>
     <li><a href="#erabot">えらぼっと作成<span class="lb" aria-hidden="true">Erabot</span></a></li>
@@ -565,79 +565,111 @@ button{font:inherit;color:inherit;}
 
 <main id="main">
 
-<!-- ══════════ 扉 ══════════ -->
-<section class="hero" id="top" aria-label="杜工舎">
-  <div class="hero-ph"><img class="on" src="assets/site/site-hero-tools.jpg" width="1920" height="1280" alt="板壁に掛けられた古い木工道具" fetchpriority="high"><img src="assets/site/site-hero-forest.jpg" width="1920" height="1280" alt="苔むした森" loading="lazy" decoding="async"><img src="assets/site/site-hero-trees.jpg" width="1920" height="1280" alt="まっすぐ並ぶ針葉樹の林" loading="lazy" decoding="async"></div>
-  <h1 class="hero-copy"><span>いい仕事を、</span><span>見つかるかたちに。</span></h1>
-  <div class="hero-foot">
-    <p class="hero-lead">会社のホームページを1ページ、2週間ほどでつくります。<br>杜工舎は、つくる側が持つ仕事と知識を、探す人・選ぶ人へつなぐWebの工房です。</p>
-    <span class="scroll" aria-hidden="true">Scroll</span>
-  </div>
+<!-- ══════════ 扉 ── 写真だけ ══════════ -->
+<section class="hero" id="top" aria-label="杜工舎の扉の写真">
+  <div class="hero-ph"><img class="on" src="assets/site/site-hero-tools.jpg" width="1920" height="1280" alt="板壁に掛けられた古い木工道具" fetchpriority="high"><img src="assets/site/site-hero-forest.jpg" width="1920" height="1280" alt="苔むした森" loading="lazy" decoding="async"><img src="assets/site/site-hero-wood.jpg" width="1920" height="1280" alt="丸太の断面の年輪" loading="lazy" decoding="async"><img src="assets/site/site-hero-trees.jpg" width="1920" height="1280" alt="まっすぐ並ぶ針葉樹の林" loading="lazy" decoding="async"></div>
+  <div class="dots" role="group" aria-label="扉の写真を選ぶ"><button type="button" aria-label="写真1" aria-current="true"></button><button type="button" aria-label="写真2" aria-current="false"></button><button type="button" aria-label="写真3" aria-current="false"></button><button type="button" aria-label="写真4" aria-current="false"></button><span class="num" id="hero-num" aria-hidden="true">01</span></div>
+  <span class="scroll" aria-hidden="true"><span>scroll</span></span>
 </section>
 
 <!-- ══════════ ABOUT ══════════ -->
 <section class="sec" id="about" aria-labelledby="about-h">
   <div class="wrap">
-    <header class="sh"><p class="lb" aria-hidden="true">About</p><h2 class="sh-ja" id="about-h">場所をつくり、<br>選べる仕組みをつくる。</h2></header>
-    <div class="two">
-      <div class="body-ja">
-        <p>会社や商品のよさは、知っている人の内側に留まりがちです。杜工舎は、その情報をWebで届く形に整え、必要としている人との間に入口をつくります。</p>
-        <p>会社のホームページを1ページ、2週間ほどでつくります。杜工舎は、つくる側が持つ仕事と知識を、探す人・選ぶ人へつなぐWebの工房です。</p>
+    <p class="sec-h" aria-hidden="true">About</p>
+    <div class="pair">
+      <h1 class="ja-h" id="about-h">いい仕事を、<br>見つかるかたちに。</h1>
+      <p class="en-h" lang="en">Making good work<br>easy to find.</p>
+    </div>
+    <div class="pair">
+      <div class="ja-b">
+        <p>会社のホームページを1ページ、2週間ほどでつくります。<br>杜工舎は、つくる側が持つ仕事と知識を、探す人・選ぶ人へつなぐWebの工房です。</p>
         <p class="kane"><b>1ページ 9万8千円</b><small><span class="nw">＝98,000円（税込）</span>・買い切り・月々いただくものはありません。</small></p>
         <div class="go">
-          <a class="btn fill" href="#works">見本を見る <span class="ar" aria-hidden="true">→</span></a>
-          <a class="btn" href="#contact">お問い合わせ <span class="ar" aria-hidden="true">→</span></a>
+          <a class="ln" href="#works">見本を見る</a>
+          <a class="ln" href="#contact">お問い合わせ</a>
         </div>
       </div>
       <div class="en" lang="en">
-        <p>Good work often stays hidden with the people who already know it. Morikosha is a small web studio in Saitama that turns what a company does and knows into a form that people searching for it can actually find.</p>
-        <p>We make a one-page company website in about two weeks, and build product-selection tools that let customers choose the right item on their own.</p>
+        <p>Morikosha is a small web studio in Saitama. We build a one-page company website in about two weeks, and connect the work and knowledge of the people who make things with the people who are looking for them.</p>
       </div>
     </div>
-    <figure class="wide-ph"><img src="assets/site/site-drafting.jpg" width="1600" height="1067" alt="ケースに収まった製図用具と方眼紙" loading="lazy" decoding="async"></figure>
+
+    <figure class="slider" aria-roledescription="スライド" aria-label="杜工舎の仕事道具の写真">
+      <div class="slides" id="slides"><img class="on" src="assets/site/site-drafting.jpg" width="1600" height="1067" alt="ケースに収まった製図用具と方眼紙" loading="lazy" decoding="async"><img src="assets/site/site-survey.jpg" width="1600" height="900" alt="屋上に据えた測量機" loading="lazy" decoding="async"><img src="assets/site/site-tools-wall.jpg" width="1600" height="833" alt="板壁に掛かった鉋や鋸の柄" loading="lazy" decoding="async"></div>
+      <div class="arrows"><button type="button" id="sl-prev" aria-label="前の写真">←</button><button type="button" id="sl-next" aria-label="次の写真">→</button></div>
+    </figure>
+
+    <div class="sub-h pair">
+      <h2 class="ja-h">場所をつくり、<br>選べる仕組みをつくる。</h2>
+      <p class="en-h" lang="en">A place to be found,<br>and a way to choose.</p>
+    </div>
+    <div class="pair" style="margin-top:clamp(28px,3vw,44px)">
+      <p class="ja-b">会社や商品のよさは、知っている人の内側に留まりがちです。杜工舎は、その情報をWebで届く形に整え、必要としている人との間に入口をつくります。</p>
+      <p class="en" lang="en">The value of a company or a product tends to stay with the people who already know it. We shape that information into a form that reaches people on the web, and open a door between them and those who need it.</p>
+    </div>
   </div>
 </section>
 
 <!-- ══════════ SERVICE ══════════ -->
-<section class="sec" id="service" aria-labelledby="service-h" style="padding-top:0">
+<div class="band"><img src="assets/site/site-forest.jpg" width="1600" height="1200" alt="木漏れ日の差す針葉樹の林" loading="lazy" decoding="async"><p aria-hidden="true">Service</p></div>
+<section class="sec" id="service" aria-labelledby="service-h">
   <div class="wrap">
-    <header class="sh"><p class="lb" aria-hidden="true">Service</p><h2 class="sh-ja" id="service-h">ふたつの仕事</h2></header>
+    <div class="pair">
+      <h2 class="ja-h" id="service-h">ふたつの仕事</h2>
+      <p class="en-h" lang="en">Two kinds of work</p>
+    </div>
     <div class="stag">
-      <div class="ph"><img src="assets/site/site-survey.jpg" width="1600" height="900" alt="屋上に据えた測量機" loading="lazy" decoding="async"></div>
+      <div class="ph"><img src="assets/site/site-laptop.jpg" width="1600" height="818" alt="ノートパソコンのキーに置いた手" loading="lazy" decoding="async"></div>
       <div class="card">
+        <div class="vt"><h3>ホームページ作成</h3><span class="lb" lang="en">web site</span></div>
         <div>
           <p class="no">01 / PLACE</p>
           <p>仕事と会社が見つかる「場所」をつくる。1ページ、<span class="nw">9万8千円（税込）</span>、買い切りで制作します。</p>
-          <p>淡・玄・雅・粋・理の5案から、かたちを選んでいただくだけ。ご記入シートと写真をいただいてから、2週間ほどでお渡しします。</p>
+          <p>淡・玄・雅・粋・理の5案から1つ。載せる項目はどれも同じ、選ぶのは見た目だけ。ご記入シートと写真をいただいてから、2週間ほどで制作いたします。</p>
           <p class="price">1ページ <b><span class="nw">98,000円（税込）</span></b>・前金なし</p>
-          <a class="more" href="#works">Works <span class="ja">見本を見る</span></a>
+          <a class="ln" href="#works">見本を見る</a>
         </div>
-        <div class="vt"><h3>ホームページ作成</h3><span class="lb" aria-hidden="true">Web site</span></div>
       </div>
     </div>
     <div class="stag rev">
       <div class="ph"><img src="assets/site/site-paper.jpg" width="1600" height="1067" alt="色ごとに段に並べた紙の棚" loading="lazy" decoding="async"></div>
       <div class="card">
+        <div class="vt"><h3>えらぼっと作成</h3><span class="lb" lang="en">selection</span></div>
         <div>
           <p class="no">02 / CHOICE</p>
           <p>メーカーの商品知識を、誰でも使える選定フローに変える。売れる「仕組み」をつくります。</p>
-          <p>杜工舎が商品群を調べ、お客さまが迷う分岐を見つけ、設問と配点を設計します。条件に合う3案を、選定理由とともに示します。</p>
+          <p>杜工舎が商品群を調べ、お客さまが迷う分岐を見つけ、設問と配点を設計します。条件に合う3案を、選定理由とともに提示します。</p>
           <p class="price">初期 <b><span class="nw">198,000円（税込）</span></b>・月額 <span class="nw">9,800円（税込）</span></p>
-          <a class="more" href="#erabot">Erabot <span class="ja">詳しく見る</span></a>
+          <a class="ln" href="#erabot">詳しく見る</a>
         </div>
-        <div class="vt"><h3>えらぼっと作成</h3><span class="lb" aria-hidden="true">Selection</span></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══════════ 見本を散らす ══════════ -->
+<section class="sec" aria-labelledby="gal-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="pair">
+      <h2 class="ja-h" id="gal-h">18業種の見本から</h2>
+      <p class="en-h" lang="en">Sample sites for eighteen trades</p>
+    </div>
+    <div class="scatter"><a class="sc1" href="preview/doboku-4.html" target="_blank" rel="noopener"><img src="assets/card-doboku-4.jpg" width="880" height="578" loading="lazy" decoding="async" alt="土木の見本（粋）を新しいタブで開く"><span aria-hidden="true">土木・粋</span></a><a class="sc2" href="preview/zoen-3.html" target="_blank" rel="noopener"><img src="assets/card-zoen-3.jpg" width="880" height="578" loading="lazy" decoding="async" alt="造園の見本（雅）を新しいタブで開く"><span aria-hidden="true">造園・雅</span></a><a class="sc3" href="preview/kenchiku-1.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-1.jpg" width="880" height="578" loading="lazy" decoding="async" alt="建築の見本（淡）を新しいタブで開く"><span aria-hidden="true">建築・淡</span></a><a class="sc4" href="preview/sekkei-5.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-5.jpg" width="880" height="578" loading="lazy" decoding="async" alt="建築設計の見本（理）を新しいタブで開く"><span aria-hidden="true">建築設計・理</span></a><a class="sc5" href="preview/tosou-2.html" target="_blank" rel="noopener"><img src="assets/card-tosou-2.jpg" width="880" height="578" loading="lazy" decoding="async" alt="塗装の見本（玄）を新しいタブで開く"><span aria-hidden="true">塗装・玄</span></a><a class="sc6" href="preview/biyo-1.html" target="_blank" rel="noopener"><img src="assets/card-biyo-1.jpg" width="880" height="578" loading="lazy" decoding="async" alt="美容室の見本（淡）を新しいタブで開く"><span aria-hidden="true">美容室・淡</span></a></div>
+    <p class="scatter-cap"><a class="ln" href="#works">業種を選んで見本を見る</a></p>
+  </div>
+</section>
+
 <!-- ══════════ WORKS ══════════ -->
-<div class="band" role="presentation"><img src="assets/site/site-tools-wall.jpg" width="1600" height="833" alt="板壁に掛かった鉋や鋸の柄" loading="lazy" decoding="async"><p class="lb" aria-hidden="true">Works<small>ホームページの見本</small></p></div>
+<div class="band"><img src="assets/site/site-wood-grain.jpg" width="1600" height="1200" alt="卓の木目の接写" loading="lazy" decoding="async"><p aria-hidden="true">Works</p></div>
 <section class="sec" id="works" aria-labelledby="works-h">
   <div class="wrap">
-    <div class="works-lead">
-      <header class="sh"><p class="lb" aria-hidden="true">Web design</p><h2 class="sh-ja" id="works-h">仕事が伝わる、会社の一枚。</h2></header>
-      <p class="body-ja">ご記入シートと写真をいただいてから、<b>2週間ほど</b>で制作いたします。日本の美意識からとった五つの型です。飾りを削り、時代が変わっても古びないものだけを残しました。</p>
+    <div class="pair">
+      <h2 class="ja-h" id="works-h">仕事が伝わる、<br>会社の一枚。</h2>
+      <p class="en-h" lang="en">One page that tells<br>what your company does.</p>
+    </div>
+    <div class="pair">
+      <p class="ja-b">ご記入シートと写真をいただいてから、2週間ほどで制作いたします。日本の美意識からとった五つの型です。飾りを削り、時代が変わっても古びないものだけを残しました。</p>
+      <p class="en" lang="en">Five designs drawn from Japanese aesthetics. Choose a look, send us the form and your photos, and we deliver in about two weeks.</p>
     </div>
 
     <div class="inds">
@@ -676,11 +708,11 @@ button{font:inherit;color:inherit;}
       <div class="step-h"><span class="n">03</span><h3>ご記入シートに記入する</h3><span class="d">エクセル1枚</span></div>
       <p class="step-p">業種を選ぶと記入例が出ます。書いて、写真を添えて送るだけ。<i>約15分＋写真えらび</i></p>
       <div class="sheet">
-        <div class="sheet-t">
+        <div>
           <h4>御社の業種の記入例が、最初から入っています</h4>
           <p>上で選んだ業種に合わせたシートが開きます。そのままお使いいただいても、書き換えていただいても構いません。<br>【必須】以外は空欄で構いません。空欄の項目は掲載しません。</p>
         </div>
-        <a class="dl" id="dl-sheet" href="assets/%E3%81%94%E8%A8%98%E5%85%A5%E3%82%B7%E3%83%BC%E3%83%88.xlsx" download="ご記入シート.xlsx"><span aria-hidden="true">↓</span><span><small>Download</small>ご記入シート.xlsx</span></a>
+        <a class="box-ln" id="dl-sheet" href="assets/%E3%81%94%E8%A8%98%E5%85%A5%E3%82%B7%E3%83%BC%E3%83%88.xlsx" download="ご記入シート.xlsx"><span aria-hidden="true">↓</span><span><small>Download</small>ご記入シート.xlsx</span></a>
       </div>
     </div>
     <div class="step">
@@ -691,7 +723,7 @@ button{font:inherit;color:inherit;}
           <h4>送り先は info@morikosha.com です</h4>
           <p>ご記入シートと写真を添付して送ってください。件名は何でも構いません。<br>2営業日以内のご返信を心がけています。</p>
         </div>
-        <a class="btn fill" href="mailto:info@morikosha.com">メールを書く <span class="ar" aria-hidden="true">→</span></a>
+        <a class="box-ln" href="mailto:info@morikosha.com">メールを書く <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
@@ -703,10 +735,13 @@ button{font:inherit;color:inherit;}
 <dialog class="thd" id="thd-5" aria-labelledby="thd-t-5"><div class="thd-in"><form method="dialog"><button class="thd-x" aria-label="閉じる">×</button></form><div class="thd-ph"><img src="assets/card-doboku-5.jpg" width="880" height="578" loading="lazy" alt="理の見本"></div><div class="thd-b"><p class="thd-no">DESIGN 5</p><p class="thd-k" id="thd-t-5"><span class="thd-ja">理</span><span class="thd-yomi">り</span></p><p class="thd-e">一本の筋を、通す。</p><p class="thd-d">理は、もともと玉（ぎょく）の筋目のことでした。石を磨くと現れる、まっすぐな目。そこから「物事の筋道」を指すようになり、日本語でも「筋を通す」「理にかなう」と使います。ですから、この型は一本の筋で組みました。題字・社名・節見出しを縦に通し、本文と連絡先は横書きのまま読みやすく保ちます。紙の色と、掛軸を思わせる表装。線は一本の細さで通し、色は紙と墨に、落款のひと粒だけ。飾りで目を引くのではなく、決めた筋を最後まで曲げないことで伝える型です。</p><p class="thd-m"><b>向いている業種</b>代々続く建築・土木・造園の会社や、社寺・石材・表具など、受け継いだ技術を仕事にしている方に向いています。</p><a class="thd-go" href="preview/doboku-5.html" target="_blank" rel="noopener">この型の実物を見る<small>新しいタブで開く ↗</small></a></div></div></dialog>
 
 <!-- ══════════ WHY ══════════ -->
-<section class="sec why" id="why" aria-labelledby="why-h">
+<section class="sec" id="why" aria-labelledby="why-h" style="padding-top:0">
   <div class="wrap">
-    <header class="sh"><p class="lb" aria-hidden="true">Why</p><h2 class="sh-ja" id="why-h">なぜホームページが必要か？</h2></header>
-    <p class="body-ja" style="max-width:40em;margin-bottom:clamp(40px,5vw,64px)">応募する人も、お客さまも、まず会社名で検索します。何も出てこなければ、そこで止まる ── 理由は3つ。</p>
+    <p class="sec-h" aria-hidden="true">Why</p>
+    <div class="pair">
+      <h2 class="ja-h" id="why-h">なぜホームページが必要か？</h2>
+      <p class="ja-b">応募する人も、お客さまも、まず会社名で検索します。何も出てこなければ、そこで止まる ── 理由は3つ。</p>
+    </div>
     <div class="reasons">
       <div class="rs">
         <p class="n" aria-hidden="true">01</p>
@@ -730,9 +765,13 @@ button{font:inherit;color:inherit;}
 </section>
 
 <!-- ══════════ PRICE ══════════ -->
-<section class="sec" id="price" aria-labelledby="price-h">
+<section class="sec" id="price" aria-labelledby="price-h" style="padding-top:0">
   <div class="wrap">
-    <header class="sh"><p class="lb" aria-hidden="true">Price</p><h2 class="sh-ja" id="price-h">料金</h2></header>
+    <p class="sec-h" aria-hidden="true">Price</p>
+    <div class="pair">
+      <h2 class="ja-h" id="price-h">料金</h2>
+      <p class="en-h" lang="en">One price for everyone.<br>Tax included.</p>
+    </div>
     <div class="plans">
       <div class="plan">
         <h3>ホームページをつくるとき</h3>
@@ -766,26 +805,28 @@ button{font:inherit;color:inherit;}
   </div>
 </section>
 
-<!-- ══════════ えらぼっと ══════════ -->
-<div class="band" role="presentation"><img src="assets/site/site-groundwork.jpg" width="1600" height="1205" alt="整地中の造成地" loading="lazy" decoding="async"><p class="lb" aria-hidden="true">Erabot<small>えらぼっと作成</small></p></div>
+<!-- ══════════ ERABOT ══════════ -->
+<div class="band"><img src="assets/site/site-groundwork.jpg" width="1600" height="1205" alt="整地中の造成地" loading="lazy" decoding="async"><p aria-hidden="true">Erabot</p></div>
 <section class="sec" id="erabot" aria-labelledby="erabot-h">
   <div class="wrap">
-    <div class="erabo-top">
-      <div>
-        <p class="lb" aria-hidden="true">Product selection</p>
-        <h2 id="erabot-h">メーカーの知識を、<br>選べる仕組みに。</h2>
-        <p class="lead">つくった人には分かる。でも、お客さまには分からない。御社の商品知識と選び分けのノウハウを、誰でも使えるWeb上の選定フローに変換します。</p>
+    <div class="pair">
+      <h2 class="ja-h" id="erabot-h">メーカーの知識を、<br>選べる仕組みに。</h2>
+      <p class="en-h" lang="en">Turning a maker's know-how<br>into a way to choose.</p>
+    </div>
+    <div class="pair">
+      <div class="ja-b">
+        <p>つくった人には分かる。でも、お客さまには分からない。御社の商品知識と選び分けのノウハウを、誰でも使えるWeb上の選定フローに変換します。</p>
+        <p><b>選定知識まで設計します。</b>質問を置ける道具だけを渡すのではなく、杜工舎が商品群を調べ、お客さまが迷う分岐を見つけ、設問と配点を設計します。条件に合う3案を、選定理由とともに提示する完成品としてお渡しします。</p>
         <p class="kane"><b>初期 <span class="nw">198,000円（税込）</span></b><small>月額 <span class="nw">9,800円（税込）</span>・契約1年</small></p>
         <div class="go">
-          <a class="btn fill" href="preview/erabot-demo.html" target="_blank" rel="noopener">地面固定具の作例を試す <span class="ar" aria-hidden="true">↗</span></a>
-          <a class="btn" href="#contact">お問い合わせ <span class="ar" aria-hidden="true">→</span></a>
+          <a class="ln" href="preview/erabot-demo.html" target="_blank" rel="noopener">地面固定具の作例を試す ↗</a>
+          <a class="ln" href="#contact">お問い合わせ</a>
         </div>
       </div>
       <div class="diagram" aria-hidden="true">
-        <svg viewBox="0 0 420 300" role="img"><g fill="none" stroke="#8D8F8C" stroke-width="1.2"><circle cx="86" cy="150" r="58"/><path d="M144 150h40M184 60v180M184 60h60M184 150h60M184 240h60"/></g><g fill="#fff" stroke="#8D8F8C" stroke-width="1.2"><rect x="246" y="38" width="130" height="44"/><rect x="246" y="128" width="130" height="44"/><rect x="246" y="218" width="130" height="44"/></g><g font-family="Shippori Mincho,serif" font-size="15" fill="#44494B" text-anchor="middle"><text x="86" y="155">5〜7の質問</text><text x="311" y="65">候補 1</text><text x="311" y="155">候補 2</text><text x="311" y="245">候補 3</text></g></svg>
+        <svg viewBox="0 0 420 300"><g fill="none" stroke="#8A8C8D" stroke-width="1.2"><circle cx="86" cy="150" r="58"/><path d="M144 150h40M184 60v180M184 60h60M184 150h60M184 240h60"/></g><g fill="#fff" stroke="#8A8C8D" stroke-width="1.2"><rect x="246" y="38" width="130" height="44"/><rect x="246" y="128" width="130" height="44"/><rect x="246" y="218" width="130" height="44"/></g><g font-family="Shippori Mincho,serif" font-size="15" fill="#45494B" text-anchor="middle"><text x="86" y="155">5〜7の質問</text><text x="311" y="65">候補 1</text><text x="311" y="155">候補 2</text><text x="311" y="245">候補 3</text></g></svg>
       </div>
     </div>
-    <p class="erabo-intro"><b>選定知識まで設計します。</b>質問を置ける道具だけを渡すのではなく、杜工舎が商品群を調べ、お客さまが迷う分岐を見つけ、設問と配点を設計します。条件に合う3案を、選定理由とともに提示する完成品としてお渡しします。</p>
     <ol class="proc">
       <li><p class="n">01</p><h3>商品群を調べる</h3><p>御社のECと資料から、選び分けに必要な条件を整理します。</p></li>
       <li><p class="n">02</p><h3>質問と配点を設計する</h3><p>専門知識を5〜7問へ翻訳し、条件ごとの優先順位を組みます。</p></li>
@@ -795,7 +836,7 @@ button{font:inherit;color:inherit;}
     <div class="erabo-plan">
       <div>
         <p class="lb" aria-hidden="true">Plan</p>
-        <h3 class="sh-ja" style="margin-top:16px">えらぼっとの料金</h3>
+        <h3>えらぼっとの料金</h3>
       </div>
       <div>
         <dl>
@@ -804,35 +845,44 @@ button{font:inherit;color:inherit;}
           <div><dt>納期</dt><dd>2週間ほど</dd></div>
           <div><dt>契約期間</dt><dd>1年</dd></div>
         </dl>
-        <p style="margin-top:18px">業界・商品調査、設問・配点設計、商品データ登録、Webアプリ制作、既存サイトへの設置、初期修正を含みます。契約期間中、同一商品群・同一の選定ロジックを競合他社へ提供しません。契約期間の満了後も、納品したWebアプリ（HTML）はそのままお使いいただけます。ただし満了後は、同一商品群・同一の選定ロジックを競合他社へ提供しない取り決めは終了します。</p>
+        <p>業界・商品調査、設問・配点設計、商品データ登録、Webアプリ制作、既存サイトへの設置、初期修正を含みます。契約期間中、同一商品群・同一の選定ロジックを競合他社へ提供しません。契約期間の満了後も、納品したWebアプリ（HTML）はそのままお使いいただけます。ただし満了後は、同一商品群・同一の選定ロジックを競合他社へ提供しない取り決めは終了します。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ 見本を散らす ══════════ -->
-<section class="sec" aria-labelledby="gal-h" style="padding-top:0">
+<!-- ══════════ PROFILE（参考サイトの COMPANY の形） ══════════ -->
+<section class="sec" id="profile" aria-labelledby="profile-h" style="padding-top:0">
   <div class="wrap">
-    <header class="sh sh-c"><p class="lb" aria-hidden="true">Gallery</p><h2 class="sh-ja" id="gal-h">18業種の見本から</h2></header>
-    <div class="scatter"><a class="sc1" href="preview/doboku-4.html" target="_blank" rel="noopener"><img src="assets/card-doboku-4.jpg" width="880" height="578" loading="lazy" decoding="async" alt="土木の見本（粋）を新しいタブで開く"><span aria-hidden="true">土木・粋</span></a><a class="sc2" href="preview/zoen-3.html" target="_blank" rel="noopener"><img src="assets/card-zoen-3.jpg" width="880" height="578" loading="lazy" decoding="async" alt="造園の見本（雅）を新しいタブで開く"><span aria-hidden="true">造園・雅</span></a><a class="sc3" href="preview/kenchiku-1.html" target="_blank" rel="noopener"><img src="assets/card-kenchiku-1.jpg" width="880" height="578" loading="lazy" decoding="async" alt="建築の見本（淡）を新しいタブで開く"><span aria-hidden="true">建築・淡</span></a><a class="sc4" href="preview/sekkei-5.html" target="_blank" rel="noopener"><img src="assets/card-sekkei-5.jpg" width="880" height="578" loading="lazy" decoding="async" alt="建築設計の見本（理）を新しいタブで開く"><span aria-hidden="true">建築設計・理</span></a><a class="sc5" href="preview/tosou-2.html" target="_blank" rel="noopener"><img src="assets/card-tosou-2.jpg" width="880" height="578" loading="lazy" decoding="async" alt="塗装の見本（玄）を新しいタブで開く"><span aria-hidden="true">塗装・玄</span></a><a class="sc6" href="preview/biyo-1.html" target="_blank" rel="noopener"><img src="assets/card-biyo-1.jpg" width="880" height="578" loading="lazy" decoding="async" alt="美容室の見本（淡）を新しいタブで開く"><span aria-hidden="true">美容室・淡</span></a></div>
-    <p class="scatter-cap"><a class="more" href="#works">Works <span class="ja">業種を選んで見本を見る</span></a></p>
-  </div>
-</section>
-
-<!-- ══════════ PROFILE ══════════ -->
-<section class="sec why" id="profile" aria-labelledby="profile-h">
-  <div class="wrap">
-    <header class="sh"><p class="lb" aria-hidden="true">Profile</p><h2 class="sh-ja" id="profile-h">代表プロフィール</h2></header>
-    <div class="pf">
-      <div>
-        <p class="pf-name">上原 光瑛</p>
-        <p class="pf-roma" lang="en">Uehara Mitsuaki</p>
-        <p class="pf-role">杜工舎 代表<br>1級土木施工管理技士補</p>
+    <div class="company">
+      <figure class="ph"><img src="assets/site/site-pen.jpg" width="1280" height="1600" alt="ノートとペンと下書き" loading="lazy" decoding="async"></figure>
+      <div class="info">
+        <p class="lb" aria-hidden="true">Profile</p>
+        <h2 class="vh" id="profile-h">代表プロフィール</h2>
+        <dl>
+          <div><dt>屋号</dt><dd>杜工舎（もりこうしゃ）</dd></div>
+          <div><dt>代表</dt><dd>上原 光瑛</dd></div>
+          <div><dt>資格</dt><dd>1級土木施工管理技士補</dd></div>
+          <div><dt>E-mail</dt><dd>info@morikosha.com</dd></div>
+          <div><dt>所在地</dt><dd>埼玉県さいたま市大宮区高鼻町３丁目</dd></div>
+        </dl>
+        <dl class="en" lang="en">
+          <div><dt>Name</dt><dd>MORIKOSHA</dd></div>
+          <div><dt>Founder</dt><dd>Mitsuaki UEHARA</dd></div>
+          <div><dt>E-mail</dt><dd>info@morikosha.com</dd></div>
+          <div><dt>Address</dt><dd>Takahanacho 3-chome, Omiya-ku,<br>Saitama-shi, Saitama, Japan</dd></div>
+        </dl>
       </div>
-      <div class="pf-body">
+    </div>
+
+    <p class="pf-name"><b>上原 光瑛</b><span lang="en">Uehara Mitsuaki</span><small>杜工舎 代表　／　1級土木施工管理技士補</small></p>
+    <div class="pair pf-body">
+      <div>
         <p>2018年3月に埼玉大学工学部建設工学科を卒業し、同年4月から8年間、<span class="strong">埼玉県庁の土木技術職</span>として、道路・河川・斜面・公園といった社会インフラの工事監督と維持管理、災害復旧に携わりました。</p>
         <p>仕事は、設計の照査から積算、入札後の現場監督、完成検査まで。担当した工事のひとつに、<span class="strong">令和元年東日本台風</span>で崩れた斜面の地すべり復旧があります。現場の担当として工事を進め、この工事は<span class="strong">令和6年度 全建賞（災害枠・都市部門）</span>に選ばれました。発注する側に8年いたので、工事がどう進み、書類とお金のどこで手が止まるかを、体で知っています。</p>
         <p>2026年3月に県庁を退職し、いまは農業法人に籍を置いて畑に出ています。建設の現場でも、農業の現場でも、同じ言葉を聞きました。「人が来ない」「いい仕事をしているのに、外から見えない」。仕事の中身は確かなのに、それを外から確かめる手立てがない ── 足りないのは腕ではなく、<span class="strong">伝わる形</span>だと考えるようになりました。</p>
+      </div>
+      <div>
         <p><span class="strong">杜工舎（もりこうしゃ）</span>を開業しました。会社の仕事を1ページのホームページに整え（見せる）、製品の違いを誰でもたどれる選定の仕組みに変えます（選ぶ）。材料にするのは、公表されている一次情報 ── 法令、公的統計、業界団体の名簿、メーカーが公開している仕様です。<span class="strong">出典と、いつの時点のものかを画面に出します</span>。分からないことは、分からないと書きます。</p>
         <p>現場の判断を、データで支える ── それが杜工舎の仕事です。</p>
       </div>
@@ -863,7 +913,7 @@ button{font:inherit;color:inherit;}
     </div>
     <div class="tbl">
       <h3><span class="lb" aria-hidden="true">Why we started</span>杜工舎をはじめた想い</h3>
-      <div class="pf-body">
+      <div class="pf-body" style="margin-top:0">
         <p>県庁で8年間、工事を発注し、監督する側にいました。現場で顔を合わせた会社の多くが、若い人が入ってこないという同じ悩みを抱えていました。</p>
         <p>いま籍を置いている農業も、造園の現場も同じです。人手が足りない。募集をかけても来ない。その現実を、身近で感じています。</p>
         <p>仕事や商品・サービスを探している人に届く入口をつくり、社会に喜びが増えることを目指して杜工舎を開業しました。</p>
@@ -891,9 +941,10 @@ button{font:inherit;color:inherit;}
 </section>
 
 <!-- ══════════ Q&A ══════════ -->
-<section class="sec" id="faq" aria-labelledby="faq-h">
+<section class="sec" id="faq" aria-labelledby="faq-h" style="padding-top:0">
   <div class="wrap">
-    <header class="sh sh-c"><p class="lb" aria-hidden="true">Q&amp;A</p><h2 class="sh-ja" id="faq-h">よくあるご質問</h2></header>
+    <p class="sec-h c" aria-hidden="true">Q&amp;A</p>
+    <h2 class="ja-h" id="faq-h" style="text-align:center;margin-bottom:clamp(36px,4vw,56px)">よくあるご質問</h2>
     <div class="qa">
       <details><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">写真がありません。それでも作れますか？</span></summary><div class="qa-a"><p>作れます。スマートフォンで撮ったもので十分です。現場の様子、重機、完成した構造物、事務所や社屋。このあたりが5〜10枚あれば形になります。きれいに撮る必要はありません。むしろ、実際の現場の写真のほうが伝わります。</p><p>ご用意が難しい部分は、サンプルで使っている写真（商用利用できるフリー素材）をそのまま使えます。</p></div></details>
       <details><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">文章が苦手です。</span></summary><div class="qa-a"><p>ご記入シートで業種をお選びいただくと、その業種のサンプルページで実際に使っている文章が、記入欄の右側に表示されます。それを参考に、御社のことに書き換えてご記入ください。各項目には記入のワンポイントアドバイスを添えています。空欄のままご返送いただいた項目は掲載いたしません。</p></div></details>
@@ -910,30 +961,32 @@ button{font:inherit;color:inherit;}
 <section class="char" id="contact" aria-labelledby="contact-h">
   <div class="contact">
     <div class="contact-in">
-      <header class="sh"><p class="lb" aria-hidden="true">Contact</p><h2 class="sh-ja" id="contact-h">お問い合わせ</h2></header>
+      <p class="sec-h" aria-hidden="true">Contact</p>
+      <h2 class="vh" id="contact-h">お問い合わせ</h2>
       <p>ご質問だけでも構いません。制作内容や、写真・原稿の準備について、メールでご相談いただけます。</p>
       <p>お問い合わせには、会社名・業種・現在のホームページの有無をお書き添えください。気になるデザインがあれば、その名前も添えていただけます。</p>
+      <p class="en" lang="en">Please feel free to contact us by e-mail.</p>
       <p class="kane"><b>1ページ <span class="nw">9万8千円（税込）</span></b><small>前金なし・2週間ほど</small></p>
       <div class="mail">
-        <p class="lb" aria-hidden="true">Mail</p>
-        <a class="mail-a" href="mailto:info@morikosha.com">info@morikosha.com <span aria-hidden="true">↗</span></a><button class="copy" type="button" data-copy="info@morikosha.com">アドレスをコピー</button>
+        <p class="lb" aria-hidden="true">E-mail</p>
+        <a class="mail-a" href="mailto:info@morikosha.com">info@morikosha.com <span aria-hidden="true">↗</span></a>
+        <button class="copy" type="button" data-copy="info@morikosha.com">アドレスをコピー</button>
         <small>2営業日以内のご返信を心がけています。<br>お電話をご希望の場合は、その旨をお書き添えください。</small>
       </div>
       <div class="go">
-        <a class="btn" href="#works">見本を見る <span class="ar" aria-hidden="true">→</span></a>
-        <a class="btn" href="preview/erabot-demo.html" target="_blank" rel="noopener">地面固定具の作例を試す <span class="ar" aria-hidden="true">↗</span></a>
+        <a class="ln" href="#works">見本を見る</a>
+        <a class="ln" href="preview/erabot-demo.html" target="_blank" rel="noopener">地面固定具の作例を試す ↗</a>
       </div>
     </div>
-    <div class="contact-ph"><img src="assets/site/site-forest.jpg" width="1600" height="1200" alt="木漏れ日の差す針葉樹の林" loading="lazy" decoding="async"></div>
+    <div class="tiles" aria-hidden="true"><img src="assets/site/site-moss-close.jpg" width="1600" height="1600" alt="瓦の上の苔" loading="lazy" decoding="async"><img src="assets/site/site-rings.jpg" width="1600" height="1600" alt="切り株の年輪" loading="lazy" decoding="async"><img src="assets/site/site-seedlings.jpg" width="1600" height="1600" alt="ポットに並ぶ苗" loading="lazy" decoding="async"><img src="assets/site/site-wood-samples.jpg" width="1300" height="1600" alt="並べた木材の見本" loading="lazy" decoding="async"><img src="assets/site/site-bilberry.jpg" width="1600" height="1067" alt="苔から芽吹いた若木" loading="lazy" decoding="async"><img src="assets/site/site-garden-tools.jpg" width="1200" height="1600" alt="芝の上に並べた庭仕事の道具" loading="lazy" decoding="async"></div>
   </div>
 </section>
 
 </main>
 
-<!-- ══════════ 奥付 ══════════ -->
-<footer class="colo" id="legal">
-  <div class="wrap">
-    <div class="colo-in">
+<footer>
+  <div class="colo" id="legal">
+    <div class="wrap colo-in">
       <div>
         <h2>特定電子メール法に基づく表示</h2>
         <p>特定電子メールの送信の適正化等に関する法律 第4条に基づき、送信者の情報を表示しています。</p>
@@ -955,28 +1008,55 @@ button{font:inherit;color:inherit;}
         <p>当サイトはアクセス解析ツールおよびCookieを使用していません。</p>
       </div>
     </div>
-    <div class="colo-foot">
-      <a class="brand" href="#top"><svg viewBox="0 0 79 96" aria-hidden="true" focusable="false"><path d="M 39.5 6.0 A 10.1 10.1 0 0 1 54.6 11.9 A 11.7 11.7 0 0 1 65.0 27.6 A 12.9 12.9 0 0 1 67.0 48.3 A 13.3 13.3 0 0 1 57.0 67.2 A 10.5 10.5 0 0 1 44.5 78.5 A 6.2 6.2 0 0 1 34.5 78.5 A 10.5 10.5 0 0 1 22.0 67.2 A 13.3 13.3 0 0 1 12.0 48.3 A 12.9 12.9 0 0 1 14.0 27.6 A 11.7 11.7 0 0 1 24.4 11.9 A 10.1 10.1 0 0 1 39.5 6.0 Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M39.5 58V94" fill="none" stroke="currentColor" stroke-width="6"/></svg><span class="b-t"><span class="b-ja">杜工舎</span><span class="b-en" aria-hidden="true">MORIKOSHA</span></span></a>
-      <small>MORIKOSHA / SAITAMA</small>
-    </div>
   </div>
+  <p class="copyright">Copyright © Morikosha. All rights reserved.</p>
 </footer>
 
+<a class="tab" id="tab" href="#contact">お問い合わせ</a>
 <div class="mcta" id="mcta"><a class="f" href="#price">9万8千円（税込）・前金なし・2週間</a><a class="b" href="#contact">お問い合わせ <span aria-hidden="true">→</span></a></div>
 
 <script>
 (function(){
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hd = document.getElementById('hd'), hero = document.getElementById('top');
+  var mcta = document.getElementById('mcta'), tab = document.getElementById('tab');
 
-  /* ── 頭の帯：扉の上では透明、扉を過ぎたら白。スマホの追従バーも扉を過ぎてから出す ── */
-  var hd = document.getElementById('hd'), hero = document.getElementById('top'), mcta = document.getElementById('mcta');
+  /* ── 頭の帯：扉の上では大きな紋のロゴ、扉を過ぎたら細い白い帯。追従の札も扉を過ぎてから出す ── */
+  var pastHero = false, atContact = false;
+  function tabShow(){
+    var on = pastHero && !atContact;
+    if(mcta) mcta.classList.toggle('on', on);
+    if(tab){ tab.style.opacity = on ? '1' : '0'; tab.style.pointerEvents = on ? '' : 'none'; tab.tabIndex = on ? 0 : -1; }
+  }
+  function solid(past){
+    pastHero = past;
+    hd.classList.toggle('is-solid', past);
+    tabShow();
+  }
+  /* お問い合わせ欄と奥付が見えているあいだは、追従の札を引っ込める（同じ行き先の札が重なるため） */
+  if('IntersectionObserver' in window){
+    var ends = [document.getElementById('contact'), document.querySelector('footer')].filter(Boolean), seen = new Set();
+    var eo = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
+      atContact = seen.size > 0; tabShow();
+    });
+    ends.forEach(function(el){ eo.observe(el); });
+  }
   if(hero && 'IntersectionObserver' in window){
-    new IntersectionObserver(function(es){
-      var past = !es[0].isIntersecting;
-      hd.classList.toggle('is-solid', past);
-      if(mcta) mcta.classList.toggle('on', past);
-    }, {rootMargin:'-80px 0px 0px 0px'}).observe(hero);
-  } else { hd.classList.add('is-solid'); if(mcta) mcta.classList.add('on'); }
+    new IntersectionObserver(function(es){ solid(!es[0].isIntersecting); }, {rootMargin:'-90px 0px 0px 0px'}).observe(hero);
+  } else { solid(true); }
+
+  /* ── いま読んでいる章を、頭の帯の文字に短い線で示す ── */
+  var links = [].slice.call(document.querySelectorAll('.nav a'));
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        links.forEach(function(a){ a.classList.toggle('cur', a.getAttribute('href') === '#' + e.target.id); });
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    links.forEach(function(a){ var s = document.querySelector(a.getAttribute('href')); if(s) io.observe(s); });
+  }
 
   /* ── スマホのメニュー ── */
   var mb = document.getElementById('menu-btn'), mn = document.getElementById('mnav'), mc = document.getElementById('mnav-close');
@@ -991,16 +1071,29 @@ button{font:inherit;color:inherit;}
   mn.addEventListener('click', function(e){ if(e.target.closest('a')) menu(false); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && mn.classList.contains('open')) menu(false); });
 
-  /* ── 扉の写真を静かに入れ替える（動きを減らす設定の人には1枚目のまま） ── */
-  var hs = document.querySelectorAll('.hero-ph img');
-  if(hs.length > 1 && !reduce){
-    var k = 0;
-    setInterval(function(){
-      hs[k].classList.remove('on');
-      k = (k + 1) % hs.length;
-      hs[k].classList.add('on');
-    }, 6500);
+  /* ── 扉の写真：◇の印で選べる。動きを減らす設定の人には自動で送らない ── */
+  var hs = [].slice.call(document.querySelectorAll('.hero-ph img'));
+  var dots = [].slice.call(document.querySelectorAll('.dots button'));
+  var num = document.getElementById('hero-num'), hk = 0, timer = null;
+  function show(i){
+    hs[hk].classList.remove('on'); if(dots[hk]) dots[hk].setAttribute('aria-current', 'false');
+    hk = (i + hs.length) % hs.length;
+    hs[hk].classList.add('on'); if(dots[hk]) dots[hk].setAttribute('aria-current', 'true');
+    if(num) num.textContent = ('0' + (hk + 1)).slice(-2);
   }
+  function auto(){ if(timer) clearInterval(timer); if(!reduce && hs.length > 1) timer = setInterval(function(){ show(hk + 1); }, 6500); }
+  dots.forEach(function(b, i){ b.addEventListener('click', function(){ show(i); auto(); }); });
+  auto();
+
+  /* ── ABOUT の写真スライダー（矢印で送る） ── */
+  var ss = [].slice.call(document.querySelectorAll('#slides img')), sk = 0;
+  function slide(d){
+    if(!ss.length) return;
+    ss[sk].classList.remove('on'); sk = (sk + d + ss.length) % ss.length; ss[sk].classList.add('on');
+  }
+  var sp = document.getElementById('sl-prev'), sn = document.getElementById('sl-next');
+  if(sp) sp.addEventListener('click', function(){ slide(-1); });
+  if(sn) sn.addEventListener('click', function(){ slide(1); });
 
   /* ── 業種：選んだものを覚える。ご記入シートと「デザイン詳細」を業種に合わせる ── */
   function cur(){ return document.querySelector('input[name="pv-ind"]:checked'); }
