@@ -24,7 +24,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F3F1EB'/%3E%3Ctext x='32' y='47' font-size='50' font-family='serif' font-weight='700' text-anchor='middle' fill='%232E5741'%3E杜%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" href="assets/site/logo.svg">
 <!-- 2026-10-01 修正役L 第3周：js の印は書体の CSS より前に付ける（CSS の到着を待たずに本文の読み込みを進めるため） -->
-<script>document.documentElement.classList.add('js');</script>
+<script>document.documentElement.classList.add('js');if(location.hash.length>1)document.documentElement.classList.add('hash-ld');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- 2026-09-30 再設計（組み手2）：書体は2つだけ ── 和文はしっぽり明朝、欧文のラベルと数字は Cormorant Garamond（Jost はやめた）。
@@ -528,7 +528,7 @@ html:has(dialog.thd[open]){overflow:hidden;}
 .thd-go small{font-size:var(--f1);opacity:.85;letter-spacing:.06em;}
 @media (min-width:1024px){
   .thd{max-width:min(1100px,calc(100vw - 64px));}
-  .thd-in{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:start;}
+  .thd-in{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);align-items:start;}
   .thd form{position:absolute;top:0;right:0;height:auto;}
   .thd-ph{position:sticky;top:0;align-self:stretch;display:flex;align-items:center;justify-content:center;background:var(--ground);padding:clamp(28px,3vw,44px);max-height:calc(100svh - 32px);}
   .thd-ph img{width:100%;height:auto;}
@@ -1482,6 +1482,259 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
 }
 /* デザイン詳細（1023px 以下）：画面写真を拡大しない（右上の「DESIGN SAMPLE」の札が半分で切れて、欠けた部品に見えていた） */
 @media (max-width:1023px){.thd-cut img{transform:none;}}
+
+/* ══════════ 2026-10-01 修正役V 第7周（絵と装い） ══════════ */
+/* 扉（PC）：名画の上に貼っていた胡粉の面を減らす。面を残すのは左下の値段の札 1 枚だけ。
+   頭の帯の字・◇と番号・縦の札は、字の形に沿う光（glow）だけで絵に直に置く（散らし書き） */
+@media (min-width:901px){
+  .js .hd:not(.is-solid) .nav,body:has(.hero[data-tone="gold"]) .hd:not(.is-solid) .nav{background:none;box-shadow:none;}
+  .hero[data-tone="gold"] .dots{background:none;box-shadow:none;
+    filter:drop-shadow(0 0 1px rgba(246,236,210,.95)) drop-shadow(0 0 3px rgba(246,236,210,.85)) drop-shadow(0 0 8px rgba(246,236,210,.7));}
+  .hero-plate{background:none;box-shadow:inset -.5px 0 0 var(--gold);padding-block:28px;--glow:246,238,216;}
+  .hero-plate .hp-k,.hero-plate .hp-c{text-shadow:0 0 1px rgba(var(--glow),1),0 0 2px rgba(var(--glow),1),0 0 4px rgba(var(--glow),.95),0 0 8px rgba(var(--glow),.85),0 0 14px rgba(var(--glow),.6);}
+  .hero-plate .hp-c{color:#1D2123;}
+  /* 値段の札：書体の差し替えで札の幅が 535→555px に伸びていた。幅を先に取っておく */
+  .hero-deal{min-width:436px;}
+}
+/* 金地の絵の上の霞：左上・右上の胡粉の白い濁りを弱め、金箔の照りを残す */
+.hero[data-tone="gold"]::after{background:
+  radial-gradient(ellipse 440px 340px at 0 0,rgba(243,241,235,.55) 0,rgba(243,241,235,.36) 60%,rgba(243,241,235,0) 100%),
+  radial-gradient(ellipse 840px 200px at 100% 0,rgba(243,241,235,.5) 0,rgba(243,241,235,.3) 50%,rgba(243,241,235,0) 100%),
+  linear-gradient(180deg,rgba(243,241,235,.32),rgba(243,241,235,0)) 0 0 / 100% 140px no-repeat;}
+/* 扉（スマホ・タブレット）：◇の胡粉の台とメニューの四角い面をやめ、光だけで読ませる。絵の出典は札の外の下に小さく */
+@media (max-width:900px){
+  .hero[data-tone="gold"] .dots{background:none;padding:0;}
+  .js .hd:not(.is-solid) .menu-btn{background:none;color:#1D2123;}
+  .js .hd:not(.is-solid) .menu-btn i{height:1.5px;box-shadow:0 0 0 1px rgba(246,241,229,.75),0 0 6px rgba(246,241,229,.95),0 0 12px rgba(246,241,229,.7);}
+}
+/* 絵の出典を札の外へ出すのはタブレットだけ（スマホでは札の下が杜若の濃い葉で、字が読めなかった） */
+@media (min-width:621px) and (max-width:900px){
+  .hero-plate{bottom:40px;}
+  .hero-plate .hp-c{position:absolute;left:0;top:calc(100% + 6px);margin:0;padding-left:17px;white-space:nowrap;min-height:0;line-height:1.4;
+    color:rgba(29,33,35,.86);--glow:246,238,216;text-shadow:0 0 1px rgba(var(--glow),1),0 0 3px rgba(var(--glow),1),0 0 6px rgba(var(--glow),.9);}
+}
+/* タブレット（621〜900px）：扉が 900px あるのに札がスマホと同じ大きさで沈んでいた。札を扇2枚分に、要の字を 24px に */
+@media (min-width:621px) and (max-width:900px){
+  .hero-plate{width:54%;max-width:none;padding:22px 24px 18px 22px;}
+  .hp-k{font-size:var(--f4);letter-spacing:.12em;}
+  .hp-v{font-size:var(--f4);letter-spacing:.06em;}
+  .hp-mi{font-size:18px;}
+  .hero-plate .hp-c{padding-left:23px;}
+}
+
+/* 三 見本帳の五曲：屏風の縁（上下に 2px の墨）と、扇ごとの山折り・谷折り（地の明暗で）。扇の空きを詰める */
+@media (min-width:901px){
+  .dz-list{border-block:2px solid #1E1F1D;}
+  .dz-sw{min-height:clamp(380px,28vw,420px);}
+  .dz-sw::after{background:linear-gradient(90deg,rgba(0,0,0,.07),rgba(0,0,0,0) 38%);}
+  .dz:nth-child(even) .dz-sw::after{background:linear-gradient(270deg,rgba(0,0,0,.06),rgba(0,0,0,0) 38%);}
+  .dz[data-d="2"] .dz-sw::after{background:linear-gradient(270deg,rgba(255,255,255,.05),rgba(255,255,255,0) 38%);}
+}
+@media (min-width:1101px){.step-dz>.step-side{border-top:2px solid #1E1F1D;}}
+/* ホバーは持ち上げをやめ、明るさの変化だけに（上の縁が途切れて見えていた） */
+@media (hover:hover){.dz:hover,.dz:hover .dz-sw{transform:none;}.dz:hover .dz-sw{filter:brightness(1.06);}}
+/* 粋：藍の縞は 1 本の縦線に見えていた（継ぎ目の罫と二重）。細い縞の帯にして、継ぎ目から 14px 離す */
+.dz[data-d="4"] .dz-sw::before{left:auto;right:14px;width:16%;background:repeating-linear-gradient(90deg,transparent 0 5px,var(--sw-ac) 5px 6px);opacity:.3;}
+/* 理：金の筋は扇の上下いっぱいに。＋は筋の内側へ寄せる。読みは他の扇と同じく一字の右肩に縦で、縦の見出しはその下から */
+.dz[data-d="5"] .dz-sw::before{bottom:clamp(14px,1.4vw,22px);}
+.dz[data-d="5"] .sw-more{right:clamp(26px,2.2vw,32px);}
+.dz[data-d="5"] .sw-go{padding-right:56px;white-space:nowrap;}
+.is-tate .sw-ja{flex-direction:row;align-items:flex-start;gap:8px;}
+.is-tate .sw-yomi{writing-mode:vertical-rl;margin-top:4px;letter-spacing:.2em;}
+.is-tate .sw-h1{top:calc(clamp(18px,1.7vw,26px) + clamp(92px,7.4vw,112px));max-height:calc(100% - 250px);}
+@media (max-width:620px){.is-tate .sw-h1{top:118px;}}
+/* 業種の札の番号：金の小さな字は胡粉の上で 3.14:1 だった。薄墨に */
+.chip::after{color:var(--ink-2);}
+
+/* 四 料金：2枚の面をそろえる（右の面にも同じ胡粉の地と余白。上端と下端をそろえる）。右の段の下に金砂子の余白 */
+@media (min-width:901px){
+  .plans{align-items:stretch;grid-template-columns:minmax(0,3fr) minmax(0,2fr);}
+  .s-face .plan+.plan,.plan+.plan{background:var(--ground);padding-inline:clamp(24px,2.2vw,32px);}
+  .plan-notes{grid-template-columns:minmax(0,3fr) minmax(0,2fr);column-gap:calc(var(--fp) * 2);}
+  .pn-sunago{position:relative;height:180px;margin-top:8px;}
+}
+@media (max-width:900px){.pn-sunago{display:none;}}
+/* 七 FAQ：題箋の下の空いた左の扇に、金の線だけの観世水を縦に細く流す（地は塗らない）。この章の題箋は追わせない */
+.faq-kanze{display:none;}
+@media (min-width:1101px){
+  #faq .dai{position:relative;top:auto;}
+  #faq .byo>.faq-kanze{grid-column:1 / 2;grid-row:1 / span 12;margin:0 0 0 var(--fp);padding:0;}
+  .faq-kanze{display:block;grid-column:1;grid-row:1 / span 12;align-self:end;position:relative;width:118px;height:min(300px,40%);opacity:.7;pointer-events:none;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%);}
+}
+
+/* 結 CONTACT：春の流れの屏風は拡大をやめ、上の流れ・笹・岩・白い花まで一枚ごと見せる（PC）。スマホは白い花と岩の裾で裁つ */
+@media (min-width:901px){.contact-art img{object-position:50% 0%!important;transform:none;}}
+
+/* えらぼっとの扉：蒔絵の斜めの境を右上の隅へ逃がし、藤と松（黒漆の側）を主役に。左下の観世水を少し濃く */
+@media (min-width:901px){.band-era img{object-position:0% 100%;transform:scale(1.5);transform-origin:0% 100%;}}
+.band-era canvas[data-art="kanze"]{opacity:.8;}
+/* 結（スマホ・タブレット）：「見本を見る」と絵の間の暗い空きを詰め、絵は白い花の所で裁つ */
+@media (max-width:900px){
+  #contact .contact-in{padding-bottom:28px;}
+  .contact-art:not(.era-kanze) img{object-position:0% 64%!important;}
+}
+
+/* ══════════ 2026-10-01 修正役L 第7周（組みと操作） ══════════ */
+/* ハッシュ付きで開いたときは、着地までの送りを滑らかにしない（site.js が読み込みの後で外す） */
+html.hash-ld{scroll-behavior:auto;}
+/* 五 FLOW：ご記入シートの囲みは 02 の列の中（方針「シートのリンクはここ」）。4列の下の帯の指定を打ち消す */
+.fl .sheet.flw-sheet{margin-top:18px;}
+@media (min-width:1101px){
+  .fl .sheet.flw-sheet{display:block;margin-top:18px;padding:16px 16px 18px;}
+  .fl .sheet.flw-sheet h4{font-size:var(--f2);font-weight:600;}
+  .fl .sheet.flw-sheet p{max-width:none;}
+  .fl .sheet.flw-sheet .box-ln{margin-top:14px;width:100%;padding:0 16px;}
+  .fl .sheet.flw-sheet .dl-n{white-space:normal;}
+  /* 04 には補足（.fl-d）が無いので、同じ高さの空きを取って本文の書き出しをそろえる */
+  .fl-d0{display:block;min-height:1.9em;margin-top:4px;}
+}
+@media (max-width:1100px){.fl-d0{display:none;}}
+/* スマホでも 01 の説明（淡・玄…の5案）を出す（PC と中身をそろえる） */
+@media (max-width:620px){.fl-s .fl-d:not(.fl-d0){display:block;}}
+/* 低いスマホ（375×667 など）：メニューの中身を画面に収め、送っても「閉じる ×」が画面に残るようにする */
+@media (max-width:900px) and (max-height:699px){
+  .mnav{padding-top:12px;padding-bottom:24px;}
+  .mnav-top{position:sticky;top:-12px;z-index:1;background:var(--ground);min-height:52px;}
+  .mnav ol{margin-top:8px;}
+  .mnav li a{padding:8px 0;min-height:44px;align-items:center;}
+  .mnav-era{margin-top:12px;}
+  .mnav-era a{min-height:44px;padding:6px 0;}
+  .mnav-mail{margin-top:10px;}
+}
+/* スマホの WHY：理由の間の余白を詰める（2画面近くあった章の高さを抑える） */
+@media (max-width:620px){
+  .rs{padding-top:20px;}
+  .rs+.rs{margin-top:20px;}
+}
+/* 五 FLOW（1101px 以上）：シートの囲みが入る 02 の列を広くとり、列の高さを抑える */
+@media (min-width:1101px){
+  .flw{grid-template-columns:minmax(0,.95fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,.95fr);}
+  .fl .sheet.flw-sheet{padding:14px 16px 16px;}
+  .fl .sheet.flw-sheet p{margin-top:6px;line-height:1.8;}
+}
+/* 三 WORKS（901〜1100px・高さ820px以下、1024×768 など）：業種の札3段と五曲を一画面に入れる。
+   扇の上の説明文（五つの型の説明。1101px 以上では左の欄にある）を出さず、札と段の間を詰める */
+@media (min-width:901px) and (max-width:1100px) and (max-height:820px){
+  .step-dz{margin-top:6px;}
+  .step-dz .step-side .step-p{display:none;}
+  .chips .chip{padding-top:7px;padding-bottom:7px;}
+  /* 「〇〇の5案を表示しました」は、すぐ下の見出し「〇〇の5案」と同じことなので、目では隠して読み上げにだけ残す */
+  .chip-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0;}
+  .step-dz .dz-list{margin-top:10px;}
+  .step-dz .step-h{padding-bottom:10px;}
+  .dz-sw{min-height:382px;}
+}
+
+/* ══════════ 2026-10-01 修正役V 第8周（絵と装い） ══════════ */
+/* 扉（PC）：金地の絵（八橋・老松）では、縦の札を金屏風に貼った「短冊」にする（紙の面＋金の細い縁。角丸・影なし）。
+   字の光彩（多重の text-shadow）は白いにじみの輪に見えたのでやめる。水墨の松林図の上は、札の面を置かず右の金罫だけ */
+@media (min-width:901px){
+  .hero-plate{transition:background-color .8s ease,box-shadow .8s ease;}
+  .hero[data-tone="gold"] .hero-plate{background:rgba(243,241,235,.92);box-shadow:inset 0 0 0 .5px rgba(168,130,63,.6);padding:28px 14px;}
+  .hero[data-tone="gold"] .hero-plate .hp-k,.hero[data-tone="gold"] .hero-plate .hp-c{text-shadow:none;}
+  .hero[data-tone="gold"] .hero-plate .hp-c{color:#3B3D3A;}
+  /* 頭の帯の字：金地の絵のときは光彩をやめ、上端に胡粉の霞（すやり霞）を敷いて読ませる。右端の◇と番号の後ろにも縦に淡く */
+  body:has(.hero[data-tone="gold"]) .hd:not(.is-solid) .nav a,body:has(.hero[data-tone="gold"]) .hd:not(.is-solid) .nav a .nj{text-shadow:none;}
+  .hero[data-tone="gold"]::after{height:100%;background:
+    linear-gradient(180deg,rgba(243,241,235,.84) 0,rgba(243,241,235,.76) 96px,rgba(243,241,235,.4) 150px,rgba(243,241,235,0) 200px) 0 0 / 100% 200px no-repeat,
+    radial-gradient(ellipse 110px 260px at 100% 330px,rgba(243,241,235,.78) 0,rgba(243,241,235,.5) 55%,rgba(243,241,235,0) 100%) 0 0 / 100% 100% no-repeat,
+    radial-gradient(ellipse 260px 300px at 0 0,rgba(243,241,235,.6) 0,rgba(243,241,235,.4) 60%,rgba(243,241,235,0) 100%) 0 0 / 100% 100% no-repeat;}
+  .hero[data-tone="gold"] .dots{filter:drop-shadow(0 0 1px rgba(246,236,210,.9));}
+  .hero[data-tone="gold"] .dots .num{text-shadow:none;}
+}
+/* 扉の◇（スマホ）：濃い燕子花の上でも沈まないよう、胡粉の細い縁と淡い地の影 */
+@media (max-width:900px){
+  .dots button::before{box-shadow:0 0 0 1px rgba(var(--glow),.9),0 0 6px 1px rgba(243,241,235,.75);}
+}
+
+/* 字の手触り：線のリンクは折り返さない。ホバーで罫を伸ばしても組みの幅が変わらないよう、幅ではなく scaleX で */
+.ln{white-space:nowrap;max-width:100%;}
+.ln::after{width:104px;transform:scaleX(.615);transform-origin:0 50%;transition:transform .35s;}
+.ln:hover::after{width:104px;transform:scaleX(1);}
+@media (max-width:620px){.ln::after{width:44px;transform:none;}.ln:hover::after{width:44px;transform:none;}}
+/* ご記入シートの釦：『ご記入シート』と『（業種）.xlsx』の塊の境目でだけ折り返す（site.js dlFollow） */
+.dl-n .nw{display:inline-block;white-space:nowrap;}
+
+/* 三 見本帳の五曲：見出し（見本の h1）と一言の上の短い罫の間を 18px 以上あける（罫が下線に見えていた） */
+@media (min-width:901px){
+  .sw-h1{margin-bottom:18px;}
+  .sw-e{padding-top:16px;}
+  /* 理：縦書きの見出しは罫の上で止める。字を一段下げて2列に収める */
+  .is-tate .sw-h1{font-size:16px;letter-spacing:.1em;max-height:calc(100% - 292px);margin-bottom:0;}
+  /* 雅の砂子は格子に見えていた。間隔を倍にして淡く */
+  .dz[data-d="3"] .dz-sw::after{background:radial-gradient(circle,rgba(201,168,104,.45) 0 .7px,transparent 1.1px) 0 0 / 38px 46px,radial-gradient(circle,rgba(201,168,104,.28) 0 .6px,transparent 1px) 17px 21px / 62px 58px,linear-gradient(90deg,rgba(0,0,0,.07),rgba(0,0,0,0) 38%);}
+}
+
+/* 三 見本帳の帯（PC）：夏秋草図の継ぎ目（縦の黒い線）が夜の暈しの終わりに重なり、絵が縦に切られて見えた。
+   絵を右上を起点に少し大きくして、継ぎ目を夜の中（x≈39%）へ入れる */
+@media (min-width:901px){.band-works img{transform:scale(1.2);transform-origin:100% 0;}}
+/* スマホ：題箋が、絵が夜へ溶ける途中の濁った灰の上に乗っていた。夜へ落ちる所を上げ、題箋を夜の面の上へ下げる */
+@media (max-width:900px){
+  .band-works.band-door{padding-top:190px;}
+  .band-works::after{background:linear-gradient(180deg,rgba(21,24,26,0) 0,rgba(21,24,26,0) 30%,var(--night) 50%,var(--night) 100%);}
+}
+
+/* 四 料金（PC）：注記の右に浮いていた金砂子（白地の上では塵に見えた）をやめる。注記は面の左端にそろえ、2枚の面の幅いっぱいに2段で組む。
+   左の面の最後の罫は外し、面の下の空きを余白として読ませる */
+.pn-sunago{display:none!important;}
+@media (min-width:901px){
+  .plan-notes{display:block;margin-top:26px;}
+  .plan-notes>div{padding-inline:0!important;columns:2;column-gap:calc(var(--fp) * 2);}
+  .plan-notes .fine{max-width:none;break-inside:avoid;}
+  .plan-notes .fine+.fine{margin-top:12px;}
+  .plan>.row:last-child{border-bottom:0;}
+  .plans{align-items:start;}
+}
+
+/* 結 CONTACT：要点の値段の行を上の段落から離し、細い金の罫で独立させる。PC は文の下の暗い空きを詰める */
+.contact .kane{margin-top:40px;padding-top:26px;border-top:.5px solid rgba(194,154,85,.55);max-width:32em;}
+@media (min-width:901px){.contact-in{padding-block:var(--sp-l) var(--sp-m);}}
+/* スマホ・タブレット：春の流れの屏風を、白い花と岩が帯の中ほどに来る所で裁つ（砂子の地だけの右半分を外す） */
+@media (max-width:900px){
+  .contact-art:not(.era-kanze) img{object-position:0% 60%!important;transform:scale(1.4);transform-origin:0% 62%;}
+}
+
+/* メニュー：「見本帳」の添え字は、どの幅でも同じ行に並べる（390 だけ2行に落ちて行の高さが揃わなかった） */
+.mn-s{display:inline;margin-top:0;margin-left:10px;}
+
+/* ══════════ 2026-10-01 修正役L 第8周（組みと操作） ══════════ */
+/* 五 FLOW：02 の記入例の囲み（#dl-sheet）は 02 の項目の中のまま。1101px 以上は4列を等幅にし、囲みだけを 02 の列の左端から右へ（02〜04 の幅で）
+   2段目に出す。02 の列だけが広く・高くなり、01・04 の下に 250〜350px の空きができていた */
+@media (max-width:1100px){
+  .fl-col{display:contents;}
+  .fl-2>.flw-sheet{grid-column:2;grid-row:2;}
+}
+@media (max-width:900px){.fl-2>.flw-sheet{grid-column:1 / -1;grid-row:3;}}
+@media (min-width:1101px){
+  .flw{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto;}
+  .flw>.fl{grid-row:1;}
+  .flw>.fl:nth-child(1){grid-column:1;}
+  .flw>.fl:nth-child(3){grid-column:3;}
+  .flw>.fl:nth-child(4){grid-column:4;}
+  .flw>.fl-2{grid-column:2 / 5;grid-row:1 / 3;display:grid;grid-template-columns:subgrid;grid-template-rows:subgrid;padding:0;align-items:start;}
+  .fl-2>.fl-col{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:18px var(--fp) 8px;min-width:0;}
+  .fl-2>.fl-col>*{min-width:0;max-width:100%;}
+  .fl .fl-2>.sheet.flw-sheet,.fl-2>.sheet.flw-sheet{grid-column:1 / -1;grid-row:2;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 40px;
+    margin:18px 0 8px var(--fp);padding:18px 24px;}
+  .fl-2>.sheet.flw-sheet h4{font-size:var(--f2);font-weight:600;}
+  .fl-2>.sheet.flw-sheet p{max-width:none;margin-top:6px;line-height:1.8;}
+  .fl-2>.sheet.flw-sheet .box-ln{margin-top:0;width:auto;min-width:260px;padding:0 24px;}
+  .fl-2>.sheet.flw-sheet .dl-n{white-space:nowrap;}
+}
+/* 四 料金「公開設定の代行とは」：開閉の印（＋／−）を、2行の要約の真ん中ではなく見出しの1行目の中ほどにそろえる（開いた − が下線に見えていた） */
+.daiko-fold summary .fold-i{align-self:start;margin-top:calc(var(--f3) * .75 - 7px);}
+/* デザイン詳細（1024〜1099px・高さ800px以下）：写真と文を横2段にし、説明の終わりまでを最初の画面に入れる（1列では説明が下のぼかしに切れていた） */
+@media (min-width:1024px) and (max-width:1099px) and (max-height:800px){
+  .thd{max-width:min(760px,calc(100vw - 64px));}
+  .thd-in{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);align-items:start;}
+  .thd-ph{display:block;align-self:start;height:auto;padding:88px 0 0 24px;}
+  .thd-cut{height:auto;aspect-ratio:880/578;}
+  .thd-b{padding-top:30px;}
+  .thd-b .thd-d{margin-top:8px;line-height:1.8;}
+  .thd-b .thd-m{margin-top:12px;padding-top:12px;line-height:1.8;}
+  .thd-ph{padding-top:70px!important;}
+}
 </style>
 </head>
 <body>
@@ -1580,12 +1833,12 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       <div class="rs">
         <p class="n" aria-hidden="true">02</p>
         <h3>仕事の入口が細る</h3>
-        <p>元請の審査、施主の下調べ、同業からの紹介。どれも会社名で検索するところから始まります。その場で何ができる会社か分からなければ、次の候補に移られます。実績が並んだ<span class="nw nk">1枚</span>が、<span class="nw nk">その先へ</span>進む入口に<span class="nw nk">なります。</span></p>
+        <p>元請の審査、施主の下調べ、同業からの紹介。どれも会社名で検索するところから<span class="nw nk">始まります。</span>その場で何ができる会社か分からなければ、次の候補に移られます。実績が並んだ<span class="nw nk">1枚</span>が、<span class="nw nk">その先へ</span>進む入口に<span class="nw nk">なります。</span></p>
       </div>
       <div class="rs">
         <p class="n" aria-hidden="true">03</p>
         <h3><span class="nw">AIが参考にする先に、</span>自社が無い</h3>
-        <p>ChatGPTなどのAIで調べる人が増えています。生成AIを使ったことがある人は<span class="nw"><b><span class="nw nk">5割</span></b>を</span>超えました。<span class="nw"><span class="nw nk">1年</span>で</span>約<span class="nw nk">2倍</span>に増えました。<span class="nw nk">AIによる概要</span>は検索で見つかるページを参考に示すので、会社の公式ページはその参照先の候補に<span class="nw nk">なります。</span></p>
+        <p>ChatGPTなどのAIで調べる人が<span class="nw nk">増えています。</span>生成AIを使ったことがある人は<span class="nw"><b><span class="nw nk">5割</span></b>を</span>超えました。<span class="nw"><span class="nw nk">1年</span>で</span>約<span class="nw nk">2倍</span>に増えました。<span class="nw nk">AIによる概要</span>は検索で見つかるページを参考に示すので、会社の公式ページはその参照先の候補に<span class="nw nk">なります。</span></p>
         <p class="src">生成AIの利用経験は総務省「令和<span class="nw nk">8年</span>版 情報通信白書」（20〜69歳のネットモニター調査・年代ごと同数。52.2%、前年26.7%）。<span class="nw nk">AIによる概要</span>が参考にしたページを示すことは Google 検索セントラル「AI 機能とウェブサイト」（<span class="nw nk">2025年</span>12<span class="nw nk">月更新）。</span></p>
       </div>
     </div>
@@ -1638,7 +1891,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
 <div class="dz-list" data-ind="kosho"><article class="dz" data-d="1" style="--sw-bg:#EFF3F4;--sw-ink:#3B4649;--sw-hc:#121A1C;--sw-ac:#5C6971;--sw-hw:400;--sw-ls:.1em;--sw-hf:&quot;Shippori Mincho&quot;;--sw-kw:500;"><a class="dz-sw" href="preview/kosho-1.html" target="_blank" rel="noopener" aria-label="淡のデザインで作った古書店の見本を新しいタブで開く"><span class="sw-no" aria-hidden="true">01</span><span class="sw-ja" aria-hidden="true"><span class="sw-k">淡</span><span class="sw-yomi">あわい</span></span><span class="sw-h1">捨てる前に、<br>見せてください。</span><span class="sw-e">雨に洗われた白と、雨脚。</span><span class="sw-go" aria-hidden="true">実物を見る ↗</span></a><button type="button" class="sw-more" data-thm="1" data-c="kosho" aria-haspopup="dialog" aria-label="淡のデザイン詳細を開く"><i aria-hidden="true"></i></button></article><article class="dz" data-d="2" style="--sw-bg:#04060A;--sw-ink:#DEE2E5;--sw-hc:#F7F8F8;--sw-ac:#8E959B;--sw-hw:500;--sw-ls:.06em;--sw-hf:&quot;Noto Sans JP&quot;;--sw-kw:300;--sw-bf:var(--ff-go);--sw-grad:linear-gradient(180deg,#161D28 0%,#101722 22%,#0A0F17 48%,#070B11 74%,#04060A 100%);"><a class="dz-sw" href="preview/kosho-2.html" target="_blank" rel="noopener" aria-label="玄のデザインで作った古書店の見本を新しいタブで開く"><span class="sw-no" aria-hidden="true">02</span><span class="sw-ja" aria-hidden="true"><span class="sw-k">玄</span><span class="sw-yomi">げん</span></span><span class="sw-h1">捨てる前に、<br>見せてください。</span><span class="sw-e">写真を、闇に沈めて。</span><span class="sw-go" aria-hidden="true">実物を見る ↗</span></a><button type="button" class="sw-more" data-thm="2" data-c="kosho" aria-haspopup="dialog" aria-label="玄のデザイン詳細を開く"><i aria-hidden="true"></i></button></article><article class="dz" data-d="3" style="--sw-bg:#1A150E;--sw-ink:#EFE8DA;--sw-hc:#FBF7EC;--sw-ac:#C9A868;--sw-hw:600;--sw-ls:.22em;--sw-hf:&quot;Zen Old Mincho&quot;;--sw-kw:600;--sw-bf:var(--ff-go);"><a class="dz-sw" href="preview/kosho-3.html" target="_blank" rel="noopener" aria-label="雅のデザインで作った古書店の見本を新しいタブで開く"><span class="sw-no" aria-hidden="true">03</span><span class="sw-ja" aria-hidden="true"><span class="sw-k">雅</span><span class="sw-yomi">みやび</span></span><span class="sw-h1">捨てる前に、<br>見せてください。</span><span class="sw-e">灯のような墨に、金の細線。</span><span class="sw-go" aria-hidden="true">実物を見る ↗</span></a><button type="button" class="sw-more" data-thm="3" data-c="kosho" aria-haspopup="dialog" aria-label="雅のデザイン詳細を開く"><i aria-hidden="true"></i></button></article><article class="dz" data-d="4" style="--sw-bg:#FBF9F3;--sw-ink:#211F1B;--sw-hc:#211F1B;--sw-ac:#1F4A6E;--sw-hw:400;--sw-ls:.05em;--sw-hf:&quot;Zen Kaku Gothic New&quot;;--sw-kw:300;--sw-bf:var(--ff-go);"><a class="dz-sw" href="preview/kosho-4.html" target="_blank" rel="noopener" aria-label="粋のデザインで作った古書店の見本を新しいタブで開く"><span class="sw-no" aria-hidden="true">04</span><span class="sw-ja" aria-hidden="true"><span class="sw-k">粋</span><span class="sw-yomi">いき</span></span><span class="sw-h1">捨てる前に、<br>見せてください。</span><span class="sw-e">藍の、細い縦線だけ。</span><span class="sw-go" aria-hidden="true">実物を見る ↗</span></a><button type="button" class="sw-more" data-thm="4" data-c="kosho" aria-haspopup="dialog" aria-label="粋のデザイン詳細を開く"><i aria-hidden="true"></i></button></article><article class="dz is-tate" data-d="5" style="--sw-bg:#F3EFE6;--sw-ink:#443E33;--sw-hc:#1B1813;--sw-ac:#5E4A2F;--sw-hw:400;--sw-ls:.14em;--sw-hf:&quot;Shippori Mincho&quot;;--sw-kw:500;--sw-bf:var(--ff-go);"><a class="dz-sw" href="preview/kosho-5.html" target="_blank" rel="noopener" aria-label="理のデザインで作った古書店の見本を新しいタブで開く"><span class="sw-no" aria-hidden="true">05</span><span class="sw-ja" aria-hidden="true"><span class="sw-k">理</span><span class="sw-yomi">り</span></span><span class="sw-h1">捨てる前に、<br>見せてください。</span><span class="sw-e">一本の筋を、通す。</span><span class="sw-go" aria-hidden="true">実物を見る ↗</span></a><button type="button" class="sw-more" data-thm="5" data-c="kosho" aria-haspopup="dialog" aria-label="理のデザイン詳細を開く"><i aria-hidden="true"></i></button></article></div>
 <div class="dz-list" data-ind="juku"><article class="dz" data-d="1" style="--sw-bg:#EFF3F4;--sw-ink:#3B4649;--sw-hc:#121A1C;--sw-ac:#5C6971;--sw-hw:400;--sw-ls:.1em;--sw-hf:&quot;Shippori Mincho&quot;;--sw-kw:500;"><a class="dz-sw" href="preview/juku-1.html" target="_blank" rel="noopener" aria-label="淡のデザインで作った学習塾の見本を新しいタブで開く"><span class="sw-no" aria-hidden="true">01</span><span class="sw-ja" aria-hidden="true"><span class="sw-k">淡</span><span class="sw-yomi">あわい</span></span><span class="sw-h1">勉強のやり方から、<br>教える塾です。</span><span class="sw-e">雨に洗われた白と、雨脚。</span><span class="sw-go" aria-hidden="true">実物を見る ↗</span></a><button type="button" class="sw-more" data-thm="1" data-c="juku" aria-haspopup="dialog" aria-label="淡のデザイン詳細を開く"><i aria-hidden="true"></i></button></article><article class="dz" data-d="2" style="--sw-bg:#04060A;--sw-ink:#DEE2E5;--sw-hc:#F7F8F8;--sw-ac:#8E959B;--sw-hw:500;--sw-ls:.06em;--sw-hf:&quot;Noto Sans JP&quot;;--sw-kw:300;--sw-bf:var(--ff-go);--sw-grad:linear-gradient(180deg,#161D28 0%,#101722 22%,#0A0F17 48%,#070B11 74%,#04060A 100%);"><a class="dz-sw" href="preview/juku-2.html" target="_blank" rel="noopener" aria-label="玄のデザインで作った学習塾の見本を新しいタブで開く"><span class="sw-no" aria-hidden="true">02</span><span class="sw-ja" aria-hidden="true"><span class="sw-k">玄</span><span class="sw-yomi">げん</span></span><span class="sw-h1">勉強のやり方から、<br>教える塾です。</span><span class="sw-e">写真を、闇に沈めて。</span><span class="sw-go" aria-hidden="true">実物を見る ↗</span></a><button type="button" class="sw-more" data-thm="2" data-c="juku" aria-haspopup="dialog" aria-label="玄のデザイン詳細を開く"><i aria-hidden="true"></i></button></article><article class="dz" data-d="3" style="--sw-bg:#1A150E;--sw-ink:#EFE8DA;--sw-hc:#FBF7EC;--sw-ac:#C9A868;--sw-hw:600;--sw-ls:.22em;--sw-hf:&quot;Zen Old Mincho&quot;;--sw-kw:600;--sw-bf:var(--ff-go);"><a class="dz-sw" href="preview/juku-3.html" target="_blank" rel="noopener" aria-label="雅のデザインで作った学習塾の見本を新しいタブで開く"><span class="sw-no" aria-hidden="true">03</span><span class="sw-ja" aria-hidden="true"><span class="sw-k">雅</span><span class="sw-yomi">みやび</span></span><span class="sw-h1">勉強のやり方から、<br>教える塾です。</span><span class="sw-e">灯のような墨に、金の細線。</span><span class="sw-go" aria-hidden="true">実物を見る ↗</span></a><button type="button" class="sw-more" data-thm="3" data-c="juku" aria-haspopup="dialog" aria-label="雅のデザイン詳細を開く"><i aria-hidden="true"></i></button></article><article class="dz" data-d="4" style="--sw-bg:#FFFFFF;--sw-ink:#242220;--sw-hc:#242220;--sw-ac:#1F4A6E;--sw-hw:400;--sw-ls:.05em;--sw-hf:&quot;Zen Kaku Gothic New&quot;;--sw-kw:300;--sw-bf:var(--ff-go);"><a class="dz-sw" href="preview/juku-4.html" target="_blank" rel="noopener" aria-label="粋のデザインで作った学習塾の見本を新しいタブで開く"><span class="sw-no" aria-hidden="true">04</span><span class="sw-ja" aria-hidden="true"><span class="sw-k">粋</span><span class="sw-yomi">いき</span></span><span class="sw-h1">勉強のやり方から、<br>教える塾です。</span><span class="sw-e">藍の、細い縦線だけ。</span><span class="sw-go" aria-hidden="true">実物を見る ↗</span></a><button type="button" class="sw-more" data-thm="4" data-c="juku" aria-haspopup="dialog" aria-label="粋のデザイン詳細を開く"><i aria-hidden="true"></i></button></article><article class="dz is-tate" data-d="5" style="--sw-bg:#F3EFE6;--sw-ink:#443E33;--sw-hc:#1B1813;--sw-ac:#5E4A2F;--sw-hw:400;--sw-ls:.14em;--sw-hf:&quot;Shippori Mincho&quot;;--sw-kw:500;--sw-bf:var(--ff-go);"><a class="dz-sw" href="preview/juku-5.html" target="_blank" rel="noopener" aria-label="理のデザインで作った学習塾の見本を新しいタブで開く"><span class="sw-no" aria-hidden="true">05</span><span class="sw-ja" aria-hidden="true"><span class="sw-k">理</span><span class="sw-yomi">り</span></span><span class="sw-h1">勉強のやり方から、<br>教える塾です。</span><span class="sw-e">一本の筋を、通す。</span><span class="sw-go" aria-hidden="true">実物を見る ↗</span></a><button type="button" class="sw-more" data-thm="5" data-c="juku" aria-haspopup="dialog" aria-label="理のデザイン詳細を開く"><i aria-hidden="true"></i></button></article></div>
         <div class="dz-nav"><button type="button" class="dz-pv" aria-label="前の案へ">←</button><span class="dz-dots" role="group" aria-label="案を選ぶ"><button type="button" aria-label="1案目へ"><i></i></button><button type="button" aria-label="2案目へ"><i></i></button><button type="button" aria-label="3案目へ"><i></i></button><button type="button" aria-label="4案目へ"><i></i></button><button type="button" aria-label="5案目へ"><i></i></button></span><span class="dz-n" aria-live="polite"><span class="dz-i">01</span><span class="num-t"> — 05</span></span><button type="button" class="dz-nx" aria-label="次の案へ">→</button></div>
-        <p class="dz-note">五案とも、載せる項目は同じです。会社概要も、事業内容も、採用情報も、すべて入ります。写真も文章も御社のものに入れ替わり、色も御社に合わせて無料でお変えしますので、同じ型を選んだ会社と<span class="nw nk">並べて</span>も、同じサイトには見<span class="nw nk">えません。</span><br><b>選んでいただくのは、かたちだけ。</b>だから、<span class="nw nk"><span class="nw nk">1ページ</span></span> <span class="nw"><span class="nw nk">98,000円（税込）</span></span>、<span class="nw nk">2週間</span>ほどで<span class="nw nk">お渡し</span><span class="nw nk">できます</span>。</p>
+        <p class="dz-note">五案とも、載せる項目は同じです。会社概要も、事業内容も、採用情報も、すべて<span class="nw nk">入ります。</span>写真も文章も御社のものに入れ替わり、色も御社に合わせて無料でお変えしますので、同じ型を選んだ会社と<span class="nw nk">並べて</span>も、同じサイトには見<span class="nw nk">えません。</span><br><b class="nw">選んでいただくのは、かたちだけ。</b>だから、<span class="nw nk"><span class="nw nk">1ページ</span></span> <span class="nw"><span class="nw nk">98,000円（税込）</span></span>、<span class="nw nk">2週間</span>ほどで<span class="nw nk">お渡し</span><span class="nw nk">できます</span>。</p>
       </div>
     </div>
 
@@ -1661,7 +1914,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       <div class="plan">
         <h3>ホームページをつくるとき</h3>
         <div class="row"><h4>ホームページ作成</h4><span class="p"><span class="pn">98,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p><span class="nw nk"><span class="nw nk">1ページ</span></span>構成・<span class="nw nk">スマートフォン対応</span>。HTMLデータ一式を<span class="nw nk">お渡しします。</span><span class="nw nk">買い切り</span>で、月々いただくものは<span class="nw nk">ありません。</span></p></div>
-        <div class="row"><h4>公開設定の代行<span class="nw">（ご希望の方のみ）</span></h4><span class="p"><span class="pn">50,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>インターネット上に公開するところまで代行します。ご自身でできる場合は要りません。中身は下にご説<span class="nw nk">明します。</span></p></div>
+        <div class="row"><h4>公開設定の代行<span class="nw">（ご希望の方のみ）</span></h4><span class="p"><span class="pn">50,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>インターネット上に公開するところまで代行します。ご自身でできる場合は<span class="nw nk">要りません。</span>中身は下にご説<span class="nw nk">明します。</span></p></div>
       </div>
       <div class="plan">
         <h3>あとから直すとき</h3>
@@ -1672,17 +1925,18 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
     </div>
     <div class="plan-notes">
       <div>
-      <p class="fine">すべて税込。制作にあたって、これ以外にいただくものは<span class="nw nk">ありません。</span><b>前金はいただかず、お支払いは完成品をご覧になってから。データは御社のものです。</b>お支払いは銀行振込です。完成品をご覧いただいたあとに請求書をお送りしますので、発行から<span class="nw nk">2週間</span>以内にお振り込み<span class="nw nk">ください。</span></p>
-      <p class="fine">公開後は、<span class="nw nk">御社名義</span>でご契約いただくサーバーとドメインの利用料（あわせて年8,000〜20,000円ほど）だけがかかります。当方が受け取るものでは<span class="nw nk">ありません。</span></p>
+      <p class="fine">すべて税込。制作にあたって、これ以外にいただくものは<span class="nw nk">ありません。</span><b>前金はいただかず、お支払いは完成品をご覧に<span class="nw nk">なってから。</span>データは御社のものです。</b>お支払いは銀行振込です。完成品をご覧いただいたあとに請求書をお送りしますので、発行から<span class="nw nk">2週間</span>以内にお振り込み<span class="nw nk">ください。</span></p>
+      <p class="fine">公開後は、<span class="nw nk">御社名義</span>でご契約いただくサーバーとドメインの<span class="nw nk">利用料</span>（あわせて年8,000〜20,000円ほど）だけがかかります。当方が受け取るものでは<span class="nw nk">ありません。</span></p>
       <p class="fine">公開したあと<span class="nw nk">7日間</span>は、表示の不具合（崩れ・文字化けなど）を<span class="nw nk">無償で直します</span>。</p>
       </div>
+      <div class="pn-sunago" aria-hidden="true"><canvas class="art-layer" data-art="sunago" aria-hidden="true"></canvas></div>
     </div>
     <!-- 2026-10-01 第5周：料金の面の説明と「公開設定の代行とは」が同じ話を2度していたので、説明の2段落と11の手順を1つの開閉に入れた（文面は同じ） -->
     <details class="daiko daiko-fold">
       <summary><span class="df-t"><h3 class="vh3">公開設定の代行とは</h3><small class="df-s">中身と、ご自身でなさる場合の流れ<span class="nw">（11の手順）</span></small></span><span class="fold-i" aria-hidden="true"></span></summary>
       <div class="df-b">
         <p class="daiko-lead"><span class="nw nk">お渡し</span>するのはHTMLファイルです。ご自身でサーバーに置ける方は、この代行は必要<span class="nw nk">ありません。</span>「やり方が分からない」「触るのが不安」という場合に、インターネット上に公開するところまでをこちらで済<span class="nw nk">ませます。</span></p>
-        <p><b>この一式をこちらで済ませて <span class="nw"><span class="nw nk">50,000円（税込）</span></span>、<span class="nw nk">一度きり</span>です。</b>月々いただくものは<span class="nw nk">ありません。</span>サーバーとドメインの利用料は御社のお支払いになります。目安はあわせて年8,000〜20,000円ほどです。<span class="nw nk">御社名義</span>の契約なので、ホームページは御社の手元に<span class="nw nk">残ります。</span></p>
+        <p><b>この一式をこちらで済ませて <span class="nw"><span class="nw nk">50,000円（税込）</span></span>、<span class="nw nk">一度きり</span>です。</b>月々いただくものは<span class="nw nk">ありません。</span>サーバーとドメインの<span class="nw nk">利用料</span>は御社のお支払いになります。目安はあわせて年8,000〜20,000円ほどです。<span class="nw nk">御社名義</span>の契約なので、ホームページは御社の手元に<span class="nw nk">残ります。</span></p>
         <p>ご自身でなさる場合は、<span class="nw nk">おおよそ</span>この<span class="nw nk">流れです。</span></p>
             <ol class="flow" aria-label="公開までの流れ" style="margin-top:14px">
               <li>サーバー契約</li><li>独自ドメイン取得</li><li>Whois情報公開代行</li><li>ネームサーバー変更</li><li>DNS<span class="nw nk">反映</span>待ち（最大<span class="nw nk">72時間</span>）</li><li>SSL証明書の発行</li><li>FTP接続</li><li>public_html へ設置</li><li>.htaccess で www と <span class="nw nk">https を統一</span></li><li>Search <span class="nw nk">Console 登録</span></li><li>サイトマップ送信</li>
@@ -1701,24 +1955,25 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
     <header class="dai sec-h"><span class="dai-n" aria-hidden="true">五</span><h2 class="dai-t" id="flow-h">ご依頼の流れ</h2><span class="dai-l" aria-hidden="true">Flow</span></header>
     <ol class="flw">
       <li class="fl fl-s"><p class="fl-n" aria-hidden="true">01</p><div class="fl-b"><h3>見本から、業種とデザインを選ぶ</h3><p class="fl-d">淡・玄・雅・粋・理の<span class="nw nk">5案</span>から1つ。見本を押すと、実物が新しいタブで開きます</p><a class="ln" href="#works-pick">見本を見る</a></div><p class="fl-t">所要<b>約<span class="nw nk">10分</span></b></p></li>
-      <li class="fl"><p class="fl-n" aria-hidden="true">02</p><div class="fl-b"><h3><span class="nw nk">ご記入シート</span>に記入する</h3><p class="fl-d">エクセル<span class="nw nk">1枚</span></p>
+      <!-- 2026-10-01 第8周L：記入例の囲みと #dl-sheet は 02 の項目の中のまま（方針「シートのリンクはここ」）。
+           1101px 以上では、4列を等幅にし、囲みだけを 02 の列の下から右へ（02〜04 の幅で）出す（02 の列だけ背が伸びて 01・04 の下が空いていた） -->
+      <li class="fl fl-2"><div class="fl-col"><p class="fl-n" aria-hidden="true">02</p><div class="fl-b"><h3><span class="nw nk">ご記入シート</span>に記入する</h3><p class="fl-d">エクセル<span class="nw nk">1枚</span></p>
         <p class="fl-p">業種を選ぶと記入例が出ます。書いて、写真を<span class="nw nk">添えて</span><span class="nw nk">送るだけ。</span></p>
-      </div><p class="fl-t">所要<b>約<span class="nw nk">15分</span>＋写真えらび</b></p></li>
-      <li class="fl"><p class="fl-n" aria-hidden="true">03</p><div class="fl-b"><h3>書けたシートを送る</h3><p class="fl-d">メールに添付するだけ</p>
-        <p class="fl-p">書けたら、写真といっしょに info@morikosha.com<wbr> へ<span class="nw">送ってください。</span>件名は何でも<span class="nw nk">構いません</span>。<span class="nw nk">2営業日</span>以内のご返信を心がけ<span class="nw nk">ています。</span></p>
-        <p class="send"><a class="box-ln" href="mailto:info@morikosha.com">メールを書く <span aria-hidden="true">→</span></a></p>
-      </div><p class="fl-t">所要<b>すぐ</b></p></li>
-      <li class="fl fl-s"><p class="fl-n" aria-hidden="true">04</p><div class="fl-b"><h3>完成品をご覧いただく</h3><p class="fl-p"><span class="nw nk">ご記入シート</span>と写真をいただいてから、<span class="nw nk">2週間</span>ほどで制作いたします。前金はいただかず、お支払いは完成品をご覧にな<span class="nw nk">ってから。</span></p></div><p class="fl-t">所要<b><span class="nw nk">2週間</span>ほど</b></p></li>
-    </ol>
-    <!-- 2026-10-01 第5周：02 の記入例の囲みを4列の下の帯に出し、4列の幅と高さをそろえた -->
-      <div class="sheet flw-sheet">
+      </div><p class="fl-t">所要<b>約<span class="nw nk">15分</span>＋写真えらび</b></p></div>
+        <div class="sheet flw-sheet">
       <div>
         <h4>御社の業種の記入例が、最初から入っています</h4>
         <p>上で選んだ業種に合わせたシートが開きます。<span class="nw nk">そのまま</span>お使いいただいても、<span class="nw nk">書き換え</span>ていただいても<span class="nw nk">構いません</span>。</p>
         <p><span class="nw nk">【必須】</span>以外は空欄で<span class="nw nk">構いません</span>。空欄の項目は掲載<span class="nw nk">しません。</span></p>
       </div>
       <a class="box-ln" id="dl-sheet" href="assets/%E3%81%94%E8%A8%98%E5%85%A5%E3%82%B7%E3%83%BC%E3%83%88.xlsx" download="ご記入シート.xlsx"><span aria-hidden="true">↓</span><span><small>Download</small><span class="dl-n"><span class="nw nk">ご記入シート</span>.xlsx</span></span></a>
-    </div>
+    </div></li>
+      <li class="fl"><p class="fl-n" aria-hidden="true">03</p><div class="fl-b"><h3>書けたシートを送る</h3><p class="fl-d">メールに添付するだけ</p>
+        <p class="fl-p">書けたら、写真といっしょに info@morikosha.com<wbr> へ<span class="nw">送ってください。</span>件名は何でも<span class="nw nk">構いません</span>。<span class="nw nk">2営業日</span>以内のご返信を心がけ<span class="nw nk">ています。</span></p>
+        <p class="send"><a class="box-ln" href="mailto:info@morikosha.com">メールを書く <span aria-hidden="true">→</span></a></p>
+      </div><p class="fl-t">所要<b>すぐ</b></p></li>
+      <li class="fl fl-s"><p class="fl-n" aria-hidden="true">04</p><div class="fl-b"><h3>完成品をご覧いただく</h3><p class="fl-d fl-d0" aria-hidden="true"></p><p class="fl-p"><span class="nw nk">ご記入シート</span>と写真をいただいてから、<span class="nw nk">2週間</span>ほどで制作いたします。前金はいただかず、お支払いは完成品をご覧に<span class="nw nk">なってから。</span></p></div><p class="fl-t">所要<b><span class="nw nk">2週間</span>ほど</b></p></li>
+    </ol>
   </div>
 </section>
 
@@ -1739,7 +1994,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       <h3>経歴</h3>
       <dl>
         <div><dt><span class="yr">2018</span>年</dt><dd>埼玉大学 工学部 <span class="nw nk">建設工学科 卒業</span></dd></div>
-        <div><dt><span class="yr">2018</span>年</dt><dd>埼玉県庁 入庁（土木<span class="nw nk">技術職</span>）<small>公園の整備、道路・河川の工事監督と維持管理、令和元年東日本台風の災害復旧に従事</small></dd></div>
+        <div><dt><span class="yr">2018</span>年</dt><dd>埼玉県庁 入庁（<span class="nw nk">土木技術職</span>）<small>公園の整備、道路・河川の工事監督と維持管理、令和元年東日本台風の災害復旧に従事</small></dd></div>
         <div><dt><span class="yr">2024</span>年度</dt><dd>担当した地すべり復旧工事が <span class="nw nk">全建賞</span>（災害枠・<span class="nw nk">都市部門</span>）を<span class="nw nk">受賞</span><span class="nw">（令和<span class="nw nk">6年度</span>）</span></dd></div>
         <div><dt><span class="yr">2026</span>年</dt><dd>埼玉県庁 退職（<span class="nw nk">8年</span>間勤務）</dd></div>
         <div><dt><span class="yr">2026</span>年</dt><dd>農業法人 入社（在籍中）</dd></div>
@@ -1771,7 +2026,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
         </dl>
       </div>
         <div class="pf-body">
-        <p><span class="nw nk">2018年</span>3月に埼玉大学工学部建設工学科を卒業し、同年4月から<span class="nw nk">8年</span>間、<span class="strong">埼玉県庁の土木<span class="nw nk">技術職</span></span>として、道路・河川・斜面・公園といった社会インフラの工事監督と維持管理、災害復旧に携わ<span class="nw nk">りました。</span></p>
+        <p><span class="nw nk">2018年</span>3月に埼玉大学工学部建設工学科を卒業し、同年4月から<span class="nw nk">8年</span>間、<span class="strong">埼玉県庁の<span class="nw nk">土木技術職</span></span>として、道路・河川・斜面・公園といった社会インフラの工事監督と維持管理、災害復旧に携わ<span class="nw nk">りました。</span></p>
         <p>仕事は、設計の照査から積算、入札後の現場監督、完成検査まで。担当した工事のひとつに、<span class="strong">令和元年東日本台風</span>で崩れた斜面の地すべり復旧があります。現場の担当として工事を進め、この工事は<span class="strong">令和<span class="nw nk">6年度</span> <span class="nw nk">全建賞</span>（災害枠・<span class="nw nk">都市部門</span>）</span>に選ばれました。発注する側に<span class="nw nk">8年</span>いたので、工事がどう進み、書類とお金のどこで手が止まるかを、体で知っ<span class="nw nk">ています。</span></p>
         <p><span class="nw nk">2026年</span>3月に県庁を退職し、いまは農業法人に籍を置いて畑に出ています。建設の現場でも、農業の現場でも、同じ言葉を聞きました。「人が来ない」「いい仕事をしているのに、外から見えない」。仕事の中身は確かなのに、それを外から確かめる手立てがない ── 足りないのは腕ではなく、<span class="strong">伝わる形</span>だと考えるようにな<span class="nw nk">りました。</span></p>
         <p><span class="strong"><span class="nw nk">杜工舎</span>（もりこうしゃ）</span>を開業しました。会社の仕事を<span class="nw nk"><span class="nw nk">1ページ</span></span>のホームページに整え<span class="nw nk">（見せる）</span>、製品の違いを誰でもたどれる選定の<span class="nw nk">仕組み</span>に変えます<span class="nw nk">（選ぶ）</span>。材料にするのは、公表されている一次情報 ── 法令、公的統計、業界団体の名簿、メーカーが公開している仕様です。<span class="strong">出典と、いつの時点のものかを画面に出します</span>。分からないことは、分からないと<span class="nw nk">書きます。</span></p>
@@ -1812,13 +2067,14 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
 <section class="sec s-ground sp-night-next" id="faq" aria-labelledby="faq-h">
   <div class="byo">
     <header class="dai sec-h"><span class="dai-n" aria-hidden="true">七</span><h2 class="dai-t" id="faq-h">よくあるご質問</h2><span class="dai-l" aria-hidden="true">Q&amp;A</span></header>
+    <div class="faq-kanze" aria-hidden="true"><canvas class="art-layer" data-art="kanze" data-paper data-vert aria-hidden="true"></canvas></div>
     <div class="qa">
       <details><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">写真が<span class="nw nk">ありません。</span>それでも<span class="nw nk">作れます</span>か？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p><span class="nw nk">作れます</span>。スマートフォンで撮ったもので十分です。現場の様子、重機、完成した構造物、事務所や社屋。このあたりが5〜<span class="nw nk">10枚</span>あれば形になります。きれいに撮る必要は<span class="nw nk">ありません。</span>むしろ、実際の現場の写真のほうが伝<span class="nw nk">わります。</span></p><p>ご用意が難しい部分は、サンプルで使っている写真（商用利用できるフリー素材）を<span class="nw nk">そのまま使えます</span>。</p></div></details>
       <details><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">文章が苦手です。</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p><span class="nw nk">ご記入シート</span>で業種をお選びいただくと、その業種のサンプルページで実際に使っている文章が、記入欄の右側に表示されます。それを参考に、御社のことに<span class="nw nk">書き換え</span>てご記入ください。各項目には記入のワンポイントアドバイスを<span class="nw nk">添えて</span>います。空欄のままご返送いただいた項目は掲載いた<span class="nw nk">しません。</span></p></div></details>
       <details><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">打ち合わせなしで、本当に<span class="nw nk">できます</span>か？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>はい。<span class="nw nk">ご記入シート</span>と写真だけで作れる設計にしています。「何度も訪問してご要望をうかがう」という進め方をしていない、という意味ですので、<span class="nw nk">メールで</span>のご質問はいつでも<span class="nw nk">歓迎です。</span></p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q4</span><span class="qt">毎月の費用はかかりますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>ホームページ制作について、当方にお支払いいただく月々の費用は<span class="nw nk">ありません。</span>制作費のお支払いで<span class="nw nk">完了です。</span></p><p>公開後にかかるのは、<span class="nw nk">御社名義</span>でご契約いただくサーバーとドメインの利用料だけです（あわせて年8,000〜20,000円ほど）。これは御社から各社へ直接お支払いいただくもので、当方が受け取るものでは<span class="nw nk">ありません。</span></p><p>文言を直したい、記事を足したい、といった<span class="nw nk">ご相談</span>は、そのつどお受けします。使わなければ費用は発生<span class="nw nk">しません。</span></p></div></details>
+      <details><summary><span class="qn" aria-hidden="true">Q4</span><span class="qt">毎月の費用はかかりますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>ホームページ制作について、当方にお支払いいただく月々の費用は<span class="nw nk">ありません。</span>制作費のお支払いで<span class="nw nk">完了です。</span></p><p>公開後にかかるのは、<span class="nw nk">御社名義</span>でご契約いただくサーバーとドメインの<span class="nw nk">利用料</span>だけです（あわせて年8,000〜20,000円ほど）。これは御社から各社へ直接お支払いいただくもので、当方が受け取るものでは<span class="nw nk">ありません。</span></p><p>文言を直したい、記事を足したい、といった<span class="nw nk">ご相談</span>は、そのつどお受けします。使わなければ費用は発生<span class="nw nk">しません。</span></p></div></details>
       <details><summary><span class="qn" aria-hidden="true">Q5</span><span class="qt">他社と同じデザインになりませんか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>同じ型を複数の会社さまにご提供しています。それが、この価格の理由です。ただし、写真・文章・会社情報はすべて御社のものに入れ替わり、配色も御社に合わせて無料で変えられますので、<span class="nw nk">並べて</span>見比べても同じサイトには見<span class="nw nk">えません。</span></p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q6</span><span class="qt">埼玉県外ですが、頼めますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>お受け<span class="nw nk">できます</span>。やり取りはメールとデータで完結しますので、全国どちらからでもご依頼<span class="nw nk">いただけます</span>。</p></div></details>
+      <details><summary><span class="qn" aria-hidden="true">Q6</span><span class="qt">埼玉県外ですが、頼めますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>お受け<span class="nw nk">できます</span>。やり取りはメールとデータで完結しますので、全国どちらからでもご依頼<span class="nw nk">いただけ</span>ます。</p></div></details>
       <details><summary><span class="qn" aria-hidden="true">Q7</span><span class="qt">サンプルの文章は変えられますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>変えられます。レイアウトは<span class="nw nk">そのまま</span>に、文章はすべて御社の内容で<span class="nw nk">作ります。</span></p><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。その期間を過ぎたあとは、文章の修正・写真の入れ替えを<span class="nw nk">1回</span><span class="nw nk">20,000円（税込）</span>で<span class="nw nk">承ります。</span></p></div></details>
     </div>
   </div>
@@ -1830,8 +2086,8 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
     <header class="dai sec-h"><span class="dai-n" aria-hidden="true">結</span><h2 class="dai-t" id="contact-h">お問い合わせ</h2><span class="dai-l" aria-hidden="true">Contact</span></header>
     <div class="contact-in">
       <p class="contact-lede">ご質問だけでも、<br><span class="nw nk">構いません</span>。</p>
-      <p>制作内容や、<span class="nw nk">写真・原稿</span>の準備について、<span class="nw nk">メールで</span><span class="nw nk">ご相談</span><span class="nw nk">いただけます</span>。</p>
-      <p>お問い合わせには、会社名・業種・現在のホームページの有無をお書き添えください。<span class="nw nk">気になる</span>デザインがあれば、その名前も<span class="nw nk">添えて</span><span class="nw nk">いただけます</span>。</p>
+      <p>制作内容や、<span class="nw nk">写真・原稿</span>の準備について、<span class="nw nk">メールで</span><span class="nw nk">ご相談いただけます。</span></p>
+      <p>お問い合わせには、会社名・業種・現在のホームページの有無をお書き添えください。<span class="nw nk">気になる</span>デザインがあれば、その名前も<span class="nw nk">添えて</span><span class="nw nk">いただけ</span>ます。</p>
       <p class="kane"><span class="kn-u"><span class="nw nk"><span class="nw nk">1ページ</span></span></span><b><span class="kn-n">98,000</span>円<small class="kn-t">（税込）</small></b><small>前金なし・<span class="nw nk">2週間</span>ほど</small></p>
       <div class="mail">
         <p class="lb" aria-hidden="true">E-mail</p>
@@ -1915,7 +2171,8 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
   }
   /* お問い合わせ欄と奥付が見えているあいだは、追従の札を引っ込める（同じ行き先の札が重なるため） */
   if('IntersectionObserver' in window){
-    var ends = [document.getElementById('contact'), document.querySelector('footer')].filter(Boolean), seen = new Set();
+    /* 2026-10-01 第8周L：本文の黒い「お問い合わせ →」（ABOUT の要点の帯の下など）が見えている間も追従バーを引っ込める（同じ釦が1画面に縦に2つ並んでいた） */
+    var ends = [document.getElementById('contact'), document.querySelector('footer')].concat([].slice.call(document.querySelectorAll('main a.box-ln[href="#contact"]'))).filter(Boolean), seen = new Set();
     var eo = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
       atContact = seen.size > 0; tabShow();
@@ -1965,11 +2222,13 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       });
     };
     var io = new IntersectionObserver(function(es){
+      /* 2026-10-01 第7周L：同じ時に2つの章が入ったら、上端が下にある方（あとから入った章）に印を付ける（一気に着いたとき、前の章の下端 0.09px が残って PRICE に印が付いていた） */
+      var best = null;
       es.forEach(function(e){
-        if(!e.isIntersecting) return;
-        curId = navOf[e.target.id] || e.target.id;
-        markNav(curId);
+        if(!e.isIntersecting || e.intersectionRect.height < 2) return;
+        if(!best || e.boundingClientRect.top > best.boundingClientRect.top) best = e;
       });
+      if(best){ curId = navOf[best.target.id] || best.target.id; markNav(curId); }
       /* 2026-10-01 修正役L 第3周：下から扉へ一気に戻る途中で ABOUT の印が付き、扉に着いたあとも一瞬残っていた。印を付けた直後にも扉かどうかを見る */
       if(typeof clearTop === 'function') clearTop();
     /* 第10周：章の上端が頭の帯の下から画面の上 1/3 に入ったときに印を付ける（扉がまだ画面の上に残っているうちに ABOUT に印が付いていた） */
@@ -1983,7 +2242,16 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
     var clearTop = function(){
       if(window.scrollY + (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hd')) || 72) < firstSec.offsetTop - 8)
         links.forEach(function(a){ if(a.getAttribute('href').charAt(0) === '#'){ a.classList.remove('cur'); a.removeAttribute('aria-current'); } });
-      else if(markNav && curId && !document.querySelector('.nav a.cur')) markNav(curId);
+      else if(markNav){
+        /* 2026-10-01 第7周L：送りが止まったら、帯の中（頭の帯の下から画面の上 36%）にいま入っている章を測り直して印を合わせる
+           （IO は境を越えたときしか呼ばれないので、一気に着いたときや、1px 未満だけ入った章を取りこぼさない） */
+        var hdH0 = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hd')) || 72, zb = innerHeight * .36, now = '';
+        document.querySelectorAll('#about, #why, #works, #price, #flow, #profile, #faq, #contact').forEach(function(sc){
+          var r = sc.getBoundingClientRect(); if(r.top <= zb && r.bottom > hdH0 + 2) now = sc.id;
+        });
+        if(now){ curId = navOf[now] || now; }
+        if(curId) markNav(curId);
+      }
     };
     window.addEventListener('scroll', function(){ clearTimeout(clearTop.t); clearTop.t = setTimeout(clearTop, 80); }, {passive:true});
   }
@@ -2010,8 +2278,14 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       var t = document.getElementById(location.hash.slice(1));
       /* 着いた直後は頭の帯を隠さない（スマホで、読み込みの送りを「下へ読み進めた」と取り違えて帯が消えていた） */
       if(t){ jumpUntil = Date.now() + 1600; hd.classList.remove('is-hidden'); lastY = window.scrollY; }
-      if(t && t.tagName === 'SECTION') t.scrollIntoView({block:'start'});
+      if(t && t.tagName === 'SECTION'){
+        t.scrollIntoView({block:'start', behavior:'instant'});
+        /* 一気に着くと、途中の章（前の章の下端）に印が残ることがあるので、着いた章に印を付け直す */
+        if(markNav){ curId = navOf[t.id] || t.id; markNav(curId); }
+      }
     }
+    /* 2026-10-01 第7周L：ハッシュ付きで開いたときは送りを滑らかにしない（約1.5秒かけて途中の章を空白のまま流して見せていた）。着地の後で滑らかな送りに戻す */
+    setTimeout(function(){ document.documentElement.classList.remove('hash-ld'); }, 300);
   });
 
   /* ── スマホのメニュー ── */
@@ -2044,6 +2318,8 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
   function tone(){
     var im = hs[hk]; if(!im || !hero) return;
     hero.setAttribute('data-tone', im.getAttribute('data-tone') || 'paper');
+    /* 第8周 修正役V：何枚目の絵か（CSS が絵ごとの霞・札の置き方を選ぶ） */
+    hero.setAttribute('data-slide', String(hk + 1));
     /* 絵の名は、重なりの半ば（0.9秒）で替える。先に替えると、前の絵の上に次の絵の名が出る */
     if(cap){
       var t = im.getAttribute('data-cap') ? '絵：' + im.getAttribute('data-cap') : '';
@@ -2090,7 +2366,13 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       var lb = document.querySelector('label[for="' + r.id + '"]');
       if(lb) a.setAttribute('download', 'ご記入シート_' + lb.textContent + '.xlsx');
       /* 第10周：釦の字にも業種名を出す（押す前に、どの業種のシートかが分かるように） */
-      var dn = a.querySelector('.dl-n'); if(dn && lb) dn.textContent = 'ご記入シート（' + lb.textContent + '）.xlsx';
+      /* 第8周 修正役V：『ご記入シート』と『（業種）.xlsx』の2つの塊にし、塊の境目でだけ折り返す（『建築設／計』『神／社』と割れていた） */
+      var dn = a.querySelector('.dl-n');
+      if(dn && lb){
+        var s1 = document.createElement('span'), s2 = document.createElement('span');
+        s1.className = s2.className = 'nw'; s1.textContent = 'ご記入シート'; s2.textContent = '（' + lb.textContent + '）.xlsx';
+        dn.textContent = ''; dn.appendChild(s1); dn.appendChild(s2);
+      }
     }
   }
   /* 代表の「経歴・資格」：PC では左の段に開いたまま置き、900px 以下では閉じて始める（JS が無いときは開いたまま） */
@@ -2130,7 +2412,9 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
              低い画面（1280×800 など）で両方は入らないときは、5案の段の頭（「〇〇の5案」）が頭の帯の下に来るところまで */
           var hdH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hd')) || 72;
           var dyList = list.getBoundingClientRect().bottom - innerHeight + 16, dyChips = chipsEl.getBoundingClientRect().top - (hdH + 16);
-          var dy = dyList <= dyChips ? dyList : Math.min(dyList, step2.getBoundingClientRect().top - (hdH + 16));
+          /* 2026-10-01 第7周L：両方が入らない低い画面（1024×768 など）では、選んだ札が頭の帯の下に残るところで止める（前は札が帯の下に隠れ、どれを選んだか扇と一緒に見られなかった） */
+          var dyLab = lab.getBoundingClientRect().top - (hdH + 12);
+          var dy = dyList <= dyChips ? dyList : Math.min(dyList, dyLab);
           if(dy > 8) window.scrollBy({top: dy, behavior: reduce ? 'auto' : 'smooth'});
         } else {
           /* 2026-10-01 修正役L 第3周：スマホ・タブレットは「〇〇の5案」の見出しを画面の上端近くに着ける。
@@ -2226,6 +2510,11 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       watch.get(t).push(el);
     });
     reveal(first);
+    /* 2026-10-01 第7周L：ハッシュ付きで開いたときは、着地先の章の字を動きなしで最初から見せる */
+    if(location.hash.length > 1){
+      var ht = document.getElementById(location.hash.slice(1));
+      if(ht) rvs.forEach(function(el){ if(!el.classList.contains('in') && ht.contains(el)){ el.style.transition = 'none'; el.style.transitionDelay = '0ms'; el.classList.add('in'); } });
+    }
     /* ページ内のリンクや印刷で一気に飛んだときに、出ていないものが残らないように */
     window.addEventListener('beforeprint', function(){ rvs.concat(scr).forEach(function(el){ el.classList.add('in'); }); });
     /* 第3周 B：メニューやリンクで章へ飛んだときは、着いた先の最初の1画面半にある字を、動きを飛ばしてすぐ出す
@@ -2558,7 +2847,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
     function curTone(){ return hero && hero.getAttribute('data-tone') === 'gold' ? 'gold' : 'paper'; }
     // 2026-10-01 第5周：光の帯は絵が替わるたびに1回、新しい絵の上を渡す（松林図の上でも必ず一度は横切る）
     var lightAt = null;
-    if(hero) hero.addEventListener('heroslide', function(){ fadeAt = performance.now(); lightAt = fadeAt + 900; if(reduce) mode = curTone(); });
+    if(hero) hero.addEventListener('heroslide', function(){ fadeAt = performance.now(); lightAt = fadeAt + 900; pendFit = true; if(reduce) mode = curTone(); });
     function init(){
       var f = fit(cv); W = f.w; H = f.h; mode = curTone();
       if(lcv) fit(lcv);
@@ -2595,8 +2884,10 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       // 2026-10-01 第5周（アートディレクター）：下の帯は左下の値段の札（.hero-deal）の裏に隠れていた。帯を下端（c .93）へ下げ、札の右から撒く
       var dealR = 0, dl0 = hero && hero.querySelector('.hero-deal');
       if(dl0 && dl0.getBoundingClientRect().width) dealR = (dl0.getBoundingClientRect().right - hr.left - 60) / W;
-      var bandsD = [{ x0: Math.max(mobile ? 0 : .30, Math.min(.5, dealR)), x1: 1, c: mobile ? .86 : .93, h: .11, w: .78 }, mobile ? { x0: .42, x1: .74, c: .02, h: .04, w: .22 } : { x0: .14, x1: .44, c: .025, h: .055, w: .22 }];
-      function inBand(){ var b = RD() < bandsD[0].w ? bandsD[0] : bandsD[1];
+      // 2026-10-01 第7周：スマホの下の帯は札の裏に隠れていたので、札の上の右半分の空（金地の空・水墨の霞の中）へ上げる
+      var bandsD = [mobile ? { x0: .40, x1: 1, c: .38, h: .09, w: .78 } : { x0: Math.max(.30, Math.min(.5, dealR)), x1: 1, c: .93, h: .11, w: .78 }, mobile ? { x0: .42, x1: .74, c: .02, h: .04, w: .22 } : { x0: .14, x1: .44, c: .025, h: .055, w: .22 }];
+      var lastB = 0;
+      function inBand(){ var b = RD() < bandsD[0].w ? bandsD[0] : bandsD[1]; lastB = b === bandsD[0] ? 0 : 1;
         var x = W * (b.x0 + (b.x1 - b.x0) * RD()), s = RD() < .5 ? -1 : 1, off = -Math.log(1 - RD() * .97) / 3.2;
         var y = H * (b.c + s * off * b.h);
         // 帯の両端は薄く（左右 10% で消す）
@@ -2608,13 +2899,13 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
         var q0 = inBand(), kind = RD(), sz = kind < .76 ? 0 : (kind < .88 ? 1 : 2);
         dust.push({ x: q0[0], y: q0[1], sz: sz, r: sz === 0 ? .3 + RD() * .6 : (sz === 1 ? 1 + RD() * .3 : 1.4 + RD() * .4),
                     lo: (sz === 0 ? .3 + RD() * .35 : (sz === 1 ? .3 : .15)) * (.35 + .65 * q0[2]), amp: (sz === 0 ? .06 : (sz === 1 ? .4 : 1.2)) * (.35 + .65 * q0[2]),
-                    per: sz === 0 ? 9000 : 4000 + RD() * 5000, p: RD() * 6.28, c: sz === 2 ? '#E6CC8E' : GOLD[d % 4], noge: 0 });
+                    per: sz === 0 ? 9000 : 4000 + RD() * 5000, p: RD() * 6.28, c: sz === 2 ? '#E6CC8E' : GOLD[d % 4], noge: 0, b: lastB });
       }
       // 方針第2版（A2）：野毛は 22 本（スマホ 20 本）・長さ 12〜22px・幅 .6px・傾き ±6°
       for(var ng = 0; ng < (mobile ? 20 : 22); ng++){
         var q2 = inBand();
         dust.push({ x: q2[0], y: q2[1], sz: 1, r: 0, noge: 12 + RD() * 10, rot: (RD() - .5) * .21, lo: .3 + .3 * q2[2], amp: .25,
-                    per: 5000 + RD() * 5000, p: RD() * 6.28, c: GOLD[ng % 4] });
+                    per: 5000 + RD() * 5000, p: RD() * 6.28, c: GOLD[ng % 4], b: lastB });
       }
       // 方針第2版（A2）：切箔は 4 枚（スマホ 3 枚）、1辺 14〜18px の正方形を画面の右下 1/4 に寄せて撒く（屏風の切箔撒きの位置）。
       // 色は #C9A35E・α .6 前後で、光が当たらなくても「箔」と分かる。札（PC は右寄りの縦書き・スマホは左下）と◇（PC は右端・スマホは右下の隅）は避ける
@@ -2627,10 +2918,14 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       var deal = hero && hero.querySelector('.hero-deal');
       if(deal && deal.getBoundingClientRect().width) obs.push(deal.getBoundingClientRect());
       // [x, y, 1辺] ── 大きいものほど端へ。野毛は t:2
+      // 2026-10-01 第7周（アートディレクター）：空に1枚ずつ浮いた箔は紙吹雪に見えた。切箔は砂子の帯の中に 2〜3 枚ずつ寄せて置き、
+      // 帯の外に出ていた分は野毛（細い箔の線）に替える。PC は下の帯（値段の札の右）に2か所、スマホは札の上の空の帯に2か所
       var slots = mobile
-        ? [[.93, .30, 14], [.84, .25, 9], [.97, .37, 6], [.07, .66, 12], [.16, .71, 7]]
-        : [[.955, .36, 28], [.905, .30, 14], [.975, .47, 9], [.86, .40, 8], [.045, .60, 24], [.11, .66, 12], [.03, .70, 8]];
-      var noge = mobile ? [[.89, .33], [.95, .24], [.12, .63]] : [[.93, .42], [.88, .26], [.08, .56], [.14, .71]];
+        ? [[.70, .365, 11], [.735, .39, 7], [.715, .41, 5], [.90, .345, 9], [.925, .37, 6]]
+        : [[.60, .905, 13], [.622, .93, 8], [.607, .952, 5], [.845, .885, 14], [.872, .91, 9], [.858, .94, 6]];
+      // 第8周（アートディレクター）：箔が杜若の花や松の幹の上に落ち「貼ったシール」に見えた。大きさを 5〜14px に下げ、
+      // 置く所は goldFit() が元の絵の金地（明るく、彩度の低い黄）だけを選ぶ。3枚ずつの塊（gid）は塊ごと動かす
+      var noge = mobile ? [[.56, .38], [.82, .40], [.97, .33], [.60, .03]] : [[.66, .925], [.54, .95], [.78, .915], [.93, .905], [.97, .95], [.30, .03]];
       for(var k = 0; k < slots.length; k++){
         var hx = W * (slots[k][0] + (RH() - .5) * .02), hy = H * (slots[k][1] + (RH() - .5) * .02);
         for(var pass = 0; pass < 2; pass++) obs.forEach(function(pr){
@@ -2641,13 +2936,16 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
         var s0 = slots[k][2] * (.92 + RH() * .16), vs = [[-.5, -.5], [.5, -.5], [.5, .5], [-.5, .5]].map(function(v){ return [(v[0] + (RH() - .5) * .24) * s0, (v[1] + (RH() - .5) * .24) * s0]; });
         var ci = Math.floor(RH() * 4), cv0 = vs[ci], pv = vs[(ci + 3) % 4], nv = vs[(ci + 1) % 4], cut = .18 + RH() * .16;
         vs.splice(ci, 1, [cv0[0] + (pv[0] - cv0[0]) * cut, cv0[1] + (pv[1] - cv0[1]) * cut], [cv0[0] + (nv[0] - cv0[0]) * cut * .8, cv0[1] + (nv[1] - cv0[1]) * cut * .8]);
+        var fr0 = hy - 30 - RH() * 60;
         haku.push({ x: hx, y: hy, s: s0, rot: (RH() - .5) * .6, t: 0, vs: vs, px: RH() * 400, py: RH() * 300,
-                    c: '#C9A35E', from: hy - 30 - RH() * 60, spin: (RH() < .5 ? -1 : 1) * (.2 + RH() * .2), delay: k * 80 });
+                    c: '#C9A35E', from: fr0, spin: (RH() < .5 ? -1 : 1) * (.2 + RH() * .2), delay: k * 80,
+                    bx: hx, by: hy, fd: hy - fr0, gid: k < 3 ? 0 : 1 });
       }
       for(var ng2 = 0; ng2 < noge.length; ng2++){
         haku.push({ x: W * noge[ng2][0], y: H * noge[ng2][1], s: 10 + RH() * 12, rot: (RH() - .5) * .5, t: 2, c: GOLD[ng2 % 4],
-                    from: H * noge[ng2][1] - 40, spin: 0, delay: 200 + ng2 * 80 });
+                    from: H * noge[ng2][1] - 40, spin: 0, delay: 200 + ng2 * 80, bx: W * noge[ng2][0], by: H * noge[ng2][1], fd: 40, gid: 10 + ng2 });
       }
+      pendFit = true;
       // 薄墨の霞（水墨の絵の上だけ）：ぼかした横長の帯 3 本が、40〜60 秒かけて右から左へ流れる
       var RM = seeded(47);
       // 第6周：すやり霞は2本に絞り、濃さを上げて松の根元にかける
@@ -2656,6 +2954,58 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
     }
     // 箔の肌が読めたら、雲を塗り直す
     if(!LEAF.src) LEAF.wait.push(function(){ init(); });
+    // 第8周：切箔を元の絵の金地にだけ置く。いま出ている絵を小さな canvas に写し、箔の置き場の明るさと色を読む。
+    // 絵は拡大の途中（8 秒かけて縮む）なので、行き着いた先の枠を、同じ class の見えない img で測る
+    var pendFit = true;
+    function goldFit(){
+      if(!hero || curTone() !== 'gold') return true;
+      var im = hero.querySelector('.hero-ph img.on');
+      if(!im || !im.complete || !im.naturalWidth) return false;
+      var pr = document.createElement('img'); pr.className = im.className; pr.alt = ''; pr.setAttribute('aria-hidden', 'true');
+      pr.style.cssText = 'visibility:hidden;transition:none;';
+      im.parentNode.insertBefore(pr, im.nextSibling);
+      var hr = cv.getBoundingClientRect(), ir = pr.getBoundingClientRect(), opS = getComputedStyle(pr).objectPosition.split(' ');
+      pr.parentNode.removeChild(pr);
+      var op = [opS[0], opS[1] || '50%'].map(function(v){ return /%$/.test(v) ? parseFloat(v) / 100 : .5; });
+      var nw = im.naturalWidth, nh = im.naturalHeight, sc = Math.max(ir.width / nw, ir.height / nh);
+      var ox = ir.left - hr.left + (ir.width - nw * sc) * op[0], oy = ir.top - hr.top + (ir.height - nh * sc) * op[1];
+      var SW = 320, SH = Math.round(SW * nh / nw), sm = document.createElement('canvas'), px;
+      sm.width = SW; sm.height = SH;
+      try{ var sg = sm.getContext('2d', { willReadFrequently: true }); sg.drawImage(im, 0, 0, SW, SH); px = sg.getImageData(0, 0, SW, SH).data; }catch(e){ return true; }
+      var f = SW / (nw * sc);
+      function isGold(x, y){
+        var sx = Math.round((x - ox) * f), sy = Math.round((y - oy) * f);
+        if(sx < 0 || sy < 0 || sx >= SW || sy >= SH) return false;
+        var i = (sy * SW + sx) * 4, r = px[i], gg = px[i + 1], b = px[i + 2], L = (Math.max(r, gg, b) + Math.min(r, gg, b)) / 510;
+        return L > .5 && r >= gg && gg > b && r - b > 28 && r - b < 125;
+      }
+      function okArea(x, y, rad){
+        var st = Math.max(3, rad / 2);
+        for(var dy = -rad; dy <= rad; dy += st) for(var dx = -rad; dx <= rad; dx += st) if(!isGold(x + dx, y + dy)) return false;
+        return true;
+      }
+      var ob = [hero.querySelector('.hero-plate'), dotsEl, hero.querySelector('.hero-deal')].filter(function(el){ return el && el.getBoundingClientRect().width; })
+        .map(function(el){ var r = el.getBoundingClientRect(); return [r.left - hr.left - 14, r.top - hr.top - 14, r.right - hr.left + 14, r.bottom - hr.top + 14]; });
+      function hit(x, y){ for(var i = 0; i < ob.length; i++) if(x > ob[i][0] && x < ob[i][2] && y > ob[i][1] && y < ob[i][3]) return true; return false; }
+      var groups = {};
+      haku.forEach(function(q){ (groups[q.gid] = groups[q.gid] || []).push(q); });
+      Object.keys(groups).forEach(function(key){
+        var G = groups[key], best = null;
+        for(var rr = 0; rr <= 240 && !best; rr += 10){
+          var n = rr === 0 ? 1 : Math.max(8, Math.round(rr / 5));
+          for(var a = 0; a < n && !best; a++){
+            var dx = rr * Math.cos(a / n * 6.283), dy = rr * Math.sin(a / n * 6.283) * .6;
+            if(G.every(function(q){ var x = q.bx + dx, y = q.by + dy;
+              return x > 10 && x < W - 10 && y > H * .2 && y < H - 8 && !hit(x, y) && okArea(x, y, q.t === 2 ? q.s * .5 : q.s * .6 + 4); })) best = [dx, dy];
+          }
+        }
+        G.forEach(function(q){
+          q.hide = !best;
+          if(best){ q.x = q.bx + best[0]; q.y = q.by + best[1]; q.from = q.y - q.fd; }
+        });
+      });
+      return true;
+    }
     function draw(dt, t){
       var g = cv.getContext('2d'), now = performance.now();
       if(born === null) born = now;
@@ -2665,6 +3015,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       // 絵の切り替わり（屏風を開くように 1.4 秒）の間は雲を消し、見えない間に重ね方を替える
       var since = now - fadeAt, k = since < 1600 ? Math.abs(since - 800) / 800 : 1;
       if(since >= 800) mode = curTone();
+      if(pendFit && since >= 800) pendFit = !goldFit();
       // 紙の絵のときだけ乗算で重ねる（金地の絵には雲を置かず、砂子と切箔の光を普通に見せる）。切り替えは雲が消えている間に
       var bl = 'normal';
       if(cv.style.mixBlendMode !== bl) cv.style.mixBlendMode = bl;
@@ -2715,22 +3066,28 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
           g.fillStyle = mg; g.beginPath(); g.arc(0, 0, mh * .5, 0, 6.283); g.fill(); g.restore();
         }
       }
-      for(var d = 0; goldA > 0 && d < dust.length; d++){
-        var p = dust[d], tw = .5 + .5 * Math.sin(t / p.per * 6.283 + p.p);
+      // 2026-10-01 第7周：水墨の松林図の上でも、下の帯（スマホは空の帯）にだけ金砂子を α .45 で撒き、光の帯が通るとき瞬かせる
+      // （霞の上の砂子は屏風の本来の技法。等伯の余白＝中央と右上は切らない）。切箔は金地の絵の上だけ
+      // 紙の地では明るい金は地に溶けて見えないので、金泥の濃い色（#9C7A3C・#B08840）で、粒を 1.5 倍に
+      var paperA = gold ? 0 : .6 * k;
+      for(var d = 0; (goldA > 0 || paperA > 0) && d < dust.length; d++){
+        var p = dust[d], tw = .5 + .5 * Math.sin(t / p.per * 6.283 + p.p), fA = gold ? goldA : (p.b === 0 ? paperA : 0);
+        if(fA <= 0) continue;
+        if(!gold && !reduce) tw = Math.min(1, tw + lit(p.x, p.y) * 1.2);
         // 大きな砂子は瞬きを尖らせる（ずっと光っていない。ときどき、ふっと照る）
         if(p.sz === 2) tw = Math.pow(tw, 3);
         // 第2周：開いたとき、砂子を右上から左下へ「撒く」（粒ごとに 0〜600ms ずらし、1.2 秒で止まる）。止まったあとは瞬きだけ
         var sd = reduce ? 1 : easeOut((age - 250 - p.lag) / 1200), sx = p.x + (1 - sd) * 46, sy = p.y - par - (1 - sd) * 34;
-        g.globalAlpha = Math.min(1, p.lo + p.amp * tw) * Math.min(1, sd * 1.6) * goldA;
+        g.globalAlpha = Math.min(1, p.lo + p.amp * tw) * Math.min(1, sd * 1.6) * fA;
         if(g.globalAlpha <= 0) continue;
-        g.fillStyle = p.c;
-        if(p.noge){ g.save(); g.translate(sx, sy); g.rotate(p.rot); g.fillRect(-p.noge / 2, -.3, p.noge, .6); g.restore(); }
-        else { g.beginPath(); g.arc(sx, sy, p.r, 0, 6.283); g.fill(); }
+        g.fillStyle = gold ? p.c : (p.sz === 2 ? '#B08840' : '#9C7A3C');
+        if(p.noge){ g.save(); g.translate(sx, sy); g.rotate(p.rot); g.fillRect(-p.noge / 2, -.3, p.noge, gold ? .6 : .8); g.restore(); }
+        else { g.beginPath(); g.arc(sx, sy, gold ? p.r : p.r * 1.5, 0, 6.283); g.fill(); }
       }
       // 切箔は #C9A35E・α .6 で止まっていて、斜めの光が当たったときだけ明るく照る（動きを減らす設定では舞い降りずに止まって見える）
       for(var j = 0; goldA > 0 && j < haku.length; j++){
         var q = haku[j], u = easeOut((age - 500 - q.delay) / 1200);
-        if(u <= 0) continue;
+        if(u <= 0 || q.hide) continue;
         if(q.t === 2){ var ny = q.from + (q.y - q.from) * u; g.save(); g.globalAlpha = .7 * goldA * Math.min(1, u * 2); g.fillStyle = q.c; g.translate(q.x, ny - par); g.rotate(q.rot); g.fillRect(-q.s / 2, -.35, q.s, .7); g.restore(); continue; }
         var qy = q.from + (q.y - q.from) * u, rot = q.rot + q.spin * (1 - u) * 1.4, gl = reduce ? 0 : lit(q.x, q.y) * u * k;
         drawLeaf(g, q, q.x + Math.sin(u * 3.1) * 14 * (1 - u), qy - par, rot, (.66 + .3 * gl) * Math.min(1, u * 2) * goldA, gl);
@@ -2859,10 +3216,12 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
         渦は流れの山に乗って一緒に動く。墨の円で下地を抜かない。外側の線 1.4px・内側 0.8px、渦の芯に近いほど細い ── */
   function kanze(cv){
     var W = 0, H = 0, streams = [], mobile = false, B = .18, TURNS = 2.2 * 6.283, X0 = -12;
+    // 2026-10-01 第7周：data-paper は紙（胡粉）の地に金の線だけで描く（地を塗らない・罫の足を引かない）。data-vert は縦に流す（90°回して描く）
+    var paper = cv.hasAttribute('data-paper'), vert = cv.hasAttribute('data-vert'), LC = paper ? '168,130,63' : LINE;
     function init(){
       // 2026-10-01 第5周：data-full（えらぼっとの結びの右の欄）は、欄が狭くても PC の型（3本の流れと渦）で欄いっぱいに流す
       var full = cv.hasAttribute('data-full') && window.innerWidth > 900;
-      var f = fit(cv); W = f.w; H = f.h; mobile = W < 700 && !full;
+      var f = fit(cv); W = vert ? f.h : f.w; H = vert ? f.w : f.h; mobile = W < 700 && !full;
       // 2026-10-01：data-low の観世水（えらぼっとの扉）は、見出しの下の空いた夜の地に、左から1束だけ低く流す（PC のみ。小さい渦を1つ）
       var low = !mobile && cv.hasAttribute('data-low');
       // 第5周：PC では題（左）の上をマスクで断たず、流れを題の右から細く生まれさせる（0〜80px で線の太さを0から起こす）
@@ -2875,21 +3234,22 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
         if(rr.width) X0 = Math.max(X0, rr.right - cr.left + 32);
       });
       // 方針第2版（A7）：線の束は 5 本・間 3px
-      if(low || full) X0 = -12;
+      if(low || full || paper) X0 = -12;
       var R = seeded(23), ns = 3, lines = (mobile || low) ? [5] : [5, 5, 5];
       // 第7周：スマホは流れを1本（y=.16）にし、画面の右 1/3 に渦を1つだけ大きく（半径 36px・2.6 周）見せる
       // 第10周：渦は PC で1つだけ（中の流れ・x=.78W・半径 72px・2.8 周）にして主役にし、上下の流れは渦を持たない。
       // スマホは渦の中心を帯の上から 3 割（y≈.30H）・半径 30px にして、帯の中へ収める
       TURNS = (mobile ? 2.6 : 2.8) * 6.283;
       streams = [];
-      var ys = low ? [.88] : mobile ? [.2] : [.24, .52, .80];
+      var ys = low ? [.88] : paper ? [.38, .72] : mobile ? [.2] : [.24, .52, .80];
+      if(paper) lines = [5, 3];
       // 方針第2版（A7）：渦は大（半径 約70px・中の流れ・x=.74W）と小（約36px・下の流れ・x=.9W。上へ巻く）の2つ。どちらも流れの山（谷）の頂に置く。
       // スマホは帯が低いので、小さい渦（36px）を1つだけ
       var bigR = Math.max(44, Math.min(70, H * .16)), smallR = Math.max(26, Math.min(36, H * .085));
-      var plan = low ? [{ x: .3, r: Math.max(24, Math.min(34, H * .06)) }] : mobile ? [{ x: .8, r: Math.min(36, H * .1) }] : [null, { x: Math.min(W - 150, Math.max(W * .74, X0 + 160)) / W, r: bigR }, { x: Math.min(.9, (W - 120) / W), r: smallR }]; // 大きい渦は流れの始まりから 160px 以上右（見出しの側は流れだけ）
+      var plan = low ? [{ x: .3, r: Math.max(24, Math.min(34, H * .06)) }] : paper ? [{ x: .62, r: Math.max(14, Math.min(24, H * .2)) }] : mobile ? [{ x: .8, r: Math.min(36, H * .1) }] : [null, { x: Math.min(W - 150, Math.max(W * .74, X0 + 160)) / W, r: bigR }, { x: Math.min(.9, (W - 120) / W), r: smallR }]; // 大きい渦は流れの始まりから 160px 以上右（見出しの側は流れだけ）
       for(var i = 0; i < ys.length; i++){
         // いちばん上の流れの渦は下へ、ほかは上へ巻く（帯の縁で切れない向き）
-        var st = { i: i, y: H * ys[i], a: (mobile ? Math.min(H * .03, 12) : H * (.048 + R() * .01)), k: (mobile ? .0125 : .0065) + R() * .0010, ph: R() * 6.28, n: lines[i], dir: (i === 0 && !low) ? 1 : -1 };
+        var st = { i: i, y: H * ys[i], a: paper ? H * .09 : (mobile ? Math.min(H * .03, 12) : H * (.048 + R() * .01)), k: (mobile ? .0125 : .0065) + R() * .0010, ph: R() * 6.28, n: lines[i], dir: (i === 0 && !low) ? 1 : -1 };
         var pl = plan[i];
         st.whirl = !!pl;
         if(pl){ st.tx = W * pl.x; st.rw = pl.r; st.ph = (st.dir < 0 ? -Math.PI / 2 : Math.PI / 2) - st.k * st.tx; }
@@ -2915,7 +3275,8 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       // 流れは左右にゆっくり揺れるだけ（±0.3 rad・16 秒）。流れ続けると渦が画面の外へ出てしまうため
       var g = cv.getContext('2d'), ph = reduce || mobile ? 0 : Math.sin(t / 16000 * 6.283) * .3;
       g.setTransform(DPR, 0, 0, DPR, 0, 0);
-      g.fillStyle = '#1D2123'; g.fillRect(0, 0, W, H);
+      if(vert){ g.translate(H, 0); g.rotate(Math.PI / 2); }
+      if(paper) g.clearRect(0, 0, W, H); else { g.fillStyle = '#1D2123'; g.fillRect(0, 0, W, H); }
       g.lineCap = 'round'; g.lineJoin = 'round';
       for(var i = 0; i < streams.length; i++){
         var s = streams[i], cs = crests(s, ph), sgn = s.dir, Rw = s.rw || 36;
@@ -2928,7 +3289,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
         });
         // 線の束のあいだを薄く塗り、水の面を出す（流れの始まりは細く）
         var hw = (s.n - 1) / 2 * 3;
-        g.fillStyle = 'rgba(' + LINE + ',.05)'; g.beginPath();
+        g.fillStyle = 'rgba(' + LC + ',.05)'; g.beginPath();
         for(var fx = X0; fx <= W + 12; fx += 6){ var gw = Math.min(1, (fx - X0) / 80); g.lineTo(fx, yAt(s, fx, ph) - hw * gw); }
         for(fx = W + 12; fx >= X0; fx -= 6){ var gw2 = Math.min(1, (fx - X0) / 80); g.lineTo(fx, yAt(s, fx, ph) + hw * gw2); }
         g.closePath(); g.fill(); // 第10周：束のあいだを rgba(201,163,94,.05) で塗り、水の面を出す
@@ -2947,7 +3308,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
             }
             // 流れ（渦の先で始まる所は、細く生まれて太る）
             if(endX > start){
-              g.strokeStyle = 'rgba(' + LINE + ',.5)';
+              g.strokeStyle = 'rgba(' + LC + ',.5)';
               var x = start, seg = fresh ? 80 : 0;
               if(seg){
                 for(var q = 0; q < 8 && x < endX; q++){
@@ -2966,7 +3327,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
             if(!w) break;
             // 渦：流れの終わりの点から、同じ接線のまま内へ巻き込む。芯に近づくほど細く
             var steps = 120, prevX = w.cx + r0 * w.ux, prevY = w.cy + r0 * w.uy;
-            g.strokeStyle = 'rgba(' + LINE + ',.6)';
+            g.strokeStyle = 'rgba(' + LC + ',.6)';
             for(var c0 = 0; c0 < steps; c0 += 8){
               g.beginPath(); g.moveTo(prevX, prevY);
               var rr = r0;
@@ -2982,10 +3343,10 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
           }
         }
         // 渦の芯
-        g.fillStyle = 'rgba(' + LINE + ',.8)';
+        g.fillStyle = 'rgba(' + LC + ',.8)';
         // 第9周：渦の芯の点は描かない
       }
-      foot(g, W, H);
+      if(!paper) foot(g, W, H);
     }
     return { init: init, draw: draw };
   }
@@ -3059,7 +3420,10 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       diag = cv.getAttribute('data-flow') === 'diag'; var C = W * .78;
       // 方針第2版（A8）：WORKS の帯は片身替わり。砂子は絵の側（PC は右 50% より右、スマホは上 40%）だけに撒き、字の載る炭の面には撒かない
       var works = !!cv.closest('.band-works'), mob = W < 700; fine = !!cv.closest('.contact-art');
+      // 2026-10-01 第7周：料金の右の段の下（.pn-sunago）は、紙の上の砂子の帯。中ほどに横長に寄せ、上下へまばらに。四角い箔は出さず野毛だけ
+      var pn = !!cv.closest('.pn-sunago'); if(pn) fine = true;
       function spot0(){
+        if(pn){ var off = -Math.log(1 - R() * .97) / 3.4 * (R() < .5 ? -1 : 1); return [W * (.04 + R() * .92), H * (.5 + off * .42)]; }
         if(!diag){ var top = R() < .5; return [R() * W, top ? R() * H * .22 : H * (.78 + R() * .22)]; }
         var y = R() * H, off = (R() + R() - 1) * 80; return [C - y / Math.max(H, 1) * W * .45 + off, y];
       }
@@ -3071,14 +3435,14 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       for(var i = 0; i < (W < 700 ? 50 : 120); i++){
         var p0 = spot();
         // 第7周：絵の上で見える大きさに（半径 .7〜1.4）
-        dust.push({ x: p0[0], y: p0[1], r: fine ? .3 + R() * .6 : (diag ? .7 + R() * .7 : (R() < .8 ? .45 + R() * .35 : 1.2 + R() * .5)), per: 3000 + R() * 4000, p: R() * 6.28, c: GOLD[i % 4] });
+        dust.push({ x: p0[0], y: p0[1], r: pn ? (R() < .85 ? .4 + R() * .5 : 1.1 + R() * .4) : fine ? .3 + R() * .6 : (diag ? .7 + R() * .7 : (R() < .8 ? .45 + R() * .35 : 1.2 + R() * .5)), per: 3000 + R() * 4000, p: R() * 6.28, c: GOLD[i % 4] });
       }
       // 第6周：結びの絵（春の流れ）の上では四角い箔を出さず、細かい砂子と野毛だけ（白い点が画素抜けに見えたため）
       for(var k = 0; k < (fine ? (mob ? 3 : 6) : (W < 700 ? 7 : (diag ? 16 : 10))); k++){ var p1 = spot(); haku.push({ x: p1[0], y: p1[1], s: fine ? 8 + R() * 8 : 3 + R() * 4, rot: (R() - .5) * .3, c: GOLD[k % 4], t: fine ? 2 : hakuType(R) }); }
     }
     function draw(dt, t){
       var g = cv.getContext('2d'); g.clearRect(0, 0, W, H);
-      var sweep = ((t / 11000) % 1.4 - .2) * (W + H * .5), lo = diag ? .55 : .35, amax = fine ? .5 : 1;
+      var sweep = ((t / 11000) % 1.4 - .2) * (W + H * .5), lo = diag ? .55 : .35, amax = fine ? (cv.closest('.pn-sunago') ? .8 : .5) : 1;
       for(var i = 0; i < dust.length; i++){
         var p = dust[i]; g.globalAlpha = amax * (lo + (1 - lo) * (.5 + .5 * Math.sin(t / p.per * 6.283 + p.p)));
         g.fillStyle = p.c; g.beginPath(); g.arc(p.x, p.y, p.r, 0, 6.283); g.fill();
