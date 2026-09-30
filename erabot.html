@@ -86,7 +86,8 @@
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hd) + 8px);-webkit-text-size-adjust:100%;}
 body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--ff-ja);font-size:var(--f2);line-height:var(--lh);letter-spacing:.04em;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;word-break:normal;line-break:strict;overflow-wrap:break-word;text-wrap:pretty;}
-h1,h2,h3,h4,dt,.ja-h,.dai-t,.chip,.nav a,.mnav a,.qa .qt,.dz-ja,.thd-ja,.step-h .d,p,li{word-break:auto-phrase;}
+/* 2026-10-01 第5周：本文の段落（p・li）は文節で送らない（右端がぎざぎざに欠けていた）。文節で送るのは見出し・札・短い添え書きだけ */
+h1,h2,h3,h4,dt,.ja-h,.dai-t,.chip,.nav a,.mnav a,.qa .qt,.dz-ja,.thd-ja,.step-h .d,.chip-live,.to-erabot a,.fl-d,.fl-t,.k-s,.hx-p,.hp-p,.df-t,.sw-e,.sw-h1{word-break:auto-phrase;}
 h1,h2,h3,h4,.ja-h{font-weight:500;line-height:var(--lh-h);font-feature-settings:"palt";text-wrap:balance;}
 img{display:block;max-width:100%;height:auto;}
 a{color:inherit;}
@@ -410,92 +411,92 @@ details[open]>summary .fold-i::after{transform:rotate(0);}
 .dz-note b{font-weight:600;}
 #pi-doboku:checked ~ .step .dz-list[data-ind="doboku"]{display:grid;}
 #pi-doboku:checked ~ .step .dz-for [data-ind="doboku"]{display:inline;}
-#pi-doboku:checked ~ .step .chips label[for="pi-doboku"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-doboku:checked ~ .step .chips label[for="pi-doboku"]{color:var(--ink);font-weight:600;}
 #pi-doboku:checked ~ .step .chips label[for="pi-doboku"]::before{transform:scaleX(1);}
 #pi-doboku:focus-visible ~ .step .chips label[for="pi-doboku"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-sokuryo:checked ~ .step .dz-list[data-ind="sokuryo"]{display:grid;}
 #pi-sokuryo:checked ~ .step .dz-for [data-ind="sokuryo"]{display:inline;}
-#pi-sokuryo:checked ~ .step .chips label[for="pi-sokuryo"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-sokuryo:checked ~ .step .chips label[for="pi-sokuryo"]{color:var(--ink);font-weight:600;}
 #pi-sokuryo:checked ~ .step .chips label[for="pi-sokuryo"]::before{transform:scaleX(1);}
 #pi-sokuryo:focus-visible ~ .step .chips label[for="pi-sokuryo"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-kenchiku:checked ~ .step .dz-list[data-ind="kenchiku"]{display:grid;}
 #pi-kenchiku:checked ~ .step .dz-for [data-ind="kenchiku"]{display:inline;}
-#pi-kenchiku:checked ~ .step .chips label[for="pi-kenchiku"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-kenchiku:checked ~ .step .chips label[for="pi-kenchiku"]{color:var(--ink);font-weight:600;}
 #pi-kenchiku:checked ~ .step .chips label[for="pi-kenchiku"]::before{transform:scaleX(1);}
 #pi-kenchiku:focus-visible ~ .step .chips label[for="pi-kenchiku"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-sekkei:checked ~ .step .dz-list[data-ind="sekkei"]{display:grid;}
 #pi-sekkei:checked ~ .step .dz-for [data-ind="sekkei"]{display:inline;}
-#pi-sekkei:checked ~ .step .chips label[for="pi-sekkei"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-sekkei:checked ~ .step .chips label[for="pi-sekkei"]{color:var(--ink);font-weight:600;}
 #pi-sekkei:checked ~ .step .chips label[for="pi-sekkei"]::before{transform:scaleX(1);}
 #pi-sekkei:focus-visible ~ .step .chips label[for="pi-sekkei"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-setsubi:checked ~ .step .dz-list[data-ind="setsubi"]{display:grid;}
 #pi-setsubi:checked ~ .step .dz-for [data-ind="setsubi"]{display:inline;}
-#pi-setsubi:checked ~ .step .chips label[for="pi-setsubi"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-setsubi:checked ~ .step .chips label[for="pi-setsubi"]{color:var(--ink);font-weight:600;}
 #pi-setsubi:checked ~ .step .chips label[for="pi-setsubi"]::before{transform:scaleX(1);}
 #pi-setsubi:focus-visible ~ .step .chips label[for="pi-setsubi"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-denki:checked ~ .step .dz-list[data-ind="denki"]{display:grid;}
 #pi-denki:checked ~ .step .dz-for [data-ind="denki"]{display:inline;}
-#pi-denki:checked ~ .step .chips label[for="pi-denki"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-denki:checked ~ .step .chips label[for="pi-denki"]{color:var(--ink);font-weight:600;}
 #pi-denki:checked ~ .step .chips label[for="pi-denki"]::before{transform:scaleX(1);}
 #pi-denki:focus-visible ~ .step .chips label[for="pi-denki"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-tosou:checked ~ .step .dz-list[data-ind="tosou"]{display:grid;}
 #pi-tosou:checked ~ .step .dz-for [data-ind="tosou"]{display:inline;}
-#pi-tosou:checked ~ .step .chips label[for="pi-tosou"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-tosou:checked ~ .step .chips label[for="pi-tosou"]{color:var(--ink);font-weight:600;}
 #pi-tosou:checked ~ .step .chips label[for="pi-tosou"]::before{transform:scaleX(1);}
 #pi-tosou:focus-visible ~ .step .chips label[for="pi-tosou"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-zoen:checked ~ .step .dz-list[data-ind="zoen"]{display:grid;}
 #pi-zoen:checked ~ .step .dz-for [data-ind="zoen"]{display:inline;}
-#pi-zoen:checked ~ .step .chips label[for="pi-zoen"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-zoen:checked ~ .step .chips label[for="pi-zoen"]{color:var(--ink);font-weight:600;}
 #pi-zoen:checked ~ .step .chips label[for="pi-zoen"]::before{transform:scaleX(1);}
 #pi-zoen:focus-visible ~ .step .chips label[for="pi-zoen"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-kaitai:checked ~ .step .dz-list[data-ind="kaitai"]{display:grid;}
 #pi-kaitai:checked ~ .step .dz-for [data-ind="kaitai"]{display:inline;}
-#pi-kaitai:checked ~ .step .chips label[for="pi-kaitai"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-kaitai:checked ~ .step .chips label[for="pi-kaitai"]{color:var(--ink);font-weight:600;}
 #pi-kaitai:checked ~ .step .chips label[for="pi-kaitai"]::before{transform:scaleX(1);}
 #pi-kaitai:focus-visible ~ .step .chips label[for="pi-kaitai"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-unso:checked ~ .step .dz-list[data-ind="unso"]{display:grid;}
 #pi-unso:checked ~ .step .dz-for [data-ind="unso"]{display:inline;}
-#pi-unso:checked ~ .step .chips label[for="pi-unso"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-unso:checked ~ .step .chips label[for="pi-unso"]{color:var(--ink);font-weight:600;}
 #pi-unso:checked ~ .step .chips label[for="pi-unso"]::before{transform:scaleX(1);}
 #pi-unso:focus-visible ~ .step .chips label[for="pi-unso"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-nogyo:checked ~ .step .dz-list[data-ind="nogyo"]{display:grid;}
 #pi-nogyo:checked ~ .step .dz-for [data-ind="nogyo"]{display:inline;}
-#pi-nogyo:checked ~ .step .chips label[for="pi-nogyo"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-nogyo:checked ~ .step .chips label[for="pi-nogyo"]{color:var(--ink);font-weight:600;}
 #pi-nogyo:checked ~ .step .chips label[for="pi-nogyo"]::before{transform:scaleX(1);}
 #pi-nogyo:focus-visible ~ .step .chips label[for="pi-nogyo"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-shokudo:checked ~ .step .dz-list[data-ind="shokudo"]{display:grid;}
 #pi-shokudo:checked ~ .step .dz-for [data-ind="shokudo"]{display:inline;}
-#pi-shokudo:checked ~ .step .chips label[for="pi-shokudo"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-shokudo:checked ~ .step .chips label[for="pi-shokudo"]{color:var(--ink);font-weight:600;}
 #pi-shokudo:checked ~ .step .chips label[for="pi-shokudo"]::before{transform:scaleX(1);}
 #pi-shokudo:focus-visible ~ .step .chips label[for="pi-shokudo"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-bar:checked ~ .step .dz-list[data-ind="bar"]{display:grid;}
 #pi-bar:checked ~ .step .dz-for [data-ind="bar"]{display:inline;}
-#pi-bar:checked ~ .step .chips label[for="pi-bar"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-bar:checked ~ .step .chips label[for="pi-bar"]{color:var(--ink);font-weight:600;}
 #pi-bar:checked ~ .step .chips label[for="pi-bar"]::before{transform:scaleX(1);}
 #pi-bar:focus-visible ~ .step .chips label[for="pi-bar"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-biyo:checked ~ .step .dz-list[data-ind="biyo"]{display:grid;}
 #pi-biyo:checked ~ .step .dz-for [data-ind="biyo"]{display:inline;}
-#pi-biyo:checked ~ .step .chips label[for="pi-biyo"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-biyo:checked ~ .step .chips label[for="pi-biyo"]{color:var(--ink);font-weight:600;}
 #pi-biyo:checked ~ .step .chips label[for="pi-biyo"]::before{transform:scaleX(1);}
 #pi-biyo:focus-visible ~ .step .chips label[for="pi-biyo"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-jinja:checked ~ .step .dz-list[data-ind="jinja"]{display:grid;}
 #pi-jinja:checked ~ .step .dz-for [data-ind="jinja"]{display:inline;}
-#pi-jinja:checked ~ .step .chips label[for="pi-jinja"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-jinja:checked ~ .step .chips label[for="pi-jinja"]{color:var(--ink);font-weight:600;}
 #pi-jinja:checked ~ .step .chips label[for="pi-jinja"]::before{transform:scaleX(1);}
 #pi-jinja:focus-visible ~ .step .chips label[for="pi-jinja"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-jiin:checked ~ .step .dz-list[data-ind="jiin"]{display:grid;}
 #pi-jiin:checked ~ .step .dz-for [data-ind="jiin"]{display:inline;}
-#pi-jiin:checked ~ .step .chips label[for="pi-jiin"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-jiin:checked ~ .step .chips label[for="pi-jiin"]{color:var(--ink);font-weight:600;}
 #pi-jiin:checked ~ .step .chips label[for="pi-jiin"]::before{transform:scaleX(1);}
 #pi-jiin:focus-visible ~ .step .chips label[for="pi-jiin"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-kosho:checked ~ .step .dz-list[data-ind="kosho"]{display:grid;}
 #pi-kosho:checked ~ .step .dz-for [data-ind="kosho"]{display:inline;}
-#pi-kosho:checked ~ .step .chips label[for="pi-kosho"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-kosho:checked ~ .step .chips label[for="pi-kosho"]{color:var(--ink);font-weight:600;}
 #pi-kosho:checked ~ .step .chips label[for="pi-kosho"]::before{transform:scaleX(1);}
 #pi-kosho:focus-visible ~ .step .chips label[for="pi-kosho"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 #pi-juku:checked ~ .step .dz-list[data-ind="juku"]{display:grid;}
 #pi-juku:checked ~ .step .dz-for [data-ind="juku"]{display:inline;}
-#pi-juku:checked ~ .step .chips label[for="pi-juku"]{color:var(--ink);font-weight:600;background:var(--paper);box-shadow:inset 0 2px 0 var(--gold);}
+#pi-juku:checked ~ .step .chips label[for="pi-juku"]{color:var(--ink);font-weight:600;}
 #pi-juku:checked ~ .step .chips label[for="pi-juku"]::before{transform:scaleX(1);}
 #pi-juku:focus-visible ~ .step .chips label[for="pi-juku"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
 
@@ -1281,21 +1282,217 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
   .dz-sw{min-height:min(338px,52svh);}
   .step-dz .dz-list{margin-top:14px;}
 }
+
+/* ══════════ 2026-10-01 修正役V 第5周（絵と装い） ══════════ */
+/* 三 見本帳：扇の大きな一字は、その案の「章の見出し」の書体と太さで（hp_build.py が見本から読んで --sw-hf・--sw-kw に入れる）。
+   淡・理＝しっぽり明朝、玄＝Noto Sans JP 細、雅＝Zen Old Mincho 太、粋＝Zen Kaku Gothic New 細。見本の h1（sw-h1）は実物どおりしっぽり明朝のまま */
+.dz .sw-k{font-family:var(--sw-hf),var(--ff-ja);font-weight:var(--sw-kw,var(--sw-hw));font-feature-settings:normal;}
+/* 理（縦書きの見出し）：読みは一字の下に横組みで。縦の見出しは扇の右端の金の筋から離す */
+.is-tate .sw-ja{flex-direction:column;align-items:flex-start;gap:12px;}
+.is-tate .sw-yomi{writing-mode:horizontal-tb;margin-top:0;letter-spacing:.3em;}
+.is-tate .sw-h1{right:calc(clamp(12px,1.1vw,16px) + 18px);}
+
+/* 扉：左下の値段の札は白い四角をやめ、左から右へ消える霞の地に。左の金罫1本だけ残す */
+@media (min-width:901px){
+  .hero-deal{padding:22px 96px 24px 26px;background:linear-gradient(90deg,rgba(243,241,235,.92) 0,rgba(243,241,235,.84) 62%,rgba(243,241,235,0) 100%);}
+  .hx-ln{background:rgba(243,241,235,.5);}
+  /* 縦の札も四角い縁をやめ、右の金の縦線1本と、上下へ淡く消える地に */
+  .hero-plate{background:linear-gradient(180deg,rgba(246,241,229,0) 0,rgba(246,241,229,.86) 26px,rgba(246,241,229,.86) calc(100% - 26px),rgba(246,241,229,0) 100%);box-shadow:inset -.5px 0 0 var(--gold);padding-block:40px 38px;}
+}
+/* 375 など：札の右端が頁送りの数字に寄っていた */
+@media (max-width:620px){.hero-plate{max-width:calc(100% - var(--gut) - 92px);}}
+
+
+/* 四 PRICE：主の面（ホームページ作成）を広く、あとから直すときは面を張らず罫だけの表に。注記は1本の欄に */
+.plan-notes{grid-template-columns:minmax(0,1fr);}
+.plan-notes .fine{max-width:34em;}
+@media (min-width:901px){
+  .plans{grid-template-columns:minmax(0,3fr) minmax(0,2fr);}
+  .s-face .plan+.plan,.plan+.plan{background:none;padding-inline:0;}
+  .plan-notes>div{padding-inline:clamp(26px,3vw,44px) 0;}
+}
+/* 公開設定の代行：説明ごと1つの開閉に */
+.daiko.daiko-fold{display:block;margin-top:40px;padding-top:0;border-top:1px solid var(--ink);}
+.daiko-fold .df-t{display:flex;flex-direction:column;gap:4px;}
+.daiko-fold .df-t .vh3{font-size:var(--f3);letter-spacing:.1em;}
+.df-s{font-size:var(--f1);color:var(--ink-2);letter-spacing:.06em;}
+.daiko-fold summary{padding:18px 0;}
+.daiko .df-b>p{max-width:40em;}
+.daiko .df-b>p+p,.daiko .df-b>.flow+p{margin-top:12px;}
+@media (max-width:620px){.plan{padding-inline:16px;}}
+
+/* 五 FLOW：4手順は等幅。補足は本文の段（16px）。ご記入シートの囲みは4列の下にまたがる帯 */
+.fl-d{font-size:var(--f2);letter-spacing:.04em;}
+.sheet.flw-sheet{margin-top:28px;}
+@media (min-width:1101px){
+  .flw{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .sheet.flw-sheet{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px 48px;margin-top:32px;padding:26px 30px;}
+  .sheet.flw-sheet h4{font-size:var(--f3);font-weight:500;}
+  .sheet.flw-sheet p{max-width:38em;}
+  .sheet.flw-sheet .box-ln{margin-top:0;width:auto;padding:0 28px;}
+  .sheet.flw-sheet .dl-n{white-space:nowrap;}
+}
+
+@media (min-width:901px){.plans{align-items:start;}}
+/* スマホ：メニューの「見本」で着いた画面に、業種の札の1段目が見えるように。帯の絵を低くし、リード文は札と五曲のあとへ回す */
+@media (max-width:620px){
+  .band-works.band-door{padding-top:150px;padding-bottom:32px;}
+  #works>.works-body{padding-top:28px;}
+  .works-body>.works-lead{order:2;margin-top:40px;}
+  .works-body>.inds{order:1;}
+  .works-body>.inds>.step-ind{margin-top:0;}
+}
+.plan .row p,.plan .fine{text-wrap:wrap;}
+@media (max-width:620px){.colo{padding-bottom:16px;}}
+/* タブレット（621〜900px）：理由の間の罫を本文の列にそろえる。要点の帯は（税込）を円の横に。代表の絵は 5:4 に裁って右の空きを減らす */
+@media (min-width:621px) and (max-width:900px){
+  .rs{padding-inline:0;margin-inline:var(--fp);}
+  .keys .k-v{white-space:nowrap;}
+  .keys .k-v .kn-n{font-size:var(--f4);}
+  .keys .k-v .kn-t{font-size:var(--f1);}
+  .keys .k-s .nw{white-space:normal;}
+  .pf-l .ph img{aspect-ratio:5/4;object-position:40% 30%;}
+}
+/* 1024〜1180px：ナビの和文の2段目を外し、英字だけで項目の間を空ける（えらぼっとは和文のまま） */
+@media (min-width:901px) and (max-width:1180px){
+  .nav{gap:26px;}
+  .nav a:not(.nav-era) .nj{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .nav a.nav-era{padding-left:22px;}
+}
+
+/* ── 2026-10-01 修正役L 第5周 ── */
+/* 扉（900px 以下）：札の中に「見本を見る」と並べて「お問い合わせ」も置く（PC の扉と同じ2つの入口） */
+.hp-mis{display:none;}
+@media (max-width:900px){
+  .hp-mis{display:flex;flex-wrap:wrap;column-gap:20px;}
+  .hp-mis .hp-mi::after{width:20px;}
+}
+/* erabot のしくみ：4手順の区切りの縦線が 0.5px の影では1本しか描かれない幅があったので、1px の淡い罫にする */
+@media (min-width:901px){
+  .proc li+li{box-shadow:none;border-left:1px solid var(--line);}
+}
+@media (min-width:621px) and (max-width:900px){
+  .proc li:nth-child(2n){box-shadow:none;border-left:1px solid var(--line);}
+}
+/* スマホ：2つの入口を1行に収める（金の罫の代わりに金の下線、間に細い縦罫）。札が2段に伸びて絵を隠さないように */
+@media (max-width:620px){
+  .hp-mis{flex-wrap:nowrap;column-gap:0;}
+  .hp-mis .hp-mi{letter-spacing:.06em;text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:1px;text-underline-offset:7px;}
+  .hp-mis .hp-mi::after{display:none;}
+  .hp-mis .hp-mi+.hp-mi{position:relative;margin-left:14px;padding-left:14px;}
+  .hp-mis .hp-mi+.hp-mi::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:1px;background:rgba(168,130,63,.55);}
+}
+/* erabot のしくみ 01〜04：列が狭く（約14字）、割らない塊の手前で行が早く終わって右端が不揃いだった。短い段なので文節で折り、行の長さを均す */
+.proc p:not(.n){word-break:auto-phrase;text-wrap:balance;}
+/* メニュー：項目名を各章の題箋にそろえる。「見本帳」には何の見本かを小さく添える */
+.mn-s{display:block;margin-top:2px;font-size:var(--f1);letter-spacing:.08em;color:var(--ink-2);}
+@media (max-height:700px){.mn-s{display:inline;margin-left:10px;}}
+
+/* ══════════ 2026-10-01 修正役V 第6周（絵と装い） ══════════ */
+/* 本文：両端揃えをやめる。割らない塊・<br> の手前で行が早く終わると、残りの行が字間で引き伸ばされていた。行頭揃えと text-wrap:pretty */
+.ja-b p,.rs p,.fine,.sheet p,.fl-p,.pf-body p,.qa-a p,.dz-note,.daiko p,.daiko-lead,.contact-in>p,.step-p,.erabo-plan p,.labs p,.ways p,.tbl .note,
+.era-door p,.pair p,.works-lead,.thd-d{text-align:start;text-justify:auto;text-wrap:pretty;}
+
+/* 題箋：章題は全章 24px・字間 .3em（四章以降だけ 34px になっていた）。漢数字も全章同じ 34px の金 */
+
+/* 扉：値段の札と縦の札は、ぼかしをやめて縁のはっきりした短冊に（胡粉 .94、内側に 0.5px の金の縁。角丸・影なし） */
+@media (min-width:901px){
+  .hero-deal{background:rgba(243,241,235,.94);-webkit-mask-image:none;mask-image:none;padding:22px 28px;box-shadow:inset 0 0 0 .5px rgba(168,130,63,.55),inset 1px 0 0 var(--gold);}
+  .hx-ln{background:transparent;}
+  .hero-plate{background:rgba(246,241,229,.94);box-shadow:inset 0 0 0 .5px rgba(168,130,63,.55);padding-block:32px;}
+}
+/* 扉の上の覆い：全幅の白い帯を 140px に下げて弱め、ロゴ（左上）と頭の帯の字（右上）の下だけ淡い胡粉の霞を寄せる。金地の照りを残す */
+.hero::after{height:360px;background:
+  radial-gradient(ellipse 340px 250px at 0 0,rgba(243,241,235,.62) 0,rgba(243,241,235,.34) 55%,rgba(243,241,235,0) 100%),
+  radial-gradient(ellipse 760px 120px at 100% 0,rgba(243,241,235,.5) 0,rgba(243,241,235,0) 100%),
+  linear-gradient(180deg,rgba(243,241,235,.6),rgba(243,241,235,0)) 0 0 / 100% 140px no-repeat;}
+.hero[data-tone="gold"]::after{height:360px;background:
+  radial-gradient(ellipse 440px 340px at 0 0,rgba(243,241,235,.84) 0,rgba(243,241,235,.62) 60%,rgba(243,241,235,0) 100%),
+  radial-gradient(ellipse 840px 200px at 100% 0,rgba(243,241,235,.86) 0,rgba(243,241,235,.58) 50%,rgba(243,241,235,0) 100%),
+  linear-gradient(180deg,rgba(243,241,235,.45),rgba(243,241,235,0)) 0 0 / 100% 140px no-repeat;}
+/* ◇と番号：金地の絵のときは、胡粉の小さな短冊（α .8・内側 0.5px の金の縁）を敷く。松葉に重なっても読める */
+@media (min-width:901px){
+  .dots{padding:4px 0 12px;transition:background-color .8s,box-shadow .8s;}
+  .hero[data-tone="gold"] .dots{filter:none;background:rgba(243,241,235,.8);box-shadow:inset 0 0 0 .5px rgba(168,130,63,.55);}
+  /* 頭の帯の字も、金地の絵（老松の松葉が上端まで来る）の上では同じ胡粉の短冊に載せる */
+  .js .hd:not(.is-solid) .nav{padding:4px 18px;transition:background-color .8s,box-shadow .8s;}
+  body:has(.hero[data-tone="gold"]) .hd:not(.is-solid) .nav{background:rgba(243,241,235,.8);box-shadow:inset 0 0 0 .5px rgba(168,130,63,.55);}
+}
+
+/* 結 CONTACT：春の流れの絵は、流れ・草・岩のある上の方で裁つ（砂地ばかりだった）。覆いなしのまま */
+@media (min-width:901px){.contact-art img{object-position:0% 0%!important;transform:scale(1.34);transform-origin:12% 0%;}}
+@media (max-width:900px){
+  .contact-art img{object-position:50% 0%!important;transform:none;}
+  .contact-art:not(.era-kanze){min-height:clamp(280px,44vw,340px);}
+}
+/* erabot の結び：スマホでは文様だけの枠を低く */
+@media (max-width:900px){.contact-art.era-kanze{min-height:220px;height:220px;}}
+
+/* 三 見本帳（スマホ）：導入文を PC と同じく帯の直後に戻す（五つの型の前置きが章の最後に来ていた） */
+@media (max-width:620px){
+  .works-body>.works-lead{order:0;margin-top:0;}
+  .works-body>.inds{order:0;}
+  .works-body>.inds>.step-ind{margin-top:28px;}
+  /* 帯の夏秋草図を広く見せ、夜へ落ちる所を下げる */
+  .band-works img{height:66%;}
+  .band-works::after{background:linear-gradient(180deg,rgba(21,24,26,0) 0,rgba(21,24,26,0) 36%,var(--night) 57%,var(--night) 100%);}
+}
+/* 五曲：ホバーで扇を 2px 持ち上げる（.rv の transform:none に負けて動いていなかった）。影は付けない */
+@media (hover:hover){.dz-sw{transition:transform .35s ease,filter .35s ease;}.dz:hover .dz-sw{transform:translateY(-2px);}}
+/* 「五つの型」の欄の上罫を、五曲の上端と同じ 1px の金に */
+@media (min-width:1101px){.step-dz>.step-side{border-top:1px solid rgba(168,130,63,.6);}}
+
+/* 頭の帯（901〜1180px）：英字を目では隠し、和文の章名を出す（読み手に英字だけのナビは迷いやすい） */
+@media (min-width:901px) and (max-width:1180px){
+  .nav{gap:22px;}
+  .nav a:not(.nav-era) .nj{position:static;width:auto;height:auto;overflow:visible;clip:auto;font-size:var(--f2);color:inherit;letter-spacing:.06em;}
+  .nav a:not(.nav-era) [lang="en"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .nav a.nav-era .nj{font-size:var(--f2);}
+}
+
+/* 六 代表：絵が読み込まれるまで、枠に胡粉の地と縦横比を先に出す */
+.pf-l .ph{background:#E6E1D4;}
+/* タブレット：本文の行が長すぎないように（約34字） */
+@media (min-width:621px) and (max-width:900px){.pf-body p,.rs p:not(.n):not(.src){max-width:34em;}}
+
+/* erabot：メニューの「えらぼっと」の行に、いまのページの印（金の罫と太字） */
+.mnav-era a[aria-current="page"]{font-weight:600;box-shadow:inset 3px 0 0 var(--gold);padding-left:14px;}
+/* 一 要点の帯（901〜1180px）：料金の欄を少し広げ、（税込）を円と同じ行に */
+@media (min-width:901px) and (max-width:1180px){
+  .keys{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);}
+  .keys .k-v{white-space:nowrap;}
+}
+
+/* ══════════ 2026-10-01 修正役L 第6周（組みと操作） ══════════ */
+/* 五 FLOW（1101px 以上）：列の上下の余白を詰め、1280×800 で FLOW に着いた画面にご記入シートの札（#dl-sheet）まで入れる */
+@media (min-width:1101px){
+  .fl{padding-top:18px;}
+  .fl-t{padding-top:10px;}
+  .fl-b{margin-top:12px;padding-top:14px;}
+  .sheet.flw-sheet{margin-top:20px;padding:20px 30px;}
+}
+/* デザイン詳細（1024〜1099px の1列）：写真の高さを抑え、案の名・一言・説明の頭までを最初の画面に入れる */
+@media (min-width:1024px) and (max-width:1099px){
+  .thd-cut{aspect-ratio:auto;height:min(300px,34svh);}
+  .thd-cut img{top:0;bottom:auto;}
+}
+/* デザイン詳細（1023px 以下）：画面写真を拡大しない（右上の「DESIGN SAMPLE」の札が半分で切れて、欠けた部品に見えていた） */
+@media (max-width:1023px){.thd-cut img{transform:none;}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
 
 <header class="hd is-solid" id="hd">
-  <a class="logo-b" href="index.html#top" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
-  <a class="logo-s" href="index.html#top" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
+  <a class="logo-b" href="./#top" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
+  <a class="logo-s" href="./#top" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
   <nav class="nav" aria-label="ページ内の案内">
-    <a href="index.html#about"><span lang="en">About</span><span class="nj">杜工舎とは</span></a>
-    <a href="index.html#works"><span lang="en">Works</span><span class="nj">見本</span></a>
-    <a href="index.html#price"><span lang="en">Price</span><span class="nj">料金</span></a>
-    <a href="index.html#flow"><span lang="en">Flow</span><span class="nj">ご依頼の流れ</span></a>
-    <a href="index.html#profile"><span lang="en">Profile</span><span class="nj">代表</span></a>
-    <a href="index.html#contact"><span lang="en">Contact</span><span class="nj">お問い合わせ</span></a>
+    <a href="./#about"><span lang="en">About</span><span class="nj">杜工舎について</span></a>
+    <a href="./#works"><span lang="en">Works</span><span class="nj">見本帳</span></a>
+    <a href="./#price"><span lang="en">Price</span><span class="nj">料金</span></a>
+    <a href="./#flow"><span lang="en">Flow</span><span class="nj">ご依頼の流れ</span></a>
+    <a href="./#profile"><span lang="en">Profile</span><span class="nj">代表</span></a>
+    <a href="./#contact"><span lang="en">Contact</span><span class="nj">お問い合わせ</span></a>
     <a class="nav-era" href="erabot.html" aria-current="page"><span class="nj">えらぼっと</span></a>
   </nav>
   <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="メニューを開く"><i></i><i></i><i></i></button>
@@ -1307,13 +1504,14 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
     <button class="mnav-close" id="mnav-close" type="button">閉じる ×</button>
   </div>
   <ol>
-    <li><a href="index.html#about">杜工舎とは<span class="lb" aria-hidden="true">About</span></a></li>
-    <li><a href="index.html#works">ホームページの見本<span class="lb" aria-hidden="true">Works</span></a></li>
-    <li><a href="index.html#price">料金<span class="lb" aria-hidden="true">Price</span></a></li>
-    <li><a href="index.html#flow">ご依頼の流れ<span class="lb" aria-hidden="true">Flow</span></a></li>
-    <li><a href="index.html#profile">代表プロフィール<span class="lb" aria-hidden="true">Profile</span></a></li>
-    <li><a href="index.html#faq">よくあるご質問<span class="lb" aria-hidden="true">Q&amp;A</span></a></li>
-    <li><a href="index.html#contact">お問い合わせ<span class="lb" aria-hidden="true">Contact</span></a></li>
+    <li><a href="./">杜工舎のトップ<span class="lb" aria-hidden="true">Top</span></a></li>
+    <li><a href="./#about">杜工舎について<span class="lb" aria-hidden="true">About</span></a></li>
+    <li><a href="./#works"><span class="mn-t">見本帳<small class="mn-s">ホームページの見本</small></span><span class="lb" aria-hidden="true">Works</span></a></li>
+    <li><a href="./#price">料金<span class="lb" aria-hidden="true">Price</span></a></li>
+    <li><a href="./#flow">ご依頼の流れ<span class="lb" aria-hidden="true">Flow</span></a></li>
+    <li><a href="./#profile">代表プロフィール<span class="lb" aria-hidden="true">Profile</span></a></li>
+    <li><a href="./#faq">よくあるご質問<span class="lb" aria-hidden="true">Q&amp;A</span></a></li>
+    <li><a href="./#contact">お問い合わせ<span class="lb" aria-hidden="true">Contact</span></a></li>
   </ol>
   <p class="mnav-era"><a href="erabot.html" aria-current="page">メーカーのかたへ ── えらぼっと（商品選びの案内）<span aria-hidden="true">→</span></a></p>
   <p class="mnav-mail">MAIL ── <a href="mailto:info@morikosha.com">info@morikosha.com</a></p>
@@ -1330,7 +1528,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       <div class="dai sec-h" aria-hidden="true"><span class="dai-t">えらぼっと</span><span class="dai-l">Erabot</span></div>
       <h1 class="ja-h" id="erabot-h">メーカーの知識を、<br>選べる<span class="nw nk">仕組み</span>に。</h1>
       <div class="era-door">
-        <p>メーカーの商品知識を、誰でも使える選定フローに変える。売れる「<span class="nw nk">仕組み</span>」を<span class="nw nk">つくります。</span></p>
+        <p>メーカーの商品知識を、誰でも使える<span class="nw nk">選定フローに変える</span>。売れる「<span class="nw nk">仕組み</span>」を<span class="nw nk">つくります。</span></p>
         <p class="kane"><b>初期 <span class="nw"><span class="nw nk">198,000円（税込）</span></span></b><small><span class="nw">月額 <span class="nw nk">9,800円（税込）</span></span>・<span class="nw">契約<span class="nw nk">1年</span></span></small></p>
       </div>
     </div>
@@ -1339,8 +1537,8 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
     <header class="dai sec-h"><span class="dai-n" aria-hidden="true">一</span><h2 class="dai-t" id="era-make-h">しくみ</h2><span class="dai-l" aria-hidden="true">Selection</span></header>
     <div class="pair">
       <div class="ja-b">
-        <p>つくった人には分かる。でも、お客さまには分からない。御社の商品知識と選び分けのノウハウを、誰でも使えるWeb上の選定フローに変<span class="nw nk">換します。</span></p>
-        <p><b>選定知識まで設計します。</b>質問を置ける道具だけを渡すのではなく、<span class="nw nk">杜工舎</span>が商品群を調べ、お客さまが迷う分岐を見つけ、設問と配点を設計します。条件に合う<span class="nw nk">3案</span>を、選定理由とともに提示する<span class="nw nk">完成品として</span><span class="nw nk">お渡し</span>します。</p>
+        <p>つくった人には分かる。でも、お客さまには分からない。御社の商品知識と選び分けのノウハウを、誰でも使えるWeb上の選定<span class="nw nk">フロー</span>に変<span class="nw nk">換します。</span></p>
+        <p><b>選定知識まで設計します。</b>質問を置ける道具だけを渡すのではなく、<span class="nw nk">杜工舎</span>が商品群を調べ、お客さまが迷う分岐を見つけ、設問と配点を設計します。条件に合う<span class="nw nk">3案</span>を、選定理由とともに提示する<span class="nw nk">完成品として</span><span class="nw nk">お渡しします。</span></p>
         <div class="go">
           <a class="ln" href="preview/erabot-demo.html" target="_blank" rel="noopener">地面固定具の作例を試す ↗</a>
           <a class="ln" href="#contact">お問い合わせ</a>
@@ -1351,7 +1549,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       </div>
     </div>
     <ol class="proc">
-      <li><p class="n">01</p><h3>商品群を調べる</h3><p>御社のECと資料から、選び分けに必要な条件を整<span class="nw nk">理します。</span></p></li>
+      <li><p class="n">01</p><h3>商品群を調べる</h3><p>御社のECと資料から、選び分けに必要な条件を<span class="nw nk">整理します</span>。</p></li>
       <li><p class="n">02</p><h3>質問と配点を設計する</h3><p>専門知識を5〜7問へ翻訳し、条件ごとの優先順位を<span class="nw nk">組みます。</span></p></li>
       <li><p class="n">03</p><h3><span class="nw">Webアプリにする</span></h3><p>御社の色と商品写真で仕上げ、既存のEC<span class="nw nk">ページへ</span>設<span class="nw nk">置します。</span></p></li>
       <li><p class="n">04</p><h3>更新しながら育てる</h3><p>商品情報と<span class="nw nk">軽微なフロー変更</span>を、月額保守の範囲で<span class="nw nk">反映</span>します。</p></li>
@@ -1382,7 +1580,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
   <div class="contact byo">
     <header class="dai sec-h"><span class="dai-n" aria-hidden="true">結</span><h2 class="dai-t" id="contact-h">お問い合わせ</h2><span class="dai-l" aria-hidden="true">Contact</span></header>
     <div class="contact-in">
-      <p>ご質問だけでも<span class="nw nk">構いません</span>。メールで<span class="nw nk">ご相談</span><span class="nw nk">いただけます</span>。</p>
+      <p>ご質問だけでも<span class="nw nk">構いません</span>。<span class="nw nk">メールで</span><span class="nw nk">ご相談</span><span class="nw nk">いただけます</span>。</p>
       <div class="mail">
         <p class="lb" aria-hidden="true">E-mail</p>
         <a class="mail-a" href="mailto:info@morikosha.com">info@morikosha.com <span aria-hidden="true">↗</span></a>
@@ -1390,14 +1588,13 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
         <small><span class="nw nk">2営業日</span>以内のご返信を心がけ<span class="nw nk">ています。</span><br>お電話を<span class="nw nk">ご希望の場合</span>は、その旨をお書き添え<span class="nw nk">ください。</span></small>
       </div>
       <div class="go">
-        <a class="ln" href="preview/erabot-demo.html" target="_blank" rel="noopener">地面固定具の作例を試す ↗</a>
-        <a class="ln" href="index.html#contact"><span><span class="nw nk">杜工舎</span>のお問い合わせ</span></a>
-        <a class="ln" href="index.html"><span><span class="nw nk">杜工舎</span>のトップへ</span></a>
+        <a class="ln" href="./#contact"><span><span class="nw nk">杜工舎</span>のお問い合わせ</span></a>
+        <a class="ln" href="./"><span><span class="nw nk">杜工舎</span>のトップへ</span></a>
       </div>
     </div>
     <!-- 2026-10-01 修正役V 第2周：右半分が空の夜の地のままだったので、本体の #contact（右に絵）と釣り合うよう扉の蒔絵の部分（藤と葉）を裁ち直して置く -->
     <!-- 2026-10-01 第3周：扉と同じ蒔絵を2度見せていたので、結びは観世水の文様（art.js）と金砂子だけにする -->
-    <figure class="contact-art era-kanze" aria-hidden="true"><canvas class="art-layer" data-art="kanze" data-low aria-hidden="true"></canvas><canvas class="art-layer" data-art="sunago" aria-hidden="true"></canvas></figure>
+    <figure class="contact-art era-kanze" aria-hidden="true"><canvas class="art-layer" data-art="kanze" data-full aria-hidden="true"></canvas><canvas class="art-layer" data-art="sunago" aria-hidden="true"></canvas></figure>
   </div>
 </section>
 
@@ -1506,16 +1703,22 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
   /* 2026-10-01：FAQ の間はどの印も付けない（まだ来ていない CONTACT に印が付いて見えたため） */
   /* 2026-10-01 第2周：FAQ の間は直前の PROFILE の印を残す（印が一度消えて見えたため） */
   var navOf = {why:'about', faq:'profile'};
+  var curId = '', markNav = null;
   if('IntersectionObserver' in window){
+    /* 2026-10-01 第6周 修正役L：ABOUT は画面に入ったまま IO が二度と呼ばれず、扉判定で消えた印が戻らなかった。
+       最後に捉えた章を curId に覚え、スクロールが止まったとき（下の clearTop）に扉を出ていれば付け直す */
+    var markNav = function(id){
+      links.forEach(function(a){
+        var on = !!id && a.getAttribute('href') === '#' + id;
+        a.classList.toggle('cur', on);
+        if(on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      });
+    };
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){
         if(!e.isIntersecting) return;
-        var id = navOf[e.target.id] || e.target.id;
-        links.forEach(function(a){
-          var on = a.getAttribute('href') === '#' + id;
-          a.classList.toggle('cur', on);
-          if(on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
-        });
+        curId = navOf[e.target.id] || e.target.id;
+        markNav(curId);
       });
       /* 2026-10-01 修正役L 第3周：下から扉へ一気に戻る途中で ABOUT の印が付き、扉に着いたあとも一瞬残っていた。印を付けた直後にも扉かどうかを見る */
       if(typeof clearTop === 'function') clearTop();
@@ -1530,6 +1733,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
     var clearTop = function(){
       if(window.scrollY + (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hd')) || 72) < firstSec.offsetTop - 8)
         links.forEach(function(a){ if(a.getAttribute('href').charAt(0) === '#'){ a.classList.remove('cur'); a.removeAttribute('aria-current'); } });
+      else if(markNav && curId && !document.querySelector('.nav a.cur')) markNav(curId);
     };
     window.addEventListener('scroll', function(){ clearTimeout(clearTop.t); clearTop.t = setTimeout(clearTop, 80); }, {passive:true});
   }
@@ -1650,8 +1854,11 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       if(lab) setTimeout(function(){ var b = lab.getBoundingClientRect(); if(b.top < 90 || b.bottom > innerHeight - 20) lab.scrollIntoView({block: 'center', behavior: reduce ? 'auto' : 'smooth'}); }, 0);
     });
   });
-  document.querySelectorAll('input[name="pv-ind"]').forEach(function(r){
-    r.addEventListener('change', function(){
+  /* 2026-10-01 修正役L 第5周：札ごとに付けず、document で change を受ける（札の一覧を後から差し替えても、付け漏れが起きないように） */
+  document.addEventListener('change', function(ev){
+    var r = ev.target;
+    if(!r || r.name !== 'pv-ind') return;
+    (function(){
       try{ sessionStorage.setItem('pv-ind', r.id); }catch(e){}
       dlFollow();
       var lab = document.querySelector('label[for="' + r.id + '"]'), name = lab ? lab.textContent : '';
@@ -1684,7 +1891,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
           if(Math.abs(goY - window.scrollY) > 8) window.scrollTo({top: goY, behavior: reduce ? 'auto' : 'smooth'});
         }
       }
-    });
+    })();
   });
   try{
     var saved = sessionStorage.getItem('pv-ind'), ri = saved && document.getElementById(saved);
@@ -2099,7 +2306,9 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
     if(!reduce && cv.parentNode){ lcv = document.createElement('canvas'); lcv.className = 'art-layer art-light'; lcv.setAttribute('aria-hidden', 'true');
       lcv.style.mixBlendMode = 'plus-lighter'; cv.parentNode.insertBefore(lcv, cv); }
     function curTone(){ return hero && hero.getAttribute('data-tone') === 'gold' ? 'gold' : 'paper'; }
-    if(hero) hero.addEventListener('heroslide', function(){ fadeAt = performance.now(); if(reduce) mode = curTone(); });
+    // 2026-10-01 第5周：光の帯は絵が替わるたびに1回、新しい絵の上を渡す（松林図の上でも必ず一度は横切る）
+    var lightAt = null;
+    if(hero) hero.addEventListener('heroslide', function(){ fadeAt = performance.now(); lightAt = fadeAt + 900; if(reduce) mode = curTone(); });
     function init(){
       var f = fit(cv); W = f.w; H = f.h; mode = curTone();
       if(lcv) fit(lcv);
@@ -2133,7 +2342,10 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       // 上端の帯はナビ（右半分）とロゴ（左端）に掛けない：x=.14〜.44W だけ。粒は 9 割が半径 .3〜.9px の細かい砂子、
       // 残りが中・大の砂子（大は時々ふっと照る）。野毛（細い箔の線）30 本、切箔は正方形だけ 14 枚、傾き ±10°
       var RD = seeded(29); dust = [];
-      var bandsD = [{ x0: 0, x1: 1, c: .86, h: .11, w: .78 }, mobile ? { x0: .42, x1: .74, c: .02, h: .04, w: .22 } : { x0: .14, x1: .44, c: .025, h: .055, w: .22 }];
+      // 2026-10-01 第5周（アートディレクター）：下の帯は左下の値段の札（.hero-deal）の裏に隠れていた。帯を下端（c .93）へ下げ、札の右から撒く
+      var dealR = 0, dl0 = hero && hero.querySelector('.hero-deal');
+      if(dl0 && dl0.getBoundingClientRect().width) dealR = (dl0.getBoundingClientRect().right - hr.left - 60) / W;
+      var bandsD = [{ x0: Math.max(mobile ? 0 : .30, Math.min(.5, dealR)), x1: 1, c: mobile ? .86 : .93, h: .11, w: .78 }, mobile ? { x0: .42, x1: .74, c: .02, h: .04, w: .22 } : { x0: .14, x1: .44, c: .025, h: .055, w: .22 }];
       function inBand(){ var b = RD() < bandsD[0].w ? bandsD[0] : bandsD[1];
         var x = W * (b.x0 + (b.x1 - b.x0) * RD()), s = RD() < .5 ? -1 : 1, off = -Math.log(1 - RD() * .97) / 3.2;
         var y = H * (b.c + s * off * b.h);
@@ -2145,7 +2357,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       for(var d = 0; d < n; d++){
         var q0 = inBand(), kind = RD(), sz = kind < .76 ? 0 : (kind < .88 ? 1 : 2);
         dust.push({ x: q0[0], y: q0[1], sz: sz, r: sz === 0 ? .3 + RD() * .6 : (sz === 1 ? 1 + RD() * .3 : 1.4 + RD() * .4),
-                    lo: (sz === 0 ? .3 + RD() * .35 : (sz === 1 ? .3 : .15)) * (.35 + .65 * q0[2]), amp: (sz === 0 ? .06 : (sz === 1 ? .4 : .8)) * (.35 + .65 * q0[2]),
+                    lo: (sz === 0 ? .3 + RD() * .35 : (sz === 1 ? .3 : .15)) * (.35 + .65 * q0[2]), amp: (sz === 0 ? .06 : (sz === 1 ? .4 : 1.2)) * (.35 + .65 * q0[2]),
                     per: sz === 0 ? 9000 : 4000 + RD() * 5000, p: RD() * 6.28, c: sz === 2 ? '#E6CC8E' : GOLD[d % 4], noge: 0 });
       }
       // 方針第2版（A2）：野毛は 22 本（スマホ 20 本）・長さ 12〜22px・幅 .6px・傾き ±6°
@@ -2166,9 +2378,9 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       if(deal && deal.getBoundingClientRect().width) obs.push(deal.getBoundingClientRect());
       // [x, y, 1辺] ── 大きいものほど端へ。野毛は t:2
       var slots = mobile
-        ? [[.93, .30, 22], [.84, .25, 11], [.97, .37, 8], [.07, .66, 18], [.16, .71, 9]]
+        ? [[.93, .30, 14], [.84, .25, 9], [.97, .37, 6], [.07, .66, 12], [.16, .71, 7]]
         : [[.955, .36, 28], [.905, .30, 14], [.975, .47, 9], [.86, .40, 8], [.045, .60, 24], [.11, .66, 12], [.03, .70, 8]];
-      var noge = mobile ? [[.89, .33], [.12, .63]] : [[.93, .42], [.88, .26], [.08, .56], [.14, .71]];
+      var noge = mobile ? [[.89, .33], [.95, .24], [.12, .63]] : [[.93, .42], [.88, .26], [.08, .56], [.14, .71]];
       for(var k = 0; k < slots.length; k++){
         var hx = W * (slots[k][0] + (RH() - .5) * .02), hy = H * (slots[k][1] + (RH() - .5) * .02);
         for(var pass = 0; pass < 2; pass++) obs.forEach(function(pr){
@@ -2188,7 +2400,8 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       }
       // 薄墨の霞（水墨の絵の上だけ）：ぼかした横長の帯 3 本が、40〜60 秒かけて右から左へ流れる
       var RM = seeded(47);
-      mist = [{ y: .30, h: .16, a: .075, per: 52000 }, { y: .55, h: .22, a: .06, per: 60000 }, { y: .78, h: .12, a: .07, per: 44000 }]
+      // 第6周：すやり霞は2本に絞り、濃さを上げて松の根元にかける
+      mist = [{ y: .30, h: .15, a: .11, per: 52000 }, { y: .78, h: .13, a: .12, per: 44000 }]
         .map(function(m0){ m0.ph = RM(); m0.w = .55 + RM() * .25; return m0; });
     }
     // 箔の肌が読めたら、雲を塗り直す
@@ -2225,8 +2438,9 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       // 金地は照り（幅 W*.25・α .18 の明るい光）、紙は金泥の光（幅 W*.18・α .10 の金色。白い光は紙の上で見えないため）。
       // 光が通る所の切箔は照る。動きを減らす設定では光を出さない
       // 第3周（評価役の指摘）：光は開いてから 1.2 秒後に最初の1回を通す（その前は出さない）。以後は 14 秒に1度
-      var LP = 14000, lage = age - 1200, lph = (Math.max(0, lage) % LP) / LP, lspan = W + H * .6, lcx = -W * .3 + lph * (lspan + W * .6);
-      var gold = mode === 'gold', bw = gold ? W * .25 : W * .18, dlx = 2 * bw, dly = H * .5, dl = Math.hypot(dlx, dly);
+      // 第5周：1回の渡りは 6.5 秒（絵の送りは 9.5 秒）。絵が替わったら、その 0.9 秒後にもう一度左から。送りが止まっていれば 9.5 秒ごと
+      var LP = 9500, LD = 6500, lage = (lightAt === null ? age - 1200 : now - lightAt), lph = Math.min(1, (Math.max(0, lage) % LP) / LD), lspan = W + H * .6, lcx = -W * .3 + lph * (lspan + W * .6);
+      var gold = mode === 'gold', bw = gold ? W * .25 : W * .12, dlx = 2 * bw, dly = H * .5, dl = Math.hypot(dlx, dly);
       // 切箔の照り：光の帯の中心線（グラデーションの向きに直交する線）からの距離で決める
       function lit(x, y){ var dn = ((x - lcx) * dlx + (y - H * .25) * dly) / dl; return Math.exp(-Math.pow(dn / (bw * .45), 2)); }
       if(lcv && lage < 0){ lcv.getContext('2d').clearRect(0, 0, W, H); }
@@ -2234,7 +2448,9 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
         // 加算なので、金地は α .07（普通に重ねた α .18 と同じくらいの照り）、紙は金色の光 α .10
         var lg2 = lcv.getContext('2d'); lg2.clearRect(0, 0, W, H);
         var lg = lg2.createLinearGradient(lcx - bw, 0, lcx + bw, H * .5);
-        var lc = gold ? '255,246,214' : '255,226,160', la = gold ? .07 : .10;
+        // 第6周：紙（水墨）の絵では加算をやめ、金泥の色を soft-light で狭く一筋に重ねる（加算の淡い光は墨の上で見えなかった）
+        var lbl = gold ? 'plus-lighter' : 'soft-light'; if(lcv.style.mixBlendMode !== lbl) lcv.style.mixBlendMode = lbl;
+        var lc = gold ? '255,246,214' : '168,130,63', la = gold ? .08 : .6;
         lg.addColorStop(0, 'rgba(' + lc + ',0)'); lg.addColorStop(.5, 'rgba(' + lc + ',' + la + ')'); lg.addColorStop(1, 'rgba(' + lc + ',0)');
         lg2.globalAlpha = k; lg2.fillStyle = lg; lg2.fillRect(0, 0, W, H); lg2.globalAlpha = 1;
       }
@@ -2394,7 +2610,9 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
   function kanze(cv){
     var W = 0, H = 0, streams = [], mobile = false, B = .18, TURNS = 2.2 * 6.283, X0 = -12;
     function init(){
-      var f = fit(cv); W = f.w; H = f.h; mobile = W < 700;
+      // 2026-10-01 第5周：data-full（えらぼっとの結びの右の欄）は、欄が狭くても PC の型（3本の流れと渦）で欄いっぱいに流す
+      var full = cv.hasAttribute('data-full') && window.innerWidth > 900;
+      var f = fit(cv); W = f.w; H = f.h; mobile = W < 700 && !full;
       // 2026-10-01：data-low の観世水（えらぼっとの扉）は、見出しの下の空いた夜の地に、左から1束だけ低く流す（PC のみ。小さい渦を1つ）
       var low = !mobile && cv.hasAttribute('data-low');
       // 第5周：PC では題（左）の上をマスクで断たず、流れを題の右から細く生まれさせる（0〜80px で線の太さを0から起こす）
@@ -2407,7 +2625,7 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
         if(rr.width) X0 = Math.max(X0, rr.right - cr.left + 32);
       });
       // 方針第2版（A7）：線の束は 5 本・間 3px
-      if(low) X0 = -12;
+      if(low || full) X0 = -12;
       var R = seeded(23), ns = 3, lines = (mobile || low) ? [5] : [5, 5, 5];
       // 第7周：スマホは流れを1本（y=.16）にし、画面の右 1/3 に渦を1つだけ大きく（半径 36px・2.6 周）見せる
       // 第10周：渦は PC で1つだけ（中の流れ・x=.78W・半径 72px・2.8 周）にして主役にし、上下の流れは渦を持たない。
@@ -2583,14 +2801,14 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
 
   /* ── 絵の帯の上の金砂子：上下の縁に撒いて止め、瞬きだけ ── */
   function sunago(cv){
-    var W = 0, H = 0, dust = [], haku = [], diag = false;
+    var W = 0, H = 0, dust = [], haku = [], diag = false, fine = false;
     function init(){
       var f = fit(cv); W = f.w; H = f.h;
       var R = seeded(53); dust = []; haku = [];
       // data-flow="diag"：流水の右上から左下への斜めの帯（右上 78% から左下 33% へ引いた線のまわり ±80px）に沿って撒く
       diag = cv.getAttribute('data-flow') === 'diag'; var C = W * .78;
       // 方針第2版（A8）：WORKS の帯は片身替わり。砂子は絵の側（PC は右 50% より右、スマホは上 40%）だけに撒き、字の載る炭の面には撒かない
-      var works = !!cv.closest('.band-works'), mob = W < 700;
+      var works = !!cv.closest('.band-works'), mob = W < 700; fine = !!cv.closest('.contact-art');
       function spot0(){
         if(!diag){ var top = R() < .5; return [R() * W, top ? R() * H * .22 : H * (.78 + R() * .22)]; }
         var y = R() * H, off = (R() + R() - 1) * 80; return [C - y / Math.max(H, 1) * W * .45 + off, y];
@@ -2603,18 +2821,19 @@ footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
       for(var i = 0; i < (W < 700 ? 50 : 120); i++){
         var p0 = spot();
         // 第7周：絵の上で見える大きさに（半径 .7〜1.4）
-        dust.push({ x: p0[0], y: p0[1], r: diag ? .7 + R() * .7 : (R() < .8 ? .45 + R() * .35 : 1.2 + R() * .5), per: 3000 + R() * 4000, p: R() * 6.28, c: GOLD[i % 4] });
+        dust.push({ x: p0[0], y: p0[1], r: fine ? .3 + R() * .6 : (diag ? .7 + R() * .7 : (R() < .8 ? .45 + R() * .35 : 1.2 + R() * .5)), per: 3000 + R() * 4000, p: R() * 6.28, c: GOLD[i % 4] });
       }
-      for(var k = 0; k < (W < 700 ? 7 : (diag ? 16 : 10)); k++){ var p1 = spot(); haku.push({ x: p1[0], y: p1[1], s: 3 + R() * 4, rot: (R() - .5) * .3, c: GOLD[k % 4], t: hakuType(R) }); }
+      // 第6周：結びの絵（春の流れ）の上では四角い箔を出さず、細かい砂子と野毛だけ（白い点が画素抜けに見えたため）
+      for(var k = 0; k < (fine ? (mob ? 3 : 6) : (W < 700 ? 7 : (diag ? 16 : 10))); k++){ var p1 = spot(); haku.push({ x: p1[0], y: p1[1], s: fine ? 8 + R() * 8 : 3 + R() * 4, rot: (R() - .5) * .3, c: GOLD[k % 4], t: fine ? 2 : hakuType(R) }); }
     }
     function draw(dt, t){
       var g = cv.getContext('2d'); g.clearRect(0, 0, W, H);
-      var sweep = ((t / 11000) % 1.4 - .2) * (W + H * .5), lo = diag ? .55 : .35;
+      var sweep = ((t / 11000) % 1.4 - .2) * (W + H * .5), lo = diag ? .55 : .35, amax = fine ? .5 : 1;
       for(var i = 0; i < dust.length; i++){
-        var p = dust[i]; g.globalAlpha = lo + (1 - lo) * (.5 + .5 * Math.sin(t / p.per * 6.283 + p.p));
+        var p = dust[i]; g.globalAlpha = amax * (lo + (1 - lo) * (.5 + .5 * Math.sin(t / p.per * 6.283 + p.p)));
         g.fillStyle = p.c; g.beginPath(); g.arc(p.x, p.y, p.r, 0, 6.283); g.fill();
       }
-      for(var k = 0; k < haku.length; k++){ var q = haku[k], gl = glint(q.x, q.y, sweep, 140); drawHaku(g, q.x, q.y, q.s, q.rot, gl > .3 ? '#F4E2B0' : q.c, .6 + .4 * gl, q.t); }
+      for(var k = 0; k < haku.length; k++){ var q = haku[k], gl = glint(q.x, q.y, sweep, 140); drawHaku(g, q.x, q.y, q.s, q.rot, gl > .3 && !fine ? '#F4E2B0' : q.c, (fine ? .45 : .6 + .4 * gl), q.t); }
       g.globalAlpha = 1;
       if(diag) foot(g, W, H);
     }
