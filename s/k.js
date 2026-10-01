@@ -3,7 +3,7 @@
    同じ端末・同じ見本は1日1回だけ数える。数える先が空のあいだは何もしない。
    数える先は、送信スクリプトのウェブアプリ（clasp deploy で出た /exec の URL）。 */
 (function () {
-  var ENDPOINT = '';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxZeVriDkzYL8Dbl5GKGdU1QBpDAWtEsqmEaz8fanSwPmLkJ9Qtq8pIaD0swHhju8Tv4A/exec';
   try {
     if (!ENDPOINT) return;
     var m = location.pathname.match(/\/s\/([0-9a-f]{8})\//);
