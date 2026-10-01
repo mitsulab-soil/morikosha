@@ -165,15 +165,14 @@ body:has(.hero[data-tone="gold"]) .hd:not(.is-solid) .nav{--glow:246,236,210;}
 .hero-ph img.on{opacity:1;z-index:2;transform:scale(1);-webkit-mask-position:100% 0;mask-position:100% 0;
   transition:-webkit-mask-position 1.6s cubic-bezier(.6,0,.25,1),mask-position 1.6s cubic-bezier(.6,0,.25,1),transform 8s linear;}
 .hero-ph img.was{opacity:1;z-index:1;-webkit-mask-image:none;mask-image:none;transition:transform 8s linear;}
-.hero-ph .h2{object-position:100% 0;transform-origin:100% 0;transform:scale(1.32);}
-.hero-ph .h2.on{transform:scale(1.28);}
-.hero-ph .h3{object-position:30% 100%;transform-origin:50% 100%;transform:scale(1.1);}
-.hero-ph .h3.on{transform:scale(1.06);}
+/* 2026-10-01 修正役V f1：扉の2枚目を見本の画面の並びに、燕子花（八橋図）を3枚目に（photos.json の hero2・hero3 を入れ替え） */
+.hero-ph .h3{object-position:100% 0;transform-origin:100% 0;transform:scale(1.32);}
+.hero-ph .h3.on{transform:scale(1.28);}
 @media (min-width:701px){.hero-ph .h1{object-position:0% 50%;}}
 @media (max-width:700px){
   .hero-ph .h1{object-position:37% 50%;}
-  .hero-ph .h2{object-position:72% 0;transform-origin:72% 0;transform:scale(1.16);}
-  .hero-ph .h2.on{transform:scale(1.12);}
+  .hero-ph .h3{object-position:72% 0;transform-origin:72% 0;transform:scale(1.16);}
+  .hero-ph .h3.on{transform:scale(1.12);}
 }
 .art-layer{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;}
 .hero::after{content:"";position:absolute;inset:0 0 auto 0;height:220px;z-index:2;pointer-events:none;
@@ -1003,8 +1002,8 @@ footer{background:var(--ink);color:var(--on-night-2);}
   .hp-k{font-size:var(--f4);letter-spacing:.34em;}
   /* 金地の絵（八橋・老松）：頭の帯とロゴの下に胡粉の霞。左下の scroll の下にも淡く */
   .hero[data-tone="gold"]::after{height:250px;background:linear-gradient(180deg,rgba(243,241,235,.84) 0,rgba(243,241,235,.66) 55%,rgba(243,241,235,0) 100%);}
-  .hero-ph .h2{object-position:100% 0;transform:scale(1.52);}
-  .hero-ph .h2.on{transform:scale(1.46);}
+  .hero-ph .h3{object-position:100% 0;transform:scale(1.52);}
+  .hero-ph .h3.on{transform:scale(1.46);}
 }
 @media (max-width:620px) and (max-height:700px){.hero{height:80svh;min-height:480px;}}
 
@@ -1731,6 +1730,352 @@ html.hash-ld{scroll-behavior:auto;}
   .thd-b .thd-m{margin-top:12px;padding-top:12px;line-height:1.8;}
   .thd-ph{padding-top:70px!important;}
 }
+
+/* ══ 2026-10-01 ご依頼の流れ（.fx）── みつさん「レイアウトのバランスが悪い」で組み直した ══
+   4列の段（番号／所要／題／本文／釦）を列をまたいでそろえる。釦は3つとも同じ形で同じ高さに並ぶ。
+   前の .flw/.fl の指定は使っていない（マークアップごと入れ替えた）。 */
+.fx{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));}
+.fx-i{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0;padding:28px var(--fp) 30px;box-shadow:inset .5px 0 0 var(--line);min-width:0;}
+.fx-i:first-child{box-shadow:none;padding-left:0;}
+.fx-i:last-child{padding-right:0;}
+.fx-n{margin:0;font-family:var(--ff-en);font-size:var(--f6);font-weight:500;line-height:.9;letter-spacing:.02em;font-variant-numeric:lining-nums;color:var(--gold);}
+.fx-t{margin:16px 0 0;font-size:var(--f1);letter-spacing:.08em;color:var(--ink-2);}
+.fx-t b{margin-left:.6em;font-weight:500;font-size:var(--f2);color:var(--ink);letter-spacing:.04em;}
+.fx-i h3{margin:18px 0 0;padding-top:18px;border-top:.5px solid var(--line-2);font-size:var(--f3);line-height:1.55;letter-spacing:.08em;text-wrap:balance;}
+.fx-p{margin-top:12px;}
+.fx-p p{margin:0;font-size:var(--f2);line-height:1.9;letter-spacing:.03em;color:var(--ink);text-wrap:pretty;word-break:auto-phrase;}
+.fx-p .fx-s{font-size:var(--f1);color:var(--ink-2);letter-spacing:.08em;margin-bottom:4px;}
+.fx-a{margin:24px 0 0;align-self:end;}
+.fx-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:52px;padding:8px 16px;border:1px solid var(--ink);color:var(--ink);background:transparent;text-decoration:none;letter-spacing:.1em;font-size:var(--f2);line-height:1.4;text-align:center;transition:background .25s,color .25s;}
+.fx-btn:hover{background:var(--ink);color:var(--ground);}
+.fx-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+.fx-btn .dl-n{display:inline;}
+.fx-btn .dl-n .nw{display:inline-block;}
+.fx-note{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px 48px;margin-top:8px;padding:22px 0 0;border-top:.5px solid var(--line-2);}
+.fx-note h4{margin:0;font-size:var(--f2);font-weight:600;letter-spacing:.06em;line-height:1.7;}
+.fx-note-k{display:block;margin-bottom:4px;font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.14em;color:var(--gold);}
+.fx-note p{margin:0;font-size:var(--f1);line-height:1.9;color:var(--ink-2);letter-spacing:.04em;max-width:46em;}
+@media (max-width:1100px){
+  .fx{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .fx-i:nth-child(3){box-shadow:none;padding-left:0;}
+  .fx-i:nth-child(2){padding-right:0;}
+  .fx-i:nth-child(n+3){border-top:.5px solid var(--line-2);}
+}
+@media (max-width:620px){
+  .fx{grid-template-columns:minmax(0,1fr);}
+  .fx-i{grid-row:auto;grid-template-rows:none;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:16px;padding:22px 0 24px;box-shadow:none;}
+  .fx-i+.fx-i{border-top:.5px solid var(--line-2);}
+  .fx-n{grid-column:1;grid-row:1;font-size:var(--f5);align-self:end;}
+  .fx-t{grid-column:2;grid-row:1;align-self:end;justify-self:end;margin:0;}
+  .fx-i h3,.fx-p,.fx-a{grid-column:1 / -1;}
+  .fx-i h3{margin-top:14px;padding-top:14px;}
+  .fx-a{margin-top:16px;}
+  .fx-a:empty{display:none;}
+  .fx-note{grid-template-columns:minmax(0,1fr);}
+}
+
+/* ══ 2026-10-01 みつさん「ほかのレイアウトも点検して直して」 ══ */
+/* WHY：3列の 番号／題／本文／出典 の段をそろえる。02 は出典が無いので、その段は空く（本文の書き出しと出典の線が3列でそろう） */
+@media (min-width:901px){
+  .reasons{grid-template-rows:auto auto 1fr auto;}
+  .reasons>.rs{display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:0;align-content:start;}
+  .reasons>.rs>.src{align-self:end;}
+}
+/* PRICE：2枚の料金の面の高さをそろえる（左 472px・右 529px で下端が段違いだった） */
+@media (min-width:621px){
+  .plans{align-items:stretch;}
+}
+/* スマホ・タブレット：本文の段落を文節で折る（「料／金」「銀行振／込」と語の途中で割れていた）。
+   PC は段の幅が広く、文節で折ると右端のでこぼこが目立つので、今のまま */
+@media (max-width:900px){
+  main p,main li,main dd,footer p{word-break:auto-phrase;text-wrap:pretty;}
+}
+
+/* ══════════ 見本の窓（2026-10-01 みつさんの追加の決定1「5案の見本を、いちいち開かずに見られるようにする」・組み手1） ══════════
+   五曲の扇の下に、PC・タブレットは「ブラウザの枠」、スマホ（620px 以下）は「スマホの枠」を置き、選んだ 業種×案 の見本ページそのものを映す。
+   枠は 0.5px の罫だけ（影・角丸は使わない。角丸はスマホの画面の中だけ）。色は 紙・墨・金 の中から。
+   hp_build.py が site.css の後ろに足す。動きは mado.js */
+
+/* ── 扇：押すと窓が替わる。いま映している扇は、下に 2px の金罫（業種の札と同じ言葉づかい） ── */
+.sw-go-w,.sw-go-on{display:none;}
+.js .sw-go-x{display:none;}
+.js .sw-go-w{display:inline;}
+.js .dz.is-on .sw-go-w{display:none;}
+.js .dz.is-on .sw-go-on{display:inline;}
+.sw-go-on::before{content:"";display:inline-block;width:6px;height:6px;margin:0 .7em .15em 1px;border:1px solid currentColor;background:currentColor;transform:rotate(45deg);vertical-align:middle;}
+.sw-ar{font-family:var(--ff-en);}
+.js .dz::after{content:"";position:absolute;left:0;right:0;bottom:-1px;z-index:3;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.6,.05,.2,1);pointer-events:none;}
+.js .dz.is-on::after{transform:scaleX(1);}
+@media (hover:hover){.js .dz-sw:hover .sw-go{text-decoration:none;}.js .dz-sw:hover .sw-go-w{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:.5px;}}
+
+/* ── 窓 ── */
+.mado{margin:34px 0 0;min-width:0;}
+.mado-tabs{display:none;}
+.js .mado-tabs{display:flex;align-items:flex-end;gap:0;}
+.mado-tab{position:relative;display:inline-flex;align-items:baseline;gap:10px;min-height:44px;padding:10px 18px 8px;border:0;background:none;color:var(--ink-2);
+  font-family:var(--ff-ja);font-size:var(--f2);letter-spacing:.12em;line-height:1.4;cursor:pointer;transition:color .25s,background-color .25s;}
+.mado-tab .mt-no{font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.12em;font-variant-numeric:lining-nums;color:var(--gold);}
+.mado-tab::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.6,.05,.2,1);}
+.mado-tab[aria-pressed="true"]{color:var(--ink);background:var(--paper);box-shadow:inset .5px 0 0 var(--line-2),inset -.5px 0 0 var(--line-2);}
+.mado-tab[aria-pressed="true"]::before{transform:scaleX(1);}
+@media (hover:hover){.mado-tab:hover{color:var(--ink);}}
+.mado-tab:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+
+.mado-f{position:relative;background:var(--paper);border:.5px solid var(--line-2);}
+.js .mado-tabs+.mado-f{border-top-color:var(--line-2);}
+.mado-bar{display:flex;align-items:center;gap:16px;height:38px;padding:0 14px;border-bottom:.5px solid var(--line-2);}
+.mado-dots{display:flex;gap:9px;flex:none;}
+.mado-dots i{width:7px;height:7px;border:.5px solid var(--ink-2);transform:rotate(45deg);}
+.mado-url{flex:1;min-width:0;max-width:34em;margin:0 auto;padding:2px 14px;border:.5px solid var(--line);background:var(--ground);
+  font-family:var(--ff-en);font-size:var(--f1);letter-spacing:.06em;line-height:1.6;color:var(--ink-2);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mado-url b{font-weight:500;color:var(--ink);}
+/* 画面：PC の見本を 1280px（狭い枠では 1024px）の幅で読み、枠の幅まで縮めて映す（mado.js） */
+.mado-sc{position:relative;height:clamp(520px,66vh,600px);overflow:hidden;background:#fff;}
+.mado-ph{display:block;width:100%;height:100%;object-fit:cover;object-position:0 0;}
+.mado-if{position:absolute;left:0;top:0;border:0;background:#fff;transform-origin:0 0;opacity:0;transition:opacity .35s ease;}
+.mado-sc.has-if .mado-if{opacity:1;}
+.mado-sc.has-if .mado-ph{visibility:hidden;}
+
+.mado-cap{display:flex;flex-wrap:wrap;align-items:center;gap:4px 22px;margin-top:10px;font-size:var(--f1);letter-spacing:.06em;line-height:1.7;color:var(--ink-2);}
+.mado-t{display:inline-flex;align-items:baseline;gap:12px;color:var(--ink);}
+.mado-ja{font-size:var(--f4);font-weight:500;letter-spacing:0;line-height:1.2;}
+.mado-nm{font-size:var(--f2);letter-spacing:.1em;}
+.mado-hint{display:none;}
+.js .mado-hint{display:inline;}
+.mado-acts{display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;margin-left:auto;}
+.mado-go,.mado-more{display:inline-flex;align-items:center;gap:.5em;min-height:44px;padding:0 12px;border:0;background:none;color:var(--ink);
+  font-family:var(--ff-ja);font-size:var(--f1);letter-spacing:.08em;line-height:1.5;text-decoration:none;cursor:pointer;}
+.mado-go span,.mado-more span{color:var(--gold);font-family:var(--ff-en);font-size:var(--f2);}
+.mado-more{border-left:.5px solid var(--line-2);}
+@media (hover:hover){.mado-go:hover,.mado-more:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:.5px;}}
+.mado-go:focus-visible,.mado-more:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+.mado-live{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+/* PC：五曲の扇と同じ扇2〜6にまたがる（見出しの段は扇1に残る） */
+@media (min-width:901px){
+  .inds>.step>.mado{grid-column:2 / -1;margin-inline:0;}
+}
+@media (min-width:901px) and (max-width:1100px){.inds>.step>.mado{grid-column:1 / -1;}}
+@media (min-width:1101px){
+  .step-dz>.mado{grid-row:2;}
+  .step-dz>.dz-note{grid-row:3;}
+}
+@media (max-width:900px){
+  .mado{margin-top:26px;}
+  .mado-sc{height:clamp(460px,60vh,620px);}
+  .mado-tab{flex:1;justify-content:center;padding-inline:6px;}
+}
+
+/* スマホ：縦長の「スマホの枠」。見本はスマホ幅のまま（縮めずに）映す。高さは画面の 70% 前後 */
+@media (max-width:620px){
+  .mado{margin-top:22px;}
+  .js .mado-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:12px;border-bottom:.5px solid var(--line-2);}
+  .mado-tab{flex-direction:column;align-items:center;gap:0;min-height:52px;padding:6px 0 8px;font-size:var(--f3);letter-spacing:0;}
+  .mado-tab .mt-no{font-size:var(--f1);line-height:1.2;}
+  .mado-tab::before{top:auto;bottom:-1px;}
+  .mado-tab[aria-pressed="true"]{background:none;box-shadow:none;}
+  .mado-f{max-width:400px;padding:0 9px 14px;background:var(--ink);border:.5px solid var(--ink);}
+  .mado-bar{justify-content:center;height:24px;padding:0;border:0;}
+  .mado-bar::before{content:"";width:46px;height:3px;background:var(--ink-2);}
+  .mado-dots,.mado-url{display:none;}
+  .mado-sc{height:calc(70svh - 38px);min-height:400px;max-height:720px;border-radius:12px;}
+  .mado-cap{gap:2px 16px;}
+  .mado-hint{flex-basis:100%;order:3;}
+  .mado-acts{margin-left:-12px;flex-basis:100%;order:4;}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .dz::after,.mado-tab::before,.mado-if{transition:none;}
+}
+
+/* ══════════ 見本の実物の画面（2026-10-01 みつさんの追加の決定2「日本画を減らし、HPの見本も見せる」・組み手2） ══════════
+   日本画は 扉の2枚・WORKS の帯・代表の1枚 に絞った。扉の3枚目・ABOUT・CONTACT は、見本ページの実物の画面。
+   機器の枠は 0.5px の罫と、画面の中だけの角丸。影は使わない。色は 紙・墨・金 の中から（新しい色を足さない）。
+   hp_build.py が site.css・mado.css の後ろに足す */
+
+/* ── 扉の3枚目：五つの型のスマホの画面を、屏風の扇のように交互に折って並べる ── */
+.hero-ph>.hero-mihon{position:absolute;inset:0;display:block;opacity:0;z-index:0;background:var(--ground);transform:none!important;
+  -webkit-mask-image:var(--kmask,linear-gradient(90deg,transparent 0,transparent 40%,#000 60%,#000 100%));mask-image:var(--kmask,linear-gradient(90deg,transparent 0,transparent 40%,#000 60%,#000 100%));
+  -webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:0% 0;mask-position:0% 0;}
+.hero-ph>.hero-mihon.on{opacity:1;z-index:2;-webkit-mask-position:100% 0;mask-position:100% 0;
+  transition:-webkit-mask-position 1.6s cubic-bezier(.6,0,.25,1),mask-position 1.6s cubic-bezier(.6,0,.25,1);}
+.hero-ph>.hero-mihon.was{opacity:1;z-index:1;-webkit-mask-image:none;mask-image:none;}
+/* 地は胡粉。六曲の継ぎ目と同じ、極く淡い縦の罫だけを敷く（本文の章の頭と同じ言葉づかい） */
+.hero-mihon::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100% / 6 - .5px),var(--seam) calc(100% / 6 - .5px),var(--seam) calc(100% / 6));}
+/* 扇の並び：扉の札（PC は右の縦書き・左下の値段）を避けて、左寄りに置く */
+.hm-row{position:absolute;left:clamp(180px,17vw,260px);top:clamp(120px,17vh,160px);display:flex;align-items:flex-start;
+  --pw:min(11vw,176px,calc((88svh - 340px) / 2));perspective:1800px;}
+.hm-p{position:relative;display:block;flex:none;width:var(--pw);aspect-ratio:1 / 2;background:var(--paper);overflow:hidden;
+  border:.5px solid rgba(168,130,63,.7);transform-origin:50% 50%;transform:rotateY(14deg) translateY(calc(var(--i) * 14px));}
+.hm-p:nth-child(even){transform:rotateY(-14deg) translateY(calc(var(--i) * 14px));}
+.hero-ph .hm-p img{position:static;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0;opacity:1;transform:none;transition:none;
+  -webkit-mask-image:none;mask-image:none;}
+/* 扉の見本の上には、光・砂子（デジタルの層）を重ねない。デジタルの層は日本画の上だけ */
+.hero .art-layer{transition:opacity .8s ease;}
+.hero[data-tone="mihon"] .art-layer{opacity:0;}
+.hero[data-tone="mihon"]::after{background:none;}
+@media (min-width:701px) and (max-width:900px){
+  .hm-row{left:calc(var(--gut) + var(--fp));top:max(110px,calc(40% - var(--pw)));--pw:min(16.5vw,150px,calc((100svh - 400px) / 2));}
+}
+@media (max-width:700px){
+  /* スマホは3枚。上の頭の帯と、下の札のあいだに収める */
+  .hm-row{left:50%;top:max(96px,calc(36% - var(--pw)));transform:translateX(-50%);--pw:min(28vw,calc((100svh - 360px) / 2));}
+  .hm-p:nth-child(1),.hm-p:nth-child(5){display:none;}
+  .hm-p{transform:rotateY(12deg) translateY(calc((var(--i) - 1) * 12px));}
+  .hm-p:nth-child(even){transform:rotateY(-12deg) translateY(calc((var(--i) - 1) * 12px));}
+}
+
+/* 背の低いスマホ（375×667 など）：頭の帯のロゴと、下の札のあいだが 150px ほどしか無いので、扇を小さくして間に収める */
+@media (max-width:700px) and (max-height:700px){
+  .hm-row{top:132px;--pw:60px;}
+  .hm-p{transform:rotateY(12deg) translateY(calc((var(--i) - 1) * 8px));}
+  .hm-p:nth-child(even){transform:rotateY(-12deg) translateY(calc((var(--i) - 1) * 8px));}
+}
+
+/* ── 機器の枠（ABOUT と CONTACT に共通） ── */
+.dv{position:relative;display:block;box-sizing:border-box;}
+.dv-sc{position:relative;display:block;overflow:hidden;background:#fff;}
+.dv-sc img{display:block;width:100%;height:auto;}
+/* PC：ブラウザの枠。上の帯に◇3つ（見本の窓と同じ） */
+.dv-pc{border:.5px solid var(--line-2);background:var(--paper);}
+.dv-bar{display:flex;align-items:center;height:22px;padding:0 10px;border-bottom:.5px solid var(--line-2);}
+.dv-dots{display:flex;gap:7px;}
+.dv-dots i{width:5px;height:5px;border:.5px solid var(--ink-2);transform:rotate(45deg);}
+.dv-pc .dv-sc{aspect-ratio:1760 / 1156;}
+/* スマホ：墨の縁。角丸は画面の中だけ */
+.dv-sp{padding:7px;border:.5px solid var(--line-2);background:var(--paper);}
+.dv-sp .dv-sc{aspect-ratio:1 / 2;border-radius:10px;}
+.dv-sp .dv-sc img{height:100%;object-fit:cover;object-position:50% 0;}
+.dv-cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:0;font-size:var(--f1);line-height:1.6;letter-spacing:.06em;color:var(--ink-2);}
+.dv-k{font-family:var(--ff-en);font-size:var(--f1);letter-spacing:.2em;color:var(--gold);}
+.dv-k::after{content:"";display:inline-block;width:18px;height:.5px;margin:0 0 .3em 10px;background:currentColor;vertical-align:middle;}
+.dv-go{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:.5px;}
+@media (hover:hover){.dv-go:hover{color:var(--gold);}}
+
+/* ── 一 ABOUT：PC とスマホの枠に入った、同じ見本の画面 ── */
+.about-art.about-mihon{position:relative;align-self:start!important;min-height:0!important;overflow:visible!important;
+  margin:8px 0 0 var(--fp)!important;padding:0 0 0 0!important;}
+.about-mihon img{position:static!important;inset:auto!important;aspect-ratio:auto!important;transform:none!important;}
+.about-mihon .dv-pc{width:84%;margin-left:auto;}
+/* 位置は横幅に対する割合で決める（絶対配置の margin の % は横幅が基準。高さに頼らない） */
+.about-mihon .dv-sp{position:absolute;left:0;top:0;margin-top:24%;width:28%;}
+.about-mihon .dv-cap{margin-top:calc(23% + 8px);padding-left:34%;}
+@media (max-width:900px){
+  .about-art.about-mihon{margin:44px 0 0!important;padding:0 0 0 18%!important;}
+  .about-mihon .dv-pc{width:100%;}
+  .about-mihon .dv-sp{left:0;margin-top:14%;width:25%;}
+  .about-mihon .dv-cap{margin-top:calc(10% + 10px);padding-left:0;}
+}
+@media (max-width:620px){
+  .about-art.about-mihon{padding-left:16%!important;}
+  .about-mihon .dv-sp{margin-top:12%;width:30%;padding:5px;}
+  .about-mihon .dv-sp .dv-sc{border-radius:8px;}
+  .about-mihon .dv-cap{margin-top:calc(17% + 10px);padding-left:0;}
+}
+
+/* ── 結 CONTACT：夜の地に、見本のスマホの画面3枚を扇のように段をずらして並べる ── */
+.contact-art.contact-mihon{display:flex;flex-direction:column;justify-content:center;gap:22px;background:none!important;overflow:visible!important;
+  min-height:0!important;margin:0 0 0 var(--fp)!important;padding:var(--sp-l) 0 var(--sp-m)!important;}
+.contact-mihon img{position:static!important;inset:auto!important;transform:none!important;object-position:50% 0!important;}
+.cm-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,20px);align-items:start;max-width:520px;}
+.contact-mihon .dv-sp{border-color:rgba(194,154,85,.5);background:var(--night);transform:translateY(calc(var(--i) * 32px));transition:transform .5s cubic-bezier(.3,.7,.2,1);}
+@media (hover:hover){.contact-mihon .dv-sp:hover{transform:translateY(calc(var(--i) * 32px - 3px));}}
+.contact-mihon .dv-sp:focus-visible{outline:2px solid #C29A55;outline-offset:3px;}
+.contact-mihon .dv-cap{margin-top:64px;color:var(--on-night-2);}
+.contact-mihon .dv-k{color:#C29A55;}
+@media (max-width:900px){
+  .contact-art.contact-mihon{grid-row:auto;margin:8px 0 0!important;padding:0 0 var(--sp-m)!important;}
+  .cm-row{max-width:none;gap:10px;}
+  .contact-mihon .dv-sp{padding:5px;transform:translateY(calc(var(--i) * 18px));}
+  .contact-mihon .dv-sp .dv-sc{border-radius:8px;}
+  .contact-mihon .dv-cap{margin-top:40px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-ph>.hero-mihon.on,.hero .art-layer,.contact-mihon .dv-sp{transition:none;}
+}
+
+/* ══════════ 2026-10-01 修正役V f1（第1周の評価の、見た目の指摘） ══════════ */
+/* 三 見本帳：理の扇の縦書きの見出しは、扇の幅が狭い PC（1399px 以下）では横組みにして、ほかの4枚とそろえる
+   （1280・1024 で縦の見出しが左の「粋」の扇へはみ出し、大きな「理」の字の下端とも重なっていた） */
+@media (min-width:901px) and (max-width:1399px){
+  .is-tate .sw-h1{position:static;writing-mode:horizontal-tb;max-height:none;margin:24px 0 18px;padding:0;
+    font-size:clamp(15px,1.3vw,19px);letter-spacing:min(var(--sw-ls),.24em);line-height:1.75;}
+  .is-tate .sw-e{margin-top:auto;}
+}
+/* 1400px 以上は縦組みのまま。見出しの頭を「理」の字の下端から 14px 以上離す */
+@media (min-width:1400px){
+  .is-tate .sw-h1{top:calc(clamp(18px,1.7vw,26px) + clamp(92px,7.4vw,112px) + 14px);max-height:calc(100% - 306px);}
+}
+/* スマホ・タブレット：案を選ぶ口は「扇の横送り」と「窓の上の札」の2つに絞る（← ◇×5 → の段をやめ、札を扇のすぐ下に） */
+@media (max-width:900px){
+  .js .inds>.step>.dz-nav,.js .dz-nav{display:none;}
+  .js .mado{margin-top:14px;}
+}
+
+/* 六 代表：会社情報の表。dd が版面からはみ出し、スマホの表示の幅が 401px に広がっていた（住所の末字の切れ・追従バーの沈み）。
+   dd は残りの幅に収め、住所は「埼玉県／さいたま市大宮区／高鼻町３丁目」の塊の境目でだけ折る */
+.info dl div{grid-template-columns:6.5em minmax(0,1fr);}
+.info dd{min-width:0;}
+.info dd .nw{display:inline-block;}
+@media (max-width:900px){.info dl div{grid-template-columns:5.4em minmax(0,1fr);}}
+
+/* 一 ABOUT：見本の説明は文節で折る（1024 で「見本」の「本」1字だけが次の行に落ちていた） */
+.dv-t{word-break:auto-phrase;text-wrap:balance;}
+/* デザイン詳細のダイアログ：「向いている業種」も文節で折る（「向い／ています」） */
+.thd-m{word-break:auto-phrase;}
+
+/* 扉（PC・幅の狭い画面）：松林図の梢がナビの字に重なる。ナビの後ろに、縁の無い胡粉の淡いぼかしを敷く（面は作らない） */
+@media (min-width:901px) and (max-width:1439px){
+  body:has(.hero[data-tone="paper"]) .hd:not(.is-solid) .nav{
+    background:rgba(243,241,235,.5);box-shadow:0 0 26px 16px rgba(243,241,235,.5);}
+}
+
+/* 二 WHY：3列の出典の罫を、下端ではなく上端でそろえる（01 だけ 24px 下にずれていた） */
+@media (min-width:901px){
+  .reasons>.rs>.src{align-self:start;}
+}
+
+/* 扉の2枚目（スマホ）：見本の画面3枚を大きくし、頭の帯（ロゴ）と下の札のあいだの真ん中に置く（下に 250px の空きが出ていた） */
+@media (max-width:700px) and (min-height:701px){
+  .hm-row{top:calc(50% - 56px - var(--pw));--pw:min(31vw,calc((100svh - 360px) / 2));}
+}
+
+/* 扉の2枚目（PC 1280px 以上）：見本の画面を一回り大きく（下の空きを詰める） */
+@media (min-width:1280px){
+  .hm-row{--pw:min(12vw,176px,calc((88svh - 340px) / 2));}
+}
+
+/* 結 CONTACT（PC）：見本のスマホの画面3枚を大きくし、扇のように少しずつ重ねる。上端は見出しの上端にそろえる */
+@media (min-width:901px){
+  .contact-art.contact-mihon{justify-content:flex-start;align-self:start;padding-top:calc(var(--sp-l) + 12px)!important;}
+  .cm-row{display:flex;max-width:none;gap:0;}
+  .contact-mihon .dv-sp{flex:none;width:42%;transform:translateY(calc(var(--i) * 44px));}
+  .contact-mihon .dv-sp+.dv-sp{margin-left:-13%;}
+  @media (hover:hover){.contact-mihon .dv-sp:hover{transform:translateY(calc(var(--i) * 44px - 3px));}}
+  .contact-mihon .dv-cap{margin-top:100px;}
+}
+
+/* 七 FAQ：題箋の下の観世水は、この章にだけ置かれて題箋の型の統一を崩していた。観世水はえらぼっとのページだけに使う */
+.faq-kanze{display:none!important;}
+
+/* ══════════ 2026-10-01 修正役L f1（第1周の評価の、組みと操作の指摘） ══════════ */
+/* 三 見本帳：雅の扇は内側に金の二重罫（inset 10px）があるので、「映しています」と＋が罫に接しないよう下を空ける */
+.dz[data-d="3"] .dz-sw{padding-bottom:16px;}
+.dz[data-d="3"] .sw-more{bottom:14px;right:12px;}
+/* スマホ：長い本文の段落は文節で折らず、ふつうに詰めて組む（文節で折ると行の右端が 4〜6 字あき、でこぼこが目立っていた）。
+   1字だけの行は text-wrap:pretty で避ける。見出し・短い項目（li・dd）は文節で折るまま */
+@media (max-width:620px){
+  .rs p,.dz-note,.pf-body p{word-break:normal;text-wrap:pretty;}
+}
+/* 三 見本帳（PC）：扇を押して窓へ送ったとき、扇の下の段（「映しています」）が頭の帯の下に見えるよう、窓の画面を画面の高さに合わせて少し低くする
+   （900px の画面で扇が 46px しか残らず、扇と窓を同時に見比べられなかった。窓の下の説明までは今までどおり画面に収める） */
+@media (min-width:901px){
+  .mado-sc{height:clamp(480px,calc(100svh - 360px),600px);}
+}
+/* 一 ABOUT（PC）：見本の説明の左端を、スマホの枠の左端にそろえる（どの枠とも揃わない位置から始まっていた） */
+@media (min-width:901px){
+  .about-mihon .dv-cap{padding-left:0;}
+}
 </style>
 </head>
 <body>
@@ -1880,7 +2225,7 @@ html.hash-ld{scroll-behavior:auto;}
       </details>
     </div>
   </div>
-  <div class="credit"><div class="byo"><div class="credit-in"><p>絵の出典：長谷川等伯「<span class="nw nk">松林図屏風</span>」・酒井抱一「<span class="nw nk">夏秋草図屏風</span>」は ColBase（<span class="url">https://colbase.nich.go.jp/</span>）を加工して<span class="nw nk">作成。</span></p><p>尾形光琳「<span class="nw nk">八橋図屏風</span>」・「高台寺蒔絵 料紙箱」ほかは <span class="nw">The Metropolitan Museum of Art</span>（Open Access）。</p><p>柴田是真「Autumn Grasses in Moonlight」、作者不詳「Spring Trees and Grasses by a Stream」は <span class="nw">The Metropolitan Museum of Art</span>（CC0）。</p></div></div></div>
+  <div class="credit"><div class="byo"><div class="credit-in"><p>絵の出典：長谷川等伯「<span class="nw nk">松林図屏風</span>」・酒井抱一「<span class="nw nk">夏秋草図屏風</span>」は ColBase（<span class="url">https://colbase.nich.go.jp/</span>）を加工して<span class="nw nk">作成。</span></p><p>尾形光琳「<span class="nw nk">八橋図屏風</span>」・「高台寺蒔絵 料紙箱」は <span class="nw">The Metropolitan Museum of Art</span>（Open Access）。</p><p>柴田是真「Autumn Grasses in Moonlight」は <span class="nw">The Metropolitan Museum of Art</span>（CC0）。</p></div></div></div>
   <div class="ft-end"><div class="ft-mark" aria-hidden="true"><span class="ft-logo"></span><span class="ft-name"><span class="nw nk">杜工舎</span><span>MORIKOSHA</span></span></div>
   <p class="copyright">Copyright © Morikosha. <span class="nw">All rights reserved.</span></p></div>
 </footer>
@@ -2060,7 +2405,8 @@ html.hash-ld{scroll-behavior:auto;}
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && mn.classList.contains('open')) menu(false); });
 
   /* ── 扉の写真：◇の印で選べる。動きを減らす設定の人には自動で送らない ── */
-  var hs = [].slice.call(document.querySelectorAll('.hero-ph img'));
+  /* 2026-10-01 追加の決定2：3枚目は絵ではなく見本の画面を並べた一枚（.hero-mihon）。中の img は数えない */
+  var hs = [].slice.call(document.querySelectorAll('.hero-ph>img,.hero-ph>picture>img,.hero-ph>.hero-mihon'));
   var dots = [].slice.call(document.querySelectorAll('.dots button'));
   var num = document.getElementById('hero-num'), cap = document.getElementById('hero-cap'), hk = 0, timer = null;
   /* 絵の地（紙か金か）を扉に写す。上の霞の色と、金雲の重ね方（art.js）がこれを見る */
@@ -2071,7 +2417,7 @@ html.hash-ld{scroll-behavior:auto;}
     hero.setAttribute('data-slide', String(hk + 1));
     /* 絵の名は、重なりの半ば（0.9秒）で替える。先に替えると、前の絵の上に次の絵の名が出る */
     if(cap){
-      var t = im.getAttribute('data-cap') ? '絵：' + im.getAttribute('data-cap') : '';
+      var t = im.getAttribute('data-cap') ? (im.getAttribute('data-capk') || '絵') + '：' + im.getAttribute('data-cap') : '';
       clearTimeout(tone.t);
       if(!cap.textContent || reduce) cap.textContent = t; else tone.t = setTimeout(function(){ cap.textContent = t; }, 800);
     }
@@ -2207,10 +2553,21 @@ html.hash-ld{scroll-behavior:auto;}
     var b = e.target.closest('[data-thm]'); if(!b) return;
     var n = b.getAttribute('data-thm'), d = document.getElementById('thd-' + n);
     if(!d || !d.showModal) return;
-    thdSet(d, n, b.getAttribute('data-c')); d.showModal();
+    thdSet(d, n, b.getAttribute('data-c'));
+    /* 2026-10-01 修正役L f1：閉じたら、押した「＋」へ焦点を戻し、ページの位置も元のまま（スマホで扇のリンクへ戻り、scrollY が動いていた） */
+    d._opener = b; d._y = window.scrollY;
+    d.showModal();
   });
   document.querySelectorAll('dialog.thd').forEach(function(d){
     d.addEventListener('click', function(e){ if(e.target === d) d.close(); });
+    d.addEventListener('close', function(){
+      var b = d._opener, y = d._y; d._opener = null;
+      if(!b) return;
+      setTimeout(function(){
+        try{ b.focus({preventScroll:true}); }catch(e){ b.focus(); }
+        if(typeof y === 'number' && Math.abs(window.scrollY - y) > 4) window.scrollTo({top: y, behavior: 'instant'});
+      }, 0);
+    });
   });
 
   /* ── 章の字と絵が、画面に入るときにふわりと出る。絵は巻物を広げるように左から開く ── */
@@ -2335,6 +2692,176 @@ html.hash-ld{scroll-behavior:auto;}
       if(navigator.clipboard) navigator.clipboard.writeText(t).then(done, function(){});
     });
   });
+})();
+/* ── 見本の窓（2026-10-01 みつさんの追加の決定1・組み手1） ──
+   扇（.dz-sw）・窓の上の札（.mado-tab）・業種の札（pv-ind）で、窓の中身を 業種×案 の見本ページ preview/<業種>-<n>.html に替える。
+   iframe は1つだけ。窓が画面に近づくまでは読まない（それまでは画面写真 assets/card-*.jpg）。18×5 を先読みしない。
+   iframe の中の履歴は積まない（location.replace）。読めないときは画面写真のまま残す。
+   扇は JS が無いときは実物を新しいタブで開くリンク。ここで role=button・aria-pressed・aria-controls を付け、押すと窓が替わるようにする
+   （Ctrl／⌘／Shift／中ボタンで押したときは、これまでどおり新しいタブ）。hp_build.py が site.js の後ろに足す */
+(function(){
+  var mado = document.getElementById('mado');
+  if(!mado) return;
+  var sc = mado.querySelector('.mado-sc'), ph = mado.querySelector('.mado-ph'), url = mado.querySelector('.mado-url b'),
+      ja = mado.querySelector('.mado-ja'), nm = mado.querySelector('.mado-nm'), go = mado.querySelector('.mado-go'),
+      more = mado.querySelector('.mado-more'), live = mado.querySelector('.mado-live'),
+      tabs = [].slice.call(mado.querySelectorAll('.mado-tab')),
+      fans = [].slice.call(document.querySelectorAll('.dz-sw[data-n]'));
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var phone = window.matchMedia('(max-width:620px)');
+  var MIX = {}, JA = {};
+  document.querySelectorAll('.dz-list[data-ind="mix"] .dz-sw').forEach(function(a){ MIX[a.getAttribute('data-n')] = a.getAttribute('data-c'); });
+  tabs.forEach(function(t){ var j = t.querySelector('.mt-ja'); JA[t.getAttribute('data-n')] = j ? j.textContent : ''; });
+  function ind(){ var r = document.querySelector('input[name="pv-ind"]:checked'); return r ? r.id.replace('pi-', '') : ''; }
+  function indName(c){ var l = document.querySelector('label[for="pi-' + c + '"]'); return l ? l.textContent : ''; }
+  var cur = {c: '', n: ''}, fr = null, wanted = false, timer = 0;
+
+  function fit(){
+    if(!fr) return;
+    var w = sc.clientWidth, h = sc.clientHeight;
+    if(!w || !h) return;
+    /* スマホ：見本は本物のスマホの幅（390px）で組み、枠の幅まで縮めて映す（330px のまま組むと見出しが1字だけ次の行に落ちる） */
+    if(phone.matches){ var sp = Math.min(1, w / 390); fr.style.width = '390px'; fr.style.height = Math.ceil(h / sp) + 'px'; fr.style.transform = sp < 1 ? 'scale(' + sp + ')' : ''; return; }
+    var base = w >= 1000 ? 1280 : 1024, s = w / base;
+    fr.style.width = base + 'px'; fr.style.height = Math.ceil(h / s) + 'px'; fr.style.transform = 'scale(' + s + ')';
+  }
+  function fail(){ sc.classList.remove('has-if', 'is-ld'); }
+  function onLoad(){
+    if(!fr || !fr.getAttribute('src')) return;
+    clearTimeout(timer);
+    try{
+      var d = fr.contentDocument;
+      if(!d || !d.body || !d.body.children.length) throw 0;
+      /* 見本の中の「杜工舎とは」「料金を見る」などは、窓の中ではなくページごと移る。見本の中の目次（#…）は窓の中で送る */
+      [].forEach.call(d.querySelectorAll('a[href]'), function(a){ if(a.getAttribute('href').charAt(0) !== '#') a.setAttribute('target', '_top'); });
+      /* 窓の中では、見本の札（架空の会社である旨）は残し、杜工舎へ戻る2つの釦だけ外す（いま杜工舎のページの中で見ているので。札が見本の見出しを大きく覆っていた） */
+      if(!d.getElementById('mado-in')){
+        var st = d.createElement('style'); st.id = 'mado-in';
+        st.textContent = '.smp-badge .smp-go{display:none!important}.smp-badge{pointer-events:none}';
+        d.head.appendChild(st);
+      }
+    }catch(e){ fail(); return; }
+    sc.classList.add('has-if'); sc.classList.remove('is-ld');
+  }
+  function load(href, t){
+    if(!fr){
+      fr = document.createElement('iframe');
+      fr.className = 'mado-if';
+      fr.setAttribute('sandbox', 'allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation');
+      fr.setAttribute('tabindex', '-1');
+      fr.setAttribute('loading', 'lazy');
+      fr.addEventListener('load', onLoad);
+      fr.addEventListener('error', fail);
+      fr.title = t;
+      fr.setAttribute('src', href);
+      sc.appendChild(fr);
+      fit();
+    } else {
+      fr.title = t;
+      try{ fr.contentWindow.location.replace(href); }catch(e){ fr.setAttribute('src', href); }
+    }
+    /* 2026-10-01：読み込みのあいだは画面写真を見せる（前の見本を消してから次が出るまで、窓が白いままになっていた） */
+    sc.classList.remove('has-if');
+    sc.classList.add('is-ld');
+    clearTimeout(timer);
+    /* 12秒たっても読めなければ、画面写真に戻す */
+    timer = setTimeout(function(){ if(sc.classList.contains('is-ld')) fail(); }, 12000);
+  }
+  function show(n, how){
+    n = String(n);
+    var c = ind() || MIX[n];
+    if(!c || !JA[n]) return;
+    if(cur.c === c && cur.n === n && (fr || how === 'init')) return;
+    cur = {c: c, n: n};
+    var href = 'preview/' + c + '-' + n + '.html', t = JA[n] + 'のデザインで作った' + indName(c) + 'の見本';
+    mado.setAttribute('data-c', c); mado.setAttribute('data-n', n);
+    if(url) url.textContent = c + '-' + n;
+    if(ja) ja.textContent = JA[n];
+    if(nm) nm.textContent = indName(c) + 'の見本';
+    if(go){ go.setAttribute('href', href); go.setAttribute('aria-label', t + 'を別のタブで開く'); }
+    if(more){ more.setAttribute('data-thm', n); more.setAttribute('data-c', c); more.setAttribute('aria-label', JA[n] + 'のデザイン詳細を開く'); }
+    if(ph){ ph.setAttribute('src', 'assets/card-' + c + '-' + n + '.jpg'); ph.setAttribute('alt', t + '（画面写真）'); }
+    fans.forEach(function(a){
+      var on = a.getAttribute('data-n') === n;
+      a.setAttribute('aria-pressed', on ? 'true' : 'false');
+      var dz = a.closest('.dz'); if(dz) dz.classList.toggle('is-on', on);
+    });
+    tabs.forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-n') === n ? 'true' : 'false'); });
+    if(how !== 'init' && live) live.textContent = t + 'を窓に映しました';
+    if(wanted) load(href, t);
+  }
+  /* 扇・窓を押したあと、窓がほとんど画面の外なら、窓が見えるところまで送る（PC は扇の下端を少し残す） */
+  function reveal(){
+    var r = mado.getBoundingClientRect(), vh = window.innerHeight;
+    if(r.top < vh * .55 && r.bottom > 160) return;
+    var hdH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hd')) || 72;
+    var dy = phone.matches ? r.top - 10 : Math.min(r.bottom - vh + 16, r.top - hdH - 12);
+    if(Math.abs(dy) > 8) window.scrollBy({top: dy, behavior: reduce ? 'auto' : 'smooth'});
+  }
+  /* スマホ・タブレット：見えている業種の扇の並びを、選んだ案まで横に送る */
+  function listTo(n){
+    var l = [].slice.call(document.querySelectorAll('.dz-list')).filter(function(x){ return x.offsetParent !== null; })[0];
+    if(!l || l.scrollWidth <= l.clientWidth + 4) return;
+    var c = l.children[Number(n) - 1]; if(!c) return;
+    var pad = parseFloat(getComputedStyle(l).scrollPaddingLeft) || 0;
+    l.scrollTo({left: l.scrollLeft + c.getBoundingClientRect().left - l.getBoundingClientRect().left - pad, behavior: reduce ? 'auto' : 'smooth'});
+  }
+
+  fans.forEach(function(a){
+    a.setAttribute('role', 'button');
+    a.setAttribute('aria-controls', 'mado');
+    a.setAttribute('aria-pressed', 'false');
+    a.setAttribute('aria-label', (a.getAttribute('data-t') || '') + 'を、下の窓に映す');
+    a.addEventListener('click', function(e){
+      if(e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button) return;
+      e.preventDefault();
+      wanted = true;
+      show(a.getAttribute('data-n'), 'fan');
+      reveal();
+    });
+    a.addEventListener('keydown', function(e){
+      if(e.key === ' ' || e.key === 'Spacebar'){ e.preventDefault(); a.click(); }
+    });
+  });
+  tabs.forEach(function(b){
+    b.addEventListener('click', function(){ wanted = true; var n = b.getAttribute('data-n'); show(n, 'tab'); listTo(n); });
+  });
+  /* 業種の札：選んだ案のまま、業種だけ替える */
+  document.addEventListener('change', function(e){
+    var r = e.target;
+    if(!r || r.name !== 'pv-ind') return;
+    show(cur.n || '1', 'ind');
+    setTimeout(function(){ listTo(cur.n); }, 60);
+  });
+  /* スマホ：扇を横に送って止まったら、いちばん左に見えている扇の案を窓に映す */
+  var swT;
+  document.querySelectorAll('.dz-list').forEach(function(l){
+    l.addEventListener('scroll', function(){
+      if(!phone.matches) return;
+      clearTimeout(swT);
+      swT = setTimeout(function(){
+        var cs = [].slice.call(l.children); if(!cs.length || l.offsetParent === null) return;
+        var i = 0;
+        if(l.scrollLeft + l.clientWidth >= l.scrollWidth - 4) i = cs.length - 1;
+        else {
+          var pad = parseFloat(getComputedStyle(l).scrollPaddingLeft) || 0, x0 = l.getBoundingClientRect().left + pad, bd = 1e9;
+          cs.forEach(function(c, k){ var d = Math.abs(c.getBoundingClientRect().left - x0); if(d < bd){ bd = d; i = k; } });
+        }
+        var n = cs[i].getAttribute('data-d');
+        if(n && n !== cur.n){ wanted = true; show(n, 'swipe'); }
+      }, 220);
+    }, {passive: true});
+  });
+
+  show(mado.getAttribute('data-n') || '1', 'init');
+  /* 窓が画面に近づいたら、初めの1つを読む（それまでは画面写真） */
+  function wake(){ if(wanted) return; wanted = true; load('preview/' + cur.c + '-' + cur.n + '.html', JA[cur.n] + 'のデザインで作った' + indName(cur.c) + 'の見本'); }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ io.disconnect(); wake(); } }); }, {rootMargin: '400px 0px'});
+    io.observe(mado);
+  } else wake();
+  if('ResizeObserver' in window) new ResizeObserver(fit).observe(sc);
+  else window.addEventListener('resize', fit);
 })();
 /* ══════════════════════════════════════════════════════════════════
    杜工舎の「デジタルの技」── 伝統の文様と金を、プログラムで描く（2026-09-29 第2版）
@@ -2790,7 +3317,7 @@ html.hash-ld{scroll-behavior:auto;}
       // 第3周（評価役の指摘）：光は開いてから 1.2 秒後に最初の1回を通す（その前は出さない）。以後は 14 秒に1度
       // 第5周：1回の渡りは 6.5 秒（絵の送りは 9.5 秒）。絵が替わったら、その 0.9 秒後にもう一度左から。送りが止まっていれば 9.5 秒ごと
       var LP = 9500, LD = 6500, lage = (lightAt === null ? age - 1200 : now - lightAt), lph = Math.min(1, (Math.max(0, lage) % LP) / LD), lspan = W + H * .6, lcx = -W * .3 + lph * (lspan + W * .6);
-      var gold = mode === 'gold', bw = gold ? W * .25 : W * .12, dlx = 2 * bw, dly = H * .5, dl = Math.hypot(dlx, dly);
+      var gold = mode === 'gold', bw = gold ? W * .25 : W * .17, dlx = 2 * bw, dly = H * .5, dl = Math.hypot(dlx, dly);
       // 切箔の照り：光の帯の中心線（グラデーションの向きに直交する線）からの距離で決める
       function lit(x, y){ var dn = ((x - lcx) * dlx + (y - H * .25) * dly) / dl; return Math.exp(-Math.pow(dn / (bw * .45), 2)); }
       if(lcv && lage < 0){ lcv.getContext('2d').clearRect(0, 0, W, H); }
@@ -2818,7 +3345,8 @@ html.hash-ld{scroll-behavior:auto;}
       // 2026-10-01 第7周：水墨の松林図の上でも、下の帯（スマホは空の帯）にだけ金砂子を α .45 で撒き、光の帯が通るとき瞬かせる
       // （霞の上の砂子は屏風の本来の技法。等伯の余白＝中央と右上は切らない）。切箔は金地の絵の上だけ
       // 紙の地では明るい金は地に溶けて見えないので、金泥の濃い色（#9C7A3C・#B08840）で、粒を 1.5 倍に
-      var paperA = gold ? 0 : .6 * k;
+      // 2026-10-01 修正役V f1：紙の地では光の帯も砂子もほとんど見えなかった。光の帯を 1.4 倍の幅に、砂子を α .85 に
+      var paperA = gold ? 0 : .85 * k;
       for(var d = 0; (goldA > 0 || paperA > 0) && d < dust.length; d++){
         var p = dust[d], tw = .5 + .5 * Math.sin(t / p.per * 6.283 + p.p), fA = gold ? goldA : (p.b === 0 ? paperA : 0);
         if(fA <= 0) continue;
