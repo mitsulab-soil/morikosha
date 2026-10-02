@@ -1630,6 +1630,12 @@ html.hash-ld{scroll-behavior:auto;}
 /* 2026-10-02 スマホ版の磨き 第3周の仕上げ：お問い合わせの金額の行で「前金なし・2週間ほど」を割らず、1つの塊として次の行へ送る */
 .kane > small:not(.kn-t){white-space:nowrap;}
 
+/* 2026-10-02 奥付に Instagram へのリンク（みつさんの指示）。押せるものは「文字＋長い線」の決まりに合わせる */
+.ft-sns{margin:0;font-family:var(--ff-en);letter-spacing:.16em;font-size:14px;}
+.ft-sns a{color:inherit;text-decoration:none;border-bottom:.5px solid currentColor;padding:12px 0 4px;display:inline-flex;gap:.8em;align-items:baseline;min-height:44px;box-sizing:border-box;}
+.ft-sns a:hover,.ft-sns a:focus-visible{opacity:.7;}
+.ft-sns-id{letter-spacing:.04em;opacity:.75;font-size:13px;}
+
 /* ══════════ 見本の窓（2026-10-01 みつさんの追加の決定1・2・3。昼の決定で五曲の扇を外し、窓を見本帳の主役に組み直した・組み手1） ══════════
    窓の上（PC は左の扇）に 01〜05 の札。PC の枠とスマホの枠を一つの台に並べ、選んだ 業種×案 の見本ページを同じように映す。
    その下に「デザインの想い」（designs.json の字・読み・一言・説明・向いている業種）。
@@ -2326,6 +2332,7 @@ html.hash-ld{scroll-behavior:auto;}
   </div>
   <div class="credit"><div class="byo"><div class="credit-in"><p>絵の出典：「高台寺蒔絵 料紙箱」は <span class="nw">The Metropolitan Museum of Art</span>（Open Access）。</p></div></div></div>
   <div class="ft-end"><div class="ft-mark" aria-hidden="true"><span class="ft-logo"></span><span class="ft-name"><span class="nw nk">杜工舎</span><span>MORIKOSHA</span></span></div>
+  <p class="ft-sns"><a href="https://www.instagram.com/morikosha_official/" target="_blank" rel="noopener">Instagram<span class="ft-sns-id">@morikosha_official</span></a></p>
   <p class="copyright">Copyright © Morikosha. <span class="nw">All rights reserved.</span></p></div>
 </footer>
 
