@@ -1544,6 +1544,96 @@ html.hash-ld{scroll-behavior:auto;}
 /* 欧文の書体（Cormorant）で和文を組んでいた所を和文の書体に戻す（見本の添えの「見本」） */
 .dv-k{font-family:var(--ff-ja);letter-spacing:.18em;}
 
+/* ══════════ 2026-10-02 スマホ版の磨き 第1周・修正役（文字の検証役・レイアウトの検証役の指摘） ══════════
+   直しはすべて 620px 以下（一部 374px 以下・621〜900px）の中。PC（901px 以上）は触らない */
+@media (max-width:620px){
+  /* 扉の札：押しどころの字を割らない */
+  .hp-mis .hp-mi{white-space:nowrap;}
+  /* 章を開く大見出し：34px → 30px にそろえる（360 幅で「に。」だけが3行目に落ちていた） */
+  .about-txt h1,#about-h,.band-door .ja-h,#works-h,#erabot-h{font-size:30px;letter-spacing:.05em;}
+  .contact-in>.contact-lede{font-size:30px;letter-spacing:.06em;}
+  /* 題箋の章題：19px → 22px（料金・流れ・プロフィール・FAQ は題箋が章の見出し）。漢数字も同じ割合で */
+  .dai-t{font-size:22px;letter-spacing:.06em;}
+  .dai-n{font-size:26px;padding-right:12px;margin-right:12px;}
+  .dai-l::before{width:16px;margin:0 8px 0 12px;}
+  /* 欧文のラベル：Cormorant は字面が小さいので 14px・600 に */
+  .dai-l,.lb{font-size:14px;letter-spacing:.16em;font-weight:600;}
+  .chip::after{font-size:14px;font-weight:600;}
+  .copyright{font-size:14px;}
+  /* 料金：つくるときの面は内側 16px、あとから直すときは面を張らず版面の端にそろえる */
+  .pr-face.pr-make{padding:30px 16px 26px;}
+  .pr-face.pr-fix{padding-inline:0;}
+  .pr-fix .pr-fine{margin-top:24px;padding-top:18px;}
+  .pr-fix .pr-fine::before{margin-bottom:16px;}
+  .pr-row .pu,.pr-row .pt{font-size:14px;}
+  .pr-row .pu{margin-right:.35em;}
+  /* 本文の中の「割らない塊」が行末に大きな空きを作っていた所は、文節での折り返し（auto-phrase）と text-wrap:pretty に任せる */
+  .rs p .nk,.pf-body .nk,.qa-a .nk,.daiko p .nk,.fx-p .nk,.fx-note .nk,.pr-face p .nk{white-space:normal;}
+  /* 奥付の法定表示：文節で折らず、ふつうの和文の折り返しに（「配信停止」／と で割れていた） */
+  footer p{word-break:normal;line-break:strict;text-wrap:pretty;}
+  /* 章の上下の余白を 64px にそろえる（ABOUT は扉の直後なので 56px） */
+  .sec:not(.has-band){--pt:64px;}
+  .sec:not(.sp-night-next){--pb:64px;}
+  #about.sec{--pt:56px;}
+  /* WORKS の夜の扉：金砂子だけの暗い帯が 190px 続いていたのを詰める */
+  .band-works.band-door{min-height:0;padding-top:120px;padding-bottom:40px;}
+  /* ABOUT の中の区切り：大 56px・小 40px の2段 */
+  .about .keys,#about .keys{margin-top:56px;}
+  #about .to-erabot{margin-top:24px;}
+  /* 奥付：プライバシーポリシーの「＋」を章題の中ほどへ上げ、すぐ下の灰の罫（金の下線と2本並んで見えた）を外す */
+  .pp-m{bottom:18px;}
+  .credit .credit-in{border-top:0;padding-top:8px;}
+}
+/* 390 未満：「代表プロフィール」は欧文の添え（aria-hidden の飾り）まで1行に入らないので、添えを畳む（夜の扉の題箋と同じ扱い） */
+@media (max-width:389px){#profile .dai-l{display:none;}}
+/* 360 など（374px 以下）：扉の札を少し広げ、題字と2つの入口を1行に（札の右端は頁送りの印の列の手前で止める） */
+@media (max-width:374px){
+  .hero-plate{left:16px;max-width:calc(100% - 16px - 88px);padding-left:14px;padding-right:14px;}
+  .hero-plate .hp-k{letter-spacing:.02em;}
+  .hero-plate .hp-v .hp-n{font-size:32px;}
+  .hero-plate .hp-v .hp-ty{letter-spacing:0;}
+  .hp-mis .hp-mi+.hp-mi{margin-left:12px;padding-left:12px;}
+}
+/* タブレット（621〜900px）：本文が版面いっぱいに広がり1行41字になっていた */
+@media (min-width:621px) and (max-width:900px){
+  #why .ja-b,#why .ja-b p,.works-lead,.works-lead p,.pr-note{max-width:34em;}
+  #why .src{max-width:40em;}
+}
+/* ══════════ 2026-10-02 スマホ版の磨き 第2周・修正役 ══════════
+   本文の折り返しを全章で1つの規則にそろえる：長い段落は和文ふつうの折り返し（右端がそろう）＋ line-break:strict ＋ text-wrap:pretty。
+   語の途中で割れて目立つ屋号（杜工舎）と、段落の最終行の泣き別れ（「ます。」だけの行）は、site.js が入れる .nw-b・.nk-end（文面は同じ）で防ぐ。
+   見出し・短い項目は文節で折るまま。直しはすべて 620px 以下（一部 389px 以下）で、PC は触らない */
+@media (max-width:620px){
+  #about .about-txt p,#why .ja-b p,#why .rs p,.works-lead,.works-lead p,.dz-note,.daiko-lead,.df-b p,.pf-body p,.qa-a p,.pr-note,
+  #flow .fx-p p,#flow .fx-note p,#contact p:not(.contact-lede),.era-door>p:first-child,.pair p{word-break:normal;line-break:strict;text-wrap:pretty;}
+  .nk-end,.nk-end *,.nw-b{white-space:nowrap!important;}
+  /* えらぼっと：本文の中の割らない塊（.nk）が行末に4〜5字の空きを作っていたので、ほかの章と同じく外す */
+  .era-door>p:first-child .nk,.pair p .nk{white-space:normal;}
+  /* 大見出しの字間をほかの大見出し（.05em）にそろえる（大きさは 24px のまま） */
+  #why-h{font-size:24px;letter-spacing:.05em;}
+  #works-pick .step-h h3{letter-spacing:.06em;}
+  /* 料金：面の見出し（ラベル）→ 品名 の親子の大きさを正す。品名は下の帳簿の h4（16px）と1段差に */
+  .pr-face .pr-h{font-size:14px;letter-spacing:.2em;}
+  .pr-face.pr-make h4{font-size:17px;}
+  /* 見本の札：和文の「見本」なので明朝で、字間を横の題とそろえる */
+  .dv-k{font-family:var(--ff-ja);letter-spacing:.12em;font-size:13px;}
+}
+@media (max-width:389px){
+  /* 375 でも扉の札の題字を1行に。札の左は版面の 20px にそろえる（頁送りの印の列の手前で止める） */
+  .hero-plate{left:20px;max-width:calc(100% - 20px - 84px);padding-left:14px;padding-right:14px;}
+  .hero-plate .hp-k{letter-spacing:.02em;}
+  .hero-plate .hp-v .hp-n{font-size:32px;}
+  .hero-plate .hp-v .hp-ty{letter-spacing:0;}
+  .hp-mis .hp-mi+.hp-mi{margin-left:12px;padding-left:12px;}
+  /* 法定表示：見出しの欄を詰めて、氏名を1行に */
+  #legal dl div{grid-template-columns:5em 1fr;column-gap:12px;}
+  /* えらぼっとの扉のリード：360 で1行15字だったのを広げる */
+  .era-door>p:first-child{font-size:18px;letter-spacing:.04em;}
+}
+
+/* 2026-10-02 スマホ版の磨き 第3周の仕上げ：お問い合わせの金額の行で「前金なし・2週間ほど」を割らず、1つの塊として次の行へ送る */
+.kane > small:not(.kn-t){white-space:nowrap;}
+
 /* ══════════ 見本の窓（2026-10-01 みつさんの追加の決定1・2・3。昼の決定で五曲の扇を外し、窓を見本帳の主役に組み直した・組み手1） ══════════
    窓の上（PC は左の扇）に 01〜05 の札。PC の枠とスマホの枠を一つの台に並べ、選んだ 業種×案 の見本ページを同じように映す。
    その下に「デザインの想い」（designs.json の字・読み・一言・説明・向いている業種）。
@@ -2845,6 +2935,39 @@ html.hash-ld{scroll-behavior:auto;}
       if(navigator.clipboard) navigator.clipboard.writeText(t).then(done, function(){});
     });
   });
+  /* ── 2026-10-02 スマホ版の磨き 第2周・第3周：本文の段落の泣き別れと、屋号の割れを防ぐ（文面は1字も変えない。span で包むだけ）
+     段落の最後の和文5字を .nk-end、本文中の「杜工舎」と、プロフィールの「技術職」「部門」を .nw-b で包む。折らない指定は site.css の 620px 以下だけで効く ── */
+  (function(){
+    var sel = '.pr-face p,#about .about-txt p,#why .ja-b p,#why .rs p:not(.n):not(.src),.works-lead,.dz-note,.daiko-lead,.df-b p,.pf-body p,.qa-a p,.pr-note,#flow .fx-p p,#flow .fx-note p,#contact p:not(.contact-lede),.era-door>p:first-child,.pair p,.credit p';
+    function texts(el){ var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), a = [], n; while((n = w.nextNode())) a.push(n); return a; }
+    function wrap(node, start, end, cls){
+      var r = document.createRange(); r.setStart(node, start); r.setEnd(node, end);
+      var sp = document.createElement('span'); sp.className = cls; r.surroundContents(sp); return sp;
+    }
+    document.querySelectorAll(sel).forEach(function(p){
+      if(p.querySelector('.nk-end')) return;
+      /* 屋号と、プロフィールの職名・部門名 */
+      /* 第3周：値段の表記と言葉の組（（税込）・2週間ほど など）も割らない */
+      ['前金なし・2週間ほど', '杜工舎', '技術職', '部門', '（税込）', '（税別）', '98,000円', '50,000円', '20,000円', '2週間ほど', '前金なし', '月額なし'].forEach(function(w){
+        texts(p).forEach(function(t){
+          var i; while(t && (i = t.data.indexOf(w)) >= 0){
+            if(t.parentNode.closest('.nw-b')) break;
+            var sp = wrap(t, i, i + w.length, 'nw-b'); t = sp.nextSibling && sp.nextSibling.nodeType === 3 ? sp.nextSibling : null;
+          }
+        });
+      });
+      /* 最後の行：段落の末尾の5字（空白は除く。<span> をまたいでもよい）を1つの塊に */
+      var all = texts(p), k = 5, st = null;
+      for(var j = all.length - 1; j >= 0 && k > 0; j--){
+        var t = all[j];
+        for(var i = t.data.length - 1; i >= 0 && k > 0; i--){ if(/\S/.test(t.data[i])){ k--; st = {n:t, o:i}; } }
+      }
+      if(!st || k > 3) return;
+      var r = document.createRange(); r.setStart(st.n, st.o); r.setEnd(p, p.childNodes.length);
+      var sp = document.createElement('span'); sp.className = 'nk-end';
+      sp.appendChild(r.extractContents()); r.insertNode(sp);
+    });
+  })();
 })();
 /* ── 見本の窓（2026-10-01 みつさんの追加の決定1・2・3。昼の決定で五曲の扇を外し、窓を主役に組み直した・組み手1） ──
    窓の上の 01〜05 の札（.mado-tab）と業種の札（pv-ind）で、PC の枠とスマホの枠の中身を 業種×案 の見本ページ preview/<業種>-<n>.html に替える。
