@@ -4,7 +4,7 @@
    ・釦は2つ。どちらもメールが開き、件名に見本の番号が入る（誰からの返事か、こちらで分かる）。
    ・見本の中身と紛れないよう「杜工舎からのご案内」と名乗る。閉じると小さな札になる（その日は閉じたまま）。
    ・スマホでは、見本そのものの電話・メールの帯（.telbar）の上に出す。
-   文言を直すときは、このファイル（9_おまかせ/サイト/s_obi.js）だけを直し、publish_mihon.py で写す。 */
+   文言を直すときは、このファイル（09_Auto/サイト/s_obi.js）だけを直し、publish_mihon.py で写す。 */
 (function () {
   try {
     var m = location.pathname.match(/\/s\/([0-9a-f]{8})\//);
@@ -112,6 +112,7 @@
       else obi.style.paddingBottom = '';
       var h = obi.hidden ? 0 : obi.getBoundingClientRect().height;
       document.body.style.paddingBottom = (basePad + h) + 'px';
+      document.documentElement.style.setProperty('--obi-h', (h + off) + 'px');
     }
     function show(open) {
       obi.hidden = !open;
@@ -128,5 +129,29 @@
     });
     window.addEventListener('resize', place);
     show(!closedToday());
+  } catch (e) {}
+})();
+
+/* smp-fix-2026-10-19 */
+/* 見本の札（DESIGN SAMPLE）の振る舞い（2026-10-19 ペルソナ評価 第1・2周）。中身は 09_Auto/サイト/smp_fix.html と同じ。
+   ここ（営業メールの見本）では、下の帯が「料金・頼み方」を担うので、スマホでは札を出さない。PC の小札は帯の上に置く */
+(function () {
+  try {
+    var st = document.createElement('style');
+    st.textContent = '.smp-badge b,.smp-badge .l1{font-size:11px!important;} .smp-badge small{font-size:11px!important;line-height:1.6;} .smp-badge .l2{font-size:13px!important;} .smp-badge .smp-go a{font-size:12px!important;white-space:nowrap;} .smp-badge.is-mini{min-width:212px;} [id]{scroll-margin-top:84px;} .smp-badge:focus-visible{outline:2px solid #fff;outline-offset:2px;} .smp-badge.is-mini{top:auto!important;bottom:20px!important;right:16px!important;left:auto!important;padding:8px 12px 6px!important;} .smp-badge.is-mini b,.smp-badge.is-mini .l1,.smp-badge.is-mini small{display:none!important;} .smp-badge.is-mini .smp-go{margin-top:6px;padding-top:6px;} .smp-badge.is-mini .smp-go a{min-height:36px;} @media (max-width:1100px){ .smp-badge{top:auto!important;bottom:calc(var(--telbar-h,88px) + 10px + env(safe-area-inset-bottom))!important;right:auto!important;left:8px!important;max-width:78vw!important;padding:6px 10px!important;cursor:pointer!important;} .smp-badge b,.smp-badge .l1,.smp-badge small,.smp-badge .smp-go{display:none!important;} .smp-badge.is-mini{bottom:calc(var(--telbar-h,88px) + 10px + env(safe-area-inset-bottom))!important;left:8px!important;right:auto!important;padding:6px 10px!important;} .smp-badge .l2{font-size:12px!important;margin:0!important;white-space:nowrap;} .smp-badge .l2::after{content:" 見本・料金 ▴";opacity:.8;} .smp-badge.is-open small{display:block!important;} .smp-badge.is-open .smp-go{display:flex!important;} .smp-badge.is-open .l2::after{content:" 閉じる ▾";} } .cap,.pic-note{font-size:11px!important;} h1,h2,h3{text-wrap:balance;word-break:auto-phrase;} .smp-badge.is-mini{bottom:calc(var(--obi-h,0px) + 16px)!important;} @media (min-width:761px) and (max-width:1100px){ .smp-badge,.smp-badge.is-mini{bottom:calc(var(--obi-h,0px) + 10px)!important;} } @media (max-width:760px){ .smp-badge{display:none!important;} }';
+    document.head.appendChild(st);
+    (function(){var b=document.querySelector(".smp-badge");if(!b)return;
+/* 見本帳の枠（iframe）の中では札を出さない（3周目 P4：枠の中で見出しに重なる。枠の外に「見本」の説明がある） */
+if(window.self!==window.top){b.style.display="none";return;}
+/* 札を押して開くのはスマホ・タブレットだけ。PC では札をボタンにしない（中のリンクと二重になる。3周目 P4） */
+if(window.innerWidth<=1100){b.setAttribute("tabindex","0");b.setAttribute("role","button");b.setAttribute("aria-expanded","false");}
+b.setAttribute("aria-label","見本の札。押すと、見本についての説明と、杜工舎・料金へのリンクを開きます");
+function f(){b.classList.toggle("is-mini",window.scrollY>window.innerHeight*0.6&&!b.classList.contains("is-open"));}
+function t(){if(window.innerWidth<=1100){b.classList.toggle("is-open");b.setAttribute("aria-expanded",b.classList.contains("is-open")?"true":"false");f();}}
+/* 下の電話・メールの帯の高さを測り、札をその上に置く */
+var tb=document.querySelector(".telbar");function th(){if(tb){var r=tb.getBoundingClientRect();document.documentElement.style.setProperty("--telbar-h",(getComputedStyle(tb).display==="none"?0:r.height)+"px");}}th();window.addEventListener("resize",th);
+window.addEventListener("scroll",f,{passive:true});f();
+b.addEventListener("click",function(e){if(e.target.closest("a"))return;t();});
+b.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&!e.target.closest("a")){e.preventDefault();t();}});})();
   } catch (e) {}
 })();
