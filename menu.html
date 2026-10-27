@@ -2090,6 +2090,34 @@ html.hash-ld{scroll-behavior:auto;}
 
 /* 2026-10-27 タブ：いまのページ */
 .nav a[aria-current=page] .nj{border-bottom:1px solid var(--gold);}
+/* タブが6つに増え、1180px 以下では社名と重なって右端が欠けたので、そこから下はメニューの釦にまとめる */
+@media (max-width:1180px){.hd .nav{display:none!important;}.hd .menu-btn{display:block!important;}}
+
+/* 2026-10-27 みつさん「スマホの見本を長方形の枠ではなく、スマホで見ているようにフォトリアルに」。
+   チタンの縁・黒い額縁・画面の角丸・上の島（カメラ）・右の電源ボタン・ガラスの映り込み・卓に落ちる影。寸法はすべて幅に対する割合 */
+.dv-sp,.mado-sp,.contact-mihon .dv-sp{
+  position:relative;box-sizing:border-box;padding:6px!important;border:0!important;outline:0!important;
+  border-radius:15.5% / 7.4%;
+  background:linear-gradient(150deg,#d9d6d0 0%,#8f8b85 9%,#3a3836 22%,#1b1a19 50%,#2c2a28 78%,#a29d95 92%,#e2dfd8 100%)!important;
+  box-shadow:inset 0 0 0 1.2px rgba(255,255,255,.35),inset 0 0 0 2.6px #0c0c0c,
+    0 1px 1px rgba(0,0,0,.25),0 22px 30px -14px rgba(20,18,15,.55),0 48px 60px -36px rgba(20,18,15,.45)!important;
+}
+.dv-sp .dv-sc,.mado-sp .mado-sc{position:relative;border-radius:12.6% / 6%!important;overflow:hidden;background:#000;box-shadow:0 0 0 1.5px #050505!important;}
+/* 上の島（カメラ） */
+.dv-sp::before,.mado-sp::before{content:"";position:absolute;z-index:3;left:50%;top:5.2%;width:28%;height:2.5%;transform:translateX(-50%);border-radius:999px;
+  background:radial-gradient(circle at 78% 50%,#1d2a3a 0 14%,#050505 16%),#050505;pointer-events:none;}
+/* 右の電源ボタン */
+.dv-sp::after,.mado-sp::after{content:"";position:absolute;right:-1.6%;top:24%;width:1.8%;height:11%;border-radius:0 3px 3px 0;
+  background:linear-gradient(90deg,#4a4744,#b9b4ac 60%,#6d6964);pointer-events:none;}
+/* ガラスの映り込み */
+.dv-sp .dv-sc::after,.mado-sp .mado-sc::after{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(118deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 28%,rgba(255,255,255,0) 42%);}
+/* 押すと実物が新しいタブで開く */
+.about-mihon .dv,.mado-sc,.contact-mihon .dv{cursor:pointer;}
+/* 余白（額縁）の太さは、場所ごとのスマホの幅に合わせる（% は外の枠の幅で決まってしまうため px で） */
+.mado-sp{padding:11px!important;}
+@media (max-width:900px){.mado-sp{padding:8px!important;}.about-mihon .dv-sp,.contact-mihon .dv-sp{padding:4px!important;}}
+
 
 /* 2026-10-27 仕事ごとのページ（会社案内・多言語メニュー・商品比較サイト）の部品。pages_build.py が各ページに入れる。色・字の変数は旧版（基準_旧版_2026-10-07.html）のものを使う */
 /* ══ 2026-10-27 六 多言語メニュー作成・七 商品比較サイトの作成 */
@@ -2147,7 +2175,7 @@ html.hash-ld{scroll-behavior:auto;}
 #annai .go{grid-column:1 / -1;justify-content:flex-start;margin-top:40px;}
 @media (max-width:900px){.an-g{grid-template-columns:repeat(2,minmax(0,1fr));}.an-p{grid-template-columns:repeat(2,minmax(0,1fr));}}
 
-.pg-first{padding-top:calc(var(--sp-l,120px) + 40px);}
+.pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
 </head>
 <body>
@@ -3778,5 +3806,13 @@ html.hash-ld{scroll-behavior:auto;}
   })(t0);
 })();
 </script>
+<script>(function(){
+  function href(el){var f=el.closest('figure');var a=f&&f.querySelector('.dv-go,.mado-go');if(a)return a.href;var l=el.closest('a[href]');return l?l.href:null;}
+  document.addEventListener('click',function(e){var d=e.target.closest('.about-mihon .dv,.mado-sc');if(!d||e.target.closest('a'))return;var h=href(d);if(h){e.preventDefault();window.open(h,'_blank','noopener');}});
+  function hook(fr){if(fr._mk)return;fr._mk=1;fr.addEventListener('load',function(){try{var doc=fr.contentDocument,x=0,y=0;
+    doc.addEventListener('pointerdown',function(ev){x=ev.clientX;y=ev.clientY;},true);
+    doc.addEventListener('click',function(ev){if(Math.abs(ev.clientX-x)+Math.abs(ev.clientY-y)>6)return;ev.preventDefault();ev.stopPropagation();var h=href(fr);if(h)window.open(h,'_blank','noopener');},true);}catch(_){}});}
+  new MutationObserver(function(){document.querySelectorAll('.mado-sc iframe').forEach(hook);}).observe(document.documentElement,{childList:true,subtree:true});
+})();</script>
 </body>
 </html>
