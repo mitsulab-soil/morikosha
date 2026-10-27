@@ -2668,6 +2668,16 @@ function score(){
   if(DOMAIN.exclude) P.forEach(p=>{ if(DOMAIN.exclude(p,answers)) excluded.add(p.id); });
   const pool=P.filter(p=>!excluded.has(p.id)).map(p=>DOMAIN.view?DOMAIN.view(p,answers):p);
   if(!pool.length) return {pool:[],empty:true,sum,contrib,ceiling:1,floor:0};
+  /* 「重視すること」を点に入れる（2026-10-28）。同点のときだけ効かせると、重視と1位が食い違う。
+     費用は本数をかけた総額の安さ（最安との比の2乗×14点）、ほかはその性能の高さ（残っている品目の中の比で0〜10点）を足す。
+     1位・表・カード・％は、すべてこの合計1つから出す */
+  const pk=answers[DD.tie.key], PW=pk==="cost"?14:10;
+  if(pk){
+    const val=p=> pk==="cost" ? 1/Math.max(1,DOMAIN.quantity(p,answers).cost) : (+p[DD.tie.by[pk][0]]||0);
+    const vs=pool.map(val), mx=Math.max(...vs), mn=Math.min(...vs);
+    const QP={short:"重視",key:"_prio"}, OP={label:{cost:"総額の安さ",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[pk]||"重視"};
+    pool.forEach((p,i)=>{ const v= pk==="cost" ? Math.round(PW*Math.pow(vs[i]/mx,2)*10)/10 : (mx>mn ? Math.round(PW*(vs[i]-mn)/(mx-mn)*10)/10 : 0); sum[p.id]+=v; contrib[p.id].push({q:QP,o:OP,v}); });
+  }
   /* 分母は「残っている品目が取り得る最高点」。除外品目を含めると％が実態より低く出る */
   let ceiling=0, floor=0;
   picked.forEach(({o})=>{
@@ -2676,19 +2686,11 @@ function score(){
     ceiling+=pos.length?Math.max(...pos):0;
     floor  +=neg.length?Math.min(...neg):0;   /* 減点も分母に入れないと％が不当に低く出る */
   });
+  if(pk) ceiling+=PW;
   /* 同点時の決着は「重視すること」の回答に合わせる（domain.json の tie） */
   const [tk,td]=(DD.tie.by[answers[DD.tie.key]]||DD.tie.default);
   const tie=(a,b)=>td==="asc"?a[tk]-b[tk]:b[tk]-a[tk];
   pool.sort((a,b)=> sum[b.id]-sum[a.id] || tie(a,b));
-  /* 重視することを、同点のときだけでなく「よく合う品目の帯」の中の並びにも効かせる（2026-10-28）。
-     帯＝最高点から4点以内。帯の中は、費用なら総額の安い順、ほかは重視する性能の高い順に並べ、帯の外はそのまま後ろへ */
-  const best=sum[pool[0].id], band=pool.filter(p=>sum[p.id]>=best-4), rest=pool.filter(p=>sum[p.id]<best-4);
-  const key=answers[DD.tie.key];
-  if(key){
-    const tot=key==="cost"?Object.fromEntries(band.map(p=>[p.id,DOMAIN.quantity(p,answers).cost])):null;
-    band.sort((a,b)=> key==="cost" ? (tot[a.id]-tot[b.id]) || (sum[b.id]-sum[a.id]) : (tie(a,b) || (sum[b.id]-sum[a.id])));
-    pool.splice(0,pool.length,...band,...rest);
-  }
   return {pool,empty:false,sum,contrib,ceiling:Math.max(ceiling,1),floor};
 }
 const quantity=pid=>DOMAIN.quantity(byId[pid],answers);
@@ -2698,6 +2700,13 @@ function useFor(p,top,q,qt){
   return "別の選び方をする場合";
 }
 
+/* 長所：製品の固定文のうち比較の言い切り（最も・いちばん・最安）は外し、表示中の3案の実際の数字から作る */
+function prosFor(p,i,t3,qs){
+  const out=[], cs=qs.map(q=>q.cost), pl=t3.map(x=>x.pull);
+  if(new Set(cs).size>1&&cs[i]===Math.min(...cs)) out.push(`3案の中で総額が最も安い（${yen(cs[i])}）`);
+  if(new Set(pl).size>1&&pl[i]===Math.max(...pl)) out.push(`3案の中で引抜抵抗が最も大きい（${num(pl[i])} N）`);
+  return out.concat(p.pros.filter(x=>!/最も|いちばん|一番|最安|最高/.test(x)));
+}
 /* ---------- 適合度の理由。なぜその順位かを1〜2行で言う ---------- */
 function fitReason(p,i,S,t3,qs){
   const PRI={cost:"費用（総額の安さ）",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[answers[DD.tie.key]];
@@ -2775,7 +2784,7 @@ function radarSVG(t3,pcts,qs){
 /* 項目別ランキング。良し悪しの向きを見出しに書き、番号・色・名前・数値を列で分ける */
 function rankLists(t3,pcts,qs){
   const defs=[
-    {t:"総合評価",sub:"条件への適合",v:(p,i)=>pcts[i],    f:v=>v+"%",    asc:false},
+    {t:"総合評価",sub:"重視を反映した適合",v:(p,i)=>pcts[i],    f:v=>v+"%",    asc:false},
     {t:"経済性",  sub:"総額が安い順",v:(p,i)=>qs[i].cost, f:v=>yen(v),   asc:true},
     ...MET.filter(m=>m.rank).map(m=>({t:m.label, sub:m.sub, v:p=>p[m.key], f:v=>m.scale===5?v+" / 5":num(v)+(m.unit?" "+m.unit:""), asc:!!m.asc}))
   ];
@@ -2798,7 +2807,7 @@ function productCard(p,i,pct,q,S,t3,qs,top,qt){
   const real=p.url&&p.url!=="#";
   return `<article class="cd cd--${i+1}" style="animation-delay:${i*90}ms">
     <div class="cd__head"><span class="cd__badge">${badge}</span><span class="cd__use">${use}</span>
-      <span class="cd__pct" data-count="${pct}">0<small>%</small></span></div>
+      <span class="cd__pct">${pct}<small>%</small></span></div>
     <div class="cd__id">
       <div class="cd__fig">${DOMAIN.fig[p.id]||""}</div>
       <div><h4 class="cd__name">${p.name}</h4>
@@ -2808,7 +2817,7 @@ function productCard(p,i,pct,q,S,t3,qs,top,qt){
     <p class="cd__desc">${p.desc}</p>
     <p class="cd__why"><span>この条件での評価</span>${fitReason(p,i,S,t3,qs)}</p>
     <div class="pc">
-      <div class="pc--pro"><p class="pc__h">メリット</p><ul>${p.pros.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+      <div class="pc--pro"><p class="pc__h">メリット</p><ul>${prosFor(p,i,t3,qs).map(x=>`<li>${x}</li>`).join("")}</ul></div>
       <div class="pc--con"><p class="pc__h">デメリット</p><ul>${p.cons.map(c=>`<li>${c.t}<i>${c.fix}</i></li>`).join("")}</ul></div>
     </div>
     <div class="cd__cta">
