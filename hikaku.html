@@ -2353,6 +2353,15 @@ html.hash-ld{scroll-behavior:auto;}
   #menu .mn-go{margin-top:16px;}
 }
 @media (max-width:620px){#menu .mn-steps li{flex:none;}}
+/* menu 再々採点 */
+.ba{align-items:start!important;}
+.ba figcaption{margin:0 0 12px;padding:0 0 10px;border-top:0;border-bottom:1px solid var(--gold);}
+.mn-add{grid-column:1 / -1;margin:18px 0 0;font-size:var(--f3);}
+.mn-add b{font-family:var(--ff-en);font-weight:500;}
+.mn-add small{display:block;margin-top:4px;font-size:var(--f2);color:var(--ink-2);}
+/* 別ページは、ふわっと出る演出に頼らず最初から見せる */
+.js .rv,.js .rv-scroll,.js .rv:not(.in),.js .dai.rv:not(.in){opacity:1!important;transform:none!important;}
+@media (max-width:620px){#menu .mn-steps{flex-wrap:wrap;row-gap:0;}}
 
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
