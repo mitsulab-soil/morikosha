@@ -1,0 +1,2951 @@
+/* ══════════════════════════════════════════════════════════════════
+   杜工舎 本体サイト ── 2026-09-30 再設計「屏風をひらく」（組み手2：装い）
+   方針：04_手順書/HPの再設計_2026-09-30.md。楽芸工房の型（灰の地・日英2段・写真と白い囲みの互い違い・散らした写真・Jost）は使わない。
+   旧い装いは scratchpad の控えと git の履歴にある。
+
+   決めごと
+     1. 格子は六曲の扇（.byo）── PC 6枚／タブレット 4枚／スマホ 2枚。扇の間は 0。中身は扇 2〜4 枚にまたがって置き、中央揃えにしない。
+        紙の地の章は、章の頭にだけ扇の継ぎ目（0.5px・墨 α.07）を見せる。
+     2. 色は6つ：胡粉（地）・白（面）・墨・薄墨・金・夜。差し色は足さない。色の面は絵と文様が受け持つ。
+     3. 字は2書体：しっぽり明朝（和文すべて）と Cormorant Garamond（欧文のラベル・数字）。段は 13／16／19／24／34／52。本文 16px・行間 1.9。
+     4. どの章も「題箋」（漢数字・縦書きの章題・欧文ラベル・金の細罫）で始まる。章の地は 胡粉→白→夜 を役割で替える。
+     5. 動きは1種類（4px 上がりながら .5 秒で現れる）。動きを減らす設定では全部止める。角丸・影は使わない。字の床は 13px。
+   ══════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* 色（方針の表どおり） */
+  --ground:#F3F1EB;   /* 胡粉：ページの地 */
+  --paper:#FBFAF6;    /* 白：面・表・料金 */
+  --ink:#1E1F1D;      /* 墨：字と暗い地（胡粉の上 15.4:1） */
+  --ink-2:#5B5C57;    /* 薄墨：補足の字（胡粉の上 6.1:1・白の上 6.6:1） */
+  --ink-3:var(--ink-2);
+  --gold:#A8823F;     /* 金：罫・番号・小さな飾り。字は大きな字だけ */
+  --night:#15181A;    /* 夜：WORKS の扉とお問い合わせ */
+  --char:var(--ink);
+  --on-night:#ECEAE3;
+  --on-night-2:#A7A9A3; /* 夜の上 7.6:1 */
+  /* 罫は墨の濃さだけで作る（新しい色は足さない） */
+  --line:rgba(30,31,29,.16);
+  --line-2:rgba(30,31,29,.3);
+  --seam:rgba(30,31,29,.07);
+  --line-n:rgba(236,234,227,.16);
+
+  --ff-ja:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --ff-en:"Cormorant Garamond","Cormorant Fallback","Times New Roman",serif;
+  --ff-label:var(--ff-en);
+
+  /* 字の段：13／16／19／24／34／52 */
+  --f1:13px; --f2:16px; --f3:19px; --f4:24px; --f5:34px; --f6:52px;
+  --fs-s:var(--f1); --fs-b:var(--f2);
+  --lh:1.9; --lh-h:1.5;
+
+  /* 格子と余白 */
+  --shell:1240px;
+  --gut:clamp(20px,3.6vw,40px);
+  --fp:clamp(14px,1.5vw,26px);            /* 扇の内側の余白（中身を継ぎ目から離す） */
+  --bleed:calc(var(--gut) + max(0px, (100vw - var(--shell) - var(--gut) * 2) / 2));
+  --sp-m:clamp(72px,7.4vw,108px);         /* 続きの章の上下 */
+  --sp-l:clamp(96px,11vw,156px);          /* 夜の章の前後（大きな切り替わり） */
+  --hd:72px;
+}
+@font-face{font-family:"Cormorant Fallback";src:local("Times New Roman"),local("Times");size-adjust:96%;}
+
+/* ══════════ 土台 ══════════ */
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hd) + 8px);-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--ff-ja);font-size:var(--f2);line-height:var(--lh);letter-spacing:.04em;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;word-break:normal;line-break:strict;overflow-wrap:break-word;text-wrap:pretty;}
+/* 2026-10-01 第5周：本文の段落（p・li）は文節で送らない（右端がぎざぎざに欠けていた）。文節で送るのは見出し・札・短い添え書きだけ */
+h1,h2,h3,h4,dt,.ja-h,.dai-t,.chip,.nav a,.mnav a,.qa .qt,.step-h .d,.chip-live,.to-erabot a,.fl-d,.fl-t,.k-s,.hx-p,.hp-p,.df-t{word-break:auto-phrase;}
+h1,h2,h3,h4,.ja-h{font-weight:500;line-height:var(--lh-h);font-feature-settings:"palt";text-wrap:balance;}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure{margin:0;}
+ul,ol{padding:0;list-style:none;}
+button{font:inherit;color:inherit;}
+b,.strong{font-weight:600;}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+.s-night :focus-visible,.band-door :focus-visible,.tab:focus-visible,footer :focus-visible{outline-color:var(--on-night);}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:var(--ground);padding:10px 16px;text-decoration:none;}
+.skip:focus{top:12px;}
+.nw{white-space:nowrap;}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+.anchor{position:absolute;display:block;width:0;height:0;overflow:hidden;}
+.wrap{max-width:calc(var(--shell) + var(--gut) * 2);margin-inline:auto;padding-inline:var(--gut);}
+/* 欧文のラベル：Cormorant の大文字、字間 .18em */
+.lb,.dai-l{font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.18em;text-transform:uppercase;line-height:1.4;}
+
+/* ══════════ 頭の帯 ══════════ */
+.hd{position:fixed;inset:0 0 auto 0;z-index:40;height:var(--hd);display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding-inline:clamp(20px,2.4vw,36px);background:var(--paper);color:var(--ink);box-shadow:0 .5px 0 var(--line-2);
+  transition:background .4s,height .4s,padding .4s,transform .35s;}
+.hd.is-hidden{transform:translateY(-100%);}
+.logo-s{display:flex;align-items:center;gap:12px;text-decoration:none;min-height:44px;}
+.logo-s .logo-img{width:auto;height:40px;flex:none;}
+.logo-s .j{font-size:var(--f3);font-weight:600;letter-spacing:.24em;line-height:1;}
+.logo-s .w{font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.2em;line-height:1;}
+.logo-b{display:none;flex-direction:column;align-items:center;gap:12px;text-decoration:none;}
+.logo-b .logo-img{width:auto;height:118px;}
+.logo-b .j{font-size:var(--f4);font-weight:600;letter-spacing:.3em;line-height:1;padding-left:.3em;}
+.logo-b .w{font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.24em;line-height:1;padding-left:.24em;}
+.nav{display:flex;align-items:center;gap:clamp(18px,2.4vw,40px);}
+.nav a{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;min-height:44px;text-decoration:none;
+  font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.18em;text-transform:uppercase;line-height:1.2;transition:opacity .25s;}
+.nav a .nj{font-family:var(--ff-ja);font-weight:400;font-size:var(--f1);letter-spacing:.06em;text-transform:none;color:var(--ink-2);}
+.nav a::after{content:"";position:absolute;left:50%;bottom:-2px;width:0;height:1px;background:var(--gold);transform:translateX(-50%);transition:width .3s;}
+.nav a.cur::after,.nav a[aria-current="page"]::after{width:22px;}
+@media (hover:hover){.nav a:hover{opacity:.6;}.nav a.cur:hover{opacity:1;}}
+.nav a.nav-era{padding-left:clamp(14px,1.6vw,26px);border-left:.5px solid var(--line-2);}
+.nav a.nav-era .nj{color:var(--ink);}
+.menu-btn{display:none;background:none;border:0;width:48px;height:48px;padding:13px 10px;cursor:pointer;}
+.menu-btn i{display:block;height:1px;background:currentColor;margin:7px 0;}
+/* 扉の上：大きなロゴ（白い丸で囲まない）とナビを絵に直に置く。字は字の形に沿う光だけで読ませる */
+.js .hd:not(.is-solid){background:transparent;box-shadow:none;height:210px;align-items:flex-start;padding-top:44px;pointer-events:none;}
+.js .hd:not(.is-solid) .nav a,.js .hd:not(.is-solid) .logo-b,.js .hd:not(.is-solid) .logo-s,.js .hd:not(.is-solid) .menu-btn{pointer-events:auto;}
+.js .hd:not(.is-solid) .logo-s{display:none;}
+.js .hd:not(.is-solid) .logo-b{display:flex;mix-blend-mode:multiply;}
+.js .hd:not(.is-solid) .nav{margin-top:40px;--glow:246,241,229;}
+body:has(.hero[data-tone="gold"]) .hd:not(.is-solid) .nav{--glow:246,236,210;}
+.js .hd:not(.is-solid) .nav a,.js .hd:not(.is-solid) .nav a .nj{color:#1D2123;
+  text-shadow:0 0 1px rgba(var(--glow),1),0 0 2px rgba(var(--glow),1),0 0 3px rgba(var(--glow),1),0 0 5px rgba(var(--glow),.95),0 0 8px rgba(var(--glow),.75);}
+.js .hd:not(.is-solid) .nav a.nav-era{border-left-color:rgba(29,33,35,.35);}
+
+.mnav{position:fixed;inset:0;z-index:60;background:var(--ground);color:var(--ink);display:none;flex-direction:column;padding:20px var(--gut) 40px;overflow:auto;}
+.mnav.open{display:flex;}
+.mnav-top{display:flex;justify-content:space-between;align-items:center;min-height:56px;}
+.mnav-close{background:none;border:.5px solid var(--ink-2);min-height:44px;padding:0 16px;cursor:pointer;letter-spacing:.1em;}
+.mnav ol{margin-top:24px;border-top:.5px solid var(--line-2);}
+.mnav li a{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:.5px solid var(--line-2);text-decoration:none;font-size:var(--f3);letter-spacing:.12em;}
+.mnav li a .lb{color:var(--ink-2);}
+.mnav-era{margin-top:22px;}
+.mnav-era a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:10px 0;border-bottom:.5px solid var(--line-2);text-decoration:none;letter-spacing:.06em;}
+.mnav-mail{margin-top:24px;color:var(--ink-2);font-family:var(--ff-en);letter-spacing:.12em;}
+.mnav-mail a{color:var(--ink);display:inline-block;min-height:44px;line-height:44px;font-size:var(--f3);}
+
+/* ══════════ 扉（絵とデジタルの層） ══════════
+   高さは 88vh 前後。次の章（胡粉の地と題箋の頭）が下に少し覗く */
+.hero{position:relative;height:88svh;min-height:560px;max-height:980px;background:#E8E0CC;color:var(--ink);overflow:hidden;overflow:clip;}
+.hero-ph{position:absolute;inset:0;margin:0;z-index:0;}
+.hero-ph picture{display:contents;}
+.hero-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;transform:scale(1.04);
+  -webkit-mask-image:var(--kmask,linear-gradient(90deg,transparent 0,transparent 40%,#000 60%,#000 100%));mask-image:var(--kmask,linear-gradient(90deg,transparent 0,transparent 40%,#000 60%,#000 100%));
+  -webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:0% 0;mask-position:0% 0;
+  transition:transform 8s linear;}
+.hero-ph img.on{opacity:1;z-index:2;transform:scale(1);-webkit-mask-position:100% 0;mask-position:100% 0;
+  transition:-webkit-mask-position 1.6s cubic-bezier(.6,0,.25,1),mask-position 1.6s cubic-bezier(.6,0,.25,1),transform 8s linear;}
+.hero-ph img.was{opacity:1;z-index:1;-webkit-mask-image:none;mask-image:none;transition:transform 8s linear;}
+/* 2026-10-01 修正役V f1：扉の2枚目を見本の画面の並びに、燕子花（八橋図）を3枚目に（photos.json の hero2・hero3 を入れ替え） */
+.hero-ph .h3{object-position:100% 0;transform-origin:100% 0;transform:scale(1.32);}
+.hero-ph .h3.on{transform:scale(1.28);}
+@media (min-width:701px){.hero-ph .h1{object-position:0% 50%;}}
+@media (max-width:700px){
+  .hero-ph .h1{object-position:37% 50%;}
+  .hero-ph .h3{object-position:72% 0;transform-origin:72% 0;transform:scale(1.16);}
+  .hero-ph .h3.on{transform:scale(1.12);}
+}
+.art-layer{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;}
+.hero::after{content:"";position:absolute;inset:0 0 auto 0;height:220px;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,rgba(243,241,235,.5) 0,rgba(243,241,235,.32) 45%,rgba(243,241,235,0) 100%);}
+.hero[data-tone="gold"]::after{background:linear-gradient(180deg,rgba(243,241,235,.72) 0,rgba(243,241,235,.45) 45%,rgba(243,241,235,0) 100%);}
+.js .hd:not(.is-solid) .menu-btn{background:rgba(243,241,235,.74);}
+.hp-go{display:none;}
+.hero .art-layer{mix-blend-mode:normal;}
+/* 扉の札（題箋の気配）：PC は縦書きで、右に 0.5px の金の縦線1本。スマホ・タブレットは左下に横組みの小札 */
+.hero-plate{position:absolute;z-index:3;left:var(--gut);bottom:28px;width:fit-content;max-width:calc(100% - var(--gut) - 64px);
+  display:flex;flex-direction:column;margin:0;padding:14px 18px 12px 16px;background:rgba(246,241,229,.88);border-left:1px solid var(--gold);}
+.hp-p{display:flex;flex-direction:column;align-items:flex-start;gap:4px;color:#1D2123;line-height:1.5;}
+.hp-k{font-size:var(--f1);letter-spacing:.14em;font-weight:500;color:#2E2B26;}
+.hp-s,.hp-kj{display:none;}
+.hp-v{font-size:var(--f3);font-weight:500;letter-spacing:.06em;font-feature-settings:"palt","tnum";line-height:1.5;}
+.hp-v>.nw{display:block;}
+.hp-dot{display:none;}
+.hp-c{margin-top:8px;font-size:var(--f1);color:#2E2B26;letter-spacing:.05em;line-height:1.6;min-height:1.6em;}
+@media (min-width:901px){
+  .hero-plate{left:auto;right:14vw;top:max(24vh,170px);bottom:auto;max-width:none;width:auto;writing-mode:vertical-rl;
+    padding:26px 18px 24px 16px;background:rgba(246,241,229,.86);border:0;box-shadow:inset -.5px 0 0 var(--gold),inset .5px 0 0 rgba(168,130,63,.45);}
+  .hp-v{display:none;}
+  .hp-p{writing-mode:vertical-rl;gap:14px;}
+  .hp-k{font-size:var(--f2);letter-spacing:.3em;color:#1D2123;}
+  .hp-v{font-size:var(--f4);letter-spacing:.12em;color:#1D2123;}
+  .hp-v>.nw{display:none;}
+  .hp-kj{display:flex;flex-direction:column;gap:6px;}
+  .hp-l{display:block;}
+  .hp-t{font-size:var(--f2);letter-spacing:.06em;}
+  .hero-plate .tcy{text-combine-upright:all;letter-spacing:0;}
+  .hp-go{display:flex;flex-direction:column;gap:2px;margin-right:18px;order:1;}
+  .hp-c{order:2;}
+  .hp-go a{display:flex;align-items:center;gap:10px;min-width:44px;justify-content:center;padding:6px 0;font-size:var(--f2);letter-spacing:.2em;text-decoration:none;color:#1D2123;}
+  .hp-go a::after{content:"";width:1px;height:36px;background:var(--gold);transition:height .35s;}
+  .hp-go a:hover::after{height:56px;}
+  .hp-c{margin:0 18px 0 0;letter-spacing:.14em;line-height:1.5;white-space:nowrap;min-height:0;}
+  .hp-c:empty{display:none;}
+}
+/* ◇と番号 */
+.dots{position:absolute;z-index:3;right:clamp(14px,2vw,30px);top:230px;display:flex;flex-direction:column;align-items:center;--glow:228,219,196;}
+.hero[data-tone="gold"] .dots{--glow:238,220,176;filter:drop-shadow(0 0 1px rgba(246,236,210,.95)) drop-shadow(0 0 3px rgba(246,236,210,.85)) drop-shadow(0 0 8px rgba(246,236,210,.7));}
+.dots button{width:44px;height:44px;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;color:#1D2123;}
+.dots button::before{content:"";width:7px;height:7px;border:1.2px solid currentColor;transform:rotate(45deg);box-shadow:0 0 0 1px rgba(var(--glow),.85);}
+.hero[data-tone="gold"] .dots button::before{border-width:1.5px;}
+.dots button[aria-current="true"]::before{background:currentColor;}
+.dots .num{display:block;text-align:center;margin-top:8px;padding-inline:6px;font-family:var(--ff-en);font-weight:500;font-size:var(--f2);letter-spacing:.08em;line-height:1;white-space:nowrap;color:#1D2123;
+  font-variant-numeric:lining-nums;text-shadow:1px 0 0 rgba(var(--glow),1),-1px 0 0 rgba(var(--glow),1),0 1px 0 rgba(var(--glow),1),0 -1px 0 rgba(var(--glow),1),0 0 4px rgba(var(--glow),1),0 0 8px rgba(var(--glow),.8);}
+.dots .num::before{content:"";display:block;width:1px;height:24px;background:currentColor;margin:0 auto 10px;}
+.dots .num-t{color:#3B3D3A;}
+.scroll{position:absolute;z-index:3;left:clamp(18px,2.4vw,36px);bottom:0;display:flex;flex-direction:column;align-items:center;gap:14px;
+  font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.24em;color:#1D2123;
+  --glow:236,229,210;text-shadow:1px 0 0 rgba(var(--glow),1),-1px 0 0 rgba(var(--glow),1),0 1px 0 rgba(var(--glow),1),0 -1px 0 rgba(var(--glow),1),0 0 4px rgba(var(--glow),1),0 0 8px rgba(var(--glow),.8);}
+.hero[data-tone="gold"] .scroll{--glow:240,226,190;color:#2E2B26;}
+.scroll span{writing-mode:vertical-rl;}
+.scroll::after{content:"";width:1px;height:72px;background:currentColor;box-shadow:0 0 0 1px rgba(var(--glow),.7);}
+
+/* ══════════ 六曲の格子と章 ══════════ */
+.byo{--cols:6;position:relative;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));column-gap:0;row-gap:0;
+  max-width:calc(var(--shell) + var(--gut) * 2);margin-inline:auto;padding-inline:var(--gut);}
+.byo>*{margin-inline:var(--fp);min-width:0;}
+.byo>:not(.dai){grid-column:2 / -1;}
+.sec{--pt:var(--sp-m);--pb:calc(var(--sp-m) * .68);position:relative;padding-block:var(--pt) var(--pb);}
+.s-ground{background:var(--ground);}
+.s-face{background:var(--paper);}
+.s-night,.char{background:var(--night);color:var(--on-night);}
+/* 夜の章の前後は広く、続きの章は詰める */
+.sp-night-next{--pb:var(--sp-l);}
+.sec.has-band{padding-top:0;}
+/* 扇の継ぎ目：紙の地の章の頭にだけ。本文の上には引かない（下へ消える） */
+.sec:not(.has-band)>.byo:first-of-type::before{content:"";position:absolute;z-index:0;pointer-events:none;top:calc(var(--pt) * -1);left:var(--gut);height:calc(var(--pt) - 12px);
+  width:calc((100% - var(--gut) * 2) * (var(--cols) - 1) / var(--cols));
+  background:linear-gradient(90deg,transparent calc(100% - .5px),var(--seam) calc(100% - .5px)) 0 0 / calc(100% / (var(--cols) - 1)) 100% repeat-x;
+  -webkit-mask-image:linear-gradient(#000 0,#000 35%,transparent);mask-image:linear-gradient(#000 0,#000 35%,transparent);}
+.byo>*{position:relative;z-index:1;}
+
+/* 題箋：漢数字（金）→ 金の細罫 → 縦書きの章題 → 欧文ラベル（横）。PC は左の扇に置き、章を読むあいだ付いてくる */
+.dai{grid-column:1;grid-row:1 / span 12;align-self:start;position:sticky;top:calc(var(--hd) + 36px);
+  display:flex;flex-direction:column;align-items:flex-start;gap:0;margin:0;}
+.dai-n{font-family:var(--ff-ja);font-weight:500;font-size:var(--f5);line-height:1;color:var(--gold);letter-spacing:0;}
+.dai-n{margin-bottom:18px;}
+.dai-t{writing-mode:vertical-rl;font-size:var(--f4);font-weight:500;letter-spacing:.3em;line-height:1.3;font-feature-settings:"vpal";text-wrap:nowrap;margin:0;}
+.dai-l{color:var(--ink-2);white-space:nowrap;}
+.dai-l::before{content:"";display:block;width:32px;height:1px;background:var(--gold);margin:22px 0 14px;}
+.s-night .dai-l,.band-door .dai-l{color:var(--on-night-2);}
+.s-night .dai-t,.band-door .dai-t{color:#fff;}
+.s-night .dai-n,.band-door .dai-n{color:#C29A55;}
+.s-night .dai-l::before,.band-door .dai-l::before{background:#C29A55;}
+
+/* 見出しと本文 */
+.ja-h{font-size:var(--f5);letter-spacing:.1em;}
+.ja-b p+p{margin-top:1.1em;}
+.lede{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);column-gap:calc(var(--fp) * 2);align-items:end;}
+.lede .ja-b{color:var(--ink-2);}
+
+/* 値段の一行と、文字＋線のリンク */
+.kane{margin-top:36px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;}
+.kane b{font-size:var(--f2);font-weight:500;letter-spacing:.04em;font-feature-settings:"palt","tnum";}
+.kane .kn-u{letter-spacing:.08em;color:inherit;opacity:.8;margin-right:-6px;}
+.kane .kn-n{font-family:var(--ff-en);font-size:var(--f5);font-weight:500;letter-spacing:.02em;font-variant-numeric:lining-nums tabular-nums;line-height:1;margin-right:.1em;}
+.kane small{font-size:var(--f1);letter-spacing:.05em;opacity:.85;}
+.kane b{white-space:nowrap;}
+.kane .kn-t{font-weight:400;margin-left:.2em;}
+.go{display:flex;flex-wrap:wrap;align-items:center;gap:14px 40px;margin-top:32px;}
+.ln{display:inline-flex;align-items:center;gap:16px;min-height:48px;text-decoration:none;letter-spacing:.1em;color:inherit;}
+.ln::after{content:"";width:64px;height:1px;background:var(--gold);transition:width .35s;}
+.ln:hover::after{width:104px;}
+.box-ln{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:54px;padding:0 30px;background:var(--ink);color:var(--ground);text-decoration:none;letter-spacing:.12em;border:0;cursor:pointer;transition:background .25s;}
+.box-ln:hover{background:#000;}
+.box-ln small{display:block;font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.18em;text-transform:uppercase;opacity:.85;}
+.dl-n{white-space:nowrap;}
+.fold-i{justify-self:end;position:relative;width:14px;height:14px;flex:none;}
+.fold-i::before,.fold-i::after{content:"";position:absolute;left:0;top:50%;width:14px;height:1px;background:currentColor;transition:transform .3s;}
+.fold-i::after{transform:rotate(90deg);}
+details[open]>summary .fold-i::after{transform:rotate(0);}
+
+/* ══════════ 一 ABOUT ══════════ */
+.about-txt{grid-column:2 / 5!important;padding-top:4px;}
+.about-txt h1,#about-h{font-size:var(--f6);letter-spacing:.08em;line-height:1.45;}
+.about-lead{margin-top:36px;max-width:31em;}
+/* 絵は右の2扇にまたがり、画面の右端まで出す（屏風の端が画面の外へ続く） */
+.about-art{grid-column:5 / -1!important;margin:0 calc(var(--bleed) * -1) 0 var(--fp);padding:0!important;position:relative;overflow:hidden;align-self:start;}
+.about-art img{width:100%;aspect-ratio:5/6;object-fit:cover;object-position:30% 40%;}
+.keys{grid-column:2 / -1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin:56px 0 0!important;padding:0;}
+.keys li{display:flex;flex-direction:column;gap:6px;padding:22px var(--fp) 4px;border-top:1px solid var(--ink);}
+.keys li:nth-child(1){grid-column:span 2;}
+.keys li:nth-child(2){grid-column:span 1;}
+.keys li:nth-child(3){grid-column:span 2;}
+.keys li+li{box-shadow:inset .5px 0 0 var(--line-2);}
+.keys .k-l{font-size:var(--f1);letter-spacing:.2em;color:var(--ink-2);}
+.keys .k-v{font-size:var(--f3);font-weight:500;letter-spacing:.06em;line-height:1.5;font-feature-settings:"palt";}
+.keys .kn-n{font-family:var(--ff-en);font-size:var(--f5);font-weight:500;letter-spacing:.02em;font-variant-numeric:lining-nums;line-height:1;margin-right:.08em;}
+.keys .kn-u{font-size:var(--f2);margin-right:.35em;}
+.keys .kn-t{font-size:var(--f1);color:var(--ink-2);}
+.keys .k-s{font-size:var(--f1);line-height:1.8;color:var(--ink-2);letter-spacing:.05em;}
+.about-go{margin-top:36px;}
+.to-erabot{margin-top:40px;font-size:var(--f1);}
+.to-erabot a{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 16px;min-height:44px;text-decoration:none;color:var(--ink-2);letter-spacing:.06em;}
+.to-erabot .te-k{letter-spacing:.14em;}
+.to-erabot .te-v{font-size:var(--f2);color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:7px;text-decoration-thickness:1px;}
+.to-erabot .te-a{color:var(--ink);}
+
+/* ══════════ 二 WHY ══════════ */
+.reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:56px 0 0!important;align-items:stretch;}
+.rs{display:flex;flex-direction:column;padding:0 var(--fp);}
+.rs+.rs{box-shadow:inset .5px 0 0 var(--line);}
+.rs .n{font-family:var(--ff-en);font-size:var(--f6);font-weight:500;line-height:1;letter-spacing:.02em;font-variant-numeric:lining-nums;color:var(--gold);}
+.rs h3{margin-top:18px;font-size:var(--f3);letter-spacing:.08em;min-height:3em;}
+.rs p{margin-top:12px;}
+.rs p b{font-weight:600;white-space:nowrap;font-feature-settings:"lnum","tnum";margin:0 .08em;}
+.rs .src{margin-top:auto;padding-top:14px;border-top:.5px solid var(--line-2);font-size:var(--f1);line-height:1.85;color:var(--ink-2);letter-spacing:.04em;}
+.rs p:not(.n):not(.src){margin-bottom:18px;}
+
+/* ══════════ 三 WORKS（夜の帯 → 胡粉の見本帳） ══════════ */
+.band{position:relative;overflow:hidden;background:var(--night);}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.band canvas{position:absolute;inset:0;width:100%;height:100%;}
+.band .band-gold{z-index:1;}
+.band-door{display:flex;align-items:flex-start;min-height:clamp(380px,36vw,520px);padding:clamp(88px,8vw,120px) 0 clamp(64px,6vw,96px);color:var(--on-night);}
+/* 見本帳の帯は低く（1280×800 でも、帯の下の業種の札の1段目が画面に入るように） */
+.band-works{min-height:clamp(300px,25vw,360px);padding:clamp(64px,5.4vw,84px) 0 clamp(40px,3.4vw,52px);}
+.band-door>.byo{position:relative;z-index:2;width:100%;}
+.band-door .dai{position:relative;top:auto;}
+.band-door .ja-h{color:#fff;grid-column:2 / 5;font-size:var(--f6);letter-spacing:.08em;line-height:1.45;}
+/* 片身替わり：左は夜の単色、右は絵をそのまま（覆いを掛けない） */
+.band-works::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,var(--night) 0,var(--night) 42%,rgba(21,24,26,0) 60%,rgba(21,24,26,0) 100%);}
+.band-works img{transform:scale(1.06);transform-origin:100% 0;object-position:100% 26%;}
+#works{--pt:var(--sp-l);}
+#works>.works-body{padding-top:clamp(40px,4vw,56px);}
+.works-lead{grid-column:2 / 6!important;max-width:40em;}
+.inds{position:relative;}
+.inds input{position:absolute;opacity:0;pointer-events:none;}
+.step{margin-top:64px;}
+.inds>.step:first-of-type{margin-top:48px;}
+
+.step-h{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 22px;padding-bottom:14px;border-bottom:1px solid var(--ink);}
+.step-h h3{font-size:var(--f4);letter-spacing:.1em;}
+.step-h .d{font-size:var(--f1);color:var(--ink-2);letter-spacing:.06em;}
+.step-p{margin-top:16px;max-width:44em;}
+.chip-live{margin-top:14px;font-size:var(--f1);color:var(--ink-2);min-height:1.8em;letter-spacing:.05em;}
+/* 業種の札：六曲に合わせて 6列×3段。選んだ札は下に 2px の金罫 */
+.chips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:22px;}
+.chip{position:relative;display:flex;align-items:center;min-height:56px;padding:0 14px;border-top:.5px solid var(--line-2);box-shadow:inset .5px 0 0 var(--line);
+  letter-spacing:.16em;line-height:1.5;color:var(--ink-2);cursor:pointer;transition:color .3s,background-color .3s;}
+.chip:nth-child(6n+1){box-shadow:none;}
+.chip::before{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.6,.05,.2,1);}
+@media (hover:hover){.chip:hover{color:var(--ink);background:var(--ground);}}
+
+.dz-note{margin-top:36px;max-width:44em;}
+.dz-note b{font-weight:600;}
+#pi-doboku:checked ~ .step .chips label[for="pi-doboku"]{color:var(--ink);font-weight:600;}
+#pi-doboku:checked ~ .step .chips label[for="pi-doboku"]::before{transform:scaleX(1);}
+#pi-doboku:focus-visible ~ .step .chips label[for="pi-doboku"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-sokuryo:checked ~ .step .chips label[for="pi-sokuryo"]{color:var(--ink);font-weight:600;}
+#pi-sokuryo:checked ~ .step .chips label[for="pi-sokuryo"]::before{transform:scaleX(1);}
+#pi-sokuryo:focus-visible ~ .step .chips label[for="pi-sokuryo"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-kenchiku:checked ~ .step .chips label[for="pi-kenchiku"]{color:var(--ink);font-weight:600;}
+#pi-kenchiku:checked ~ .step .chips label[for="pi-kenchiku"]::before{transform:scaleX(1);}
+#pi-kenchiku:focus-visible ~ .step .chips label[for="pi-kenchiku"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-sekkei:checked ~ .step .chips label[for="pi-sekkei"]{color:var(--ink);font-weight:600;}
+#pi-sekkei:checked ~ .step .chips label[for="pi-sekkei"]::before{transform:scaleX(1);}
+#pi-sekkei:focus-visible ~ .step .chips label[for="pi-sekkei"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-setsubi:checked ~ .step .chips label[for="pi-setsubi"]{color:var(--ink);font-weight:600;}
+#pi-setsubi:checked ~ .step .chips label[for="pi-setsubi"]::before{transform:scaleX(1);}
+#pi-setsubi:focus-visible ~ .step .chips label[for="pi-setsubi"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-denki:checked ~ .step .chips label[for="pi-denki"]{color:var(--ink);font-weight:600;}
+#pi-denki:checked ~ .step .chips label[for="pi-denki"]::before{transform:scaleX(1);}
+#pi-denki:focus-visible ~ .step .chips label[for="pi-denki"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-tosou:checked ~ .step .chips label[for="pi-tosou"]{color:var(--ink);font-weight:600;}
+#pi-tosou:checked ~ .step .chips label[for="pi-tosou"]::before{transform:scaleX(1);}
+#pi-tosou:focus-visible ~ .step .chips label[for="pi-tosou"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-zoen:checked ~ .step .chips label[for="pi-zoen"]{color:var(--ink);font-weight:600;}
+#pi-zoen:checked ~ .step .chips label[for="pi-zoen"]::before{transform:scaleX(1);}
+#pi-zoen:focus-visible ~ .step .chips label[for="pi-zoen"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-kaitai:checked ~ .step .chips label[for="pi-kaitai"]{color:var(--ink);font-weight:600;}
+#pi-kaitai:checked ~ .step .chips label[for="pi-kaitai"]::before{transform:scaleX(1);}
+#pi-kaitai:focus-visible ~ .step .chips label[for="pi-kaitai"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-unso:checked ~ .step .chips label[for="pi-unso"]{color:var(--ink);font-weight:600;}
+#pi-unso:checked ~ .step .chips label[for="pi-unso"]::before{transform:scaleX(1);}
+#pi-unso:focus-visible ~ .step .chips label[for="pi-unso"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-nogyo:checked ~ .step .chips label[for="pi-nogyo"]{color:var(--ink);font-weight:600;}
+#pi-nogyo:checked ~ .step .chips label[for="pi-nogyo"]::before{transform:scaleX(1);}
+#pi-nogyo:focus-visible ~ .step .chips label[for="pi-nogyo"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-shokudo:checked ~ .step .chips label[for="pi-shokudo"]{color:var(--ink);font-weight:600;}
+#pi-shokudo:checked ~ .step .chips label[for="pi-shokudo"]::before{transform:scaleX(1);}
+#pi-shokudo:focus-visible ~ .step .chips label[for="pi-shokudo"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-bar:checked ~ .step .chips label[for="pi-bar"]{color:var(--ink);font-weight:600;}
+#pi-bar:checked ~ .step .chips label[for="pi-bar"]::before{transform:scaleX(1);}
+#pi-bar:focus-visible ~ .step .chips label[for="pi-bar"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-biyo:checked ~ .step .chips label[for="pi-biyo"]{color:var(--ink);font-weight:600;}
+#pi-biyo:checked ~ .step .chips label[for="pi-biyo"]::before{transform:scaleX(1);}
+#pi-biyo:focus-visible ~ .step .chips label[for="pi-biyo"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-jinja:checked ~ .step .chips label[for="pi-jinja"]{color:var(--ink);font-weight:600;}
+#pi-jinja:checked ~ .step .chips label[for="pi-jinja"]::before{transform:scaleX(1);}
+#pi-jinja:focus-visible ~ .step .chips label[for="pi-jinja"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-jiin:checked ~ .step .chips label[for="pi-jiin"]{color:var(--ink);font-weight:600;}
+#pi-jiin:checked ~ .step .chips label[for="pi-jiin"]::before{transform:scaleX(1);}
+#pi-jiin:focus-visible ~ .step .chips label[for="pi-jiin"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-kosho:checked ~ .step .chips label[for="pi-kosho"]{color:var(--ink);font-weight:600;}
+#pi-kosho:checked ~ .step .chips label[for="pi-kosho"]::before{transform:scaleX(1);}
+#pi-kosho:focus-visible ~ .step .chips label[for="pi-kosho"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+#pi-juku:checked ~ .step .chips label[for="pi-juku"]{color:var(--ink);font-weight:600;}
+#pi-juku:checked ~ .step .chips label[for="pi-juku"]::before{transform:scaleX(1);}
+#pi-juku:focus-visible ~ .step .chips label[for="pi-juku"]{outline:2px solid var(--ink);outline-offset:2px;z-index:2;}
+
+/* ══════════ 四 PRICE ══════════ */
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:calc(var(--fp) * 2);align-items:stretch;}
+.plan{background:var(--paper);padding:clamp(26px,3vw,44px);}
+.plan h3{font-size:var(--f3);letter-spacing:.1em;padding-bottom:14px;border-bottom:1px solid var(--ink);}
+.row{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:4px 20px;padding:18px 0;border-bottom:.5px solid var(--line-2);}
+.row h4{font-size:var(--f2);font-weight:600;letter-spacing:.06em;}
+.row .p{white-space:nowrap;text-align:right;font-feature-settings:"palt";letter-spacing:.02em;}
+.row .pn{font-family:var(--ff-en);font-size:var(--f5);font-weight:500;letter-spacing:.02em;font-variant-numeric:lining-nums tabular-nums;line-height:1;}
+.row .py{font-weight:500;margin-left:.15em;}
+.row .pt,.row .pu{font-size:var(--f1);color:var(--ink-2);letter-spacing:.04em;}
+.row .pu{margin-right:.5em;}
+.row p{grid-column:1 / -1;color:var(--ink-2);}
+.fine{color:var(--ink-2);}
+.fine b{color:var(--ink);}
+.plan .fine{margin-top:16px;}
+.fine+.fine{margin-top:10px;}
+.plan-notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:calc(var(--fp) * 2);margin-top:22px;}
+.plan-notes>div{padding-inline:clamp(26px,3vw,44px);}
+.plan-notes .fine{max-width:30em;word-break:auto-phrase;text-wrap:pretty;}
+.daiko{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);column-gap:calc(var(--fp) * 2);margin-top:48px;padding-top:32px;border-top:1px solid var(--ink);}
+.daiko h3,.vh3{font-size:var(--f3);letter-spacing:.1em;}
+.daiko-lead{margin-top:12px;color:var(--ink-2);}
+.daiko p+p{margin-top:12px;}
+.daiko-fold{margin-top:20px;border-top:.5px solid var(--line-2);border-bottom:.5px solid var(--line-2);}
+.daiko-fold summary{list-style:none;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;min-height:56px;padding:12px 0;cursor:pointer;}
+.daiko-fold summary::-webkit-details-marker{display:none;}
+.df-t{letter-spacing:.06em;line-height:1.7;}
+@media (hover:hover){.daiko-fold summary:hover .df-t{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:6px;}}
+.df-b{padding-bottom:22px;}
+.flow{counter-reset:fl;columns:2;column-gap:28px;border-top:.5px solid var(--line-2);}
+.flow li{counter-increment:fl;position:relative;display:block;padding:8px 0 8px 2.6em;border-bottom:.5px solid var(--line-2);break-inside:avoid;line-height:1.7;color:var(--ink-2);}
+.flow li::before{content:counter(fl,decimal-leading-zero);position:absolute;left:0;top:9px;font-family:var(--ff-en);font-weight:500;font-size:var(--f3);line-height:1;font-variant-numeric:lining-nums;color:var(--gold);}
+.flow+p{margin-top:16px;}
+
+/* ══════════ 五 FLOW ══════════ */
+.flw{border-top:1px solid var(--ink);}
+.fl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr) minmax(0,1fr);column-gap:calc(var(--fp) * 2);padding:30px 0;border-bottom:.5px solid var(--line-2);align-items:start;}
+.fl:last-child{border-bottom:0;padding-bottom:0;}
+.fl-n{font-family:var(--ff-en);font-size:var(--f6);font-weight:500;line-height:.9;letter-spacing:.02em;font-variant-numeric:lining-nums;color:var(--gold);}
+.fl-b h3{font-size:var(--f4);letter-spacing:.08em;}
+.fl-d{margin-top:4px;font-size:var(--f1);color:var(--ink-2);letter-spacing:.06em;}
+.fl-p{margin-top:14px;}
+.fl-b .ln{margin-top:6px;}
+.fl-t{justify-self:end;text-align:right;font-size:var(--f1);color:var(--ink-2);letter-spacing:.08em;white-space:nowrap;padding-top:8px;}
+.fl-t b{display:block;font-weight:500;font-size:var(--f3);color:var(--ink);margin-top:2px;letter-spacing:.06em;}
+.sheet,.send{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px;background:var(--paper);padding:clamp(22px,2.6vw,36px);box-shadow:inset 1px 0 0 var(--gold);}
+.sheet>div,.send>div{flex:1 1 320px;}
+.sheet h4,.send h4{font-size:var(--f3);font-weight:500;letter-spacing:.06em;line-height:var(--lh-h);}
+.sheet p,.send p{margin-top:8px;color:var(--ink-2);}
+.sheet p+p{margin-top:.4em;}
+.s-face .sheet{background:var(--ground);}
+.send{display:block;background:none;padding:0;box-shadow:none;margin-top:18px;}
+
+/* ══════════ 六 PROFILE ══════════
+   左の2扇に是真の絵と名前、右の3扇に表と本文。経歴と資格は下で横に並べ、畳んだ3項目は全幅 */
+.pf{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:0;margin-inline:0!important;align-items:start;}
+.pf>*{margin-inline:var(--fp);min-width:0;}
+.pf-l{grid-column:1 / 3;align-self:start;}
+.pf-l .ph{margin:0;}
+.pf-l .ph img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;filter:brightness(1.06) contrast(1.04);}
+.pf-name{display:flex;flex-direction:column;gap:6px;margin-top:22px;}
+.pf-name b{font-size:var(--f4);font-weight:500;letter-spacing:.2em;line-height:1.4;}
+.pf-name small{font-size:var(--f1);letter-spacing:.05em;color:var(--ink-2);}
+.pf-r{grid-column:3 / -1;}
+.pf-r>.pf-body{margin-top:36px;}
+.pf-r>.tbl-fold:first-of-type{margin-top:48px;}
+.pf-cv{margin-top:44px;}
+@media (min-width:901px){.pf-l .ph img{aspect-ratio:1/1;}}
+.pf-cv>summary{display:none;}
+.pf-cv .tbl+.tbl{margin-top:44px;}
+.pf-name small .nw{white-space:nowrap;}
+.info dl{border-top:1px solid var(--ink);}
+.info dl div{display:grid;grid-template-columns:6.5em 1fr;gap:12px;padding:10px 0;border-bottom:.5px solid var(--line-2);}
+.info dt{letter-spacing:.12em;color:var(--ink-2);}
+.pf-body p+p{margin-top:1em;}
+.tbl h3{font-size:var(--f3);letter-spacing:.1em;padding-bottom:12px;border-bottom:1px solid var(--ink);}
+.tbl dl div{display:grid;grid-template-columns:5.6em 1fr;gap:12px;padding:12px 0;border-bottom:.5px solid var(--line-2);align-items:first baseline;}
+.tbl dt{font-size:var(--f1);letter-spacing:.05em;color:var(--ink-2);line-height:1.9;}
+.tbl dt .yr{font-family:var(--ff-en);font-weight:500;font-size:var(--f3);letter-spacing:.04em;font-variant-numeric:lining-nums;margin-right:.12em;color:var(--ink);}
+.tbl dd{line-height:1.8;}
+.tbl dd small,.tbl ul li small{display:block;font-size:var(--f1);color:var(--ink-2);line-height:1.8;margin-top:2px;}
+.tbl ul li{padding:12px 0;border-bottom:.5px solid var(--line-2);line-height:1.8;}
+.tbl .note{margin-top:14px;font-size:var(--f1);line-height:1.85;color:var(--ink-2);}
+.tbl-fold{border-bottom:.5px solid var(--line-2);}
+.pf-r>.tbl-fold:first-of-type{border-top:1px solid var(--ink);}
+.tbl-fold summary,.pf-cv summary{list-style:none;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;min-height:60px;padding:14px 0;cursor:pointer;}
+.tbl-fold summary::-webkit-details-marker,.pf-cv summary::-webkit-details-marker{display:none;}
+.tbl-fold summary h3,.pf-cv summary h3{padding:0;border:0;}
+@media (hover:hover){.tbl-fold summary:hover .ttl{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:6px;}}
+.tbl-fold>:not(summary){padding-bottom:26px;max-width:52em;}
+.ways li{padding:14px 0;border-bottom:.5px solid var(--line-2);}
+.ways li:first-child{border-top:.5px solid var(--line-2);}
+.ways h4{font-size:var(--f2);font-weight:600;letter-spacing:.06em;}
+.ways p{margin-top:4px;color:var(--ink-2);}
+.labs{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.labs div{padding:20px 22px;background:var(--paper);box-shadow:inset .5px 0 0 var(--line-2);}
+.labs div:first-child{box-shadow:none;}
+.labs h4{font-size:var(--f2);font-weight:600;letter-spacing:.06em;}
+.labs .lb{display:none;}
+.labs p{margin-top:6px;color:var(--ink-2);}
+.labs .soon{display:inline-block;margin-top:10px;font-size:var(--f1);letter-spacing:.12em;border:.5px solid var(--ink-2);padding:2px 10px;color:var(--ink-2);}
+
+/* ══════════ 七 FAQ ══════════ */
+.qa{border-top:1px solid var(--ink);}
+.qa details{border-bottom:.5px solid var(--line-2);}
+.qa summary{list-style:none;display:grid;grid-template-columns:4em 1fr 24px;align-items:center;gap:12px;padding:20px 0;cursor:pointer;min-height:44px;}
+.qa summary::-webkit-details-marker{display:none;}
+.qa .qn{font-family:var(--ff-en);font-weight:500;font-size:var(--f4);font-variant-numeric:lining-nums;letter-spacing:.04em;color:var(--gold);}
+.qa .qt{font-size:var(--f3);letter-spacing:.06em;line-height:1.6;}
+@media (hover:hover){.qa summary:hover .qt{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:6px;}}
+.qa .qa-a{padding:0 0 26px calc(4em + 12px);max-width:calc(44em + 4em);}
+.qa .qa-a p{color:var(--ink-2);}
+.qa .qa-a p+p{margin-top:10px;}
+
+/* ══════════ 結 CONTACT（夜） ══════════ */
+.contact{--cols:6;align-items:stretch;}
+.contact>.dai{margin-top:var(--sp-l);}
+.contact-in{grid-column:2 / 5!important;padding-block:var(--sp-l);}
+.contact-in>p{color:var(--on-night-2);max-width:32em;}
+.contact-in>.contact-lede{font-size:var(--f5);font-weight:500;line-height:1.5;letter-spacing:.1em;color:var(--on-night);margin-bottom:28px;font-feature-settings:"palt";}
+.contact-in>p+p{margin-top:12px;}
+.contact .kane{color:var(--on-night);}
+.mail{margin-top:36px;}
+.mail .lb{color:var(--on-night-2);}
+.mail-a{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;padding-bottom:10px;max-width:520px;font-family:var(--ff-en);font-weight:500;font-size:var(--f5);letter-spacing:.04em;
+  color:var(--on-night);text-decoration:none;border-bottom:1px solid #C29A55;}
+.mail-a:hover{border-bottom-color:var(--on-night);}
+.copy{margin-top:16px;min-height:44px;padding:0 18px;background:transparent;border:.5px solid var(--on-night-2);color:var(--on-night);cursor:pointer;font-size:var(--f1);letter-spacing:.1em;}
+.mail small{display:block;margin-top:14px;font-size:var(--f1);color:var(--on-night-2);line-height:1.9;}
+.contact .go{color:var(--on-night);}
+.contact .ln::after{background:#C29A55;}
+/* 絵は右の2扇から画面の右端まで、章の上下いっぱい（覆いなし・金砂子だけ重ねる） */
+.contact-art{grid-column:5 / -1!important;grid-row:1 / span 12;margin:0 calc(var(--bleed) * -1) 0 var(--fp)!important;padding:0!important;position:relative;overflow:hidden;background:#1D2123;min-height:520px;}
+.contact-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 70%!important;}
+.contact-solo .contact-in{grid-column:2 / -1!important;}
+
+/* ══════════ 奥付（墨） ══════════ */
+footer{background:var(--ink);color:var(--on-night-2);}
+.colo{padding:clamp(56px,6vw,88px) 0 clamp(40px,4vw,56px);}
+.colo-in{row-gap:48px;}
+.colo-in>:first-child{grid-column:1 / 4;margin-left:0;}
+.colo-in>:last-child{grid-column:4 / -1;}
+.colo h2{font-size:var(--f2);font-weight:500;letter-spacing:.12em;color:var(--on-night);padding-bottom:10px;border-bottom:.5px solid #C29A55;}
+.colo p,.colo dd,.colo dt{font-size:var(--f1);line-height:1.9;letter-spacing:.04em;}
+.colo p{margin-top:10px;}
+.colo dl{margin-top:12px;}
+.colo dl div{display:grid;grid-template-columns:6em 1fr;gap:10px;padding:6px 0;border-bottom:.5px solid var(--line-n);}
+.colo dt{color:var(--on-night);}
+#legal dd,dd small{word-break:auto-phrase;}
+.credit{padding:0 0 24px;font-size:var(--f1);line-height:1.85;letter-spacing:.04em;}
+.credit .credit-in{grid-column:1 / -1;margin-left:0;padding-top:18px;border-top:.5px solid var(--line-n);}
+.credit p+p{margin-top:4px;}
+.credit .url{overflow-wrap:anywhere;}
+.credit .nw{white-space:normal;}
+.ft-end{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px;padding:clamp(28px,3vw,44px) calc(var(--bleed) + var(--fp)) clamp(28px,3vw,40px) var(--bleed);border-top:.5px solid var(--line-n);}
+.ft-mark{display:flex;align-items:center;gap:16px;}
+.ft-logo{display:block;width:40px;height:50px;background:#E4DCC8;-webkit-mask:url(site/logo.svg) center/contain no-repeat;mask:url(site/logo.svg) center/contain no-repeat;}
+.ft-name{font-size:var(--f2);letter-spacing:.3em;padding-left:.3em;color:#E4DCC8;}
+.ft-name>span:not(.nk){font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.2em;margin-left:1em;}
+.copyright{margin:0;color:var(--on-night-2);text-align:right;font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.18em;text-transform:uppercase;}
+
+/* ══════════ 右下の札・スマホの追従バー ══════════ */
+.tab{position:fixed;right:0;bottom:clamp(20px,5vh,56px);z-index:30;display:flex;align-items:center;gap:14px;width:46px;padding:20px 0 18px;
+  writing-mode:vertical-rl;background:var(--ink);color:var(--ground);text-decoration:none;font-size:var(--f1);letter-spacing:.14em;line-height:1;transition:padding .3s,opacity .3s;
+  box-shadow:inset 0 1px 0 var(--gold);}
+.tab::after{content:"";width:1px;height:28px;background:var(--gold);}
+.tab:hover{padding-bottom:26px;}
+.mcta{display:none;}
+
+/* ══════════ えらぼっと（別ページ） ══════════ */
+.era-page{--pb:var(--sp-m);}
+.band-era{min-height:clamp(440px,44vw,600px);}
+.band-era img{left:auto;right:0;width:56%;object-position:50% 30%;}
+.band-era::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,var(--night) 0,var(--night) 44%,rgba(21,24,26,0) 62%,rgba(21,24,26,0) 100%);}
+.band-era canvas[data-art="kanze"]{z-index:1;-webkit-mask-image:linear-gradient(90deg,#000 0,rgba(0,0,0,.7) 34%,transparent 50%);mask-image:linear-gradient(90deg,#000 0,rgba(0,0,0,.7) 34%,transparent 50%);opacity:.55;}
+.era-page>.byo{padding-top:var(--sp-m);}
+.era-lead{grid-column:2 / 5!important;margin-bottom:40px;}
+.era-door{grid-column:2 / 5;margin-top:28px;color:var(--on-night);}
+.era-door>p:first-child{font-size:var(--f3);line-height:1.8;letter-spacing:.06em;max-width:24em;}
+.era-door .kane{margin-top:26px;color:#fff;}
+.era-lead .ja-b p{font-size:var(--f3);line-height:1.8;}
+.era-page .pair{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);column-gap:calc(var(--fp) * 2);align-items:start;}
+.diagram{background:var(--night);padding:clamp(18px,2.4vw,36px);align-self:start;}
+.diagram svg{width:100%;height:auto;}
+.diagram .br{stroke-dasharray:420;stroke-dashoffset:0;transition:stroke-dashoffset 1.2s cubic-bezier(.4,.1,.2,1);}
+@media (prefers-reduced-motion:no-preference){.js .diagram.rv:not(.in) .br{stroke-dashoffset:420;}}
+.proc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:64px;border-top:1px solid var(--ink);}
+.proc li{padding:22px var(--fp) 6px 0;}
+.proc li+li{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.proc .n{font-family:var(--ff-en);font-weight:500;font-size:var(--f5);letter-spacing:.04em;font-variant-numeric:lining-nums;line-height:1;color:var(--gold);}
+.proc h3{margin-top:12px;font-size:var(--f3);letter-spacing:.08em;}
+@media (min-width:901px){.proc h3{min-height:calc(var(--lh-h) * 2em);}}
+.proc p{margin-top:8px;color:var(--ink-2);}
+.erabo-plan{grid-column:2 / -1!important;}
+.erabo-plan dl{border-top:1px solid var(--ink);}
+.erabo-plan dl div{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 20px;padding:16px 0;border-bottom:.5px solid var(--line-2);}
+.erabo-plan dt{letter-spacing:.08em;white-space:nowrap;}
+.erabo-plan dd{margin-left:auto;font-size:var(--f3);font-weight:500;letter-spacing:.04em;text-align:right;font-feature-settings:"tnum","palt";}
+.erabo-plan dd .pn{font-family:var(--ff-en);font-size:var(--f5);font-variant-numeric:lining-nums;line-height:1;}
+.erabo-plan dd .pt,.erabo-plan dd .pu{font-size:var(--f1);color:var(--ink-2);}
+.erabo-plan p{margin-top:18px;color:var(--ink-2);}
+
+/* ══════════ 見本帳を六曲の格子に乗せる（PC） ══════════
+   2026-10-01 修正役V：業種の札は6扇にぴたりと1枚ずつ（subgrid）。見出しと説明は他の章と同じ扇2の端から。
+   2026-10-01 昼（組み手1）：五曲の扇は外した。見本の窓の組みは mado.css */
+@media (min-width:901px){
+  .works-body>.inds{grid-column:1 / -1;margin-inline:0;display:grid;grid-template-columns:subgrid;}
+  .inds>.step{grid-column:1 / -1;display:grid;grid-template-columns:subgrid;align-items:start;}
+  .inds>.step>*{grid-column:2 / -1;margin-inline:var(--fp);min-width:0;}
+  .step-ind .step-h{border-bottom:0;padding-bottom:0;}
+  .inds>.step>.chips{grid-column:1 / -1;margin-inline:0;grid-template-columns:subgrid;margin-top:26px;border-top:1px solid var(--ink);border-bottom:.5px solid var(--line-2);}
+  .chip{padding-inline:var(--fp);}
+  .chip:nth-child(-n+6){border-top:0;}
+}
+
+/* ══════════ 出てくる動き（1種類だけ：4px 上がりながら .5 秒） ══════════ */
+.js .rv,.js .rv-scroll{opacity:0;transform:translateY(4px);transition:opacity .5s ease-out,transform .5s ease-out;}
+.js .rv.in,.js .rv-scroll.in{opacity:1;transform:none;}
+.js .dai.rv{transform:none;}
+.js .dai.rv:not(.in){opacity:0;}
+
+/* ══════════ 幅ごと ══════════ */
+@media (max-width:1100px){
+  .about-txt h1,#about-h{font-size:clamp(34px,4.3vw,52px);}
+
+  .nav{gap:14px;}
+  .nav a{letter-spacing:.12em;}
+  .tab{width:36px;gap:10px;padding:16px 0 14px;}
+}
+/* タブレット：4枚の扇。題箋は章の頭に横に寝かせる */
+@media (max-width:900px){
+
+  :root{--hd:62px;--fp:clamp(10px,1.6vw,16px);}
+  .byo{--cols:4;}
+  .nav{display:none;}
+  .menu-btn{display:block;}
+  .js .hd:not(.is-solid){height:150px;padding-top:24px;}
+  .logo-b .logo-img{height:84px;}
+  .logo-b .j{font-size:var(--f3);}
+  .scroll{display:none;}
+  .dots{top:auto;bottom:18px;right:10px;}
+  .dots .num::before{height:16px;margin-bottom:8px;}
+  .byo>:not(.dai),.about-txt,.about-art,.works-lead,.contact-in,.contact-solo .contact-in,.era-lead,.era-door,.erabo-plan,.band-door .ja-h{grid-column:1 / -1!important;}
+  .dai{grid-column:1 / -1;grid-row:auto;position:static;flex-direction:row;align-items:center;flex-wrap:wrap;gap:0;margin:0 var(--fp) 36px;}
+  /* 横に寝かせた題箋では、漢数字を金の細い枠（落款）に入れる。「一」が罫に見えないように */
+  .dai-n{flex:none;display:grid;place-items:center;width:40px;height:40px;font-size:var(--f4);border:.5px solid currentColor;line-height:1;}
+  .dai-n{margin:0 16px 0 0;}
+  .hd{padding-inline:calc(var(--gut) + var(--fp));}
+  .hero-plate{left:calc(var(--gut) + var(--fp));}
+  .colo-in>:first-child,.credit .credit-in{margin-left:var(--fp);}
+  .dai-t{writing-mode:horizontal-tb;font-size:var(--f3);letter-spacing:.2em;}
+  .dai-l{display:flex;align-items:center;margin:0;}
+  .dai-l::before{display:inline-block;width:28px;margin:0 14px 0 18px;}
+  .band-door .dai{margin-bottom:20px;}
+  .about-art{margin:40px calc(var(--gut) * -1) 0!important;}
+  .about-art img{aspect-ratio:16/9;}
+  .keys{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .keys li:nth-child(1){grid-column:span 2;}
+  .keys li:nth-child(2){grid-column:span 2;}
+  .keys li:nth-child(3){grid-column:1 / -1;box-shadow:none;}
+  .lede{grid-template-columns:1fr;row-gap:18px;}
+  .reasons{grid-template-columns:1fr;margin-top:40px;}
+  .rs{padding:28px var(--fp) 0;}
+  .rs+.rs{box-shadow:inset 0 .5px 0 var(--line-2);margin-top:28px;}
+  .rs h3{min-height:0;}
+  .rs .n{font-size:var(--f5);}
+  .band-works::after{background:linear-gradient(180deg,rgba(21,24,26,0) 0,rgba(21,24,26,0) 30%,var(--night) 50%,var(--night) 100%);}
+  .band-works img{transform:none;height:56%;object-position:80% 30%;}
+  .band-door{padding-top:calc(clamp(220px,40vw,340px));min-height:0;}
+  .band-door .ja-h{font-size:var(--f5);}
+  .chip{padding:0 10px;letter-spacing:.1em;}
+  .chips{border-bottom:.5px solid var(--line-2);}
+
+  .plans,.plan-notes,.daiko{grid-template-columns:1fr;row-gap:20px;}
+  .plan-notes>div{padding-inline:0;}
+  .daiko-lead{margin-top:10px;}
+  .fl{grid-template-columns:64px minmax(0,1fr) auto;column-gap:16px;}
+  .fl-n{font-size:var(--f5);}
+  .fl-b{grid-column:1 / -1;grid-row:2;margin-top:12px;}
+  .fl-t{grid-column:3;grid-row:1;padding-top:0;align-self:end;}
+  .fl-t b{display:inline;margin-left:.6em;font-size:var(--f2);}
+  /* 代表：絵と名前を横に並べ、その下に 表・本文・畳んだ4つ（経歴・資格は閉じて始まる） */
+  .pf{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:calc(var(--fp) * 2 + 8px);margin-inline:var(--fp)!important;align-items:end;}
+  .pf>*,.pf-r>*{margin-inline:0;}
+  .pf-l,.pf-r{display:contents;}
+  .pf .ph{grid-column:1;}
+  .pf-name{grid-column:2;align-self:end;margin-top:0;}
+  .pf-r>*,.pf-cv{grid-column:1 / -1;}
+  .pf-r>.info{order:1;margin-top:36px;}
+  .pf-r>.pf-body{order:2;}
+  .pf-cv{order:3;margin-top:44px;border-top:1px solid var(--ink);border-bottom:.5px solid var(--line-2);}
+  .pf-cv>summary{display:grid;}
+  .pf-cv .tbl:last-child{padding-bottom:26px;}
+  .pf-r>.tbl-fold{order:4;}
+  .pf-r>.tbl-fold:first-of-type{margin-top:0;border-top:0;}
+  .contact{--cols:4;}
+  .contact>.dai{margin-top:var(--sp-l);}
+  .contact-in{padding-block:0 var(--sp-m);}
+  .contact-art{grid-column:1 / -1!important;grid-row:auto;margin:0 calc(var(--gut) * -1)!important;min-height:clamp(220px,50vw,380px);}
+  .tab{display:none;}
+  .mcta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;gap:10px;align-items:center;
+    padding:8px var(--gut) calc(8px + env(safe-area-inset-bottom));min-height:calc(60px + env(safe-area-inset-bottom));background:var(--paper);box-shadow:0 -.5px 0 var(--line-2);
+    transform:translateY(110%);visibility:hidden;transition:transform .35s,visibility 0s .35s;}
+  .mcta.on{transform:none;visibility:visible;transition:transform .35s,visibility 0s 0s;}
+  .mcta a{text-decoration:none;}
+  .mcta .f{flex:1;font-size:var(--f1);line-height:1.45;letter-spacing:.04em;min-height:44px;display:flex;flex-direction:column;justify-content:center;color:var(--ink);}
+  .mcta .f span{white-space:nowrap;}
+  .mcta .f-era,.mcta.era .f-hp{display:none;}
+  .mcta.era .f-era{display:flex;}
+  .mcta .b{flex:none;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 20px;background:var(--ink);color:var(--ground);font-size:var(--f1);letter-spacing:.1em;white-space:nowrap;}
+  .band-era{padding-top:calc(clamp(260px,44vw,360px) + 24px);}
+  .band-era img{width:100%;height:clamp(260px,44vw,360px);top:0;bottom:auto;}
+  .band-era::after{background:linear-gradient(180deg,rgba(21,24,26,0) 0,rgba(21,24,26,0) 55%,var(--night) clamp(260px,44vw,360px),var(--night) 100%);}
+  .band-door canvas{-webkit-mask-image:linear-gradient(180deg,#000 0,#000 25%,rgba(0,0,0,.3) 60%,transparent 88%);mask-image:linear-gradient(180deg,#000 0,#000 25%,rgba(0,0,0,.3) 60%,transparent 88%);}
+  .era-page .pair{grid-template-columns:1fr;row-gap:28px;}
+  .proc{grid-template-columns:1fr 1fr;}
+  .proc li:nth-child(3){padding-left:0;box-shadow:none;}
+  .proc li:nth-child(n+3){border-top:.5px solid var(--line-2);}
+}
+/* スマホ：2枚の扇。左右の余白 20px */
+@media (max-width:620px){
+  :root{--gut:20px;--fp:0px;--sp-m:64px;--sp-l:88px;}
+  .byo{--cols:2;}
+  .about-txt h1,#about-h,.band-door .ja-h{font-size:var(--f5);letter-spacing:.06em;}
+  .ja-h{font-size:var(--f4);}
+  .about-lead{margin-top:24px;}
+  .keys{grid-template-columns:1fr 1fr;margin-top:40px;}
+  .keys li,.keys li:nth-child(n){grid-column:1 / -1;padding:16px 0 4px;box-shadow:none;}
+  .keys li+li{border-top:.5px solid var(--line-2);}
+  .keys li:first-child{border-top:1px solid var(--ink);}
+  .about-go .box-ln{width:100%;}
+  .rs{padding-inline:0;}
+  .band-door .dai-l{display:none;}
+  .dai-t{letter-spacing:.14em;}
+  .dai-l::before{width:20px;margin:0 10px 0 14px;}
+  .chips{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .chip{min-height:52px;padding:0 8px;letter-spacing:.1em;}
+  .chip:nth-child(6n+1){box-shadow:inset .5px 0 0 var(--line);}
+  .chip:nth-child(3n+1){box-shadow:none;}
+
+  .sec:not(.sp-night-next){--pb:56px;}
+  .contact-in>.contact-lede{font-size:var(--f4);margin-bottom:20px;}
+  .ft-end{flex-direction:column;align-items:flex-start;padding-bottom:calc(28px + env(safe-area-inset-bottom));}
+  .copyright{text-align:left;}
+
+  .plan{padding:24px 20px;}
+  .row{grid-template-columns:1fr;}
+  .row .p{text-align:left;}
+  .flow{columns:1;}
+  .fl{grid-template-columns:48px minmax(0,1fr) auto;}
+  .fl-s .fl-d{display:none;}
+  .pf{column-gap:18px;}
+  .pf-name b{font-size:var(--f3);letter-spacing:.12em;}
+  .pf-sep{display:none;}
+  .pf-name small>.nw{display:block;}
+  .tbl dl div,.info dl div{grid-template-columns:5.4em 1fr;}
+  .labs{grid-template-columns:1fr;}
+  .labs div{box-shadow:none;}
+  .labs div+div{border-top:.5px solid var(--line-2);}
+  .qa summary{grid-template-columns:2.4em 1fr 14px;gap:10px;}
+  .qa .qt{font-size:var(--f2);}
+  .qa .qa-a{padding-left:0;}
+  .mail-a{font-size:var(--f4);}
+  .ln::after{width:44px;}
+  .copyright{letter-spacing:.1em;}
+
+  .proc{grid-template-columns:1fr;}
+  .proc li,.proc li+li{padding-left:0;box-shadow:none;}
+  .proc li+li{border-top:.5px solid var(--line-2);}
+  .erabo-plan dd{font-size:var(--f2);}
+  /* 本文は手で入れた改行を効かせず、行末までふつうに詰めて組む */
+  .ja-b br,.dz-note br,.sheet p br,.send p br,.mail small br{display:none;}
+  p,dd,li{text-align:start;}
+  .rs p .nw,.pf-body .nw,.qa-a .nw,.daiko p .nw{white-space:normal;}
+  .rs p .nk,.pf-body .nk,.qa-a .nk,.daiko p .nk{white-space:nowrap;}
+  .step-p,.send p,.sheet p{overflow-wrap:anywhere;}
+}
+@media (max-width:900px) and (max-height:520px){
+  .hero{height:100svh;min-height:0;}
+  .hero-plate{bottom:max(18px,env(safe-area-inset-bottom));}
+}
+
+@media (max-width:900px) and (max-height:699px){
+  .mnav ol{margin-top:12px;}
+  .mnav li a{padding:11px 0;}
+  .mnav-mail{margin-top:16px;}
+  .mcta{min-height:0;padding:2px var(--gut) calc(2px + env(safe-area-inset-bottom));}
+  .mcta .f{flex-direction:row;align-items:center;justify-content:flex-start;}
+  .mcta .f-hp span+span{display:none;}
+  .mcta.era .f-era{flex-direction:column;align-items:flex-start;line-height:1.3;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{transition:none!important;animation:none!important;}
+  .js .rv,.js .rv-scroll{opacity:1;transform:none;}
+}
+
+/* ══════════ 2026-10-01 修正役L（組みと操作） ══════════ */
+/* 「見本を見る」（扉・ABOUT・FLOW 01・結）は、見本帳の帯ではなく業種の札の段に着地させる */
+#works-pick{scroll-margin-top:16px;}
+
+/* ══════════ 2026-10-01 修正役V 第2周（絵と装い） ══════════ */
+/* 章の頭：継ぎ目だけの空白の帯を詰める。扉の下では ABOUT の題箋と見出しの頭が覗く。章の下はどこも同じ値 */
+.sec{--pt:clamp(56px,5vw,72px);--pb:clamp(64px,6.4vw,92px);}
+.sp-night-next{--pb:clamp(64px,6.4vw,92px);}
+#about{--pt:44px;}
+/* 料金を白の地にしたので、2枚の料金の面は胡粉に。白の章の中の白い面（札の hover・代表の準備中）も胡粉にする */
+.s-face .plan{background:var(--ground);}
+.s-face .labs div{background:var(--ground);}
+@media (hover:hover){.s-ground .chip:hover{background:var(--paper);}}
+
+/* 扉：PC は値段と動線を横組みで（左下の札）。縦の札は「会社のホームページ制作」の題だけ */
+.hero-deal{display:none;}
+@media (min-width:901px){
+  .hero-deal{display:block;position:absolute;z-index:3;left:calc(var(--bleed) + var(--fp));bottom:clamp(40px,6vh,64px);
+    padding:22px 26px 24px;background:rgba(246,241,229,.9);box-shadow:inset 1px 0 0 var(--gold);color:#1D2123;}
+  .hx-p{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 2px;font-size:var(--f3);font-weight:500;letter-spacing:.06em;line-height:1.3;font-feature-settings:"palt";}
+  .hx-p .kn-u{font-size:var(--f2);margin-right:.4em;}
+  .hx-p .kn-n{font-family:var(--ff-en);font-size:var(--f5);font-weight:500;letter-spacing:.02em;font-variant-numeric:lining-nums;line-height:1;margin-right:.08em;}
+  .hx-p .kn-t{font-size:var(--f1);color:var(--ink-2);}
+  .hx-s{display:inline-block;width:1px;height:1.1em;margin:0 16px;background:var(--gold);align-self:center;}
+  .hx-go{display:flex;align-items:stretch;gap:12px;margin-top:18px;}
+  .hx-go .box-ln{min-height:50px;padding:0 26px;}
+  .hx-ln{display:inline-flex;align-items:center;min-height:50px;padding:0 24px;border:.5px solid #1D2123;text-decoration:none;letter-spacing:.12em;color:#1D2123;transition:background-color .25s;}
+  .hx-ln:hover{background:rgba(255,255,255,.5);}
+  .hp-k{font-size:var(--f4);letter-spacing:.34em;}
+  /* 金地の絵（八橋・老松）：頭の帯とロゴの下に胡粉の霞。左下の scroll の下にも淡く */
+  .hero[data-tone="gold"]::after{height:250px;background:linear-gradient(180deg,rgba(243,241,235,.84) 0,rgba(243,241,235,.66) 55%,rgba(243,241,235,0) 100%);}
+  .hero-ph .h3{object-position:100% 0;transform:scale(1.52);}
+  .hero-ph .h3.on{transform:scale(1.46);}
+}
+@media (max-width:620px) and (max-height:700px){.hero{height:80svh;min-height:480px;}}
+
+/* 一 ABOUT：絵の高さを本文に合わせる（左の段の下の空白をなくす）。要点の帯は本文の左端から、3列等幅 */
+@media (min-width:901px){
+  .about-art{align-self:stretch;min-height:420px;}
+  .about-art img{position:absolute;inset:0;height:100%;aspect-ratio:auto;}
+  .about-txt{padding-bottom:8px;}
+}
+.keys{grid-template-columns:repeat(3,minmax(0,1fr));margin-inline:var(--fp)!important;}
+.keys li:nth-child(n){grid-column:auto;}
+.keys li:first-child{padding-left:0;}
+@media (max-width:900px) and (min-width:621px){
+  .keys{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .keys li:nth-child(n){grid-column:auto;}
+  .keys li:nth-child(3){box-shadow:inset .5px 0 0 var(--line-2);}
+}
+
+/* タブレットの PC 幅（901〜1100px）：五曲を版面の全幅に（札の左端とそろえる） */
+
+@media (max-width:620px){
+
+  .band-door .dai-l{display:flex;}
+}
+
+/* 六 代表：経歴・資格は閉じて始める（PC でも summary を出す）。閉じているあいだ、左の絵と名前は読むあいだ付いてくる */
+@media (min-width:901px){
+  .pf-cv{border-top:1px solid var(--ink);border-bottom:.5px solid var(--line-2);}
+  .pf-cv>summary{display:grid;}
+  .pf-cv .tbl:last-child{padding-bottom:26px;}
+  .pf-cv .tbl:first-of-type{margin-top:4px;}
+  .pf-l:has(.pf-cv:not([open])){position:sticky;top:calc(var(--hd) + 32px);}
+}
+
+/* 結 CONTACT の絵：流れと白い花が入るように裁ち直す */
+.contact-art img{object-position:0% 58%!important;}
+@media (max-width:900px){
+  .contact-art{min-height:clamp(240px,40vw,340px);}
+  .contact-art img{object-position:0% 18%!important;}
+}
+
+/* スマホの題箋：囲みの四角をやめ、漢数字＋金の縦罫1本＋章題 */
+@media (max-width:900px){
+  .dai-n{width:auto;height:auto;border:0;padding-right:16px;margin-right:16px;box-shadow:inset -.5px 0 0 var(--gold);font-size:var(--f4);line-height:1.2;}
+  .s-night .dai-n,.band-door .dai-n{box-shadow:inset -.5px 0 0 #C29A55;}
+}
+
+/* えらぼっと：説明の段は 40字まで。扉の見出しは絵にかからない大きさ。結の右半分に観世水 */
+.erabo-plan p{max-width:40em;}
+@media (min-width:901px){
+  .band-era .ja-h{font-size:clamp(38px,3.1vw,44px);}
+  .band-era img{width:48%;}
+  .band-era::after{background:linear-gradient(90deg,var(--night) 0,var(--night) 52%,rgba(21,24,26,0) 64%,rgba(21,24,26,0) 100%);}
+}
+.era-makie img{object-position:0% 100%!important;transform:scale(1.5);transform-origin:0% 100%;}
+@media (max-width:900px){.era-makie img{transform:scale(1.2);}}
+@media (max-width:620px){
+  .keys{grid-template-columns:1fr;}
+  .keys li:nth-child(n){grid-column:1 / -1;}
+}
+/* 扉の scroll：左下に値段と動線の札を置いたので、PC では出さない（次の章の頭が覗くのが同じ役） */
+@media (min-width:901px){.scroll{display:none;}}
+
+/* ══════════ 2026-10-01 修正役L 第2周（組みと操作） ══════════ */
+
+/* 奥付のプライバシーポリシー：開閉。見出しの右に ＋／− */
+.pp>summary{list-style:none;cursor:pointer;position:relative;min-height:44px;}
+.pp>summary::-webkit-details-marker{display:none;}
+.pp>summary h2{padding-right:40px;}
+.pp-m{position:absolute;right:0;top:0;bottom:10px;width:44px;}
+.pp-m::before,.pp-m::after{content:"";position:absolute;right:10px;top:50%;width:14px;height:1px;background:#C29A55;transition:transform .3s;}
+.pp-m::after{transform:rotate(90deg);}
+.pp[open] .pp-m::after{transform:rotate(0);}
+.pp>summary:focus-visible{outline:2px solid #C29A55;outline-offset:4px;}
+/* タブレットのメニュー：行を少し高くし、メールの行を下端へ置いて、下の空きを締める */
+@media (min-width:621px) and (max-width:900px) and (min-height:900px){
+  .mnav li a{padding:24px 0;}
+  .mnav-mail{margin-top:auto;padding-top:24px;border-top:.5px solid var(--line-2);}
+}
+
+/* ══════════ 2026-10-01 修正役V 第3周（絵と装い） ══════════ */
+:root{--ff-go:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;}
+
+/* 本文の段落は、ふつうの和文の折り返し（どこでも折れる）で行の右端をそろえる。文節で送ると右端が大きく欠けていた。
+   数字と単位・金額は hp_build.py が割らない塊（.nk）にしている。見出し・札・短い添え書きは文節のまま */
+.ja-b p,.rs p,.fine,.sheet p,.fl-p,.pf-body p,.qa-a p,.dz-note,.daiko p,.daiko-lead,.contact-in>p,.step-p,.erabo-plan p,.proc p,.labs p,.ways p,.tbl .note,
+.era-door p,.pair p,.mail small,.plan .row p{word-break:normal;line-break:strict;}
+
+/* 字の塊が flex の中で別の箱にならないように（「18業種」「5案」の前後に隙間が出ていた） */
+:is(.ln,.box-ln,.hx-ln,.te-v,.mcta .f span)>.nk{display:contents;}
+.plan-notes .fine{word-break:normal;max-width:32em;}
+
+/* ── 二 WHY：3列の段（番号・見出し・本文・出典）を横に通し、出典の罫を1本の線にそろえる。02 は罫だけ ── */
+.lede{align-items:start;}
+@media (min-width:901px){
+  .reasons{grid-template-rows:auto auto 1fr auto;}
+  .rs{display:grid;grid-row:span 4;grid-template-rows:subgrid;align-content:start;}
+  .rs h3{min-height:0;}
+  .rs .src{margin-top:0;}
+  .rs:not(:has(.src))::after{content:"";grid-row:4;align-self:start;border-top:.5px solid var(--line-2);}
+}
+@media (max-width:620px){.reasons{margin-top:28px;}.rs:first-child{padding-top:12px;}}
+
+/* ── 三 WORKS：業種の札を題箋の型に（左上に番号、業種名は 17px）。選んだ札は白い色紙に上の金罫 ── */
+.chips{counter-reset:ch;}
+.chip{counter-increment:ch;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;min-height:66px;padding-block:10px 8px;font-size:17px;letter-spacing:.14em;}
+.chip::after{content:counter(ch,decimal-leading-zero);order:-1;font-family:var(--ff-en);font-weight:500;font-size:13px;letter-spacing:.18em;line-height:1;color:var(--gold);font-variant-numeric:lining-nums;}
+@media (max-width:620px){.chip{min-height:58px;font-size:16px;letter-spacing:.08em;}}
+.chip-live{margin-top:10px;}
+
+/* 業種を選ぶ前は「↑ 業種を選ぶ」を出さない（札がすぐ上に見えている） */
+
+/* ── 四 PRICE：値段は見出しの下の段に（行からはみ出さない）。主の 98,000 は扉と同じ 52px、ほかは 34px ── */
+.row{grid-template-columns:minmax(0,1fr);gap:2px 0;}
+.row .p{text-align:left;white-space:nowrap;}
+.plan:first-child .row:first-of-type .pn{font-size:var(--f6);}
+.plan:first-child .row:first-of-type{padding-top:22px;}
+@media (max-width:620px){.plan:first-child .row:first-of-type .pn{font-size:44px;}}
+
+/* ── 五 FLOW（1101px 以上）：4手順を四曲の扇として横に並べる。継ぎ目は 0.5px ── */
+@media (min-width:1101px){
+  .flw{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.45fr) minmax(0,1.15fr) minmax(0,.95fr);border-top:1px solid var(--ink);}
+  .fl>*{min-width:0;max-width:100%;}
+  .fl-p{overflow-wrap:anywhere;letter-spacing:.02em;}
+  .send .box-ln{white-space:nowrap;}
+  .sheet .dl-n{white-space:normal;}
+  .fl{display:flex;flex-direction:column;padding:26px var(--fp) 8px;border-bottom:0;box-shadow:inset .5px 0 0 var(--line);}
+  .fl:first-child{box-shadow:none;padding-left:0;}
+  .fl:last-child{padding-bottom:8px;}
+  .fl-n{order:0;}
+  .fl-t{order:1;justify-self:auto;text-align:left;padding-top:14px;}
+  .fl-t b{display:inline;margin-left:.5em;font-size:var(--f2);}
+  .fl-b{order:2;margin-top:18px;padding-top:18px;border-top:.5px solid var(--line-2);}
+  .fl-b h3{font-size:var(--f3);min-height:3em;}
+  .sheet{display:block;margin-top:18px;padding:18px 18px 20px;}
+  .sheet h4{font-size:var(--f2);font-weight:600;}
+  .sheet .box-ln{margin-top:16px;width:100%;padding:0 18px;}
+  .send .box-ln{width:100%;}
+}
+
+/* ── 六 PROFILE：是真の絵は扇2枚分を縦長に大きく裁つ ── */
+@media (min-width:901px){.pf-l .ph img{aspect-ratio:3/4;object-position:40% 30%;}}
+.pf-cv summary h3{font-size:var(--f3);letter-spacing:.1em;}
+
+/* ── 結 CONTACT：絵は左下の白い花と草、岩の裾で裁つ ── */
+@media (min-width:901px){.contact-art img{object-position:0% 100%!important;transform:scale(1.42);transform-origin:0% 100%;}}
+@media (max-width:900px){.contact-art img{object-position:0% 84%!important;}}
+/* 夜の結びと墨の奥付の境に、金の細罫1本 */
+footer{box-shadow:inset 0 .5px 0 rgba(194,154,85,.55);}
+
+/* ── erabot：結びは観世水と砂子だけ ── */
+.era-kanze{background:#171B1D;}
+
+/* ── 頭の帯：ホバーは字を薄くせず、今いる章と同じ金の短い罫を出す ── */
+@media (hover:hover){.nav a:hover{opacity:1;}.nav a:hover::after{width:22px;}}
+
+/* ── 扉（スマホ・タブレット）：ロゴを小さく、札の題を 19px に、札の中に「見本を見る」。金地の上の◇に胡粉の台 ── */
+.hp-mi{display:none;}
+@media (max-width:900px){
+  .hp-k{font-size:var(--f3);letter-spacing:.1em;color:#1D2123;}
+  .hp-mi{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:4px;font-size:var(--f2);letter-spacing:.1em;color:#1D2123;text-decoration:none;}
+  .hp-mi::after{content:"";width:28px;height:1px;background:var(--gold);}
+  .hp-mi span{display:none;}
+  .hero[data-tone="gold"] .dots{background:rgba(246,241,229,.78);padding:2px 0 8px;}
+}
+@media (max-width:620px){
+  .js .hd:not(.is-solid){height:128px;}
+  .logo-b{gap:8px;}
+  .logo-b .logo-img{height:60px;}
+  .logo-b .j{font-size:var(--f2);}
+  /* 章の頭の継ぎ目（1本だけの短い線になる）はスマホでは出さない */
+  .sec:not(.has-band)>.byo:first-of-type::before{display:none;}
+}
+/* 375 でダウンロードの釦が囲みの右から出ていた */
+@media (max-width:620px){.sheet{padding:20px 18px;}.sheet .box-ln{width:100%;max-width:100%;padding:0 18px;}.sheet .dl-n{white-space:normal;}}
+
+/* ══════════ 2026-10-01 修正役L 第3周（組みと操作） ══════════ */
+/* メニューから章へ飛んだあと、焦点を移した見出しには枠を出さない（キーボードで来たときだけ枠を出す） */
+.land-f:focus:not(:focus-visible){outline:none;}
+
+/* ══════════ 2026-10-01 修正役V 第5周（絵と装い） ══════════ */
+
+/* 扉：左下の値段の札は白い四角をやめ、左から右へ消える霞の地に。左の金罫1本だけ残す */
+@media (min-width:901px){
+  /* 扉の札の地・縁・字の光は mihon.css の f2 に一本化した */
+}
+/* 375 など：札の右端が頁送りの数字に寄っていた */
+@media (max-width:620px){.hero-plate{max-width:calc(100% - var(--gut) - 92px);}}
+
+/* 四 PRICE：主の面（ホームページ作成）を広く、あとから直すときは面を張らず罫だけの表に。注記は1本の欄に */
+.plan-notes{grid-template-columns:minmax(0,1fr);}
+.plan-notes .fine{max-width:34em;}
+@media (min-width:901px){
+  .plans{grid-template-columns:minmax(0,3fr) minmax(0,2fr);}
+  .s-face .plan+.plan,.plan+.plan{background:none;padding-inline:0;}
+  .plan-notes>div{padding-inline:clamp(26px,3vw,44px) 0;}
+}
+/* 公開設定の代行：説明ごと1つの開閉に */
+.daiko.daiko-fold{display:block;margin-top:40px;padding-top:0;border-top:1px solid var(--ink);}
+.daiko-fold .df-t{display:flex;flex-direction:column;gap:4px;}
+.daiko-fold .df-t .vh3{font-size:var(--f3);letter-spacing:.1em;}
+.df-s{font-size:var(--f1);color:var(--ink-2);letter-spacing:.06em;}
+.daiko-fold summary{padding:18px 0;}
+.daiko .df-b>p{max-width:40em;}
+.daiko .df-b>p+p,.daiko .df-b>.flow+p{margin-top:12px;}
+@media (max-width:620px){.plan{padding-inline:16px;}}
+
+/* 五 FLOW：4手順は等幅。補足は本文の段（16px）。ご記入シートの囲みは4列の下にまたがる帯 */
+.fl-d{font-size:var(--f2);letter-spacing:.04em;}
+.sheet.flw-sheet{margin-top:28px;}
+@media (min-width:1101px){
+  .flw{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .sheet.flw-sheet{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px 48px;margin-top:32px;padding:26px 30px;}
+  .sheet.flw-sheet h4{font-size:var(--f3);font-weight:500;}
+  .sheet.flw-sheet p{max-width:38em;}
+  .sheet.flw-sheet .box-ln{margin-top:0;width:auto;padding:0 28px;}
+  .sheet.flw-sheet .dl-n{white-space:nowrap;}
+}
+
+@media (min-width:901px){.plans{align-items:start;}}
+/* スマホ：メニューの「見本」で着いた画面に、業種の札の1段目が見えるように。帯の絵を低くし、リード文は札と五曲のあとへ回す */
+@media (max-width:620px){
+  .band-works.band-door{padding-top:150px;padding-bottom:32px;}
+  #works>.works-body{padding-top:28px;}
+  .works-body>.works-lead{order:2;margin-top:40px;}
+  .works-body>.inds{order:1;}
+  .works-body>.inds>.step-ind{margin-top:0;}
+}
+.plan .row p,.plan .fine{text-wrap:wrap;}
+@media (max-width:620px){.colo{padding-bottom:16px;}}
+/* タブレット（621〜900px）：理由の間の罫を本文の列にそろえる。要点の帯は（税込）を円の横に。代表の絵は 5:4 に裁って右の空きを減らす */
+@media (min-width:621px) and (max-width:900px){
+  .rs{padding-inline:0;margin-inline:var(--fp);}
+  .keys .k-v{white-space:nowrap;}
+  .keys .k-v .kn-n{font-size:var(--f4);}
+  .keys .k-v .kn-t{font-size:var(--f1);}
+  .keys .k-s .nw{white-space:normal;}
+  .pf-l .ph img{aspect-ratio:5/4;object-position:40% 30%;}
+}
+/* 1024〜1180px：ナビの和文の2段目を外し、英字だけで項目の間を空ける（えらぼっとは和文のまま） */
+@media (min-width:901px) and (max-width:1180px){
+  .nav{gap:26px;}
+  .nav a:not(.nav-era) .nj{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .nav a.nav-era{padding-left:22px;}
+}
+
+/* ── 2026-10-01 修正役L 第5周 ── */
+/* 扉（900px 以下）：札の中に「見本を見る」と並べて「お問い合わせ」も置く（PC の扉と同じ2つの入口） */
+.hp-mis{display:none;}
+@media (max-width:900px){
+  .hp-mis{display:flex;flex-wrap:wrap;column-gap:20px;}
+  .hp-mis .hp-mi::after{width:20px;}
+}
+/* erabot のしくみ：4手順の区切りの縦線が 0.5px の影では1本しか描かれない幅があったので、1px の淡い罫にする */
+@media (min-width:901px){
+  .proc li+li{box-shadow:none;border-left:1px solid var(--line);}
+}
+@media (min-width:621px) and (max-width:900px){
+  .proc li:nth-child(2n){box-shadow:none;border-left:1px solid var(--line);}
+}
+/* スマホ：2つの入口を1行に収める（金の罫の代わりに金の下線、間に細い縦罫）。札が2段に伸びて絵を隠さないように */
+@media (max-width:620px){
+  .hp-mis{flex-wrap:nowrap;column-gap:0;}
+  .hp-mis .hp-mi{letter-spacing:.06em;text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:1px;text-underline-offset:7px;}
+  .hp-mis .hp-mi::after{display:none;}
+  .hp-mis .hp-mi+.hp-mi{position:relative;margin-left:14px;padding-left:14px;}
+  .hp-mis .hp-mi+.hp-mi::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:1px;background:rgba(168,130,63,.55);}
+}
+/* erabot のしくみ 01〜04：列が狭く（約14字）、割らない塊の手前で行が早く終わって右端が不揃いだった。短い段なので文節で折り、行の長さを均す */
+.proc p:not(.n){word-break:auto-phrase;text-wrap:balance;}
+/* メニュー：項目名を各章の題箋にそろえる。「見本帳」には何の見本かを小さく添える */
+.mn-s{display:block;margin-top:2px;font-size:var(--f1);letter-spacing:.08em;color:var(--ink-2);}
+@media (max-height:700px){.mn-s{display:inline;margin-left:10px;}}
+
+/* ══════════ 2026-10-01 修正役V 第6周（絵と装い） ══════════ */
+/* 本文：両端揃えをやめる。割らない塊・<br> の手前で行が早く終わると、残りの行が字間で引き伸ばされていた。行頭揃えと text-wrap:pretty */
+.ja-b p,.rs p,.fine,.sheet p,.fl-p,.pf-body p,.qa-a p,.dz-note,.daiko p,.daiko-lead,.contact-in>p,.step-p,.erabo-plan p,.labs p,.ways p,.tbl .note,
+.era-door p,.pair p,.works-lead{text-align:start;text-justify:auto;text-wrap:pretty;}
+
+/* 題箋：章題は全章 24px・字間 .3em（四章以降だけ 34px になっていた）。漢数字も全章同じ 34px の金 */
+
+/* 扉：値段の札と縦の札は、ぼかしをやめて縁のはっきりした短冊に（胡粉 .94、内側に 0.5px の金の縁。角丸・影なし） */
+@media (min-width:901px){
+  /* 扉の札の地・縁・字の光は mihon.css の f2 に一本化した */
+}
+/* 扉の上の覆い：全幅の白い帯を 140px に下げて弱め、ロゴ（左上）と頭の帯の字（右上）の下だけ淡い胡粉の霞を寄せる。金地の照りを残す */
+.hero::after{height:360px;background:
+  radial-gradient(ellipse 340px 250px at 0 0,rgba(243,241,235,.62) 0,rgba(243,241,235,.34) 55%,rgba(243,241,235,0) 100%),
+  radial-gradient(ellipse 760px 120px at 100% 0,rgba(243,241,235,.5) 0,rgba(243,241,235,0) 100%),
+  linear-gradient(180deg,rgba(243,241,235,.6),rgba(243,241,235,0)) 0 0 / 100% 140px no-repeat;}
+.hero[data-tone="gold"]::after{height:360px;background:
+  radial-gradient(ellipse 440px 340px at 0 0,rgba(243,241,235,.84) 0,rgba(243,241,235,.62) 60%,rgba(243,241,235,0) 100%),
+  radial-gradient(ellipse 840px 200px at 100% 0,rgba(243,241,235,.86) 0,rgba(243,241,235,.58) 50%,rgba(243,241,235,0) 100%),
+  linear-gradient(180deg,rgba(243,241,235,.45),rgba(243,241,235,0)) 0 0 / 100% 140px no-repeat;}
+/* ◇と番号：金地の絵のときは、胡粉の小さな短冊（α .8・内側 0.5px の金の縁）を敷く。松葉に重なっても読める */
+@media (min-width:901px){
+  .dots{padding:4px 0 12px;transition:background-color .8s,box-shadow .8s;}
+  .hero[data-tone="gold"] .dots{filter:none;background:rgba(243,241,235,.8);box-shadow:inset 0 0 0 .5px rgba(168,130,63,.55);}
+  /* 頭の帯の字も、金地の絵（老松の松葉が上端まで来る）の上では同じ胡粉の短冊に載せる */
+  .js .hd:not(.is-solid) .nav{padding:4px 18px;transition:background-color .8s,box-shadow .8s;}
+  body:has(.hero[data-tone="gold"]) .hd:not(.is-solid) .nav{background:rgba(243,241,235,.8);box-shadow:inset 0 0 0 .5px rgba(168,130,63,.55);}
+}
+
+/* 結 CONTACT：春の流れの絵は、流れ・草・岩のある上の方で裁つ（砂地ばかりだった）。覆いなしのまま */
+@media (min-width:901px){.contact-art img{object-position:0% 0%!important;transform:scale(1.34);transform-origin:12% 0%;}}
+@media (max-width:900px){
+  .contact-art img{object-position:50% 0%!important;transform:none;}
+  .contact-art:not(.era-kanze){min-height:clamp(280px,44vw,340px);}
+}
+/* erabot の結び：スマホでは文様だけの枠を低く */
+@media (max-width:900px){.contact-art.era-kanze{min-height:220px;height:220px;}}
+
+/* 三 見本帳（スマホ）：導入文を PC と同じく帯の直後に戻す（五つの型の前置きが章の最後に来ていた） */
+@media (max-width:620px){
+  .works-body>.works-lead{order:0;margin-top:0;}
+  .works-body>.inds{order:0;}
+  .works-body>.inds>.step-ind{margin-top:28px;}
+  /* 帯の夏秋草図を広く見せ、夜へ落ちる所を下げる */
+  .band-works img{height:66%;}
+  .band-works::after{background:linear-gradient(180deg,rgba(21,24,26,0) 0,rgba(21,24,26,0) 36%,var(--night) 57%,var(--night) 100%);}
+}
+
+/* 頭の帯（901〜1180px）：英字を目では隠し、和文の章名を出す（読み手に英字だけのナビは迷いやすい） */
+@media (min-width:901px) and (max-width:1180px){
+  .nav{gap:22px;}
+  .nav a:not(.nav-era) .nj{position:static;width:auto;height:auto;overflow:visible;clip:auto;font-size:var(--f2);color:inherit;letter-spacing:.06em;}
+  .nav a:not(.nav-era) [lang="en"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .nav a.nav-era .nj{font-size:var(--f2);}
+}
+
+/* 六 代表：絵が読み込まれるまで、枠に胡粉の地と縦横比を先に出す */
+.pf-l .ph{background:#E6E1D4;}
+/* タブレット：本文の行が長すぎないように（約34字） */
+@media (min-width:621px) and (max-width:900px){.pf-body p,.rs p:not(.n):not(.src){max-width:34em;}}
+
+/* erabot：メニューの「えらぼっと」の行に、いまのページの印（金の罫と太字） */
+.mnav-era a[aria-current="page"]{font-weight:600;box-shadow:inset 3px 0 0 var(--gold);padding-left:14px;}
+/* 一 要点の帯（901〜1180px）：料金の欄を少し広げ、（税込）を円と同じ行に */
+@media (min-width:901px) and (max-width:1180px){
+  .keys{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);}
+  .keys .k-v{white-space:nowrap;}
+}
+
+/* ══════════ 2026-10-01 修正役L 第6周（組みと操作） ══════════ */
+/* 五 FLOW（1101px 以上）：列の上下の余白を詰め、1280×800 で FLOW に着いた画面にご記入シートの札（#dl-sheet）まで入れる */
+@media (min-width:1101px){
+  .fl{padding-top:18px;}
+  .fl-t{padding-top:10px;}
+  .fl-b{margin-top:12px;padding-top:14px;}
+  .sheet.flw-sheet{margin-top:20px;padding:20px 30px;}
+}
+
+/* ══════════ 2026-10-01 修正役V 第7周（絵と装い） ══════════ */
+/* 扉（PC）：名画の上に貼っていた胡粉の面を減らす。面を残すのは左下の値段の札 1 枚だけ。
+   頭の帯の字・◇と番号・縦の札は、字の形に沿う光（glow）だけで絵に直に置く（散らし書き） */
+@media (min-width:901px){
+  .js .hd:not(.is-solid) .nav,body:has(.hero[data-tone="gold"]) .hd:not(.is-solid) .nav{background:none;box-shadow:none;}
+  .hero[data-tone="gold"] .dots{background:none;box-shadow:none;
+    filter:drop-shadow(0 0 1px rgba(246,236,210,.95)) drop-shadow(0 0 3px rgba(246,236,210,.85)) drop-shadow(0 0 8px rgba(246,236,210,.7));}
+  /* 扉の札の地・縁・字の光は mihon.css の f2 に一本化した */
+}
+/* 金地の絵の上の霞：左上・右上の胡粉の白い濁りを弱め、金箔の照りを残す */
+.hero[data-tone="gold"]::after{background:
+  radial-gradient(ellipse 440px 340px at 0 0,rgba(243,241,235,.55) 0,rgba(243,241,235,.36) 60%,rgba(243,241,235,0) 100%),
+  radial-gradient(ellipse 840px 200px at 100% 0,rgba(243,241,235,.5) 0,rgba(243,241,235,.3) 50%,rgba(243,241,235,0) 100%),
+  linear-gradient(180deg,rgba(243,241,235,.32),rgba(243,241,235,0)) 0 0 / 100% 140px no-repeat;}
+/* 扉（スマホ・タブレット）：◇の胡粉の台とメニューの四角い面をやめ、光だけで読ませる。絵の出典は札の外の下に小さく */
+@media (max-width:900px){
+  .hero[data-tone="gold"] .dots{background:none;padding:0;}
+  .js .hd:not(.is-solid) .menu-btn{background:none;color:#1D2123;}
+  .js .hd:not(.is-solid) .menu-btn i{height:1.5px;box-shadow:0 0 0 1px rgba(246,241,229,.75),0 0 6px rgba(246,241,229,.95),0 0 12px rgba(246,241,229,.7);}
+}
+/* 絵の出典を札の外へ出すのはタブレットだけ（スマホでは札の下が杜若の濃い葉で、字が読めなかった） */
+@media (min-width:621px) and (max-width:900px){
+  .hero-plate{bottom:40px;}
+  .hero-plate .hp-c{position:absolute;left:0;top:calc(100% + 6px);margin:0;padding-left:17px;white-space:nowrap;min-height:0;line-height:1.4;
+    color:rgba(29,33,35,.86);--glow:246,238,216;text-shadow:0 0 1px rgba(var(--glow),1),0 0 3px rgba(var(--glow),1),0 0 6px rgba(var(--glow),.9);}
+}
+/* タブレット（621〜900px）：扉が 900px あるのに札がスマホと同じ大きさで沈んでいた。札を扇2枚分に、要の字を 24px に */
+@media (min-width:621px) and (max-width:900px){
+  .hero-plate{width:54%;max-width:none;padding:22px 24px 18px 22px;}
+  .hp-k{font-size:var(--f4);letter-spacing:.12em;}
+  .hp-v{font-size:var(--f4);letter-spacing:.06em;}
+  .hp-mi{font-size:18px;}
+  .hero-plate .hp-c{padding-left:23px;}
+}
+
+/* ホバーは持ち上げをやめ、明るさの変化だけに（上の縁が途切れて見えていた） */
+
+/* 業種の札の番号：金の小さな字は胡粉の上で 3.14:1 だった。薄墨に */
+.chip::after{color:var(--ink-2);}
+
+/* 四 料金：2枚の面をそろえる（右の面にも同じ胡粉の地と余白。上端と下端をそろえる）。右の段の下に金砂子の余白 */
+@media (min-width:901px){
+  .plans{align-items:stretch;grid-template-columns:minmax(0,3fr) minmax(0,2fr);}
+  .s-face .plan+.plan,.plan+.plan{background:var(--ground);padding-inline:clamp(24px,2.2vw,32px);}
+  .plan-notes{grid-template-columns:minmax(0,3fr) minmax(0,2fr);column-gap:calc(var(--fp) * 2);}
+  .pn-sunago{position:relative;height:180px;margin-top:8px;}
+}
+@media (max-width:900px){.pn-sunago{display:none;}}
+/* 七 FAQ：題箋の下の空いた左の扇に、金の線だけの観世水を縦に細く流す（地は塗らない）。この章の題箋は追わせない */
+.faq-kanze{display:none;}
+@media (min-width:1101px){
+  #faq .dai{position:relative;top:auto;}
+  #faq .byo>.faq-kanze{grid-column:1 / 2;grid-row:1 / span 12;margin:0 0 0 var(--fp);padding:0;}
+  .faq-kanze{display:block;grid-column:1;grid-row:1 / span 12;align-self:end;position:relative;width:118px;height:min(300px,40%);opacity:.7;pointer-events:none;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 18%,#000 82%,transparent 100%);}
+}
+
+/* 結 CONTACT：春の流れの屏風は拡大をやめ、上の流れ・笹・岩・白い花まで一枚ごと見せる（PC）。スマホは白い花と岩の裾で裁つ */
+@media (min-width:901px){.contact-art img{object-position:50% 0%!important;transform:none;}}
+
+/* えらぼっとの扉：蒔絵の斜めの境を右上の隅へ逃がし、藤と松（黒漆の側）を主役に。左下の観世水を少し濃く */
+@media (min-width:901px){.band-era img{object-position:0% 100%;transform:scale(1.5);transform-origin:0% 100%;}}
+.band-era canvas[data-art="kanze"]{opacity:.8;}
+/* 結（スマホ・タブレット）：「見本を見る」と絵の間の暗い空きを詰め、絵は白い花の所で裁つ */
+@media (max-width:900px){
+  #contact .contact-in{padding-bottom:28px;}
+  .contact-art:not(.era-kanze) img{object-position:0% 64%!important;}
+}
+
+/* ══════════ 2026-10-01 修正役L 第7周（組みと操作） ══════════ */
+/* ハッシュ付きで開いたときは、着地までの送りを滑らかにしない（site.js が読み込みの後で外す） */
+html.hash-ld{scroll-behavior:auto;}
+/* 五 FLOW：ご記入シートの囲みは 02 の列の中（方針「シートのリンクはここ」）。4列の下の帯の指定を打ち消す */
+.fl .sheet.flw-sheet{margin-top:18px;}
+@media (min-width:1101px){
+  .fl .sheet.flw-sheet{display:block;margin-top:18px;padding:16px 16px 18px;}
+  .fl .sheet.flw-sheet h4{font-size:var(--f2);font-weight:600;}
+  .fl .sheet.flw-sheet p{max-width:none;}
+  .fl .sheet.flw-sheet .box-ln{margin-top:14px;width:100%;padding:0 16px;}
+  .fl .sheet.flw-sheet .dl-n{white-space:normal;}
+  /* 04 には補足（.fl-d）が無いので、同じ高さの空きを取って本文の書き出しをそろえる */
+  .fl-d0{display:block;min-height:1.9em;margin-top:4px;}
+}
+@media (max-width:1100px){.fl-d0{display:none;}}
+/* スマホでも 01 の説明（淡・玄…の5案）を出す（PC と中身をそろえる） */
+@media (max-width:620px){.fl-s .fl-d:not(.fl-d0){display:block;}}
+/* 低いスマホ（375×667 など）：メニューの中身を画面に収め、送っても「閉じる ×」が画面に残るようにする */
+@media (max-width:900px) and (max-height:699px){
+  .mnav{padding-top:12px;padding-bottom:24px;}
+  .mnav-top{position:sticky;top:-12px;z-index:1;background:var(--ground);min-height:52px;}
+  .mnav ol{margin-top:8px;}
+  .mnav li a{padding:8px 0;min-height:44px;align-items:center;}
+  .mnav-era{margin-top:12px;}
+  .mnav-era a{min-height:44px;padding:6px 0;}
+  .mnav-mail{margin-top:10px;}
+}
+/* スマホの WHY：理由の間の余白を詰める（2画面近くあった章の高さを抑える） */
+@media (max-width:620px){
+  .rs{padding-top:20px;}
+  .rs+.rs{margin-top:20px;}
+}
+/* 五 FLOW（1101px 以上）：シートの囲みが入る 02 の列を広くとり、列の高さを抑える */
+@media (min-width:1101px){
+  .flw{grid-template-columns:minmax(0,.95fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,.95fr);}
+  .fl .sheet.flw-sheet{padding:14px 16px 16px;}
+  .fl .sheet.flw-sheet p{margin-top:6px;line-height:1.8;}
+}
+/* 三 WORKS（901〜1100px・高さ820px以下、1024×768 など）：業種の札3段を低く詰める */
+@media (min-width:901px) and (max-width:1100px) and (max-height:820px){
+  .chips .chip{padding-top:7px;padding-bottom:7px;}
+}
+
+/* ══════════ 2026-10-01 修正役V 第8周（絵と装い） ══════════ */
+/* 扉（PC）：金地の絵（八橋・老松）では、縦の札を金屏風に貼った「短冊」にする（紙の面＋金の細い縁。角丸・影なし）。
+   字の光彩（多重の text-shadow）は白いにじみの輪に見えたのでやめる。水墨の松林図の上は、札の面を置かず右の金罫だけ */
+@media (min-width:901px){
+  /* 扉の札の地・縁・字の光は mihon.css の f2 に一本化した */
+  /* 頭の帯の字：金地の絵のときは光彩をやめ、上端に胡粉の霞（すやり霞）を敷いて読ませる。右端の◇と番号の後ろにも縦に淡く */
+  body:has(.hero[data-tone="gold"]) .hd:not(.is-solid) .nav a,body:has(.hero[data-tone="gold"]) .hd:not(.is-solid) .nav a .nj{text-shadow:none;}
+  .hero[data-tone="gold"]::after{height:100%;background:
+    linear-gradient(180deg,rgba(243,241,235,.84) 0,rgba(243,241,235,.76) 96px,rgba(243,241,235,.4) 150px,rgba(243,241,235,0) 200px) 0 0 / 100% 200px no-repeat,
+    radial-gradient(ellipse 110px 260px at 100% 330px,rgba(243,241,235,.78) 0,rgba(243,241,235,.5) 55%,rgba(243,241,235,0) 100%) 0 0 / 100% 100% no-repeat,
+    radial-gradient(ellipse 260px 300px at 0 0,rgba(243,241,235,.6) 0,rgba(243,241,235,.4) 60%,rgba(243,241,235,0) 100%) 0 0 / 100% 100% no-repeat;}
+  .hero[data-tone="gold"] .dots{filter:drop-shadow(0 0 1px rgba(246,236,210,.9));}
+  .hero[data-tone="gold"] .dots .num{text-shadow:none;}
+}
+/* 扉の◇（スマホ）：濃い燕子花の上でも沈まないよう、胡粉の細い縁と淡い地の影 */
+@media (max-width:900px){
+  .dots button::before{box-shadow:0 0 0 1px rgba(var(--glow),.9),0 0 6px 1px rgba(243,241,235,.75);}
+}
+
+/* 字の手触り：線のリンクは折り返さない。ホバーで罫を伸ばしても組みの幅が変わらないよう、幅ではなく scaleX で */
+.ln{white-space:nowrap;max-width:100%;}
+.ln::after{width:104px;transform:scaleX(.615);transform-origin:0 50%;transition:transform .35s;}
+.ln:hover::after{width:104px;transform:scaleX(1);}
+@media (max-width:620px){.ln::after{width:44px;transform:none;}.ln:hover::after{width:44px;transform:none;}}
+/* ご記入シートの釦：『ご記入シート』と『（業種）.xlsx』の塊の境目でだけ折り返す（site.js dlFollow） */
+.dl-n .nw{display:inline-block;white-space:nowrap;}
+
+/* 三 見本帳の帯（PC）：夏秋草図の継ぎ目（縦の黒い線）が夜の暈しの終わりに重なり、絵が縦に切られて見えた。
+   絵を右上を起点に少し大きくして、継ぎ目を夜の中（x≈39%）へ入れる */
+@media (min-width:901px){.band-works img{transform:scale(1.2);transform-origin:100% 0;}}
+/* スマホ：題箋が、絵が夜へ溶ける途中の濁った灰の上に乗っていた。夜へ落ちる所を上げ、題箋を夜の面の上へ下げる */
+@media (max-width:900px){
+  .band-works.band-door{padding-top:190px;}
+  .band-works::after{background:linear-gradient(180deg,rgba(21,24,26,0) 0,rgba(21,24,26,0) 30%,var(--night) 50%,var(--night) 100%);}
+}
+
+/* 四 料金（PC）：注記の右に浮いていた金砂子（白地の上では塵に見えた）をやめる。注記は面の左端にそろえ、2枚の面の幅いっぱいに2段で組む。
+   左の面の最後の罫は外し、面の下の空きを余白として読ませる */
+.pn-sunago{display:none!important;}
+@media (min-width:901px){
+  .plan-notes{display:block;margin-top:26px;}
+  .plan-notes>div{padding-inline:0!important;columns:2;column-gap:calc(var(--fp) * 2);}
+  .plan-notes .fine{max-width:none;break-inside:avoid;}
+  .plan-notes .fine+.fine{margin-top:12px;}
+  .plan>.row:last-child{border-bottom:0;}
+  .plans{align-items:start;}
+}
+
+/* 結 CONTACT：要点の値段の行を上の段落から離し、細い金の罫で独立させる。PC は文の下の暗い空きを詰める */
+.contact .kane{margin-top:40px;padding-top:26px;border-top:.5px solid rgba(194,154,85,.55);max-width:32em;}
+@media (min-width:901px){.contact-in{padding-block:var(--sp-l) var(--sp-m);}}
+/* スマホ・タブレット：春の流れの屏風を、白い花と岩が帯の中ほどに来る所で裁つ（砂子の地だけの右半分を外す） */
+@media (max-width:900px){
+  .contact-art:not(.era-kanze) img{object-position:0% 60%!important;transform:scale(1.4);transform-origin:0% 62%;}
+}
+
+/* メニュー：「見本帳」の添え字は、どの幅でも同じ行に並べる（390 だけ2行に落ちて行の高さが揃わなかった） */
+.mn-s{display:inline;margin-top:0;margin-left:10px;}
+
+/* ══════════ 2026-10-01 修正役L 第8周（組みと操作） ══════════ */
+/* 五 FLOW：02 の記入例の囲み（#dl-sheet）は 02 の項目の中のまま。1101px 以上は4列を等幅にし、囲みだけを 02 の列の左端から右へ（02〜04 の幅で）
+   2段目に出す。02 の列だけが広く・高くなり、01・04 の下に 250〜350px の空きができていた */
+@media (max-width:1100px){
+  .fl-col{display:contents;}
+  .fl-2>.flw-sheet{grid-column:2;grid-row:2;}
+}
+@media (max-width:900px){.fl-2>.flw-sheet{grid-column:1 / -1;grid-row:3;}}
+@media (min-width:1101px){
+  .flw{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto;}
+  .flw>.fl{grid-row:1;}
+  .flw>.fl:nth-child(1){grid-column:1;}
+  .flw>.fl:nth-child(3){grid-column:3;}
+  .flw>.fl:nth-child(4){grid-column:4;}
+  .flw>.fl-2{grid-column:2 / 5;grid-row:1 / 3;display:grid;grid-template-columns:subgrid;grid-template-rows:subgrid;padding:0;align-items:start;}
+  .fl-2>.fl-col{grid-column:1;grid-row:1;display:flex;flex-direction:column;padding:18px var(--fp) 8px;min-width:0;}
+  .fl-2>.fl-col>*{min-width:0;max-width:100%;}
+  .fl .fl-2>.sheet.flw-sheet,.fl-2>.sheet.flw-sheet{grid-column:1 / -1;grid-row:2;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 40px;
+    margin:18px 0 8px var(--fp);padding:18px 24px;}
+  .fl-2>.sheet.flw-sheet h4{font-size:var(--f2);font-weight:600;}
+  .fl-2>.sheet.flw-sheet p{max-width:none;margin-top:6px;line-height:1.8;}
+  .fl-2>.sheet.flw-sheet .box-ln{margin-top:0;width:auto;min-width:260px;padding:0 24px;}
+  .fl-2>.sheet.flw-sheet .dl-n{white-space:nowrap;}
+}
+/* 四 料金「公開設定の代行とは」：開閉の印（＋／−）を、2行の要約の真ん中ではなく見出しの1行目の中ほどにそろえる（開いた − が下線に見えていた） */
+.daiko-fold summary .fold-i{align-self:start;margin-top:calc(var(--f3) * .75 - 7px);}
+
+/* ══ 2026-10-01 ご依頼の流れ（.fx）── みつさん「レイアウトのバランスが悪い」で組み直した ══
+   4列の段（番号／所要／題／本文／釦）を列をまたいでそろえる。釦は3つとも同じ形で同じ高さに並ぶ。
+   前の .flw/.fl の指定は使っていない（マークアップごと入れ替えた）。 */
+.fx{list-style:none;margin-block:0;padding:0;border-top:1px solid var(--ink);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));}
+.fx-i{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0;padding:28px var(--fp) 30px;box-shadow:inset .5px 0 0 var(--line);min-width:0;}
+.fx-i:first-child{box-shadow:none;padding-left:0;}
+.fx-i:last-child{padding-right:0;}
+.fx-n{margin:0;font-family:var(--ff-en);font-size:var(--f6);font-weight:500;line-height:.9;letter-spacing:.02em;font-variant-numeric:lining-nums;color:var(--gold);}
+.fx-t{margin:16px 0 0;font-size:var(--f1);letter-spacing:.08em;color:var(--ink-2);}
+.fx-t b{margin-left:.6em;font-weight:500;font-size:var(--f2);color:var(--ink);letter-spacing:.04em;}
+.fx-i h3{margin:18px 0 0;padding-top:18px;border-top:.5px solid var(--line-2);font-size:var(--f3);line-height:1.55;letter-spacing:.08em;text-wrap:balance;}
+.fx-p{margin-top:12px;}
+.fx-p p{margin:0;font-size:var(--f2);line-height:1.9;letter-spacing:.03em;color:var(--ink);text-wrap:pretty;word-break:auto-phrase;}
+.fx-p .fx-s{font-size:var(--f1);color:var(--ink-2);letter-spacing:.08em;margin-bottom:4px;}
+.fx-a{margin:24px 0 0;align-self:end;min-width:0;}
+.fx-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:100%;min-width:0;min-height:52px;padding:8px 16px;border:1px solid var(--ink);color:var(--ink);background:transparent;text-decoration:none;letter-spacing:.1em;font-size:var(--f2);line-height:1.4;text-align:center;transition:background .25s,color .25s;}
+.fx-btn:hover{background:var(--ink);color:var(--ground);}
+.fx-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+.fx-btn .dl-n{display:inline;}
+.fx-btn .dl-n .nw{display:inline-block;}
+.fx-note{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px 48px;margin-top:8px;padding:22px 0 0;border-top:.5px solid var(--line-2);}
+.fx-note h4{margin:0;font-size:var(--f2);font-weight:600;letter-spacing:.06em;line-height:1.7;}
+.fx-note-k{display:block;margin-bottom:4px;font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.14em;color:var(--gold);}
+.fx-note p{margin:0;font-size:var(--f1);line-height:1.9;color:var(--ink-2);letter-spacing:.04em;max-width:46em;}
+@media (max-width:1100px){
+  .fx{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .fx-i:nth-child(3){box-shadow:none;padding-left:0;}
+  .fx-i:nth-child(2){padding-right:0;}
+  .fx-i:nth-child(n+3){border-top:.5px solid var(--line-2);}
+}
+@media (max-width:620px){
+  .fx{grid-template-columns:minmax(0,1fr);}
+  .fx-i{grid-row:auto;grid-template-rows:none;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:16px;padding:22px 0 24px;box-shadow:none;}
+  .fx-i+.fx-i{border-top:.5px solid var(--line-2);}
+  .fx-n{grid-column:1;grid-row:1;font-size:var(--f5);align-self:end;}
+  .fx-t{grid-column:2;grid-row:1;align-self:end;justify-self:end;margin:0;}
+  .fx-i h3,.fx-p,.fx-a{grid-column:1 / -1;}
+  .fx-i h3{margin-top:14px;padding-top:14px;}
+  .fx-a{margin-top:16px;}
+  .fx-a:empty{display:none;}
+  .fx-note{grid-template-columns:minmax(0,1fr);}
+}
+
+/* ══ 2026-10-01 みつさん「ほかのレイアウトも点検して直して」 ══ */
+/* WHY：3列の 番号／題／本文／出典 の段をそろえる。02 は出典が無いので、その段は空く（本文の書き出しと出典の線が3列でそろう） */
+@media (min-width:901px){
+  .reasons{grid-template-rows:auto auto 1fr auto;}
+  .reasons>.rs{display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:0;align-content:start;}
+  .reasons>.rs>.src{align-self:end;}
+}
+/* PRICE：2枚の料金の面の高さをそろえる（左 472px・右 529px で下端が段違いだった） */
+@media (min-width:621px){
+  .plans{align-items:stretch;}
+}
+/* スマホ・タブレット：本文の段落を文節で折る（「料／金」「銀行振／込」と語の途中で割れていた）。
+   PC は段の幅が広く、文節で折ると右端のでこぼこが目立つので、今のまま */
+@media (max-width:900px){
+  main p,main li,main dd,footer p{word-break:auto-phrase;text-wrap:pretty;}
+}
+
+/* ══════════ 四 料金（2026-10-01 みつさんの追加の決定4・組み手2）══════════
+   版面（扇2〜6）を一枚の屏風に見立てる。上に墨の1px、下に0.5pxの罫。
+   つくるとき（扇3枚ぶん）は胡粉の面に金の鉤（左上・右下の細いL字）、あとから直すとき（扇2枚ぶん）は白の面。境は継ぎ目と同じ0.5pxの罫。
+   主役の 98,000円 だけを大きく立て、ほかの3つは帳簿のように「名目 … 金額」を1行に揃える（入らない幅では金額を次の行の右へ）。
+   影・角丸・新しい色は使わない。文面は page.html のまま */
+.pr{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);border-top:1px solid var(--ink);border-bottom:.5px solid var(--line-2);}
+.pr-face{position:relative;display:flex;flex-direction:column;min-width:0;container-type:inline-size;padding:clamp(34px,3.4vw,54px) clamp(24px,3vw,48px) clamp(30px,3vw,46px);}
+.pr-make{background:var(--ground);}
+.pr-fix{background:var(--paper);box-shadow:inset .5px 0 0 var(--line-2);}
+.pr-make::before,.pr-make::after{content:"";position:absolute;width:16px;height:16px;pointer-events:none;}
+.pr-make::before{left:12px;top:12px;border-left:1px solid var(--gold);border-top:1px solid var(--gold);}
+.pr-make::after{right:12px;bottom:12px;border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);}
+.pr-h{display:flex;align-items:center;gap:14px;margin:0;font-size:var(--f2);font-weight:500;letter-spacing:.16em;line-height:1.5;color:var(--ink);word-break:auto-phrase;}
+.pr-h::before{content:"";flex:none;width:22px;height:1px;background:var(--gold);}
+/* 主役：ホームページ作成 98,000円 */
+.pr-main{margin:clamp(30px,3.2vw,46px) 0 clamp(30px,3vw,40px);}
+.pr-main h4{margin:0;font-size:var(--f3);font-weight:600;letter-spacing:.12em;line-height:1.5;}
+.pr-main .p{display:flex;flex-wrap:wrap;align-items:baseline;margin-top:14px;white-space:nowrap;font-feature-settings:"palt";}
+.pr-main .pn{font-family:var(--ff-en);font-weight:500;font-size:clamp(68px,7.2vw,112px);line-height:.9;letter-spacing:-.005em;font-variant-numeric:lining-nums;color:var(--ink);}
+.pr-main .py{margin-left:.18em;font-size:var(--f4);font-weight:500;letter-spacing:0;}
+.pr-main .pt{margin-left:.35em;font-size:var(--f1);letter-spacing:.06em;color:var(--ink-2);}
+.pr-main p{position:relative;margin:26px 0 0;padding-top:22px;max-width:31em;color:var(--ink-2);line-height:1.9;}
+.pr-main p::before{content:"";position:absolute;left:0;top:0;width:44px;height:1px;background:var(--gold);}
+/* 帳簿の行：名目と金額を1行に。入らないときは金額が次の行の右へ回る */
+.pr-row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 20px;padding-top:20px;border-top:.5px solid var(--line-2);}
+.pr-row+.pr-row{margin-top:24px;}
+.pr-make .pr-row{margin-top:auto;}
+.pr-h+.pr-row{margin-top:clamp(30px,3.2vw,46px);}
+.pr-row h4{margin:0;font-size:var(--f2);font-weight:600;letter-spacing:.08em;line-height:1.6;word-break:auto-phrase;}
+.pr-row .p{margin-left:auto;white-space:nowrap;text-align:right;font-feature-settings:"palt";letter-spacing:.02em;}
+.pr-row .pn{font-family:var(--ff-en);font-weight:500;font-size:var(--f5);line-height:1;letter-spacing:.01em;font-variant-numeric:lining-nums tabular-nums;}
+.pr-row .py{margin-left:.15em;font-weight:500;}
+.pr-row .pt,.pr-row .pu{font-size:var(--f1);letter-spacing:.04em;color:var(--ink-2);}
+.pr-row .pu{margin-right:.5em;}
+.pr-row p{flex:1 0 100%;margin:4px 0 0;color:var(--ink-2);line-height:1.85;}
+.pr-fine{margin:auto 0 0;padding:28px 0 0;color:var(--ink-2);line-height:1.9;}
+.pr-fine::before{content:"";display:block;width:100%;height:.5px;margin-bottom:20px;background:var(--line-2);}
+.pr-fine b{color:var(--ink);font-weight:600;}
+.pr-fix .pr-row:last-of-type{margin-bottom:0;}
+/* 注記：面の内側の字の左端にそろえて、同じ3:2で2段に */
+.pr-notes{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);margin-top:26px;}
+.pr-notes>*{padding-inline:clamp(24px,3vw,48px);}
+.pr-note{margin:0;color:var(--ink-2);line-height:1.9;max-width:34em;}
+.pr-note b{color:var(--ink);font-weight:600;}
+.pr-note+.pr-note{margin-top:12px;}
+.pr p,.pr-notes p{word-break:normal;line-break:strict;text-wrap:pretty;}
+.pr p{word-break:auto-phrase;}
+/* 面の幅が帳簿の1行に足りないときは、その面の行をそろって2段に（名目の下、右に金額）。片方の行だけが折れて見えないように */
+@container (max-width:350px){.pr-row .p{flex-basis:100%;}}
+#price .daiko.daiko-fold{margin-top:44px;}
+@media (max-width:900px){
+  .pr,.pr-notes{grid-template-columns:minmax(0,1fr);}
+  .pr-fix{box-shadow:inset 0 .5px 0 var(--line-2);}
+  .pr-notes{row-gap:12px;}
+  .pr-make .pr-row{margin-top:0;}
+}
+@media (max-width:900px) and (min-width:621px){
+  .pr-notes{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+}
+@media (max-width:620px){
+  .pr-face{padding:34px 20px 30px;}
+  .pr-make::before{left:8px;top:8px;}
+  .pr-make::after{right:8px;bottom:8px;}
+  .pr-main .pn{font-size:68px;}
+  .pr-row .p{margin-left:0;text-align:left;}
+  .pr-notes>*{padding-inline:0;}
+  .pr-notes{margin-top:22px;}
+}
+
+/* ══════════ 五 ご依頼の流れ：字の組み（2026-10-01 追加の決定6・組み手2）══════════
+   「所要」と時間の間に0.5pxの縦の罫を挟んで離す。題（h3）のすぐ下の添え（エクセル1枚・メールに添付するだけ）は、
+   金の短い罫を頭に置いた小さな行にして、題から12px離し本文から8px離す（題に貼りついて見えていた）。
+   下の注記の本文は13pxから16pxに上げ、読み手の字の段に合わせる */
+.fx-t b{margin-left:0;}
+.fx-t b::before{content:"";display:inline-block;width:.5px;height:1em;margin:0 .8em;vertical-align:-.12em;background:var(--line-2);}
+.fx-p{margin-top:14px;}
+.fx-p .fx-s{margin:0 0 8px;font-size:var(--f1);letter-spacing:.1em;color:var(--ink-2);}
+.fx-p .fx-s::before{content:"";display:inline-block;width:14px;height:1px;margin-right:10px;vertical-align:.32em;background:var(--gold);}
+.fx-note{gap:10px 48px;padding-top:26px;}
+.fx-note p{font-size:var(--f2);line-height:1.9;color:var(--ink-2);max-width:40em;word-break:auto-phrase;line-break:strict;text-wrap:pretty;}
+/* 欧文の書体（Cormorant）で和文を組んでいた所を和文の書体に戻す（見本の添えの「見本」） */
+.dv-k{font-family:var(--ff-ja);letter-spacing:.18em;}
+
+/* ══════════ 2026-10-02 スマホ版の磨き 第1周・修正役（文字の検証役・レイアウトの検証役の指摘） ══════════
+   直しはすべて 620px 以下（一部 374px 以下・621〜900px）の中。PC（901px 以上）は触らない */
+@media (max-width:620px){
+  /* 扉の札：押しどころの字を割らない */
+  .hp-mis .hp-mi{white-space:nowrap;}
+  /* 章を開く大見出し：34px → 30px にそろえる（360 幅で「に。」だけが3行目に落ちていた） */
+  .about-txt h1,#about-h,.band-door .ja-h,#works-h,#erabot-h{font-size:30px;letter-spacing:.05em;}
+  .contact-in>.contact-lede{font-size:30px;letter-spacing:.06em;}
+  /* 題箋の章題：19px → 22px（料金・流れ・プロフィール・FAQ は題箋が章の見出し）。漢数字も同じ割合で */
+  .dai-t{font-size:22px;letter-spacing:.06em;}
+  .dai-n{font-size:26px;padding-right:12px;margin-right:12px;}
+  .dai-l::before{width:16px;margin:0 8px 0 12px;}
+  /* 欧文のラベル：Cormorant は字面が小さいので 14px・600 に */
+  .dai-l,.lb{font-size:14px;letter-spacing:.16em;font-weight:600;}
+  .chip::after{font-size:14px;font-weight:600;}
+  .copyright{font-size:14px;}
+  /* 料金：つくるときの面は内側 16px、あとから直すときは面を張らず版面の端にそろえる */
+  .pr-face.pr-make{padding:30px 16px 26px;}
+  .pr-face.pr-fix{padding-inline:0;}
+  .pr-fix .pr-fine{margin-top:24px;padding-top:18px;}
+  .pr-fix .pr-fine::before{margin-bottom:16px;}
+  .pr-row .pu,.pr-row .pt{font-size:14px;}
+  .pr-row .pu{margin-right:.35em;}
+  /* 本文の中の「割らない塊」が行末に大きな空きを作っていた所は、文節での折り返し（auto-phrase）と text-wrap:pretty に任せる */
+  .rs p .nk,.pf-body .nk,.qa-a .nk,.daiko p .nk,.fx-p .nk,.fx-note .nk,.pr-face p .nk{white-space:normal;}
+  /* 奥付の法定表示：文節で折らず、ふつうの和文の折り返しに（「配信停止」／と で割れていた） */
+  footer p{word-break:normal;line-break:strict;text-wrap:pretty;}
+  /* 章の上下の余白を 64px にそろえる（ABOUT は扉の直後なので 56px） */
+  .sec:not(.has-band){--pt:64px;}
+  .sec:not(.sp-night-next){--pb:64px;}
+  #about.sec{--pt:56px;}
+  /* WORKS の夜の扉：金砂子だけの暗い帯が 190px 続いていたのを詰める */
+  .band-works.band-door{min-height:0;padding-top:120px;padding-bottom:40px;}
+  /* ABOUT の中の区切り：大 56px・小 40px の2段 */
+  .about .keys,#about .keys{margin-top:56px;}
+  #about .to-erabot{margin-top:24px;}
+  /* 奥付：プライバシーポリシーの「＋」を章題の中ほどへ上げ、すぐ下の灰の罫（金の下線と2本並んで見えた）を外す */
+  .pp-m{bottom:18px;}
+  .credit .credit-in{border-top:0;padding-top:8px;}
+}
+/* 390 未満：「代表プロフィール」は欧文の添え（aria-hidden の飾り）まで1行に入らないので、添えを畳む（夜の扉の題箋と同じ扱い） */
+@media (max-width:389px){#profile .dai-l{display:none;}}
+/* 360 など（374px 以下）：扉の札を少し広げ、題字と2つの入口を1行に（札の右端は頁送りの印の列の手前で止める） */
+@media (max-width:374px){
+  .hero-plate{left:16px;max-width:calc(100% - 16px - 88px);padding-left:14px;padding-right:14px;}
+  .hero-plate .hp-k{letter-spacing:.02em;}
+  .hero-plate .hp-v .hp-n{font-size:32px;}
+  .hero-plate .hp-v .hp-ty{letter-spacing:0;}
+  .hp-mis .hp-mi+.hp-mi{margin-left:12px;padding-left:12px;}
+}
+/* タブレット（621〜900px）：本文が版面いっぱいに広がり1行41字になっていた */
+@media (min-width:621px) and (max-width:900px){
+  #why .ja-b,#why .ja-b p,.works-lead,.works-lead p,.pr-note{max-width:34em;}
+  #why .src{max-width:40em;}
+}
+/* ══════════ 2026-10-02 スマホ版の磨き 第2周・修正役 ══════════
+   本文の折り返しを全章で1つの規則にそろえる：長い段落は和文ふつうの折り返し（右端がそろう）＋ line-break:strict ＋ text-wrap:pretty。
+   語の途中で割れて目立つ屋号（杜工舎）と、段落の最終行の泣き別れ（「ます。」だけの行）は、site.js が入れる .nw-b・.nk-end（文面は同じ）で防ぐ。
+   見出し・短い項目は文節で折るまま。直しはすべて 620px 以下（一部 389px 以下）で、PC は触らない */
+@media (max-width:620px){
+  #about .about-txt p,#why .ja-b p,#why .rs p,.works-lead,.works-lead p,.dz-note,.daiko-lead,.df-b p,.pf-body p,.qa-a p,.pr-note,
+  #flow .fx-p p,#flow .fx-note p,#contact p:not(.contact-lede),.era-door>p:first-child,.pair p{word-break:normal;line-break:strict;text-wrap:pretty;}
+  .nk-end,.nk-end *,.nw-b{white-space:nowrap!important;}
+  /* えらぼっと：本文の中の割らない塊（.nk）が行末に4〜5字の空きを作っていたので、ほかの章と同じく外す */
+  .era-door>p:first-child .nk,.pair p .nk{white-space:normal;}
+  /* 大見出しの字間をほかの大見出し（.05em）にそろえる（大きさは 24px のまま） */
+  #why-h{font-size:24px;letter-spacing:.05em;}
+  #works-pick .step-h h3{letter-spacing:.06em;}
+  /* 料金：面の見出し（ラベル）→ 品名 の親子の大きさを正す。品名は下の帳簿の h4（16px）と1段差に */
+  .pr-face .pr-h{font-size:14px;letter-spacing:.2em;}
+  .pr-face.pr-make h4{font-size:17px;}
+  /* 見本の札：和文の「見本」なので明朝で、字間を横の題とそろえる */
+  .dv-k{font-family:var(--ff-ja);letter-spacing:.12em;font-size:13px;}
+}
+@media (max-width:389px){
+  /* 375 でも扉の札の題字を1行に。札の左は版面の 20px にそろえる（頁送りの印の列の手前で止める） */
+  .hero-plate{left:20px;max-width:calc(100% - 20px - 84px);padding-left:14px;padding-right:14px;}
+  .hero-plate .hp-k{letter-spacing:.02em;}
+  .hero-plate .hp-v .hp-n{font-size:32px;}
+  .hero-plate .hp-v .hp-ty{letter-spacing:0;}
+  .hp-mis .hp-mi+.hp-mi{margin-left:12px;padding-left:12px;}
+  /* 法定表示：見出しの欄を詰めて、氏名を1行に */
+  #legal dl div{grid-template-columns:5em 1fr;column-gap:12px;}
+  /* えらぼっとの扉のリード：360 で1行15字だったのを広げる */
+  .era-door>p:first-child{font-size:18px;letter-spacing:.04em;}
+}
+
+/* 2026-10-02 スマホ版の磨き 第3周の仕上げ：お問い合わせの金額の行で「前金なし・2週間ほど」を割らず、1つの塊として次の行へ送る */
+.kane > small:not(.kn-t){white-space:nowrap;}
+
+/* 2026-10-02 奥付に Instagram へのリンク（みつさんの指示）。押せるものは「文字＋長い線」の決まりに合わせる */
+.ft-sns{margin:0;font-family:var(--ff-en);letter-spacing:.16em;font-size:14px;}
+.ft-sns a{color:inherit;text-decoration:none;border-bottom:.5px solid currentColor;padding:12px 0 4px;display:inline-flex;gap:.8em;align-items:baseline;min-height:44px;box-sizing:border-box;}
+.ft-sns a:hover,.ft-sns a:focus-visible{opacity:.7;}
+.ft-sns-id{letter-spacing:.04em;opacity:.75;font-size:13px;}
+
+/* ══════════ 2026-10-19 ペルソナ評価 第1周の直し（P1〜P5） ══════════ */
+/* 四〜七の章頭の「声」（P3：後半が帳票の束に見える）。WHY と同じ大きさの段。文はページにある文から取った */
+.lede-s{display:block;margin-bottom:clamp(36px,4vw,56px);}
+.lede-s .ja-h{margin:0;max-width:22em;}
+/* 料金：公開設定もご依頼の場合の合計（P1） */
+.pr-sum{margin:16px 0 0;padding-top:14px;border-top:.5px dashed var(--line-2);font-size:var(--f2);line-height:1.8;letter-spacing:.04em;color:var(--ink);}
+.pr-sum b{font-weight:600;}
+/* 流れ 02：選んだ案をシートに書く案内（P2） */
+.fx-p .fx-pick{margin-top:10px;padding:8px 12px;background:var(--paper);border-left:2px solid var(--ink);font-size:var(--f1);line-height:1.8;color:var(--ink);}
+/* 金は章の漢数字だけに絞る（P5：金が色として薄まる）。01〜04・理由の番号・Q は墨 */
+.fx-n,.rs .n,.qa .qn{color:var(--ink-2);}
+/* 扉：ナビの字が松の濃い墨に溶ける（P3）。扉にいる間だけ、ナビの後ろに胡粉のぼかしを敷く */
+.hd:not(.is-solid)::before{content:"";position:absolute;inset:0 0 -28px 0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(246,244,238,.78),rgba(246,244,238,.5) 60%,rgba(246,244,238,0));}
+/* 代表の経歴：語の途中で折れない（P4・1024幅） */
+.tbl dd{word-break:auto-phrase;text-wrap:pretty;}
+@media (min-width:901px) and (max-width:1100px){ .tbl dl div{grid-template-columns:4.6em 1fr;gap:10px;} }
+/* 「実物を見る ↗」の矢印のコントラスト（P4） */
+.dv-go span,.mado-go span{color:var(--ink);}
+/* 結の見本3枚：読み込み前に白い板を見せない（P3・P5） */
+.contact-mihon .dv-sc{background:#24251f;}
+/* 扉の札に「月額なし・前金なし」（P1：扉で月額と前金の有無が分からない）。料金の章にある言葉 */
+.hx-m{display:block;flex-basis:100%;margin-top:6px;font-size:var(--f1);letter-spacing:.12em;color:var(--ink-2);}
+/* ══════════ 2026-10-19 ペルソナ評価 第2周の直し ══════════ */
+/* 料金の右の面（あとから直すとき）：行のあいだに約110pxの空きが出ていた（P5）。行と注記を上から詰めて置く */
+.pr-fix .pr-row+.pr-row{margin-top:28px;}
+.pr-fix .pr-fine{margin-top:32px;}
+/* 奥付の墨を、結（お問い合わせ）の夜の色にそろえる（P5：金の罫を挟んで2色の黒が並んでいた） */
+footer{background:var(--night);}
+/* WORKS の帯：墨から夏秋草へのぼかしをやめ、継ぎ目の位置（版面の半分）ではっきり切る（P5：片身替わり） */
+.band-works::after{background:linear-gradient(90deg,var(--night) 0,var(--night) 50%,rgba(21,24,26,0) 50%,rgba(21,24,26,0) 100%);}
+.band-works::before{content:"";position:absolute;z-index:1;top:0;bottom:0;left:50%;width:.5px;background:rgba(194,154,85,.6);}
+@media (max-width:900px){ .band-works::after{background:linear-gradient(180deg,rgba(21,24,26,.55),var(--night) 75%);} .band-works::before{display:none;} }
+/* 「五案とも〜」の字の頭を、上の段の左端（罫の始まり）にそろえる（P5：約35px 下がっていた） */
+@media (min-width:901px){ .step-mado>.dz-note{margin-inline:var(--fp) 0!important;} }
+/* えらぼっとの「しくみ」01〜04 と流れの番号も墨に（P5：本体と同じく、金は章の漢数字だけ） */
+.proc .n,.fl-n{color:var(--ink-2);}
+/* ══════════ 2026-10-19 ペルソナ評価 第3周の直し ══════════ */
+@media (min-width:901px){ .step-mado>.dz-note{margin-inline:var(--fp)!important;max-width:none;} }
+.ft-end{padding-left:calc(var(--bleed) + var(--fp));}
+.pr-note,.daiko p,.daiko-lead{word-break:auto-phrase;}
+html[data-page="erabot"] main p,html[data-page="erabot"] main li{word-break:auto-phrase;}
+/* 継ぎ目の線を段の区切りに合わせて引いた章では、6列の格子の線（::before）を消す（site.js の draw） */
+.sec:not(.has-band)>.byo.has-seams::before{display:none;}
+.byo>.seams{position:absolute;z-index:0;pointer-events:none;left:0;right:0;grid-column:auto!important;grid-row:auto!important;top:calc(var(--pt) * -1);height:calc(var(--pt) - 12px);margin:0;
+  -webkit-mask-image:linear-gradient(#000 0,#000 35%,transparent);mask-image:linear-gradient(#000 0,#000 35%,transparent);}
+.byo>.seams i{position:absolute;top:0;bottom:0;width:.5px;background:var(--seam);}
+
+/* ══ 2026-10-27 和紙の地（みつさん「背景の白を繊細な和紙のように」）
+   色は今のまま（胡粉・白）。その上に、漉きむら・粒・向きのばらばらな曲がった楮の繊維・塵を重ねた SVG を敷く。
+   同じ日の2版目：初版の雑音だけの繊維は真横の線に見えたため、繊維を1本ずつ曲線で描く形に替えた。夜の地には掛けない。 */
+/* ══ 2026-10-27 六 多言語メニュー作成・七 商品比較サイトの作成 */
+.mn-keys{grid-template-columns:repeat(3,minmax(0,1fr));}
+.mn-keys li:nth-child(n){grid-column:span 1;}
+/* 写真 → 英語メニュー → 印刷 を1列に。矢印の代わりに番号と金の細罫でつなぐ */
+.mf{grid-column:1 / -1;display:grid;grid-template-columns:1.25fr .8fr 1.25fr;gap:clamp(16px,2.4vw,36px);align-items:end;list-style:none;margin:56px 0 0;padding:0;counter-reset:mf;}
+.mf figure{margin:0;}
+.mf img{width:100%;aspect-ratio:4/3;object-fit:cover;box-shadow:0 1px 0 var(--line-2);}
+.mf .mf-sheet{aspect-ratio:auto;box-shadow:0 0 0 .5px var(--line-2),0 18px 30px -18px rgba(30,31,29,.45);}
+.mf figcaption{margin-top:16px;padding-top:14px;border-top:1px solid var(--gold);font-size:var(--f1);line-height:1.8;color:var(--ink-2);}
+.mf figcaption b{display:block;font-size:var(--f3);font-weight:500;color:var(--ink);margin-bottom:4px;letter-spacing:.06em;}
+.mf-n{font-family:var(--ff-en);font-size:var(--f4);color:var(--gold);float:right;line-height:1;}
+.mf-cap,.mn-note{grid-column:1 / -1;margin-top:18px;font-size:var(--f1);color:var(--ink-2);}
+.mf-cap a{color:var(--ink);}
+.mn-h{grid-column:1 / -1;margin:72px 0 0;padding-bottom:12px;border-bottom:1px solid var(--ink);font-size:var(--f4);font-weight:500;letter-spacing:.12em;}
+.mk{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;list-style:none;margin:0;padding:0;counter-reset:mk;}
+.mk li{counter-increment:mk;padding:22px var(--fp) 8px 0;font-size:var(--f1);line-height:1.9;color:var(--ink-2);}
+.mk li+li{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.mk li::before{content:counter(mk);display:block;font-family:var(--ff-en);font-size:var(--f4);color:var(--gold);line-height:1;margin-bottom:10px;}
+.mk b{display:block;font-size:var(--f2);font-weight:500;color:var(--ink);margin-bottom:6px;}
+.mp{grid-column:1 / -1;margin:0;}
+.mp>div{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:18px 0;border-bottom:.5px solid var(--line-2);}
+.mp dt{font-size:var(--f3);font-weight:500;}
+.mp dt small,.mp dd small{display:block;font-size:var(--f1);font-weight:400;color:var(--ink-2);margin-top:2px;}
+.mp dd{margin:0;text-align:right;font-family:var(--ff-en);font-size:var(--f4);white-space:nowrap;font-variant-numeric:lining-nums tabular-nums;}
+.mp dd small{font-family:var(--ff-ja);}
+.mp .mp-op:first-of-type,.mp>div:nth-child(4){margin-top:20px;box-shadow:inset 0 1px 0 var(--gold);}
+.mg{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);list-style:none;margin:28px 0 0;padding:0;}
+.mg figure{margin:0;}.mg img{width:100%;aspect-ratio:7/5;object-fit:cover;}
+.mg figcaption{margin-top:10px;font-size:var(--f1);color:var(--ink-2);letter-spacing:.08em;}
+#menu .go,#hikaku .go{grid-column:1 / -1;justify-content:flex-start;margin-top:48px;}
+@media (max-width:900px){
+  .mn-keys{grid-template-columns:1fr;}
+  .mf{grid-template-columns:1fr;gap:40px;}
+  .mf .mf-sheet{width:72%;margin:0 auto;}
+  .mk{grid-template-columns:1fr 1fr;}
+  .mk li:nth-child(3){padding-left:0;box-shadow:none;}
+  .mg{grid-template-columns:1fr;}
+  .mp>div{flex-direction:column;gap:6px;}
+  .mp dd{text-align:left;}
+}
+@media (max-width:560px){.mk{grid-template-columns:1fr;}.mk li+li{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}}
+
+/* ══ 2026-10-27 六 会社案内・パンフレット作成 */
+.an-pick{grid-column:1 / -1;margin:48px 0 0;display:flex;align-items:center;gap:16px;font-size:var(--f1);letter-spacing:.1em;}
+.an-pick select{font:inherit;font-size:var(--f2);padding:8px 36px 8px 14px;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);}
+.an-g{grid-column:1 / -1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);list-style:none;margin:24px 0 0;padding:0;}
+.an-g figure{margin:0;}.an-g img{width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2),0 14px 24px -16px rgba(30,31,29,.5);}
+.an-g figcaption{margin-top:12px;font-size:var(--f1);color:var(--ink-2);line-height:1.7;}
+.an-g figcaption b{font-size:var(--f3);font-weight:500;color:var(--ink);}
+.an-g figcaption span{display:block;}
+.an-p{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;list-style:none;margin:24px 0 0;padding:0;}
+.an-p img{width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2);}
+#annai .go{grid-column:1 / -1;justify-content:flex-start;margin-top:40px;}
+@media (max-width:900px){.an-g{grid-template-columns:repeat(2,minmax(0,1fr));}.an-p{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+/* ══════════ 見本の窓（2026-10-01 みつさんの追加の決定1・2・3。昼の決定で五曲の扇を外し、窓を見本帳の主役に組み直した・組み手1） ══════════
+   窓の上（PC は左の扇）に 01〜05 の札。PC の枠とスマホの枠を一つの台に並べ、選んだ 業種×案 の見本ページを同じように映す。
+   その下に「デザインの想い」（designs.json の字・読み・一言・説明・向いている業種）。
+   言葉づかいは 紙・墨・金：枠は紙の面に 0.5px の墨の罫、台は 1px の墨の罫、選んだ札は 2px の金罫。影は使わない。角丸はスマホの画面の中だけ。
+   枠の大きさは、PC の枠とスマホの枠の高さがそろうように、版面の幅から計算する（--S が台の幅。PC の画面は 16:10、スマホの画面は 1:2）。
+   hp_build.py が site.css の後ろに足す。動きは mado.js */
+
+/* 大きさの基準（cqw）は見本帳の版面（.works-body）。.inds・.step は subgrid なので、ここに container を置くと subgrid が外れる */
+.works-body{container-type:inline-size;}
+.mado{--S:calc(100cqw - var(--fp) * 2);--g:clamp(20px,2.6vw,40px);--P:calc((var(--S) - var(--g) - 17px) / 1.3125);--H:calc(var(--P) * .625 + 30px);
+  margin:0;min-width:0;}
+
+/* ── 案の札：番号（金の欧文）・字・読み。選んだ札は紙の面と 2px の金罫 ── */
+.mado-tabs{display:none;}
+.js .mado-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--ink);border-bottom:.5px solid var(--line-2);}
+.mado-tab{position:relative;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr;align-items:end;column-gap:10px;min-height:44px;
+  padding:14px var(--fp,14px) 14px;border:0;background:none;color:var(--ink-2);text-align:start;cursor:pointer;
+  box-shadow:inset .5px 0 0 var(--line);transition:color .3s,background-color .3s;}
+.mado-tab:first-child{box-shadow:none;}
+.mado-tab .mt-no{grid-column:1 / -1;font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.18em;line-height:1;font-variant-numeric:lining-nums;color:var(--ink-2);}
+.mado-tab .mt-ja{grid-row:2;margin-top:12px;font-family:var(--ff-ja);font-size:clamp(32px,3.1vw,46px);font-weight:500;line-height:1;letter-spacing:0;}
+.mado-tab .mt-yomi{grid-row:2;align-self:end;font-size:var(--f1);letter-spacing:.24em;line-height:1.4;}
+.mado-tab::before{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s cubic-bezier(.6,.05,.2,1);}
+/* f2：選んでいない札は opacity をかけない（13px の読みが 3.2:1 まで落ちていた）。差は字の色（薄墨／墨）と金罫だけでつける */
+.mado-tab[aria-pressed="true"]{color:var(--ink);background:none;}
+.mado-tab[aria-pressed="true"]::before{transform:scaleX(1);}
+@media (hover:hover){.mado-tab:hover{color:var(--ink);}}
+.mado-tab:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+
+/* ── 台：PC の枠とスマホの枠を、1px の墨の罫の上に並べる（床の間に置くように） ── */
+.mado-stage{margin:0;min-width:0;}
+.js .mado-tabs+.mado-stage{margin-top:clamp(28px,3vw,40px);}
+.mado-dev{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--g);padding-bottom:18px;
+  background:linear-gradient(var(--ink),var(--ink)) 0 100% / 100% 1px no-repeat;}
+.mado-pc{flex:none;width:var(--P);background:var(--paper);border:.5px solid var(--line-2);}
+.mado-bar{display:flex;align-items:center;gap:16px;height:30px;padding:0 12px;border-bottom:.5px solid var(--line-2);}
+.mado-dots{display:flex;gap:8px;flex:none;}
+.mado-dots i{width:6px;height:6px;border:.5px solid var(--ink-2);transform:rotate(45deg);}
+.mado-url{flex:1;min-width:0;max-width:30em;margin:0 auto;padding:0 12px;border:.5px solid var(--line);background:var(--ground);
+  font-family:var(--ff-en);font-size:var(--f1);letter-spacing:.08em;line-height:20px;color:var(--ink-2);text-align:center;font-variant-numeric:lining-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mado-url b{font-weight:500;color:var(--ink);}
+/* スマホの枠：紙の面。上の縁に受話口の細い罫、画面の角だけ丸い */
+.mado-sp{position:relative;flex:none;width:calc(var(--P) * .3125 + 17px);padding:15px 8px;background:var(--paper);border:.5px solid var(--line-2);}
+/* 上に受話口、下にホームの細い罫を対で置く（ABOUT の見本の枠と同じ言葉） */
+.mado-sp::before,.mado-sp::after{content:"";position:absolute;left:50%;height:1px;background:var(--line-2);transform:translateX(-50%);}
+.mado-sp::before{top:7px;width:28px;}
+.mado-sp::after{bottom:7px;width:40px;}
+.mado-sc{position:relative;overflow:hidden;background:#fff;}
+.mado-sc-pc{height:calc(var(--P) * .625);}
+.mado-sc-sp{height:calc(var(--H) - 30px);border-radius:12px;box-shadow:inset 0 0 0 .5px var(--line);}
+.mado-ph{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0;}
+.mado-sc-pc .mado-ph,.mado-ph.is-card{object-position:0 0;}
+.mado-if{position:absolute;left:0;top:0;border:0;background:#fff;transform-origin:0 0;opacity:0;transition:opacity .6s cubic-bezier(.2,.6,.2,1);}
+.mado-sc.has-if .mado-if{opacity:1;}
+.mado-sc.has-if .mado-ph{visibility:hidden;}
+/* 読み込みのあいだは、画面の上端に金の細い罫が流れる */
+.mado-sc.is-ld::after{content:"";position:absolute;left:0;top:0;z-index:2;width:30%;height:1px;background:var(--gold);animation:mado-ld 1.4s cubic-bezier(.6,0,.3,1) infinite;}
+@keyframes mado-ld{0%{transform:translateX(-100%);}100%{transform:translateX(340%);}}
+
+.mado-cap{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px;margin-top:14px;font-size:var(--f1);letter-spacing:.06em;line-height:1.7;color:var(--ink-2);}
+.mado-t{display:inline-flex;align-items:baseline;gap:12px;color:var(--ink);}
+.mado-ja{font-size:var(--f4);font-weight:500;letter-spacing:0;line-height:1.2;}
+.mado-nm{font-size:var(--f2);letter-spacing:.1em;}
+.mado-hint{display:none;}
+.js .mado-hint{display:inline;}
+.mado-go{display:inline-flex;align-items:center;gap:.5em;min-height:44px;margin-left:auto;padding:0 2px;color:var(--ink);
+  font-family:var(--ff-ja);font-size:var(--f1);letter-spacing:.08em;line-height:1.5;text-decoration:none;}
+.mado-go span{color:var(--gold);font-family:var(--ff-en);font-size:var(--f2);}
+@media (hover:hover){.mado-go:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:.5px;}}
+.mado-go:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.mado-live{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+/* ── デザインの想い ── */
+.omoi{margin-top:clamp(44px,4.4vw,60px);border-top:.5px solid var(--line-2);padding-top:clamp(28px,3vw,40px);}
+.omoi-k{font-size:var(--f3);font-weight:500;letter-spacing:.14em;line-height:1.5;}
+.omoi-k::after{content:"";display:block;width:28px;height:1px;margin-top:16px;background:var(--gold);}
+.omoi-b{margin-top:28px;}
+.omoi-b[hidden]{display:none!important;}
+.omoi-ja{display:flex;align-items:flex-start;gap:12px;margin:0;}
+.oj-no{align-self:flex-start;font-family:var(--ff-en);font-weight:500;font-size:var(--f1);letter-spacing:.18em;line-height:1;color:var(--ink-2);font-variant-numeric:lining-nums;}
+.oj-k{font-size:clamp(76px,7.4vw,108px);font-weight:500;line-height:.9;letter-spacing:0;}
+.oj-yomi{writing-mode:vertical-rl;margin-top:4px;font-size:var(--f1);letter-spacing:.3em;line-height:1;color:var(--ink-2);}
+.omoi-e{margin-top:24px;font-size:var(--f3);letter-spacing:.12em;line-height:1.7;word-break:auto-phrase;}
+.omoi-d{max-width:36em;line-height:2;}
+.omoi-m{max-width:36em;margin-top:24px;padding-top:16px;border-top:.5px solid var(--line-2);line-height:1.9;}
+.omoi-m b{display:block;margin-bottom:4px;font-size:var(--f1);font-weight:500;letter-spacing:.2em;color:var(--ink-2);}
+
+/* ── PC（1101px 以上）：左の扇に札を縦に並べ、扇2〜6 に台。想いは 扇1＝見出し／扇2・3＝字と一言／扇4〜6＝説明 ── */
+@media (min-width:901px){
+  .inds>.step-mado{row-gap:0;}
+  .inds>.step-mado>.mado{grid-column:1 / -1;margin-inline:0;display:grid;grid-template-columns:subgrid;}
+  .mado>*{grid-column:1 / -1;margin-inline:var(--fp);min-width:0;}
+  .mado>.omoi{display:grid;grid-template-columns:subgrid;margin-inline:0;}
+  .omoi>.omoi-k{grid-column:1;margin-inline:var(--fp);}
+  .omoi>.omoi-b{grid-column:2 / -1;display:grid;grid-template-columns:subgrid;grid-template-rows:auto 1fr;margin-top:0;}
+  /* f2：一字と一言（.omoi-l）は、説明を読むあいだ左の列に付いてくる（頭の帯 72px の下に 40px あけて留まる） */
+  .omoi-b>.omoi-l{grid-column:1 / 3;grid-row:1 / span 2;align-self:start;position:sticky;top:112px;margin-inline:var(--fp);}
+  .omoi-b>.omoi-tx{grid-column:3 / -1;grid-row:1 / span 2;margin-inline:var(--fp);padding-left:clamp(20px,2.4vw,36px);box-shadow:inset .5px 0 0 var(--line-2);}
+}
+/* 901〜1100px：想いの見出しは横に通し、その下を 扇1〜2＝字と一言／扇3〜6＝説明 */
+@media (min-width:901px) and (max-width:1100px){
+  .omoi>.omoi-k{grid-column:1 / -1;}
+  .omoi>.omoi-b{grid-column:1 / -1;margin-top:28px;}
+}
+@media (min-width:1101px){
+  .mado{--S:calc(100cqw * 5 / 6 - var(--fp) * 2);}
+  .js .mado>.mado-tabs{grid-column:1;grid-row:1;align-self:start;grid-template-columns:none;grid-template-rows:repeat(5,minmax(0,1fr));height:calc(var(--H) + 1px);
+    margin-inline:var(--fp);border-bottom:0;}
+  .mado>.mado-stage{grid-column:2 / -1;grid-row:1;}
+  .js .mado-tabs+.mado-stage{margin-top:0;}
+  .mado-tab{padding:12px 4px 12px 16px;box-shadow:inset 0 .5px 0 var(--line);align-content:center;}
+  .mado-tab:first-child{box-shadow:none;}
+  .mado-tab .mt-ja{margin-top:8px;}
+  .mado-tab::before{left:0;right:auto;top:0;bottom:0;width:2px;height:auto;transform:scaleY(0);transform-origin:50% 0;}
+  .mado-tab[aria-pressed="true"]::before{transform:scaleY(1);}
+  .mado>.omoi{grid-row:2;}
+}
+/* タブレット・スマホ（900px 以下）：札は横一列、台はその下 */
+@media (max-width:900px){
+  .mado{--g:clamp(16px,3vw,28px);}
+  .mado-tab{padding-inline:12px;}
+  .omoi-tx{margin-top:24px;}
+}
+/* スマホ（620px 以下）：スマホの枠だけを、欠けずに画面の中央に置く（PC の枠は出さず、読まない） */
+@media (max-width:620px){
+  .mado-tab{grid-template-columns:1fr;justify-items:center;padding:10px 0 12px;text-align:center;}
+  .mado-tab .mt-no{grid-column:auto;}
+  .mado-tab .mt-ja{margin-top:8px;font-size:26px;}
+  .mado-tab .mt-yomi{grid-row:auto;margin-top:6px;font-size:12px;letter-spacing:.12em;}
+  .mado-pc{display:none;}
+  .mado-dev{justify-content:center;}
+  .mado-sp{--W:min(296px,78vw,calc((100svh - 236px) / 2 + 16px));width:var(--W);}
+  .mado-dev{background-image:linear-gradient(var(--line-2),var(--line-2));background-size:100% .5px;}
+  .mado-sc-sp{height:calc((var(--W) - 16px) * 2);}
+  .mado-cap{gap:2px 16px;}
+  .mado-hint{flex-basis:100%;order:3;}
+  .mado-go{margin-left:0;order:4;}
+  .omoi{margin-top:48px;}
+  .oj-k{font-size:76px;}
+  .omoi-e{font-size:var(--f2);}
+}
+@media (prefers-reduced-motion:reduce){
+  .mado-tab::before,.mado-if{transition:none;}
+  .mado-sc.is-ld::after{animation:none;width:100%;opacity:.5;}
+}
+
+/* ══════════ 2026-10-01 修正役V f1（第1周の評価の、見た目の指摘） ══════════ */
+/* 業種をまだ選んでいないときに、窓に映している業種の札：淡い金罫（選んだ札は濃い金罫と太字） */
+.chips .chip.is-shown::before{transform:scaleX(1);opacity:.45;}
+/* タッチの端末：窓の上で指を滑らせるとページが進む。「タップして中を見る」で窓の中を操作できる */
+.mado-touch,.mado-done{display:none;}
+.is-coarse .mado-sc .mado-if{pointer-events:none;}
+.is-coarse .mado-sc.is-touch .mado-if{pointer-events:auto;}
+.is-coarse .mado-touch{position:absolute;inset:0;z-index:3;display:flex;align-items:flex-end;justify-content:center;padding:0 0 24%;border:0;background:none;cursor:pointer;
+  font-family:var(--ff-ja);color:var(--ground);}
+.mado-touch span{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px;background:rgba(30,31,29,.84);font-size:var(--f1);letter-spacing:.12em;line-height:1.4;}
+.mado-touch span::before{content:"";width:6px;height:6px;border:.5px solid currentColor;transform:rotate(45deg);}
+.is-coarse .mado-sc.is-touch .mado-touch{display:none;}
+.is-coarse .mado-sc.is-touch .mado-done{position:absolute;right:8px;top:8px;z-index:3;display:inline-flex;align-items:center;min-height:44px;min-width:44px;justify-content:center;padding:0 14px;
+  border:.5px solid var(--line-2);background:rgba(251,250,246,.94);font-family:var(--ff-ja);font-size:var(--f1);letter-spacing:.1em;color:var(--ink);cursor:pointer;}
+.mado-touch:focus-visible,.mado-done:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+
+/* ══════════ 2026-10-01 修正役L f1（組みと操作） ══════════ */
+/* 業種の札の表から窓までを詰める（PC で約 98px 空いて、札を押しても窓が目に入りにくかった） */
+@media (min-width:901px){.inds>.step-ind+.step-mado{margin-top:36px;}}
+
+/* ══════════ 2026-10-01 修正役L f2（組みと操作） ══════════ */
+/* スマホ・タブレット：案の札を画面の上に留める。枠（約610px）と「デザインの想い」を読み進めても、上へ戻らずに案を替えられるように。
+   頭の帯が出ているときはその下、下へ読み進めて帯が隠れたときは画面の上端に付く（帯と同じ .35s で動く）。留まる範囲は窓と想い（.mado）の中だけ */
+@media (max-width:900px){
+  .js .mado>.mado-tabs{position:sticky;top:calc(var(--hd) - 1px);z-index:6;background:var(--ground);transition:top .35s;}
+  html:has(#hd.is-hidden) .mado>.mado-tabs{top:0;}
+}
+/* スマホ：札の高さを詰める（番号は並びで分かるので畳む。92px → 約70px）。375×667 でも札と枠を一緒に見やすく */
+@media (max-width:620px){
+  .mado-tab .mt-no{display:none;}
+  .mado-tab .mt-ja{margin-top:0;}
+}
+
+/* 2026-10-19 ペルソナ評価 第1周：「タップして中を見る」が見本の見出しに重なる（P2）→ 枠の下端に寄せて小さく */
+.is-coarse .mado-touch{align-items:flex-end;padding:0 0 10px;}
+.is-coarse .mado-touch span{min-height:40px;padding:0 14px;background:rgba(30,31,29,.72);}
+/* 768幅で、窓へ送ったとき札の段が枠の URL バーにかぶる（P2） */
+#mado,.mado{scroll-margin-top:calc(var(--hd) + 16px);}
+/* スマホの窓：読み込み中は紙の色（P2・P3「白い板が出て壊れて見える」） */
+.mado-sc{background:var(--ground,#EFEEE8);}
+/* 2026-10-19 P5：「五案とも〜」が右の段だけに組まれ、左の段が約400px 空いたまま見えた。デザインの想いの左の段（一字の列）からはじめる */
+@media (min-width:901px){ .step-mado>.dz-note{grid-column:2 / -1!important;max-width:46em;margin-top:clamp(40px,4vw,56px);padding-top:28px;border-top:.5px solid var(--line-2);} }
+/* 2026-10-19 2周目 P2：768幅の PC の枠では、下に寄せても見本の h1 に載るので、右上の隅に小さく置く */
+.is-coarse .mado-sc-pc .mado-touch{align-items:flex-start;justify-content:flex-end;padding:8px;}
+.mado-t2{margin-left:18px;}
+.mado-t2[hidden]{display:none;}
+.mado-go span{color:var(--ink-2);}
+/* 3周目 P2：768 で「タップして中を見る」の帯が見本の頭の帯・リードに載る。小さな札にして枠の右下の隅へ */
+.is-coarse .mado-touch{align-items:flex-end!important;justify-content:flex-end!important;padding:8px!important;}
+.is-coarse .mado-touch span{min-height:36px;padding:0 10px;font-size:12px;background:rgba(30,31,29,.62);}
+.is-coarse .mado-touch .mt-l{display:none;}
+.is-coarse .mado-touch .mt-s{display:inline;}
+.is-coarse .mado-touch span{color:#fff;}
+.mado-t2{margin-left:0;}
+
+/* ══════════ 見本の実物の画面（2026-10-01 みつさんの追加の決定2「日本画を減らし、HPの見本も見せる」・組み手2） ══════════
+   日本画は 扉の2枚・WORKS の帯・代表の1枚 に絞った。扉の3枚目・ABOUT・CONTACT は、見本ページの実物の画面。
+   機器の枠は 0.5px の罫と、画面の中だけの角丸。影は使わない。色は 紙・墨・金 の中から（新しい色を足さない）。
+   hp_build.py が site.css・mado.css の後ろに足す */
+
+/* ── 扉の3枚目：五つの型のスマホの画面を、屏風の扇のように交互に折って並べる ── */
+.hero-ph>.hero-mihon{position:absolute;inset:0;display:block;opacity:0;z-index:0;background:var(--ground);transform:none!important;
+  -webkit-mask-image:var(--kmask,linear-gradient(90deg,transparent 0,transparent 40%,#000 60%,#000 100%));mask-image:var(--kmask,linear-gradient(90deg,transparent 0,transparent 40%,#000 60%,#000 100%));
+  -webkit-mask-size:300% 100%;mask-size:300% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:0% 0;mask-position:0% 0;}
+.hero-ph>.hero-mihon.on{opacity:1;z-index:2;-webkit-mask-position:100% 0;mask-position:100% 0;
+  transition:-webkit-mask-position 1.6s cubic-bezier(.6,0,.25,1),mask-position 1.6s cubic-bezier(.6,0,.25,1);}
+.hero-ph>.hero-mihon.was{opacity:1;z-index:1;-webkit-mask-image:none;mask-image:none;}
+/* 地は胡粉。六曲の継ぎ目と同じ、極く淡い縦の罫だけを敷く（本文の章の頭と同じ言葉づかい） */
+.hero-mihon::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100% / 6 - .5px),var(--seam) calc(100% / 6 - .5px),var(--seam) calc(100% / 6));}
+/* 扇の並び：扉の札（PC は右の縦書き・左下の値段）を避けて、左寄りに置く */
+.hm-row{position:absolute;left:clamp(180px,17vw,260px);top:clamp(120px,17vh,160px);display:flex;align-items:flex-start;
+  --pw:min(11vw,176px,calc((88svh - 340px) / 2));perspective:1800px;}
+.hm-p{position:relative;display:block;flex:none;width:var(--pw);aspect-ratio:1 / 2;background:var(--paper);overflow:hidden;
+  border:.5px solid rgba(168,130,63,.7);transform-origin:50% 50%;transform:rotateY(14deg) translateY(calc(var(--i) * 14px));}
+.hm-p:nth-child(even){transform:rotateY(-14deg) translateY(calc(var(--i) * 14px));}
+.hero-ph .hm-p img{position:static;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0;opacity:1;transform:none;transition:none;
+  -webkit-mask-image:none;mask-image:none;}
+/* 扉の見本の上には、光・砂子（デジタルの層）を重ねない。デジタルの層は日本画の上だけ */
+.hero .art-layer{transition:opacity .8s ease;}
+.hero[data-tone="mihon"] .art-layer{opacity:0;}
+.hero[data-tone="mihon"]::after{background:none;}
+@media (min-width:701px) and (max-width:900px){
+  .hm-row{left:calc(var(--gut) + var(--fp));top:max(110px,calc(40% - var(--pw)));--pw:min(16.5vw,150px,calc((100svh - 400px) / 2));}
+}
+@media (max-width:700px){
+  /* スマホは3枚。上の頭の帯と、下の札のあいだに収める */
+  .hm-row{left:50%;top:max(96px,calc(36% - var(--pw)));transform:translateX(-50%);--pw:min(28vw,calc((100svh - 360px) / 2));}
+  .hm-p:nth-child(1),.hm-p:nth-child(5){display:none;}
+  .hm-p{transform:rotateY(12deg) translateY(calc((var(--i) - 1) * 12px));}
+  .hm-p:nth-child(even){transform:rotateY(-12deg) translateY(calc((var(--i) - 1) * 12px));}
+}
+
+/* 背の低いスマホ（375×667 など）：頭の帯のロゴと、下の札のあいだが 150px ほどしか無いので、扇を小さくして間に収める */
+@media (max-width:700px) and (max-height:700px){
+  .hm-row{top:132px;--pw:60px;}
+  .hm-p{transform:rotateY(12deg) translateY(calc((var(--i) - 1) * 8px));}
+  .hm-p:nth-child(even){transform:rotateY(-12deg) translateY(calc((var(--i) - 1) * 8px));}
+}
+
+/* ── 機器の枠（ABOUT と CONTACT に共通） ── */
+.dv{position:relative;display:block;box-sizing:border-box;}
+.dv-sc{position:relative;display:block;overflow:hidden;background:#fff;}
+.dv-sc img{display:block;width:100%;height:auto;}
+/* PC：ブラウザの枠。上の帯に◇3つ（見本の窓と同じ） */
+.dv-pc{border:.5px solid var(--line-2);background:var(--paper);}
+.dv-bar{display:flex;align-items:center;height:22px;padding:0 10px;border-bottom:.5px solid var(--line-2);}
+.dv-dots{display:flex;gap:7px;}
+.dv-dots i{width:5px;height:5px;border:.5px solid var(--ink-2);transform:rotate(45deg);}
+.dv-pc .dv-sc{aspect-ratio:1760 / 1156;}
+/* スマホ：墨の縁。角丸は画面の中だけ */
+.dv-sp{padding:7px;border:.5px solid var(--line-2);background:var(--paper);}
+.dv-sp .dv-sc{aspect-ratio:1 / 2;border-radius:10px;}
+.dv-sp .dv-sc img{height:100%;object-fit:cover;object-position:50% 0;}
+.dv-cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:0;font-size:var(--f1);line-height:1.6;letter-spacing:.06em;color:var(--ink-2);}
+.dv-k{font-family:var(--ff-en);font-size:var(--f1);letter-spacing:.2em;color:var(--gold);}
+.dv-k::after{content:"";display:inline-block;width:18px;height:.5px;margin:0 0 .3em 10px;background:currentColor;vertical-align:middle;}
+.dv-go{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:.5px;}
+@media (hover:hover){.dv-go:hover{color:var(--gold);}}
+
+/* ── 一 ABOUT：PC とスマホの枠に入った、同じ見本の画面 ──
+   2026-10-01 追加の決定5（組み手2）：スマホの枠が「切り取られた白い札」に見えていたので組み直した。
+   ・二つの枠を同じ格子の升（grid-area:1/1）に重ね、説明はその下の段へ。絶対配置と割合の余白をやめ、どの幅でも枠が欠けない
+   ・スマホは見本の窓と同じ機器の言葉（上に受話口の細い罫・下にホームの細い罫・角丸は画面の中だけ・0.5pxの墨の罫）
+   ・PC の枠に重なる所は、地の色の 8px の縁で切り離して、重なりをはっきり見せる（影は使わない）
+   ・画面の中は 390×800 で撮り直した写真（リード文が下の追従バーにかからない所で終わる） */
+.about-art.about-mihon{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;position:relative;align-self:start!important;min-height:0!important;overflow:visible!important;
+  margin:8px 0 0 var(--fp)!important;padding:0!important;}
+.about-mihon img{position:static!important;inset:auto!important;aspect-ratio:auto!important;transform:none!important;}
+.about-mihon .dv{grid-area:1 / 1;}
+.about-mihon .dv-pc{justify-self:end;width:84%;}
+.about-mihon .dv-sp{justify-self:start;z-index:2;width:27%;margin-top:21%;padding:16px 6px 18px;
+  border:.5px solid rgba(30,31,29,.42);background:var(--paper);outline:8px solid var(--ground);}
+.about-mihon .dv-sp::before,.about-mihon .dv-sp::after{content:"";position:absolute;left:50%;height:1px;background:var(--line-2);transform:translateX(-50%);}
+.about-mihon .dv-sp::before{top:7px;width:22%;}
+.about-mihon .dv-sp::after{bottom:8px;width:30%;}
+.about-mihon .dv-sp .dv-sc{aspect-ratio:390 / 800;border-radius:9px;box-shadow:inset 0 0 0 .5px var(--line);}
+.about-mihon .dv-cap{grid-area:2 / 1;margin-top:26px;padding-left:0;}
+@media (max-width:900px){
+  .about-art.about-mihon{margin:44px 0 0!important;}
+  .about-mihon .dv-pc{width:80%;}
+  .about-mihon .dv-sp{width:25%;margin-top:13%;}
+  .about-mihon .dv-cap{margin-top:24px;}
+}
+@media (max-width:620px){
+  .about-art.about-mihon{margin-top:36px!important;}
+  .about-mihon .dv-pc{width:84%;}
+  .about-mihon .dv-sp{width:31%;margin-top:17%;padding:12px 4px 13px;outline-width:6px;}
+  .about-mihon .dv-sp::before{top:5px;}
+  .about-mihon .dv-sp::after{bottom:6px;}
+  .about-mihon .dv-sp .dv-sc{border-radius:7px;}
+  .about-mihon .dv-bar{height:18px;}
+  .about-mihon .dv-cap{margin-top:22px;}
+}
+
+/* ── 結 CONTACT：夜の地に、見本のスマホの画面3枚を扇のように段をずらして並べる ── */
+.contact-art.contact-mihon{display:flex;flex-direction:column;justify-content:center;gap:22px;background:none!important;overflow:visible!important;
+  min-height:0!important;margin:0 0 0 var(--fp)!important;padding:var(--sp-l) 0 var(--sp-m)!important;}
+.contact-mihon img{position:static!important;inset:auto!important;transform:none!important;object-position:50% 0!important;}
+.cm-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,20px);align-items:start;max-width:520px;}
+.contact-mihon .dv-sp{border-color:rgba(194,154,85,.5);background:var(--night);transform:translateY(calc(var(--i) * 32px));transition:transform .5s cubic-bezier(.3,.7,.2,1);}
+@media (hover:hover){.contact-mihon .dv-sp:hover{transform:translateY(calc(var(--i) * 32px - 3px));}}
+.contact-mihon .dv-sp:focus-visible{outline:2px solid #C29A55;outline-offset:3px;}
+.contact-mihon .dv-cap{margin-top:64px;color:var(--on-night-2);}
+.contact-mihon .dv-k{color:#C29A55;}
+@media (max-width:900px){
+  .contact-art.contact-mihon{grid-row:auto;margin:8px 0 0!important;padding:0 0 var(--sp-m)!important;}
+  .cm-row{max-width:none;gap:10px;}
+  .contact-mihon .dv-sp{padding:5px;transform:translateY(calc(var(--i) * 18px));}
+  .contact-mihon .dv-sp .dv-sc{border-radius:8px;}
+  .contact-mihon .dv-cap{margin-top:40px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-ph>.hero-mihon.on,.hero .art-layer,.contact-mihon .dv-sp{transition:none;}
+}
+
+/* ══════════ 2026-10-01 修正役V f1（第1周の評価の、見た目の指摘） ══════════ */
+
+/* 1400px 以上は縦組みのまま。見出しの頭を「理」の字の下端から 14px 以上離す */
+
+/* 六 代表：会社情報の表。dd が版面からはみ出し、スマホの表示の幅が 401px に広がっていた（住所の末字の切れ・追従バーの沈み）。
+   dd は残りの幅に収め、住所は「埼玉県／さいたま市大宮区／高鼻町３丁目」の塊の境目でだけ折る */
+.info dl div{grid-template-columns:6.5em minmax(0,1fr);}
+.info dd{min-width:0;}
+.info dd .nw{display:inline-block;}
+@media (max-width:900px){.info dl div{grid-template-columns:5.4em minmax(0,1fr);}}
+
+/* 一 ABOUT：見本の説明は文節で折る（1024 で「見本」の「本」1字だけが次の行に落ちていた） */
+.dv-t{word-break:auto-phrase;text-wrap:balance;}
+
+/* 扉（PC・幅の狭い画面）：松林図の梢がナビの字に重なる。f2：ナビの後ろの胡粉のぼかし（1280・1024 で白い四角に見えていた）をやめ、
+   字の形に沿う薄い光（胡粉 α .8・ぼかし 12px 前後）で読ませる */
+@media (min-width:901px) and (max-width:1439px){
+  body:has(.hero[data-tone="paper"]) .hd:not(.is-solid) .nav a,body:has(.hero[data-tone="paper"]) .hd:not(.is-solid) .nav a .nj{
+    text-shadow:0 0 2px rgba(243,241,235,.95),0 0 6px rgba(243,241,235,.9),0 0 12px rgba(243,241,235,.8);}
+}
+
+/* 二 WHY：3列の出典の罫を、下端ではなく上端でそろえる（01 だけ 24px 下にずれていた） */
+@media (min-width:901px){
+  .reasons>.rs>.src{align-self:start;}
+}
+
+/* 扉の2枚目（スマホ）：見本の画面3枚を大きくし、頭の帯（ロゴ）と下の札のあいだの真ん中に置く（下に 250px の空きが出ていた） */
+@media (max-width:700px) and (min-height:701px){
+  .hm-row{top:calc(50% - 56px - var(--pw));--pw:min(31vw,calc((100svh - 360px) / 2));}
+}
+
+/* 扉の2枚目（PC 1280px 以上）：見本の画面を一回り大きく（下の空きを詰める） */
+@media (min-width:1280px){
+  .hm-row{--pw:min(12vw,176px,calc((88svh - 340px) / 2));}
+}
+
+/* 結 CONTACT（PC）：見本のスマホの画面3枚を大きくし、扇のように少しずつ重ねる。上端は見出しの上端にそろえる */
+@media (min-width:901px){
+  .contact-art.contact-mihon{justify-content:flex-start;align-self:start;padding-top:calc(var(--sp-l) + 12px)!important;}
+  .cm-row{display:flex;max-width:none;gap:0;}
+  .contact-mihon .dv-sp{flex:none;width:42%;transform:translateY(calc(var(--i) * 44px));}
+  .contact-mihon .dv-sp+.dv-sp{margin-left:-13%;}
+  @media (hover:hover){.contact-mihon .dv-sp:hover{transform:translateY(calc(var(--i) * 44px - 3px));}}
+  .contact-mihon .dv-cap{margin-top:100px;}
+}
+
+/* 七 FAQ：題箋の下の観世水は、この章にだけ置かれて題箋の型の統一を崩していた。観世水はえらぼっとのページだけに使う */
+.faq-kanze{display:none!important;}
+
+/* ══════════ 2026-10-01 修正役L f1（第1周の評価の、組みと操作の指摘） ══════════ */
+
+/* スマホ：長い本文の段落は文節で折らず、ふつうに詰めて組む（文節で折ると行の右端が 4〜6 字あき、でこぼこが目立っていた）。
+   1字だけの行は text-wrap:pretty で避ける。見出し・短い項目（li・dd）は文節で折るまま */
+@media (max-width:620px){
+  .rs p,.dz-note,.pf-body p{word-break:normal;text-wrap:pretty;}
+}
+
+
+
+/* ══════════ 2026-10-01 修正役V f1 第2弾（第1周の評価の、見た目の指摘） ══════════ */
+
+/* 五 FLOW（PC）：業種を選ぶと「ご記入シート（建築設計）.xlsx」が列の幅を越えて隣の列に食い込んでいた。
+   列が4つ並ぶ幅では『ご記入シート』と『（業種）.xlsx』を2段に組み、中央にそろえる（4列の左右の端は、.fx の margin を直して他の章の版面 328〜1318 にそろえた） */
+@media (min-width:1101px){
+  .fx-btn{min-height:60px;}
+  .fx-btn .dl-n{display:inline-flex;flex-direction:column;align-items:center;min-width:0;line-height:1.45;}
+  .fx-btn .dl-n .nw{display:block;}
+  .fx-btn .dl-n .nw+.nw{font-size:var(--f1);letter-spacing:.06em;}
+}
+
+/* 扉の2枚目：透視（rotateY）で画面の字がにじんでいた。正面のまま、縦のずらしだけで屏風の割付にする（0／28／56／28／0）。
+   枠は 0.5px の墨の罫にし、金は5枚の下に1本だけ通す。スマホも5枚を少しずつ重ねて全部見せる（3枚に絞っていた） */
+.hm-row{perspective:none;gap:var(--hg,14px);--pw:min(10.5vw,160px,calc((88svh - 360px) / 2));}
+.hm-p,.hm-p:nth-child(even){border:.5px solid var(--line-2);transform:translateY(calc(var(--dy,0) * 28px));}
+.hm-p:nth-child(2),.hm-p:nth-child(4){--dy:1;}
+.hm-p:nth-child(3){--dy:2;}
+.hm-row::after{content:"";position:absolute;left:0;right:0;top:calc(var(--pw) * 2 + 56px + 28px);height:1px;background:var(--gold);opacity:.8;}
+@media (min-width:1280px){ .hm-row{--pw:min(10.5vw,160px,calc((88svh - 360px) / 2));} }
+@media (min-width:701px) and (max-width:900px){
+  .hm-row{--hg:10px;--pw:min(15vw,140px,calc((100svh - 420px) / 2));}
+}
+@media (max-width:700px){
+  .hm-row{--hg:0px;left:20px;right:20px;transform:none;justify-content:center;--pw:min(25vw,calc((100svh - 380px) / 2));}
+  .hm-p:nth-child(1),.hm-p:nth-child(5){display:block;}
+  .hm-p,.hm-p:nth-child(even){transform:translateY(calc(var(--dy,0) * 16px));outline:4px solid var(--ground);}
+  .hm-p+.hm-p{margin-left:min(0px,calc((100vw - 40px - var(--pw)) / 4 - var(--pw)));}
+  .hm-p:nth-child(2),.hm-p:nth-child(4){z-index:1;}
+  .hm-p:nth-child(3){z-index:2;}
+  .hm-row::after{left:12%;right:12%;top:calc(var(--pw) * 2 + 32px + 18px);}
+}
+@media (max-width:700px) and (min-height:701px){
+  .hm-row{top:calc(50% - 60px - var(--pw));--pw:min(25vw,calc((100svh - 380px) / 2));}
+}
+@media (max-width:700px) and (max-height:700px){
+  .hm-row{top:128px;--pw:66px;}
+  .hm-p,.hm-p:nth-child(even){transform:translateY(calc(var(--dy,0) * 10px));}
+  .hm-row::after{top:calc(var(--pw) * 2 + 20px + 14px);}
+}
+
+/* 扉（PC）：値段の札の 98,000 は 40px に立てる（札の地と縁は、下の f2 に一本化した） */
+@media (min-width:901px){
+  .hx-p .kn-n{font-size:40px;}
+}
+/* 扉の3枚目（八橋図）：右下の隅に橋板の角だけが入り、灰色の欠けに見えていた。少し左を見せて橋板を外す */
+@media (min-width:701px){
+  .hero-ph .h3{object-position:80% 0;transform-origin:80% 0;}
+}
+
+/* 頭の帯：扉を出たら、白い地を先に、背の高さは短い時間で替える（背の高い透明な帯が ABOUT の見出しに一瞬重なっていた） */
+/* f2 L：白い地は待たずに替え、高さも .18s で終える（章へ一気に飛んだ直後、半透明の高い帯が見出しに重なって見えると評価役2人の指摘） */
+.js .hd.is-solid{transition:background 0s,height .18s,padding .18s,transform .35s;}
+
+/* 小さな金の字（13px）は地とのコントラストが 3.1:1 しかなかった。字は薄墨にし、金は横の短い罫だけに残す */
+.dv-k{color:var(--ink-2);}
+.dv-k::after{background:var(--gold);}
+.contact-mihon .dv-k{color:var(--on-night-2);}
+.contact-mihon .dv-k::after{background:#C29A55;}
+
+/* 追従バー（タブレット・スマホ）：字の左右の端を本文の版面（タブレット 40px／スマホ 20px）にそろえる */
+@media (max-width:900px){
+  .mcta{padding-left:calc(var(--gut) + var(--fp));padding-right:calc(var(--gut) + var(--fp));}
+}
+
+/* 四 料金：つくるときの面の四隅の金の鉤は、ほかの章に無い飾りだった。面の上辺に 48px の金罫1本に替える。
+   あとから直すときの注は、下端に落とさず 40px 下に置く（写真の入れ替えの下に 110px の空きができていた） */
+.pr-make::after{content:none;}
+.pr-make::before{left:0;top:-1px;width:48px;height:1px;border:0;background:var(--gold);}
+@media (max-width:620px){ .pr-make::before{left:0;top:-1px;} }
+.pr-fine{margin-top:40px;}
+
+/* 扉の札（スマホ）：3行が同じ大きさで並び、どれが大事か分からなかった。題は墨の 19px、98,000 は欧文の数字で大きく、「2週間ほど」は控えめに */
+@media (max-width:900px){
+  .hp-p{gap:6px;}
+  .hp-v{display:flex;flex-direction:column;gap:2px;margin-top:6px;}
+  .hp-v .hp-n{font-family:var(--ff-en);font-size:34px;font-weight:500;line-height:1;letter-spacing:.01em;font-variant-numeric:lining-nums;}
+  .hp-v .hp-ty{font-size:var(--f1);color:var(--ink-2);letter-spacing:.04em;}
+  .hp-v>.nw+.hp-dot+.nw{font-size:var(--f2);color:var(--ink-2);letter-spacing:.08em;}
+}
+
+/* ══════════ 2026-10-01 修正役V f2（第2周の評価の、見た目の指摘） ══════════ */
+
+/* 扉（PC）：値段の札と縦の札を、どの絵でも同じ「短冊」にそろえる（胡粉 .94・内側に 0.5px の金の縁・左の金罫。角丸・影なし）。
+   値段の札は右へ消える霞をやめ、中身の幅（max-content）で切る（右に字の無い霞が 150px 残り、拭き残しに見えていた）。
+   前の周の上書き（site.css の第5〜8周・この上の f1）にあった扉の札の規則は、ここに一本化して消した */
+@media (min-width:901px){
+  .hero-deal,.hero[data-tone] .hero-deal{left:var(--bleed);width:max-content;min-width:0;padding:22px 30px 24px 28px;
+    background:rgba(243,241,235,.94);-webkit-mask-image:none;mask-image:none;
+    box-shadow:inset 0 0 0 .5px rgba(168,130,63,.55),inset 1px 0 0 var(--gold);}
+  .hx-ln{background:transparent;}
+  .hero-plate,.hero[data-tone] .hero-plate{background:rgba(246,241,229,.94);box-shadow:inset 0 0 0 .5px rgba(168,130,63,.55);padding:28px 14px;
+    transition:background-color .8s ease,box-shadow .8s ease;}
+  .hero-plate .hp-k,.hero-plate .hp-c,.hero[data-tone] .hero-plate .hp-k,.hero[data-tone] .hero-plate .hp-c{text-shadow:none;}
+  /* 絵の出典は主題（会社のホームページ制作）より一段控えめに：13px の薄墨、主題から少し離す */
+  .hero-plate .hp-c,.hero[data-tone] .hero-plate .hp-c{font-size:var(--f1);color:var(--ink-2);margin-right:22px;letter-spacing:.12em;}
+  /* 金地の絵（八橋図）の上の霞を弱める（金箔の照りが鈍っていた）。頭の帯の字は霞の上限 .5 でも読める */
+  .hero[data-tone="gold"]::after{height:100%;background:
+    linear-gradient(180deg,rgba(243,241,235,.5) 0,rgba(243,241,235,.3) 96px,rgba(243,241,235,.1) 150px,rgba(243,241,235,0) 200px) 0 0 / 100% 200px no-repeat,
+    radial-gradient(ellipse 260px 300px at 0 0,rgba(243,241,235,.45) 0,rgba(243,241,235,.25) 60%,rgba(243,241,235,0) 100%) 0 0 / 100% 100% no-repeat,
+    radial-gradient(ellipse 90px 230px at 100% 330px,rgba(243,241,235,.62) 0,rgba(243,241,235,.36) 55%,rgba(243,241,235,0) 100%) 0 0 / 100% 100% no-repeat;}
+  /* 扉の2枚目：5枚の見本の下の金罫は、値段の札の上端とぶつかりそうで窮屈だった。2枚目では罫を引かない */
+  .hm-row::after{display:none;}
+}
+
+/* 一 ABOUT（1101px 以上）：見本の枠を扇2.5枚分に広げる（PC の画面 約480px・スマホ 約150px。中の字が読めなかった）。
+   リードは 26em に詰めて場所を空け、スマホの枠は見出しの下の高さから PC の画面の左下に重ねる */
+@media (min-width:1101px){
+  .about-lead{max-width:26em;}
+  .about-txt{grid-row:1;}
+  .about-art.about-mihon{grid-column:4 / -1!important;grid-row:1;margin:8px 0 0 calc(100% / 6 + var(--fp))!important;}
+  .about-mihon .dv-pc{width:90%;}
+  .about-mihon .dv-sp{width:28%;margin-top:30%;}
+}
+
+/* 見本帳：業種の札の下の読み上げの段は、字が無いあいだは高さを取らない（札と案の札のあいだに何も無い帯ができていた） */
+.chip-live:empty{min-height:0;margin:0;}
+
+/* 見本の窓：タッチの「タップして中を見る」は1行に。幅の狭い枠では「タップで見る」に縮める。札は枠の下端に寄せ、見本の見出しにかぶせない */
+.mado-sc{container-type:inline-size;}
+.is-coarse .mado-touch{padding:0 0 16px;}
+/* スマホの枠では、見本の下の追従バー（電話・お問い合わせ）に半分かからないよう、その上に置く */
+.is-coarse .mado-sc-sp .mado-touch{padding-bottom:22%;}
+.mado-touch span{white-space:nowrap;}
+.mado-touch i{font-style:normal;}
+.mado-touch .mt-s{display:none;}
+@container (max-width:210px){
+  .mado-touch .mt-l{display:none;}
+  .mado-touch .mt-s{display:inline;}
+  .mado-touch span{gap:8px;padding:0 12px;letter-spacing:.06em;}
+}
+/* 「閉じる」は見本の社名の帯（右上）を欠かないよう、画面の右下に置く（スマホの枠では見本の追従バーの上） */
+.is-coarse .mado-sc.is-touch .mado-done{top:auto;bottom:8px;}
+.is-coarse .mado-sc-sp.is-touch .mado-done{bottom:13%;}
+
+/* デザインの想い：読みは一字の右肩から字の中ほどへ寄せ、ルビのように字に添える */
+.oj-yomi{align-self:center;margin-top:0;margin-left:-2px;}
+/* 「五案とも…」（1101px 以上）：想いの説明の列と同じ左端・行長にそろえ、0.5px の罫で受ける（x=328 から浮いていた） */
+@media (min-width:901px) and (max-width:1100px){
+  .inds>.step-mado>.dz-note{grid-column:3 / -1;max-width:none;margin-top:44px;padding:22px 0 0 clamp(20px,2.4vw,36px);border-top:.5px solid var(--line-2);}
+}
+@media (min-width:901px){
+  .inds>.step-mado>.dz-note br{display:none;}
+  .inds>.step-mado>.dz-note b{display:block;margin-top:8px;}
+}
+@media (min-width:1101px){
+  .inds>.step-mado>.dz-note{grid-column:4 / -1;max-width:none;margin-top:44px;padding:22px 0 0 clamp(20px,2.4vw,36px);border-top:.5px solid var(--line-2);}
+}
+/* スマホ：想いの長い説明はふつうの和文の折り返しで詰めて組む（文節で折ると右端が 255〜350px とばらついた） */
+@media (max-width:620px){.omoi-d,.omoi-m{word-break:normal;line-break:strict;text-wrap:pretty;}}
+
+/* 四 料金：左の面の説明は約26字の行長で自然に流す（短い行がばらばらに切れていた）。公開設定の代行の（ご希望の方のみ）は名目の下に小さく送り、
+   金額を1行目に残す（1280 で 50,000円だけが下の行に落ちていた）。右の面は項目を上から等間隔に並べ、無償の注記を面の下端に寄せる */
+.pr-main p{max-width:26em;}
+.pr p{text-wrap:wrap;}
+.pr-make .pr-row h4 .nw{display:block;margin-top:2px;font-size:var(--f1);font-weight:400;letter-spacing:.1em;color:var(--ink-2);}
+@media (min-width:901px){
+  .pr-fix .pr-row+.pr-row,.pr-fix .pr-fine{margin-top:auto;}
+  .pr-fix .pr-row+.pr-row{padding-top:20px;}
+  .pr-fix .pr-row:first-of-type{margin-bottom:28px;}
+  .pr-fix .pr-row:last-of-type{margin-bottom:28px;}
+}
+
+/* 五 ご依頼の流れ（1101px 以上）：4列の字の幅をそろえる。列の内側の余白をやめ、列の間を 40px の溝にして継ぎ目の罫をその真ん中に引く
+   （01 だけ 226px、02・03 は 204px と食い違っていた）。本文はふつうの和文の折り返しで行を埋める（文節で早く折れて 5〜8字の行が続いていた）。
+   所要は1行に、釦は4列とも同じ高さ（64px）で列の下端にそろえる */
+@media (min-width:1101px){
+  .fx{column-gap:40px;}
+  .fx-i,.fx-i:first-child,.fx-i:last-child{position:relative;padding:28px 0 30px;box-shadow:none;}
+  .fx-i+.fx-i::before{content:"";position:absolute;left:-20px;top:0;bottom:0;width:.5px;background:var(--line);}
+  .fx-t{white-space:nowrap;}
+  .fx-t b{letter-spacing:.02em;}
+  .fx-p p{word-break:normal;line-break:strict;text-wrap:pretty;}
+  .fx-btn{min-height:64px;}
+}
+
+/* 結 お問い合わせ（PC）：見本の画面3枚を少し大きくし、章の高さの中ほど（メールアドレスの段）に置く（右上に固まり、右下が空いていた） */
+@media (min-width:901px){
+  .contact-art.contact-mihon{align-self:center;padding-top:0!important;padding-bottom:0!important;}
+  .contact-mihon .dv-sp{width:46%;}
+  .contact-mihon .dv-sp+.dv-sp{margin-left:-19%;}
+  .contact-mihon .dv-cap{margin-top:108px;}
+}
+/* 右下の追従の札（1101〜1366px）：本文の右端（#profile）と 13px しか離れていなかった。札を 1100px 以下と同じ細身（36px）にする */
+@media (min-width:1101px) and (max-width:1366px){.tab{width:36px;gap:10px;padding:16px 0 14px;}}
+/* 見本帳（900px 以下）：業種の札の表から案の札（01〜05）までを 44px に詰める（中身の無い帯が 97px あった） */
+@media (max-width:900px){.inds>.step-ind+.step-mado{margin-top:44px;}}
+/* 2026-10-19 ペルソナ評価 第2・3周（P5）：料金の右の面で、行どうしを margin-top:auto で離していたため、左の面が伸びるたびに 110〜140px の空きが2か所できていた。上から詰めて置く */
+@media (min-width:901px){
+  .pr-fix .pr-row+.pr-row{margin-top:28px!important;}
+  .pr-fix .pr-fine{margin-top:32px!important;}
+  .pr-fix .pr-row:first-of-type,.pr-fix .pr-row:last-of-type{margin-bottom:0!important;}
+}
+/* 2026-10-19 ペルソナ評価 第2・3周（P5「扉2枚目だけ金砂子が無く、展示台に並べた見本に見える」）：2枚目にも金砂子・切箔の層を、控えめに重ねる */
+.hero[data-tone="mihon"] .art-layer{opacity:.55;}
+
+/* 2026-10-22 | 杜工舎 — a precise, open editorial system. */
+:root{
+  --ground:#f6f5f1;--paper:#fff;--ink:#202320;--ink-2:#62665f;--ink-3:#62665f;
+  --gold:#202320;--night:#f6f5f1;--char:#202320;--on-night:#202320;--on-night-2:#62665f;
+  --line:rgba(32,35,32,.15);--line-2:rgba(32,35,32,.25);--line-n:rgba(32,35,32,.15);
+  --ed-mark:#dbeaa3;--ed-serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --ff-ja:"Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+  --ff-en:Arial,Helvetica,sans-serif;--ff-label:Arial,Helvetica,sans-serif;
+  --shell:1280px;--gut:clamp(20px,4.2vw,64px);--fp:0px;
+  --sp-m:clamp(80px,9vw,144px);--sp-l:clamp(96px,10vw,160px);--hd:80px;
+  --f1:12px;--f2:15px;--f3:18px;--f4:24px;--f5:36px;--f6:56px;
+}
+body{font-family:var(--ff-ja);line-height:1.95;letter-spacing:.035em;background:var(--ground);}
+h1,h2,h3,h4,.ja-h,.dai-t{font-family:var(--ed-serif);font-weight:500;}
+button,input,select,textarea{font-family:var(--ff-ja);}
+button,a{-webkit-tap-highlight-color:transparent;}
+::selection{background:var(--ed-mark);color:var(--ink);}
+:focus-visible,.s-night :focus-visible,.band-door :focus-visible,footer :focus-visible{outline:2px solid var(--ink);outline-offset:5px;}
+.lb,.dai-l,.kn-n,.pn,.yr,.fx-n,.rs .n,.proc .n,.qa .qn,.copyright{font-variant-numeric:tabular-nums;}
+.lb,.dai-l{font-size:10px;font-weight:500;letter-spacing:.14em;}
+.ja-h{font-size:clamp(30px,3.4vw,50px);letter-spacing:.035em;line-height:1.6;}
+main p,main li,main dd{word-break:normal;line-break:strict;text-wrap:pretty;}
+.byo{--cols:12;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;}
+.byo>*{margin-inline:0;}
+.byo>:not(.dai){grid-column:1/-1;}
+.sec{--pt:var(--sp-m);--pb:var(--sp-m);padding-block:var(--pt) var(--pb);border-top:1px solid var(--line);}
+.sec.s-ground,.sec.s-face{background:var(--ground);}
+.sec.s-face{background:#fff;}
+.sec:not(.has-band)>.byo:first-of-type::before,.byo>.seams{display:none!important;}
+.dai{grid-column:1/-1;grid-row:auto;position:static;top:auto;display:flex;flex-direction:row;align-items:center;gap:16px;margin:0 0 52px;padding:0 0 20px;border-bottom:1px solid var(--line);}
+.dai-n{font-family:var(--ff-en);font-size:12px;line-height:1;color:var(--ink);margin:0;padding:0;border:0;letter-spacing:0;min-width:20px;}
+.dai-t,.s-night .dai-t,.band-door .dai-t{writing-mode:horizontal-tb;font-size:18px;line-height:1.5;letter-spacing:.05em;font-family:var(--ff-ja);color:var(--ink);}
+.dai-l,.s-night .dai-l,.band-door .dai-l{margin-left:auto;color:var(--ink-2);}
+.dai-l::before{display:none;}
+.s-night .dai-n,.band-door .dai-n{color:var(--ink);}
+.lede{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end;}
+.lede-s{display:block;margin-bottom:52px;}
+.lede .ja-b{font-size:14px;}
+.lede-s .ja-h{max-width:25em;}
+
+/* An unfussy, consistent masthead at every scroll position. */
+.hd,.js .hd:not(.is-solid),.js .hd.is-solid{height:var(--hd);padding:0 var(--gut);align-items:center;background:rgba(246,245,241,.96);color:var(--ink);box-shadow:none;border-bottom:1px solid var(--line);backdrop-filter:blur(14px);pointer-events:auto;transition:transform .3s ease;}
+.hd:not(.is-solid)::before{display:none;}
+.js .hd:not(.is-solid) .logo-s{display:flex;}
+.js .hd:not(.is-solid) .logo-b,.logo-b{display:none;}
+.logo-s{gap:11px;}
+.logo-s .logo-img{height:31px;}
+.logo-s .j{font-family:var(--ed-serif);font-size:21px;font-weight:500;letter-spacing:.16em;}
+.logo-s .w{font-size:9px;letter-spacing:.12em;}
+.nav,.js .hd:not(.is-solid) .nav{margin:0;padding:0;gap:clamp(18px,2vw,32px);background:none!important;box-shadow:none!important;}
+.nav a,.js .hd:not(.is-solid) .nav a{font-size:10px;font-weight:500;letter-spacing:.08em;color:var(--ink);text-shadow:none;}
+.nav a .nj,.js .hd:not(.is-solid) .nav a .nj{font-family:var(--ff-ja);font-size:11px;letter-spacing:.03em;color:var(--ink-2);text-shadow:none;}
+.nav a::after{height:3px;background:var(--ed-mark);bottom:0;}
+.nav a.nav-era,.js .hd:not(.is-solid) .nav a.nav-era{border-left:1px solid var(--line);padding-left:24px;}
+.menu-btn,.js .hd:not(.is-solid) .menu-btn{background:none;}
+.mnav{background:var(--ground);padding-top:20px;}
+.mnav li a{font-family:var(--ed-serif);font-size:24px;padding:18px 0;letter-spacing:.02em;}
+.mnav-close{border:1px solid var(--line-2);font-size:12px;}
+.mnav-mail{font-size:12px;letter-spacing:.02em;}
+.mnav-mail a{font-size:18px;}
+
+/* About: text and a real piece of work share the page. */
+#about .about-txt{grid-column:1/-1;grid-row:auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+#about .about-txt h1,#about-h{font-size:clamp(32px,3.6vw,54px);line-height:1.55;letter-spacing:.03em;}
+#about .about-lead{max-width:35em;margin-top:0;font-size:14px;line-height:2.1;}
+#about .about-art.about-mihon{grid-column:8/-1!important;grid-row:2;margin:10px 0 0!important;}
+.about-mihon .dv-pc{width:92%;}
+.about-mihon .dv-sp{width:29%;margin-top:26%;background:#fff;outline-color:var(--ground);}
+.dv-k{font-family:var(--ff-ja);color:var(--ink-2);letter-spacing:.08em;}
+.dv-bar,.mado-bar{background:#f3f3ef;}
+.dv-dots i,.mado-dots i{transform:none;width:4px;height:4px;border:0;background:#a0a49a;}
+.keys{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:64px 0 0!important;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);}
+.keys li{padding:26px 28px;min-width:0;box-shadow:none;border-left:1px solid var(--line);}
+.keys li:first-child{padding-left:0;border-left:0;}
+.keys li:last-child{padding-right:0;}
+.k-l{font-size:11px;color:var(--ink-2);letter-spacing:.12em;}
+.k-v{display:block;font-family:var(--ff-ja);font-size:21px;line-height:1.5;margin-top:13px;letter-spacing:.01em;}
+.k-v .kn-n{font-family:var(--ff-en);font-size:38px;font-weight:400;letter-spacing:-.04em;}
+.k-v .kn-u,.k-v .kn-t{font-size:12px;}
+.k-s{font-size:12px;line-height:1.9;margin-top:12px;letter-spacing:.025em;}
+.go{gap:24px;}
+.about-go{margin-top:30px;}
+.box-ln,.fx-btn{border-radius:0;background:var(--ink);color:#fff;border:1px solid var(--ink);font-size:13px;font-family:var(--ff-ja);letter-spacing:.04em;min-height:52px;padding:12px 24px;}
+.box-ln::after{background:#fff;}
+.ln,.to-erabot a,.mado-go{font-family:var(--ff-ja);letter-spacing:.025em;}
+.ln::after{background:var(--ink);}
+.to-erabot{margin-top:38px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.to-erabot a{display:flex;justify-content:space-between;gap:20px;}
+.te-k{font-size:11px;}
+.te-v{font-size:16px;}
+
+/* White chapter openings put the work in the foreground. */
+.band-door{background:var(--ground);color:var(--ink);min-height:0;padding:var(--sp-m) 0 46px;border:0;}
+.band-door img,.band-door picture,.band-door canvas,.band-gold,.faq-kanze,.era-kanze{display:none!important;}
+.band-door::before,.band-door::after{display:none!important;}
+.band-door>.byo{width:100%;}
+.band-door .dai{margin-bottom:44px;}
+.band-door .ja-h{grid-column:1/-1!important;font-size:clamp(38px,5.6vw,80px);color:var(--ink);line-height:1.35;letter-spacing:.02em;}
+.band-works .ja-h br{display:none;}
+#works>.works-body{padding-top:0;}
+.works-lead{grid-column:1/9!important;max-width:48em;font-size:14px;}
+.works-body>.inds{grid-column:1/-1;display:block;margin:0;}
+.inds>.step{display:block;margin-inline:0;}
+.inds>.step>*{margin-inline:0;}
+.inds>.step-ind{margin-top:44px;}
+.step-h{padding:0 0 18px;border-bottom:1px solid var(--line);}
+.step-h h3{font-size:23px;letter-spacing:.03em;}
+.step-h .d,.step-p{font-size:13px;}
+.chips,.inds>.step>.chips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin:24px 0 0;border-top:1px solid var(--line);border-bottom:0;}
+.chip{font-family:var(--ff-ja);font-size:14px;letter-spacing:.03em;min-height:70px;padding:13px 18px;border:0;border-bottom:1px solid var(--line);box-shadow:inset -1px 0 0 var(--line);gap:6px;color:var(--ink);}
+.chip:nth-child(6n){box-shadow:none;}
+.chip::after{font-size:9px;letter-spacing:.08em;color:var(--ink-2);}
+.chip::before{background:var(--ink);height:2px;}
+.chip.is-shown::before{opacity:1;background:var(--ed-mark);height:4px;}
+.chip-live{font-size:12px;}
+.inds>.step-ind+.step-mado{margin-top:36px;}
+.inds>.step-mado>.mado{display:block;--S:100cqw;--g:32px;margin:0;}
+.js .mado>.mado-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:none;height:auto;position:static;margin:0;border:1px solid var(--line);}
+.mado-tab{grid-template-columns:auto 1fr;grid-template-rows:auto;column-gap:12px;min-height:86px;padding:16px 22px;box-shadow:inset 1px 0 0 var(--line);}
+.mado-tab:first-child{box-shadow:none;}
+.mado-tab .mt-no{grid-column:1;grid-row:1/3;font-family:var(--ff-en);align-self:start;font-size:10px;letter-spacing:.02em;}
+.mado-tab .mt-ja{grid-column:2;grid-row:1;font-family:var(--ed-serif);font-size:32px;margin:0;}
+.mado-tab .mt-yomi{grid-column:2;grid-row:2;font-size:10px;letter-spacing:.03em;margin-top:7px;}
+.mado-tab::before{left:0;right:0;top:auto;bottom:-1px;height:3px;width:auto;transform:scaleX(0);transform-origin:left;background:var(--ink);}
+.mado-tab[aria-pressed="true"]{background:#fff;}
+.mado-tab[aria-pressed="true"]::before{transform:scaleX(1);}
+.js .mado-tabs+.mado-stage{margin:32px 0 0;}
+.mado-dev{padding-bottom:24px;background:none;border-bottom:1px solid var(--line);}
+.mado-pc,.mado-sp{background:#fff;border:1px solid var(--line-2);}
+.mado-url{font-size:10px;letter-spacing:.02em;background:#fff;border:0;}
+.mado-cap{font-size:12px;gap:8px 22px;margin-top:16px;}
+.mado-go{font-size:12px;}
+.mado>.omoi{display:grid;grid-template-columns:2fr 10fr;margin:40px 0 0;padding-top:30px;gap:32px;border-color:var(--line);}
+.omoi>.omoi-k{grid-column:1;margin:0;font-family:var(--ff-ja);font-size:12px;letter-spacing:.05em;}
+.omoi-k::after{display:none;}
+.omoi>.omoi-b{grid-column:2;display:grid;grid-template-columns:1fr 1.5fr;gap:36px;margin:0;}
+.omoi-b>.omoi-l,.omoi-b>.omoi-tx{grid-column:auto;grid-row:auto;position:static;top:auto;margin:0;padding:0;box-shadow:none;}
+.oj-k{font-family:var(--ed-serif);font-size:72px;}
+.oj-yomi{writing-mode:horizontal-tb;letter-spacing:.05em;font-size:11px;}
+.omoi-e{font-size:18px;line-height:1.7;letter-spacing:.04em;}
+.omoi-d,.omoi-m{font-size:14px;line-height:2;}
+.omoi-m{margin-top:20px;padding-top:18px;}
+.omoi-m b{font-family:var(--ff-ja);font-size:10px;letter-spacing:.08em;}
+.inds>.step-mado>.dz-note{max-width:48em;grid-column:auto!important;margin:36px 0 0 auto!important;padding:24px 0 0;border-top:1px solid var(--line);font-size:13px;line-height:2;}
+
+/* Argument, price, and process are measured open columns, never cards. */
+.reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto auto 1fr auto;gap:0 36px;margin-top:48px;}
+.reasons>.rs{display:grid;grid-row:span 4;grid-template-rows:subgrid;padding:24px 0 0;box-shadow:none;border-top:1px solid var(--ink);}
+.rs .n{font-family:var(--ff-en);font-size:12px;letter-spacing:.04em;line-height:1;}
+.rs h3{font-size:23px;line-height:1.6;margin:20px 0 18px;letter-spacing:.015em;}
+.rs p:not(.n):not(.src){font-size:14px;line-height:2;}
+.rs .src{font-family:var(--ff-ja);font-size:10px;line-height:1.9;padding-top:20px;margin-top:28px!important;border-top:1px solid var(--line);color:var(--ink-2);}
+.pr{grid-template-columns:1.15fr 1fr;gap:48px;border:0;}
+.pr-face{padding:28px 0 0!important;background:none;box-shadow:none;border-top:1px solid var(--ink);}
+.pr-make::before,.pr-make::after{display:none;}
+.pr-h{font-family:var(--ff-ja);font-size:12px;letter-spacing:.05em;}
+.pr-h::before{width:7px;height:7px;background:var(--ed-mark);}
+.pr-main{margin:32px 0 36px;}
+.pr-main h4{font-family:var(--ff-ja);font-size:16px;letter-spacing:.03em;}
+.pr-main .pn{font-size:clamp(64px,6.4vw,94px);letter-spacing:-.065em;line-height:1;}
+.pr-main .py{font-family:var(--ff-ja);font-size:20px;}
+.pr-main .pt{font-size:11px;}
+.pr-main p{font-size:14px;max-width:34em;margin-top:22px;padding-top:0;}
+.pr-main p::before{display:none;}
+.pr-row h4{font-family:var(--ff-ja);font-size:14px;letter-spacing:.02em;}
+.pr-row p,.pr-fine,.pr-sum{font-size:13px;}
+.pr-row .pn{font-size:30px;letter-spacing:-.04em;}
+.pr-row .p{margin-left:0;}
+.pr-make .pr-row{margin-top:0;}
+.pr-fix .pr-row+.pr-row{margin-top:30px!important;}
+.pr-fix .pr-fine{margin-top:30px!important;padding-top:0;}
+.pr-fine::before{display:none;}
+.pr-notes{grid-template-columns:1.15fr 1fr;gap:48px;margin-top:30px;}
+.pr-notes>*{padding:0;}
+.pr-note{font-size:12px;line-height:2;}
+.daiko-fold summary{min-height:80px;}
+.daiko h3,.vh3,.daiko-fold .df-t .vh3{font-family:var(--ff-ja);font-size:15px;}
+.df-s{font-size:11px;}
+.df-b{font-size:13px;padding:0 0 28px;}
+.flow li::before{font-size:12px;color:var(--ink-2);}
+.fx{grid-template-columns:repeat(4,minmax(0,1fr));gap:0 28px;border:0;}
+.fx-i,.fx-i:first-child,.fx-i:last-child{padding:24px 0 0;box-shadow:none;border-top:1px solid var(--ink);}
+.fx-i+.fx-i::before{display:none;}
+.fx-n{font-size:32px;letter-spacing:-.04em;line-height:1;}
+.fx-t{font-size:10px;margin-top:20px;white-space:normal;}
+.fx-t b{font-size:12px;letter-spacing:.015em;}
+.fx-i h3{font-size:21px;line-height:1.6;padding-top:18px;letter-spacing:.015em;}
+.fx-p p{font-size:13px;line-height:2;word-break:normal;}
+.fx-p .fx-s{font-size:10px;}
+.fx-btn{background:transparent;color:var(--ink);padding:12px;min-height:58px;font-size:12px;}
+.fx-btn .dl-n{line-height:1.5;}
+.fx-note{margin-top:36px;gap:28px;border-color:var(--line);grid-template-columns:1fr 2fr;}
+.fx-note h4{font-family:var(--ff-ja);font-size:13px;}
+.fx-note p{font-size:13px;line-height:2;}
+
+/* Profile: the author and their record, without an unrelated painting. */
+.pf{grid-template-columns:4fr 7fr;gap:clamp(36px,6vw,96px);margin:0!important;}
+.pf>*{margin:0;}
+.pf-l{grid-column:1;position:static!important;}
+.pf-r{grid-column:2;}
+.pf-l .ph{display:none;}
+.pf-name{margin:0;padding:28px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);gap:12px;}
+.pf-name b{font-family:var(--ed-serif);font-size:34px;font-weight:500;letter-spacing:.08em;}
+.pf-name small{font-size:11px;line-height:2;}
+.pf-cv{margin-top:22px;}
+.pf-cv summary h3,.tbl h3{font-family:var(--ff-ja);font-size:14px;letter-spacing:.025em;}
+.pf-cv summary{min-height:60px;}
+.tbl dl div{grid-template-columns:5em minmax(0,1fr);gap:14px;}
+.tbl dt .yr{font-size:15px;letter-spacing:0;}
+.tbl dd,.tbl ul li{font-size:13px;line-height:2;}
+.tbl dd small,.tbl ul li small,.tbl .note{font-size:11px;}
+.info dl div{grid-template-columns:6em minmax(0,1fr);padding:15px 0;font-size:13px;}
+.info dt{font-size:11px;}
+.pf-body{font-size:14px;line-height:2.1;}
+.pf-body p+p{margin-top:1.4em;}
+.pf-r>.pf-body{margin-top:32px;}
+.tbl-fold summary{min-height:68px;}
+.labs{gap:24px;}
+.labs div{background:none;padding:12px 0;box-shadow:none;}
+.labs h4,.ways h4{font-family:var(--ff-ja);font-size:13px;}
+.labs p,.ways p{font-size:13px;}
+.qa{grid-column:4/-1!important;}
+.qa summary{grid-template-columns:38px 1fr 20px;gap:20px;padding:25px 0;}
+.qa .qn{font-size:11px;color:var(--ink-2);}
+.qa .qt{font-family:var(--ff-ja);font-size:16px;letter-spacing:.01em;line-height:1.7;}
+.qa .qa-a{padding:0 24px 28px 58px;font-size:14px;line-height:2;max-width:50em;}
+.fold-i{color:var(--ink);}
+
+/* Contact and colophon close with the same daylight and ruled rhythm. */
+.char{background:var(--ground);color:var(--ink);padding:var(--sp-m) 0;border-top:1px solid var(--line);}
+.contact{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:40px;align-items:start;}
+.contact>.dai{margin:0 0 48px;}
+.contact-in{grid-column:1/8!important;padding:0;}
+.contact-in>.contact-lede{font-family:var(--ed-serif);font-size:clamp(32px,3.8vw,54px);color:var(--ink);letter-spacing:.03em;line-height:1.6;margin-bottom:28px;}
+.contact-in>p{font-size:14px;max-width:38em;color:var(--ink-2);}
+.contact .kane{color:var(--ink);margin-top:28px;}
+.kane .kn-n{font-size:32px;font-weight:400;letter-spacing:-.04em;}
+.kane b,.kane>small{font-size:12px;}
+.mail{margin-top:32px;}
+.mail .lb,.mail small{color:var(--ink-2);}
+.mail-a{font-size:clamp(24px,3vw,42px);letter-spacing:-.035em;line-height:1.4;color:var(--ink);max-width:none;padding:12px 0 18px;border-bottom:1px solid var(--ink);}
+.mail-a span{font-size:22px;}
+.copy{color:var(--ink);border:1px solid var(--line-2);font-size:11px;letter-spacing:.03em;min-height:42px;padding:0 16px;}
+.mail small{font-size:11px;}
+.contact .go{color:var(--ink);margin-top:24px;}
+.contact .ln::after{background:var(--ink);}
+.contact-art.contact-mihon{grid-column:9/-1!important;grid-row:2;margin:0!important;padding:16px 0 0!important;align-self:start;}
+.cm-row{display:flex;gap:12px;max-width:none;}
+.contact-mihon .dv-sp{width:calc((100% - 24px)/3);background:#fff;border:1px solid var(--line-2);padding:4px;margin-left:0!important;transform:translateY(calc(var(--i)*22px));}
+.contact-mihon .dv-sc{background:#fff;}
+.contact-mihon .dv-cap{margin-top:58px;color:var(--ink-2);font-size:10px;}
+.contact-mihon .dv-k{color:var(--ink-2);}
+footer{background:var(--ground);color:var(--ink-2);border-top:1px solid var(--line);box-shadow:none;}
+.colo{padding:56px 0 36px;}
+.colo-in{row-gap:32px;column-gap:64px;}
+.colo-in>:first-child{grid-column:1/7;margin:0;}
+.colo-in>:last-child{grid-column:7/-1;margin:0;}
+.colo h2{font-family:var(--ff-ja);font-size:12px;letter-spacing:.03em;color:var(--ink);border-color:var(--line);}
+.colo p,.colo dd,.colo dt{font-size:10px;line-height:2;}
+.colo dt{color:var(--ink);}
+.credit{font-size:10px;padding-bottom:32px;}
+.credit .credit-in{grid-column:1/-1;margin:0;border-color:var(--line);}
+.ft-end{padding:28px var(--gut);border-color:var(--line);}
+.ft-mark{gap:14px;}
+.ft-logo{background:var(--ink);width:24px;height:32px;}
+.ft-name{color:var(--ink);font-family:var(--ed-serif);font-size:17px;letter-spacing:.16em;}
+.ft-name>span:not(.nk){font-size:9px;letter-spacing:.1em;}
+.copyright,.ft-sns{font-size:9px;letter-spacing:.06em;color:var(--ink-2);}
+.ft-sns-id{font-size:9px;}
+.tab{width:40px!important;background:var(--ink);color:#fff;box-shadow:none;font-family:var(--ff-ja);font-size:11px;letter-spacing:.08em;}
+.tab::after{background:var(--ed-mark);}
+.mcta{border-top:1px solid var(--line);background:rgba(246,245,241,.98);}
+.mcta .f{font-size:11px;color:var(--ink);}
+.mcta .b{font-size:12px;color:#fff;background:var(--ink);}
+
+/* Product selection uses the same type, page width, and simple geometry. */
+.era-page .band-era{padding-top:calc(var(--hd) + 80px);padding-bottom:64px;background:var(--ground);}
+.band-era .ja-h{font-size:clamp(40px,5.4vw,76px);max-width:14em;}
+.era-door{grid-column:1/8!important;margin-top:36px;color:var(--ink);}
+.era-door>p:first-child{font-size:16px;line-height:2;max-width:42em;letter-spacing:.025em;}
+.era-door .kane{color:var(--ink);gap:8px 24px;margin-top:32px;}
+.era-door .kane b{font-family:var(--ff-ja);font-size:20px;}
+.era-door .kane small{font-size:12px;}
+.era-page>.byo{padding-top:72px;}
+.era-page .pair{grid-template-columns:1.3fr 1fr;gap:72px;}
+.pair .ja-b{font-size:15px;line-height:2.1;}
+.diagram{background:#eeeee8;border:1px solid var(--line);padding:32px;}
+.diagram svg g[fill="#B8914A"]{display:none;}
+.diagram svg g[fill="#2A2E30"]{fill:#fff;}
+.diagram svg g[fill="#C9A35E"]{fill:var(--ink);}
+.diagram svg g[fill="#EFE6D2"]{fill:var(--ink);font-family:var(--ed-serif);}
+.diagram svg g[stroke="#C9A35E"]{stroke:var(--ink);}
+.proc{grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin-top:60px;border:0;}
+.proc li,.proc li+li{padding:24px 0 0;box-shadow:none;border:0;border-top:1px solid var(--ink);}
+.proc .n{font-size:30px;color:var(--ink-2);letter-spacing:-.03em;}
+.proc h3{font-size:22px;letter-spacing:.02em;margin-top:24px;}
+.proc p:not(.n){font-size:13px;word-break:normal;line-height:2;text-wrap:pretty;}
+.era-page .erabo-plan{grid-column:4/-1!important;}
+.erabo-plan dl div{padding:22px 0;}
+.erabo-plan dt{font-size:13px;}
+.erabo-plan dd{font-size:20px;letter-spacing:.01em;}
+.erabo-plan p{font-size:13px;line-height:2;}
+html[data-page="erabot"] .contact-in{grid-column:1/9!important;}
+
+/* Motion is opt-in by a successful observer, so no JS means visible content. */
+.js .rv,.js .rv-scroll,.js .rv.in,.js .rv-scroll.in,.js .dai.rv:not(.in){opacity:1;transform:none;transition:none;clip-path:none;}
+.ed-reveal{opacity:1;transform:none;}
+.ed-motion .ed-reveal{transition:opacity .65s ease,transform .75s cubic-bezier(.2,.7,.2,1);transition-delay:var(--ed-delay,0ms);}
+.ed-motion .ed-reveal.ed-pending{opacity:0;transform:translateY(20px);}
+.ed-motion-paused .ed-reveal.ed-pending{opacity:1;transform:none;transition:none;}
+.ed-motion-paused .ed-hero-title>span,.ed-motion-paused .ed-hero .about-mihon .dv-pc,.ed-motion-paused .ed-hero .about-mihon .dv-sp{animation-play-state:paused!important;}
+@media(hover:hover){
+  .box-ln:hover{background:#fff;color:var(--ink);}
+  .box-ln:hover::after{background:var(--ink);}
+  .chip:hover{background:#eceee7;color:var(--ink);}
+  .mado-tab:hover{background:#eeeee9;}
+  .copy:hover{background:var(--ink);color:#fff;}
+  .fx-btn:hover{background:var(--ink);color:#fff;}
+  .contact-mihon .dv-sp:hover{transform:translateY(calc(var(--i)*22px - 5px));}
+}
+@media(max-width:1180px){
+  .nav{gap:18px!important;}
+  .nav a:not(.nav-era) .nj{position:static;width:auto;height:auto;overflow:visible;clip:auto;font-size:11px;}
+  .nav a:not(.nav-era) [lang="en"]{position:static;width:auto;height:auto;overflow:visible;clip:auto;}
+  .nav a.nav-era{padding-left:18px;}
+  .fx{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px;}
+  .fx-i:nth-child(n+3){border-top:1px solid var(--ink);}
+}
+@media(max-width:1024px){
+  :root{--hd:72px;}
+  .nav{gap:15px!important;}
+  .nav a [lang="en"]{display:none;}
+  .nav a .nj{font-size:11px!important;}
+  .nav a.nav-era{padding-left:15px;}
+  .reasons{column-gap:24px;}
+  .rs h3{font-size:21px;}
+  .pr,.pr-notes{gap:32px;}
+  .pf{gap:40px;grid-template-columns:4fr 6fr;}
+}
+@media(max-width:900px){
+  .byo{--cols:12;column-gap:20px;}
+  .nav{display:none;}
+  .menu-btn{display:block;}
+  .dai{margin-bottom:36px;gap:12px;}
+  .dai-t{font-size:16px;}
+  .dai-l{font-size:9px;}
+  #about .about-txt{grid-column:1/-1!important;gap:36px;}
+  #about .about-art.about-mihon{grid-column:8/-1!important;grid-row:2;margin:8px 0 0!important;}
+  #about .about-txt h1,#about-h{font-size:32px;}
+  #about .about-lead{font-size:13px;}
+  .about-mihon .dv-sp{width:34%;margin-top:60%;}
+  .about-mihon .dv-cap{font-size:10px;}
+  .keys{margin-top:44px!important;}
+  .keys li{padding:22px 20px;}
+  .k-v{font-size:16px;}
+  .keys .k-v .kn-n{font-size:30px;}
+  .k-s{font-size:11px;}
+  .lede{display:block;}
+  .lede .ja-b{margin-top:20px;}
+  .reasons{grid-template-columns:1fr;grid-template-rows:none;row-gap:32px;}
+  .reasons>.rs{display:grid;grid-row:auto;grid-template-rows:auto;grid-template-columns:50px 1fr;gap:0 24px;padding:24px 0 0;}
+  .rs .n{grid-column:1;grid-row:1;padding-top:8px;}
+  .rs h3{grid-column:2;margin:0 0 18px;font-size:24px;}
+  .rs p:not(.n){grid-column:2;}
+  .rs .src{margin-top:20px!important;}
+  .chips,.inds>.step>.chips{grid-template-columns:repeat(6,minmax(0,1fr));}
+  .chip{font-size:12px;padding-inline:10px;}
+  .mado-tab{padding:16px 12px;column-gap:8px;}
+  .mado-tab .mt-ja{font-size:28px;}
+  .mado>.omoi{grid-template-columns:1fr;gap:24px;}
+  .omoi>.omoi-k{grid-column:1;}
+  .omoi>.omoi-b{grid-column:1;gap:30px;}
+  .pr,.pr-notes{grid-template-columns:1fr 1fr;}
+  .pr-face{border-top:1px solid var(--ink);}
+  .pr-main .pn{font-size:64px;}
+  .pr-row .p{flex-basis:100%;text-align:left;}
+  .pf{grid-template-columns:1fr 1.5fr;gap:36px;}
+  .pf-l,.pf-r{grid-row:auto;}
+  .pf-name b{font-size:30px;}
+  .pf-name small .pf-sep{display:none;}
+  .pf-name small .nw{display:block;}
+  .qa{grid-column:1/-1!important;}
+  .contact-in{grid-column:1/9!important;}
+  .contact-art.contact-mihon{grid-column:9/-1!important;grid-row:2;}
+  .cm-row{gap:8px;}
+  .contact-mihon .dv-sp{width:calc((100% - 16px)/3);padding:2px;}
+  .contact-mihon .dv-cap{margin-top:56px;}
+  .contact-mihon .dv-sp .dv-sc{border-radius:3px;}
+  .colo-in{column-gap:40px;}
+  .mcta{padding-inline:var(--gut);}
+  .era-page .pair{gap:32px;}
+  .proc{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;}
+  .proc h3{min-height:0;}
+  .era-page .erabo-plan{grid-column:2/-1!important;}
+}
+@media(max-width:620px){
+  :root{--hd:68px;--gut:22px;--sp-m:72px;--sp-l:80px;}
+  body{font-size:14px;letter-spacing:.025em;}
+  .byo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:12px;}
+  .byo>*{grid-column:1/-1!important;}
+  .dai{gap:11px;padding-bottom:16px;margin-bottom:32px;flex-wrap:nowrap;}
+  .dai-n{font-size:11px;min-width:13px;margin:0;padding:0;border:0;}
+  .dai-t{font-size:15px;letter-spacing:.03em;}
+  .dai-l{display:block;font-size:8px;letter-spacing:.05em;}
+  #profile .dai-l{display:block;}
+  .logo-s .j{font-size:20px;}
+  .logo-s .logo-img{height:28px;}
+  .logo-s .w{font-size:8px;}
+  #about.sec{--pt:72px;}
+  #about .about-txt,#about .about-art.about-mihon{grid-column:1/-1!important;grid-row:auto;}
+  #about .about-txt{grid-template-columns:1fr;gap:24px;}
+  #about .about-txt h1,#about-h{font-size:32px;line-height:1.55;letter-spacing:.015em;}
+  #about .about-lead{font-size:14px;line-height:2;margin-top:24px;}
+  #about .about-art.about-mihon{margin:38px 0 0!important;}
+  .about-mihon .dv-sp{width:28%;margin-top:23%;}
+  .about-mihon .dv-pc{width:89%;}
+  .about-mihon .dv-cap{font-size:11px;margin-top:24px;}
+  .keys{grid-template-columns:1fr;margin-top:40px!important;}
+  .keys li,.keys li:first-child,.keys li:last-child{display:grid;grid-template-columns:48px 1fr;gap:8px 18px;padding:20px 0;border-left:0;border-bottom:1px solid var(--line);}
+  .keys li:last-child{border-bottom:0;}
+  .k-l{padding-top:9px;grid-column:1;grid-row:1/3;}
+  .k-v{margin:0;grid-column:2;font-size:19px;}
+  .keys .k-v .kn-n{font-size:34px;}
+  .k-s{grid-column:2;margin:0;font-size:12px;}
+  .about-go{display:grid;grid-template-columns:1fr;gap:12px;}
+  .about-go .box-ln{justify-content:space-between;}
+  .to-erabot{margin-top:24px!important;padding:20px 0;}
+  .to-erabot a{align-items:flex-start;flex-direction:column;gap:6px;}
+  .te-v{font-size:15px;}
+  .ja-h,#why-h{font-size:28px;line-height:1.65;letter-spacing:.02em;}
+  .lede-s{margin-bottom:36px;}
+  .reasons{margin-top:36px;gap:28px;}
+  .reasons>.rs{grid-template-columns:26px 1fr;column-gap:14px;}
+  .rs h3{font-size:22px;}
+  .rs p:not(.n):not(.src){font-size:13px;}
+  .rs .src{font-size:10px;line-height:1.95;}
+  .band-works.band-door{padding:72px 0 32px;min-height:0;}
+  .band-door .dai{margin-bottom:36px;}
+  .band-door .ja-h,#works-h{font-size:38px;line-height:1.5;letter-spacing:.015em;}
+  .band-works .ja-h br{display:block;}
+  #works>.works-body{padding-top:0;}
+  .works-lead{font-size:13px;}
+  .works-body>.inds>.step-ind{margin-top:32px;}
+  .step-h{gap:6px 16px;}
+  .step-h h3{font-size:22px;}
+  .step-h .d{font-size:11px;}
+  .step-p{font-size:13px;}
+  .chips,.inds>.step>.chips{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .chip{font-size:13px;padding:14px;min-height:66px;}
+  .chip:nth-child(3n){box-shadow:none;}
+  .js .mado>.mado-tabs{grid-template-columns:repeat(5,minmax(0,1fr));position:sticky;top:var(--hd);z-index:6;background:var(--ground);}
+  .mado-tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:72px;padding:12px 4px;}
+  .mado-tab .mt-no{display:none;}
+  .mado-tab .mt-ja{font-size:26px;margin:0;}
+  .mado-tab .mt-yomi{font-size:9px;letter-spacing:.025em;margin:0;}
+  .js .mado-tabs+.mado-stage{margin-top:24px;}
+  .mado-dev{justify-content:center;}
+  .mado-sp{--W:min(282px,76vw);width:var(--W);}
+  .mado-cap{font-size:11px;}
+  .mado-ja{font-size:22px;}
+  .mado-nm{font-size:13px;}
+  .mado>.omoi{margin-top:32px;padding-top:24px;}
+  .omoi>.omoi-b{grid-template-columns:1fr;gap:24px;}
+  .omoi-ja{align-items:center;}
+  .oj-k{font-size:66px;}
+  .omoi-e{margin-top:16px;font-size:18px;}
+  .omoi-d,.omoi-m{font-size:13px;}
+  .inds>.step-mado>.dz-note{font-size:12px;margin-top:28px!important;}
+  .pr,.pr-notes{grid-template-columns:1fr;gap:32px;}
+  .pr-face.pr-make,.pr-face.pr-fix{padding:24px 0 0!important;}
+  .pr-face .pr-h{font-size:12px;}
+  .pr-face.pr-make h4{font-size:15px;}
+  .pr-main{margin-top:26px;}
+  .pr-main .pn{font-size:72px;}
+  .pr-main .py{font-size:20px;}
+  .pr-main .pt{font-size:11px;}
+  .pr-main p{font-size:13px;}
+  .pr-row .p{margin-left:auto;flex-basis:auto;}
+  .pr-notes{gap:14px;margin-top:28px;}
+  .pr-note{font-size:12px;}
+  .fx{display:grid;grid-template-columns:1fr;gap:0;border:0;}
+  .fx-i,.fx-i:first-child,.fx-i:last-child{grid-row:auto;display:grid;grid-template-columns:1fr auto;grid-template-rows:none;gap:0 16px;padding:26px 0 30px;border-top:1px solid var(--ink);}
+  .fx-n{grid-column:1;grid-row:1;font-size:28px;}
+  .fx-t{grid-column:2;grid-row:1;align-self:end;margin:0;}
+  .fx-i h3{grid-column:1/-1;font-size:22px;margin-top:20px;padding-top:0;border:0;}
+  .fx-p,.fx-a{grid-column:1/-1;}
+  .fx-p p{font-size:13px;}
+  .fx-a{margin-top:20px;}
+  .fx-btn{font-size:13px;}
+  .fx-note{grid-template-columns:1fr;gap:12px;margin-top:0;}
+  .fx-note p{font-size:12px;}
+  .pf{display:grid;grid-template-columns:1fr;gap:38px;}
+  .pf-l,.pf-r{grid-column:1;}
+  .pf-name b{font-size:34px;}
+  .pf-name small .nw{display:inline;}
+  .pf-name small .pf-sep{display:inline;}
+  .pf-body{font-size:13px;line-height:2.05;}
+  .info dl div{grid-template-columns:5.3em minmax(0,1fr);font-size:12px;}
+  .qa summary{grid-template-columns:24px 1fr 16px;gap:12px;padding:22px 0;}
+  .qa .qt{font-size:14px;line-height:1.8;}
+  .qa .qa-a{padding:0 0 26px 36px;font-size:13px;}
+  .contact>.dai{margin-bottom:36px;}
+  .contact-in{grid-column:1/-1!important;}
+  .contact-in>.contact-lede{font-size:34px;line-height:1.6;}
+  .contact-in>p{font-size:13px;}
+  .mail-a{font-size:28px;letter-spacing:-.04em;}
+  .contact-art.contact-mihon{grid-column:1/-1!important;grid-row:auto;margin:38px 0 0!important;padding:0!important;}
+  .cm-row{max-width:300px;gap:12px;}
+  .contact-mihon .dv-sp{width:calc((100% - 24px)/3);padding:4px;}
+  .contact-mihon .dv-cap{margin-top:56px;}
+  .colo{padding-top:40px;}
+  .colo-in{row-gap:32px;}
+  .colo-in>:first-child,.colo-in>:last-child{grid-column:1/-1;}
+  .colo p,.colo dd,.colo dt{font-size:10px;}
+  .ft-end{gap:20px;padding-block:26px 90px;}
+  .ft-name>span:not(.nk){display:none;}
+  .copyright{font-size:8px;}
+  .era-page .band-era{padding-top:calc(var(--hd) + 56px);padding-bottom:40px;}
+  .band-era .ja-h,#erabot-h{font-size:36px;line-height:1.5;}
+  .era-door{grid-column:1/-1!important;margin-top:24px;}
+  .era-door>p:first-child{font-size:14px;}
+  .era-door .kane{margin-top:24px;}
+  .era-door .kane b{font-size:18px;}
+  .era-door .kane small{font-size:11px;}
+  .era-page>.byo{padding-top:48px;}
+  .era-page .pair{grid-template-columns:1fr;gap:30px;}
+  .pair .ja-b{font-size:14px;}
+  .diagram{padding:20px;}
+  .proc{grid-template-columns:1fr;gap:28px;margin-top:40px;}
+  .proc li,.proc li+li{padding-top:22px;}
+  .proc .n{font-size:26px;}
+  .proc h3{font-size:22px;margin-top:16px;}
+  .era-page .erabo-plan{grid-column:1/-1!important;}
+  .erabo-plan dd{font-size:18px;}
+  html[data-page="erabot"] .contact-in{grid-column:1/-1!important;}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .ed-motion .ed-reveal,.ed-motion .ed-reveal.ed-pending{opacity:1;transform:none;transition:none;}
+  .mado-tab::before,.mado-if,.contact-mihon .dv-sp{transition:none;}
+}
+@media print{
+  .ed-reveal,.ed-motion .ed-reveal.ed-pending{opacity:1!important;transform:none!important;}
+  .hd,.mcta,.tab,.mnav{display:none!important;}
+}
+
+/* Review pass: readable conditions and evidence for the actual customer age range. */
+:root{--f2:16px;}
+#about .about-lead,.works-lead,.rs p:not(.n):not(.src),.pr-main p,.pr-row p,.pf-body,
+.qa .qa-a,.fx-p p,.fx-note p,.pair .ja-b,.proc li>p:not(.n),.erabo-plan>div>p,
+.contact-in>p:not(.contact-lede):not(.kane),.omoi-d,.omoi-m{font-size:15px;line-height:1.95;}
+.lb,.dai-l,.step-h .d,.rs .src,.mail small,.tbl dd small,.tbl li small,
+.colo p,.colo dd,.colo dt,.credit p,.dv-cap,.mado-cap,.mado-tab .mt-yomi,
+.pr-note,.pr-main .pt,.pr-row .pt,.pr-fine,.pr-sum,.fx-p .fx-s,.k-l,.k-s,
+.era-door .kane small,.step-p,.copyright{font-size:12px;line-height:1.8;}
+.nav a .nj,.js .hd:not(.is-solid) .nav a .nj{font-size:12px;}
+.mail small{display:block;margin-top:18px;}
+.credit:has(.credit-in:empty){display:none;}
+@media(max-width:620px){
+  #about .about-lead,.rs p:not(.n):not(.src),.pr-main p,.pf-body,.qa .qa-a,
+  .fx-p p,.fx-note p,.contact-in>p:not(.contact-lede):not(.kane),.pair .ja-b,.omoi-d,.omoi-m{font-size:15px;}
+  .dai-t{font-size:18px;}.qa .qt{font-size:16px;}
+  .colo p,.colo dd,.colo dt{font-size:12px;}
+  .info dl div{font-size:13px;}
+  .band-era .ja-h,#erabot-h{font-size:32px;letter-spacing:.01em;}
+}
+
+/* 2026-10-27 和紙の地（模様の定義は site.css の --washi）。この層が地の色を shorthand で決めるので、模様はここで重ねる */
+body,.sec.s-ground,.sec.s-face,.plan,.sheet,.send,.labs div,.pr-fix{background-image:url("site/washi.svg");background-size:720px 720px;}
+.sec.s-face{background-position:311px 173px;} /* 隣の章と継ぎ目で模様が揃わないように */
+@media print{body,.s-ground,.s-face{background-image:none;}}
+
+
+/* Editorial hero · 2026-10-22. Product screens are the visual evidence. */
+.ed-hero{
+  --ed-ink:#202320;--ed-paper:#fbfaf7;--ed-line:rgba(32,35,32,.2);--ed-accent:#dbeaa3;
+  position:relative;isolation:isolate;background:var(--ed-paper);color:var(--ed-ink);
+  padding:calc(var(--hd,72px) + 52px) clamp(20px,4.8vw,76px) 0;
+  overflow:hidden;
+}
+.ed-hero-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);column-gap:clamp(32px,4vw,64px);align-items:center;}
+.ed-hero-intro{min-width:0;padding-bottom:36px;position:relative;z-index:2;}
+.ed-hero-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 clamp(24px,3vw,44px);font-family:var(--ff-en),serif;font-size:17px;font-weight:500;line-height:1.4;letter-spacing:.055em;}
+.ed-hero-mark{display:block;flex:0 0 8px;width:8px;height:8px;background:var(--ed-accent);outline:1px solid rgba(32,35,32,.2);outline-offset:3px;}
+.ed-hero-title{margin:0!important;font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;font-weight:500!important;font-size:clamp(38px,4.2vw,66px)!important;line-height:1.54!important;letter-spacing:.025em!important;word-break:normal;text-wrap:initial;}
+.ed-hero-title>span{display:block;white-space:nowrap;animation:ed-type-in .95s cubic-bezier(.2,.7,.25,1) both;}
+.ed-hero-title>span+span{animation-delay:.12s;}
+.ed-hero-lead{margin:clamp(24px,3vw,40px) 0 0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:clamp(14px,1.15vw,16px);font-weight:400;line-height:2;letter-spacing:.035em;}
+.ed-hero-cta{display:flex;align-items:center;justify-content:space-between;gap:24px;width:min(100%,320px);min-height:58px;margin-top:28px;border-bottom:1px solid var(--ed-ink);text-decoration:none;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:14px;letter-spacing:.04em;}
+.ed-hero-arrow{font-family:Arial,sans-serif;font-size:25px;font-weight:300;transition:transform .3s ease;}
+.ed-hero-visual{position:relative;min-width:0;align-self:center;padding:0;}
+.ed-hero-visual-head{display:flex;justify-content:space-between;gap:20px;align-items:baseline;border-top:1px solid var(--ed-line);padding:12px 0 32px;font-family:var(--ff-en),serif;font-size:17px;font-weight:500;line-height:1.3;letter-spacing:.05em;}
+.ed-hero .about-art.about-mihon{grid-column:auto!important;grid-row:auto!important;display:grid;min-height:0!important;margin:0!important;padding:0!important;overflow:visible!important;transform:none!important;}
+.ed-hero .about-mihon .dv-pc{width:93%;justify-self:end;border:1px solid rgba(32,35,32,.25);background:#fff;animation:ed-screen-float 9s ease-in-out infinite;}
+.ed-hero .about-mihon .dv-sp{width:26%;margin-top:18%;outline:7px solid var(--ed-paper);background:var(--ed-paper);border-color:rgba(32,35,32,.5);animation:ed-screen-float 9s ease-in-out -3s infinite;}
+.ed-hero .about-mihon .dv-bar{height:23px;background:#f4f3ef;}
+.ed-hero .about-mihon .dv-dots i{border:0;background:rgba(32,35,32,.35);transform:none;width:4px;height:4px;border-radius:50%;}
+.ed-hero .about-mihon .dv-cap{margin-top:26px;gap:0 10px;line-height:1.8;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:12px;letter-spacing:.02em;}
+.ed-hero .about-mihon .dv-k{display:none;}
+.ed-hero .about-mihon .dv-t{color:#525650;}
+.ed-hero .about-mihon .dv-go{min-height:38px;font-size:12px;color:var(--ed-ink);}
+.ed-hero-services{grid-column:1/-1;display:grid;grid-template-columns:1fr;margin-top:32px;border-top:1px solid var(--ed-ink);border-bottom:1px solid var(--ed-line);}
+.ed-hero-service{position:relative;display:grid;grid-template-columns:28px minmax(0,1fr) 26px;align-items:start;gap:16px;padding:24px 24px 27px 0;text-decoration:none;transition:background .3s ease;}
+.ed-hero-service+.ed-hero-service{border-left:1px solid var(--ed-line);padding-left:32px;}
+.ed-hero-service-no{font-family:var(--ff-en),serif;font-size:17px;line-height:1.7;}
+.ed-hero-service-main{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px 32px;}
+.ed-hero-service-label{grid-column:1;grid-row:1;}
+.ed-hero-price{grid-column:2;grid-row:1 / span 2;}
+.ed-hero-service-note{grid-column:1;grid-row:2;}
+.ed-hero-service-label{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:13px;letter-spacing:.04em;line-height:1.7;}
+.ed-hero-price{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:15px;line-height:1.2;letter-spacing:.02em;}
+.ed-hero-price strong{font-family:var(--ff-en),serif;font-size:44px;font-weight:500;letter-spacing:-.035em;font-variant-numeric:lining-nums;}
+.ed-hero-price>span{font-size:12px;}
+.ed-hero-erabot{font-family:"Shippori Mincho","Yu Mincho",serif;font-size:30px;line-height:1.6;font-weight:500;letter-spacing:.08em;}
+.ed-hero-service-note{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:12px;line-height:1.85;letter-spacing:.02em;color:#525650;}
+.ed-hero-service-arrow{font:24px/1.4 Arial,sans-serif;transition:transform .3s ease;}
+.ed-hero-foot{grid-column:1/-1;display:flex;justify-content:space-between;gap:20px;padding:18px 0 22px;font-family:var(--ff-en),serif;font-size:14px;line-height:1.5;letter-spacing:.06em;}
+.ed-motion-toggle{appearance:none;border:0;border-bottom:1px solid var(--ed-line);background:transparent;padding:0 8px;min-height:44px;cursor:pointer;font:12px/1.5 "Hiragino Sans","Yu Gothic",sans-serif;letter-spacing:.03em;}
+.ed-motion-toggle span{margin-left:10px;}
+.ed-motion-paused .ed-hero .dv{animation-play-state:paused!important;}
+.ed-motion-paused .ed-reveal{opacity:1!important;transform:none!important;}
+.ed-hero a:focus-visible{outline:2px solid var(--ed-ink);outline-offset:5px;}
+@media(hover:hover){.ed-hero-cta:hover .ed-hero-arrow,.ed-hero-service:hover .ed-hero-service-arrow{transform:translate(3px,-3px);}.ed-hero-service:hover{background:rgba(219,234,163,.17);}}
+@keyframes ed-type-in{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes ed-screen-float{0%,100%{translate:0 0;}50%{translate:0 -8px;}}
+@media(max-width:900px){
+  .ed-hero{padding-top:calc(var(--hd,72px) + 52px);padding-inline:32px;}
+  .ed-hero-inner{column-gap:26px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);}
+  .ed-hero-title{font-size:clamp(30px,4.1vw,38px)!important;}
+  .ed-hero-eyebrow{font-size:15px;margin-bottom:28px;}
+  .ed-hero-lead{font-size:13px;}
+  .ed-hero-visual-head{font-size:15px;padding-bottom:28px;}
+  .ed-hero .about-mihon .dv-cap{margin-top:22px;}
+  .ed-hero-services{margin-top:24px;}
+  .ed-hero-service{gap:10px;padding-right:18px;}
+  .ed-hero-service+.ed-hero-service{padding-left:22px;}
+}
+@media(max-width:700px){
+  .ed-hero{padding:calc(var(--hd,72px) + 40px) 22px 0;}
+  .ed-hero-inner{grid-template-columns:minmax(0,1fr);}
+  .ed-hero-intro{padding-bottom:0;}
+  .ed-hero-eyebrow{font-size:16px;margin-bottom:26px;gap:11px;}
+  .ed-hero-title{font-size:clamp(30px,7.65vw,45px)!important;line-height:1.6!important;letter-spacing:.01em!important;}
+  .ed-hero-lead{margin-top:24px;font-size:15px;line-height:1.95;}
+  .ed-hero-cta{margin-top:20px;min-height:54px;width:100%;font-size:13px;}
+  .ed-hero-visual{grid-row:3;margin-top:42px;padding-bottom:0;}
+  .ed-hero-visual-head{font-size:16px;padding:11px 0 24px;}
+  .ed-hero .about-mihon .dv-pc{width:90%;}
+  .ed-hero .about-mihon .dv-sp{width:26%;margin-top:19%;outline-width:6px;}
+  .ed-hero .about-mihon .dv-cap{margin-top:20px;font-size:12px;}
+  .ed-hero-services{grid-row:2;grid-template-columns:minmax(0,1fr);margin-top:34px;}
+  .ed-hero-service{grid-template-columns:25px minmax(0,1fr) 22px;gap:14px;padding:22px 0 25px;}
+  .ed-hero-service+.ed-hero-service{border-left:0;border-top:1px solid var(--ed-line);padding:22px 0 25px;}
+  .ed-hero-service-main{display:flex;gap:7px;flex-direction:column;align-items:flex-start;}
+  .ed-hero-service-label{font-size:13px;}
+  .ed-hero-service-note{font-size:12px;}
+  .ed-hero-price strong{font-size:41px;}
+  .ed-hero-erabot{font-size:28px;line-height:1.65;}
+  .ed-hero-foot{font-size:12px;padding:16px 0 20px;gap:12px;}
+}
+@media(prefers-reduced-motion:reduce){.ed-hero-title>span,.ed-hero .about-mihon .dv-pc,.ed-hero .about-mihon .dv-sp{animation:none!important;}.ed-hero a,.ed-hero-arrow,.ed-hero-service-arrow{transition:none!important;}}
+@media(max-width:359px){.ed-hero-title{font-size:clamp(24px,7.6vw,30px)!important;}.ed-hero-title>span{white-space:normal;overflow-wrap:anywhere;}}
