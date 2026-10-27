@@ -2411,6 +2411,13 @@ html.hash-ld{scroll-behavior:auto;}
 #hikaku .hk-fee .mp-big-v{white-space:nowrap;}
 @media (max-width:620px){#hikaku .hk-fee .mp-big-v .kn-n{font-size:var(--f5);}#hikaku .hk-fee .mp-big-v .kn-u{font-size:var(--f2);}}
 .hk-tax{display:block;margin-top:2px;}
+.hk-trust{grid-column:1 / -1;margin:20px 0 0;font-size:max(16px,var(--f2));}
+.hk-tb{margin-top:16px;border-top:1px solid var(--ink);}
+.hk-tb th{font-size:var(--f3)!important;font-weight:500;padding-right:24px!important;}
+.hk-tb th small{font-weight:400;font-size:max(16px,var(--f1))!important;line-height:1.8;}
+.hk-tb td{font-size:var(--f4)!important;vertical-align:top;padding-top:14px!important;}
+.hk-tb td small{display:block!important;margin:4px 0 0!important;font-size:max(14px,var(--f1))!important;white-space:normal;max-width:14em;margin-left:auto!important;}
+@media (max-width:620px){.hk-tb td small{margin-left:0!important;}}
 
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
@@ -2453,14 +2460,15 @@ html.hash-ld{scroll-behavior:auto;}
   <div class="byo">
     <div class="dai sec-h" aria-hidden="true"><span class="dai-n">一</span><span class="dai-t">商品比較サイトの作成</span><span class="dai-l">Compare</span></div>
     <div class="lede"><h2 class="ja-h" id="hikaku-h">専門の人なら分かる選び分けを、<br>質問に答えるだけで<span class="nw">選べるページに。</span></h2>
-      <div class="ja-b"><p>資材や道具のように、品番が多くて選び方の分かりにくい商品のためのページです。</p><p>使う場所や目的をいくつかの質問で聞き、合う商品と数量の目安を出します。メーカーや販売店の持っている選び方の知識を、お客さまが自分で使える形にします。</p><p class="go hk-go1"><a class="box-ln" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる <span aria-hidden="true">↗</span></a></p><p>想定している効き目：</p><ul class="hk-ul"><li>問い合わせでの「どれを選べばいいか」という質問が減る（たとえば「この地面にはどの杭か」という電話に、ページが答えられる）</li><li>選び間違いによる返品が減る</li></ul><p class="hk-note">どれも想定であり、数字のお約束はしていません。</p></div></div>
-    <div class="go hk-go2"><a class="box-ln" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる <span aria-hidden="true">↗</span></a><span class="mn-aside">新しいタブで開きます。</span></div>
-    <div class="hk-fee">
-      <p class="mp-big"><span class="mp-big-v"><span class="kn-u">初期制作</span> <span class="kn-n">198,000</span>円<span class="kn-t">（税込）</span></span><span class="mp-big-t">納期 2週間ほど<small>含むもの：業界・商品の調査／質問と点数の設計／商品データの登録／ページの制作と、御社のサイトへの埋め込み／公開後の初期の修正</small></span></p>
-      <p class="hk-mt"><b>保守（毎月）9,800円 <span class="hk-tax">（税の扱いはご相談のときにご案内します）</span></b><small>含むもの：サーバー・ドメイン／商品情報の修正／質問の流れの軽い変更／動いているかの確認／アクセスの分析／月1回ほどの改善</small></p>
-      <p class="hk-mt hk-sub"><b>別にお見積り</b><small>選び方の仕組みを大きく変えるとき・質問の組み立てを作り直すとき</small></p>
-      <p class="hk-mt"><b>契約 1年</b><small>保守を1年のご契約でお願いしています。期間中は、同じ商品群・同じ選び方の仕組みを、競合の会社に出しません。</small></p>
-    </div>
+      <div class="ja-b"><p>資材や道具のように、品番が多くて選び方の分かりにくい商品のためのページです。</p><p>使う場所や目的をいくつかの質問で聞き、合う商品と数量の目安を出します。メーカーや販売店の持っている選び方の知識を、お客さまが自分で使える形にします。</p><p>想定している効き目：</p><ul class="hk-ul"><li>問い合わせでの「どれを選べばいいか」という質問が減る（たとえば「この地面にはどの杭か」という電話に、ページが答えられる）</li><li>選び間違いによる返品が減る</li></ul><p class="hk-note">どれも想定であり、数字のお約束はしていません。</p></div></div>
+    <div class="go hk-go2"><a class="box-ln" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる <span aria-hidden="true">↗</span></a><span class="mn-aside">新しいタブで開きます。見本は13品目・7つの質問で選び分けています。</span></div>
+    <p class="hk-trust">点の付け方（どの答えで、どの商品を上にするか）は、御社と確かめて決めます。</p>
+    <table class="mt hk-tb"><tbody>
+      <tr><th>初期制作<small>含むもの：業界・商品の調査／質問と点数の設計／商品データの登録／ページの制作と、御社のサイトへの埋め込み／公開後の初期の修正</small></th><td>198,000円<small>（税込）</small></td></tr>
+      <tr><th>保守（毎月）<small>含むもの：サーバー・ドメイン／商品情報の修正／質問の流れの軽い変更／動いているかの確認／アクセスの分析／月1回ほどの改善。<br>選び方の仕組みを大きく変えるとき・質問の組み立てを作り直すときは、別にお見積りします。</small></th><td>9,800円<small>（税の扱いはご相談のときにご案内します）</small></td></tr>
+      <tr><th>契約<small>保守を1年のご契約でお願いしています。期間中は、同じ商品群・同じ選び方の仕組みを、競合の会社に出しません。</small></th><td>1年</td></tr>
+      <tr><th>納期</th><td>2週間ほど</td></tr>
+    </tbody></table>
 
     <h3 class="mn-h">見本：地面の固定具を選ぶページ</h3>
     <p class="hk-p">防草シートや人工芝を地面に留めるピン・杭は、品番が多く、地面の固さや傾きで向き不向きが変わります。この見本では、<b>用途・地面の種類・傾斜・風・使う期間・重視すること・広さ</b>の7つの質問に答えると、合う3案と必要な本数の目安が出ます。</p>
