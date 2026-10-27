@@ -2175,6 +2175,129 @@ html.hash-ld{scroll-behavior:auto;}
 #annai .go{grid-column:1 / -1;justify-content:flex-start;margin-top:40px;}
 @media (max-width:900px){.an-g{grid-template-columns:repeat(2,minmax(0,1fr));}.an-p{grid-template-columns:repeat(2,minmax(0,1fr));}}
 
+/* ══ 2026-10-27 評価の指摘で足した部品（index の題箋・.keys・.go・.qa を使い回し、色と字は旧版の変数） */
+#annai .keys,#menu .keys,#hikaku .keys{grid-column:1 / -1;margin-inline:0!important;}
+.mn-go{grid-column:1 / -1;flex-direction:column;align-items:flex-start;gap:12px;margin-top:32px;}
+.mn-go .box-ln{width:auto;min-width:min(100%,340px);}
+.mn-aside{margin:0;font-size:var(--f1);line-height:1.9;color:var(--ink-2);max-width:40em;}
+.mn-aside b{display:block;font-weight:500;color:var(--ink);}
+.mn-aside a{color:var(--ink);}
+.mn-sum{grid-column:1 / -1;margin:24px 0 0;font-size:var(--f4);font-weight:500;letter-spacing:.06em;line-height:1.6;}
+.mn-sum small{display:block;margin-top:6px;font-size:var(--f1);font-weight:400;color:var(--ink-2);}
+.mn-qa{grid-column:1 / -1;margin-top:20px;}
+.mn-qa .qa-a{max-width:none;}
+.mp-main dt{font-size:var(--f4);}
+.mp-main dd{font-size:var(--f5);color:var(--ink);}
+.mp-main>div:first-child{border-bottom:1px solid var(--ink);}
+.mt-h{grid-column:1 / -1;margin:36px 0 0;font-size:var(--f2);font-weight:500;letter-spacing:.12em;color:var(--ink-2);}
+.mt{grid-column:1 / -1;width:100%;border-collapse:collapse;margin-top:8px;font-size:var(--f1);}
+.mt th,.mt td{padding:12px 0;border-bottom:.5px solid var(--line-2);vertical-align:baseline;text-align:left;font-weight:400;color:var(--ink);}
+.mt td{text-align:right;white-space:nowrap;padding-left:16px;font-family:var(--ff-en);font-size:var(--f2);}
+.mt small{display:block;margin-top:2px;color:var(--ink-2);font-family:var(--ff-ja);font-size:var(--f1);}
+.an-pick{flex-wrap:wrap;}
+.an-pick label{font-size:var(--f4);font-weight:500;letter-spacing:.12em;}
+.an-pick select{font-size:var(--f3);min-height:48px;border-color:var(--ink);}
+.an-pick-s{flex-basis:100%;margin:0;font-size:var(--f1);color:var(--ink-2);}
+.an-g .an-m{margin-top:6px;font-size:var(--f1);line-height:1.7;color:var(--ink-2);}
+.an-p a{display:block;cursor:zoom-in;}
+.hk-p{grid-column:1 / -1;margin:24px 0 0;max-width:44em;color:var(--ink-2);}
+.hk-p b{font-weight:500;color:var(--ink);}
+.hk-m{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr 3fr;gap:clamp(16px,2.4vw,36px);align-items:end;margin-top:36px;}
+.hk-m figure{margin:0;display:flex;flex-direction:column;gap:14px;}
+.hk-m .dv{text-decoration:none;}
+.hk-m .dv-sp .dv-sc{aspect-ratio:390 / 844;}
+.hk-m .dv-pc .dv-sc{aspect-ratio:1280 / 800;}
+.hk-m .dv-k::after{display:none;}
+#hikaku .go .mn-aside{flex-basis:100%;}
+.hk-in{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:8px;}
+.hk-in>div{padding:22px var(--fp) 8px 0;}
+.hk-in>div+div{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.hk-in h4{margin:0 0 10px;font-size:var(--f2);font-weight:500;letter-spacing:.08em;}
+.hk-in ul{margin:0;padding:0;list-style:none;font-size:var(--f1);line-height:2;color:var(--ink-2);}
+.hk-in li::before{content:"";display:inline-block;width:10px;height:.5px;margin:0 .6em .3em 0;background:var(--gold);vertical-align:middle;}
+#hikaku .qa{grid-column:1 / -1;margin-top:8px;}
+@media (max-width:900px){
+  .hk-m{grid-template-columns:1fr 1fr;}
+  .hk-m .hk-pc{grid-column:1 / -1;}
+  .hk-in{grid-template-columns:1fr;}
+  .hk-in>div+div{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}
+  .mt th{padding-right:8px;}
+}
+/* PC では題箋（縦書き）が1列目を占めるので、中身はすべて2列目から（左の端をそろえる） */
+@media (min-width:901px){
+  #annai .byo>:not(.dai),#menu .byo>:not(.dai),#hikaku .byo>:not(.dai){grid-column:2 / -1!important;}
+  #annai .byo>:not(.dai):not(.lede),#menu .byo>:not(.dai):not(.lede),#hikaku .byo>:not(.dai):not(.lede){margin-left:0!important;margin-right:0!important;padding-left:0;}
+  #annai .lede,#menu .lede,#hikaku .lede{padding-left:0;margin-left:0;}
+}
+/* 2026-10-27 第2回の指摘 */
+.btn-s{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 20px;border:1px solid var(--ink);color:var(--ink)!important;text-decoration:none!important;letter-spacing:.08em;font-size:var(--f1);background:transparent;transition:background .25s;}
+.btn-s:hover{background:rgba(30,31,29,.06);}
+.mf-cap .btn-s{margin-top:4px;}
+.mn-mail{margin:0;font-size:var(--f1);line-height:1.8;color:var(--ink-2);letter-spacing:.04em;}
+.mf-fic{display:block;margin-top:8px;font-size:var(--f1);color:var(--ink-2);}
+.js .qa.rv,.js .qa.rv:not(.in){opacity:1!important;transform:none!important;}
+.an-cl{display:block;cursor:zoom-in;}
+.an-pick label span{font-size:.6em;vertical-align:.2em;color:var(--gold);}
+.an-fl{grid-template-columns:repeat(5,minmax(0,1fr));}
+.hk-keys{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
+.sub-ft{padding:40px 0 28px;font-size:var(--f1);line-height:1.9;color:var(--on-night,#cfcac0);}
+.sub-ft dl{display:flex;flex-wrap:wrap;gap:4px 28px;margin:0;}
+.sub-ft dl div{display:flex;gap:10px;}
+.sub-ft dt{opacity:.7;}.sub-ft dd{margin:0;}
+.sub-ft a{color:inherit;}
+.sub-ft .btn-s{margin-top:14px;border-color:currentColor;}
+@media (max-width:900px){.an-fl{grid-template-columns:1fr 1fr;}.an-fl li:nth-child(3){padding-left:0;box-shadow:none;}.hk-keys{grid-template-columns:1fr!important;}}
+@media (max-width:620px){.an-g{grid-template-columns:1fr!important;}.an-g figure{max-width:300px;}.an-fl{grid-template-columns:1fr;}.an-fl li+li{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}}
+.sub-ft .byo>*{grid-column:2 / -1;}
+.sub-ft .btn-s{justify-self:start;color:inherit!important;border-color:currentColor;}
+@media (max-width:900px){.sub-ft .byo>*{grid-column:1 / -1;}}
+/* 2026-10-27 第3回の指摘 */
+.ba{grid-column:1 / -1;display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,48px);align-items:center;margin-top:48px;}
+.ba figure{margin:0;}.ba a{display:block;cursor:zoom-in;}
+.ba img{display:block;width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2),0 18px 30px -18px rgba(30,31,29,.45);}
+.ba figcaption{margin-top:14px;padding-top:12px;border-top:1px solid var(--gold);font-size:var(--f1);color:var(--ink-2);line-height:1.8;}
+.ba figcaption b{font-family:var(--ff-ja);font-size:var(--f4);font-weight:500;color:var(--ink);margin-right:.6em;}
+.mp-big{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;margin:24px 0 0;padding-bottom:22px;border-bottom:1px solid var(--ink);}
+.mp-big-v{font-size:var(--f4);}
+.mp-big-v .kn-n{font-family:var(--ff-en);font-size:calc(var(--f6) * 1.1);font-weight:500;line-height:1;}
+.mp-big-v .kn-t{font-size:var(--f1);color:var(--ink-2);}
+.mp-big-t{font-size:var(--f3);font-weight:500;letter-spacing:.06em;}
+.mp-big-t small{display:block;margin-top:6px;font-size:var(--f1);font-weight:400;color:var(--ink-2);max-width:44em;}
+.mt-h{font-size:var(--f1);}
+.an-pick select{flex:1 1 320px;max-width:520px;min-height:52px;}
+.an-p{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px;max-width:760px;}
+@media (max-width:900px){.ba{grid-template-columns:1fr;}.ba .ba-sheet{width:80%;}}
+@media (max-width:620px){
+  .an-g{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;padding-bottom:12px;-webkit-overflow-scrolling:touch;}
+  .an-g li{flex:0 0 72%;scroll-snap-align:start;}
+  .an-g figure{max-width:none;}
+  .an-pick label{flex-basis:100%;}
+  .an-pick select{flex:1 1 100%;max-width:none;width:100%;}
+  .an-p{grid-template-columns:1fr!important;}
+}
+.mf-t{align-items:start;margin-top:40px;}
+.mf-t img{max-height:220px;}
+/* 2026-10-27 第4回の指摘 */
+.sd{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:0;list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--ink);}
+.sd li{display:flex;gap:18px;align-items:flex-start;padding:22px var(--fp) 18px 0;color:var(--ink);}
+.sd li+li{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.sd svg{flex:none;}
+.sd p{margin:0;font-size:var(--f2);line-height:1.8;color:var(--ink-2);}
+.sd b{display:block;font-size:var(--f3);font-weight:500;color:var(--ink);margin-bottom:4px;}
+#annai .fx,#menu .fx{margin-top:12px;}
+.fx5{grid-template-columns:repeat(5,minmax(0,1fr))!important;}
+.mt,.mt th,.mt td,.mt small{font-size:max(16px,var(--f2))!important;}
+.mt td{font-size:max(17px,var(--f3))!important;}
+.mn-note{font-size:max(15px,var(--f1));}
+#hikaku .qa .qn,#menu .qa .qn,#annai .qa .qn{font-size:var(--f2);}
+.an-swipe{display:none;}
+@media (max-width:900px){.fx5{grid-template-columns:minmax(0,1fr)!important;}}
+@media (max-width:620px){
+  .sd{grid-template-columns:1fr;}.sd li+li{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}
+  .an-swipe{display:block;grid-column:1 / -1;margin:20px 0 0;text-align:center;font-size:var(--f1);letter-spacing:.2em;color:var(--gold);}
+  .an-g li{flex:0 0 78%;}
+}
+
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
 </head>
@@ -2214,35 +2337,47 @@ html.hash-ld{scroll-behavior:auto;}
 <main id="main">
 <section class="sec s-ground pg-first" id="menu" aria-labelledby="menu-h">
   <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">一</span><h2 class="dai-t" id="menu-h">多言語メニュー作成</h2><span class="dai-l" aria-hidden="true">Menu</span></header>
-    <div class="lede lede-s"><p class="ja-h">メニューの写真を1枚。<br>英語のメニューにして、<span class="nw">お返しします。</span></p>
-      <div class="ja-b"><p>海外からのお客さまが増えたお店・宿・体験教室のための、メニューの翻訳です。お手元の日本語メニューをスマートフォンで撮って、メールで送るだけ。打ち合わせはありません。</p></div></div>
-
-    <ol class="mf" aria-label="ご依頼から納品まで">
-      <li><figure><img src="assets/menu/ja-photo.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="木の卓に置いた、手書きの日本語の品書きを撮った写真"><figcaption><span class="mf-n">1</span><b>写真を送る</b>いまお使いの日本語メニューを撮って、メールに添えてください。</figcaption></figure></li>
-      <li><figure><img class="mf-sheet" src="assets/menu/en-sheet.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="日本語と英語を並べたメニュー。料理名・説明・値段が英語で書かれている"><figcaption><span class="mf-n">2</span><b>英語メニューが届く</b>日本語と英語を並べたメニューを、PDF と印刷用のデータでお渡しします。</figcaption></figure></li>
-      <li><figure><img src="assets/menu/print-c.jpg" width="1200" height="857" loading="lazy" decoding="async" alt="革の表紙に金の箔押しをしたメニューブックと、開いた中の英語メニュー（印刷のイメージ）"><figcaption><span class="mf-n">3</span><b>印刷して届く（ご希望の方）</b>パウチ・卓上スタンド・表紙つきのブックにして、お店へお送りします。</figcaption></figure></li>
+    <div class="dai sec-h" aria-hidden="true"><span class="dai-n">一</span><span class="dai-t">多言語メニュー作成</span><span class="dai-l">Menu</span></div>
+    <div class="lede"><h2 class="ja-h" id="menu-h">メニューの写真を1枚。<br>英語のメニューにして、<span class="nw">お返しします。</span></h2>
+      <div class="ja-b"><p>海外からのお客さまが増えたお店・宿・体験教室のための、メニューの翻訳です。打ち合わせはありません。</p></div></div>
+    <ul class="keys mn-keys" aria-label="多言語メニューの要点">
+      <li><span class="k-l">1</span><span class="k-v">写真を送る</span><span class="k-s">いまの日本語メニューを撮って、メールで</span></li>
+      <li><span class="k-l">2</span><span class="k-v">英語メニューが届く</span><span class="k-s">日本語と英語を並べて、PDF と印刷用のデータで</span></li>
+      <li><span class="k-l">3</span><span class="k-v"><span class="kn-n">39,800</span>円<span class="kn-t">（税込）</span>・<span class="nw">2週間ほど</span></span><span class="k-s">写真と資料をいただいてから2週間ほど</span></li>
+    </ul>
+    <div class="go mn-go"><a class="box-ln" href="mailto:info@morikosha.com?subject=%E5%A4%9A%E8%A8%80%E8%AA%9E%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E3%81%AE%E4%BE%9D%E9%A0%BC">メニューの写真を送る <span aria-hidden="true">→</span></a><p class="mn-mail">押すとメールが開きます。宛先 info@morikosha.com　書くのは、お店の名前と写真だけで大丈夫です。</p></div>
+    <ol class="sd" aria-label="送り方">
+      <li><svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><rect x="20" y="6" width="24" height="46" rx="4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="32" cy="24" r="6" fill="none" stroke="var(--gold)" stroke-width="1.2"/><line x1="28" y1="46" x2="36" y2="46" stroke="currentColor" stroke-width="1.2"/></svg><p><b>1　スマートフォンで撮る</b>いまお使いの日本語メニューを、そのまま撮ります。</p></li>
+      <li><svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><rect x="8" y="16" width="48" height="32" fill="none" stroke="currentColor" stroke-width="1.2"/><polyline points="8,16 32,36 56,16" fill="none" stroke="var(--gold)" stroke-width="1.2"/></svg><p><b>2　メールに添えて送る</b>info@morikosha.com へ。店名だけ書き添えてください。</p></li>
     </ol>
-    <p class="mf-cap">上の3枚は、架空のお店でつくった見本です。<a href="menu/mihon.html">英語メニューの見本（PDF もあります）</a></p>
+    <div class="ba" aria-label="前と後の見比べ">
+      <figure><a href="assets/menu/ja-photo.jpg" target="_blank" rel="noopener"><img src="assets/menu/ja-photo.jpg" width="1200" height="900" decoding="async" alt="木の卓に置いた、手書きの日本語の品書きを撮った写真"></a><figcaption><b>前</b>お店から届く、日本語メニューの写真</figcaption></figure>
+      <figure><a href="menu/mihon.html"><img class="ba-sheet" src="assets/menu/en-sheet.jpg" width="1100" height="1556" decoding="async" alt="日本語と英語を並べたメニュー。料理名・説明・値段が英語で書かれている"></a><figcaption><b>後</b>お返しする、日本語と英語のメニュー</figcaption></figure></div>
+    <p class="mf-cap">上の2枚は、架空のお店でつくった見本です。</p>
+
+    <h3 class="mn-h">ご依頼の流れ</h3>
+    <ol class="fx"><li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><p class="fx-t">&nbsp;</p><h3>写真を送る</h3><div class="fx-p"><p>日本語メニューの写真を、メールに添えて送ってください。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><p class="fx-t">所要<b><span class="nw nk">2週間</span>ほど</b></p><h3>英語メニューをお送りする</h3><div class="fx-p"><p>写真と資料をいただいてから、<span class="nw nk">2週間</span>ほどで PDF と印刷用のデータをお送りします。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><p class="fx-t">&nbsp;</p><h3>確かめて、お支払い</h3><div class="fx-p"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p><p>前金はいただきません。中身を確かめていただいてからのお支払いです。</p></div><p class="fx-a" aria-hidden="true"></p></li></ol>
 
     <h3 class="mn-h">翻訳の確かめ方</h3>
-    <ol class="mk">
+    <p class="mn-sum">値段と品名は、人が1行ずつ確かめます。<small>機械翻訳をもとに、4つの手順で確かめています。</small></p>
+    <div class="qa mn-qa"><details><summary><span class="qn" aria-hidden="true">＋</span><span class="qt">4つの手順を見る</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><ol class="mk">
       <li><b>写真の読み取りを、写真と見比べる</b>機械で読み取った文字を、写真と1行ずつ見比べます。見本をつくったときは「もりそば」が「ありそば」と読み取られ、ここで直しました。</li>
       <li><b>値段を、機械で突き合わせる</b>写真の値段と、訳したメニューの値段を、上から順に1つずつ照らし合わせます。値段の取り違えは、ここで見つかります。</li>
       <li><b>訳した文を、日本語に訳し戻す</b>訳した文を、2種類以上の翻訳機で日本語に戻し、元のメニューと意味がずれていないかを見ます。ずれの大きい行には印が付き、そこを人が確かめます。</li>
       <li><b>英語は、代表が読んで仕上げる</b>英語は、代表が全行を読んで仕上げます。中国語・韓国語などは、3の訳し戻しを複数の翻訳機で重ねて確かめます。機械翻訳をもとにしていることを、あらかじめお伝えしておきます。</li>
-    </ol>
+    </ol></div></details></div>
 
     <h3 class="mn-h">料金</h3>
-    <dl class="mp">
-      <div><dt>英語メニューの作成<small>日本語と英語を並べたメニュー。50品まで・A4両面まで。PDF と印刷用のデータ</small></dt><dd>39,800円<small>（税込）</small></dd></div>
-      <div><dt>言語を足す<small>中国語（繁体字・簡体字）・韓国語など。1言語ごと</small></dt><dd>＋19,800円<small>（税込）</small></dd></div>
-      <div><dt>51品から100品まで<small>品数が多いメニュー</small></dt><dd>＋10,000円<small>（税込）</small></dd></div>
-      <div class="mp-op"><dt>印刷代行：パウチ（A4・両面・水に強い）<small>10枚。送料込み</small></dt><dd>6,000円<small>（税込）</small></dd></div>
-      <div class="mp-op"><dt>印刷代行：パウチ 20枚<small>送料込み</small></dt><dd>9,000円<small>（税込）</small></dd></div>
-      <div class="mp-op"><dt>表紙つきのメニューブック<small>革・木・和紙の表紙、箔押しの店名など。専門の工房に手配します</small></dt><dd>お見積り<small>1冊 1万円ほどから</small></dd></div>
-    </dl>
-    <p class="mn-note">前金はいただきません。メニューをお送りしたあと、内容をご確認いただいてからのお支払いです（印刷代行と表紙つきのブックは、印刷の前にお支払いをお願いします）。お届けは、写真をいただいてから1週間ほどです。</p>
+    <p class="mp-big"><span class="mp-big-v"><span class="kn-n">39,800</span>円<span class="kn-t">（税込）</span></span><span class="mp-big-t">これだけで、英語メニューができます。<small>日本語と英語を並べたメニュー。50品まで・A4両面まで。PDF と印刷用のデータでお渡しします。</small></span></p>
+    <h4 class="mt-h">必要なときだけ（追加料金）</h4>
+    <table class="mt"><tbody>
+      <tr><th>言語を足す<small>中国語（繁体字・簡体字）・韓国語など。1言語ごと</small></th><td>＋19,800円</td></tr>
+      <tr><th>51品から100品まで</th><td>＋10,000円</td></tr>
+      <tr><th>印刷代行：パウチ（A4・両面・水に強い）10枚<small>送料込み</small></th><td>6,000円</td></tr>
+      <tr><th>印刷代行：パウチ 20枚<small>送料込み</small></th><td>9,000円</td></tr>
+      <tr><th>表紙つきのメニューブック<small>革・木・和紙の表紙、箔押しの店名など。専門の工房に手配します</small></th><td>お見積り<small>1冊 1万円ほどから</small></td></tr>
+    </tbody></table>
+    <p class="mn-note">金額はすべて税込です。印刷代行と表紙つきのブックは、印刷の前にお支払いをお願いします。</p>
 
     <h3 class="mn-h">印刷のイメージ</h3>
     <ul class="mg">
@@ -2250,6 +2385,9 @@ html.hash-ld{scroll-behavior:auto;}
       <li><figure><img src="assets/menu/print-b.jpg" width="1200" height="857" loading="lazy" decoding="async" alt="透明の卓上スタンドに立てたメニュー（印刷のイメージ）"><figcaption>卓上スタンド</figcaption></figure></li>
       <li><figure><img src="assets/menu/print-c.jpg" width="1200" height="857" loading="lazy" decoding="async" alt="革の表紙のメニューブック（印刷のイメージ）"><figcaption>表紙つきのメニューブック</figcaption></figure></li>
     </ul>
+
+    <h3 class="mn-h">よくある質問</h3>
+    <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">どのくらいで届きますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>写真と資料をいただいてから、<span class="nw nk">2週間</span>ほどです。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">届いたあとで直せますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p></div></details><details><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">翻訳は機械ですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>機械翻訳をもとに、値段と品名は人が1行ずつ確かめ、英語は代表が全行を読んで仕上げます。</p></div></details></div>
 
     <div class="go">
       <a class="box-ln" href="mailto:info@morikosha.com?subject=%E5%A4%9A%E8%A8%80%E8%AA%9E%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E3%81%AE%E4%BE%9D%E9%A0%BC">メニューの写真を送る <span aria-hidden="true">→</span></a>
@@ -2262,13 +2400,13 @@ html.hash-ld{scroll-behavior:auto;}
   <div class="contact byo">
     <header class="dai sec-h"><span class="dai-n" aria-hidden="true">結</span><h2 class="dai-t" id="contact-h">お問い合わせ</h2><span class="dai-l" aria-hidden="true">Contact</span></header>
     <div class="contact-in">
-      <p class="contact-lede">ご質問だけでも、<br><span class="nw nk">構いません</span>。</p>
+      <p class="contact-lede">ご質問だけでも、<br><span class="nw nk">構いません。</span></p>
       <p>お店の名前と、いまのメニューの写真を添えてお送りください。</p>
       <div class="mail">
         <p class="lb" aria-hidden="true">E-mail</p>
         <a class="mail-a" href="mailto:info@morikosha.com?subject=%E5%A4%9A%E8%A8%80%E8%AA%9E%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E3%81%AE%E4%BE%9D%E9%A0%BC">info@morikosha.com <span aria-hidden="true">↗</span></a>
         <button class="copy" type="button" data-copy="info@morikosha.com">アドレスをコピー</button>
-        <small><span class="nw nk">2営業日</span>以内のご返信を心がけ<span class="nw nk">ています。</span></small>
+        <small><span class="nw nk">2営業日</span>以内のご返信を<span class="nw nk">心がけています。</span></small>
       </div>
     </div>
   </div>
@@ -2277,30 +2415,7 @@ html.hash-ld{scroll-behavior:auto;}
 </main>
 
 <footer>
-  <div class="colo" id="legal">
-    <div class="byo colo-in">
-      <div>
-        <h2>特定電子メール法に基づく表示</h2>
-        <p>特定電子メールの送信の適正化等に関する法律 第4条に基づき、送信者の情報を表示し<span class="nw nk">ています。</span></p>
-        <dl>
-          <div><dt>送信者</dt><dd>上原 光瑛（うえはら みつあき）</dd></div>
-          <div><dt>屋号</dt><dd><span class="nw nk">杜工舎</span>（もりこうしゃ）</dd></div>
-          <div><dt>住所</dt><dd>埼玉県さいたま市大宮区<span class="nw nk">高鼻町３丁目</span></dd></div>
-          <div><dt>メール</dt><dd>info@morikosha.com</dd></div>
-          <div><dt>苦情受付</dt><dd>上記メールアドレスにて承ります（配信停止の<span class="nw nk">ご連絡</span>もこちらへ）</dd></div>
-        </dl>
-        <p>当方からの営業メールの受信を希望されない場合は、お送りしたメールに<span class="nw nk">そのまま</span>ご返信いただくか、上記メールアドレス宛に「配信停止」とお送りください。以後の送信を停止い<span class="nw nk">たします。</span></p>
-      </div>
-      <details class="pp" id="pp" open>
-        <summary><h2>プライバシーポリシー</h2><span class="pp-m" aria-hidden="true"></span></summary>
-        <p>お問い合わせやご依頼の際にいただいた個人情報は、<span class="nw nk">ご連絡</span>・お見積り・ホームページ制作の目的にのみ使用します。ご本人の同意なく第三者に提供することはあ<span class="nw nk">りません。</span></p>
-        <p>当方は、インターネット上で公開されている事業者さまの連絡先情報（会社名・住所・メールアドレス等）を、サービスのご案内をお送りする目的で取得・利用することがあります。ご案内が不要との<span class="nw nk">ご連絡</span>をいただいた場合は以後お送りせず、その<span class="nw nk">ご連絡</span>先は「送信停止の管理」の目的に限って保管い<span class="nw nk">たします。</span></p>
-        <p>制作の過程でお預かりした<span class="nw nk">写真・原稿</span>・会社情報は、納品後も他の用途に使用しません。施工実績を制作事例として紹介する場合は、事前にご承諾をいただいたうえで紹<span class="nw nk">介します。</span></p>
-        <p>いただいた情報の開示・訂正・削除を<span class="nw nk">ご希望の場合</span>は、上記のメールアドレスまで<span class="nw nk">ご連絡</span><span class="nw nk">ください。</span></p>
-        <p>当サイトはアクセス解析ツールおよびCookieを使用して<span class="nw nk">いません。</span></p>
-      </details>
-    </div>
-  </div>
+  <div class="colo sub-ft" id="legal"><div class="byo"><dl><div><dt>屋号</dt><dd>杜工舎（もりこうしゃ）</dd></div><div><dt>住所</dt><dd>埼玉県さいたま市大宮区高鼻町３丁目</dd></div><div><dt>メール</dt><dd>info@morikosha.com</dd></div></dl><a class="btn-s" href="index.html#pp">プライバシーポリシー</a></div></div>
   <div class="credit"><div class="byo"><div class="credit-in"><p>絵の出典：長谷川等伯「<span class="nw nk">松林図屏風</span>」・酒井抱一「<span class="nw nk">夏秋草図屏風</span>」は ColBase（<span class="url">https://colbase.nich.go.jp/</span>）を加工して<span class="nw nk">作成。</span></p><p>尾形光琳「<span class="nw nk">八橋図屏風</span>」は <span class="nw">The Metropolitan Museum of Art</span>（Open Access）。</p><p>柴田是真「Autumn Grasses in Moonlight」は <span class="nw">The Metropolitan Museum of Art</span>（CC0）。</p></div></div></div>
   <div class="ft-end"><div class="ft-mark" aria-hidden="true"><span class="ft-logo"></span><span class="ft-name"><span class="nw nk">杜工舎</span><span>MORIKOSHA</span></span></div>
   <p class="copyright">Copyright © Morikosha. <span class="nw">All rights reserved.</span></p></div>

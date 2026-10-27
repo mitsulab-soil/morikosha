@@ -2175,6 +2175,129 @@ html.hash-ld{scroll-behavior:auto;}
 #annai .go{grid-column:1 / -1;justify-content:flex-start;margin-top:40px;}
 @media (max-width:900px){.an-g{grid-template-columns:repeat(2,minmax(0,1fr));}.an-p{grid-template-columns:repeat(2,minmax(0,1fr));}}
 
+/* ══ 2026-10-27 評価の指摘で足した部品（index の題箋・.keys・.go・.qa を使い回し、色と字は旧版の変数） */
+#annai .keys,#menu .keys,#hikaku .keys{grid-column:1 / -1;margin-inline:0!important;}
+.mn-go{grid-column:1 / -1;flex-direction:column;align-items:flex-start;gap:12px;margin-top:32px;}
+.mn-go .box-ln{width:auto;min-width:min(100%,340px);}
+.mn-aside{margin:0;font-size:var(--f1);line-height:1.9;color:var(--ink-2);max-width:40em;}
+.mn-aside b{display:block;font-weight:500;color:var(--ink);}
+.mn-aside a{color:var(--ink);}
+.mn-sum{grid-column:1 / -1;margin:24px 0 0;font-size:var(--f4);font-weight:500;letter-spacing:.06em;line-height:1.6;}
+.mn-sum small{display:block;margin-top:6px;font-size:var(--f1);font-weight:400;color:var(--ink-2);}
+.mn-qa{grid-column:1 / -1;margin-top:20px;}
+.mn-qa .qa-a{max-width:none;}
+.mp-main dt{font-size:var(--f4);}
+.mp-main dd{font-size:var(--f5);color:var(--ink);}
+.mp-main>div:first-child{border-bottom:1px solid var(--ink);}
+.mt-h{grid-column:1 / -1;margin:36px 0 0;font-size:var(--f2);font-weight:500;letter-spacing:.12em;color:var(--ink-2);}
+.mt{grid-column:1 / -1;width:100%;border-collapse:collapse;margin-top:8px;font-size:var(--f1);}
+.mt th,.mt td{padding:12px 0;border-bottom:.5px solid var(--line-2);vertical-align:baseline;text-align:left;font-weight:400;color:var(--ink);}
+.mt td{text-align:right;white-space:nowrap;padding-left:16px;font-family:var(--ff-en);font-size:var(--f2);}
+.mt small{display:block;margin-top:2px;color:var(--ink-2);font-family:var(--ff-ja);font-size:var(--f1);}
+.an-pick{flex-wrap:wrap;}
+.an-pick label{font-size:var(--f4);font-weight:500;letter-spacing:.12em;}
+.an-pick select{font-size:var(--f3);min-height:48px;border-color:var(--ink);}
+.an-pick-s{flex-basis:100%;margin:0;font-size:var(--f1);color:var(--ink-2);}
+.an-g .an-m{margin-top:6px;font-size:var(--f1);line-height:1.7;color:var(--ink-2);}
+.an-p a{display:block;cursor:zoom-in;}
+.hk-p{grid-column:1 / -1;margin:24px 0 0;max-width:44em;color:var(--ink-2);}
+.hk-p b{font-weight:500;color:var(--ink);}
+.hk-m{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr 3fr;gap:clamp(16px,2.4vw,36px);align-items:end;margin-top:36px;}
+.hk-m figure{margin:0;display:flex;flex-direction:column;gap:14px;}
+.hk-m .dv{text-decoration:none;}
+.hk-m .dv-sp .dv-sc{aspect-ratio:390 / 844;}
+.hk-m .dv-pc .dv-sc{aspect-ratio:1280 / 800;}
+.hk-m .dv-k::after{display:none;}
+#hikaku .go .mn-aside{flex-basis:100%;}
+.hk-in{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:8px;}
+.hk-in>div{padding:22px var(--fp) 8px 0;}
+.hk-in>div+div{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.hk-in h4{margin:0 0 10px;font-size:var(--f2);font-weight:500;letter-spacing:.08em;}
+.hk-in ul{margin:0;padding:0;list-style:none;font-size:var(--f1);line-height:2;color:var(--ink-2);}
+.hk-in li::before{content:"";display:inline-block;width:10px;height:.5px;margin:0 .6em .3em 0;background:var(--gold);vertical-align:middle;}
+#hikaku .qa{grid-column:1 / -1;margin-top:8px;}
+@media (max-width:900px){
+  .hk-m{grid-template-columns:1fr 1fr;}
+  .hk-m .hk-pc{grid-column:1 / -1;}
+  .hk-in{grid-template-columns:1fr;}
+  .hk-in>div+div{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}
+  .mt th{padding-right:8px;}
+}
+/* PC では題箋（縦書き）が1列目を占めるので、中身はすべて2列目から（左の端をそろえる） */
+@media (min-width:901px){
+  #annai .byo>:not(.dai),#menu .byo>:not(.dai),#hikaku .byo>:not(.dai){grid-column:2 / -1!important;}
+  #annai .byo>:not(.dai):not(.lede),#menu .byo>:not(.dai):not(.lede),#hikaku .byo>:not(.dai):not(.lede){margin-left:0!important;margin-right:0!important;padding-left:0;}
+  #annai .lede,#menu .lede,#hikaku .lede{padding-left:0;margin-left:0;}
+}
+/* 2026-10-27 第2回の指摘 */
+.btn-s{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 20px;border:1px solid var(--ink);color:var(--ink)!important;text-decoration:none!important;letter-spacing:.08em;font-size:var(--f1);background:transparent;transition:background .25s;}
+.btn-s:hover{background:rgba(30,31,29,.06);}
+.mf-cap .btn-s{margin-top:4px;}
+.mn-mail{margin:0;font-size:var(--f1);line-height:1.8;color:var(--ink-2);letter-spacing:.04em;}
+.mf-fic{display:block;margin-top:8px;font-size:var(--f1);color:var(--ink-2);}
+.js .qa.rv,.js .qa.rv:not(.in){opacity:1!important;transform:none!important;}
+.an-cl{display:block;cursor:zoom-in;}
+.an-pick label span{font-size:.6em;vertical-align:.2em;color:var(--gold);}
+.an-fl{grid-template-columns:repeat(5,minmax(0,1fr));}
+.hk-keys{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
+.sub-ft{padding:40px 0 28px;font-size:var(--f1);line-height:1.9;color:var(--on-night,#cfcac0);}
+.sub-ft dl{display:flex;flex-wrap:wrap;gap:4px 28px;margin:0;}
+.sub-ft dl div{display:flex;gap:10px;}
+.sub-ft dt{opacity:.7;}.sub-ft dd{margin:0;}
+.sub-ft a{color:inherit;}
+.sub-ft .btn-s{margin-top:14px;border-color:currentColor;}
+@media (max-width:900px){.an-fl{grid-template-columns:1fr 1fr;}.an-fl li:nth-child(3){padding-left:0;box-shadow:none;}.hk-keys{grid-template-columns:1fr!important;}}
+@media (max-width:620px){.an-g{grid-template-columns:1fr!important;}.an-g figure{max-width:300px;}.an-fl{grid-template-columns:1fr;}.an-fl li+li{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}}
+.sub-ft .byo>*{grid-column:2 / -1;}
+.sub-ft .btn-s{justify-self:start;color:inherit!important;border-color:currentColor;}
+@media (max-width:900px){.sub-ft .byo>*{grid-column:1 / -1;}}
+/* 2026-10-27 第3回の指摘 */
+.ba{grid-column:1 / -1;display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,48px);align-items:center;margin-top:48px;}
+.ba figure{margin:0;}.ba a{display:block;cursor:zoom-in;}
+.ba img{display:block;width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2),0 18px 30px -18px rgba(30,31,29,.45);}
+.ba figcaption{margin-top:14px;padding-top:12px;border-top:1px solid var(--gold);font-size:var(--f1);color:var(--ink-2);line-height:1.8;}
+.ba figcaption b{font-family:var(--ff-ja);font-size:var(--f4);font-weight:500;color:var(--ink);margin-right:.6em;}
+.mp-big{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;margin:24px 0 0;padding-bottom:22px;border-bottom:1px solid var(--ink);}
+.mp-big-v{font-size:var(--f4);}
+.mp-big-v .kn-n{font-family:var(--ff-en);font-size:calc(var(--f6) * 1.1);font-weight:500;line-height:1;}
+.mp-big-v .kn-t{font-size:var(--f1);color:var(--ink-2);}
+.mp-big-t{font-size:var(--f3);font-weight:500;letter-spacing:.06em;}
+.mp-big-t small{display:block;margin-top:6px;font-size:var(--f1);font-weight:400;color:var(--ink-2);max-width:44em;}
+.mt-h{font-size:var(--f1);}
+.an-pick select{flex:1 1 320px;max-width:520px;min-height:52px;}
+.an-p{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px;max-width:760px;}
+@media (max-width:900px){.ba{grid-template-columns:1fr;}.ba .ba-sheet{width:80%;}}
+@media (max-width:620px){
+  .an-g{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;padding-bottom:12px;-webkit-overflow-scrolling:touch;}
+  .an-g li{flex:0 0 72%;scroll-snap-align:start;}
+  .an-g figure{max-width:none;}
+  .an-pick label{flex-basis:100%;}
+  .an-pick select{flex:1 1 100%;max-width:none;width:100%;}
+  .an-p{grid-template-columns:1fr!important;}
+}
+.mf-t{align-items:start;margin-top:40px;}
+.mf-t img{max-height:220px;}
+/* 2026-10-27 第4回の指摘 */
+.sd{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:0;list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--ink);}
+.sd li{display:flex;gap:18px;align-items:flex-start;padding:22px var(--fp) 18px 0;color:var(--ink);}
+.sd li+li{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.sd svg{flex:none;}
+.sd p{margin:0;font-size:var(--f2);line-height:1.8;color:var(--ink-2);}
+.sd b{display:block;font-size:var(--f3);font-weight:500;color:var(--ink);margin-bottom:4px;}
+#annai .fx,#menu .fx{margin-top:12px;}
+.fx5{grid-template-columns:repeat(5,minmax(0,1fr))!important;}
+.mt,.mt th,.mt td,.mt small{font-size:max(16px,var(--f2))!important;}
+.mt td{font-size:max(17px,var(--f3))!important;}
+.mn-note{font-size:max(15px,var(--f1));}
+#hikaku .qa .qn,#menu .qa .qn,#annai .qa .qn{font-size:var(--f2);}
+.an-swipe{display:none;}
+@media (max-width:900px){.fx5{grid-template-columns:minmax(0,1fr)!important;}}
+@media (max-width:620px){
+  .sd{grid-template-columns:1fr;}.sd li+li{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}
+  .an-swipe{display:block;grid-column:1 / -1;margin:20px 0 0;text-align:center;font-size:var(--f1);letter-spacing:.2em;color:var(--gold);}
+  .an-g li{flex:0 0 78%;}
+}
+
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
 </head>
@@ -2214,16 +2337,46 @@ html.hash-ld{scroll-behavior:auto;}
 <main id="main">
 <section class="sec s-ground pg-first" id="hikaku" aria-labelledby="hikaku-h">
   <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">一</span><h2 class="dai-t" id="hikaku-h">商品比較サイトの作成</h2><span class="dai-l" aria-hidden="true">Compare</span></header>
-    <div class="lede lede-s"><p class="ja-h">専門の人なら分かる選び分けを、<br>質問に答えるだけで<span class="nw">選べるページに。</span></p>
-      <div class="ja-b"><p>資材や道具のように、品番が多くて選び方の分かりにくい商品のためのページです。使う場所や目的をいくつかの質問で聞き、合う商品と数量の目安を出します。メーカーや販売店が持っている選び方の知識を、そのままお客さまに渡せる形にします。</p></div></div>
-    <ul class="keys mn-keys" aria-label="商品比較サイトの要点">
-      <li><span class="k-l">初期制作</span><span class="k-v"><span class="kn-n">198,000</span>円<span class="kn-t">（税込）</span></span><span class="k-s">商品の調査・質問の設計・ページ制作・埋め込みまで</span></li>
-      <li><span class="k-l">保守</span><span class="k-v">月 <span class="kn-n">9,800</span>円</span><span class="k-s">商品情報の修正・稼働の確認・月1回ほどの改善</span></li>
-      <li><span class="k-l">契約</span><span class="k-v">1年</span><span class="k-s">期間中は、同じ商品群の仕組みを競合の会社に出しません</span></li>
+    <div class="dai sec-h" aria-hidden="true"><span class="dai-n">一</span><span class="dai-t">商品比較サイトの作成</span><span class="dai-l">Compare</span></div>
+    <div class="lede"><h2 class="ja-h" id="hikaku-h">専門の人なら分かる選び分けを、<br>質問に答えるだけで<span class="nw">選べるページに。</span></h2>
+      <div class="ja-b"><p>資材や道具のように、品番が多くて選び方の分かりにくい商品のためのページです。</p><p>使う場所や目的をいくつかの質問で聞き、合う商品と数量の目安を出します。メーカーや販売店の持っている選び方の知識を、お客さまが自分で使える形にします。</p><p>想定している効き目は、問い合わせでの「どれを選べばいいか」という質問が減ること、選び間違いによる返品が減ることです（想定であり、数字のお約束はしていません）。</p></div></div>
+    <ul class="keys mn-keys hk-keys" aria-label="商品比較サイトの要点">
+      <li><span class="k-l">初期制作</span><span class="k-v"><span class="kn-n">198,000</span>円<span class="kn-t">（税込）</span></span><span class="k-s">商品の調査から、御社のサイトへの埋め込みまで</span></li>
+      <li><span class="k-l">保守</span><span class="k-v">月 <span class="kn-n">9,800</span>円</span><span class="k-s">サーバー・商品情報の修正・月1回ほどの改善など</span></li>
+      <li><span class="k-l">契約期間</span><span class="k-v"><span class="kn-n">1</span>年</span><span class="k-s">保守を1年のご契約で</span></li>
+      <li><span class="k-l">お約束</span><span class="k-v">競合に出しません</span><span class="k-s">契約期間中は、同じ商品群・同じ選び方の仕組みを競合の会社に出しません</span></li>
     </ul>
+
+    <h3 class="mn-h">見本：地面の固定具を選ぶページ</h3>
+    <p class="hk-p">防草シートや人工芝を地面に留めるピン・杭は、品番が多く、地面の固さや傾きで向き不向きが変わります。この見本では、<b>用途・地面の種類・傾斜・風・使う期間・重視すること・広さ</b>の7つの質問に答えると、合う3案と必要な本数の目安が出ます。</p>
+    <div class="hk-m">
+      <figure><a class="dv dv-sp" href="assets/hikaku/sp-q.jpg" target="_blank" rel="noopener" aria-label="画面を大きく見る（新しいタブ）"><span class="dv-sc"><img src="assets/hikaku/sp-q.jpg" width="780" height="1688" loading="eager" decoding="async" alt="スマートフォンの画面。地面はどれに近いですか、という質問と、答えるたびに入れ替わる上位3案"></span></a><figcaption class="dv-cap"><span class="dv-k">1</span>質問（スマホ）</figcaption></figure>
+      <figure><a class="dv dv-sp" href="assets/hikaku/sp-r.jpg" target="_blank" rel="noopener" aria-label="画面を大きく見る（新しいタブ）"><span class="dv-sc"><img src="assets/hikaku/sp-r.jpg" width="780" height="1688" loading="eager" decoding="async" alt="スマートフォンの画面。選んだ条件と、選定結果のまとめ"></span></a><figcaption class="dv-cap"><span class="dv-k">2</span>おすすめ（スマホ）</figcaption></figure>
+      <figure class="hk-pc"><a class="dv dv-pc" href="assets/hikaku/pc-r.jpg" target="_blank" rel="noopener" aria-label="画面を大きく見る（新しいタブ）"><span class="dv-bar" aria-hidden="true"><span class="dv-dots"><i></i><i></i><i></i></span></span><span class="dv-sc"><img src="assets/hikaku/pc-r.jpg" width="1280" height="800" loading="eager" decoding="async" alt="パソコンの画面。3案の総合評価・経済性・施工性・耐久性の比べ"></span></a><figcaption class="dv-cap"><span class="dv-k">3</span>3案の比較（PC）</figcaption></figure>
+    </div>
+    <p class="mf-cap">画面の絵は、押すと新しいタブで大きく見られます。</p>
+    <div class="go"><a class="box-ln" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる <span aria-hidden="true">↗</span></a><span class="mn-aside">新しいタブで開きます。商品名・値段・数値は説明のための架空のものです。</span></div>
+
+    <h3 class="mn-h">料金に含むもの</h3>
+    <div class="hk-in">
+      <div><h4>初期制作 198,000円（税込）</h4><ul><li>業界・商品の調査</li><li>質問の設計と、商品ごとの点数の付け方の設計</li><li>商品データの登録</li><li>ページの制作と、御社のサイトへの埋め込み</li><li>はじめの修正</li></ul></div>
+      <div><h4>保守 月9,800円</h4><ul><li>サーバー・ドメイン</li><li>商品情報の修正</li><li>質問の流れの軽い変更</li><li>動いているかの確認</li><li>アクセスの分析</li><li>月1回ほどの改善</li></ul></div>
+      <div><h4>別にお見積り</h4><ul><li>選び方の仕組みを大きく変えるとき</li><li>質問の組み立てを作り直すとき</li></ul></div>
+    </div>
+
+    <h3 class="mn-h">作り方の流れ</h3>
+    <ol class="mk">
+      <li><b>商品と選び方を伺う</b>扱っている商品と、ふだんお客さまにどう選び分けを説明しているかを伺い、業界と商品を調べます。</li>
+      <li><b>質問と点数を決める</b>お客さまに聞く質問と、答えごとに商品へ付ける点数を設計します。</li>
+      <li><b>ページをつくる</b>商品データを登録して、質問に答えると合う商品が出るページをつくります。</li>
+      <li><b>サイトに埋め込む</b>御社のサイトに埋め込み、はじめの修正をします。その後は保守で見守ります。</li>
+    </ol>
+
+    <h3 class="mn-h">よくある質問</h3>
+    <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">「契約1年」とは、どういうことですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>初期制作のあと、保守（月9,800円）を1年のご契約でお願いしています。その1年のあいだは、同じ商品群・同じ選び方の仕組みを、競合の会社には出しません。期間が過ぎたあとまでの独占は、お約束していません。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">質問を増やしたり、変えたりできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>質問の流れの軽い変更は、保守に含みます。選び方の仕組みを大きく変えるときや、質問の組み立てを作り直すときは、別にお見積りします。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">商品が増えたり、値段が変わったりしたら？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>商品情報の修正は、保守に含みます。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q4</span><span class="qt">おすすめは、どうやって決まるのですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>答えに応じて商品ごとに点数を付け、点の高い順に並べます。点の付け方は、御社の知識をもとに、こちらで設計します。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q5</span><span class="qt">どこに置くのですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>御社のサイトに埋め込みます。埋め込みまでが初期制作に含まれます。</p></div></details></div>
     <div class="go">
       <a class="box-ln" href="mailto:info@morikosha.com?subject=%E5%95%86%E5%93%81%E6%AF%94%E8%BC%83%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E7%9B%B8%E8%AB%87">メールで相談する <span aria-hidden="true">→</span></a>
+      <a class="ln" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる</a>
     </div>
   </div>
 </section>
@@ -2232,13 +2385,13 @@ html.hash-ld{scroll-behavior:auto;}
   <div class="contact byo">
     <header class="dai sec-h"><span class="dai-n" aria-hidden="true">結</span><h2 class="dai-t" id="contact-h">お問い合わせ</h2><span class="dai-l" aria-hidden="true">Contact</span></header>
     <div class="contact-in">
-      <p class="contact-lede">ご質問だけでも、<br><span class="nw nk">構いません</span>。</p>
+      <p class="contact-lede">ご質問だけでも、<br><span class="nw nk">構いません。</span></p>
       <p>会社名と、選び方を案内したい商品の種類をお書き添えください。</p>
       <div class="mail">
         <p class="lb" aria-hidden="true">E-mail</p>
         <a class="mail-a" href="mailto:info@morikosha.com?subject=%E5%95%86%E5%93%81%E6%AF%94%E8%BC%83%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E7%9B%B8%E8%AB%87">info@morikosha.com <span aria-hidden="true">↗</span></a>
         <button class="copy" type="button" data-copy="info@morikosha.com">アドレスをコピー</button>
-        <small><span class="nw nk">2営業日</span>以内のご返信を心がけ<span class="nw nk">ています。</span></small>
+        <small><span class="nw nk">2営業日</span>以内のご返信を<span class="nw nk">心がけています。</span></small>
       </div>
     </div>
   </div>
@@ -2247,30 +2400,7 @@ html.hash-ld{scroll-behavior:auto;}
 </main>
 
 <footer>
-  <div class="colo" id="legal">
-    <div class="byo colo-in">
-      <div>
-        <h2>特定電子メール法に基づく表示</h2>
-        <p>特定電子メールの送信の適正化等に関する法律 第4条に基づき、送信者の情報を表示し<span class="nw nk">ています。</span></p>
-        <dl>
-          <div><dt>送信者</dt><dd>上原 光瑛（うえはら みつあき）</dd></div>
-          <div><dt>屋号</dt><dd><span class="nw nk">杜工舎</span>（もりこうしゃ）</dd></div>
-          <div><dt>住所</dt><dd>埼玉県さいたま市大宮区<span class="nw nk">高鼻町３丁目</span></dd></div>
-          <div><dt>メール</dt><dd>info@morikosha.com</dd></div>
-          <div><dt>苦情受付</dt><dd>上記メールアドレスにて承ります（配信停止の<span class="nw nk">ご連絡</span>もこちらへ）</dd></div>
-        </dl>
-        <p>当方からの営業メールの受信を希望されない場合は、お送りしたメールに<span class="nw nk">そのまま</span>ご返信いただくか、上記メールアドレス宛に「配信停止」とお送りください。以後の送信を停止い<span class="nw nk">たします。</span></p>
-      </div>
-      <details class="pp" id="pp" open>
-        <summary><h2>プライバシーポリシー</h2><span class="pp-m" aria-hidden="true"></span></summary>
-        <p>お問い合わせやご依頼の際にいただいた個人情報は、<span class="nw nk">ご連絡</span>・お見積り・ホームページ制作の目的にのみ使用します。ご本人の同意なく第三者に提供することはあ<span class="nw nk">りません。</span></p>
-        <p>当方は、インターネット上で公開されている事業者さまの連絡先情報（会社名・住所・メールアドレス等）を、サービスのご案内をお送りする目的で取得・利用することがあります。ご案内が不要との<span class="nw nk">ご連絡</span>をいただいた場合は以後お送りせず、その<span class="nw nk">ご連絡</span>先は「送信停止の管理」の目的に限って保管い<span class="nw nk">たします。</span></p>
-        <p>制作の過程でお預かりした<span class="nw nk">写真・原稿</span>・会社情報は、納品後も他の用途に使用しません。施工実績を制作事例として紹介する場合は、事前にご承諾をいただいたうえで紹<span class="nw nk">介します。</span></p>
-        <p>いただいた情報の開示・訂正・削除を<span class="nw nk">ご希望の場合</span>は、上記のメールアドレスまで<span class="nw nk">ご連絡</span><span class="nw nk">ください。</span></p>
-        <p>当サイトはアクセス解析ツールおよびCookieを使用して<span class="nw nk">いません。</span></p>
-      </details>
-    </div>
-  </div>
+  <div class="colo sub-ft" id="legal"><div class="byo"><dl><div><dt>屋号</dt><dd>杜工舎（もりこうしゃ）</dd></div><div><dt>住所</dt><dd>埼玉県さいたま市大宮区高鼻町３丁目</dd></div><div><dt>メール</dt><dd>info@morikosha.com</dd></div></dl><a class="btn-s" href="index.html#pp">プライバシーポリシー</a></div></div>
   <div class="credit"><div class="byo"><div class="credit-in"><p>絵の出典：長谷川等伯「<span class="nw nk">松林図屏風</span>」・酒井抱一「<span class="nw nk">夏秋草図屏風</span>」は ColBase（<span class="url">https://colbase.nich.go.jp/</span>）を加工して<span class="nw nk">作成。</span></p><p>尾形光琳「<span class="nw nk">八橋図屏風</span>」は <span class="nw">The Metropolitan Museum of Art</span>（Open Access）。</p><p>柴田是真「Autumn Grasses in Moonlight」は <span class="nw">The Metropolitan Museum of Art</span>（CC0）。</p></div></div></div>
   <div class="ft-end"><div class="ft-mark" aria-hidden="true"><span class="ft-logo"></span><span class="ft-name"><span class="nw nk">杜工舎</span><span>MORIKOSHA</span></span></div>
   <p class="copyright">Copyright © Morikosha. <span class="nw">All rights reserved.</span></p></div>

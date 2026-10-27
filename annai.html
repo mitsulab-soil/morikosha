@@ -2175,6 +2175,129 @@ html.hash-ld{scroll-behavior:auto;}
 #annai .go{grid-column:1 / -1;justify-content:flex-start;margin-top:40px;}
 @media (max-width:900px){.an-g{grid-template-columns:repeat(2,minmax(0,1fr));}.an-p{grid-template-columns:repeat(2,minmax(0,1fr));}}
 
+/* ══ 2026-10-27 評価の指摘で足した部品（index の題箋・.keys・.go・.qa を使い回し、色と字は旧版の変数） */
+#annai .keys,#menu .keys,#hikaku .keys{grid-column:1 / -1;margin-inline:0!important;}
+.mn-go{grid-column:1 / -1;flex-direction:column;align-items:flex-start;gap:12px;margin-top:32px;}
+.mn-go .box-ln{width:auto;min-width:min(100%,340px);}
+.mn-aside{margin:0;font-size:var(--f1);line-height:1.9;color:var(--ink-2);max-width:40em;}
+.mn-aside b{display:block;font-weight:500;color:var(--ink);}
+.mn-aside a{color:var(--ink);}
+.mn-sum{grid-column:1 / -1;margin:24px 0 0;font-size:var(--f4);font-weight:500;letter-spacing:.06em;line-height:1.6;}
+.mn-sum small{display:block;margin-top:6px;font-size:var(--f1);font-weight:400;color:var(--ink-2);}
+.mn-qa{grid-column:1 / -1;margin-top:20px;}
+.mn-qa .qa-a{max-width:none;}
+.mp-main dt{font-size:var(--f4);}
+.mp-main dd{font-size:var(--f5);color:var(--ink);}
+.mp-main>div:first-child{border-bottom:1px solid var(--ink);}
+.mt-h{grid-column:1 / -1;margin:36px 0 0;font-size:var(--f2);font-weight:500;letter-spacing:.12em;color:var(--ink-2);}
+.mt{grid-column:1 / -1;width:100%;border-collapse:collapse;margin-top:8px;font-size:var(--f1);}
+.mt th,.mt td{padding:12px 0;border-bottom:.5px solid var(--line-2);vertical-align:baseline;text-align:left;font-weight:400;color:var(--ink);}
+.mt td{text-align:right;white-space:nowrap;padding-left:16px;font-family:var(--ff-en);font-size:var(--f2);}
+.mt small{display:block;margin-top:2px;color:var(--ink-2);font-family:var(--ff-ja);font-size:var(--f1);}
+.an-pick{flex-wrap:wrap;}
+.an-pick label{font-size:var(--f4);font-weight:500;letter-spacing:.12em;}
+.an-pick select{font-size:var(--f3);min-height:48px;border-color:var(--ink);}
+.an-pick-s{flex-basis:100%;margin:0;font-size:var(--f1);color:var(--ink-2);}
+.an-g .an-m{margin-top:6px;font-size:var(--f1);line-height:1.7;color:var(--ink-2);}
+.an-p a{display:block;cursor:zoom-in;}
+.hk-p{grid-column:1 / -1;margin:24px 0 0;max-width:44em;color:var(--ink-2);}
+.hk-p b{font-weight:500;color:var(--ink);}
+.hk-m{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr 3fr;gap:clamp(16px,2.4vw,36px);align-items:end;margin-top:36px;}
+.hk-m figure{margin:0;display:flex;flex-direction:column;gap:14px;}
+.hk-m .dv{text-decoration:none;}
+.hk-m .dv-sp .dv-sc{aspect-ratio:390 / 844;}
+.hk-m .dv-pc .dv-sc{aspect-ratio:1280 / 800;}
+.hk-m .dv-k::after{display:none;}
+#hikaku .go .mn-aside{flex-basis:100%;}
+.hk-in{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:8px;}
+.hk-in>div{padding:22px var(--fp) 8px 0;}
+.hk-in>div+div{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.hk-in h4{margin:0 0 10px;font-size:var(--f2);font-weight:500;letter-spacing:.08em;}
+.hk-in ul{margin:0;padding:0;list-style:none;font-size:var(--f1);line-height:2;color:var(--ink-2);}
+.hk-in li::before{content:"";display:inline-block;width:10px;height:.5px;margin:0 .6em .3em 0;background:var(--gold);vertical-align:middle;}
+#hikaku .qa{grid-column:1 / -1;margin-top:8px;}
+@media (max-width:900px){
+  .hk-m{grid-template-columns:1fr 1fr;}
+  .hk-m .hk-pc{grid-column:1 / -1;}
+  .hk-in{grid-template-columns:1fr;}
+  .hk-in>div+div{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}
+  .mt th{padding-right:8px;}
+}
+/* PC では題箋（縦書き）が1列目を占めるので、中身はすべて2列目から（左の端をそろえる） */
+@media (min-width:901px){
+  #annai .byo>:not(.dai),#menu .byo>:not(.dai),#hikaku .byo>:not(.dai){grid-column:2 / -1!important;}
+  #annai .byo>:not(.dai):not(.lede),#menu .byo>:not(.dai):not(.lede),#hikaku .byo>:not(.dai):not(.lede){margin-left:0!important;margin-right:0!important;padding-left:0;}
+  #annai .lede,#menu .lede,#hikaku .lede{padding-left:0;margin-left:0;}
+}
+/* 2026-10-27 第2回の指摘 */
+.btn-s{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 20px;border:1px solid var(--ink);color:var(--ink)!important;text-decoration:none!important;letter-spacing:.08em;font-size:var(--f1);background:transparent;transition:background .25s;}
+.btn-s:hover{background:rgba(30,31,29,.06);}
+.mf-cap .btn-s{margin-top:4px;}
+.mn-mail{margin:0;font-size:var(--f1);line-height:1.8;color:var(--ink-2);letter-spacing:.04em;}
+.mf-fic{display:block;margin-top:8px;font-size:var(--f1);color:var(--ink-2);}
+.js .qa.rv,.js .qa.rv:not(.in){opacity:1!important;transform:none!important;}
+.an-cl{display:block;cursor:zoom-in;}
+.an-pick label span{font-size:.6em;vertical-align:.2em;color:var(--gold);}
+.an-fl{grid-template-columns:repeat(5,minmax(0,1fr));}
+.hk-keys{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
+.sub-ft{padding:40px 0 28px;font-size:var(--f1);line-height:1.9;color:var(--on-night,#cfcac0);}
+.sub-ft dl{display:flex;flex-wrap:wrap;gap:4px 28px;margin:0;}
+.sub-ft dl div{display:flex;gap:10px;}
+.sub-ft dt{opacity:.7;}.sub-ft dd{margin:0;}
+.sub-ft a{color:inherit;}
+.sub-ft .btn-s{margin-top:14px;border-color:currentColor;}
+@media (max-width:900px){.an-fl{grid-template-columns:1fr 1fr;}.an-fl li:nth-child(3){padding-left:0;box-shadow:none;}.hk-keys{grid-template-columns:1fr!important;}}
+@media (max-width:620px){.an-g{grid-template-columns:1fr!important;}.an-g figure{max-width:300px;}.an-fl{grid-template-columns:1fr;}.an-fl li+li{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}}
+.sub-ft .byo>*{grid-column:2 / -1;}
+.sub-ft .btn-s{justify-self:start;color:inherit!important;border-color:currentColor;}
+@media (max-width:900px){.sub-ft .byo>*{grid-column:1 / -1;}}
+/* 2026-10-27 第3回の指摘 */
+.ba{grid-column:1 / -1;display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,48px);align-items:center;margin-top:48px;}
+.ba figure{margin:0;}.ba a{display:block;cursor:zoom-in;}
+.ba img{display:block;width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2),0 18px 30px -18px rgba(30,31,29,.45);}
+.ba figcaption{margin-top:14px;padding-top:12px;border-top:1px solid var(--gold);font-size:var(--f1);color:var(--ink-2);line-height:1.8;}
+.ba figcaption b{font-family:var(--ff-ja);font-size:var(--f4);font-weight:500;color:var(--ink);margin-right:.6em;}
+.mp-big{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;margin:24px 0 0;padding-bottom:22px;border-bottom:1px solid var(--ink);}
+.mp-big-v{font-size:var(--f4);}
+.mp-big-v .kn-n{font-family:var(--ff-en);font-size:calc(var(--f6) * 1.1);font-weight:500;line-height:1;}
+.mp-big-v .kn-t{font-size:var(--f1);color:var(--ink-2);}
+.mp-big-t{font-size:var(--f3);font-weight:500;letter-spacing:.06em;}
+.mp-big-t small{display:block;margin-top:6px;font-size:var(--f1);font-weight:400;color:var(--ink-2);max-width:44em;}
+.mt-h{font-size:var(--f1);}
+.an-pick select{flex:1 1 320px;max-width:520px;min-height:52px;}
+.an-p{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px;max-width:760px;}
+@media (max-width:900px){.ba{grid-template-columns:1fr;}.ba .ba-sheet{width:80%;}}
+@media (max-width:620px){
+  .an-g{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;padding-bottom:12px;-webkit-overflow-scrolling:touch;}
+  .an-g li{flex:0 0 72%;scroll-snap-align:start;}
+  .an-g figure{max-width:none;}
+  .an-pick label{flex-basis:100%;}
+  .an-pick select{flex:1 1 100%;max-width:none;width:100%;}
+  .an-p{grid-template-columns:1fr!important;}
+}
+.mf-t{align-items:start;margin-top:40px;}
+.mf-t img{max-height:220px;}
+/* 2026-10-27 第4回の指摘 */
+.sd{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:0;list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--ink);}
+.sd li{display:flex;gap:18px;align-items:flex-start;padding:22px var(--fp) 18px 0;color:var(--ink);}
+.sd li+li{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.sd svg{flex:none;}
+.sd p{margin:0;font-size:var(--f2);line-height:1.8;color:var(--ink-2);}
+.sd b{display:block;font-size:var(--f3);font-weight:500;color:var(--ink);margin-bottom:4px;}
+#annai .fx,#menu .fx{margin-top:12px;}
+.fx5{grid-template-columns:repeat(5,minmax(0,1fr))!important;}
+.mt,.mt th,.mt td,.mt small{font-size:max(16px,var(--f2))!important;}
+.mt td{font-size:max(17px,var(--f3))!important;}
+.mn-note{font-size:max(15px,var(--f1));}
+#hikaku .qa .qn,#menu .qa .qn,#annai .qa .qn{font-size:var(--f2);}
+.an-swipe{display:none;}
+@media (max-width:900px){.fx5{grid-template-columns:minmax(0,1fr)!important;}}
+@media (max-width:620px){
+  .sd{grid-template-columns:1fr;}.sd li+li{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}
+  .an-swipe{display:block;grid-column:1 / -1;margin:20px 0 0;text-align:center;font-size:var(--f1);letter-spacing:.2em;color:var(--gold);}
+  .an-g li{flex:0 0 78%;}
+}
+
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
 </head>
@@ -2214,31 +2337,44 @@ html.hash-ld{scroll-behavior:auto;}
 <main id="main">
 <section class="sec s-ground pg-first" id="annai" aria-labelledby="annai-h">
   <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">一</span><h2 class="dai-t" id="annai-h">会社案内・パンフレット作成</h2><span class="dai-l" aria-hidden="true">Brochure</span></header>
-    <div class="lede lede-s"><p class="ja-h">ホームページと同じ5つの案で、<br>手渡せる会社案内を。</p>
-      <div class="ja-b"><p>A4・4ページの会社案内です（表紙／仕事の内容／選ばれる理由とごあいさつ／会社概要）。ホームページと同じ5つのデザイン案から近いものを選び、記入シートと写真を送っていただくと、御社の内容に直して PDF でお渡しします。営業先や採用の面接で手渡す一冊に。</p></div></div>
-    <p class="an-pick"><label for="an-ind">業種を選ぶ</label><select id="an-ind"><option value="doboku">土木</option><option value="sokuryo">測量</option><option value="kenchiku" selected>建築</option><option value="sekkei">建築設計</option><option value="setsubi">設備</option><option value="denki">電気</option><option value="tosou">塗装</option><option value="zoen">造園</option><option value="kaitai">解体</option><option value="unso">運送</option><option value="nogyo">農業</option><option value="shokudo">飲食店</option><option value="bar">バー</option><option value="biyo">美容室</option><option value="jinja">神社</option><option value="jiin">寺院</option><option value="kosho">古書店</option><option value="juku">学習塾</option></select></p>
-    <ul class="an-g"><li><figure><img class="an-cv" data-n="1" src="assets/annai/kenchiku-1.jpg" width="900" height="1273" loading="lazy" decoding="async" alt="会社案内の表紙の見本（淡・建築）"><figcaption><b>淡</b>（あわい）<span>雨に洗われた白と、雨脚。</span></figcaption></figure></li><li><figure><img class="an-cv" data-n="2" src="assets/annai/kenchiku-2.jpg" width="900" height="1273" loading="lazy" decoding="async" alt="会社案内の表紙の見本（玄・建築）"><figcaption><b>玄</b>（げん）<span>写真を、闇に沈めて。</span></figcaption></figure></li><li><figure><img class="an-cv" data-n="3" src="assets/annai/kenchiku-3.jpg" width="900" height="1273" loading="lazy" decoding="async" alt="会社案内の表紙の見本（雅・建築）"><figcaption><b>雅</b>（みやび）<span>灯のような墨に、金の細線。</span></figcaption></figure></li><li><figure><img class="an-cv" data-n="4" src="assets/annai/kenchiku-4.jpg" width="900" height="1273" loading="lazy" decoding="async" alt="会社案内の表紙の見本（粋・建築）"><figcaption><b>粋</b>（いき）<span>藍の、細い縦線だけ。</span></figcaption></figure></li><li><figure><img class="an-cv" data-n="5" src="assets/annai/kenchiku-5.jpg" width="900" height="1273" loading="lazy" decoding="async" alt="会社案内の表紙の見本（理・建築）"><figcaption><b>理</b>（り）<span>一本の筋を、通す。</span></figcaption></figure></li></ul>
+    <div class="dai sec-h" aria-hidden="true"><span class="dai-n">一</span><span class="dai-t">会社案内・パンフレット作成</span><span class="dai-l">Brochure</span></div>
+    <div class="lede"><h2 class="ja-h" id="annai-h">ホームページと同じ5つの案で、<br>手渡せる会社案内を。</h2>
+      <div class="ja-b"><p>A4・4ページの会社案内です（表紙／仕事の内容／選ばれる理由とごあいさつ／会社概要）。5つのデザイン案から近いものを選び、記入シートと写真を送っていただくと、御社の内容に直して PDF でお渡しします。営業先や採用の面接で手渡す一冊に。</p></div></div>
+    <ul class="keys mn-keys" aria-label="会社案内の要点">
+      <li><span class="k-l">料金</span><span class="k-v"><span class="kn-u">A4・4ページ</span><span class="kn-n">59,800</span>円<span class="kn-t">（税込）</span></span><span class="k-s">含まれるもの：5案から選ぶ・御社の内容に直す・PDF と印刷用のデータ</span></li>
+      <li><span class="k-l">デザイン</span><span class="k-v"><span class="kn-n">5</span>つの案</span><span class="k-s">淡・玄・雅・粋・理。ホームページと同じ案です</span></li>
+      <li><span class="k-l">納期</span><span class="k-v"><span class="kn-n">2</span>週間ほど</span><span class="k-s">写真と資料をいただいてから</span></li>
+    </ul>
+    <div class="go"><a class="box-ln" href="mailto:info@morikosha.com?subject=%E4%BC%9A%E7%A4%BE%E6%A1%88%E5%86%85%E3%81%AE%E7%9B%B8%E8%AB%87">メールで相談する <span aria-hidden="true">→</span></a><a class="ln" href="#an-pick">5つの案を見る</a></div>
+    <div class="an-pick" id="an-pick"><label for="an-ind">業種を選ぶ <span aria-hidden="true">▼</span></label><select id="an-ind"><option value="doboku">土木</option><option value="sokuryo">測量</option><option value="kenchiku" selected>建築</option><option value="sekkei">建築設計</option><option value="setsubi">設備</option><option value="denki">電気</option><option value="tosou">塗装</option><option value="zoen">造園</option><option value="kaitai">解体</option><option value="unso">運送</option><option value="nogyo">農業</option><option value="shokudo">飲食店</option><option value="bar">バー</option><option value="biyo">美容室</option><option value="jinja">神社</option><option value="jiin">寺院</option><option value="kosho">古書店</option><option value="juku">学習塾</option></select><p class="an-pick-s">選ぶと、下の5案の表紙がその業種の見本に変わります（18業種）。表紙を押すと、新しいタブで大きく見られます。</p></div>
+    <p class="an-swipe" aria-hidden="true">← 横にずらす →</p>
+    <ul class="an-g"><li><figure><a class="an-cl" href="assets/annai/kenchiku-1.jpg" target="_blank" rel="noopener" aria-label="表紙を大きく見る（新しいタブ）"><img class="an-cv" data-n="1" src="assets/annai/kenchiku-1.jpg" width="900" height="1273" loading="lazy" decoding="async" alt="会社案内の表紙の見本（淡・建築）"></a><figcaption><b>淡</b>（あわい）<span>雨に洗われた白と、雨脚。</span><span class="an-m">設計事務所や造園業など、丁寧さや情緒を静かに伝えたい会社に向いています。</span></figcaption></figure></li><li><figure><a class="an-cl" href="assets/annai/kenchiku-2.jpg" target="_blank" rel="noopener" aria-label="表紙を大きく見る（新しいタブ）"><img class="an-cv" data-n="2" src="assets/annai/kenchiku-2.jpg" width="900" height="1273" loading="lazy" decoding="async" alt="会社案内の表紙の見本（玄・建築）"></a><figcaption><b>玄</b>（げん）<span>写真を、闇に沈めて。</span><span class="an-m">設計事務所・塗装・建築（設計）など、意匠性と静かな凄みで選ばれたい会社に向いています。</span></figcaption></figure></li><li><figure><a class="an-cl" href="assets/annai/kenchiku-3.jpg" target="_blank" rel="noopener" aria-label="表紙を大きく見る（新しいタブ）"><img class="an-cv" data-n="3" src="assets/annai/kenchiku-3.jpg" width="900" height="1273" loading="lazy" decoding="async" alt="会社案内の表紙の見本（雅・建築）"></a><figcaption><b>雅</b>（みやび）<span>灯のような墨に、金の細線。</span><span class="an-m">創業の古い建設会社・造園・社寺関係など、歴史と格式を前に出したい会社に向いています。</span></figcaption></figure></li><li><figure><a class="an-cl" href="assets/annai/kenchiku-4.jpg" target="_blank" rel="noopener" aria-label="表紙を大きく見る（新しいタブ）"><img class="an-cv" data-n="4" src="assets/annai/kenchiku-4.jpg" width="900" height="1273" loading="lazy" decoding="async" alt="会社案内の表紙の見本（粋・建築）"></a><figcaption><b>粋</b>（いき）<span>藍の、細い縦線だけ。</span><span class="an-m">電気工事・設備・測量・土木施工など、段取りの正確さと反応の速さで信頼を得る仕事に向いています。</span></figcaption></figure></li><li><figure><a class="an-cl" href="assets/annai/kenchiku-5.jpg" target="_blank" rel="noopener" aria-label="表紙を大きく見る（新しいタブ）"><img class="an-cv" data-n="5" src="assets/annai/kenchiku-5.jpg" width="900" height="1273" loading="lazy" decoding="async" alt="会社案内の表紙の見本（理・建築）"></a><figcaption><b>理</b>（り）<span>一本の筋を、通す。</span><span class="an-m">代々続く建築・土木・造園の会社や、社寺・石材・表具など、受け継いだ技術を仕事にしている方に向いています。</span></figcaption></figure></li></ul>
     <h3 class="mn-h">中のページ（雅・建築の見本）</h3>
-    <ol class="an-p"><li><img src="assets/annai/kenchiku-3-p-1.jpg" width="495" height="700" loading="lazy" decoding="async" alt="会社案内の見本（雅・建築）の1ページ目"></li><li><img src="assets/annai/kenchiku-3-p-2.jpg" width="495" height="700" loading="lazy" decoding="async" alt="会社案内の見本（雅・建築）の2ページ目"></li><li><img src="assets/annai/kenchiku-3-p-3.jpg" width="495" height="700" loading="lazy" decoding="async" alt="会社案内の見本（雅・建築）の3ページ目"></li><li><img src="assets/annai/kenchiku-3-p-4.jpg" width="495" height="700" loading="lazy" decoding="async" alt="会社案内の見本（雅・建築）の4ページ目"></li></ol>
-    <dl class="mp"><div><dt>会社案内の作成<small>A4・4ページ。5案から選んで御社の内容に直し、PDF と印刷用のデータでお渡しします</small></dt><dd>59,800円<small>（税込）</small></dd></div><div><dt>印刷<small>部数・紙・加工を伺ってから</small></dt><dd>お見積り</dd></div></dl>
+    <p class="mf-cap">業種を選んでも、中のページは建築の見本のままです。画像を押すと、新しいタブで大きく見られます。</p>
+    <ol class="an-p"><li><a href="assets/annai/kenchiku-3-p-1.jpg" target="_blank" rel="noopener" aria-label="1ページ目を大きく見る（新しいタブ）"><img src="assets/annai/kenchiku-3-p-1.jpg" width="495" height="700" loading="eager" decoding="async" alt="会社案内の見本（雅・建築）の1ページ目"></a></li><li><a href="assets/annai/kenchiku-3-p-2.jpg" target="_blank" rel="noopener" aria-label="2ページ目を大きく見る（新しいタブ）"><img src="assets/annai/kenchiku-3-p-2.jpg" width="495" height="700" loading="eager" decoding="async" alt="会社案内の見本（雅・建築）の2ページ目"></a></li><li><a href="assets/annai/kenchiku-3-p-3.jpg" target="_blank" rel="noopener" aria-label="3ページ目を大きく見る（新しいタブ）"><img src="assets/annai/kenchiku-3-p-3.jpg" width="495" height="700" loading="eager" decoding="async" alt="会社案内の見本（雅・建築）の3ページ目"></a></li><li><a href="assets/annai/kenchiku-3-p-4.jpg" target="_blank" rel="noopener" aria-label="4ページ目を大きく見る（新しいタブ）"><img src="assets/annai/kenchiku-3-p-4.jpg" width="495" height="700" loading="eager" decoding="async" alt="会社案内の見本（雅・建築）の4ページ目"></a></li></ol>
+    <h3 class="mn-h">頼み方の流れ</h3>
+    <ol class="fx fx5"><li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><p class="fx-t">&nbsp;</p><h3>記入シート</h3><div class="fx-p"><p>会社名・仕事の内容・ごあいさつなどを、シートにご記入いただきます。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><p class="fx-t">&nbsp;</p><h3>写真</h3><div class="fx-p"><p>現場や社屋、仕事の様子の写真をお送りいただきます。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><p class="fx-t">所要<b><span class="nw nk">2週間</span>ほど</b></p><h3>初稿</h3><div class="fx-p"><p>写真と資料をいただいてから<span class="nw nk">2週間</span>ほどで、選んだ案に御社の内容を入れて PDF でお渡しします。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">04</p><p class="fx-t">&nbsp;</p><h3>直し</h3><div class="fx-p"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">05</p><p class="fx-t">&nbsp;</p><h3>納品</h3><div class="fx-p"><p>PDF と印刷用のデータでお渡しします。</p></div><p class="fx-a" aria-hidden="true"></p></li></ol>
+    <h3 class="mn-h">料金</h3>
+    <p class="mp-big"><span class="mp-big-v"><span class="kn-u">A4・4ページ</span> <span class="kn-n">59,800</span>円<span class="kn-t">（税込）</span></span><span class="mp-big-t">5案から選び、御社の内容に直して、PDF と印刷用のデータでお渡しします。<small>ページを増やすとき・印刷をご希望のときは、部数や紙を伺ってからお見積りします。</small></span></p>
+    <h3 class="mn-h">よくある質問</h3>
+    <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">どのくらいでできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>写真と資料をいただいてから、<span class="nw nk">2週間</span>ほどで初稿をお渡しします。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">直しはできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p></div></details><details><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">印刷もお願いできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>できます。部数と紙を伺ってから、お見積りします。</p></div></details></div>
     <p class="mf-cap">見本の社名・人名・住所・電話番号は、すべて架空です。</p>
-    <div class="go"><a class="box-ln" href="mailto:info@morikosha.com?subject=%E4%BC%9A%E7%A4%BE%E6%A1%88%E5%86%85%E3%81%AE%E7%9B%B8%E8%AB%87">メールで相談する <span aria-hidden="true">→</span></a></div>
+    <div class="go mn-go"><a class="box-ln" href="mailto:info@morikosha.com?subject=%E4%BC%9A%E7%A4%BE%E6%A1%88%E5%86%85%E3%81%AE%E7%9B%B8%E8%AB%87">メールで相談する <span aria-hidden="true">→</span></a><p class="mn-mail">押すとメールが開きます。宛先 info@morikosha.com<br>2営業日以内のご返信を心がけています。</p></div>
   </div>
-  <script>(function(){var s=document.getElementById('an-ind');if(!s)return;s.addEventListener('change',function(){var t=s.options[s.selectedIndex].text;document.querySelectorAll('#annai .an-cv').forEach(function(i){i.src='assets/annai/'+s.value+'-'+i.dataset.n+'.jpg';i.alt=i.alt.replace(/・[^）]+）$/,'・'+t+'）');});});})();</script>
+  <script>(function(){var s=document.getElementById('an-ind');if(!s)return;s.addEventListener('change',function(){var t=s.options[s.selectedIndex].text;document.querySelectorAll('#annai .an-cv').forEach(function(i){i.src='assets/annai/'+s.value+'-'+i.dataset.n+'.jpg';i.parentNode.href=i.src;i.alt=i.alt.replace(/・[^）]+）$/,'・'+t+'）');});});})();</script>
 </section>
 
 <section class="char s-night" id="contact" aria-labelledby="contact-h">
   <div class="contact byo">
     <header class="dai sec-h"><span class="dai-n" aria-hidden="true">結</span><h2 class="dai-t" id="contact-h">お問い合わせ</h2><span class="dai-l" aria-hidden="true">Contact</span></header>
     <div class="contact-in">
-      <p class="contact-lede">ご質問だけでも、<br><span class="nw nk">構いません</span>。</p>
+      <p class="contact-lede">ご質問だけでも、<br><span class="nw nk">構いません。</span></p>
       <p>会社名・業種と、ご希望の案（淡・玄・雅・粋・理）をお書き添えください。</p>
       <div class="mail">
         <p class="lb" aria-hidden="true">E-mail</p>
         <a class="mail-a" href="mailto:info@morikosha.com?subject=%E4%BC%9A%E7%A4%BE%E6%A1%88%E5%86%85%E3%81%AE%E7%9B%B8%E8%AB%87">info@morikosha.com <span aria-hidden="true">↗</span></a>
         <button class="copy" type="button" data-copy="info@morikosha.com">アドレスをコピー</button>
-        <small><span class="nw nk">2営業日</span>以内のご返信を心がけ<span class="nw nk">ています。</span></small>
+        <small><span class="nw nk">2営業日</span>以内のご返信を<span class="nw nk">心がけています。</span></small>
       </div>
     </div>
   </div>
@@ -2247,30 +2383,7 @@ html.hash-ld{scroll-behavior:auto;}
 </main>
 
 <footer>
-  <div class="colo" id="legal">
-    <div class="byo colo-in">
-      <div>
-        <h2>特定電子メール法に基づく表示</h2>
-        <p>特定電子メールの送信の適正化等に関する法律 第4条に基づき、送信者の情報を表示し<span class="nw nk">ています。</span></p>
-        <dl>
-          <div><dt>送信者</dt><dd>上原 光瑛（うえはら みつあき）</dd></div>
-          <div><dt>屋号</dt><dd><span class="nw nk">杜工舎</span>（もりこうしゃ）</dd></div>
-          <div><dt>住所</dt><dd>埼玉県さいたま市大宮区<span class="nw nk">高鼻町３丁目</span></dd></div>
-          <div><dt>メール</dt><dd>info@morikosha.com</dd></div>
-          <div><dt>苦情受付</dt><dd>上記メールアドレスにて承ります（配信停止の<span class="nw nk">ご連絡</span>もこちらへ）</dd></div>
-        </dl>
-        <p>当方からの営業メールの受信を希望されない場合は、お送りしたメールに<span class="nw nk">そのまま</span>ご返信いただくか、上記メールアドレス宛に「配信停止」とお送りください。以後の送信を停止い<span class="nw nk">たします。</span></p>
-      </div>
-      <details class="pp" id="pp" open>
-        <summary><h2>プライバシーポリシー</h2><span class="pp-m" aria-hidden="true"></span></summary>
-        <p>お問い合わせやご依頼の際にいただいた個人情報は、<span class="nw nk">ご連絡</span>・お見積り・ホームページ制作の目的にのみ使用します。ご本人の同意なく第三者に提供することはあ<span class="nw nk">りません。</span></p>
-        <p>当方は、インターネット上で公開されている事業者さまの連絡先情報（会社名・住所・メールアドレス等）を、サービスのご案内をお送りする目的で取得・利用することがあります。ご案内が不要との<span class="nw nk">ご連絡</span>をいただいた場合は以後お送りせず、その<span class="nw nk">ご連絡</span>先は「送信停止の管理」の目的に限って保管い<span class="nw nk">たします。</span></p>
-        <p>制作の過程でお預かりした<span class="nw nk">写真・原稿</span>・会社情報は、納品後も他の用途に使用しません。施工実績を制作事例として紹介する場合は、事前にご承諾をいただいたうえで紹<span class="nw nk">介します。</span></p>
-        <p>いただいた情報の開示・訂正・削除を<span class="nw nk">ご希望の場合</span>は、上記のメールアドレスまで<span class="nw nk">ご連絡</span><span class="nw nk">ください。</span></p>
-        <p>当サイトはアクセス解析ツールおよびCookieを使用して<span class="nw nk">いません。</span></p>
-      </details>
-    </div>
-  </div>
+  <div class="colo sub-ft" id="legal"><div class="byo"><dl><div><dt>屋号</dt><dd>杜工舎（もりこうしゃ）</dd></div><div><dt>住所</dt><dd>埼玉県さいたま市大宮区高鼻町３丁目</dd></div><div><dt>メール</dt><dd>info@morikosha.com</dd></div></dl><a class="btn-s" href="index.html#pp">プライバシーポリシー</a></div></div>
   <div class="credit"><div class="byo"><div class="credit-in"><p>絵の出典：長谷川等伯「<span class="nw nk">松林図屏風</span>」・酒井抱一「<span class="nw nk">夏秋草図屏風</span>」は ColBase（<span class="url">https://colbase.nich.go.jp/</span>）を加工して<span class="nw nk">作成。</span></p><p>尾形光琳「<span class="nw nk">八橋図屏風</span>」は <span class="nw">The Metropolitan Museum of Art</span>（Open Access）。</p><p>柴田是真「Autumn Grasses in Moonlight」は <span class="nw">The Metropolitan Museum of Art</span>（CC0）。</p></div></div></div>
   <div class="ft-end"><div class="ft-mark" aria-hidden="true"><span class="ft-logo"></span><span class="ft-name"><span class="nw nk">杜工舎</span><span>MORIKOSHA</span></span></div>
   <p class="copyright">Copyright © Morikosha. <span class="nw">All rights reserved.</span></p></div>
