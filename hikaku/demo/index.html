@@ -1490,14 +1490,15 @@ const SPEC={
      "thumb": "soft",
      "s": {
       "P01": 3,
-      "P02": 4,
-      "P03": -1,
-      "P04": 3,
+      "P02": 5,
+      "P03": -8,
+      "P04": 4,
       "P05": 3,
-      "P06": 3,
+      "P06": 4,
       "P07": 3,
       "P10": 1,
-      "P13": 3
+      "P13": 3,
+      "P09": -8
      },
      "x": [
       "P08",
@@ -1511,7 +1512,7 @@ const SPEC={
      "note": "締まった土は、標準的な長さのピンが最も効率よく効く条件です。",
      "thumb": "firm",
      "s": {
-      "P01": 4,
+      "P01": 5,
       "P02": 3,
       "P03": 2,
       "P04": 3,
@@ -1533,12 +1534,16 @@ const SPEC={
      "note": "乾いた砂は摩擦で保持できないため、断面の大きいペグで面を稼ぎます。らせん杭は空転して効きません。",
      "thumb": "sand",
      "s": {
-      "P01": -2,
-      "P02": 3,
-      "P03": -3,
+      "P01": -8,
+      "P02": 4,
+      "P03": -8,
       "P06": 2,
-      "P07": -1,
-      "P11": 5
+      "P07": 6,
+      "P11": 7,
+      "P10": -8,
+      "P09": -8,
+      "P05": -8,
+      "P04": -8
      },
      "x": [
       "P08",
@@ -1554,12 +1559,14 @@ const SPEC={
      "s": {
       "P01": -1,
       "P02": 4,
-      "P03": -3,
+      "P03": -8,
       "P04": 4,
-      "P05": -2,
+      "P05": -8,
       "P06": 2,
-      "P07": 5,
-      "P13": 2
+      "P07": 6,
+      "P13": 2,
+      "P11": 4,
+      "P09": -8
      },
      "x": [
       "P08",
@@ -1573,14 +1580,15 @@ const SPEC={
      "note": "礫混じりでは打込み式が途中で止まるため、石を避けて定着できる方式を選びます。",
      "thumb": "stone",
      "s": {
-      "P01": -2,
-      "P02": -3,
-      "P03": 2,
-      "P04": -1,
-      "P06": -2,
-      "P07": 5,
-      "P10": 3,
-      "P13": -2
+      "P01": -8,
+      "P02": -8,
+      "P03": 3,
+      "P04": -8,
+      "P06": -8,
+      "P07": 6,
+      "P10": 5,
+      "P13": -8,
+      "P11": -8
      },
      "x": [
       "P05",
@@ -1596,14 +1604,15 @@ const SPEC={
      "thumb": "hard",
      "s": {
       "P01": 1,
-      "P02": -1,
-      "P03": 3,
-      "P05": -3,
+      "P02": -8,
+      "P03": 4,
+      "P05": -8,
       "P06": 0,
       "P07": 1,
       "P09": 2,
-      "P10": 4,
-      "P13": -1
+      "P10": 6,
+      "P13": -8,
+      "P11": -8
      },
      "x": [
       "P08",
@@ -2668,16 +2677,6 @@ function score(){
   if(DOMAIN.exclude) P.forEach(p=>{ if(DOMAIN.exclude(p,answers)) excluded.add(p.id); });
   const pool=P.filter(p=>!excluded.has(p.id)).map(p=>DOMAIN.view?DOMAIN.view(p,answers):p);
   if(!pool.length) return {pool:[],empty:true,sum,contrib,ceiling:1,floor:0};
-  /* 「重視すること」を点に入れる（2026-10-28）。同点のときだけ効かせると、重視と1位が食い違う。
-     費用は本数をかけた総額の安さ（最安との比の2乗×14点）、ほかはその性能の高さ（残っている品目の中の比で0〜10点）を足す。
-     1位・表・カード・％は、すべてこの合計1つから出す */
-  const pk=answers[DD.tie.key], PW=pk==="cost"?14:10;
-  if(pk){
-    const val=p=> pk==="cost" ? 1/Math.max(1,DOMAIN.quantity(p,answers).cost) : (+p[DD.tie.by[pk][0]]||0);
-    const vs=pool.map(val), mx=Math.max(...vs), mn=Math.min(...vs);
-    const QP={short:"重視",key:"_prio"}, OP={label:{cost:"総額の安さ",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[pk]||"重視"};
-    pool.forEach((p,i)=>{ const v= pk==="cost" ? Math.round(PW*Math.pow(vs[i]/mx,2)*10)/10 : (mx>mn ? Math.round(PW*(vs[i]-mn)/(mx-mn)*10)/10 : 0); sum[p.id]+=v; contrib[p.id].push({q:QP,o:OP,v}); });
-  }
   /* 分母は「残っている品目が取り得る最高点」。除外品目を含めると％が実態より低く出る */
   let ceiling=0, floor=0;
   picked.forEach(({o})=>{
@@ -2686,11 +2685,24 @@ function score(){
     ceiling+=pos.length?Math.max(...pos):0;
     floor  +=neg.length?Math.min(...neg):0;   /* 減点も分母に入れないと％が不当に低く出る */
   });
-  if(pk) ceiling+=PW;
   /* 同点時の決着は「重視すること」の回答に合わせる（domain.json の tie） */
   const [tk,td]=(DD.tie.by[answers[DD.tie.key]]||DD.tie.default);
   const tie=(a,b)=>td==="asc"?a[tk]-b[tk]:b[tk]-a[tk];
   pool.sort((a,b)=> sum[b.id]-sum[a.id] || tie(a,b));
+  /* 「重視すること」を決め手にする（2026-10-28）。
+     条件によく合う品目（最高点から8点以内）の中は、重視したもので並べ直す：費用＝本数をかけた総額の安い順、ほかはその性能の高い順。
+     並べ直した順に点を付け直し（帯の最高点＋0.5点刻み）、その差を「重視」の内訳に入れる。1位・表・カード・％はすべてこの点から出る */
+  const pk=answers[DD.tie.key], BAND=8;
+  if(pk&&pool.length){
+    const best=sum[pool[0].id], band=pool.filter(p=>sum[p.id]>=best-BAND), rest=pool.filter(p=>sum[p.id]<best-BAND);
+    const val=p=> pk==="cost" ? -DOMAIN.quantity(p,answers).cost : (+p[DD.tie.by[pk][0]]||0);
+    const vv=Object.fromEntries(band.map(p=>[p.id,val(p)]));
+    band.sort((a,b)=> (vv[b.id]-vv[a.id]) || (sum[b.id]-sum[a.id]));
+    const QP={short:"重視",key:"_prio"}, OP={label:{cost:"総額の安さ",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[pk]||"重視"};
+    band.forEach((p,k)=>{ const nv=best+3-k*0.5, d=Math.round((nv-sum[p.id])*10)/10; sum[p.id]=nv; contrib[p.id].push({q:QP,o:OP,v:d}); });
+    pool.splice(0,pool.length,...band,...rest);
+    ceiling+=3;
+  }
   return {pool,empty:false,sum,contrib,ceiling:Math.max(ceiling,1),floor};
 }
 const quantity=pid=>DOMAIN.quantity(byId[pid],answers);
