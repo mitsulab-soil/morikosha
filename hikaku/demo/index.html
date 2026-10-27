@@ -2760,12 +2760,11 @@ function fitReason(p,i,S,t3,qs){
   const PRI={cost:"費用（総額の安さ）",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[answers[DD.tie.key]];
   let head="";
   if(i===0&&PRI){
-    const k=answers[DD.tie.key], v=k==="cost"?qs.map(q=>-q.cost):t3.map(x=>x[DD.tie.by[k][0]]);
-    const GQ2=Q.find(q=>q.key==="ground"), GO2=GQ2&&GQ2.opts.find(o=>o.v===answers.ground), gs=x=>GO2?(GO2.s[x.id]||0):0;
-    const goodHasCon = gs(p)>0 && penOf(p.id,answers).p && (S.pool||[]).some(x=>gs(x)<=0&&!penOf(x.id,answers).p);
-    if(goodHasCon) head=`この地面に向く品の中で、「${PRI}」を優先して選びました。地面に向かない品は、重視に合っていても後ろにしています。`; else
-    if(penOf(p.id,answers).p) head=`「${PRI}」を優先しましたが、この条件で使える品がほかにないため、この品目です。重視したことに反する点はデメリット欄を確かめてください。`; else
-    head = v[0]>=Math.max(...v) ? `「${PRI}」を優先した結果です。` : `「${PRI}」を優先しましたが、ほかの条件への合い方の差が大きいため、この品目を1位にしています。`;
+    const st=prioStatus(t3,qs,S);
+    head={ok:`「${PRI}」を優先した結果です。`,
+      only:`「${PRI}」を優先しましたが、この条件で使える品がほかにないため、この品目です。重視したことに反する点はデメリット欄を確かめてください。`,
+      ground:`この地面に向く品の中で選びました。「${PRI}」に合う品は地面に向かないため、後ろにしています。`,
+      fit:`「${PRI}」を優先しましたが、ほかの条件への合い方の差が大きいため、この品目を1位にしています。`}[st]||"";
   }
   const c=(S.contrib[p.id]||[]).filter(x=>x.v>0).sort((a,b)=>b.v-a.v).slice(0,2);
   const plus=c.length?c.map(x=>`${x.q.short}「${x.o.label}」`).join("と")+"がよく効いています":"";
@@ -2854,22 +2853,43 @@ function rankLists(t3,pcts,qs){
 /* 3案のカード。数値・解説・理由・メリット・デメリット・商品リンクを1枚にまとめる */
 /* カードの見出し（2026-10-28）：固定の文でなく、表示中の案の実際の数字から作る。
    1位は「重視を優先して選んだ品」。2位・3位は、表示中の案の中で実際に1つだけ最大・最小のものだけを書き、当たらなければ「次の候補」 */
-function cardLabel(p,i,t3,qs){
+/* 1位が重視どおりに選べたか。見出し（cardLabel）と理由の文（fitReason）は、この1つの判定から出す */
+function prioStatus(t3,qs,S){
+  const k=answers[DD.tie.key]; if(!k) return "none";
+  const top=t3[0], v=k==="cost"?qs.map(q=>-q.cost):t3.map(x=>+x[DD.tie.by[k][0]]||0);
+  const GQ=Q.find(q=>q.key==="ground"), GO=GQ&&GQ.opts.find(o=>o.v===answers.ground), gs=x=>GO?(GO.s[x.id]||0):0;
+  const pool=(S&&S.pool)||t3;
+  if(penOf(top.id,answers).p){
+    return pool.some(x=>!penOf(x.id,answers).p) ? "ground" : "only";
+  }
+  if(v[0]>=Math.max(...v)) return "ok";
+  /* 重視の点でもっと良い品が、地面に向かない組にいるとき */
+  const better=t3.filter((x,j)=>v[j]>v[0]);
+  return better.length&&better.every(x=>gs(x)<gs(top)) ? "ground" : "fit";
+}
+function cardLabel(p,i,t3,qs,S){
   const PRI={cost:"費用（総額の安さ）",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[answers[DD.tie.key]];
-  if(i===0) return PRI?`「${PRI}」を優先して選んだ品`:"条件にいちばん合う品";
+  if(i===0){ if(!PRI) return "条件にいちばん合う品";
+    return {ok:`「${PRI}」を優先して選んだ品`,only:"この条件で使える品",ground:"地面への合い方を優先した品",fit:"条件への合い方を優先した品"}[prioStatus(t3,qs,S||score())]; }
   const one=(arr,x)=>arr.filter(y=>y===x).length===1;
   const cs=qs.map(q=>q.cost), out=[];
   if(cs[i]===Math.min(...cs)&&one(cs,cs[i])) out.push("いちばん安い");
   const lab={pull:"保持力がいちばん高い",ease:"施工がいちばん楽",weather:"耐久性がいちばん高い"};
   ["pull","ease","weather"].forEach(k=>{const v=t3.map(x=>x[k]); if(v[i]===Math.max(...v)&&one(v,v[i])) out.push(lab[k]);});
   if(out.length) return out.slice(0,2).join("・");
-  const prevNone=t3.slice(1,i).some((x,j)=>cardLabel(x,j+1,t3,qs).startsWith("次の候補"));
-  return prevNone?"次の候補（その2）":"次の候補";
+  const prevNone=t3.slice(1,i).some((x,j)=>cardLabel(x,j+1,t3,qs,S).startsWith("次の候補"));
+  if(!prevNone) return "次の候補";
+  /* 2番目に良い点を、実際の数字で（ちょうど真ん中の値が1つだけのとき） */
+  const mid=(arr,x)=>{const s=[...arr].sort((a,b)=>a-b); return arr.length===3&&s[0]<s[1]&&s[1]<s[2]&&x===s[1];};
+  if(mid(cs,cs[i])) return "2番目に安い";
+  const lab2={pull:"保持力が2番目に高い",ease:"施工が2番目に楽",weather:"耐久性が2番目に高い"};
+  for(const k of ["pull","ease","weather"]){ const v=t3.map(x=>x[k]); if(mid(v,v[i])) return lab2[k]; }
+  return "次の候補（その2）";
 }
 function productCard(p,i,pct,q,S,t3,qs,top,qt){
   const isTop=i===0;
   const badge=isTop?"最適":(i+1)+"位";
-  const use=cardLabel(p,i,t3,qs);
+  const use=cardLabel(p,i,t3,qs,S);
   const ax=[["経済性",yen(q.cost)],...MET.map(m=>[m.label,metShow(m,p)]),["必要数量",num(q.spare)+" "+q.cnt]];
   const specNote=MET.filter(m=>m.specLabel).map(m=>m.note&&p[m.note]?p[m.note]:`${m.specLabel} ${num(p[m.key])}${m.unit?" "+m.unit:""}`);
   const real=p.url&&p.url!=="#";
