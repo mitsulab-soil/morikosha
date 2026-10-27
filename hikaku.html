@@ -2392,6 +2392,19 @@ html.hash-ld{scroll-behavior:auto;}
   #menu .mn-steps b{font-size:var(--f4)!important;}
 }
 #menu{--ink-2:#1E1F1D;}
+/* B・A・D 小直し */
+#hikaku{--ink-2:#1E1F1D;}
+.hk-ul{margin:4px 0 0;padding-left:1.2em;}
+.hk-ul li{margin:2px 0;}
+.hk-fee{grid-column:1 / -1;margin-top:40px;}
+.hk-mt{grid-column:1 / -1;margin:0;padding:16px 0;border-bottom:.5px solid var(--line-2);font-size:var(--f2);}
+.hk-mt b{display:block;font-size:var(--f3);font-weight:500;}
+.hk-mt small{display:block;margin-top:4px;font-size:max(16px,var(--f1));color:var(--ink);line-height:1.8;}
+.mn-pr{display:block;font-size:14px;color:var(--ink);}
+#annai .go .mn-mail{flex-basis:100%;}
+.an-pn{display:none;}
+@media (max-width:620px){.an-pn{display:flex;grid-column:1 / -1;justify-content:space-between;margin:10px 0 0;}.mn-pr{font-size:14px!important;}}
+.hk-ul{list-style:disc!important;}.hk-ul li{list-style:disc!important;}#hikaku .mp-big-t small{color:var(--ink);font-size:max(16px,var(--f1));}
 
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
@@ -2434,13 +2447,12 @@ html.hash-ld{scroll-behavior:auto;}
   <div class="byo">
     <div class="dai sec-h" aria-hidden="true"><span class="dai-n">一</span><span class="dai-t">商品比較サイトの作成</span><span class="dai-l">Compare</span></div>
     <div class="lede"><h2 class="ja-h" id="hikaku-h">専門の人なら分かる選び分けを、<br>質問に答えるだけで<span class="nw">選べるページに。</span></h2>
-      <div class="ja-b"><p>資材や道具のように、品番が多くて選び方の分かりにくい商品のためのページです。</p><p>使う場所や目的をいくつかの質問で聞き、合う商品と数量の目安を出します。メーカーや販売店の持っている選び方の知識を、お客さまが自分で使える形にします。</p><p><a class="btn-s" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる <span aria-hidden="true">↗</span></a></p><p>想定している効き目は、問い合わせでの「どれを選べばいいか」という質問が減ること、選び間違いによる返品が減ることです。たとえば「この地面にはどの杭か」という電話での問い合わせに、ページが答えられるようになります。</p><p class="hk-note">どれも想定であり、数字のお約束はしていません。</p></div></div>
-    <ul class="keys mn-keys hk-keys" aria-label="商品比較サイトの要点">
-      <li><span class="k-l">初期制作</span><span class="k-v"><span class="kn-n">198,000</span>円<span class="kn-t">（税込）</span></span><span class="k-s">商品の調査から、御社のサイトへの埋め込みまで</span></li>
-      <li><span class="k-l">保守</span><span class="k-v">月 <span class="kn-n">9,800</span>円</span><span class="k-s">サーバー・商品情報の修正・月1回ほどの改善など</span></li>
-      <li><span class="k-l">契約期間</span><span class="k-v"><span class="kn-n">1</span>年</span><span class="k-s">保守を1年のご契約で</span></li>
-      <li><span class="k-l">お約束</span><span class="k-v">競合に出しません</span><span class="k-s">契約期間中は、同じ商品群・同じ選び方の仕組みを競合の会社に出しません</span></li>
-    </ul>
+      <div class="ja-b"><p>資材や道具のように、品番が多くて選び方の分かりにくい商品のためのページです。</p><p>使う場所や目的をいくつかの質問で聞き、合う商品と数量の目安を出します。メーカーや販売店の持っている選び方の知識を、お客さまが自分で使える形にします。</p><p><a class="btn-s" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる <span aria-hidden="true">↗</span></a></p><p>想定している効き目：</p><ul class="hk-ul"><li>問い合わせでの「どれを選べばいいか」という質問が減る（たとえば「この地面にはどの杭か」という電話に、ページが答えられる）</li><li>選び間違いによる返品が減る</li></ul><p class="hk-note">どれも想定であり、数字のお約束はしていません。</p></div></div>
+    <div class="hk-fee">
+      <p class="mp-big"><span class="mp-big-v"><span class="kn-u">初期制作</span> <span class="kn-n">198,000</span>円<span class="kn-t">（税込）</span></span><span class="mp-big-t">納期 2週間ほど<small>含むもの：業界・商品の調査／質問と点数の設計／商品データの登録／ページの制作と、御社のサイトへの埋め込み／公開後の初期の修正</small></span></p>
+      <p class="hk-mt"><b>保守（毎月）9,800円</b><small>含むもの：サーバー・ドメイン／商品情報の修正／質問の流れの軽い変更／動いているかの確認／アクセスの分析／月1回ほどの改善</small></p>
+      <p class="hk-mt"><b>契約 1年</b><small>保守を1年のご契約でお願いしています。期間中は、同じ商品群・同じ選び方の仕組みを、競合の会社に出しません。</small></p>
+    </div>
 
     <h3 class="mn-h">見本：地面の固定具を選ぶページ</h3>
     <p class="hk-p">防草シートや人工芝を地面に留めるピン・杭は、品番が多く、地面の固さや傾きで向き不向きが変わります。この見本では、<b>用途・地面の種類・傾斜・風・使う期間・重視すること・広さ</b>の7つの質問に答えると、合う3案と必要な本数の目安が出ます。</p>
@@ -2452,12 +2464,7 @@ html.hash-ld{scroll-behavior:auto;}
     <p class="mf-cap">画面の絵は、押すと新しいタブで大きく見られます。</p>
     <div class="go"><a class="box-ln" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる <span aria-hidden="true">↗</span></a><span class="mn-aside">新しいタブで開きます。商品名・値段・数値は説明のための架空のものです。</span></div>
 
-    <h3 class="mn-h">料金に含むもの</h3>
-    <div class="hk-in">
-      <div><h4>初期制作 198,000円（税込）</h4><ul><li>業界・商品の調査</li><li>質問の設計と、商品ごとの点数の付け方の設計</li><li>商品データの登録</li><li>ページの制作と、御社のサイトへの埋め込み</li><li>はじめの修正</li></ul></div>
-      <div><h4>保守 月9,800円</h4><ul><li>サーバー・ドメイン</li><li>商品情報の修正</li><li>質問の流れの軽い変更</li><li>動いているかの確認</li><li>アクセスの分析</li><li>月1回ほどの改善</li></ul></div>
-      <div><h4>別にお見積り</h4><ul><li>選び方の仕組みを大きく変えるとき</li><li>質問の組み立てを作り直すとき</li></ul></div>
-    </div>
+    <p class="hk-mt"><b>別にお見積り</b><small>選び方の仕組みを大きく変えるとき・質問の組み立てを作り直すとき</small></p>
 
     <h3 class="mn-h">作り方の流れ</h3>
     <ol class="mk">
