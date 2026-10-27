@@ -2489,7 +2489,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* 数値の数え上げ。結果の重みを伝えるための演出 */
 function countUp(el,to,dur=900,fmt=num){
   if(!el) return;
-  if(reduce){ el.textContent=fmt(to); return; }
+  el.textContent=fmt(to); return; /* 2026-10-28 数え上げの演出はやめ、最初から値を出す */
   const t0=performance.now();
   (function step(t){
     const k=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-k,3);
@@ -2658,8 +2658,26 @@ function currentTop3(){
   if(S.empty) return null;
   const t3=S.pool.slice(0,3), sp=Math.max(1,S.ceiling-S.floor);
   const pcts=t3.map(p=>Math.max(35,Math.min(99,Math.round((S.sum[p.id]-S.floor)/sp*100))));
+  for(let k=1;k<pcts.length;k++) if(S.sum[t3[k].id]<S.sum[t3[k-1].id]&&pcts[k]>=pcts[k-1]) pcts[k]=pcts[k-1]-1;
   return {S,t3,pcts,qs:t3.map(p=>quantity(p.id))};
 }
+/* 短所の文と同じ情報から出す減点表（2026-10-28）。prio＝その重視を選んだとき、ground＝その地面のとき。
+   各品目の cons の文に書いてあることだけを入れる */
+const PEN={
+  P01:{ground:{stone:10}},                                   /* 石が多い地盤では曲がる */
+  P02:{ground:{hard:10,stone:10},prio:{easy:10}},            /* 硬い地盤では入らない／打ち込みに力が要る */
+  P03:{ground:{soft:10},prio:{hold:10}},                     /* 軟らかい土では抜けやすい／保持力が低い */
+  P05:{ground:{hard:10,stone:10},prio:{hold:10}},            /* 硬い地盤には打ち込めない／保持力が低い */
+  P06:{prio:{look:10,easy:10}},                              /* 押え板が目立つ／施工に手間 */
+  P07:{prio:{look:10,easy:10,cost:10}},                      /* 頭部が大きく見える／工具と時間／1本380円 */
+  P08:{prio:{easy:10}},                                      /* 下穴あけが必須 */
+  P09:{ground:{soft:10},prio:{hold:10}},                     /* 軟弱地盤では抜ける／保持力が低め */
+  P10:{ground:{sand:10}},                                    /* 砂地では効きにくい */
+  P12:{prio:{cost:10}},                                      /* 1個1,480円 */
+  P13:{ground:{hard:10,stone:10}},                           /* 硬い地盤では入りにくい／石で曲がる */
+  P11:{ground:{hard:10,stone:10}}                            /* 硬い地面には打ち込めない */
+};
+const penOf=(id,a)=>{const e=PEN[id]||{};return {g:(e.ground||{})[a.ground]||0, p:(e.prio||{})[a[DD.tie.key]]||0};};
 function score(){
   const excluded=new Set(), sum={}, contrib={}, picked=[];
   P.forEach(p=>{sum[p.id]=0;contrib[p.id]=[];});
@@ -2677,6 +2695,10 @@ function score(){
   if(DOMAIN.exclude) P.forEach(p=>{ if(DOMAIN.exclude(p,answers)) excluded.add(p.id); });
   const pool=P.filter(p=>!excluded.has(p.id)).map(p=>DOMAIN.view?DOMAIN.view(p,answers):p);
   if(!pool.length) return {pool:[],empty:true,sum,contrib,ceiling:1,floor:0};
+  /* 短所の減点（重視・地面） */
+  pool.forEach(p=>{ const e=penOf(p.id,answers);
+    if(e.g){ sum[p.id]-=e.g; contrib[p.id].push({q:{short:"地面",key:"_pg"},o:{label:"この地面に向かない"},v:-e.g}); }
+    if(e.p){ sum[p.id]-=e.p; contrib[p.id].push({q:{short:"重視",key:"_pp"},o:{label:"重視したことに反する短所"},v:-e.p}); } });
   /* 分母は「残っている品目が取り得る最高点」。除外品目を含めると％が実態より低く出る */
   let ceiling=0, floor=0;
   picked.forEach(({o})=>{
@@ -2692,17 +2714,30 @@ function score(){
   /* 「重視すること」を決め手にする（2026-10-28）。
      条件によく合う品目（最高点から8点以内）の中は、重視したもので並べ直す：費用＝本数をかけた総額の安い順、ほかはその性能の高い順。
      並べ直した順に点を付け直し（帯の最高点＋0.5点刻み）、その差を「重視」の内訳に入れる。1位・表・カード・％はすべてこの点から出る */
+  /* 地面への向き不向きは重視より先に決める（2026-10-28）：向く品（地面の点＋）→どちらでもない（0）→向かない品（−）の組に分け、
+     重視の並べ直しは同じ組の中だけで行う。最後に点を順に合わせ直し、1位・表・％が食い違わないようにする */
   const pk=answers[DD.tie.key], BAND=8;
-  if(pk&&pool.length){
-    const best=sum[pool[0].id], band=pool.filter(p=>sum[p.id]>=best-BAND), rest=pool.filter(p=>sum[p.id]<best-BAND);
-    const val=p=> pk==="cost" ? -DOMAIN.quantity(p,answers).cost : (+p[DD.tie.by[pk][0]]||0);
+  const GQ=Q.find(q=>q.key==="ground"), GO=GQ&&GQ.opts.find(o=>o.v===answers.ground);
+  const gcls=p=>{const v=GO?(GO.s[p.id]||0):0; return v>0?0:(v===0?1:2);};
+  const groups=[0,1,2].map(c=>pool.filter(p=>gcls(p)===c)).filter(g=>g.length);
+  const QP={short:"重視",key:"_prio"}, OP={label:{cost:"総額の安さ",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[pk]||"重視"};
+  const pz=p=>{const e=penOf(p.id,answers);return (e.g?2:0)+(e.p?1:0);};  /* 短所に当たる品は、組の中でも後ろへ */
+  const val=p=> pk==="cost" ? -DOMAIN.quantity(p,answers).cost : (+p[DD.tie.by[pk][0]]||0);
+  const ordered=[];
+  groups.forEach(g=>{
+    if(!pk){ ordered.push(...g); return; }
+    const best=sum[g[0].id], band=g.filter(p=>sum[p.id]>=best-BAND), rest=g.filter(p=>sum[p.id]<best-BAND);
     const vv=Object.fromEntries(band.map(p=>[p.id,val(p)]));
-    band.sort((a,b)=> (vv[b.id]-vv[a.id]) || (sum[b.id]-sum[a.id]));
-    const QP={short:"重視",key:"_prio"}, OP={label:{cost:"総額の安さ",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[pk]||"重視"};
+    band.sort((a,b)=> (pz(a)-pz(b)) || (vv[b.id]-vv[a.id]) || (sum[b.id]-sum[a.id]));
     band.forEach((p,k)=>{ const nv=best+3-k*0.5, d=Math.round((nv-sum[p.id])*10)/10; sum[p.id]=nv; contrib[p.id].push({q:QP,o:OP,v:d}); });
-    pool.splice(0,pool.length,...band,...rest);
-    ceiling+=3;
-  }
+    ordered.push(...band,...rest);
+  });
+  /* 組の順を点にも反映（後ろの品が前の品より高い点にならないように） */
+  const GL={short:"地面",key:"_gord"}, GLo={label:"この地面への向き"};
+  for(let k=1;k<ordered.length;k++){ const a=ordered[k-1], b=ordered[k];
+    if(sum[b.id]>=sum[a.id]){ const nv=Math.round((sum[a.id]-0.5)*10)/10, d=Math.round((nv-sum[b.id])*10)/10; sum[b.id]=nv; contrib[b.id].push({q:GL,o:GLo,v:d}); } }
+  pool.splice(0,pool.length,...ordered);
+  if(pk) ceiling+=3;
   return {pool,empty:false,sum,contrib,ceiling:Math.max(ceiling,1),floor};
 }
 const quantity=pid=>DOMAIN.quantity(byId[pid],answers);
@@ -2715,8 +2750,9 @@ function useFor(p,top,q,qt){
 /* 長所：製品の固定文のうち比較の言い切り（最も・いちばん・最安）は外し、表示中の3案の実際の数字から作る */
 function prosFor(p,i,t3,qs){
   const out=[], cs=qs.map(q=>q.cost), pl=t3.map(x=>x.pull);
-  if(new Set(cs).size>1&&cs[i]===Math.min(...cs)) out.push(`3案の中で総額が最も安い（${yen(cs[i])}）`);
-  if(new Set(pl).size>1&&pl[i]===Math.max(...pl)) out.push(`3案の中で引抜抵抗が最も大きい（${num(pl[i])} N）`);
+  if(t3.length<2) return p.pros.filter(x=>!/最も|いちばん|一番|最安|最高/.test(x));
+  if(cs.filter(x=>x===Math.min(...cs)).length===1&&cs[i]===Math.min(...cs)) out.push(`3案の中で総額が最も安い（${yen(cs[i])}）`);
+  if(pl.filter(x=>x===Math.max(...pl)).length===1&&pl[i]===Math.max(...pl)) out.push(`3案の中で引抜抵抗が最も大きい（${num(pl[i])} N）`);
   return out.concat(p.pros.filter(x=>!/最も|いちばん|一番|最安|最高/.test(x)));
 }
 /* ---------- 適合度の理由。なぜその順位かを1〜2行で言う ---------- */
@@ -2725,6 +2761,10 @@ function fitReason(p,i,S,t3,qs){
   let head="";
   if(i===0&&PRI){
     const k=answers[DD.tie.key], v=k==="cost"?qs.map(q=>-q.cost):t3.map(x=>x[DD.tie.by[k][0]]);
+    const GQ2=Q.find(q=>q.key==="ground"), GO2=GQ2&&GQ2.opts.find(o=>o.v===answers.ground), gs=x=>GO2?(GO2.s[x.id]||0):0;
+    const goodHasCon = gs(p)>0 && penOf(p.id,answers).p && (S.pool||[]).some(x=>gs(x)<=0&&!penOf(x.id,answers).p);
+    if(goodHasCon) head=`この地面に向く品の中で、「${PRI}」を優先して選びました。地面に向かない品は、重視に合っていても後ろにしています。`; else
+    if(penOf(p.id,answers).p) head=`「${PRI}」を優先しましたが、この条件で使える品がほかにないため、この品目です。重視したことに反する点はデメリット欄を確かめてください。`; else
     head = v[0]>=Math.max(...v) ? `「${PRI}」を優先した結果です。` : `「${PRI}」を優先しましたが、ほかの条件への合い方の差が大きいため、この品目を1位にしています。`;
   }
   const c=(S.contrib[p.id]||[]).filter(x=>x.v>0).sort((a,b)=>b.v-a.v).slice(0,2);
@@ -2734,14 +2774,16 @@ function fitReason(p,i,S,t3,qs){
     {k:"cost", v:qs.map(q=>-q.cost), hi:"費用が最も安い",   lo:"費用が最も高い"},
     ...MET.map(m=>({v:t3.map(x=>x[m.key]), hi:m.hi, lo:m.lo}))
   ].filter(a=>new Set(a.v).size>1);
-  const weak=axes.filter(a=>a.v[i]===Math.min(...a.v))[0];
-  const strong=axes.filter(a=>a.v[i]===Math.max(...a.v))[0];
+  const uniq=(a,x)=>a.v.filter(y=>y===x).length===1;
+  const weak=axes.filter(a=>a.v[i]===Math.min(...a.v)&&uniq(a,a.v[i]))[0];
+  const strong=axes.filter(a=>a.v[i]===Math.max(...a.v)&&uniq(a,a.v[i]))[0];
   /* 単価と総額が逆転する場合。ここを説明しないと文が矛盾して読める */
   const prices=t3.map(x=>x.price), varied=new Set(prices).size>1;
   let tail="";
-  if(weak&&weak.k==="cost"&&varied&&p.price===Math.min(...prices))
+  const uP=x=>prices.filter(y=>y===x).length===1;
+  if(weak&&weak.k==="cost"&&varied&&p.price===Math.min(...prices)&&uP(p.price))
     tail="単価は3案で最も安いものの、必要数量が多く、総額では最も高くなります。";
-  else if(strong&&strong.k==="cost"&&varied&&p.price===Math.max(...prices))
+  else if(strong&&strong.k==="cost"&&varied&&p.price===Math.max(...prices)&&uP(p.price))
     tail="単価は3案で最も高いものの、必要数量が少なく、総額では最も安くなります。";
   else if(i===0) tail=weak?`3案の中では${weak.lo}点だけ、確認してください。`:"3案の中で最もバランスが取れています。";
   else if(strong) tail=`3案の中では${strong.hi}品目です。`;
@@ -2813,7 +2855,8 @@ function rankLists(t3,pcts,qs){
 function productCard(p,i,pct,q,S,t3,qs,top,qt){
   const isTop=i===0;
   const badge=isTop?"最適":(i+1)+"位";
-  const use=isTop?"バランスが最も良い":useFor(p,top,q,qt);
+  let use=isTop?"バランスが最も良い":useFor(p,top,q,qt);
+  if(!isTop&&i===2&&t3[1]){ const u2=useFor(t3[1],top,qs[1],qt); if(u2===use){ const alt=(DD.useOrder||MET.map(m=>m.key)).map(k=>metOf(k)).find(m=>p[m.key]>top[m.key]&&m.use!==u2); use=alt?alt.use:(u2==="別の選び方をする場合"?"3つ目の候補":"別の選び方をする場合"); } }
   const ax=[["経済性",yen(q.cost)],...MET.map(m=>[m.label,metShow(m,p)]),["必要数量",num(q.spare)+" "+q.cnt]];
   const specNote=MET.filter(m=>m.specLabel).map(m=>m.note&&p[m.note]?p[m.note]:`${m.specLabel} ${num(p[m.key])}${m.unit?" "+m.unit:""}`);
   const real=p.url&&p.url!=="#";
@@ -2863,6 +2906,7 @@ function finish(){
   const t3=S.pool.slice(0,3);
   const span=Math.max(1,S.ceiling-S.floor);
   const pcts=t3.map(p=>Math.max(35,Math.min(99,Math.round((S.sum[p.id]-S.floor)/span*100))));
+  for(let k=1;k<pcts.length;k++) if(S.sum[t3[k].id]<S.sum[t3[k-1].id]&&pcts[k]>=pcts[k-1]) pcts[k]=pcts[k-1]-1;  /* 点が下なら％も下に見せる */
   const qs=t3.map(p=>quantity(p.id));
   const top=t3[0], qt=qs[0];
   last={t3,pcts,qs};
@@ -2900,7 +2944,7 @@ function finish(){
   syncHash();
 
   show("s-result");
-  stage();
+  if(typeof stage==="function") stage();  /* 2026-10-28 未定義で、ここから後（数字・リンク）が止まっていた */
   setTimeout(()=>{
     $$("#s-result [data-w]").forEach((el,i)=>setTimeout(()=>el.style.width=el.dataset.w+"%",i*60));
     $$("#s-result [data-ww]").forEach((el,i)=>setTimeout(()=>el.style.width=el.dataset.ww+"%",120+i*45));
@@ -2910,6 +2954,25 @@ function finish(){
     });
   },140);
   $$("#s-result button[data-buy]").forEach(b=>b.addEventListener("click",()=>flashBuy(b)));
+  fitCount(t3.length);
+}
+/* 出る案が3つ未満のときは、見出し・文の「3案」を実際の数に合わせ、少ない理由を1行出す（2026-10-28） */
+function fitCount(n){
+  const root=$("#s-result"); const old=root.querySelector(".fewnote"); if(old) old.remove();
+  /* 前の結果で書き換えた文字を、元に戻してから合わせる（静的な見出しは使い回されるため） */
+  window.__orig=window.__orig||new WeakMap();
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+  const rep=n===1?[[/3案の中で/g,"この中で"],[/3案/g,"1案"]]:[[/3案/g,n+"案"]];
+  let x; while((x=w.nextNode())){
+    if(__orig.has(x)) x.nodeValue=__orig.get(x);
+    if(n>=3) continue;
+    let s=x.nodeValue; rep.forEach(([re,to])=>s=s.replace(re,to));
+    if(s!==x.nodeValue){ __orig.set(x,x.nodeValue); x.nodeValue=s; } }
+  if(n>=3) return;
+  const g=Q.find(q=>q.key==="ground"), o=g&&g.opts.find(o=>o.v===answers.ground);
+  const p=document.createElement("p"); p.className="fewnote"; p.style.cssText="margin:.6rem 0 1rem;font-size:.95rem";
+  p.textContent=`この条件${o?"（地面："+o.label+"）":""}に使える品は${n}つです。そのため${n}案だけを出しています。`;
+  const h=root.querySelector(".rb__h"); (h&&h.parentNode?h.parentNode:root).insertBefore(p,h||root.firstChild);
 }
 /* 設問中の上位3案。順位・線種・品名・適合度を1行ずつ。前の回答から順位が上がった品目に印を付ける */
 let prevBoard=[];
