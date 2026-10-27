@@ -2392,6 +2392,19 @@ html.hash-ld{scroll-behavior:auto;}
   #menu .mn-steps b{font-size:var(--f4)!important;}
 }
 #menu{--ink-2:#1E1F1D;}
+/* B・A・D 小直し */
+#hikaku{--ink-2:#1E1F1D;}
+.hk-ul{margin:4px 0 0;padding-left:1.2em;}
+.hk-ul li{margin:2px 0;}
+.hk-fee{grid-column:1 / -1;margin-top:40px;}
+.hk-mt{grid-column:1 / -1;margin:0;padding:16px 0;border-bottom:.5px solid var(--line-2);font-size:var(--f2);}
+.hk-mt b{display:block;font-size:var(--f3);font-weight:500;}
+.hk-mt small{display:block;margin-top:4px;font-size:max(16px,var(--f1));color:var(--ink);line-height:1.8;}
+.mn-pr{display:block;font-size:14px;color:var(--ink);}
+#annai .go .mn-mail{flex-basis:100%;}
+.an-pn{display:none;}
+@media (max-width:620px){.an-pn{display:flex;grid-column:1 / -1;justify-content:space-between;margin:10px 0 0;}.mn-pr{font-size:14px!important;}}
+.hk-ul{list-style:disc!important;}.hk-ul li{list-style:disc!important;}#hikaku .mp-big-t small{color:var(--ink);font-size:max(16px,var(--f1));}
 
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
@@ -2440,12 +2453,13 @@ html.hash-ld{scroll-behavior:auto;}
       <li><span class="k-l">デザイン</span><span class="k-v"><span class="kn-n">5</span>つの案</span><span class="k-s">淡・玄・雅・粋・理。ホームページと同じ案です</span></li>
       <li><span class="k-l">納期</span><span class="k-v"><span class="kn-n">2</span>週間ほど</span><span class="k-s">写真と資料をいただいてから</span></li>
     </ul>
-    <div class="go"><a class="box-ln" href="mailto:info@morikosha.com?subject=%E4%BC%9A%E7%A4%BE%E6%A1%88%E5%86%85%E3%81%AE%E7%9B%B8%E8%AB%87">メールで相談する <span aria-hidden="true">→</span></a><a class="ln" href="#an-pick">5つの案を見る</a></div>
+    <div class="go"><a class="box-ln" href="mailto:info@morikosha.com?subject=%E4%BC%9A%E7%A4%BE%E6%A1%88%E5%86%85%E3%81%AE%E7%9B%B8%E8%AB%87">メールで相談する <span aria-hidden="true">→</span></a><a class="ln" href="#an-pick">5つの案を見る</a><p class="mn-mail">押すとメールが開きます。宛先 info@morikosha.com<br>2営業日以内のご返信を心がけています。</p></div>
     <div class="an-pick" id="an-pick"><label for="an-ind">① 業種を選ぶ <span aria-hidden="true">▼</span></label><select id="an-ind"><optgroup label="建設・設計"><option value="doboku">土木</option><option value="sokuryo">測量</option><option value="kenchiku" selected>建築</option><option value="sekkei">建築設計</option></optgroup><optgroup label="設備・電気・塗装・解体"><option value="setsubi">設備</option><option value="denki">電気</option><option value="tosou">塗装</option><option value="kaitai">解体</option></optgroup><optgroup label="造園・農業・運送"><option value="zoen">造園</option><option value="nogyo">農業</option><option value="unso">運送</option></optgroup><optgroup label="お店・教室・社寺など"><option value="shokudo">飲食店</option><option value="bar">バー</option><option value="biyo">美容室</option><option value="kosho">古書店</option><option value="juku">学習塾</option><option value="jinja">神社</option><option value="jiin">寺院</option></optgroup></select><p class="an-pick-s">選ぶと、下の5案の表紙がその業種の見本に変わります（18業種）。</p></div>
     <h3 class="an-h2">② 5案を見比べる</h3>
     <p class="an-nav"><button type="button" data-i="0">淡</button><button type="button" data-i="1">玄</button><button type="button" data-i="2">雅</button><button type="button" data-i="3">粋</button><button type="button" data-i="4">理</button></p>
     <p class="an-swipe">横にずらすと5案を見られます　←　→</p>
     <ul class="an-g"><li><figure><a class="an-cl" href="assets/annai/kenchiku-1.jpg" target="_blank" rel="noopener" aria-label="表紙を大きく見る（新しいタブ）"><img class="an-cv" data-n="1" src="assets/annai/kenchiku-1.jpg" width="900" height="1273" loading="eager" decoding="async" alt="会社案内の表紙の見本（淡・建築）"></a><figcaption><b>淡</b>（あわい）<span>雨に洗われた白と、雨脚。</span><span class="an-m">設計事務所や造園業など、丁寧さや情緒を静かに伝えたい会社に向いています。</span></figcaption></figure></li><li><figure><a class="an-cl" href="assets/annai/kenchiku-2.jpg" target="_blank" rel="noopener" aria-label="表紙を大きく見る（新しいタブ）"><img class="an-cv" data-n="2" src="assets/annai/kenchiku-2.jpg" width="900" height="1273" loading="eager" decoding="async" alt="会社案内の表紙の見本（玄・建築）"></a><figcaption><b>玄</b>（げん）<span>写真を、闇に沈めて。</span><span class="an-m">設計事務所・塗装・建築（設計）など、意匠性と静かな凄みで選ばれたい会社に向いています。</span></figcaption></figure></li><li><figure><a class="an-cl" href="assets/annai/kenchiku-3.jpg" target="_blank" rel="noopener" aria-label="表紙を大きく見る（新しいタブ）"><img class="an-cv" data-n="3" src="assets/annai/kenchiku-3.jpg" width="900" height="1273" loading="eager" decoding="async" alt="会社案内の表紙の見本（雅・建築）"></a><figcaption><b>雅</b>（みやび）<span>灯のような墨に、金の細線。</span><span class="an-m">創業の古い建設会社・造園・社寺関係など、歴史と格式を前に出したい会社に向いています。</span></figcaption></figure></li><li><figure><a class="an-cl" href="assets/annai/kenchiku-4.jpg" target="_blank" rel="noopener" aria-label="表紙を大きく見る（新しいタブ）"><img class="an-cv" data-n="4" src="assets/annai/kenchiku-4.jpg" width="900" height="1273" loading="eager" decoding="async" alt="会社案内の表紙の見本（粋・建築）"></a><figcaption><b>粋</b>（いき）<span>藍の、細い縦線だけ。</span><span class="an-m">電気工事・設備・測量・土木施工など、段取りの正確さと反応の速さで信頼を得る仕事に向いています。</span></figcaption></figure></li><li><figure><a class="an-cl" href="assets/annai/kenchiku-5.jpg" target="_blank" rel="noopener" aria-label="表紙を大きく見る（新しいタブ）"><img class="an-cv" data-n="5" src="assets/annai/kenchiku-5.jpg" width="900" height="1273" loading="eager" decoding="async" alt="会社案内の表紙の見本（理・建築）"></a><figcaption><b>理</b>（り）<span>一本の筋を、通す。</span><span class="an-m">代々続く建築・土木・造園の会社や、社寺・石材・表具など、受け継いだ技術を仕事にしている方に向いています。</span></figcaption></figure></li></ul>
+    <p class="an-pn"><button type="button" class="btn-s an-prev">← 前へ</button><button type="button" class="btn-s an-next">次へ →</button></p>
     <p class="an-dots" aria-hidden="true"><span class="an-d"><i></i><i></i><i></i><i></i><i></i></span><span class="an-c">1 / 5</span></p>
     <p class="mf-cap">見本の社名・人名・住所・電話番号は、すべて架空です。</p>
     <h3 class="mn-h">中のページの例</h3>
@@ -2457,11 +2471,12 @@ html.hash-ld{scroll-behavior:auto;}
     <h3 class="mn-h">よくある質問</h3>
     <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">どのくらいでできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>写真と資料をいただいてから、<span class="nw nk">2週間</span>ほどで初稿をお渡しします。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">直しはできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p></div></details><details><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">印刷もお願いできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>できます。部数と紙を伺ってから、お見積りします。</p></div></details></div>
     
-    <div class="go mn-go"><a class="box-ln" href="mailto:info@morikosha.com?subject=%E4%BC%9A%E7%A4%BE%E6%A1%88%E5%86%85%E3%81%AE%E7%9B%B8%E8%AB%87">メールで相談する <span aria-hidden="true">→</span></a><p class="mn-mail">押すとメールが開きます。宛先 info@morikosha.com<br>2営業日以内のご返信を心がけています。</p></div>
+    
   </div>
   <script>(function(){var s=document.getElementById('an-ind');if(!s)return;s.addEventListener('change',function(){var t=s.options[s.selectedIndex].text;document.querySelectorAll('#annai .an-cv').forEach(function(i){i.src='assets/annai/'+s.value+'-'+i.dataset.n+'.jpg';i.parentNode.href=i.src;i.alt=i.alt.replace(/・[^）]+）$/,'・'+t+'）');});});})();</script>
   <script>(function(){var g=document.querySelector('#annai .an-g'),d=document.querySelectorAll('#annai .an-d i'),c=document.querySelector('#annai .an-c');if(!g||!c)return;function u(){var w=g.firstElementChild.getBoundingClientRect().width+16,n=Math.min(4,Math.round(g.scrollLeft/w));d.forEach(function(e,i){e.classList.toggle('on',i===n);});c.textContent=(n+1)+' / 5';}g.addEventListener('scroll',u,{passive:true});u();})();</script>
   <script>(function(){var g=document.querySelector('#annai .an-g');document.querySelectorAll('#annai .an-nav button').forEach(function(b){b.addEventListener('click',function(){var li=g.children[+b.dataset.i];if(g.scrollWidth>g.clientWidth+4){g.scrollTo({left:li.offsetLeft-g.offsetLeft,behavior:'smooth'});}else{li.scrollIntoView({behavior:'smooth',block:'center'});}});});})();</script>
+  <script>(function(){var g=document.querySelector('#annai .an-g');function go(d){var w=g.firstElementChild.getBoundingClientRect().width+16;g.scrollBy({left:d*w,behavior:'smooth'});}var p=document.querySelector('#annai .an-prev'),n=document.querySelector('#annai .an-next');p&&p.addEventListener('click',function(){go(-1)});n&&n.addEventListener('click',function(){go(1)});})();</script>
 </section>
 
 <figure class="pg-art" aria-hidden="true"><img src="assets/site/art-natsuaki.jpg" alt="" loading="eager"><figcaption>酒井抱一「夏秋草図屏風」より</figcaption></figure>
