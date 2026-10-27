@@ -2338,6 +2338,21 @@ html.hash-ld{scroll-behavior:auto;}
 .mg2{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
 @media (max-width:620px){.mg2{grid-template-columns:1fr 1fr!important;}}
 .hk-note{font-size:var(--f1);color:var(--ink-2);}
+/* menu 再採点 */
+#menu .mn-qa .fold-i{color:var(--gold);}
+#menu .mn-sum small,#menu .mp-big-t small{font-size:var(--f2);line-height:1.9;}
+@media (max-width:620px){
+  #menu .mn-steps{flex-direction:row;align-items:center;margin-top:20px;}
+  #menu .mn-steps li{font-size:0!important;padding:12px 0 8px;}
+  #menu .mn-steps b{font-size:var(--f3);margin:0;}
+  #menu .mn-steps .mn-ar{transform:none;margin:0 10px;font-size:var(--f3)!important;flex:none;}
+  #menu .mn-band{padding:12px 16px!important;}
+  #menu .mn-band .kn-n{font-size:var(--f5);}
+  #menu .lede{row-gap:10px;}
+  #menu.pg-first{padding-top:96px;}
+  #menu .mn-go{margin-top:16px;}
+}
+@media (max-width:620px){#menu .mn-steps li{flex:none;}}
 
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
@@ -2380,13 +2395,13 @@ html.hash-ld{scroll-behavior:auto;}
   <div class="byo">
     <div class="dai sec-h" aria-hidden="true"><span class="dai-n">一</span><span class="dai-t">多言語メニュー作成</span><span class="dai-l">Menu</span></div>
     <div class="lede"><h2 class="ja-h" id="menu-h">メニューの写真を1枚。<br>英語のメニューにして、<span class="nw">お返しします。</span></h2>
-      <div class="ja-b"><p>海外からのお客さまが増えたお店・宿・体験教室のための、メニューの翻訳です。打ち合わせはありません。</p></div></div>
+      <div class="ja-b"><p>お店・宿・体験教室のメニューを英語に。打ち合わせはありません。</p></div></div>
     <ol class="mn-steps" aria-label="ご依頼の手順"><li><b>写真を送る</b>いまの日本語メニューを撮って、メールで</li><li aria-hidden="true" class="mn-ar">→</li><li><b>英語メニューが届く</b>日本語と英語を並べて、PDF と印刷用のデータで</li></ol>
     <p class="mn-band"><span class="kn-n">39,800</span>円<span class="kn-t">（税込）</span><span class="mn-band-s">・2週間ほど（メニューの写真をいただいてから）</span></p>
     <div class="go mn-go"><a class="box-ln" href="mailto:info@morikosha.com?subject=%E5%A4%9A%E8%A8%80%E8%AA%9E%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E3%81%AE%E4%BE%9D%E9%A0%BC">メニューの写真を送る <span aria-hidden="true">→</span></a><button class="copy mn-copy" type="button" data-copy="info@morikosha.com">アドレスをコピー</button><p class="mn-mail">押すとメールが開きます。宛先 info@morikosha.com<br>写真は、メールの「＋（添付）」から選んで送れます。書くのは、お店の名前と写真だけで大丈夫です。</p></div>
     <ol class="sd" aria-label="送り方">
       <li><svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><rect x="20" y="6" width="24" height="46" rx="4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="32" cy="24" r="6" fill="none" stroke="var(--gold)" stroke-width="1.2"/><line x1="28" y1="46" x2="36" y2="46" stroke="currentColor" stroke-width="1.2"/></svg><p><b>1　スマートフォンで撮る</b>いまお使いの日本語メニューを、そのまま撮ります。</p></li>
-      <li><svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><rect x="8" y="16" width="48" height="32" fill="none" stroke="currentColor" stroke-width="1.2"/><polyline points="8,16 32,36 56,16" fill="none" stroke="var(--gold)" stroke-width="1.2"/></svg><p><b>2　メールに添えて送る</b>info@morikosha.com へ。店名だけ書き添えてください。</p></li>
+      <li><svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><rect x="8" y="16" width="48" height="32" fill="none" stroke="currentColor" stroke-width="1.2"/><polyline points="8,16 32,36 56,16" fill="none" stroke="var(--gold)" stroke-width="1.2"/></svg><p><b>2　メールに添えて送る</b>上のボタンからメールを開き、写真を添えて。店名だけ書き添えてください。</p></li>
     </ol>
     <div class="ba" aria-label="前と後の見比べ">
       <figure><a href="assets/menu/ja-photo.jpg" target="_blank" rel="noopener"><img src="assets/menu/ja-photo.jpg" width="1200" height="900" decoding="async" alt="木の卓に置いた、手書きの日本語の品書きを撮った写真"></a><figcaption><b>前</b>お店から届く、日本語メニューの写真</figcaption></figure>
@@ -2398,17 +2413,17 @@ html.hash-ld{scroll-behavior:auto;}
 
     <h3 class="mn-h">翻訳の確かめ方</h3>
     <p class="mn-sum">値段と品名は、人が1行ずつ確かめます。<small>写真の文字と1行ずつ見比べ、値段も上から順に照らし合わせます。英語は、代表が全行を読んで仕上げます。</small></p>
-    <div class="qa mn-qa"><details><summary><span class="qn" aria-hidden="true">＋</span><span class="qt">4つの手順をくわしく見る</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><ol class="mk">
+    <div class="qa mn-qa"><details><summary><span class="qn" aria-hidden="true"></span><span class="qt">4つの手順をくわしく見る</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><ol class="mk">
       <li><b>写真の読み取りを、写真と見比べる</b>機械で読み取った文字を、写真と1行ずつ見比べます。見本をつくったときは「もりそば」が「ありそば」と読み取られ、ここで直しました。</li>
       <li><b>値段を、機械で突き合わせる</b>写真の値段と、訳したメニューの値段を、上から順に1つずつ照らし合わせます。値段の取り違えは、ここで見つかります。</li>
       <li><b>訳した文を、日本語に訳し戻す</b>訳した文を、2種類以上の翻訳機で日本語に戻し、元のメニューと意味がずれていないかを見ます。ずれの大きい行には印が付き、そこを人が確かめます。</li>
-      <li><b>英語は、代表が読んで仕上げる</b>英語は、代表が全行を読んで仕上げます。中国語・韓国語などは、3の訳し戻しを複数の翻訳機で重ねて確かめます。機械翻訳をもとにしていることを、あらかじめお伝えしておきます。</li>
+      <li><b>英語は、代表が読んで仕上げる</b>英語は、代表が全行を読んで仕上げます。中国語・韓国語などは、3の訳し戻しを複数の翻訳機で重ねて確かめます。</li>
     </ol></div></details></div>
 
     <h3 class="mn-h">料金</h3>
     <p class="mn-lead">基本の 39,800円（税込）だけで、日本語と英語のメニュー（PDF と印刷用データ）が届きます。下の追加は、必要なときだけ。</p>
-    <p class="mp-big"><span class="mp-big-v"><span class="kn-n">39,800</span>円<span class="kn-t">（税込）</span></span><span class="mp-big-t">これだけで、英語メニューができます。<small>日本語と英語を並べたメニュー。50品まで・A4両面まで。PDF と印刷用のデータでお渡しします。</small></span></p>
-    <div class="qa mn-qa"><details><summary><span class="qn" aria-hidden="true">＋</span><span class="qt">必要なときだけ（追加料金）：言語を足す・品数・印刷</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><table class="mt"><tbody>
+    <p class="mp-big"><span class="mp-big-v"><span class="kn-n">39,800</span>円<span class="kn-t">（税込）</span></span><span class="mp-big-t">これだけで、英語メニューができます。<small>日本語と英語を並べたメニュー。50品まで・A4両面まで。PDF と印刷用のデータでお渡しします。機械翻訳をもとに、人が確かめて仕上げます。</small></span></p>
+    <div class="qa mn-qa"><details><summary><span class="qn" aria-hidden="true"></span><span class="qt">必要なときだけ（追加料金）：言語を足す・品数・印刷</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><table class="mt"><tbody>
       <tr><th>言語を足す<small>中国語（繁体字・簡体字）・韓国語など。1言語ごと</small></th><td>＋19,800円<small>（税込）</small></td></tr>
       <tr><th>51品から100品まで</th><td>＋10,000円<small>（税込）</small></td></tr>
       <tr><th>印刷代行：パウチ（A4・両面・水に強い）10枚<small>送料込み</small></th><td>6,000円<small>（税込）</small></td></tr>
@@ -2425,7 +2440,7 @@ html.hash-ld{scroll-behavior:auto;}
     </ul>
 
     <h3 class="mn-h">よくある質問</h3>
-    <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">どのくらいで届きますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>メニューの写真をいただいてから、<span class="nw nk">2週間</span>ほどです。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">届いたあとで直せますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p></div></details><details><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">翻訳は機械ですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>機械翻訳をもとに、値段と品名は人が1行ずつ確かめ、英語は代表が全行を読んで仕上げます。</p></div></details></div>
+    <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">手書きのメニューでも大丈夫ですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>大丈夫です。読み取った文字は、写真と1行ずつ見比べて確かめます。読みにくい所は、メールでお尋ねします。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">品数が多いときは？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>50品までが基本の料金です。51品から100品までは、追加料金の表のとおりです。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">あとで値段が変わったら？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>お渡しから2週間のうちなら、上の流れのとおり直します。それより後は、メールでご相談ください。</p></div></details></div>
 
     <div class="go"><a class="ln" href="menu/mihon.html">英語メニューの見本を開く</a></div>
   </div>
