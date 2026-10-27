@@ -2297,6 +2297,24 @@ html.hash-ld{scroll-behavior:auto;}
   .an-swipe{display:block;grid-column:1 / -1;margin:20px 0 0;text-align:center;font-size:var(--f1);letter-spacing:.2em;color:var(--gold);}
   .an-g li{flex:0 0 78%;}
 }
+/* 2026-10-27 第5回の指摘 */
+.mn-steps{grid-column:1 / -1;display:flex;align-items:stretch;gap:0;list-style:none;margin:48px 0 0;padding:0;border-top:1px solid var(--ink);}
+.mn-steps li{flex:1;padding:20px var(--fp) 16px 0;font-size:var(--f1);line-height:1.8;color:var(--ink-2);}
+.mn-steps b{display:block;font-size:var(--f4);font-weight:500;color:var(--ink);letter-spacing:.06em;margin-bottom:4px;}
+.mn-steps .mn-ar{flex:none;align-self:center;padding:0 var(--fp) 0 0;font-size:var(--f4);color:var(--gold);}
+.mn-band{grid-column:1 / -1;margin:0;padding:18px 24px;background:var(--paper,#FBFAF6);box-shadow:inset 0 0 0 .5px var(--line-2),inset 3px 0 0 var(--gold);font-size:var(--f3);}
+.mn-band .kn-n{font-family:var(--ff-en);font-size:var(--f6);font-weight:500;line-height:1;}
+.mn-band .kn-t{font-size:var(--f1);color:var(--ink-2);}
+.mn-band-s{font-size:var(--f2);margin-left:.4em;}
+.an-dots{display:none;}
+.an-d i{display:inline-block;width:6px;height:6px;margin:0 4px;border-radius:50%;background:var(--line-2);}
+.an-d i.on{background:var(--gold);}
+@media (max-width:620px){
+  .mn-steps{flex-direction:column;}.mn-steps .mn-ar{padding:0;transform:rotate(90deg);align-self:flex-start;margin-left:8px;}
+  .an-dots{display:flex;grid-column:1 / -1;justify-content:center;align-items:center;gap:14px;margin:8px 0 0;font-family:var(--ff-en);font-size:var(--f1);color:var(--ink-2);}
+  #menu .ja-b p,#menu .mn-aside,#menu .mn-mail,#menu .mn-note,#menu .qa-a p,#menu .sd p,#menu .fx-p p,#menu .mn-steps li,#menu .k-s,#menu .mk li{font-size:17px!important;letter-spacing:.02em!important;}
+}
+#menu .byo>.mn-band{padding-left:24px!important;}
 
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
@@ -2339,7 +2357,7 @@ html.hash-ld{scroll-behavior:auto;}
   <div class="byo">
     <div class="dai sec-h" aria-hidden="true"><span class="dai-n">一</span><span class="dai-t">商品比較サイトの作成</span><span class="dai-l">Compare</span></div>
     <div class="lede"><h2 class="ja-h" id="hikaku-h">専門の人なら分かる選び分けを、<br>質問に答えるだけで<span class="nw">選べるページに。</span></h2>
-      <div class="ja-b"><p>資材や道具のように、品番が多くて選び方の分かりにくい商品のためのページです。</p><p>使う場所や目的をいくつかの質問で聞き、合う商品と数量の目安を出します。メーカーや販売店の持っている選び方の知識を、お客さまが自分で使える形にします。</p><p>想定している効き目は、問い合わせでの「どれを選べばいいか」という質問が減ること、選び間違いによる返品が減ることです（想定であり、数字のお約束はしていません）。</p></div></div>
+      <div class="ja-b"><p>資材や道具のように、品番が多くて選び方の分かりにくい商品のためのページです。</p><p>使う場所や目的をいくつかの質問で聞き、合う商品と数量の目安を出します。メーカーや販売店の持っている選び方の知識を、お客さまが自分で使える形にします。</p><p><a class="btn-s" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる <span aria-hidden="true">↗</span></a></p><p>想定している効き目は、問い合わせでの「どれを選べばいいか」という質問が減ること、選び間違いによる返品が減ることです（想定であり、数字のお約束はしていません）。</p></div></div>
     <ul class="keys mn-keys hk-keys" aria-label="商品比較サイトの要点">
       <li><span class="k-l">初期制作</span><span class="k-v"><span class="kn-n">198,000</span>円<span class="kn-t">（税込）</span></span><span class="k-s">商品の調査から、御社のサイトへの埋め込みまで</span></li>
       <li><span class="k-l">保守</span><span class="k-v">月 <span class="kn-n">9,800</span>円</span><span class="k-s">サーバー・商品情報の修正・月1回ほどの改善など</span></li>
@@ -2369,7 +2387,7 @@ html.hash-ld{scroll-behavior:auto;}
       <li><b>商品と選び方を伺う</b>扱っている商品と、ふだんお客さまにどう選び分けを説明しているかを伺い、業界と商品を調べます。</li>
       <li><b>質問と点数を決める</b>お客さまに聞く質問と、答えごとに商品へ付ける点数を設計します。</li>
       <li><b>ページをつくる</b>商品データを登録して、質問に答えると合う商品が出るページをつくります。</li>
-      <li><b>サイトに埋め込む</b>御社のサイトに埋め込み、はじめの修正をします。その後は保守で見守ります。</li>
+      <li><b>サイトに埋め込む</b>御社のサイトのページに、こちらで用意するタグを貼っていただく形です。サイトの作りによっては、こちらで設置の手順をお送りします。そのあと、はじめの修正をします。その後は保守で見守ります。</li>
     </ol>
 
     <h3 class="mn-h">よくある質問</h3>
