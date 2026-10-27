@@ -2785,7 +2785,7 @@ function fitReason(p,i,S,t3,qs){
     tail="単価は3案で最も安いものの、必要数量が多く、総額では最も高くなります。";
   else if(strong&&strong.k==="cost"&&varied&&p.price===Math.max(...prices)&&uP(p.price))
     tail="単価は3案で最も高いものの、必要数量が少なく、総額では最も安くなります。";
-  else if(i===0) tail=weak?`3案の中では${weak.lo}点だけ、確認してください。`:"3案の中で最もバランスが取れています。";
+  else if(i===0) tail=weak?`3案の中では${weak.lo}点だけ、確認してください。`:"3案の中で、目立って劣る点はありません。";
   else if(strong) tail=`3案の中では${strong.hi}品目です。`;
   else if(weak) tail=`3案の中では${weak.lo}品目です。`;
   return `${head}${plus}${plus&&tail?"。":""}${tail}`;
@@ -2852,11 +2852,24 @@ function rankLists(t3,pcts,qs){
 }
 
 /* 3案のカード。数値・解説・理由・メリット・デメリット・商品リンクを1枚にまとめる */
+/* カードの見出し（2026-10-28）：固定の文でなく、表示中の案の実際の数字から作る。
+   1位は「重視を優先して選んだ品」。2位・3位は、表示中の案の中で実際に1つだけ最大・最小のものだけを書き、当たらなければ「次の候補」 */
+function cardLabel(p,i,t3,qs){
+  const PRI={cost:"費用（総額の安さ）",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[answers[DD.tie.key]];
+  if(i===0) return PRI?`「${PRI}」を優先して選んだ品`:"条件にいちばん合う品";
+  const one=(arr,x)=>arr.filter(y=>y===x).length===1;
+  const cs=qs.map(q=>q.cost), out=[];
+  if(cs[i]===Math.min(...cs)&&one(cs,cs[i])) out.push("いちばん安い");
+  const lab={pull:"保持力がいちばん高い",ease:"施工がいちばん楽",weather:"耐久性がいちばん高い"};
+  ["pull","ease","weather"].forEach(k=>{const v=t3.map(x=>x[k]); if(v[i]===Math.max(...v)&&one(v,v[i])) out.push(lab[k]);});
+  if(out.length) return out.slice(0,2).join("・");
+  const prevNone=t3.slice(1,i).some((x,j)=>cardLabel(x,j+1,t3,qs).startsWith("次の候補"));
+  return prevNone?"次の候補（その2）":"次の候補";
+}
 function productCard(p,i,pct,q,S,t3,qs,top,qt){
   const isTop=i===0;
   const badge=isTop?"最適":(i+1)+"位";
-  let use=isTop?"バランスが最も良い":useFor(p,top,q,qt);
-  if(!isTop&&i===2&&t3[1]){ const u2=useFor(t3[1],top,qs[1],qt); if(u2===use){ const alt=(DD.useOrder||MET.map(m=>m.key)).map(k=>metOf(k)).find(m=>p[m.key]>top[m.key]&&m.use!==u2); use=alt?alt.use:(u2==="別の選び方をする場合"?"3つ目の候補":"別の選び方をする場合"); } }
+  const use=cardLabel(p,i,t3,qs);
   const ax=[["経済性",yen(q.cost)],...MET.map(m=>[m.label,metShow(m,p)]),["必要数量",num(q.spare)+" "+q.cnt]];
   const specNote=MET.filter(m=>m.specLabel).map(m=>m.note&&p[m.note]?p[m.note]:`${m.specLabel} ${num(p[m.key])}${m.unit?" "+m.unit:""}`);
   const real=p.url&&p.url!=="#";
