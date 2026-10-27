@@ -2381,6 +2381,17 @@ html.hash-ld{scroll-behavior:auto;}
 #menu .mn-go{row-gap:16px;margin-bottom:24px;}
 #menu .mn-go .mn-copy{margin-top:8px;}
 #menu .mn-mail{margin-top:4px;}
+/* 日本画の帯（index と同じ絵。出典は奥付） */
+.pg-art{position:relative;margin:0;height:clamp(180px,22vw,320px);overflow:hidden;background:var(--ground);}
+.pg-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;}
+.pg-art figcaption{position:absolute;right:16px;bottom:10px;font-size:12px;letter-spacing:.1em;color:rgba(30,31,29,.7);background:rgba(243,241,235,.7);padding:2px 8px;}
+/* 流れ：上の端をそろえる */
+#menu .fx-i,#annai .fx-i{align-content:start;grid-row:auto!important;grid-template-rows:none!important;display:block;}
+@media (min-width:621px){
+  #menu .mn-how,#menu .mn-steps li,#menu .kn-t,#menu .mn-copy,#menu figcaption,#menu .mf-cap,#menu .mk li,#menu .mt-h,#menu small,#menu .mn-note{font-size:16px!important;}
+  #menu .mn-steps b{font-size:var(--f4)!important;}
+}
+#menu{--ink-2:#1E1F1D;}
 
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
@@ -2434,7 +2445,7 @@ html.hash-ld{scroll-behavior:auto;}
     <p class="mf-cap">上の2枚は、架空のお店でつくった見本です。</p>
 
     <h3 class="mn-h">ご依頼の流れ</h3>
-    <ol class="fx"><li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><p class="fx-t">&nbsp;</p><h3>写真を送る</h3><div class="fx-p"><p>日本語メニューの写真を、メールに添えて送ってください。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><p class="fx-t">所要<b><span class="nw nk">2週間</span>ほど</b></p><h3>英語メニューが届く</h3><div class="fx-p"><p>メニューの写真をいただいてから、<span class="nw nk">2週間</span>ほどで PDF と印刷用のデータをお送りします。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><p class="fx-t">&nbsp;</p><h3>確かめて、お支払い</h3><div class="fx-p"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p><p>前金はいただきません。中身を確かめていただいてからのお支払いです。</p></div><p class="fx-a" aria-hidden="true"></p></li></ol>
+    <ol class="fx"><li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><h3>写真を送る</h3><div class="fx-p"><p>日本語メニューの写真を、メールに添えて送ってください。</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><h3>英語メニューが届く</h3><div class="fx-p"><p>メニューの写真をいただいてから、<span class="nw nk">2週間</span>ほどで PDF と印刷用のデータをお送りします。</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><h3>確かめて、お支払い</h3><div class="fx-p"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p><p>前金はいただきません。中身を確かめていただいてからのお支払いです。</p></div></li></ol>
 
     <h3 class="mn-h">翻訳の確かめ方</h3>
     <p class="mn-sum">値段と品名は、人が1行ずつ確かめます。<small>写真の文字と1行ずつ見比べ、値段も上から順に照らし合わせます。英語は、代表が全行を読んで仕上げます。</small></p>
@@ -2447,16 +2458,16 @@ html.hash-ld{scroll-behavior:auto;}
 
     <h3 class="mn-h">料金</h3>
         <p class="mp-big"><span class="mp-big-v"><span class="kn-n">39,800</span>円<span class="kn-t">（税込）</span></span><span class="mp-big-t">基本の料金だけで、日本語と英語のメニューが届きます。<small>日本語と英語を並べたメニュー。50品まで・A4両面まで。PDF と印刷用のデータでお渡しします。機械翻訳をもとに、人が確かめて仕上げます。</small></span></p>
-    <p class="mn-add">1言語追加　<b>＋19,800円（税込）</b><small>中国語（繁体字）・中国語（簡体字）・韓国語など。1言語ごとに ＋19,800円（税込）。繁体字と簡体字は別の言語として数えます。例：英語＋韓国語なら 59,600円（税込）</small></p>
-    <h4 class="mt-h">ほかの追加料金（必要なときだけ）</h4>
+    <p class="mn-add">追加は、下の表のとおり（必要なときだけ）。</p>
+    <h4 class="mt-h">追加料金（必要なときだけ）</h4>
     <table class="mt"><tbody>
-      <tr><th>言語を足す<small>中国語（繁体字）・中国語（簡体字）・韓国語など。1言語ごと（繁体字と簡体字は別の言語）</small></th><td>＋19,800円<small>（税込）</small></td></tr>
+      <tr><th>1言語追加<small>中国語（繁体字）・中国語（簡体字）・韓国語など。1言語ごと（繁体字と簡体字は別の言語）。例：英語＋韓国語なら 59,600円（税込）</small></th><td>＋19,800円<small>（税込）</small></td></tr>
       <tr><th>51品から100品まで</th><td>＋10,000円<small>（税込）</small></td></tr>
       <tr><th>印刷代行：パウチ（A4・両面・水に強い）10枚<small>送料込み</small></th><td>6,000円<small>（税込）</small></td></tr>
       <tr><th>印刷代行：パウチ 20枚<small>送料込み</small></th><td>9,000円<small>（税込）</small></td></tr>
       <tr><th>表紙つきのメニューブック<small>革・木・和紙の表紙、箔押しの店名など。専門の工房に手配します</small></th><td>お見積り<small>1冊 1万円ほどから</small></td></tr>
     </tbody></table>
-    <p class="mn-note">例：英語＋韓国語なら 39,800円＋19,800円＝59,600円（税込）。金額はすべて税込です。印刷代行と表紙つきのブックは、印刷の前にお支払いをお願いします。</p>
+    <p class="mn-note">金額はすべて税込です。印刷代行と表紙つきのブックは、印刷の前にお支払いをお願いします。</p>
 
     <h3 class="mn-h">印刷のイメージ</h3>
     <ul class="mg mg2">
@@ -2471,6 +2482,8 @@ html.hash-ld{scroll-behavior:auto;}
     <div class="go"><a class="ln" href="menu/mihon.html">英語メニューの見本を開く</a></div>
   </div>
 </section>
+
+<figure class="pg-art" aria-hidden="true"><img src="assets/site/art-shorin-mist.jpg" alt="" loading="eager"><figcaption>長谷川等伯「松林図屏風」より</figcaption></figure>
 
 <section class="char s-night" id="contact" aria-labelledby="contact-h">
   <div class="contact byo">
