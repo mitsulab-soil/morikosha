@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>多言語メニューの見本｜杜工舎</title>
+<meta name="description" content="杜工舎がつくる、日本語と英語のメニューの見本（架空のお店）。">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="../assets/site/logo.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap">
+<style>
+:root{--ink:#1E1F1D;--ink-2:#5B5C57;--gold:#A8823F;--ground:#F3F1EB;--line:rgba(30,31,29,.18);
+  --ja:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--en:"Cormorant Garamond","Times New Roman",serif;}
+*{box-sizing:border-box}
+html{background:#E6E3DA}
+body{margin:0;font-variant-numeric:lining-nums;color:var(--ink);font-family:var(--ja);-webkit-font-smoothing:antialiased}
+.bar{max-width:210mm;margin:0 auto;padding:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px}
+.bar a{color:inherit}
+.sheet{width:210mm;max-width:100%;min-height:297mm;margin:0 auto 32px;padding:22mm 20mm;background:var(--ground);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+header{text-align:center;padding-bottom:9mm;border-bottom:1px solid var(--ink)}
+header .ja{font-size:28px;letter-spacing:.3em;margin:0}
+header .en{font-family:var(--en);font-size:20px;letter-spacing:.14em;margin:6px 0 0;color:var(--ink-2)}
+h2{display:flex;justify-content:space-between;align-items:baseline;margin:10mm 0 2mm;padding-bottom:6px;border-bottom:1px solid var(--gold);font-weight:500;font-size:18px;letter-spacing:.2em}
+h2 span{font-family:var(--en);font-style:italic;font-weight:400;font-size:18px;letter-spacing:.06em;color:var(--ink-2)}
+.it{display:grid;grid-template-columns:9em 1fr auto;gap:2px 16px;align-items:baseline;padding:9px 0;border-bottom:.5px solid var(--line)}
+.it .j{font-size:16px;letter-spacing:.06em}
+.it .e{font-family:var(--en);font-size:17px;line-height:1.35}
+.it .e small{display:block;font-size:14px;color:var(--ink-2)}
+.it .p{font-family:var(--en);font-size:17px;font-variant-numeric:lining-nums tabular-nums}
+.note{margin-top:9mm;font-size:12px;color:var(--ink-2);line-height:1.8}
+.note p{margin:0}
+.note [lang=en]{font-family:var(--en);font-size:14px}
+.mark{margin-top:8mm;text-align:right;font-size:11px;color:var(--ink-2)}
+@media (max-width:640px){.sheet{padding:28px 18px;min-height:0}.it{grid-template-columns:1fr auto}.it .e{grid-column:1}.it .p{grid-row:1;grid-column:2}}
+@media print{html{background:none}.bar{display:none}.sheet{margin:0;box-shadow:none;width:auto;min-height:0;padding:14mm 16mm}@page{size:A4;margin:0}}
+</style>
+</head>
+
+<body>
+<nav class="bar"><a href="../#menu">← 杜工舎の多言語メニューへ戻る</a><a href="mihon.pdf" download>PDF で見る</a></nav>
+<main class="sheet"><header><p class="ja">そば処 もりの庵</p><p class="en" lang="en">Soba Restaurant Mori-no-An</p></header>
+<h2>冷たいそば<span lang="en">Cold Soba</span></h2>
+<div class="it"><span class="j">もりそば</span><span class="e" lang="en">Mori Soba<small>Chilled soba noodles with dipping sauce</small></span><span class="p">¥800</span></div>
+<div class="it"><span class="j">ざるそば</span><span class="e" lang="en">Zaru Soba<small>Chilled soba noodles topped with nori seaweed</small></span><span class="p">¥900</span></div>
+<div class="it"><span class="j">天ざるそば</span><span class="e" lang="en">Tempura Zaru Soba<small>Chilled soba noodles with shrimp and vegetable tempura</small></span><span class="p">¥1,500</span></div>
+<div class="it"><span class="j">とろろそば</span><span class="e" lang="en">Tororo Soba<small>Chilled soba noodles with grated yam</small></span><span class="p">¥1,100</span></div>
+<h2>温かいそば<span lang="en">Hot Soba</span></h2>
+<div class="it"><span class="j">かけそば</span><span class="e" lang="en">Kake Soba<small>Soba noodles in hot broth</small></span><span class="p">¥800</span></div>
+<div class="it"><span class="j">天ぷらそば</span><span class="e" lang="en">Tempura Soba<small>Soba noodles in hot broth with shrimp tempura</small></span><span class="p">¥1,400</span></div>
+<div class="it"><span class="j">鴨南蛮</span><span class="e" lang="en">Duck Soba<small>Soba noodles in hot broth with duck and green onion</small></span><span class="p">¥1,600</span></div>
+<div class="it"><span class="j">山菜そば</span><span class="e" lang="en">Sansai Soba<small>Soba noodles in hot broth with wild mountain vegetables</small></span><span class="p">¥1,100</span></div>
+<h2>一品・飲みもの<span lang="en">Side Dishes &amp; Drinks</span></h2>
+<div class="it"><span class="j">野菜天ぷら盛り合わせ</span><span class="e" lang="en">Vegetable Tempura<small>Assorted seasonal vegetables</small></span><span class="p">¥700</span></div>
+<div class="it"><span class="j">そばがき</span><span class="e" lang="en">Sobagaki<small>Soft buckwheat dumpling</small></span><span class="p">¥650</span></div>
+<div class="it"><span class="j">瓶ビール</span><span class="e" lang="en">Bottled Beer</span><span class="p">¥650</span></div>
+<div class="it"><span class="j">日本酒（一合）</span><span class="e" lang="en">Sake (180 ml)</span><span class="p">¥700</span></div>
+<div class="note"><p>大盛りは200円増し。価格は税込です。</p><p lang="en">Large portion: +¥200 All prices include tax.</p></div>
+<p class="mark">見本（架空のお店）｜制作 杜工舎 morikosha.com</p>
+</main></body></html>
