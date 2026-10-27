@@ -2366,6 +2366,21 @@ html.hash-ld{scroll-behavior:auto;}
 .mn-how svg{width:26px;height:26px;}
 #menu .mn-mail{font-size:var(--f2)!important;color:var(--ink)!important;}
 @media (max-width:620px){#menu .mn-steps li:first-child{flex-basis:100%;}#menu .mn-steps li .mn-how{font-size:15px;margin-top:4px;}}
+/* menu 最終2 */
+@media (max-width:620px){
+  #menu .mn-steps{flex-direction:column!important;flex-wrap:nowrap!important;align-items:flex-start!important;}
+  #menu .mn-steps li{padding:6px 0!important;flex-basis:auto!important;}
+  #menu .mn-steps .mn-ar{transform:rotate(90deg)!important;margin:0 0 0 6px!important;padding:0!important;border:0;line-height:1;}
+  .mt th small{margin-top:2px;}
+}
+@media (min-width:621px){
+  .ba{align-items:start!important;}
+  .ba a{height:clamp(320px,36vw,520px);background:transparent;}
+  .ba img{width:100%;height:100%;object-fit:contain;box-shadow:none!important;}
+}
+#menu .mn-go{row-gap:16px;margin-bottom:24px;}
+#menu .mn-go .mn-copy{margin-top:8px;}
+#menu .mn-mail{margin-top:4px;}
 
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
@@ -2433,14 +2448,15 @@ html.hash-ld{scroll-behavior:auto;}
     <h3 class="mn-h">料金</h3>
         <p class="mp-big"><span class="mp-big-v"><span class="kn-n">39,800</span>円<span class="kn-t">（税込）</span></span><span class="mp-big-t">基本の料金だけで、日本語と英語のメニューが届きます。<small>日本語と英語を並べたメニュー。50品まで・A4両面まで。PDF と印刷用のデータでお渡しします。機械翻訳をもとに、人が確かめて仕上げます。</small></span></p>
     <p class="mn-add">1言語追加　<b>＋19,800円（税込）</b><small>中国語（繁体字）・中国語（簡体字）・韓国語など。1言語ごとに ＋19,800円（税込）。繁体字と簡体字は別の言語として数えます。例：英語＋韓国語なら 59,600円（税込）</small></p>
-    <div class="qa mn-qa"><details><summary><span class="qn" aria-hidden="true"></span><span class="qt">ほかの追加料金（必要なときだけ）：品数・印刷</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><table class="mt"><tbody>
-      <tr><th>言語を足す<small>中国語（繁体字・簡体字）・韓国語など。1言語ごと</small></th><td>＋19,800円<small>（税込）</small></td></tr>
+    <h4 class="mt-h">ほかの追加料金（必要なときだけ）</h4>
+    <table class="mt"><tbody>
+      <tr><th>言語を足す<small>中国語（繁体字）・中国語（簡体字）・韓国語など。1言語ごと（繁体字と簡体字は別の言語）</small></th><td>＋19,800円<small>（税込）</small></td></tr>
       <tr><th>51品から100品まで</th><td>＋10,000円<small>（税込）</small></td></tr>
       <tr><th>印刷代行：パウチ（A4・両面・水に強い）10枚<small>送料込み</small></th><td>6,000円<small>（税込）</small></td></tr>
       <tr><th>印刷代行：パウチ 20枚<small>送料込み</small></th><td>9,000円<small>（税込）</small></td></tr>
       <tr><th>表紙つきのメニューブック<small>革・木・和紙の表紙、箔押しの店名など。専門の工房に手配します</small></th><td>お見積り<small>1冊 1万円ほどから</small></td></tr>
     </tbody></table>
-    <p class="mn-note">例：英語＋韓国語なら 39,800円＋19,800円＝59,600円（税込）。金額はすべて税込です。印刷代行と表紙つきのブックは、印刷の前にお支払いをお願いします。</p></div></details></div>
+    <p class="mn-note">例：英語＋韓国語なら 39,800円＋19,800円＝59,600円（税込）。金額はすべて税込です。印刷代行と表紙つきのブックは、印刷の前にお支払いをお願いします。</p>
 
     <h3 class="mn-h">印刷のイメージ</h3>
     <ul class="mg mg2">
@@ -2450,7 +2466,7 @@ html.hash-ld{scroll-behavior:auto;}
     </ul>
 
     <h3 class="mn-h">よくある質問</h3>
-    <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">手書きのメニューでも大丈夫ですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>大丈夫です。読み取った文字は、写真と1行ずつ見比べて確かめます。読みにくい所は、メールでお尋ねします。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">品数が多いときは？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>50品までが基本の料金です。51品から100品までは、＋10,000円（税込）です。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">あとで値段が変わったら？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>お渡しから2週間のうちなら、上の流れのとおり直します。それより後の直しは、内容を伺ってからお見積りします（お見積りの前に費用はかかりません）。</p></div></details></div>
+    <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">手書きのメニューでも大丈夫ですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>大丈夫です。読み取った文字は、写真と1行ずつ見比べて確かめます。読みにくい所は、メールでお尋ねします。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">品数が多いときは？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>50品までが基本の料金です。51品から100品までは、＋10,000円（税込）です。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">あとで値段が変わったら？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>お渡しから2週間のうちは、1回まで無料で直します。それより後の直しは、内容を伺ってからお見積りします（お見積りの前に費用はかかりません）。</p></div></details></div>
 
     <div class="go"><a class="ln" href="menu/mihon.html">英語メニューの見本を開く</a></div>
   </div>
