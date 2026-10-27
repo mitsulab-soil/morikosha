@@ -2381,6 +2381,17 @@ html.hash-ld{scroll-behavior:auto;}
 #menu .mn-go{row-gap:16px;margin-bottom:24px;}
 #menu .mn-go .mn-copy{margin-top:8px;}
 #menu .mn-mail{margin-top:4px;}
+/* 日本画の帯（index と同じ絵。出典は奥付） */
+.pg-art{position:relative;margin:0;height:clamp(180px,22vw,320px);overflow:hidden;background:var(--ground);}
+.pg-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;}
+.pg-art figcaption{position:absolute;right:16px;bottom:10px;font-size:12px;letter-spacing:.1em;color:rgba(30,31,29,.7);background:rgba(243,241,235,.7);padding:2px 8px;}
+/* 流れ：上の端をそろえる */
+#menu .fx-i,#annai .fx-i{align-content:start;grid-row:auto!important;grid-template-rows:none!important;display:block;}
+@media (min-width:621px){
+  #menu .mn-how,#menu .mn-steps li,#menu .kn-t,#menu .mn-copy,#menu figcaption,#menu .mf-cap,#menu .mk li,#menu .mt-h,#menu small,#menu .mn-note{font-size:16px!important;}
+  #menu .mn-steps b{font-size:var(--f4)!important;}
+}
+#menu{--ink-2:#1E1F1D;}
 
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
@@ -2464,6 +2475,8 @@ html.hash-ld{scroll-behavior:auto;}
     </div>
   </div>
 </section>
+
+<figure class="pg-art" aria-hidden="true"><img src="assets/site/art-irises.jpg" alt="" loading="eager"><figcaption>尾形光琳「八橋図屏風」より</figcaption></figure>
 
 <section class="char s-night" id="contact" aria-labelledby="contact-h">
   <div class="contact byo">

@@ -2381,6 +2381,17 @@ html.hash-ld{scroll-behavior:auto;}
 #menu .mn-go{row-gap:16px;margin-bottom:24px;}
 #menu .mn-go .mn-copy{margin-top:8px;}
 #menu .mn-mail{margin-top:4px;}
+/* 日本画の帯（index と同じ絵。出典は奥付） */
+.pg-art{position:relative;margin:0;height:clamp(180px,22vw,320px);overflow:hidden;background:var(--ground);}
+.pg-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;}
+.pg-art figcaption{position:absolute;right:16px;bottom:10px;font-size:12px;letter-spacing:.1em;color:rgba(30,31,29,.7);background:rgba(243,241,235,.7);padding:2px 8px;}
+/* 流れ：上の端をそろえる */
+#menu .fx-i,#annai .fx-i{align-content:start;grid-row:auto!important;grid-template-rows:none!important;display:block;}
+@media (min-width:621px){
+  #menu .mn-how,#menu .mn-steps li,#menu .kn-t,#menu .mn-copy,#menu figcaption,#menu .mf-cap,#menu .mk li,#menu .mt-h,#menu small,#menu .mn-note{font-size:16px!important;}
+  #menu .mn-steps b{font-size:var(--f4)!important;}
+}
+#menu{--ink-2:#1E1F1D;}
 
 .pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
 </style>
@@ -2441,7 +2452,7 @@ html.hash-ld{scroll-behavior:auto;}
     <p class="mf-cap">どの業種も同じ構成です。下は雅・建築の例です。画像を押すと、新しいタブで大きく見られます。</p>
     <ol class="an-p"><li><a href="assets/annai/kenchiku-3-p-1.jpg" target="_blank" rel="noopener" aria-label="1ページ目を大きく見る（新しいタブ）"><img src="assets/annai/kenchiku-3-p-1.jpg" width="495" height="700" loading="eager" decoding="async" alt="会社案内の見本（雅・建築）の1ページ目"></a></li><li><a href="assets/annai/kenchiku-3-p-2.jpg" target="_blank" rel="noopener" aria-label="2ページ目を大きく見る（新しいタブ）"><img src="assets/annai/kenchiku-3-p-2.jpg" width="495" height="700" loading="eager" decoding="async" alt="会社案内の見本（雅・建築）の2ページ目"></a></li><li><a href="assets/annai/kenchiku-3-p-3.jpg" target="_blank" rel="noopener" aria-label="3ページ目を大きく見る（新しいタブ）"><img src="assets/annai/kenchiku-3-p-3.jpg" width="495" height="700" loading="eager" decoding="async" alt="会社案内の見本（雅・建築）の3ページ目"></a></li><li><a href="assets/annai/kenchiku-3-p-4.jpg" target="_blank" rel="noopener" aria-label="4ページ目を大きく見る（新しいタブ）"><img src="assets/annai/kenchiku-3-p-4.jpg" width="495" height="700" loading="eager" decoding="async" alt="会社案内の見本（雅・建築）の4ページ目"></a></li></ol>
     <h3 class="mn-h">頼み方の流れ</h3>
-    <ol class="fx fx5"><li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><p class="fx-t">&nbsp;</p><h3>記入シート</h3><div class="fx-p"><p>会社名・仕事の内容・ごあいさつなどを、シートにご記入いただきます。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><p class="fx-t">&nbsp;</p><h3>写真</h3><div class="fx-p"><p>現場や社屋、仕事の様子の写真をお送りいただきます。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><p class="fx-t">所要<b><span class="nw nk">2週間</span>ほど</b></p><h3>初稿</h3><div class="fx-p"><p>写真と資料をいただいてから<span class="nw nk">2週間</span>ほどで、選んだ案に御社の内容を入れて PDF でお渡しします。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">04</p><p class="fx-t">&nbsp;</p><h3>直し</h3><div class="fx-p"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p></div><p class="fx-a" aria-hidden="true"></p></li><li class="fx-i"><p class="fx-n" aria-hidden="true">05</p><p class="fx-t">&nbsp;</p><h3>納品</h3><div class="fx-p"><p>PDF と印刷用のデータでお渡しします。</p></div><p class="fx-a" aria-hidden="true"></p></li></ol>
+    <ol class="fx fx5"><li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><h3>記入シート</h3><div class="fx-p"><p>会社名・仕事の内容・ごあいさつなどを、シートにご記入いただきます。</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><h3>写真</h3><div class="fx-p"><p>現場や社屋、仕事の様子の写真をお送りいただきます。</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><h3>初稿</h3><div class="fx-p"><p>写真と資料をいただいてから<span class="nw nk">2週間</span>ほどで、選んだ案に御社の内容を入れて PDF でお渡しします。</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">04</p><h3>直し</h3><div class="fx-p"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">05</p><h3>納品</h3><div class="fx-p"><p>PDF と印刷用のデータでお渡しします。</p></div></li></ol>
     
     <h3 class="mn-h">よくある質問</h3>
     <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">どのくらいでできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>写真と資料をいただいてから、<span class="nw nk">2週間</span>ほどで初稿をお渡しします。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">直しはできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p></div></details><details><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">印刷もお願いできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>できます。部数と紙を伺ってから、お見積りします。</p></div></details></div>
@@ -2452,6 +2463,8 @@ html.hash-ld{scroll-behavior:auto;}
   <script>(function(){var g=document.querySelector('#annai .an-g'),d=document.querySelectorAll('#annai .an-d i'),c=document.querySelector('#annai .an-c');if(!g||!c)return;function u(){var w=g.firstElementChild.getBoundingClientRect().width+16,n=Math.min(4,Math.round(g.scrollLeft/w));d.forEach(function(e,i){e.classList.toggle('on',i===n);});c.textContent=(n+1)+' / 5';}g.addEventListener('scroll',u,{passive:true});u();})();</script>
   <script>(function(){var g=document.querySelector('#annai .an-g');document.querySelectorAll('#annai .an-nav button').forEach(function(b){b.addEventListener('click',function(){var li=g.children[+b.dataset.i];if(g.scrollWidth>g.clientWidth+4){g.scrollTo({left:li.offsetLeft-g.offsetLeft,behavior:'smooth'});}else{li.scrollIntoView({behavior:'smooth',block:'center'});}});});})();</script>
 </section>
+
+<figure class="pg-art" aria-hidden="true"><img src="assets/site/art-natsuaki.jpg" alt="" loading="eager"><figcaption>酒井抱一「夏秋草図屏風」より</figcaption></figure>
 
 <section class="char s-night" id="contact" aria-labelledby="contact-h">
   <div class="contact byo">
