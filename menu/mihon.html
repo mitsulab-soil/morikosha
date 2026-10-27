@@ -17,43 +17,47 @@ body{margin:0;font-variant-numeric:lining-nums;color:var(--ink);font-family:var(
 .bar{max-width:210mm;margin:0 auto;padding:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px}
 .bar a{color:inherit}
 .sheet{width:210mm;max-width:100%;min-height:297mm;margin:0 auto 32px;padding:22mm 20mm;background:var(--ground);box-shadow:0 1px 3px rgba(0,0,0,.12)}
-header{text-align:center;padding-bottom:9mm;border-bottom:1px solid var(--ink)}
-header .ja{font-size:28px;letter-spacing:.3em;margin:0}
-header .en{font-family:var(--en);font-size:20px;letter-spacing:.14em;margin:6px 0 0;color:var(--ink-2)}
-h2{display:flex;justify-content:space-between;align-items:baseline;margin:10mm 0 2mm;padding-bottom:6px;border-bottom:1px solid var(--gold);font-weight:500;font-size:18px;letter-spacing:.2em}
-h2 span{font-family:var(--en);font-style:italic;font-weight:400;font-size:18px;letter-spacing:.06em;color:var(--ink-2)}
-.it{display:grid;grid-template-columns:9em 1fr auto;gap:2px 16px;align-items:baseline;padding:9px 0;border-bottom:.5px solid var(--line)}
-.it .j{font-size:16px;letter-spacing:.06em}
-.it .e{font-family:var(--en);font-size:17px;line-height:1.35}
-.it .e small{display:block;font-size:14px;color:var(--ink-2)}
-.it .p{font-family:var(--en);font-size:17px;font-variant-numeric:lining-nums tabular-nums}
-.note{margin-top:9mm;font-size:12px;color:var(--ink-2);line-height:1.8}
-.note p{margin:0}
-.note [lang=en]{font-family:var(--en);font-size:14px}
-.mark{margin-top:8mm;text-align:right;font-size:11px;color:var(--ink-2)}
-@media (max-width:640px){.sheet{padding:28px 18px;min-height:0}.it{grid-template-columns:1fr auto}.it .e{grid-column:1}.it .p{grid-row:1;grid-column:2}}
-@media print{html{background:none}.bar{display:none}.sheet{margin:0;box-shadow:none;width:auto;min-height:0;padding:14mm 16mm}@page{size:A4;margin:0}}
+header{text-align:center;padding-bottom:7mm;border-bottom:1px solid var(--ink)}
+header .en{font-family:var(--en);font-size:34px;font-weight:500;letter-spacing:.08em;margin:0;line-height:1.1}
+header .ja{font-size:15px;letter-spacing:.3em;margin:6px 0 0;color:var(--ink-2)}
+header .sub{font-family:var(--ja);font-size:12px;letter-spacing:.15em;margin:4px 0 0;color:var(--ink-2)}
+h2{break-after:avoid;page-break-after:avoid;display:flex;justify-content:space-between;align-items:baseline;margin:7mm 0 1mm;padding-bottom:5px;border-bottom:1px solid var(--gold);font-family:var(--en);font-weight:500;font-size:22px;letter-spacing:.06em}
+h2 span{font-family:var(--ja);font-weight:400;font-size:13px;letter-spacing:.2em;color:var(--ink-2)}
+.it{display:grid;grid-template-columns:minmax(0,1fr) auto 4.2em;gap:0 14px;align-items:first baseline;break-inside:avoid;page-break-inside:avoid;padding:7px 0;border-bottom:.5px solid var(--line)}
+.it .e{font-family:var(--en);font-size:19px;font-weight:500;line-height:1.25}
+.it .e small{display:block;margin-top:2px;font-size:16px;font-weight:500;line-height:1.35;color:#2A2B27}
+.it .j{white-space:nowrap;font-size:14px;letter-spacing:0;color:var(--ink);text-align:right;line-height:1.5}
+.it .p{font-family:var(--en);font-size:19px;font-weight:500;text-align:right;font-variant-numeric:lining-nums tabular-nums}
+.note{margin-top:6mm;padding-top:3mm;border-top:.5px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.note [lang=en]{font-family:var(--en);font-size:17px;font-weight:500;margin:0}
+.note .nj{font-size:12px;color:var(--ink-2);margin:0}
+.legend{margin:3mm 0 0;text-align:center;padding:2mm 0;border-bottom:.5px solid var(--line);font-family:var(--en);font-size:15px;color:#33342F}
+.legend span{font-family:var(--ja);font-size:11.5px;color:var(--ink-2);margin-left:10px}
+body.big .it .e{font-size:19.5px}body.big .it .e small{font-size:16.5px}body.big .it .p{font-size:19.5px}body.big .it .j{font-size:16px}body.big h2{font-size:24px}body.big .it{padding:2px 0}body.big h2{margin-top:5mm}
+.mark{margin-top:5mm;text-align:right;font-size:11px;color:var(--ink-2)}
+@media (max-width:640px){.sheet{padding:28px 18px;min-height:0}.it{grid-template-columns:1fr auto}.it .j{grid-column:1;grid-row:2;text-align:left}.it .p{grid-row:1;grid-column:2}}
+@media print{html{background:none}.bar{display:none}.sheet{margin:0;box-shadow:none;width:auto;min-height:0;padding:10mm 15mm}.it{padding:5px 0}h2{margin-top:5mm}.note{margin-top:4mm}.mark{margin-top:3mm}@page{size:A4;margin:0}}
 </style>
 </head>
 
-<body>
+<body class="big">
 <nav class="bar"><a href="../menu.html">← 杜工舎の多言語メニューへ戻る</a><a href="mihon.pdf" download>PDF で見る</a></nav>
-<main class="sheet"><header><p class="ja">そば処 もりの庵</p><p class="en" lang="en">Soba Restaurant Mori-no-An</p></header>
-<h2>冷たいそば<span lang="en">Cold Soba</span></h2>
-<div class="it"><span class="j">もりそば</span><span class="e" lang="en">Mori Soba<small>Chilled soba noodles with dipping sauce</small></span><span class="p">¥800</span></div>
-<div class="it"><span class="j">ざるそば</span><span class="e" lang="en">Zaru Soba<small>Chilled soba noodles topped with nori seaweed</small></span><span class="p">¥900</span></div>
-<div class="it"><span class="j">天ざるそば</span><span class="e" lang="en">Tempura Zaru Soba<small>Chilled soba noodles with shrimp and vegetable tempura</small></span><span class="p">¥1,500</span></div>
-<div class="it"><span class="j">とろろそば</span><span class="e" lang="en">Tororo Soba<small>Chilled soba noodles with grated yam</small></span><span class="p">¥1,100</span></div>
-<h2>温かいそば<span lang="en">Hot Soba</span></h2>
-<div class="it"><span class="j">かけそば</span><span class="e" lang="en">Kake Soba<small>Soba noodles in hot broth</small></span><span class="p">¥800</span></div>
-<div class="it"><span class="j">天ぷらそば</span><span class="e" lang="en">Tempura Soba<small>Soba noodles in hot broth with shrimp tempura</small></span><span class="p">¥1,400</span></div>
-<div class="it"><span class="j">鴨南蛮</span><span class="e" lang="en">Duck Soba<small>Soba noodles in hot broth with duck and green onion</small></span><span class="p">¥1,600</span></div>
-<div class="it"><span class="j">山菜そば</span><span class="e" lang="en">Sansai Soba<small>Soba noodles in hot broth with wild mountain vegetables</small></span><span class="p">¥1,100</span></div>
-<h2>一品・飲みもの<span lang="en">Side Dishes &amp; Drinks</span></h2>
-<div class="it"><span class="j">野菜天ぷら盛り合わせ</span><span class="e" lang="en">Vegetable Tempura<small>Assorted seasonal vegetables</small></span><span class="p">¥700</span></div>
-<div class="it"><span class="j">そばがき</span><span class="e" lang="en">Sobagaki<small>Soft buckwheat dumpling</small></span><span class="p">¥650</span></div>
-<div class="it"><span class="j">瓶ビール</span><span class="e" lang="en">Bottled Beer</span><span class="p">¥650</span></div>
-<div class="it"><span class="j">日本酒（一合）</span><span class="e" lang="en">Sake (180 ml)</span><span class="p">¥700</span></div>
-<div class="note"><p>大盛りは200円増し。価格は税込です。</p><p lang="en">Large portion: +¥200 All prices include tax.</p></div>
-<p class="mark">見本（架空のお店）｜制作 杜工舎 morikosha.com</p>
+<main class="sheet"><header><p class="en" lang="en">Soba Restaurant Mori-no-An</p><p class="ja">そば処 もりの庵</p><p class="sub">Menu ・ 見本（架空のお店）</p></header><p class="legend" lang="en">Allergens / Vegetarian: please ask our staff.<span lang="ja">アレルギー・肉や魚の有無は、お店の人にお尋ねください</span></p>
+<h2><span lang="en" style="font:inherit;color:inherit;letter-spacing:inherit">Cold Soba</span><span>冷たいそば</span></h2>
+<div class="it"><span class="e" lang="en">Chilled Soba (Mori)<small>Chilled soba noodles with dipping sauce</small></span><span class="j">もりそば</span><span class="p">¥800</span></div>
+<div class="it"><span class="e" lang="en">Chilled Soba with Nori (Zaru)<small>Chilled soba noodles topped with nori seaweed</small></span><span class="j">ざるそば</span><span class="p">¥900</span></div>
+<div class="it"><span class="e" lang="en">Chilled Soba with Tempura (Ten Zaru)<small>Chilled soba noodles with shrimp and vegetable tempura</small></span><span class="j">天ざるそば</span><span class="p">¥1,500</span></div>
+<div class="it"><span class="e" lang="en">Chilled Soba with Grated Yam (Tororo)<small>Chilled soba noodles with grated yam</small></span><span class="j">とろろそば</span><span class="p">¥1,100</span></div>
+<h2><span lang="en" style="font:inherit;color:inherit;letter-spacing:inherit">Hot Soba</span><span>温かいそば</span></h2>
+<div class="it"><span class="e" lang="en">Hot Soba in Broth (Kake)<small>Soba noodles in hot broth</small></span><span class="j">かけそば</span><span class="p">¥800</span></div>
+<div class="it"><span class="e" lang="en">Hot Tempura Soba<small>Soba noodles in hot broth with shrimp tempura</small></span><span class="j">天ぷらそば</span><span class="p">¥1,400</span></div>
+<div class="it"><span class="e" lang="en">Hot Duck Soba (Kamo Nanban)<small>Soba noodles in hot broth with duck and green onion</small></span><span class="j">鴨南蛮</span><span class="p">¥1,600</span></div>
+<div class="it"><span class="e" lang="en">Hot Soba with Mountain Vegetables (Sansai)<small>Soba noodles in hot broth with wild mountain vegetables</small></span><span class="j">山菜そば</span><span class="p">¥1,100</span></div>
+<h2><span lang="en" style="font:inherit;color:inherit;letter-spacing:inherit">Side Dishes &amp; Drinks</span><span>一品・飲みもの</span></h2>
+<div class="it"><span class="e" lang="en">Vegetable Tempura Platter<small>Assorted seasonal vegetables</small></span><span class="j">野菜天ぷら盛り合わせ</span><span class="p">¥700</span></div>
+<div class="it"><span class="e" lang="en">Buckwheat Dumpling (Sobagaki)<small>Soft buckwheat dumpling</small></span><span class="j">そばがき</span><span class="p">¥650</span></div>
+<div class="it"><span class="e" lang="en">Bottled Beer</span><span class="j">瓶ビール</span><span class="p">¥650</span></div>
+<div class="it"><span class="e" lang="en">Sake (180 ml)</span><span class="j">日本酒（一合）</span><span class="p">¥700</span></div>
+<div class="note"><p lang="en">Large portion: +¥200 · All prices include tax.</p><p class="nj">大盛りは200円増し／価格はすべて税込です</p></div>
+<p class="mark">制作 杜工舎 morikosha.com</p>
 </main></body></html>
