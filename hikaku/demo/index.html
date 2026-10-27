@@ -766,7 +766,7 @@ main{counter-reset:sec}
         <section class="rb rb--qty">
           <h3 class="rb__h">03 <b>必要数量</b></h3>
           <div class="tally">
-            <div class="tally__head"><span class="tally__num" id="qNum">0</span><span class="tally__unit" id="qUnit">本</span></div>
+            <div class="tally__head"><span class="tally__num" id="qNum">—</span><span class="tally__unit" id="qUnit">本</span></div>
             <p class="tally__cap" id="qCap"></p>
             <div class="tally__formula" id="qFormula"></div>
             <dl class="dl" id="qDl"></dl>
@@ -2418,7 +2418,7 @@ const DOMAIN={
     }
     const pr=pitch?Math.round(pitch/5)*5:null;
     return {size,unit,unitName:SPEC.qty.unitName[t],cnt,rate,n:nn,spare,cost,formula,pitch,combo,per:cost/size,spot,spotNote:spot?p.spotNote:"",
-      capMore: pr?` 面内のピッチは約${pr}cm、端部と継ぎ目はその半分にしてください。`:"",
+      capMore: (pr&&(t==="sheet"||t==="turf"))?` 面内のピッチは約${pr}cm、端部と継ぎ目はその半分にしてください。`:"",
       extra: pr?[["面内の目安ピッチ","約 "+pr+" cm"]]:[],
       after: combo?[["併用推奨",`${combo.name}　${num(combo.qty)} 個　${yen(combo.qty*combo.price)}`]]:[]};
   },
@@ -2436,9 +2436,10 @@ const DOMAIN={
     const g=a.ground, t=a.target, pitch=q.pitch?Math.round(q.pitch/5)*5:null;
     const paved=(g==="concrete"||g==="asphalt");
     const S=[];
-    if(!paved) S.push({t:"整地する",d:"既存の草を根から除去し、地面をならします。",
+    const flat=(t==="sheet"||t==="turf");   /* シートや芝を敷く用途だけ、敷く前の整地と継ぎ目の注意を出す（2026-10-28） */
+    if(!paved&&flat) S.push({t:"整地する",d:"既存の草を根から除去し、地面をならします。",
       warn:"シートの下に残った石や突起は、上から踏まれるたびにシートを削ります。必ず取り除いてください。"});
-    else S.push({t:"下地を清掃する",d:"砂・落ち葉・油分を取り除き、乾いた状態にします。"});
+    else if(paved) S.push({t:"下地を清掃する",d:"砂・落ち葉・油分を取り除き、乾いた状態にします。"});
 
     if(t==="sheet") S.push({t:"敷設する",d:"上流側（水が流れてくる側）から敷き、継ぎ目は10cm以上重ねます。",
       warn:a.slope!=="flat"?"法面は必ず上から下へ張り、上側を上に重ねてください。逆にすると雨水が継ぎ目に潜り込みます。":""});
@@ -2453,8 +2454,8 @@ const DOMAIN={
     else if(p.form==="weight") S.push({t:"配置してから注水する",d:"位置を決めてから水を入れます。満水で約20kg、注水後は動かせません。"});
 
     if(p.depth>0) S.push({t:"打ち込む",
-      d:`${p.name}を地面に対して垂直に、${pitch?`面内は約${pitch}cmピッチ`:"均等"}で打ち込みます。全${num(q.spare)}${q.cnt}。`,
-      warn:pitch?`端部・継ぎ目・角は、この半分の間隔にしてください。めくれは必ず端の1本から始まります。`
+      d:`${p.name}を地面に対して垂直に、${pitch?(flat?`面内は約${pitch}cmピッチ`:`約${pitch}cm間隔`):"均等"}で打ち込みます。全${num(q.spare)}${q.cnt}。`,
+      warn:(pitch&&flat)?`端部・継ぎ目・角は、この半分の間隔にしてください。めくれは必ず端の1本から始まります。`
                 :"力のかかる位置から先に固定してください。"});
 
     if(g==="stone") S[S.length-1].warn+=" 石に当たったら無理に叩かず、10cmずらして打ち直してください。曲がったピンは保持力が出ません。";
@@ -2675,7 +2676,7 @@ const PEN={
   P10:{ground:{sand:10}},                                    /* 砂地では効きにくい */
   P12:{prio:{cost:10}},                                      /* 1個1,480円 */
   P13:{ground:{hard:10,stone:10}},                           /* 硬い地盤では入りにくい／石で曲がる */
-  P11:{ground:{hard:10,stone:10}}                            /* 硬い地面には打ち込めない */
+  P11:{ground:{hard:10,stone:10,firm:10}}                            /* 硬い地面には打ち込めない */
 };
 const penOf=(id,a)=>{const e=PEN[id]||{};return {g:(e.ground||{})[a.ground]||0, p:(e.prio||{})[a[DD.tie.key]]||0};};
 function score(){
@@ -2734,6 +2735,11 @@ function score(){
   });
   /* 組の順を点にも反映（後ろの品が前の品より高い点にならないように） */
   const GL={short:"地面",key:"_gord"}, GLo={label:"この地面への向き"};
+  for(let k=1;k<ordered.length;k++){ const a=ordered[k-1], b=ordered[k];
+    if(sum[b.id]>=sum[a.id]){ const nv=Math.round((sum[a.id]-0.5)*10)/10, d=Math.round((nv-sum[b.id])*10)/10; sum[b.id]=nv; contrib[b.id].push({q:GL,o:GLo,v:d}); } }
+  /* 地面に向かない短所を持つ品は、代わりがある限り必ず後ろへ（3案に足りないときだけ出し、札を付ける） */
+  const okG=ordered.filter(p=>!penOf(p.id,answers).g), ngG=ordered.filter(p=>penOf(p.id,answers).g);
+  ordered.splice(0,ordered.length,...okG,...ngG);
   for(let k=1;k<ordered.length;k++){ const a=ordered[k-1], b=ordered[k];
     if(sum[b.id]>=sum[a.id]){ const nv=Math.round((sum[a.id]-0.5)*10)/10, d=Math.round((nv-sum[b.id])*10)/10; sum[b.id]=nv; contrib[b.id].push({q:GL,o:GLo,v:d}); } }
   pool.splice(0,pool.length,...ordered);
@@ -2868,6 +2874,7 @@ function prioStatus(t3,qs,S){
   return better.length&&better.every(x=>gs(x)<gs(top)) ? "ground" : "fit";
 }
 function cardLabel(p,i,t3,qs,S){
+  if(i>0&&penOf(p.id,answers).g) return "この地面には向きません";
   const PRI={cost:"費用（総額の安さ）",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[answers[DD.tie.key]];
   if(i===0){ if(!PRI) return "条件にいちばん合う品";
     return {ok:`「${PRI}」を優先して選んだ品`,only:"この条件で使える品",ground:"地面への合い方を優先した品",fit:"条件への合い方を優先した品"}[prioStatus(t3,qs,S||score())]; }
@@ -2961,11 +2968,11 @@ function finish(){
   $("#cards").innerHTML=t3.map((p,k)=>productCard(p,k,pcts[k],qs[k],S,t3,qs,top,qt)).join("");
   $("#cmpTable").innerHTML=cmpTable(t3,pcts,qs);
 
-  $("#qNum").dataset.count=qt.spare; $("#qNum").textContent="0"; $("#qUnit").textContent=qt.cnt;
+  $("#qNum").textContent=num(qt.spare); $("#qUnit").textContent=qt.cnt;
   $("#qCap").textContent=`${qt.unitName} ${qt.size} ${qt.unit} に対する、予備を含めた必要数量です。`+(qt.capMore||"");
   $("#qFormula").textContent=qt.formula;
   const rows=qt.rows?qt.rows.slice():[["正味数量",num(qt.n)+" "+qt.cnt],["予備込み",num(qt.spare)+" "+qt.cnt],
-              ["密度",qt.rate.toFixed(1)+" "+qt.cnt+"/"+qt.unit],["予備率",Math.round((qt.spare/qt.n-1)*100)+" %"]];
+              ["密度（傾斜・風の割増後）",qt.rate.toFixed(1)+" "+qt.cnt+"/"+qt.unit],["予備率",Math.round((qt.spare/qt.n-1)*100)+" %"]];
   rows.push(...(qt.extra||[]), ["参考金額（概算）",yen(qt.cost)], ...(qt.after||[]));
   $("#qDl").innerHTML=rows.map(r=>`<div><dt>${r[0]}</dt><dd>${r[1]}</dd></div>`).join("");
 
@@ -3058,7 +3065,9 @@ function flashBuy(b){
 /* 施工上の注意は地盤だけでなく、用途・傾斜・風にも紐づける */
 function fieldNotes(){
   const N=SPEC.notes, out=[].concat(N.common||[], ...(DD.notesOrder||Q.map(q=>q.key)).map(k=>N[answers[k]]||[]));
-  return out.filter((v,i)=>out.indexOf(v)===i);
+  const flat=(answers.target==="sheet"||answers.target==="turf");
+  /* シート・芝を敷く用途でないときは、シート・継ぎ目・芝の注意を出さない（2026-10-28） */
+  return out.filter((v,i)=>out.indexOf(v)===i && (flat || !/シート|継ぎ目|芝|巻き込|めくれ|外周/.test(v)));
 }
 $("#again").onclick=()=>{ idx=0; render(); show("s-q"); };
 $("#toStart").onclick=()=>show("s-start");
