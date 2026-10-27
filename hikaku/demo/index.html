@@ -2570,7 +2570,7 @@ function render(){
   if(q.unsure) u.onclick=()=>{ flash(q.unsure.msg); choose(q.unsure.v); };
 }
 function renderNumber(){
-  $("#opts").hidden=true; $("#numbox").hidden=false;
+  $("#opts").hidden=true; $("#opts").innerHTML=""; $("#numbox").hidden=false;
   const sc=DOMAIN.scale(answers);
   $("#numunit").textContent=sc.unit;
   $("#qhelp").textContent=Q[idx].help+"（"+sc.unitName+"）";
@@ -2680,6 +2680,15 @@ function score(){
   const [tk,td]=(DD.tie.by[answers[DD.tie.key]]||DD.tie.default);
   const tie=(a,b)=>td==="asc"?a[tk]-b[tk]:b[tk]-a[tk];
   pool.sort((a,b)=> sum[b.id]-sum[a.id] || tie(a,b));
+  /* 重視することを、同点のときだけでなく「よく合う品目の帯」の中の並びにも効かせる（2026-10-28）。
+     帯＝最高点から4点以内。帯の中は、費用なら総額の安い順、ほかは重視する性能の高い順に並べ、帯の外はそのまま後ろへ */
+  const best=sum[pool[0].id], band=pool.filter(p=>sum[p.id]>=best-4), rest=pool.filter(p=>sum[p.id]<best-4);
+  const key=answers[DD.tie.key];
+  if(key){
+    const tot=key==="cost"?Object.fromEntries(band.map(p=>[p.id,DOMAIN.quantity(p,answers).cost])):null;
+    band.sort((a,b)=> key==="cost" ? (tot[a.id]-tot[b.id]) || (sum[b.id]-sum[a.id]) : (tie(a,b) || (sum[b.id]-sum[a.id])));
+    pool.splice(0,pool.length,...band,...rest);
+  }
   return {pool,empty:false,sum,contrib,ceiling:Math.max(ceiling,1),floor};
 }
 const quantity=pid=>DOMAIN.quantity(byId[pid],answers);
@@ -2691,6 +2700,12 @@ function useFor(p,top,q,qt){
 
 /* ---------- 適合度の理由。なぜその順位かを1〜2行で言う ---------- */
 function fitReason(p,i,S,t3,qs){
+  const PRI={cost:"費用（総額の安さ）",easy:"施工の楽さ",hold:"抜けにくさ",look:"見た目・安全性"}[answers[DD.tie.key]];
+  let head="";
+  if(i===0&&PRI){
+    const k=answers[DD.tie.key], v=k==="cost"?qs.map(q=>-q.cost):t3.map(x=>x[DD.tie.by[k][0]]);
+    head = v[0]>=Math.max(...v) ? `「${PRI}」を優先した結果です。` : `「${PRI}」を優先しましたが、ほかの条件への合い方の差が大きいため、この品目を1位にしています。`;
+  }
   const c=(S.contrib[p.id]||[]).filter(x=>x.v>0).sort((a,b)=>b.v-a.v).slice(0,2);
   const plus=c.length?c.map(x=>`${x.q.short}「${x.o.label}」`).join("と")+"がよく効いています":"";
   /* 費用は「安いほど良い」ので値を反転して比較する。文言は軸ごとに持つ */
@@ -2710,7 +2725,7 @@ function fitReason(p,i,S,t3,qs){
   else if(i===0) tail=weak?`3案の中では${weak.lo}点だけ、確認してください。`:"3案の中で最もバランスが取れています。";
   else if(strong) tail=`3案の中では${strong.hi}品目です。`;
   else if(weak) tail=`3案の中では${weak.lo}品目です。`;
-  return `${plus}${plus&&tail?"。":""}${tail}`;
+  return `${head}${plus}${plus&&tail?"。":""}${tail}`;
 }
 
 /* ============================================================================
