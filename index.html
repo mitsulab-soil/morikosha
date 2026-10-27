@@ -2092,6 +2092,34 @@ html.hash-ld{scroll-behavior:auto;}
 
 /* 2026-10-27 タブ：いまのページ */
 .nav a[aria-current=page] .nj{border-bottom:1px solid var(--gold);}
+/* タブが6つに増え、1180px 以下では社名と重なって右端が欠けたので、そこから下はメニューの釦にまとめる */
+@media (max-width:1180px){.hd .nav{display:none!important;}.hd .menu-btn{display:block!important;}}
+
+/* 2026-10-27 みつさん「スマホの見本を長方形の枠ではなく、スマホで見ているようにフォトリアルに」。
+   チタンの縁・黒い額縁・画面の角丸・上の島（カメラ）・右の電源ボタン・ガラスの映り込み・卓に落ちる影。寸法はすべて幅に対する割合 */
+.dv-sp,.mado-sp,.contact-mihon .dv-sp{
+  position:relative;box-sizing:border-box;padding:6px!important;border:0!important;outline:0!important;
+  border-radius:15.5% / 7.4%;
+  background:linear-gradient(150deg,#d9d6d0 0%,#8f8b85 9%,#3a3836 22%,#1b1a19 50%,#2c2a28 78%,#a29d95 92%,#e2dfd8 100%)!important;
+  box-shadow:inset 0 0 0 1.2px rgba(255,255,255,.35),inset 0 0 0 2.6px #0c0c0c,
+    0 1px 1px rgba(0,0,0,.25),0 22px 30px -14px rgba(20,18,15,.55),0 48px 60px -36px rgba(20,18,15,.45)!important;
+}
+.dv-sp .dv-sc,.mado-sp .mado-sc{position:relative;border-radius:12.6% / 6%!important;overflow:hidden;background:#000;box-shadow:0 0 0 1.5px #050505!important;}
+/* 上の島（カメラ） */
+.dv-sp::before,.mado-sp::before{content:"";position:absolute;z-index:3;left:50%;top:5.2%;width:28%;height:2.5%;transform:translateX(-50%);border-radius:999px;
+  background:radial-gradient(circle at 78% 50%,#1d2a3a 0 14%,#050505 16%),#050505;pointer-events:none;}
+/* 右の電源ボタン */
+.dv-sp::after,.mado-sp::after{content:"";position:absolute;right:-1.6%;top:24%;width:1.8%;height:11%;border-radius:0 3px 3px 0;
+  background:linear-gradient(90deg,#4a4744,#b9b4ac 60%,#6d6964);pointer-events:none;}
+/* ガラスの映り込み */
+.dv-sp .dv-sc::after,.mado-sp .mado-sc::after{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(118deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 28%,rgba(255,255,255,0) 42%);}
+/* 押すと実物が新しいタブで開く */
+.about-mihon .dv,.mado-sc,.contact-mihon .dv{cursor:pointer;}
+/* 余白（額縁）の太さは、場所ごとのスマホの幅に合わせる（% は外の枠の幅で決まってしまうため px で） */
+.mado-sp{padding:11px!important;}
+@media (max-width:900px){.mado-sp{padding:8px!important;}.about-mihon .dv-sp,.contact-mihon .dv-sp{padding:4px!important;}}
+
 </style>
 </head>
 <body>
@@ -2357,8 +2385,6 @@ html.hash-ld{scroll-behavior:auto;}
         <p><span class="nw nk">2018年</span>3月に埼玉大学工学部建設工学科を卒業し、同年4月から<span class="nw nk">8年</span>間、<span class="strong">埼玉県庁の<span class="nw nk">土木技術職</span></span>として、道路・河川・斜面・公園といった社会インフラの工事監督と維持管理、災害復旧に携わ<span class="nw nk">りました。</span></p>
         <p>仕事は、設計の照査から積算、入札後の現場監督、完成検査まで。担当した工事のひとつに、<span class="strong">令和元年東日本台風</span>で崩れた斜面の地すべり復旧があります。現場の担当として工事を進め、この工事は<span class="strong">令和<span class="nw nk">6年度</span> <span class="nw nk">全建賞</span>（災害枠・<span class="nw nk">都市部門</span>）</span>に選ばれました。発注する側に<span class="nw nk">8年</span>いたので、工事がどう進み、書類とお金のどこで手が止まるかを、体で知っ<span class="nw nk">ています。</span></p>
         <p><span class="nw nk">2026年</span>3月に県庁を退職し、いまは農業法人に籍を置いて畑に出ています。建設の現場でも、農業の現場でも、同じ言葉を聞きました。「人が来ない」「いい仕事をしているのに、外から見えない」。仕事の中身は確かなのに、それを外から確かめる手立てがない ── 足りないのは腕ではなく、<span class="strong">伝わる形</span>だと考えるようにな<span class="nw nk">りました。</span></p>
-        <p><span class="strong"><span class="nw nk">杜工舎</span>（もりこうしゃ）</span>を開業しました。会社の仕事を<span class="nw nk"><span class="nw nk">1ページ</span></span>のホームページに整え<span class="nw nk">（見せる）</span>、製品の違いを誰でもたどれる選定の<span class="nw nk">仕組み</span>に変えます<span class="nw nk">（選ぶ）</span>。材料にするのは、公表されている一次情報 ── 法令、公的統計、業界団体の名簿、メーカーが公開している仕様です。<span class="strong">出典と、いつの時点のものかを画面に出します</span>。分からないことは、分からないと<span class="nw nk">書きます。</span></p>
-        <p>現場の判断を、データで支える ── それが<span class="nw nk">杜工舎</span>の<span class="nw nk">仕事です。</span></p>
       </div>
         <details class="tbl tbl-fold">
       <summary><h3><span class="ttl"><span class="nw nk">杜工舎</span>をはじめた想い</span></h3><span class="fold-i" aria-hidden="true"></span></summary>
@@ -3965,5 +3991,13 @@ html.hash-ld{scroll-behavior:auto;}
   })(t0);
 })();
 </script>
+<script>(function(){
+  function href(el){var f=el.closest('figure');var a=f&&f.querySelector('.dv-go,.mado-go');if(a)return a.href;var l=el.closest('a[href]');return l?l.href:null;}
+  document.addEventListener('click',function(e){var d=e.target.closest('.about-mihon .dv,.mado-sc');if(!d||e.target.closest('a'))return;var h=href(d);if(h){e.preventDefault();window.open(h,'_blank','noopener');}});
+  function hook(fr){if(fr._mk)return;fr._mk=1;fr.addEventListener('load',function(){try{var doc=fr.contentDocument,x=0,y=0;
+    doc.addEventListener('pointerdown',function(ev){x=ev.clientX;y=ev.clientY;},true);
+    doc.addEventListener('click',function(ev){if(Math.abs(ev.clientX-x)+Math.abs(ev.clientY-y)>6)return;ev.preventDefault();ev.stopPropagation();var h=href(fr);if(h)window.open(h,'_blank','noopener');},true);}catch(_){}});}
+  new MutationObserver(function(){document.querySelectorAll('.mado-sc iframe').forEach(hook);}).observe(document.documentElement,{childList:true,subtree:true});
+})();</script>
 </body>
 </html>
