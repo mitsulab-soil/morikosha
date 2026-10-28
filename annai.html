@@ -2431,6 +2431,9 @@ ul.hk-trust a{color:var(--ink);}
 .hk-rep{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:-12px 0;text-underline-offset:4px;}
 
 
+/* 2026-10-28 スマホ：扉の札のボタンの字が途中で折れないように、金額は1かたまりで送る */
+.hero-plate .hp-mi{white-space:nowrap;}
+@media (max-width:620px){.hero-plate .hp-mis{display:flex;flex-wrap:wrap;gap:6px 18px;}.hero-plate .hp-mi{font-size:14px;}.hero-plate .hp-v{font-size:17px;line-height:1.6;}}
 /* 2026-10-28 みつさん「金額の数字だけ大きくて浮いている」：数字は見出し（34px）を上限にそろえ、本文とつり合わせる */
 .pr-main .pn{font-size:clamp(38px,3.2vw,46px)!important;line-height:1!important;}
 .pr-row .pn,.row .pn{font-size:28px!important;}
@@ -2542,7 +2545,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
     <div class="lede"><h2 class="ja-h" id="annai-h">ホームページと同じ5つの案で、<br>手渡せる会社案内を。</h2>
       <div class="ja-b"><p>A4・4ページの会社案内です（表紙／仕事の内容／選ばれる理由とごあいさつ／会社概要）。ホームページの見本帳と同じ5つの案（淡・玄・雅・粋・理）から近いものを選び、記入シートと写真を送っていただくと、御社の内容に直して PDF でお渡しします。営業先や採用の面接で手渡す一冊に。</p><p><a class="btn-s" href="index.html#works">ホームページの見本帳を見る <span aria-hidden="true">→</span></a></p></div></div>
     <ul class="keys mn-keys" aria-label="会社案内の要点">
-      <li><span class="k-l">料金</span><span class="k-v"><span class="kn-u">A4・4ページ</span><span class="kn-n">48,000</span>円<span class="kn-t">（税込）</span></span><span class="k-s">含まれるもの：5案から選ぶ・御社の内容に直す・PDF と印刷用のデータ。印刷代行は、10部ごとに＋8,000円（税込）</span></li>
+      <li><span class="k-l">料金</span><span class="k-v"><span class="kn-u">A4・4ページ</span><span class="kn-n">48,000</span>円<span class="kn-t">（税込）</span></span><span class="k-s">含まれるもの：5案から選ぶ・御社の内容に直す・PDF と印刷用のデータ。印刷代行は、10部ごとに<span class="nw">＋8,000円（税込）</span></span></li>
       <li><span class="k-l">デザイン</span><span class="k-v"><span class="kn-n">5</span>つの案</span><span class="k-s">淡・玄・雅・粋・理。ホームページと同じ案です</span></li>
       <li><span class="k-l">納期</span><span class="k-v"><span class="kn-n">2</span>週間ほど</span><span class="k-s">写真と資料をいただいてから</span></li>
     </ul>
