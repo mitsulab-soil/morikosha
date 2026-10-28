@@ -2052,7 +2052,7 @@ html.hash-ld{scroll-behavior:auto;}
 @media (max-width:620px){.omoi-d,.omoi-m{word-break:normal;line-break:strict;text-wrap:pretty;}}
 
 /* 四 料金：左の面の説明は約26字の行長で自然に流す（短い行がばらばらに切れていた）。公開設定の代行の（ご希望の方のみ）は名目の下に小さく送り、
-   金額を1行目に残す（1280 で 50,000円だけが下の行に落ちていた）。右の面は項目を上から等間隔に並べ、無償の注記を面の下端に寄せる */
+   金額を1行目に残す（1280 で 48,000円だけが下の行に落ちていた）。右の面は項目を上から等間隔に並べ、無償の注記を面の下端に寄せる */
 .pr-main p{max-width:26em;}
 .pr p{text-wrap:wrap;}
 .pr-make .pr-row h4 .nw{display:block;margin-top:2px;font-size:var(--f1);font-weight:400;letter-spacing:.1em;color:var(--ink-2);}
@@ -2454,6 +2454,7 @@ ul.hk-trust a{color:var(--ink);}
 body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/site/washi.svg)!important;background-size:720px 720px!important;}
 .sec.s-face,.s-face{background-position:311px 173px!important;}
 @media print{body,.s-ground,.s-face{background-image:none!important;}}
+.hero-credit{position:absolute;right:clamp(12px,2vw,28px);bottom:clamp(10px,1.6vw,20px);z-index:6;margin:0;padding:3px 10px;font-size:12px;letter-spacing:.08em;color:#1E1F1D;background:rgba(251,250,246,.72);pointer-events:none;}
 
 </style>
 </head>
@@ -2501,6 +2502,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
   <div class="dots" role="group" aria-label="扉の絵"><button type="button" aria-label="絵1：酒井抱一「桜楓図屏風」より" aria-current="true"></button><span class="num" aria-hidden="true"><span id="hero-num">01</span><span class="num-t"> — 01</span></span></div>
   <p class="hero-plate"><span class="hp-p"><span class="hp-k">お問い合わせ</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">info@morikosha.com・2営業日以内にご返信</span></span><span class="hp-mis"><a class="hp-mi" href="mailto:info@morikosha.com">メールを書く <span aria-hidden="true">→</span></a><a class="hp-mi" href="price.html">料金案内 <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
   <div class="hero-deal"><p class="hx-p">info@morikosha.com・2営業日以内にご返信</p><div class="hx-go"><a class="box-ln" href="mailto:info@morikosha.com">メールを書く <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
+  <p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=c.parentNode.querySelector(".hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 </section>
 <section class="char s-night" id="contact" aria-labelledby="contact-h">
   <div class="contact byo">
