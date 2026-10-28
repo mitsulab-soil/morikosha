@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>杜税理士・社労士事務所｜所沢市の税務・労務の相談</title>
+<meta name="description" content="所沢市の税理士・社会保険労務士事務所。中小企業・個人事業主の記帳・決算・確定申告、給与計算・社会保険の手続き、相続税のご相談。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+img{max-width:100%;height:auto;display:block;}
+a{color:inherit;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,3.4vw,32px);}
+.pic{position:relative;overflow:hidden;background:#F4F4F2;}
+.pic img{width:100%;height:100%;object-fit:cover;}
+.pic-note{position:absolute;left:0;bottom:0;background:rgba(0,0,0,.62);color:#fff;font-size:10px;letter-spacing:.07em;padding:4px 10px;}
+.tblx{overflow-x:auto;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{transition:none!important;animation:none!important;}}
+
+/* ══════════════════════════════════════════════════════════════
+   軸 ── 日本語を、本来の読む方向に戻す案
+
+   ・4案は「何を見せるか」を変えている。この案だけが「どう読ませるか」を変える。
+     観念は「言い切らない（淡）」「見せない（玄）」と同じ引き算の側にある。
+   ・置くものは2つだけ。天から地まで通る1本の境界と、縦に走る字。
+     図形も、印も、大きな記号も置かない（家紋と円相はこの物差しで却下されている）。
+
+   ★ 縦組みにするのは3つだけ ── 扉の題字・節見出し・社名。
+     本文・会社概要の表・電話番号・英字はすべて横のまま置く。
+     縦中横（048-000-0000 を縦の中に寝かせる）は使わない。読みづらいうえ、
+     業種で桁が変わって崩れる。ここを増やした時点で、この案は読めない紙になる。
+
+   ★ 表装（右の柱）の社名は 248px より上に置かない。
+     見本の告知 .smp-badge は position:fixed / top:96px / right:16px /
+     max-width:250px。1280px で撮ると x1014〜1264・y96〜215 を占める。
+     柱は右端 13% なので必ず重なり、この案の唯一の見分けどころである
+     縦の社名の頭を、黒い「DESIGN SAMPLE」の箱が覆う（実際に撮って確認した）。
+     告知は5案で共通の head_html が出すので、こちらが避ける。
+     ＝ 柱の頭を下げる。スマホでは社名を左上（題簽の位置）へ移して当たりを消した。
+
+   ★ 扉の題字は写真の上に置かない。地（紙）の上だけ。
+     暗い写真の上に52pxの黒い縦の明朝を置くと、ほぼ読めない（検証ずみ）。
+     題字は写真の右の紙に立て、写真の断ち口に寄り添わせる（＝画賛の位置）。
+
+   ★ 題字の箱は max-height で止める。height を与えると、字数の少ない業種
+     （農園「土から、／食卓まで。」5字）でも箱が 13.4em のまま残り、
+     題字の下に 290px の穴があく。max-height なら短い題字は短い箱になり、
+     長い題字（美容室・設備設計・電気の11字）だけが折り返す。
+   ══════════════════════════════════════════════════════════════ */
+body{
+/* 余白の物差し */
+--g1:12px;                       /* 小さな札 → 見出し */
+--g2:20px;                       /* 見出し → 本文 */
+--g3:34px;                       /* 塊の中の区切り */
+--g4:clamp(34px,4.4vw,58px);     /* 列と列、写真と文字 */
+--g5:clamp(52px,6.6vw,88px);     /* 節見出し → 中身 */
+--g6:clamp(84px,10.2vw,136px);   /* 節と節 */
+/* 表装の幅。ここを触ると padding-right・柱・スマホの電話バーが一度に動く */
+--rail:clamp(132px,13vw,168px);
+margin:0;padding-right:var(--rail);
+background:#F3EFE6;color:#443E33;
+font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+font-weight:400;font-size:15px;line-height:2.15;letter-spacing:.02em;
+font-feature-settings:"palt" 1;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+::selection{background:#E0D6BF;color:#1B1813;}
+
+/* 縦に組むもの。palt は横組みのための約物詰めなので、縦では必ず切る
+   （切らないと句読点の位置が半字ぶんずれる） */
+.tate{writing-mode:vertical-rl;text-orientation:mixed;font-feature-settings:normal;
+font-family:"Shippori Mincho","Yu Mincho",serif;}
+
+/* ── 写真。紙に貼った本紙に見せたいので、色は抜かず、紙の色をごく薄く掛けるだけ。
+   .14 より濃くすると塗装の黄色い外壁が濁る（この案で写真がいちばん壊れやすい業種） */
+.pic{position:relative;overflow:hidden;isolation:isolate;background:#E8E1D1;}
+.pic img{filter:saturate(1.02) contrast(1.03);}
+.pic::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+mix-blend-mode:multiply;background:rgba(214,203,180,.14);}
+.pic-note{z-index:2;font-size:10px;letter-spacing:.06em;padding:5px 11px 4px;background:rgba(27,24,19,.80);}
+
+/* ══ 表装 ── 天から地まで通る1本 ══════════════════════════════
+   position:fixed にするのは、この1本を「ページの部品」ではなく
+   「掛かっている物の縁」にするため。節ごとに切れると、ただの右カラムになる。
+   本文は body の padding-right でよけているので、柱が字に被ることはない。 */
+.jiku{position:fixed;top:0;right:0;bottom:0;width:var(--rail);z-index:60;
+background:#E8E1D1;border-left:1px solid #C6BCA4;}
+/* 社名。柱の中で横に中央ぞろえ。頭は 248px（告知の箱の下） */
+.jiku-na{position:absolute;top:248px;left:0;right:0;margin:0 auto;width:max-content;
+font-weight:500;font-size:19px;letter-spacing:.32em;line-height:1;
+color:#1B1813;text-decoration:none;}
+/* 業種と土地。柱の足もと。digit を持たない文字列だけを置く（18業種とも数字なし） */
+.jiku-ba{position:absolute;bottom:34px;left:0;right:0;margin:0 auto;width:max-content;
+font-family:"Noto Sans JP",sans-serif;font-size:10.5px;letter-spacing:.24em;line-height:1;
+color:#5E4A2F;}
+
+/* ── 頭。社名は置かない（柱が持っている）。品書きと電話だけ ── */
+.head{position:sticky;top:0;z-index:50;background:rgba(243,239,230,.92);
+backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #DDD5C3;}
+.head-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:74px;}
+.nav{display:flex;gap:26px;min-width:0;flex-wrap:wrap;max-height:26px;overflow:hidden;align-content:flex-start;}
+.nav a{font-size:12.5px;letter-spacing:.11em;text-decoration:none;color:#443E33;white-space:nowrap;
+padding-bottom:4px;border-bottom:1px solid transparent;transition:border-color .3s,color .3s;}
+.nav a:hover{border-bottom-color:#7A6242;color:#1B1813;}
+.head-tel{text-align:right;line-height:1.4;flex:none;}
+.head-tel .num{font-weight:500;font-size:19px;letter-spacing:.04em;color:#1B1813;font-variant-numeric:tabular-nums;}
+.head-tel .cap{font-size:10px;color:#5E4A2F;letter-spacing:.06em;}
+
+/* ══ 扉 ══════════════════════════════════════════════════════
+   左が写真、右が紙。境界は写真の断ち口そのもので、線は引かない。
+   写真は 57%。扉の高さが 690〜800px になるので切り抜きはほぼ正方形になる。
+   ここを 40% まで細くすると 3:2 の写真（庫の最頻比。縦位置は1本も無い）が
+   縦長の枠に押し込まれて破綻する。57% は守ること。 */
+.hero{display:grid;grid-template-columns:57% minmax(0,1fr);min-height:clamp(520px,52vw,660px);}
+.hero-img{position:relative;overflow:hidden;background:#E8E1D1;}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;filter:saturate(1.02) contrast(1.03);}
+/* 境界の1本は写真の断ち口そのもの。ただし土木の扉写真（白い空の橋。19本で最も明るく、
+   平均輝度203）のように右半分が紙とほぼ同じ明るさになる写真があり、そこでは断ち口が消える。
+   この案の signal は「縦の境界」なので、消えては困る。紙の側に細い罫を1本だけ添える。 */
+.hero-in{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-width:0;
+border-left:1px solid #D9D0BB;
+padding:clamp(44px,5.2vw,68px) clamp(24px,3.2vw,48px) clamp(52px,6vw,78px) clamp(30px,4vw,56px);}
+/* 題字。写真の断ち口の右にすぐ立てる（画賛の位置）。
+   ★ 右ぞろえにしないこと。右ぞろえだと題字の右端が窓幅によらず紙の右端に貼りつき、
+     幅 900〜1100px で告知の箱（右から266px）と必ず当たる。左ぞろえなら当たらない。
+   ★ 4案とも扉の題字は Shippori Mincho（2026-09-10、みつさんの指示）。
+     大きさ・太さ・字間だけ案ごとに変える。軸は 400／38px／.14em。
+     縦は同じ級数でも横組みより大きく見えるので、4案の 52〜56px より小さく取る。
+   max-height 13.4em ＝ 1列11字（.14em の字送りで11字＝12.54em）。
+   18業種の題字の最長行は11字（美容室・設備設計・電気）なので、折り返さない。 */
+.hero h1{margin:0;font-weight:400;font-size:clamp(27px,3vw,38px);
+letter-spacing:.14em;line-height:1.66;color:#1B1813;max-height:13.4em;}
+.hero-meta{margin:var(--g4) 0 var(--g1);font-size:10.5px;letter-spacing:.28em;color:#5E4A2F;}
+.hero-sub{margin:0;font-size:14.5px;line-height:2.3;letter-spacing:.03em;color:#5D5648;max-width:26em;}
+
+/* ══ 節 ══════════════════════════════════════════════════════
+   節見出しは左に立てた縦の1行。英字と前書きは右の列に横のまま置く。
+   見出しの箱は height を与えない（縦組みで height:auto ＝ 1列に伸びる）。
+   18業種の節見出しは4〜6字なので、折り返す心配は無い。 */
+.sec{padding:var(--g6) 0;}
+.sec-alt{background:#EAE4D5;}
+.sec-dark{background:#262218;color:#D8D1C1;}
+.sec-in,.sec-head{display:grid;grid-template-columns:auto minmax(0,1fr);
+column-gap:clamp(26px,3.8vw,64px);align-items:start;}
+.sec-t{grid-column:1;}
+.sec-t h2{margin:0;font-weight:500;font-size:clamp(19px,2.2vw,25px);letter-spacing:.3em;
+line-height:1;color:#1B1813;}
+.sec-dark .sec-t h2{color:#F5F1E7;}
+.sec-b{grid-column:2;min-width:0;}
+.sec-en{margin:0 0 var(--g2);font-size:9.5px;letter-spacing:.38em;color:#5E4A2F;}
+.sec-dark .sec-en{color:#C9B48E;}
+.sec-b .lead{margin:0 0 var(--g5);font-size:13.5px;line-height:2.3;color:#5D5648;max-width:36em;}
+.sec-dark .sec-b .lead{color:#C3BBA9;}
+.sec-b .sec-en:last-child{margin-bottom:0;}
+/* 節の中身が前書きを持たないとき、英字と中身のあいだを --g5 で開ける */
+.sec-en + .works,.sec-en + .feats,.sec-en + .greet,.sec-en + .tblx,
+.sec-en + .t2-wrap,.sec-en + .contact{margin-top:var(--g5);}
+
+/* ── 事業内容 ── */
+.work:not(:first-child) .pic-note{display:none;}
+.works{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+column-gap:var(--g4);row-gap:clamp(44px,5.4vw,74px);}
+.work .pic{aspect-ratio:3/2;}
+.w-no{margin:var(--g2) 0 var(--g1);font-family:"Shippori Mincho",serif;font-size:12.5px;letter-spacing:.3em;color:#5E4A2F;}
+.work h3{margin:0 0 var(--g2);font-family:"Shippori Mincho","Yu Mincho",serif;font-weight:500;
+font-size:clamp(18px,2.1vw,21px);letter-spacing:.14em;line-height:1.8;color:#1B1813;}
+.work p{margin:0;font-size:13.5px;line-height:2.2;color:#5D5648;}
+
+/* ── 選ばれる理由。仕切りは持たない。列のあいだの空きだけで分ける ── */
+.feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g5) var(--g4);}
+.f-no{margin:0 0 var(--g1);font-family:"Shippori Mincho",serif;font-size:12.5px;letter-spacing:.3em;color:#5E4A2F;}
+.feat h3{margin:0 0 var(--g2);font-family:"Shippori Mincho","Yu Mincho",serif;font-weight:500;
+font-size:17.5px;letter-spacing:.13em;line-height:1.85;color:#1B1813;min-height:3.2em;}
+.feat p{margin:0;font-size:13.5px;line-height:2.2;color:#5D5648;}
+
+/* ── 代表挨拶 ── */
+.greet{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);gap:var(--g4);align-items:start;}
+.greet .pic{aspect-ratio:3/2;}
+.greet-b p{margin:0 0 var(--g2);font-size:14px;line-height:2.3;color:#443E33;}
+.greet-b p:first-of-type{font-size:15.5px;color:#2C281F;}
+.greet-b p:last-of-type{margin-bottom:0;}
+.greet-sign{margin-top:var(--g4);font-size:12.5px;color:#5D5648;}
+.greet-sign b{font-family:"Shippori Mincho",serif;font-weight:500;font-size:19px;
+letter-spacing:.2em;color:#1B1813;margin-left:14px;}
+
+/* ── 表。罫は横だけ。電話番号も年号も横のまま ── */
+table.info,table.rec{width:100%;max-width:840px;margin:0;border-collapse:collapse;font-size:13.5px;}
+table.info th,table.info td,table.rec th,table.rec td{padding:16px 18px;text-align:left;vertical-align:top;line-height:2.05;}
+table.info th,table.info td{border-bottom:1px solid #DDD5C3;}
+table.info tr:first-child th,table.info tr:first-child td{border-top:1px solid #C6BCA4;}
+table.info th{width:164px;padding-left:0;font-weight:500;color:#5E4A2F;white-space:nowrap;letter-spacing:.14em;font-size:12.5px;}
+table.rec{color:#D8D1C1;}
+table.rec th,table.rec td{border-bottom:1px solid rgba(216,209,193,.22);}
+table.rec tr:first-child th,table.rec tr:first-child td{border-top:1px solid rgba(216,209,193,.38);}
+table.rec th{width:164px;padding-left:0;font-weight:500;color:#C9B48E;white-space:nowrap;letter-spacing:.14em;font-size:12.5px;}
+table.rec strong{color:#FFFFFF;font-weight:500;}
+
+/* ── 採用 ── */
+.t2-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:var(--g4);
+align-items:center;margin-bottom:var(--g5);}
+.t2-msg{margin:0 0 var(--g2);font-family:"Shippori Mincho","Yu Mincho",serif;font-weight:500;
+font-size:clamp(20px,2.6vw,27px);line-height:1.95;letter-spacing:.14em;color:#F5F1E7;}
+.t2-sub{margin:0;font-size:13.5px;line-height:2.25;color:#C3BBA9;max-width:26em;}
+.t2-wrap .pic{aspect-ratio:3/2;}
+
+/* ── お問い合わせ。線を引かず、紙を一段起こした面で受ける ── */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:var(--g4);}
+.c-card{background:#F7F4EC;padding:var(--g4) var(--g3);}
+.sec-alt .c-card{background:#F5F1E7;}
+.c-card .cap{margin:0 0 var(--g1);font-size:10.5px;letter-spacing:.26em;color:#5E4A2F;}
+.c-card .num{display:block;font-family:"Shippori Mincho",serif;font-weight:500;
+font-size:clamp(25px,3.4vw,32px);letter-spacing:.04em;color:#1B1813;text-decoration:none;
+font-variant-numeric:tabular-nums;}
+.c-card .mail{display:inline-block;font-weight:500;font-size:clamp(15px,2vw,18px);color:#1B1813;
+text-decoration:none;border-bottom:1px solid #7A6242;word-break:break-all;padding-bottom:3px;}
+.c-card .time{margin-top:var(--g1);font-size:12px;line-height:1.95;color:#5D5648;}
+
+/* ── 季節（造園）・仕事の流れ（建築）── */
+.seasons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g3);}
+.season .pic{aspect-ratio:1;}
+.season-b{padding:20px 0 0;}
+.season .k{font-family:"Shippori Mincho",serif;font-weight:500;font-size:18px;letter-spacing:.22em;color:#1B1813;}
+.season .m{margin:5px 0 var(--g1);font-size:10px;letter-spacing:.2em;color:#5E4A2F;}
+.season ul{list-style:none;margin:0;padding:0;font-size:12.5px;line-height:2.1;color:#5D5648;}
+.flow{max-width:44em;}
+.flow-row{display:grid;grid-template-columns:56px minmax(0,1fr);gap:var(--g3);padding:var(--g3) 0;}
+.flow-row:first-child{padding-top:0;}
+.flow-row:last-child{padding-bottom:0;}
+.flow-row .n{font-family:"Shippori Mincho",serif;font-size:11px;letter-spacing:.2em;color:#5E4A2F;padding-top:6px;}
+.flow-row h3{margin:0 0 6px;font-family:"Shippori Mincho",serif;font-weight:500;font-size:16.5px;
+letter-spacing:.12em;color:#1B1813;}
+.flow-row p{margin:0;font-size:13.5px;line-height:2.2;color:#5D5648;}
+.sec-head{margin-bottom:var(--g5);}
+.sec-head .en{grid-column:2;display:block;font-size:9.5px;letter-spacing:.38em;color:#5E4A2F;margin-bottom:var(--g2);}
+.sec-head h2{grid-column:1;grid-row:1 / span 3;margin:0;writing-mode:vertical-rl;text-orientation:mixed;
+font-feature-settings:normal;font-family:"Shippori Mincho","Yu Mincho",serif;font-weight:500;
+font-size:clamp(19px,2.2vw,25px);letter-spacing:.3em;line-height:1;color:#1B1813;}
+.sec-head .lead{grid-column:2;margin:0;font-size:13.5px;line-height:2.3;color:#5D5648;max-width:36em;}
+
+/* ── 足もと ── */
+.foot{background:#262218;color:#C3BBA9;padding:var(--g5) 0 28px;font-size:12.5px;}
+.foot-in{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap;}
+.foot .ja{font-family:"Shippori Mincho",serif;font-weight:500;font-size:19px;letter-spacing:.2em;
+color:#F5F1E7;margin-bottom:var(--g1);}
+.foot address{font-style:normal;line-height:2.1;}
+.foot-nav{display:flex;flex-direction:column;gap:9px;}
+.foot-nav a{text-decoration:none;transition:color .25s;}
+.foot-nav a:hover{color:#FFFFFF;}
+.copy{margin-top:var(--g3);padding-top:20px;border-top:1px solid rgba(216,209,193,.2);
+font-size:11px;line-height:1.9;color:#B4AB98;}
+
+/* ── 中間幅 ── */
+@media (max-width:1090px){
+.head-in{gap:16px;}
+.nav{gap:18px;}
+.nav a{font-size:11.5px;letter-spacing:.05em;}
+.head-tel .cap{display:none;}
+.head-tel .num{font-size:17.5px;}
+}
+@media (max-width:960px){
+.works{grid-template-columns:1fr;row-gap:var(--g5);}
+.feats{grid-template-columns:1fr;gap:var(--g5);}
+.feat h3{min-height:0;}
+.greet{grid-template-columns:1fr;}
+.greet .pic{max-width:400px;}
+.t2-wrap{grid-template-columns:1fr;}
+.contact{grid-template-columns:1fr;}
+.seasons{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+/* 品書きが落ちると頭に残るのは電話だけ。space-between は子が1つだと左へ寄るので、
+   ここで右へ寄せ直す（寄せ直さないと、電話が頭の左端に独りで立つ） */
+@media (max-width:900px){.nav{display:none;}.head-in{justify-content:flex-end;}}
+
+/* ★ 告知の箱をよける2つめの手当て。
+   柱の社名は 248px に下げたが、扉の題字にも同じ当たりが出る幅がある。
+   題字の右端 ＝ 写真57% ＋ 左の余白 ＋ 列数×字送り。告知の左端 ＝ 窓幅 − 266px。
+   実測すると 940px を切ったあたりで両者が交わり、800px では 13px 食い込む
+   （塗装の3列の題字で確認した）。1280px の札では 204px 空いているので出ない。
+   この帯だけ、題字を告知の下（y224＝頭74＋150）から始める。
+   幅で逃げると余白が痩せるので、高さで逃げる。 */
+@media (min-width:761px) and (max-width:940px){
+.hero-in{justify-content:flex-start;padding-top:158px;}
+}
+
+/* ══ スマホ（本番の430px）── 畳むのではなく、掛軸として組み直す ═══════════
+   ★ ここが、この案がほかの4案と決定的に違うところ。
+     iPhone は 430×932 ＝ およそ 1:2.17。掛軸はおよそ 1:3。
+     縦長の画面は、この案にとって劣化版ではなく本来の形で、
+     無理をしているのはむしろ横長のパソコンのほう。
+     だからスマホでは「PCを1カラムに畳む」ことをしない。表装を組み直す。
+
+   組み直しの中身は4つ。部品は1つも足していない（置き場所と向きだけ変えた）。
+
+   1. 柱を「右の1本」から「両脇の2本」へ。
+      html に裂（きれ）の色を敷き、body（＝本紙の紙）を左右に寄せる。
+      ページ全体が一幅の軸になり、節の地色（薄・暗）も裂の内側に収まる。
+      直す前は、柱が扉から下ではただの余白になっていた（扉にしか意味が無かった）。
+   2. 天（上の裂）は、右の柱を横に倒したもの。.jiku を position:static にするだけ。
+      直す前はページの先頭が写真の断ち口で、頭が無かった。
+   3. 社名は天の左上＝題簽（だいせん）の位置へ。
+      見本の告知は fixed で y70〜130・右寄せなので、左に置けば当たりようがない。
+      直す前は右の柱の中の告知の真下で、いちばん窮屈な場所だった。
+   4. 地（下の裂）を body::after で閉じる。天132〜165：地96 ＝ おおよそ 天3:地2。
+      左右対称にしないのが表装の作法なので、天と地も同じ高さにしない。
+
+   ★ 題字は縦のまま残す。「字が縦に走る」がこの案の見分けどころで、
+     横に戻すと案の存在理由が消える。ただし縦の1列だけを立てると
+     画面の3分の1が縦棒1本になり、その左に空きのL字ができる（直す前がこれ）。
+     ＝ 題字を右の列に立て、前書きと本文をその左の列に流す。
+     縦書きの賛（さん）と横書きの散らし書きが並ぶ、画賛の組み方に近い。
+   ★ 電話バー（.telbar）は head_html が出す共通の部品で、こちらの後ろに
+     書かれている。left/right:0 のままだと裂を横に切るので、詳細度で上書きして
+     裂の内側へ収める（nav.telbar は 0,1,1、向こうの .telbar は 0,1,0）。 */
+@media (max-width:760px){
+/* 裂の色 #D3C7A6 は、紙 #F3EFE6 とも、節の薄地 #EAE4D5 とも見分けがつく濃さ。
+   表装の #E8E1D1（パソコンの柱）のままだと、薄地 #EAE4D5 との差が 1.09 倍しかなく、
+   薄地の節のとなりで裂が消える。#D3C7A6 なら 1.33 倍、紙とは 1.47 倍。
+   ★ この裂に載せてよい字は 墨 #1B1813（10.53:1）と key2 #5E4A2F（5.00:1）だけ。
+     key #7A6242 は 3.42:1 で AA を割る（パソコンの表装 #E8E1D1 と同じ制約）。 */
+html{background:#D3C7A6;}
+body{--rail:0;--kire:clamp(11px,3.2vw,14px);
+margin:0 var(--kire);font-size:14.5px;}
+/* 地は 160px 取るが、下の 64px は電話バーの下に隠れるので、見えるのは 96px。
+   ★ html body で padding-bottom を 0 に戻しているのは、共通の style が
+     body{padding-bottom:64px} を後ろから当ててくるため（詳細度で上書きする）。
+     戻さないと、地の裂の下にさらに 64px の紙が残り、電話バーの高さが
+     端末の safe-area で変わったときに、そこだけ紙色が覗く。 */
+html body{padding-bottom:0;}
+body::after{content:"";display:block;height:160px;background:#D3C7A6;}
+nav.telbar{left:var(--kire);right:var(--kire);}
+
+/* ── 天 ── */
+/* 高さは固定しない。18業種の社名は2字（杜塾）から9字（杜塗装工業株式会社）まで
+   あり、いちばん長い社名に合わせて固定すると、短い社名の業種で天が空になる。
+   min-height だけ置いて、題簽の丈に合わせて天が伸びる形にした。
+   ＝ 132px（2〜6字）〜165px（9字）。地の96pxより必ず広い（天は地より広い）。 */
+.jiku{position:static;width:auto;min-height:132px;z-index:auto;
+background:#D3C7A6;border-left:0;border-bottom:1px solid #C6BCA4;
+display:flex;align-items:flex-start;padding:16px 0 16px clamp(18px,4.6vw,24px);}
+.jiku-na{position:static;width:auto;margin:0;font-size:12.5px;letter-spacing:.18em;}
+.jiku-ba{display:none;}
+/* 頭を丸ごと伏せる。900px で品書きが消えるので、スマホでは頭に電話しか残らない。
+   その電話は下の電話バーが持っているし、社名は天が持っている。 */
+.head{display:none;}
+
+/* ── 本紙（扉の写真）。3:2 → 5:4 に起こして、軸の絵らしい大きさにする。
+   庫の写真は238本すべて横位置なので、これ以上縦にすると左右を切りすぎる。
+   ★ 風帯（天から下がる二本の細い裂）と一文字（本紙の上下の細い裂）は、
+     一度入れて撮ってから外した。理由を残す。
+     ・風帯 … 写真の頭に9pxの裂を二本掛けると、塗装の外壁（縦の縞が入った黄色）と
+       土木の橋桁の上で、表装の部品ではなく画像の傷に見えた。
+     ・一文字 … 写真の上下を細い裂で締めると「金の細線で写真を額装」した形になり、
+       雅の造形と正面からぶつかる。
+     ＝ スマホの表装は 天・両脇・地 の三方だけで組む（丸表具の仕立て）。 */
+.hero{grid-template-columns:1fr;min-height:0;}
+.hero-img{aspect-ratio:5/4;}
+/* ── 賛。右に題字（縦）、左に前書きと本文（横）── */
+/* ★ 行は3つ取り、3行目に 1fr を持たせる。題字を2行にまたがせると、
+     題字が前書きと本文より高いぶん（美容室は11字＝290px）が2行に等分され、
+     前書きと本文のあいだに100pxの穴があく（実際にそうなった）。
+     余りを受ける空の3行目を作れば、穴は題字の下に集まる。 */
+.hero-in{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto 1fr;
+column-gap:clamp(15px,4.4vw,22px);align-items:start;
+border-left:0;padding:32px clamp(18px,4.6vw,24px) 34px;}
+.hero h1{grid-column:2;grid-row:2 / span 2;
+font-size:clamp(20px,5.2vw,24px);letter-spacing:.10em;max-height:13.6em;}
+/* 前書き（土地／業種／創業）は2列にまたがせて、紙の頭を横に通す1行にする。
+   題字の左の列（218px）に押し込むと、塗装の「創業 昭和◯◯年」が2行に折れて
+   「年」だけが次の行に残った。全幅なら 18業種のいちばん長い前書き
+   （神社24字＝254px）でも 360px の端末で1行に収まる。 */
+.hero-meta{grid-column:1 / -1;grid-row:1;margin:0 0 var(--g3);font-size:10px;letter-spacing:.1em;}
+.hero-sub{grid-column:1;grid-row:2;margin:0;max-width:none;font-size:13.5px;line-height:2.15;}
+
+/* ── 節。縦の見出しの右に界線を1本立て、見出しを節のあいだ連れて歩かせる。
+   直す前は、短い見出し（4字＝90px）の下に600pxの空きが残ってL字になっていた。
+   線を1本引くと、その空きが「行を切る余白」から「軸の界線」に変わる。 */
+.sec{padding:72px 0;}
+.sec-in{column-gap:14px;}
+.sec-t{align-self:stretch;border-right:1px solid #D3C9B0;padding-right:14px;}
+.sec-t h2{position:sticky;top:16px;}
+.sec-alt .sec-t{border-right-color:#CFC4A9;}
+.sec-dark .sec-t{border-right-color:rgba(216,209,193,.26);}
+/* ★ 造園の「季節」と、測量・建築・設計・設備・塗装の「仕事の流れ」だけ、
+   節の組み方が違う（gen_samples の extra_html が出す id="extra" の節）。
+   ほかの節は見出し .sec-t と中身 .sec-b が一つの grid に並ぶが、この節だけは
+   見出しの塊 .sec-head と中身 .seasons / .flow が兄弟で、grid が別々になっている。
+   そのまま界線を .sec-head h2 に引くと、線は見出しの塊の丈（120〜134px）で切れ、
+   その下の中身だけが界線の左（x34）へ抜ける。18業種のうち6業種で、
+   節の中ほどから軸の背骨が消えて、中身が48pxだけ左へずれる。
+   ＝ .sec-head を display:contents にして、見出しの3つの部品と中身を
+   節の wrap ひとつの grid に並べ直す。ほかの節と同じ x67 に、節の丈いっぱいの
+   界線が立つ。線は h2 ではなく wrap の ::before に引く（h2 に引いて丈いっぱいに
+   伸ばすと、h2 自身が節と同じ高さの箱になり、position:sticky が効かなくなる。
+   線と字を別の箱に分ければ、この節の見出しもほかの節と同じように連れて歩く）。 */
+#extra .wrap{display:grid;grid-template-columns:auto minmax(0,1fr);
+column-gap:14px;align-items:start;}
+#extra .wrap::before{content:"";grid-column:1;grid-row:1 / span 3;
+justify-self:stretch;align-self:stretch;border-right:1px solid #CFC4A9;}
+#extra .sec-head{display:contents;}
+/* 透明の罫を1本持たせるのは、見出しの箱をほかの節の .sec-t（字19＋余白14＋罫1＝34px）と
+   1pxまで同じにするため。持たせないと列が33pxになり、この節だけ界線と中身が1px左へずれる */
+#extra .sec-head h2{grid-column:1;grid-row:1 / span 3;align-self:start;
+position:sticky;top:16px;padding-right:14px;border-right:1px solid transparent;}
+/* display:contents にすると .sec-head 自身の margin-bottom は消えるので、
+   節の頭と中身のあいだの空きは前書きの側で取り直す */
+#extra .sec-head .lead{margin-bottom:var(--g5);}
+#extra .seasons,#extra .flow{grid-column:2;grid-row:3;}
+.sec-t h2,.sec-head h2{font-size:19px;letter-spacing:.26em;}
+table.info th,table.rec th{width:82px;padding:13px 10px 13px 0;font-size:11.5px;letter-spacing:.04em;}
+table.info td,table.rec td{padding:13px 10px;}
+.t2-msg{font-size:20px;line-height:1.9;letter-spacing:.1em;}
+.flow-row{grid-template-columns:40px minmax(0,1fr);gap:16px;}
+.foot{padding:52px 0 24px;}
+}
+/* 幅の狭い端末（iPhone 13 mini の 390、Android の下限 360）。
+   前書きは18業種でいちばん長いもの（測量31字）を1行に収めたい。
+   360px の紙幅は 286px なので、1字あたり 9.2px まで詰める必要がある。 */
+@media (max-width:400px){
+.hero-meta{font-size:9.5px;letter-spacing:0;}
+}
+@media (max-width:520px){.seasons{grid-template-columns:1fr;}}
+</style>
+<style id="mk-go">
+/* 見本から杜工舎へ戻る道（skin_akari.py が全109枚に共通で入れる。手で書かない） */
+.smp-go{display:flex;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid;
+  border-color:currentColor;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;}
+.smp-go a{flex:1 1 0;min-width:0;min-height:44px;display:flex;align-items:center;
+  justify-content:center;text-align:center;font-size:11px;font-weight:500;letter-spacing:.06em;
+  line-height:1.35;color:inherit;text-decoration:none;border:1px solid;border-color:currentColor;
+  padding:4px 6px;cursor:pointer;}
+.smp-go a:hover,.smp-go a:focus-visible{background:rgba(128,128,128,.3);}
+/* 頭の帯（まとめ・えらぼっとの作例）では、札の足ではなく横に並べる */
+.hd .smp-go,.mast .smp-go{margin:0 0 0 14px;padding:0;border:0;flex:0 0 auto;align-self:center;}
+.hd .smp-go a,.mast .smp-go a{flex:0 0 auto;padding:4px 12px;}
+/* 携帯では札が 168px まで縮むので、2つ並べると「杜工舎と／は」と割れる（430pxの写真で確認）。
+   札の幅をひと回りだけ広げて、2つとも1行に収める。札は納品時に消す表示なので、
+   売り物のデザインそのものには触っていない。 */
+@media (max-width:640px){
+  .smp-badge{max-width:196px;}
+  .smp-go a{font-size:10px;letter-spacing:.01em;padding:4px 4px;white-space:nowrap;}
+}
+@media print{.smp-go{display:none;}}
+</style>
+</head>
+<style>
+.smp-badge{position:fixed;top:96px;right:16px;z-index:200;max-width:250px;background:rgba(18,21,18,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;padding:11px 15px 10px;border:1px solid rgba(255,255,255,.14);font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.6;}
+.smp-badge b{display:block;font-size:9px;font-weight:500;letter-spacing:.28em;color:rgba(255,255,255,.66);margin-bottom:4px;}
+.smp-badge{cursor:grab;touch-action:none;user-select:none;}
+.smp-badge:active{cursor:grabbing;}
+.smp-badge .l1{display:block;font-size:10px;font-weight:500;letter-spacing:.2em;color:rgba(255,255,255,.85);}
+.smp-badge .l2{display:block;font-size:13px;font-weight:500;letter-spacing:.12em;margin-top:2px;}
+.smp-badge small{display:block;font-size:8.5px;font-weight:300;letter-spacing:.04em;color:rgba(255,255,255,.55);margin-top:7px;padding-top:7px;border-top:1px solid rgba(255,255,255,.14);}
+@media (max-width:640px){.smp-badge{top:70px;right:6px;max-width:168px;padding:7px 10px 6px;}.smp-badge b{font-size:8px;letter-spacing:.2em;margin-bottom:2px;}.smp-badge .l1{font-size:9px;}.smp-badge .l2{font-size:11px;letter-spacing:.06em;}.smp-badge small{display:none;}}
+@media print{.smp-badge{display:none;}}
+
+/* スマホの電話バー（2026-09-09に足した）
+   実測すると、4案すべてで押せる電話番号がページの y=7,000〜8,600px にしかなく、
+   スマホのお客さまは電話をかけるのに画面20枚ぶんスクロールする必要があった。
+   建設会社のページは電話が鳴るためにあるので、いちばん大きな取りこぼしだった。
+   4案の地色がばらばら（白・薄青白・暗茶・漆黒）なので、
+   どの地の上でも同じに見える「浮いた道具」として、暗い一枚で通す。
+   パソコンでは出さない（頭に電話が出ているため）。 */
+.telbar{display:none;}
+@media (max-width:760px){
+  .telbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:190;
+    background:rgba(17,19,21,.955);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border-top:1px solid rgba(255,255,255,.16);
+    font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+    padding-bottom:env(safe-area-inset-bottom);}
+  .telbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    padding:11px 8px 12px;text-decoration:none;color:#FFFFFF;min-height:56px;}
+  .telbar a + a{border-left:1px solid rgba(255,255,255,.16);}
+  .telbar .cap{font-size:9.5px;letter-spacing:.16em;color:rgba(255,255,255,.72);}
+  .telbar .num{font-size:17px;font-weight:500;letter-spacing:.04em;font-variant-numeric:tabular-nums;}
+  .telbar .go{font-size:14px;font-weight:500;letter-spacing:.08em;}
+  body{padding-bottom:64px;}
+}
+@media print{.telbar{display:none;}}
+</style>
+<body>
+<nav class="telbar" aria-label="お問い合わせ">
+<a href="tel:0400000000"><span class="cap">受付 9:00 - 17:30 ／ 土日祝休</span><span class="num">04-0000-0000</span></a>
+<a href="#contact"><span class="cap">メールで</span><span class="go">お問い合わせ</span></a>
+</nav>
+<div class="smp-badge" role="note" title="ドラッグで移動できます">
+<b>DESIGN SAMPLE</b>
+<span class="l1">デザインサンプル</span>
+<span class="l2">士業　DESIGN 5「理」</span>
+<small>社名・写真・文章はすべて架空です。実在の企業・団体とは関係ありません。納品時にはこの表示を削除します。</small>
+<span class="smp-go"><a href="../index.html">杜工舎とは</a><a href="../index.html#price">料金を見る</a></span>
+</div>
+<script>(function(){var b=document.querySelector(".smp-badge");if(!b)return;var d=false,sx,sy,bx,by;
+b.addEventListener("pointerdown",function(e){d=true;b.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;var r=b.getBoundingClientRect();bx=r.left;by=r.top;});
+b.addEventListener("pointermove",function(e){if(!d)return;b.style.left=(bx+e.clientX-sx)+"px";b.style.top=(by+e.clientY-sy)+"px";b.style.right="auto";b.style.bottom="auto";});
+b.addEventListener("pointerup",function(){d=false;});})();</script>
+
+<aside class="jiku"><a class="jiku-na tate" href="#top">杜税理士・社労士事務所</a>
+<div class="jiku-ba tate">埼玉県所沢市／税理士・社会保険労務士</div></aside>
+<header class="head"><div class="wrap head-in">
+<nav class="nav"><a href="#works">業務のご案内</a><a href="#feats">事務所の進め方</a><a href="#msg">代表より</a><a href="#comp">事務所概要</a><a href="#t2">報酬の目安</a><a href="#contact">ご相談・お問い合わせ</a></nav>
+<div class="head-tel"><div class="num">04-0000-0000</div><div class="cap">受付 9:00 - 17:30 ／ 土日祝休</div></div>
+</div></header>
+<section class="hero" id="top">
+<div class="hero-img"><img src="img/0c176621000de481.jpg" alt="窓辺の机"></div>
+<div class="hero-in"><h1 class="tate">税金と人のことを、<br>ひとつの窓口で。</h1>
+<div class="hero-meta">埼玉県所沢市／税理士・社会保険労務士　2011年 開業</div>
+<p class="hero-sub">税理士と社会保険労務士が同じ事務所にいます。決算や申告と、給与・社会保険の手続きを、まとめてご相談いただけます。所沢市を中心に、中小企業と個人事業主の方の顧問をしています。</p></div>
+</section>
+<section class="sec" id="works"><div class="wrap sec-in">
+<div class="sec-t"><h2 class="tate">業務のご案内</h2></div>
+<div class="sec-b"><p class="sec-en">SERVICE</p>
+<p class="lead">会社を始めるとき、人を雇うとき、代替わりのとき。事業の節目ごとに、必要な手続きをお手伝いします。</p>
+<div class="works"><article class="work"><div class="pic"><img src="img/9a6ab92c0038c955.jpg" alt="電卓のキー" loading="lazy"><span class="pic-note">この写真のまま使えます（差し替えも自由）</span></div><div class="w-no">一</div><h3>税務・会計</h3><p>記帳の代行・指導、月次の試算表、決算と法人税・消費税の申告、個人事業主の確定申告を行います。</p></article><article class="work"><div class="pic"><img src="img/399fe13c71730ea3.jpg" alt="万年筆のペン先" loading="lazy"><span class="pic-note">この写真のまま使えます（差し替えも自由）</span></div><div class="w-no">二</div><h3>給与計算・社会保険</h3><p>給与計算、社会保険・労働保険の手続き、就業規則の作成など。人を雇うときの手続きから、まとめてお受けします。</p></article><article class="work"><div class="pic"><img src="img/a6e0a6b0aaef02b9.jpg" alt="封蝋のある古い書類" loading="lazy"><span class="pic-note">この写真のまま使えます（差し替えも自由）</span></div><div class="w-no">三</div><h3>相続・事業承継</h3><p>相続税の申告、生前のご相談、事業の引き継ぎの進め方。必要に応じて、司法書士・弁護士と連携します。</p></article></div></div></div></section>
+
+<section class="sec sec-alt" id="feats"><div class="wrap sec-in">
+<div class="sec-t"><h2 class="tate">事務所の進め方</h2></div>
+<div class="sec-b"><p class="sec-en">OUR WAY</p>
+<div class="feats"><div class="feat"><div class="f-no">一</div><h3>報酬は、先にお見積り</h3><p>ご依頼の前に、業務の範囲と報酬のお見積りをお出しします。範囲が変わるときも、先にご相談します。</p></div><div class="feat"><div class="f-no">二</div><h3>初回のご相談は、無料です</h3><p>1時間まで無料でお話を伺います。事務所のほか、オンラインでのご相談もできます。</p></div><div class="feat"><div class="f-no">三</div><h3>税と労務を、まとめて</h3><p>給与の計算と年末調整、社会保険と決算のように、つながっている手続きを一つの事務所で進められます。</p></div></div></div></div></section>
+<section class="sec" id="msg"><div class="wrap sec-in">
+<div class="sec-t"><h2 class="tate">代表より</h2></div>
+<div class="sec-b"><p class="sec-en">MESSAGE</p>
+<div class="greet"><div class="pic"><img src="img/553fd2b77e2b4170.jpg" alt="本棚に囲まれた書斎" loading="lazy"><span class="pic-note">代表・事務所の写真が入ります</span></div><div class="greet-b"><p>2011年に、所沢でこの事務所を開きました。</p><p>税金や社会保険の手続きは、間違えると後から手間が増えますが、毎日の仕事の中で調べる時間はなかなか取れません。そこを引き受けて、経営者の方が本業に使える時間を少しでも増やすのが、私たちの仕事だと考えています。</p><p>小さな事務所です。ご相談には、担当の税理士・社会保険労務士が直接お応えします。</p>
+<div class="greet-sign">所長<b>杜 正</b></div></div></div></div></div></section>
+<section class="sec sec-alt" id="comp"><div class="wrap sec-in">
+<div class="sec-t"><h2 class="tate">事務所概要</h2></div>
+<div class="sec-b"><p class="sec-en">OFFICE</p>
+<div class="tblx"><table class="info"><tbody><tr><th>事務所名</th><td>杜税理士・社労士事務所</td></tr><tr><th>所長</th><td>杜 正（税理士・社会保険労務士）</td></tr><tr><th>所在地</th><td>〒359-0000　埼玉県所沢市○○1-2-3　○○ビル3F</td></tr><tr><th>電話／FAX</th><td>04-0000-0000 ／ 04-0000-0001</td></tr><tr><th>所属</th><td>関東信越税理士会 ○○支部／埼玉県社会保険労務士会</td></tr><tr><th>登録番号</th><td>税理士 第000000号／社会保険労務士 第00000000号</td></tr><tr><th>職員数</th><td>5名</td></tr><tr><th>受付時間</th><td>9:00〜17:30（土日祝休み）</td></tr></tbody></table></div></div></div></section>
+<section class="sec sec-dark" id="t2"><div class="wrap sec-in">
+<div class="sec-t"><h2 class="tate">報酬の目安</h2></div>
+<div class="sec-b"><p class="sec-en">FEE</p>
+<div class="t2-wrap"><div><p class="t2-msg">報酬の目安を、<br>表にしています。</p><p class="t2-sub">下の金額は税込みの目安です。売上の規模・取引の量・従業員数によって変わりますので、お見積りでご確認ください。</p></div>
+<div class="pic"><img src="img/1896286315ebf196.jpg" alt="万年筆で字を書く手元" loading="lazy"><span class="pic-note">事務所の写真が入ります</span></div></div>
+<div class="tblx"><table class="rec"><tbody><tr><th>税務顧問（法人・月額）</th><td>◯◯,◯◯◯円〜</td></tr><tr><th>決算・法人税申告</th><td>◯◯◯,◯◯◯円〜</td></tr><tr><th>個人事業主の確定申告</th><td>◯◯,◯◯◯円〜</td></tr><tr><th>給与計算（月額・10名まで）</th><td>◯◯,◯◯◯円〜</td></tr><tr><th>社会保険の手続き（1件）</th><td>◯,◯◯◯円〜</td></tr><tr><th>相続税申告</th><td>お見積り</td></tr><tr><th>初回のご相談（1時間）</th><td>無料</td></tr></tbody></table></div></div></div></section>
+<section class="sec sec-alt" id="contact"><div class="wrap sec-in">
+<div class="sec-t"><h2 class="tate">ご相談・お問い合わせ</h2></div>
+<div class="sec-b"><p class="sec-en">CONTACT</p>
+<p class="lead">ご相談の日時は、お電話かメールでご予約ください。決算書や給与明細など、お手元の資料をお持ちいただくと話が早く進みます。</p>
+<div class="contact"><div class="c-card"><div class="cap">お電話</div>
+<a class="num" href="tel:0400000000">04-0000-0000</a>
+<div class="time">受付 9:00〜17:30（土日祝を除く）</div></div>
+<div class="c-card"><div class="cap">メール</div>
+<a class="mail" href="mailto:info@example.co.jp">info@example.co.jp</a>
+<div class="time">2営業日以内に返信いたします<br>〒359-0000　埼玉県所沢市○○1-2-3　○○ビル3F／○○駅から徒歩4分</div></div></div></div></div></section>
+<footer class="foot"><div class="wrap foot-in">
+<div><div class="ja">杜税理士・社労士事務所</div><address>〒359-0000　埼玉県所沢市○○1-2-3　○○ビル3F<br>TEL 04-0000-0000／FAX 04-0000-0001<br>9:00〜17:30／土日祝休</address></div>
+<nav class="foot-nav"><a href="#works">業務のご案内</a><a href="#feats">事務所の進め方</a><a href="#msg">代表より</a><a href="#comp">事務所概要</a><a href="#t2">報酬の目安</a><a href="#contact">ご相談・お問い合わせ</a></nav></div>
+<div class="wrap copy">© 杜税理士・社労士事務所（このサイトはデザインサンプルです。社名・人物・数値はすべて架空のもので、実在する企業・団体とは一切関係ありません）<br>掲載写真は商用利用可のフリー素材です。このままお使いいただくことも、御社の写真に差し替えることもできます。</div>
+</footer>
+<script id="mk-go-js">
+/* 戻る道 ここから */(function(){var g=document.querySelectorAll(".smp-go a");
+for(var i=0;i<g.length;i++){g[i].addEventListener("pointerdown",function(e){e.stopPropagation();});}
+})();/* 戻る道 ここまで */
+</script>
+<!--smp-fix-2026-10-19--><style>
+/* 見本の札（DESIGN SAMPLE）：2026-10-19 ペルソナ評価 第1・2周（P1〜P4「札が本文・見出しを隠す」「字が小さい」「キーボードで開けない」）
+   最初は右上に全部を見せ、1画面ほど進んだら「業種・案＋杜工舎とは・料金」だけの小札にして、画面の下の隅へ移す。
+   スマホは初めから下の隅（電話の帯の上）の1行。押す（Enter）と開く。字は11px以上 */
+.smp-badge b,.smp-badge .l1{font-size:11px!important;}
+.smp-badge small{font-size:11px!important;line-height:1.6;}
+.smp-badge .l2{font-size:13px!important;}
+.smp-badge .smp-go a{font-size:12px!important;white-space:nowrap;}
+.smp-badge.is-mini{min-width:212px;}
+[id]{scroll-margin-top:84px;}
+.smp-badge:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+.smp-badge.is-mini{top:auto!important;bottom:20px!important;right:16px!important;left:auto!important;padding:8px 12px 6px!important;}
+.smp-badge.is-mini b,.smp-badge.is-mini .l1,.smp-badge.is-mini small{display:none!important;}
+.smp-badge.is-mini .smp-go{margin-top:6px;padding-top:6px;}
+.smp-badge.is-mini .smp-go a{min-height:36px;}
+@media (max-width:1100px){
+  .smp-badge{top:auto!important;bottom:calc(var(--telbar-h,88px) + 10px + env(safe-area-inset-bottom))!important;right:auto!important;left:8px!important;max-width:78vw!important;padding:6px 10px!important;cursor:pointer!important;}
+  .smp-badge b,.smp-badge .l1,.smp-badge small,.smp-badge .smp-go{display:none!important;}
+  .smp-badge.is-mini{bottom:calc(var(--telbar-h,88px) + 10px + env(safe-area-inset-bottom))!important;left:8px!important;right:auto!important;padding:6px 10px!important;}
+  .smp-badge .l2{font-size:12px!important;margin:0!important;white-space:nowrap;}
+  .smp-badge .l2::after{content:"　見本・料金 ▴";opacity:.8;}
+  .smp-badge.is-open small{display:block!important;}
+  .smp-badge.is-open .smp-go{display:flex!important;}
+  .smp-badge.is-open .l2::after{content:"　閉じる ▾";}
+}
+/* 見本の中の小さい字（受付時間・写真の注記）を11px以上に。見出しの1〜2字だけの行を避ける */
+.cap,.pic-note{font-size:11px!important;}
+h1,h2,h3{text-wrap:balance;word-break:auto-phrase;}
+/* 4周目 P2：761〜900px では、雅の目次だけが2段に折れて2段目が扉の下に隠れていた。ほかの案と同じく、この幅では目次を出さない（電話・メールの帯がある） */
+@media (min-width:761px) and (max-width:900px){ nav.nav{display:none!important;} }
+/* 4周目 P1：スマホで下へ読み進めているあいだは札を引っ込め、上へ戻したときに出す（本文の上に居座らない） */
+.smp-badge{transition:opacity .25s ease,transform .25s ease;}
+.smp-badge.is-away{opacity:0!important;transform:translateY(12px);pointer-events:none;}
+</style><script>(function(){var b=document.querySelector(".smp-badge");if(!b)return;
+/* 見本帳の枠（iframe）の中では札を出さない（3周目 P4：枠の中で見出しに重なる。枠の外に「見本」の説明がある） */
+if(window.self!==window.top){b.style.display="none";return;}
+/* 札を押して開くのはスマホ・タブレットだけ。PC では札をボタンにしない（中のリンクと二重になる。3周目 P4） */
+if(window.innerWidth<=1100){b.setAttribute("tabindex","0");b.setAttribute("role","button");b.setAttribute("aria-expanded","false");}
+b.setAttribute("aria-label","見本の札。押すと、見本についての説明と、杜工舎・料金へのリンクを開きます");
+function f(){b.classList.toggle("is-mini",window.scrollY>window.innerHeight*0.6&&!b.classList.contains("is-open"));}
+function t(){if(window.innerWidth<=1100){b.classList.toggle("is-open");b.setAttribute("aria-expanded",b.classList.contains("is-open")?"true":"false");f();}}
+/* 下の電話・メールの帯の高さを測り、札をその上に置く */
+var tb=document.querySelector(".telbar");function th(){if(tb){var r=tb.getBoundingClientRect();document.documentElement.style.setProperty("--telbar-h",(getComputedStyle(tb).display==="none"?0:r.height)+"px");}}th();window.addEventListener("resize",th);
+var ly=window.scrollY;function aw(){var y=window.scrollY;if(window.innerWidth<=1100&&!b.classList.contains("is-open")){b.classList.toggle("is-away",y>ly+2&&y>window.innerHeight*0.6);}else{b.classList.remove("is-away");}if(Math.abs(y-ly)>2)ly=y;}
+window.addEventListener("scroll",aw,{passive:true});
+window.addEventListener("scroll",f,{passive:true});f();
+b.addEventListener("click",function(e){if(e.target.closest("a"))return;t();});
+b.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&!e.target.closest("a")){e.preventDefault();t();}});})();</script>
+</body></html>
