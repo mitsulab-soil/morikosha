@@ -2513,6 +2513,22 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
 .hero-credit{margin:0;padding:10px clamp(16px,2.4vw,36px) 0;text-align:right;font-size:12px;letter-spacing:.06em;color:#1E1F1D;background:none;}
 .hero-credit[hidden]{display:block;visibility:hidden;}
 
+
+/* 2026-10-28 言語のタブ（日本語・English・한국어） */
+.lang{display:flex;align-items:center;margin-left:auto;margin-right:clamp(12px,1.6vw,28px);border:.5px solid var(--line-2);font-size:13px;letter-spacing:.04em;white-space:nowrap;}
+.hd .nav+.lang{margin-left:clamp(12px,1.6vw,28px);margin-right:0;}
+.lang a{display:block;padding:6px 10px;color:var(--ink);text-decoration:none;line-height:1.2;}
+.lang a+a{border-left:.5px solid var(--line-2);}
+.lang a[aria-current]{background:var(--ink);color:#F3F1EB;}
+@media (max-width:900px){.hd .nav+.lang{margin-left:auto;margin-right:10px;}.lang a{padding:6px 8px;font-size:12px;}}
+/* トップの扉：小さな英語の一行 */
+.pg-top .hero-deal .hx-e{margin:14px 0 0;font-family:var(--ff-en);font-size:clamp(13px,1.05vw,16px);letter-spacing:.08em;color:#E6DDC8;opacity:.9;}
+/* ホームページ作成の扉の札：一行のコンセプトと、中身の要点 */
+.hero-deal .hx-c{margin:0 0 12px;font-family:var(--ff-ja);font-size:clamp(17px,1.4vw,21px);font-weight:500;letter-spacing:.1em;line-height:1.6;}
+.hero-deal .hx-d{margin:12px 0 0;padding-top:10px;border-top:.5px solid var(--gold);font-size:14px;letter-spacing:.06em;line-height:1.8;color:var(--ink-2);}
+/* 英語・韓国語のページ */
+.i18n .tp-v dd small{display:block;font-size:15px;color:var(--ink-2);}
+.i18n .ja-h{word-break:keep-all;}
 </style>
 </head>
 <body class="pg-sub">
@@ -2531,6 +2547,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
     <a href="price.html"><span lang="en">Price</span><span class="nj">料金案内</span></a>
     <a href="contact.html" aria-current="page"><span lang="en">Contact</span><span class="nj">お問い合わせ</span></a>
   </nav>
+  <div class="lang" aria-label="言語 / Language"><a href="index.html" hreflang="ja" lang="ja" aria-current="true">日本語</a><a href="en.html" hreflang="en" lang="en">English</a><a href="ko.html" hreflang="ko" lang="ko">한국어</a></div>
   <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="メニューを開く"><i></i><i></i><i></i></button>
 </header>
 
