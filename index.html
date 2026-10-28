@@ -2433,6 +2433,28 @@ ul.hk-trust a{color:var(--ink);}
 .hk-rep{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:-12px 0;text-underline-offset:4px;}
 
 
+/* 2026-10-28 上部のタブは最初から一番上・白い背景。開いたときに伸び縮みする動きを止める */
+.hd,.hd.is-solid{transition:none!important;transform:none!important;}
+/* 2026-10-28 トップの扉を引き締める：絵がゆっくり寄る・左下に墨のぼかし・白い明朝の大きな一行 */
+.pg-top .hero{height:calc(100svh - var(--hd));min-height:560px;max-height:none;margin-top:var(--hd);}
+.pg-top .hero-ph img{transform-origin:62% 40%;}
+.pg-top .hero-ph img.on{animation:mk-kb 16s ease-out both;}
+@keyframes mk-kb{from{transform:scale(1.09);}to{transform:scale(1);}}
+@media (prefers-reduced-motion:reduce){.pg-top .hero-ph img.on{animation:none;}}
+.pg-top .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(14,13,11,.68) 0%,rgba(14,13,11,.38) 34%,rgba(14,13,11,0) 62%),linear-gradient(0deg,rgba(14,13,11,.45) 0%,rgba(14,13,11,0) 38%);}
+.pg-top .hero-plate,.pg-top .hero-deal,.pg-top .dots{z-index:3;}
+.pg-top .hero-plate{display:none!important;}
+.pg-top .hero-deal{display:block!important;position:absolute;left:clamp(24px,6vw,96px);bottom:clamp(40px,9vh,96px);top:auto;right:auto;max-width:min(680px,80vw);
+  background:none!important;box-shadow:none!important;border:0!important;padding:0!important;color:#F3F1EB;}
+.pg-top .hero-deal .hx-k{display:block;margin:0 0 18px;font-family:var(--ff-en);font-size:15px;letter-spacing:.42em;color:#D9BC7F;}
+.pg-top .hero-deal .hx-p{margin:0;font-family:var(--ff-ja);font-size:clamp(30px,3.6vw,54px)!important;font-weight:500;line-height:1.55;letter-spacing:.12em;color:#F3F1EB;text-shadow:0 1px 12px rgba(0,0,0,.35);}
+.pg-top .hero-deal .hx-go{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;}
+.pg-top .hero-deal .box-ln{background:#F3F1EB;color:#1E1F1D;}
+.pg-top .hero-deal .hx-ln{color:#F3F1EB;border-bottom:1px solid #D9BC7F;padding-bottom:4px;text-decoration:none;letter-spacing:.12em;}
+.pg-top .dots{color:#F3F1EB;}
+@media (max-width:620px){.pg-top .hero{height:calc(88svh - var(--hd));}.pg-top .dots{display:none!important;}.pg-top .hero-deal .hx-p{font-size:24px!important;letter-spacing:.08em;}.pg-top .hero-deal .hx-go{margin-top:24px;}.pg-top .hero-deal{left:22px;right:22px;bottom:36px;max-width:none;}
+  .pg-top .hero::after{background:linear-gradient(0deg,rgba(14,13,11,.72) 0%,rgba(14,13,11,.35) 45%,rgba(14,13,11,0) 75%);}}
 /* 2026-10-28 スマホ：扉の札のボタンの字が途中で折れないように、金額は1かたまりで送る */
 .hero-plate .hp-mi{white-space:nowrap;}
 @media (max-width:620px){.hero-plate .hp-mis{display:flex;flex-wrap:wrap;gap:6px 18px;}.hero-plate .hp-mi{font-size:14px;}.hero-plate .hp-v{font-size:17px;line-height:1.6;}}
@@ -2495,10 +2517,10 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
 
 </style>
 </head>
-<body class="pg-sub">
+<body class="pg-sub pg-top">
 <a class="skip" href="#main">本文へ移動</a>
 
-<header class="hd" id="hd">
+<header class="hd is-solid" id="hd">
   <a class="logo-b" href="index.html" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
   <a class="logo-s" href="index.html" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
   <nav class="nav" aria-label="ページの案内">
@@ -2537,8 +2559,8 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
   <div class="hero-ph"><img class="on h1" data-tone="gold" data-cap="尾形光琳「八橋図屏風」" src="assets/site/art-irises.jpg" width="2400" height="1350" alt="尾形光琳「八橋図屏風」" fetchpriority="high"><img class="h2" data-tone="gold" data-cap="鈴木松年「老松図屏風」" src="assets/site/art-pines-gold.jpg" width="2400" height="1350" alt="鈴木松年「老松図屏風」" decoding="async"><img class="h3" data-tone="gold" data-cap="酒井抱一「夏秋草図屏風」" src="assets/site/art-natsuaki.jpg" width="1600" height="1445" alt="酒井抱一「夏秋草図屏風」" decoding="async"></div>
   <canvas class="art-layer" data-art="kasumi" aria-hidden="true"></canvas>
   <div class="dots" role="group" aria-label="扉の絵を選ぶ"><button type="button" aria-label="絵1：尾形光琳「八橋図屏風」" aria-current="true"></button><button type="button" aria-label="絵2：鈴木松年「老松図屏風」" aria-current="false"></button><button type="button" aria-label="絵3：酒井抱一「夏秋草図屏風」" aria-current="false"></button><span class="num" aria-hidden="true"><span id="hero-num">01</span><span class="num-t"> — 03</span></span></div>
-  <p class="hero-plate"><span class="hp-p"><span class="hp-k">杜工舎</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">人の足りない会社の、もうひとりの裏方</span></span><span class="hp-mis"><a class="hp-mi" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hp-mi" href="price.html">料金案内 <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
-  <div class="hero-deal"><p class="hx-p">人の足りない会社の、もうひとりの裏方</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
+  <p class="hero-plate"><span class="hp-p"><span class="hp-k">杜工舎</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">人の足りない会社の、<br>もうひとりの裏方。</span></span><span class="hp-mis"><a class="hp-mi" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hp-mi" href="price.html">料金案内 <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
+  <div class="hero-deal"><p class="hx-k">MORIKOSHA</p><p class="hx-p">人の足りない会社の、<br>もうひとりの裏方。</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
 </section>
 <p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=document.querySelector(".hero .hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 <section class="sec s-ground" id="about-all" aria-labelledby="top-h">
