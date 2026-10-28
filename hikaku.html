@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>商品比較サイトの作成｜杜工舎</title>
+<title>商品比較サイトの作成 98,000円（税込）｜杜工舎</title>
 <meta name="description" content="品番が多く選び方の分かりにくい商品を、いくつかの質問に答えるだけで選べるページにします。">
 <link rel="canonical" href="https://morikosha.com/hikaku.html">
 <meta name="theme-color" content="#F3F1EB">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://morikosha.com/hikaku.html">
 <meta property="og:site_name" content="杜工舎">
-<meta property="og:title" content="商品比較サイトの作成｜杜工舎">
+<meta property="og:title" content="商品比較サイトの作成 98,000円（税込）｜杜工舎">
 <meta property="og:description" content="品番が多く選び方の分かりにくい商品を、いくつかの質問に答えるだけで選べるページにします。">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://morikosha.com/ogp.png">
@@ -2119,6 +2119,10 @@ html.hash-ld{scroll-behavior:auto;}
 @media (max-width:900px){.mado-sp{padding:8px!important;}.about-mihon .dv-sp,.contact-mihon .dv-sp{padding:4px!important;}}
 
 
+.dai-n{display:none!important;}
+.nav{gap:0 18px;}.nav a .nj{font-size:12px;}
+@media (max-width:1320px){.hd .nav{display:none!important;}.hd .menu-btn{display:block!important;}}
+
 /* 2026-10-27 仕事ごとのページ（会社案内・多言語メニュー・商品比較サイト）の部品。pages_build.py が各ページに入れる。色・字の変数は旧版（基準_旧版_2026-10-07.html）のものを使う */
 /* ══ 2026-10-27 六 多言語メニュー作成・七 商品比較サイトの作成 */
 .mn-keys{grid-template-columns:repeat(3,minmax(0,1fr));}
@@ -2426,7 +2430,31 @@ ul.hk-trust li::before{content:"";position:absolute;left:0;top:.9em;width:.6em;h
 ul.hk-trust a{color:var(--ink);}
 .hk-rep{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:-12px 0;text-underline-offset:4px;}
 
-.pg-first{padding-top:200px;}@media (max-width:900px){.pg-first{padding-top:120px;}}
+
+/* 2026-10-28 トップ・料金案内 */
+.tp-g{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,32px);list-style:none;margin:48px 0 0;padding:0;}
+.tp-g a{display:block;color:var(--ink);text-decoration:none;}
+.tp-g img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;box-shadow:0 0 0 .5px var(--line-2);}
+.tp-g .tp-t{display:block;margin-top:14px;padding-top:12px;border-top:1px solid var(--gold);font-size:19px;letter-spacing:.08em;}
+.tp-g .tp-s{display:block;margin-top:4px;font-size:15px;color:var(--ink-2);line-height:1.8;}
+.tp-g .tp-p{display:block;margin-top:6px;font-size:16px;}
+.tp-g a:hover img{opacity:.85;}
+.pr-all{grid-column:1 / -1;margin-top:40px;}
+.pr-all h3{margin:48px 0 0;padding-bottom:10px;border-bottom:1px solid var(--ink);font-size:21px;font-weight:500;letter-spacing:.1em;display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+.pr-all h3 a{font-size:14px;color:var(--ink);}
+.pr-all table{width:100%;border-collapse:collapse;}
+.pr-all th,.pr-all td{padding:14px 0;border-bottom:.5px solid var(--line-2);text-align:left;font-size:16px;font-weight:400;vertical-align:baseline;}
+.pr-all td{text-align:right;white-space:nowrap;padding-left:16px;}
+.pr-all small{display:block;font-size:14px;color:var(--ink-2);margin-top:2px;}
+.pr-note{grid-column:1 / -1;margin-top:28px;font-size:15px;line-height:1.9;}
+@media (max-width:900px){.tp-g{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.tp-g{grid-template-columns:1fr;}.pr-all td{white-space:normal;}}
+
+/* 2026-10-28 地を和紙に（曲がった楮の繊維・漉きむら・塵。scripts/washi_svg.py） */
+body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/site/washi.svg)!important;background-size:720px 720px!important;}
+.sec.s-face,.s-face{background-position:311px 173px!important;}
+@media print{body,.s-ground,.s-face{background-image:none!important;}}
+
 </style>
 </head>
 <body>
@@ -2436,12 +2464,14 @@ ul.hk-trust a{color:var(--ink);}
   <a class="logo-b" href="index.html" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
   <a class="logo-s" href="index.html" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
   <nav class="nav" aria-label="ページの案内">
-    <a href="index.html"><span lang="en">Website</span><span class="nj">ホームページ作成</span></a>
+    <a href="index.html"><span lang="en">Top</span><span class="nj">トップ</span></a>
+    <a href="website.html"><span lang="en">Website</span><span class="nj">ホームページ作成</span></a>
     <a href="annai.html"><span lang="en">Brochure</span><span class="nj">会社案内作成</span></a>
     <a href="menu.html"><span lang="en">Menu</span><span class="nj">多言語メニュー作成</span></a>
     <a href="hikaku.html" aria-current="page"><span lang="en">Compare</span><span class="nj">商品比較サイト作成</span></a>
-    <a href="index.html#profile"><span lang="en">Profile</span><span class="nj">代表プロフィール</span></a>
-    <a href="#contact"><span lang="en">Contact</span><span class="nj">お問い合わせ</span></a>
+    <a href="profile.html"><span lang="en">Profile</span><span class="nj">代表プロフィール</span></a>
+    <a href="price.html"><span lang="en">Price</span><span class="nj">料金案内</span></a>
+    <a href="contact.html"><span lang="en">Contact</span><span class="nj">お問い合わせ</span></a>
   </nav>
   <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="メニューを開く"><i></i><i></i><i></i></button>
 </header>
@@ -2452,30 +2482,38 @@ ul.hk-trust a{color:var(--ink);}
     <button class="mnav-close" id="mnav-close" type="button">閉じる ×</button>
   </div>
   <ol>
-    <li><a href="index.html"><span class="mn-t">ホームページ作成<small class="mn-s">会社の1ページ</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
+    <li><a href="index.html"><span class="mn-t">トップ<small class="mn-s">杜工舎の全体</small></span><span class="lb" aria-hidden="true">Top</span></a></li>
+    <li><a href="website.html"><span class="mn-t">ホームページ作成<small class="mn-s">会社の1ページ</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
     <li><a href="annai.html"><span class="mn-t">会社案内作成<small class="mn-s">A4・4ページ</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
     <li><a href="menu.html"><span class="mn-t">多言語メニュー作成<small class="mn-s">お店・宿の英語メニュー</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
     <li><a href="hikaku.html" aria-current="page"><span class="mn-t">商品比較サイト作成<small class="mn-s">質問に答えて選べるページ</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
-    <li><a href="index.html#profile">代表プロフィール<span class="lb" aria-hidden="true">Profile</span></a></li>
-    <li><a href="#contact">お問い合わせ<span class="lb" aria-hidden="true">Contact</span></a></li>
+    <li><a href="profile.html">代表プロフィール<span class="lb" aria-hidden="true">Profile</span></a></li>
+    <li><a href="price.html"><span class="mn-t">料金案内<small class="mn-s">すべての料金</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
+    <li><a href="contact.html">お問い合わせ<span class="lb" aria-hidden="true">Contact</span></a></li>
   </ol>
   <p class="mnav-mail">MAIL ── <a href="mailto:info@morikosha.com">info@morikosha.com</a></p>
 </nav>
 
 <main id="main">
-<section class="sec s-ground pg-first" id="hikaku" aria-labelledby="hikaku-h">
+<section class="hero" id="top" aria-label="商品比較サイト作成の扉の絵">
+  <div class="hero-ph"><img class="on h1" data-tone="paper" data-cap="尾形光琳「八橋図屏風」" src="assets/site/art-irises.jpg" width="2400" height="1350" alt="尾形光琳「八橋図屏風」" fetchpriority="high"></div>
+  <canvas class="art-layer" data-art="kasumi" aria-hidden="true"></canvas>
+  <div class="dots" role="group" aria-label="扉の絵"><button type="button" aria-label="絵1：尾形光琳「八橋図屏風」" aria-current="true"></button><span class="num" aria-hidden="true"><span id="hero-num">01</span><span class="num-t"> — 01</span></span></div>
+  <p class="hero-plate"><span class="hp-p"><span class="hp-k">商品比較サイト作成</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">98,000円（税込）・買い切り・2週間ほど</span></span><span class="hp-mis"><a class="hp-mi" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hp-mi" href="hikaku/demo/">見本を触ってみる <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
+  <div class="hero-deal"><p class="hx-p">98,000円（税込）・買い切り・2週間ほど</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="hikaku/demo/">見本を触ってみる</a></div></div>
+</section>
+<section class="sec s-ground" id="hikaku" aria-labelledby="hikaku-h">
   <div class="byo">
     <div class="dai sec-h" aria-hidden="true"><span class="dai-n">一</span><span class="dai-t">商品比較サイトの作成</span><span class="dai-l">Compare</span></div>
     <div class="lede"><h2 class="ja-h" id="hikaku-h">専門の人なら分かる選び分けを、<br>質問に答えるだけで<span class="nw">選べるページに。</span></h2>
       <div class="ja-b"><p>資材や道具のように、品番が多くて選び方の分かりにくい商品のためのページです。</p><p>使う場所や目的をいくつかの質問で聞き、合う商品と数量の目安を出します。メーカーや販売店の持っている選び方の知識を、お客さまが自分で使える形にします。</p></div></div>
     <div class="go hk-go2"><a class="box-ln" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる <span aria-hidden="true">↗</span></a><span class="mn-aside">新しいタブで開きます。見本は13品目・7つの質問で選び分けています。</span></div>
     <div class="hk-eff"><p>想定している効き目：</p><ul class="hk-ul"><li>問い合わせでの「どれを選べばいいか」という質問が減る（たとえば「この地面にはどの杭か」という電話に、ページが答えられる）</li><li>選び間違いによる返品が減る</li></ul><p class="hk-note">どれも想定であり、数字のお約束はしていません。</p></div>
-    <ul class="hk-trust"><li>点の付け方は、<a class="hk-rep" href="index.html#profile">代表</a>（発注する側に8年いました）が御社の資料から作り、御社と確かめて決めます。</li><li>お預かりした商品の資料は、この仕事のほかに使いません。</li><li>1年の後の続け方は、期間の終わる前にご相談します。</li></ul>
+    <ul class="hk-trust"><li>点の付け方は、<a class="hk-rep" href="index.html#profile">代表</a>（発注する側に8年いました）が御社の資料から作り、御社と確かめて決めます。</li><li>お預かりした商品の資料は、この仕事のほかに使いません。</li></ul>
     <table class="mt hk-tb"><tbody>
-      <tr><th>初期制作<small>含むもの：業界・商品の調査／質問と点数の設計／商品データの登録／ページの制作と、御社のサイトへの埋め込み／公開後の初期の修正</small></th><td>198,000円<small>（税込）</small></td></tr>
-      <tr><th>保守（毎月）<small>含むもの：サーバー・ドメイン／商品情報の修正／質問の流れの軽い変更／動いているかの確認／アクセスの分析／月1回ほどの改善。<br>選び方の仕組みを大きく変えるとき・質問の組み立てを作り直すときは、別にお見積りします。</small></th><td>9,800円<small>（税の扱いはご相談のときにご案内します）</small></td></tr>
-      <tr><th>契約<small>保守を1年のご契約でお願いしています。期間中は、同じ商品群・同じ選び方の仕組みを、競合の会社に出しません。</small></th><td>1年</td></tr>
+      <tr><th>制作<small>含むもの：業界・商品の調査／質問と点数の設計／商品データの登録／ページの制作と、御社のサイトへの埋め込み／公開後の初期の修正。買い切りで、月々いただくものはありません</small></th><td>98,000円<small>（税込）</small></td></tr>
       <tr><th>納期</th><td>2週間ほど</td></tr>
+      <tr><th>お渡しのあとの直し<small>お渡ししたあと2週間のご確認の期間中は、1回に限り無償で直します（ホームページ作成と同じです）。その後の商品の追加・値段の変更などは、そのつどお見積りします</small></th><td>2週間は1回無料</td></tr>
     </tbody></table>
 
     <h3 class="mn-h">見本：地面の固定具を選ぶページ</h3>
@@ -2499,42 +2537,23 @@ ul.hk-trust a{color:var(--ink);}
     </ol>
 
     <h3 class="mn-h">よくある質問</h3>
-    <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">「契約1年」とは、どういうことですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>初期制作のあと、保守（月9,800円）を1年のご契約でお願いしています。その1年のあいだは、同じ商品群・同じ選び方の仕組みを、競合の会社には出しません。期間が過ぎたあとまでの独占は、お約束していません。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">質問を増やしたり、変えたりできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>質問の流れの軽い変更は、保守に含みます。選び方の仕組みを大きく変えるときや、質問の組み立てを作り直すときは、別にお見積りします。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">商品が増えたり、値段が変わったりしたら？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>商品情報の修正は、保守に含みます。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q4</span><span class="qt">おすすめは、どうやって決まるのですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>答えに応じて商品ごとに点数を付け、点の高い順に並べます。点の付け方は、御社の知識をもとに、こちらで設計します。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q5</span><span class="qt">どこに置くのですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>御社のサイトに埋め込みます。埋め込みまでが初期制作に含まれます。</p></div></details></div>
+    <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">月々の費用はかかりますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>かかりません。98,000円（税込）の買い切りです。置き場所は御社のサイトなので、こちらにお支払いいただく月々の費用はありません。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">質問を増やしたり、変えたりできますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>できます。お渡しから2週間のうちは1回まで無料で直します。その後の変更は、内容を伺ってからお見積りします。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">商品が増えたり、値段が変わったりしたら？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>そのつどお見積りします。お見積りの前に費用はかかりません。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q4</span><span class="qt">おすすめは、どうやって決まるのですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>答えに応じて商品ごとに点数を付け、点の高い順に並べます。点の付け方は、御社の知識をもとに、こちらで設計します。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q5</span><span class="qt">どこに置くのですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>御社のサイトに埋め込みます。埋め込みまでが制作に含まれます。</p></div></details></div>
     <div class="go">
       <a class="box-ln" href="mailto:info@morikosha.com?subject=%E5%95%86%E5%93%81%E6%AF%94%E8%BC%83%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E7%9B%B8%E8%AB%87">メールで相談する <span aria-hidden="true">→</span></a>
       <a class="ln" href="hikaku/demo/" target="_blank" rel="noopener">見本を触ってみる</a>
     </div>
   </div>
 </section>
-
-<figure class="pg-art" aria-hidden="true"><img src="assets/site/art-irises.jpg" alt="" loading="eager"><figcaption>尾形光琳「八橋図屏風」より</figcaption></figure>
-
-<section class="char s-night" id="contact" aria-labelledby="contact-h">
-  <div class="contact byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">結</span><h2 class="dai-t" id="contact-h">お問い合わせ</h2><span class="dai-l" aria-hidden="true">Contact</span></header>
-    <div class="contact-in">
-      <p class="contact-lede">ご質問だけでも、<br><span class="nw nk">構いません。</span></p>
-      <p>会社名と、選び方を案内したい商品の種類をお書き添えください。</p>
-      <div class="mail">
-        <p class="lb" aria-hidden="true">E-mail</p>
-        <a class="mail-a" href="mailto:info@morikosha.com?subject=%E5%95%86%E5%93%81%E6%AF%94%E8%BC%83%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E7%9B%B8%E8%AB%87">info@morikosha.com <span aria-hidden="true">↗</span></a>
-        <button class="copy" type="button" data-copy="info@morikosha.com">アドレスをコピー</button>
-        <small><span class="nw nk">2営業日</span>以内のご返信を<span class="nw nk">心がけています。</span></small>
-      </div>
-    </div>
-  </div>
-</section>
-
 </main>
 
 <footer>
-  <div class="colo sub-ft" id="legal"><div class="byo"><dl><div><dt>屋号</dt><dd>杜工舎（もりこうしゃ）</dd></div><div><dt>住所</dt><dd>埼玉県さいたま市大宮区高鼻町３丁目</dd></div><div><dt>メール</dt><dd>info@morikosha.com</dd></div></dl><a class="btn-s" href="index.html#pp">プライバシーポリシー</a></div></div>
+  <div class="colo sub-ft" id="legal"><div class="byo"><dl><div><dt>屋号</dt><dd>杜工舎（もりこうしゃ）</dd></div><div><dt>住所</dt><dd>埼玉県さいたま市大宮区高鼻町３丁目</dd></div><div><dt>メール</dt><dd>info@morikosha.com</dd></div></dl><a class="btn-s" href="index.html#pp">プライバシーポリシー</a><a class="btn-s" href="index.html#legal">特定電子メール法に基づく表示</a></div></div>
   <div class="credit"><div class="byo"><div class="credit-in"><p>絵の出典：長谷川等伯「<span class="nw nk">松林図屏風</span>」・酒井抱一「<span class="nw nk">夏秋草図屏風</span>」は ColBase（<span class="url">https://colbase.nich.go.jp/</span>）を加工して<span class="nw nk">作成。</span></p><p>尾形光琳「<span class="nw nk">八橋図屏風</span>」は <span class="nw">The Metropolitan Museum of Art</span>（Open Access）。</p></div></div></div>
   <div class="ft-end"><div class="ft-mark" aria-hidden="true"><span class="ft-logo"></span><span class="ft-name"><span class="nw nk">杜工舎</span><span>MORIKOSHA</span></span></div>
   <p class="copyright">Copyright © Morikosha. <span class="nw">All rights reserved.</span></p></div>
 </footer>
 
-<a class="tab" id="tab" href="#contact">お問い合わせ</a>
+<a class="tab" id="tab" href="contact.html">お問い合わせ</a>
 
 <script>
 (function(){
@@ -2570,7 +2589,7 @@ ul.hk-trust a{color:var(--ink);}
   if('IntersectionObserver' in window){
     /* 2026-10-01 第8周L：本文の黒い「お問い合わせ →」（ABOUT の要点の帯の下など）が見えている間も追従バーを引っ込める（同じ釦が1画面に縦に2つ並んでいた） */
     /* 2026-10-01 修正役V f1：見本の窓（スマホの枠）が見えているあいだも引っ込める（375×667 で枠の下端が追従バーに隠れていた） */
-    var ends = [document.getElementById('contact'), document.querySelector('footer'), document.querySelector('.mado-dev')].concat([].slice.call(document.querySelectorAll('main a.box-ln[href="#contact"]'))).filter(Boolean), seen = new Set();
+    var ends = [document.getElementById('contact'), document.querySelector('footer'), document.querySelector('.mado-dev')].concat([].slice.call(document.querySelectorAll('main a.box-ln[href="contact.html"]'))).filter(Boolean), seen = new Set();
     var eo = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
       atContact = seen.size > 0; tabShow();

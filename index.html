@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ホームページ制作 1ページ98,000円（税込）｜杜工舎（さいたま市）</title>
-<meta name="description" content="杜工舎は、つくる側が持つ仕事と知識を、探す人・選ぶ人へつなぐWebの工房です。会社のホームページ・会社案内・多言語メニュー・商品比較サイトをつくります。">
+<title>杜工舎（もりこうしゃ）｜人の足りない会社の、もうひとりの裏方</title>
+<meta name="description" content="さいたま市の小さな工房。会社のホームページ・会社案内・多言語メニュー・商品比較サイトを、記入シートと写真から2週間ほどでつくります。">
 <link rel="canonical" href="https://morikosha.com/">
 <meta name="theme-color" content="#F3F1EB">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://morikosha.com/">
 <meta property="og:site_name" content="杜工舎">
-<meta property="og:title" content="杜工舎｜いい仕事を、見つかるかたちに。">
-<meta property="og:description" content="会社のホームページを1ページ、2週間ほどでつくります。98,000円（税込）・買い切り・月々いただくものはありません。｜杜工舎（さいたま市）">
+<meta property="og:title" content="杜工舎（もりこうしゃ）｜人の足りない会社の、もうひとりの裏方">
+<meta property="og:description" content="さいたま市の小さな工房。会社のホームページ・会社案内・多言語メニュー・商品比較サイトを、記入シートと写真から2週間ほどでつくります。">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://morikosha.com/ogp.png">
 <meta property="og:image:width" content="1200">
@@ -2120,21 +2120,360 @@ html.hash-ld{scroll-behavior:auto;}
 .mado-sp{padding:11px!important;}
 @media (max-width:900px){.mado-sp{padding:8px!important;}.about-mihon .dv-sp,.contact-mihon .dv-sp{padding:4px!important;}}
 
+
+.dai-n{display:none!important;}
+.nav{gap:0 18px;}.nav a .nj{font-size:12px;}
+@media (max-width:1320px){.hd .nav{display:none!important;}.hd .menu-btn{display:block!important;}}
+
+/* 2026-10-27 仕事ごとのページ（会社案内・多言語メニュー・商品比較サイト）の部品。pages_build.py が各ページに入れる。色・字の変数は旧版（基準_旧版_2026-10-07.html）のものを使う */
+/* ══ 2026-10-27 六 多言語メニュー作成・七 商品比較サイトの作成 */
+.mn-keys{grid-template-columns:repeat(3,minmax(0,1fr));}
+.mn-keys li:nth-child(n){grid-column:span 1;}
+/* 写真 → 英語メニュー → 印刷 を1列に。矢印の代わりに番号と金の細罫でつなぐ */
+.mf{grid-column:1 / -1;display:grid;grid-template-columns:1.25fr .8fr 1.25fr;gap:clamp(16px,2.4vw,36px);align-items:end;list-style:none;margin:56px 0 0;padding:0;counter-reset:mf;}
+.mf figure{margin:0;}
+.mf img{width:100%;aspect-ratio:4/3;object-fit:cover;box-shadow:0 1px 0 var(--line-2);}
+.mf .mf-sheet{aspect-ratio:auto;box-shadow:0 0 0 .5px var(--line-2),0 18px 30px -18px rgba(30,31,29,.45);}
+.mf figcaption{margin-top:16px;padding-top:14px;border-top:1px solid var(--gold);font-size:var(--f1);line-height:1.8;color:var(--ink-2);}
+.mf figcaption b{display:block;font-size:var(--f3);font-weight:500;color:var(--ink);margin-bottom:4px;letter-spacing:.06em;}
+.mf-n{font-family:var(--ff-en);font-size:var(--f4);color:var(--gold);float:right;line-height:1;}
+.mf-cap,.mn-note{grid-column:1 / -1;margin-top:18px;font-size:var(--f1);color:var(--ink-2);}
+.mf-cap a{color:var(--ink);}
+.mn-h{grid-column:1 / -1;margin:72px 0 0;padding-bottom:12px;border-bottom:1px solid var(--ink);font-size:var(--f4);font-weight:500;letter-spacing:.12em;}
+.mk{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;list-style:none;margin:0;padding:0;counter-reset:mk;}
+.mk li{counter-increment:mk;padding:22px var(--fp) 8px 0;font-size:var(--f1);line-height:1.9;color:var(--ink-2);}
+.mk li+li{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.mk li::before{content:counter(mk);display:block;font-family:var(--ff-en);font-size:var(--f4);color:var(--gold);line-height:1;margin-bottom:10px;}
+.mk b{display:block;font-size:var(--f2);font-weight:500;color:var(--ink);margin-bottom:6px;}
+.mp{grid-column:1 / -1;margin:0;}
+.mp>div{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:18px 0;border-bottom:.5px solid var(--line-2);}
+.mp dt{font-size:var(--f3);font-weight:500;}
+.mp dt small,.mp dd small{display:block;font-size:var(--f1);font-weight:400;color:var(--ink-2);margin-top:2px;}
+.mp dd{margin:0;text-align:right;font-family:var(--ff-en);font-size:var(--f4);white-space:nowrap;font-variant-numeric:lining-nums tabular-nums;}
+.mp dd small{font-family:var(--ff-ja);}
+.mp .mp-op:first-of-type,.mp>div:nth-child(4){margin-top:20px;box-shadow:inset 0 1px 0 var(--gold);}
+.mg{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);list-style:none;margin:28px 0 0;padding:0;}
+.mg figure{margin:0;}.mg img{width:100%;aspect-ratio:7/5;object-fit:cover;}
+.mg figcaption{margin-top:10px;font-size:var(--f1);color:var(--ink-2);letter-spacing:.08em;}
+#menu .go,#hikaku .go{grid-column:1 / -1;justify-content:flex-start;margin-top:48px;}
+@media (max-width:900px){
+  .mn-keys{grid-template-columns:1fr;}
+  .mf{grid-template-columns:1fr;gap:40px;}
+  .mf .mf-sheet{width:72%;margin:0 auto;}
+  .mk{grid-template-columns:1fr 1fr;}
+  .mk li:nth-child(3){padding-left:0;box-shadow:none;}
+  .mg{grid-template-columns:1fr;}
+  .mp>div{flex-direction:column;gap:6px;}
+  .mp dd{text-align:left;}
+}
+@media (max-width:560px){.mk{grid-template-columns:1fr;}.mk li+li{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}}
+
+/* ══ 2026-10-27 六 会社案内・パンフレット作成 */
+.an-pick{grid-column:1 / -1;margin:48px 0 0;display:flex;align-items:center;gap:16px;font-size:var(--f1);letter-spacing:.1em;}
+.an-pick select{font:inherit;font-size:var(--f2);padding:8px 36px 8px 14px;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);}
+.an-g{grid-column:1 / -1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);list-style:none;margin:24px 0 0;padding:0;}
+.an-g figure{margin:0;}.an-g img{width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2),0 14px 24px -16px rgba(30,31,29,.5);}
+.an-g figcaption{margin-top:12px;font-size:var(--f1);color:var(--ink-2);line-height:1.7;}
+.an-g figcaption b{font-size:var(--f3);font-weight:500;color:var(--ink);}
+.an-g figcaption span{display:block;}
+.an-p{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;list-style:none;margin:24px 0 0;padding:0;}
+.an-p img{width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2);}
+#annai .go{grid-column:1 / -1;justify-content:flex-start;margin-top:40px;}
+@media (max-width:900px){.an-g{grid-template-columns:repeat(2,minmax(0,1fr));}.an-p{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+/* ══ 2026-10-27 評価の指摘で足した部品（index の題箋・.keys・.go・.qa を使い回し、色と字は旧版の変数） */
+#annai .keys,#menu .keys,#hikaku .keys{grid-column:1 / -1;margin-inline:0!important;}
+.mn-go{grid-column:1 / -1;flex-direction:column;align-items:flex-start;gap:12px;margin-top:32px;}
+.mn-go .box-ln{width:auto;min-width:min(100%,340px);}
+.mn-aside{margin:0;font-size:var(--f1);line-height:1.9;color:var(--ink-2);max-width:40em;}
+.mn-aside b{display:block;font-weight:500;color:var(--ink);}
+.mn-aside a{color:var(--ink);}
+.mn-sum{grid-column:1 / -1;margin:24px 0 0;font-size:var(--f4);font-weight:500;letter-spacing:.06em;line-height:1.6;}
+.mn-sum small{display:block;margin-top:6px;font-size:var(--f1);font-weight:400;color:var(--ink-2);}
+.mn-qa{grid-column:1 / -1;margin-top:20px;}
+.mn-qa .qa-a{max-width:none;}
+.mp-main dt{font-size:var(--f4);}
+.mp-main dd{font-size:var(--f5);color:var(--ink);}
+.mp-main>div:first-child{border-bottom:1px solid var(--ink);}
+.mt-h{grid-column:1 / -1;margin:36px 0 0;font-size:var(--f2);font-weight:500;letter-spacing:.12em;color:var(--ink-2);}
+.mt{grid-column:1 / -1;width:100%;border-collapse:collapse;margin-top:8px;font-size:var(--f1);}
+.mt th,.mt td{padding:12px 0;border-bottom:.5px solid var(--line-2);vertical-align:baseline;text-align:left;font-weight:400;color:var(--ink);}
+.mt td{text-align:right;white-space:nowrap;padding-left:16px;font-family:var(--ff-en);font-size:var(--f2);}
+.mt small{display:block;margin-top:2px;color:var(--ink-2);font-family:var(--ff-ja);font-size:var(--f1);}
+.an-pick{flex-wrap:wrap;}
+.an-pick label{font-size:var(--f4);font-weight:500;letter-spacing:.12em;}
+.an-pick select{font-size:var(--f3);min-height:48px;border-color:var(--ink);}
+.an-pick-s{flex-basis:100%;margin:0;font-size:var(--f1);color:var(--ink-2);}
+.an-g .an-m{margin-top:6px;font-size:var(--f1);line-height:1.7;color:var(--ink-2);}
+.an-p a{display:block;cursor:zoom-in;}
+.hk-p{grid-column:1 / -1;margin:24px 0 0;max-width:44em;color:var(--ink-2);}
+.hk-p b{font-weight:500;color:var(--ink);}
+.hk-m{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr 3fr;gap:clamp(16px,2.4vw,36px);align-items:end;margin-top:36px;}
+.hk-m figure{margin:0;display:flex;flex-direction:column;gap:14px;}
+.hk-m .dv{text-decoration:none;}
+.hk-m .dv-sp .dv-sc{aspect-ratio:390 / 844;}
+.hk-m .dv-pc .dv-sc{aspect-ratio:1280 / 800;}
+.hk-m .dv-k::after{display:none;}
+#hikaku .go .mn-aside{flex-basis:100%;}
+.hk-in{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:8px;}
+.hk-in>div{padding:22px var(--fp) 8px 0;}
+.hk-in>div+div{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.hk-in h4{margin:0 0 10px;font-size:var(--f2);font-weight:500;letter-spacing:.08em;}
+.hk-in ul{margin:0;padding:0;list-style:none;font-size:var(--f1);line-height:2;color:var(--ink-2);}
+.hk-in li::before{content:"";display:inline-block;width:10px;height:.5px;margin:0 .6em .3em 0;background:var(--gold);vertical-align:middle;}
+#hikaku .qa{grid-column:1 / -1;margin-top:8px;}
+@media (max-width:900px){
+  .hk-m{grid-template-columns:1fr 1fr;}
+  .hk-m .hk-pc{grid-column:1 / -1;}
+  .hk-in{grid-template-columns:1fr;}
+  .hk-in>div+div{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}
+  .mt th{padding-right:8px;}
+}
+/* PC では題箋（縦書き）が1列目を占めるので、中身はすべて2列目から（左の端をそろえる） */
+@media (min-width:901px){
+  #annai .byo>:not(.dai),#menu .byo>:not(.dai),#hikaku .byo>:not(.dai){grid-column:2 / -1!important;}
+  #annai .byo>:not(.dai):not(.lede),#menu .byo>:not(.dai):not(.lede),#hikaku .byo>:not(.dai):not(.lede){margin-left:0!important;margin-right:0!important;padding-left:0;}
+  #annai .lede,#menu .lede,#hikaku .lede{padding-left:0;margin-left:0;}
+}
+/* 2026-10-27 第2回の指摘 */
+.btn-s{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 20px;border:1px solid var(--ink);color:var(--ink)!important;text-decoration:none!important;letter-spacing:.08em;font-size:var(--f1);background:transparent;transition:background .25s;}
+.btn-s:hover{background:rgba(30,31,29,.06);}
+.mf-cap .btn-s{margin-top:4px;}
+.mn-mail{margin:0;font-size:var(--f1);line-height:1.8;color:var(--ink-2);letter-spacing:.04em;}
+.mf-fic{display:block;margin-top:8px;font-size:var(--f1);color:var(--ink-2);}
+.js .qa.rv,.js .qa.rv:not(.in){opacity:1!important;transform:none!important;}
+.an-cl{display:block;cursor:zoom-in;}
+.an-pick label span{font-size:.6em;vertical-align:.2em;color:var(--gold);}
+.an-fl{grid-template-columns:repeat(5,minmax(0,1fr));}
+.hk-keys{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
+.sub-ft{padding:40px 0 28px;font-size:var(--f1);line-height:1.9;color:var(--on-night,#cfcac0);}
+.sub-ft dl{display:flex;flex-wrap:wrap;gap:4px 28px;margin:0;}
+.sub-ft dl div{display:flex;gap:10px;}
+.sub-ft dt{opacity:.7;}.sub-ft dd{margin:0;}
+.sub-ft a{color:inherit;}
+.sub-ft .btn-s{margin-top:14px;border-color:currentColor;}
+@media (max-width:900px){.an-fl{grid-template-columns:1fr 1fr;}.an-fl li:nth-child(3){padding-left:0;box-shadow:none;}.hk-keys{grid-template-columns:1fr!important;}}
+@media (max-width:620px){.an-g{grid-template-columns:1fr!important;}.an-g figure{max-width:300px;}.an-fl{grid-template-columns:1fr;}.an-fl li+li{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}}
+.sub-ft .byo>*{grid-column:2 / -1;}
+.sub-ft .btn-s{justify-self:start;color:inherit!important;border-color:currentColor;}
+@media (max-width:900px){.sub-ft .byo>*{grid-column:1 / -1;}}
+/* 2026-10-27 第3回の指摘 */
+.ba{grid-column:1 / -1;display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,48px);align-items:center;margin-top:48px;}
+.ba figure{margin:0;}.ba a{display:block;cursor:zoom-in;}
+.ba img{display:block;width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2),0 18px 30px -18px rgba(30,31,29,.45);}
+.ba figcaption{margin-top:14px;padding-top:12px;border-top:1px solid var(--gold);font-size:var(--f1);color:var(--ink-2);line-height:1.8;}
+.ba figcaption b{font-family:var(--ff-ja);font-size:var(--f4);font-weight:500;color:var(--ink);margin-right:.6em;}
+.mp-big{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;margin:24px 0 0;padding-bottom:22px;border-bottom:1px solid var(--ink);}
+.mp-big-v{font-size:var(--f4);}
+.mp-big-v .kn-n{font-family:var(--ff-en);font-size:calc(var(--f6) * 1.1);font-weight:500;line-height:1;}
+.mp-big-v .kn-t{font-size:var(--f1);color:var(--ink-2);}
+.mp-big-t{font-size:var(--f3);font-weight:500;letter-spacing:.06em;}
+.mp-big-t small{display:block;margin-top:6px;font-size:var(--f1);font-weight:400;color:var(--ink-2);max-width:44em;}
+.mt-h{font-size:var(--f1);}
+.an-pick select{flex:1 1 320px;max-width:520px;min-height:52px;}
+.an-p{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px;max-width:760px;}
+@media (max-width:900px){.ba{grid-template-columns:1fr;}.ba .ba-sheet{width:80%;}}
+@media (max-width:620px){
+  .an-g{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;padding-bottom:12px;-webkit-overflow-scrolling:touch;}
+  .an-g li{flex:0 0 72%;scroll-snap-align:start;}
+  .an-g figure{max-width:none;}
+  .an-pick label{flex-basis:100%;}
+  .an-pick select{flex:1 1 100%;max-width:none;width:100%;}
+  .an-p{grid-template-columns:1fr!important;}
+}
+.mf-t{align-items:start;margin-top:40px;}
+.mf-t img{max-height:220px;}
+/* 2026-10-27 第4回の指摘 */
+.sd{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:0;list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--ink);}
+.sd li{display:flex;gap:18px;align-items:flex-start;padding:22px var(--fp) 18px 0;color:var(--ink);}
+.sd li+li{padding-left:var(--fp);box-shadow:inset .5px 0 0 var(--line-2);}
+.sd svg{flex:none;}
+.sd p{margin:0;font-size:var(--f2);line-height:1.8;color:var(--ink-2);}
+.sd b{display:block;font-size:var(--f3);font-weight:500;color:var(--ink);margin-bottom:4px;}
+#annai .fx,#menu .fx{margin-top:12px;}
+.fx5{grid-template-columns:repeat(5,minmax(0,1fr))!important;}
+.mt,.mt th,.mt td,.mt small{font-size:max(16px,var(--f2))!important;}
+.mt td{font-size:max(17px,var(--f3))!important;}
+.mn-note{font-size:max(15px,var(--f1));}
+#hikaku .qa .qn,#menu .qa .qn,#annai .qa .qn{font-size:var(--f2);}
+.an-swipe{display:none;}
+@media (max-width:900px){.fx5{grid-template-columns:minmax(0,1fr)!important;}}
+@media (max-width:620px){
+  .sd{grid-template-columns:1fr;}.sd li+li{padding-left:0;box-shadow:inset 0 .5px 0 var(--line-2);}
+  .an-swipe{display:block;grid-column:1 / -1;margin:20px 0 0;text-align:center;font-size:var(--f1);letter-spacing:.2em;color:var(--gold);}
+  .an-g li{flex:0 0 78%;}
+}
+/* 2026-10-27 第5回の指摘 */
+.mn-steps{grid-column:1 / -1;display:flex;align-items:stretch;gap:0;list-style:none;margin:48px 0 0;padding:0;border-top:1px solid var(--ink);}
+.mn-steps li{flex:1;padding:20px var(--fp) 16px 0;font-size:var(--f1);line-height:1.8;color:var(--ink-2);}
+.mn-steps b{display:block;font-size:var(--f4);font-weight:500;color:var(--ink);letter-spacing:.06em;margin-bottom:4px;}
+.mn-steps .mn-ar{flex:none;align-self:center;padding:0 var(--fp) 0 0;font-size:var(--f4);color:var(--gold);}
+.mn-band{grid-column:1 / -1;margin:0;padding:18px 24px;background:var(--paper,#FBFAF6);box-shadow:inset 0 0 0 .5px var(--line-2),inset 3px 0 0 var(--gold);font-size:var(--f3);}
+.mn-band .kn-n{font-family:var(--ff-en);font-size:var(--f6);font-weight:500;line-height:1;}
+.mn-band .kn-t{font-size:var(--f1);color:var(--ink-2);}
+.mn-band-s{font-size:var(--f2);margin-left:.4em;}
+.an-dots{display:none;}
+.an-d i{display:inline-block;width:6px;height:6px;margin:0 4px;border-radius:50%;background:var(--line-2);}
+.an-d i.on{background:var(--gold);}
+@media (max-width:620px){
+  .mn-steps{flex-direction:column;}.mn-steps .mn-ar{padding:0;transform:rotate(90deg);align-self:flex-start;margin-left:8px;}
+  .an-dots{display:flex;grid-column:1 / -1;justify-content:center;align-items:center;gap:14px;margin:8px 0 0;font-family:var(--ff-en);font-size:var(--f1);color:var(--ink-2);}
+  #menu .ja-b p,#menu .mn-aside,#menu .mn-mail,#menu .mn-note,#menu .qa-a p,#menu .sd p,#menu .fx-p p,#menu .mn-steps li,#menu .k-s,#menu .mk li{font-size:17px!important;letter-spacing:.02em!important;}
+}
+#menu .byo>.mn-band{padding-left:24px!important;}
+/* 2026-10-27 第6回 */
+.mt td small{display:inline;margin-left:.2em;font-size:var(--f1)!important;}
+.an-h2{grid-column:1 / -1;margin:36px 0 0;font-size:var(--f4);font-weight:500;letter-spacing:.12em;}
+@media (max-width:620px){
+  .mt tr{display:block;padding:12px 0;border-bottom:.5px solid var(--line-2);}
+  .mt th,.mt td{display:block;border:0;padding:0;text-align:left;}
+  .mt td{padding:4px 0 0;}
+  .an-swipe{margin:10px 0 0;text-align:left;letter-spacing:.06em;}
+}
+/* 第7回 */
+.mn-lead{grid-column:1 / -1;margin:20px 0 0;font-size:var(--f3);font-weight:500;line-height:1.8;letter-spacing:.04em;}
+.an-nav{display:none;}
+@media (max-width:620px){
+  .an-nav{display:flex;grid-column:1 / -1;gap:8px;margin:14px 0 0;}
+  .an-nav button{flex:1;min-height:44px;font:inherit;font-size:var(--f3);background:transparent;border:.5px solid var(--line-2);color:var(--ink);cursor:pointer;}
+}
+.ja-b a{color:var(--ink);}
+/* 第8回 */
+#menu{--ink-2:#1E1F1D;}
+#menu .mn-copy{margin-top:0;color:var(--ink);border-color:var(--ink);background:transparent;min-height:44px;}
+.mg2{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+@media (max-width:620px){.mg2{grid-template-columns:1fr 1fr!important;}}
+.hk-note{font-size:var(--f1);color:var(--ink-2);}
+/* menu 再採点 */
+#menu .mn-qa .fold-i{color:var(--gold);}
+#menu .mn-sum small,#menu .mp-big-t small{font-size:var(--f2);line-height:1.9;}
+@media (max-width:620px){
+  #menu .mn-steps{flex-direction:row;align-items:center;margin-top:20px;}
+  #menu .mn-steps li{font-size:0!important;padding:12px 0 8px;}
+  #menu .mn-steps b{font-size:var(--f3);margin:0;}
+  #menu .mn-steps .mn-ar{transform:none;margin:0 10px;font-size:var(--f3)!important;flex:none;}
+  #menu .mn-band{padding:12px 16px!important;}
+  #menu .mn-band .kn-n{font-size:var(--f5);}
+  #menu .lede{row-gap:10px;}
+  #menu.pg-first{padding-top:96px;}
+  #menu .mn-go{margin-top:16px;}
+}
+@media (max-width:620px){#menu .mn-steps li{flex:none;}}
+/* menu 再々採点 */
+.ba{align-items:start!important;}
+.ba figcaption{margin:0 0 12px;padding:0 0 10px;border-top:0;border-bottom:1px solid var(--gold);}
+.mn-add{grid-column:1 / -1;margin:18px 0 0;font-size:var(--f3);}
+.mn-add b{font-family:var(--ff-en);font-weight:500;}
+.mn-add small{display:block;margin-top:4px;font-size:var(--f2);color:var(--ink-2);}
+/* 別ページは、ふわっと出る演出に頼らず最初から見せる */
+.js .rv,.js .rv-scroll,.js .rv:not(.in),.js .dai.rv:not(.in){opacity:1!important;transform:none!important;}
+@media (max-width:620px){#menu .mn-steps{flex-wrap:wrap;row-gap:0;}}
+.mn-how{display:flex;align-items:center;gap:6px;flex-wrap:wrap;color:var(--ink);}
+.mn-how svg{width:26px;height:26px;}
+#menu .mn-mail{font-size:var(--f2)!important;color:var(--ink)!important;}
+@media (max-width:620px){#menu .mn-steps li:first-child{flex-basis:100%;}#menu .mn-steps li .mn-how{font-size:15px;margin-top:4px;}}
+/* menu 最終2 */
+@media (max-width:620px){
+  #menu .mn-steps{flex-direction:column!important;flex-wrap:nowrap!important;align-items:flex-start!important;}
+  #menu .mn-steps li{padding:6px 0!important;flex-basis:auto!important;}
+  #menu .mn-steps .mn-ar{transform:rotate(90deg)!important;margin:0 0 0 6px!important;padding:0!important;border:0;line-height:1;}
+  .mt th small{margin-top:2px;}
+}
+@media (min-width:621px){
+  .ba{align-items:start!important;}
+  .ba a{height:clamp(320px,36vw,520px);background:transparent;}
+  .ba img{width:100%;height:100%;object-fit:contain;box-shadow:none!important;}
+}
+#menu .mn-go{row-gap:16px;margin-bottom:24px;}
+#menu .mn-go .mn-copy{margin-top:8px;}
+#menu .mn-mail{margin-top:4px;}
+/* 日本画の帯（index と同じ絵。出典は奥付） */
+.pg-art{position:relative;margin:0;height:clamp(180px,22vw,320px);overflow:hidden;background:var(--ground);}
+.pg-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;}
+.pg-art figcaption{position:absolute;right:16px;bottom:10px;font-size:12px;letter-spacing:.1em;color:rgba(30,31,29,.7);background:rgba(243,241,235,.7);padding:2px 8px;}
+/* 流れ：上の端をそろえる */
+#menu .fx-i,#annai .fx-i{align-content:start;grid-row:auto!important;grid-template-rows:none!important;display:block;}
+@media (min-width:621px){
+  #menu .mn-how,#menu .mn-steps li,#menu .kn-t,#menu .mn-copy,#menu figcaption,#menu .mf-cap,#menu .mk li,#menu .mt-h,#menu small,#menu .mn-note{font-size:16px!important;}
+  #menu .mn-steps b{font-size:var(--f4)!important;}
+}
+#menu{--ink-2:#1E1F1D;}
+/* B・A・D 小直し */
+#hikaku{--ink-2:#1E1F1D;}
+.hk-ul{margin:4px 0 0;padding-left:1.2em;}
+.hk-ul li{margin:2px 0;}
+.hk-fee{grid-column:1 / -1;margin-top:40px;}
+.hk-mt{grid-column:1 / -1;margin:0;padding:16px 0;border-bottom:.5px solid var(--line-2);font-size:var(--f2);}
+.hk-mt b{display:block;font-size:var(--f3);font-weight:500;}
+.hk-mt small{display:block;margin-top:4px;font-size:max(16px,var(--f1));color:var(--ink);line-height:1.8;}
+.mn-pr{display:block;font-size:14px;color:var(--ink);}
+#annai .go .mn-mail{flex-basis:100%;}
+.an-pn{display:none;}
+@media (max-width:620px){.an-pn{display:flex;grid-column:1 / -1;justify-content:space-between;margin:10px 0 0;}.mn-pr{font-size:14px!important;}}
+.hk-ul{list-style:disc!important;}.hk-ul li{list-style:disc!important;}#hikaku .mp-big-t small{color:var(--ink);font-size:max(16px,var(--f1));}
+.hk-go1{margin:16px 0 8px;}.hk-go1 .box-ln{width:auto;color:var(--ground)!important;}#hikaku .hk-go2{grid-column:1 / -1;margin-top:32px;}#hikaku .hk-go2 .box-ln{width:auto;}
+.hk-tax{font-size:max(15px,var(--f1));font-weight:400;}
+.hk-sub{padding-left:1em!important;border-bottom:.5px solid var(--line-2);}
+#hikaku .hk-fee .mp-big-v{white-space:nowrap;}
+@media (max-width:620px){#hikaku .hk-fee .mp-big-v .kn-n{font-size:var(--f5);}#hikaku .hk-fee .mp-big-v .kn-u{font-size:var(--f2);}}
+.hk-tax{display:block;margin-top:2px;}
+.hk-trust{grid-column:1 / -1;margin:20px 0 0;font-size:max(16px,var(--f2));}
+.hk-tb{margin-top:16px;border-top:1px solid var(--ink);}
+.hk-tb th{font-size:var(--f3)!important;font-weight:500;padding-right:24px!important;}
+.hk-tb th small{font-weight:400;font-size:max(16px,var(--f1))!important;line-height:1.8;}
+.hk-tb td{font-size:var(--f4)!important;vertical-align:top;padding-top:14px!important;}
+.hk-tb td small{display:block!important;margin:4px 0 0!important;font-size:max(14px,var(--f1))!important;white-space:normal;max-width:14em;margin-left:auto!important;}
+@media (max-width:620px){.hk-tb td small{margin-left:0!important;}}
+.hk-eff{grid-column:1 / -1;margin-top:20px;}
+.hk-eff p{margin:0;}
+ul.hk-trust{list-style:none;padding:14px 0 0;margin:20px 0 0;border-top:.5px solid var(--line-2);}
+ul.hk-trust li{position:relative;padding-left:1.2em;margin:4px 0;font-size:max(16px,var(--f2));}
+ul.hk-trust li::before{content:"";position:absolute;left:0;top:.9em;width:.6em;height:1px;background:var(--gold);}
+ul.hk-trust a{color:var(--ink);}
+.hk-rep{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:-12px 0;text-underline-offset:4px;}
+
+
+/* 2026-10-28 トップ・料金案内 */
+.tp-g{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,32px);list-style:none;margin:48px 0 0;padding:0;}
+.tp-g a{display:block;color:var(--ink);text-decoration:none;}
+.tp-g img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;box-shadow:0 0 0 .5px var(--line-2);}
+.tp-g .tp-t{display:block;margin-top:14px;padding-top:12px;border-top:1px solid var(--gold);font-size:19px;letter-spacing:.08em;}
+.tp-g .tp-s{display:block;margin-top:4px;font-size:15px;color:var(--ink-2);line-height:1.8;}
+.tp-g .tp-p{display:block;margin-top:6px;font-size:16px;}
+.tp-g a:hover img{opacity:.85;}
+.pr-all{grid-column:1 / -1;margin-top:40px;}
+.pr-all h3{margin:48px 0 0;padding-bottom:10px;border-bottom:1px solid var(--ink);font-size:21px;font-weight:500;letter-spacing:.1em;display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+.pr-all h3 a{font-size:14px;color:var(--ink);}
+.pr-all table{width:100%;border-collapse:collapse;}
+.pr-all th,.pr-all td{padding:14px 0;border-bottom:.5px solid var(--line-2);text-align:left;font-size:16px;font-weight:400;vertical-align:baseline;}
+.pr-all td{text-align:right;white-space:nowrap;padding-left:16px;}
+.pr-all small{display:block;font-size:14px;color:var(--ink-2);margin-top:2px;}
+.pr-note{grid-column:1 / -1;margin-top:28px;font-size:15px;line-height:1.9;}
+@media (max-width:900px){.tp-g{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.tp-g{grid-template-columns:1fr;}.pr-all td{white-space:normal;}}
+
+/* 2026-10-28 地を和紙に（曲がった楮の繊維・漉きむら・塵。scripts/washi_svg.py） */
+body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/site/washi.svg)!important;background-size:720px 720px!important;}
+.sec.s-face,.s-face{background-position:311px 173px!important;}
+@media print{body,.s-ground,.s-face{background-image:none!important;}}
+
 </style>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
 
 <header class="hd" id="hd">
-  <a class="logo-b" href="#top" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
-  <a class="logo-s" href="#top" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
+  <a class="logo-b" href="index.html" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
+  <a class="logo-s" href="index.html" aria-label="杜工舎 ページの先頭へ"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
   <nav class="nav" aria-label="ページの案内">
-    <a href="index.html" aria-current="page"><span lang="en">Website</span><span class="nj">ホームページ作成</span></a>
+    <a href="index.html" aria-current="page"><span lang="en">Top</span><span class="nj">トップ</span></a>
+    <a href="website.html"><span lang="en">Website</span><span class="nj">ホームページ作成</span></a>
     <a href="annai.html"><span lang="en">Brochure</span><span class="nj">会社案内作成</span></a>
     <a href="menu.html"><span lang="en">Menu</span><span class="nj">多言語メニュー作成</span></a>
     <a href="hikaku.html"><span lang="en">Compare</span><span class="nj">商品比較サイト作成</span></a>
-    <a href="index.html#profile"><span lang="en">Profile</span><span class="nj">代表プロフィール</span></a>
-    <a href="#contact"><span lang="en">Contact</span><span class="nj">お問い合わせ</span></a>
+    <a href="profile.html"><span lang="en">Profile</span><span class="nj">代表プロフィール</span></a>
+    <a href="price.html"><span lang="en">Price</span><span class="nj">料金案内</span></a>
+    <a href="contact.html"><span lang="en">Contact</span><span class="nj">お問い合わせ</span></a>
   </nav>
   <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="メニューを開く"><i></i><i></i><i></i></button>
 </header>
@@ -2145,319 +2484,38 @@ html.hash-ld{scroll-behavior:auto;}
     <button class="mnav-close" id="mnav-close" type="button">閉じる ×</button>
   </div>
   <ol>
-    <li><a href="index.html" aria-current="page"><span class="mn-t">ホームページ作成<small class="mn-s">会社の1ページ</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
+    <li><a href="index.html" aria-current="page"><span class="mn-t">トップ<small class="mn-s">杜工舎の全体</small></span><span class="lb" aria-hidden="true">Top</span></a></li>
+    <li><a href="website.html"><span class="mn-t">ホームページ作成<small class="mn-s">会社の1ページ</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
     <li><a href="annai.html"><span class="mn-t">会社案内作成<small class="mn-s">A4・4ページ</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
     <li><a href="menu.html"><span class="mn-t">多言語メニュー作成<small class="mn-s">お店・宿の英語メニュー</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
     <li><a href="hikaku.html"><span class="mn-t">商品比較サイト作成<small class="mn-s">質問に答えて選べるページ</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
-    <li><a href="index.html#profile">代表プロフィール<span class="lb" aria-hidden="true">Profile</span></a></li>
-    <li><a href="#contact">お問い合わせ<span class="lb" aria-hidden="true">Contact</span></a></li>
+    <li><a href="profile.html">代表プロフィール<span class="lb" aria-hidden="true">Profile</span></a></li>
+    <li><a href="price.html"><span class="mn-t">料金案内<small class="mn-s">すべての料金</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
+    <li><a href="contact.html">お問い合わせ<span class="lb" aria-hidden="true">Contact</span></a></li>
   </ol>
   <p class="mnav-mail">MAIL ── <a href="mailto:info@morikosha.com">info@morikosha.com</a></p>
 </nav>
 
 <main id="main">
-
-<!-- ══════════ 扉 ── 写真だけ ══════════ -->
-<section class="hero" id="top" aria-label="杜工舎の扉の絵と見本">
-  <div class="hero-ph"><img class="on h1" data-tone="paper" data-cap="長谷川等伯「松林図屏風」右隻" src="assets/site/art-shorin-r.jpg" width="2197" height="1236" alt="長谷川等伯「松林図屏風」（右隻）。霧の中に松が浮かぶ水墨画" fetchpriority="high"><div class="h2 hero-mihon" role="img" aria-label="見本のスマートフォンの画面を、屏風の扇のように並べた図（土木の淡、建築の玄、造園の雅、設備の粋、塗装の理）" data-tone="mihon" data-capk="見本" data-cap="五つの型の実物の画面"><span class="hm-row"><span class="hm-p" style="--i:0"><img src="assets/site/sp-doboku-1.jpg" width="540" height="1080" alt="" decoding="async"></span><span class="hm-p" style="--i:1"><img src="assets/site/sp-kenchiku-2.jpg" width="540" height="1080" alt="" decoding="async"></span><span class="hm-p" style="--i:2"><img src="assets/site/sp-zoen-3.jpg" width="540" height="1080" alt="" decoding="async"></span><span class="hm-p" style="--i:3"><img src="assets/site/sp-setsubi-4.jpg" width="540" height="1080" alt="" decoding="async"></span><span class="hm-p" style="--i:4"><img src="assets/site/sp-tosou-5.jpg" width="540" height="1080" alt="" decoding="async"></span></span></div><img class="h3" data-tone="gold" data-cap="尾形光琳「八橋図屏風」" src="assets/site/art-irises.jpg" width="2400" height="1350" alt="尾形光琳「八橋図屏風」。金地に燕子花" decoding="async"></div>
+<section class="hero" id="top" aria-label="杜工舎の扉の絵">
+  <div class="hero-ph"><img class="on h1" data-tone="paper" data-cap="長谷川等伯「松林図屏風」左隻" src="assets/site/art-shorin-l.jpg" width="2197" height="1236" alt="長谷川等伯「松林図屏風」左隻" fetchpriority="high"></div>
   <canvas class="art-layer" data-art="kasumi" aria-hidden="true"></canvas>
-  <div class="dots" role="group" aria-label="扉の写真を選ぶ"><button type="button" aria-label="絵1：長谷川等伯「松林図屏風」右隻" aria-current="true"></button><button type="button" aria-label="見本2：五つの型の実物の画面" aria-current="false"></button><button type="button" aria-label="絵3：尾形光琳「八橋図屏風」" aria-current="false"></button><span class="num" aria-hidden="true"><span id="hero-num">01</span><span class="num-t"> — 03</span></span></div>
-  <span class="scroll" aria-hidden="true"><span>scroll</span></span>
-  <p class="hero-plate"><span class="hp-p"><span class="hp-k">会社のホームページ制作</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v"><span class="nw"><span class="tcy">1</span>ページ <span class="hp-n">98,000</span>円<span class="hp-ty">（税込）</span></span><span class="hp-dot">・</span><span class="nw"><span class="tcy">2</span>週間ほど</span></span></span><span class="hp-mis"><a class="hp-mi" href="#works-pick">見本を見る <span aria-hidden="true">→</span></a><a class="hp-mi" href="#contact">お問い合わせ <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
-  <!-- 2026-10-01 修正役V（第2周）：PC の値段と動線は横組みで読ませる（縦の札は題として残す）。スマホ・タブレットは上の横組みの札がこの役 -->
-  <div class="hero-deal"><p class="hx-p"><span class="kn-u"><span class="nw nk"><span class="nw nk">1ページ</span></span></span><span class="kn-n">98,000</span>円<span class="kn-t">（税込）</span><span class="hx-s" aria-hidden="true"></span><span class="nw"><span class="nw nk">2週間</span>ほど</span></p><div class="hx-go"><a class="box-ln" href="#contact">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="#works-pick">見本を見る</a></div></div>
+  <div class="dots" role="group" aria-label="扉の絵"><button type="button" aria-label="絵1：長谷川等伯「松林図屏風」左隻" aria-current="true"></button><span class="num" aria-hidden="true"><span id="hero-num">01</span><span class="num-t"> — 01</span></span></div>
+  <p class="hero-plate"><span class="hp-p"><span class="hp-k">杜工舎</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">人の足りない会社の、もうひとりの裏方</span></span><span class="hp-mis"><a class="hp-mi" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hp-mi" href="price.html">料金案内 <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
+  <div class="hero-deal"><p class="hx-p">人の足りない会社の、もうひとりの裏方</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
 </section>
-
-<!-- ══════════ 一 ABOUT（#service はここへの受け口） ══════════
-     2026-09-30 再設計（組み手1）：英文の本文段落・SERVICE の章・ABOUT のスライダーをやめた。和文の事実はそのまま。
-     下に「要点の帯」（値段・納期・見本）と、えらぼっとのページ（erabot.html）への小さな案内。#erabot の受け口もこの案内に置く -->
-<section class="sec s-ground" id="about" aria-labelledby="about-h">
-  <span class="anchor" id="service" aria-hidden="true"></span>
+<section class="sec s-ground" id="about-all" aria-labelledby="top-h">
   <div class="byo">
-    <div class="dai sec-h" aria-hidden="true"><span class="dai-n">一</span><span class="dai-t"><span class="nw nk">杜工舎</span>について</span><span class="dai-l">About</span></div>
-      <div class="about-txt">
-        <h1 class="ja-h" id="about-h">いい仕事を、<br>見つかるかたちに。</h1>
-        <div class="ja-b about-lead">
-          <p>会社のホームページを<span class="nw nk"><span class="nw nk">1ページ</span></span>、<span class="nw nk">2週間</span>ほどでつ<span class="nw nk">くります。</span><br><span class="nw nk">杜工舎</span>は、つくる側が持つ仕事と知識を、探す人・選ぶ人へ<span class="nw nk">つなぐ</span>Webの<span class="nw nk">工房です。</span></p>
-          <p>会社や商品のよさは、知っている人の内側に留まりがちです。<span class="nw nk">杜工舎</span>は、その情報をWebで届く形に整え、必要としている<span class="nw nk">人との間に</span>入口をつ<span class="nw nk">くります。</span></p>
-        </div>
-      </div>
-      <!-- 2026-10-01 追加の決定2（組み手2）：楓図をやめ、PC とスマホの枠に入った見本の実物の画面に（hp_build.py の mihon_about・mihon.css） -->
-      <figure class="about-art about-mihon"><span class="dv dv-pc"><span class="dv-bar" aria-hidden="true"><span class="dv-dots"><i></i><i></i><i></i></span></span><span class="dv-sc"><img src="assets/card-kenchiku-3.jpg" width="1760" height="1156" loading="lazy" decoding="async" alt="雅のデザインで作った建築の見本の、パソコンの画面"></span></span><span class="dv dv-sp"><span class="dv-sc"><img src="assets/site/sp-kenchiku-3.jpg" width="540" height="1108" decoding="async" alt="雅のデザインで作った建築の見本の、スマートフォンの画面"></span></span><figcaption class="dv-cap"><span class="dv-k">見本</span><span class="dv-t">雅のデザインで作った<span class="nw">建築の見本</span><span class="nw">（パソコンとスマートフォン）</span></span><a class="dv-go" href="preview/kenchiku-3.html" target="_blank" rel="noopener">実物を見る <span aria-hidden="true">↗</span></a></figcaption></figure>
-    <ul class="keys" aria-label="ホームページ制作の要点">
-      <li><span class="k-l">料金</span><span class="k-v"><span class="kn-u"><span class="nw nk"><span class="nw nk">1ページ</span></span></span><span class="kn-n">98,000</span>円<span class="kn-t">（税込）</span></span><span class="k-s"><span class="nw"><span class="nw nk">買い切り</span></span>・<span class="nw">月々いただくものはありません。</span></span></li>
-      <li><span class="k-l">納期</span><span class="k-v"><span class="kn-n">2</span>週間ほど</span><span class="k-s"><span class="nw nk">ご記入シート</span>と<span class="nw">写真をいただいてから</span></span></li>
-      <li><span class="k-l">見本</span><span class="k-v"><span class="kn-n">18</span>業種の見本</span><span class="k-s"><span class="nw">土木・</span><span class="nw">測量・</span><span class="nw">建築・</span><span class="nw">設備・</span><span class="nw">電気・</span><span class="nw">造園・</span><span class="nw">塗装・</span><span class="nw">解体ほか</span></span></li>
-    </ul>
-    <div class="go about-go">
-      <a class="box-ln" href="#contact">お問い合わせ <span aria-hidden="true">→</span></a>
-      <a class="ln" href="#works-pick"><span class="nw nk">18業種</span>の見本を見る</a>
-    </div>
+    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">一</span><span class="dai-t">杜工舎について</span><span class="dai-l" aria-hidden="true">Morikosha</span></header>
+    <div class="lede lede-s"><h2 class="ja-h" id="top-h">人の足りない会社の、<br>もうひとりの裏方。</h2>
+      <div class="ja-b"><p>杜工舎は、さいたま市の小さな工房です。人が減って手が回らない会社やお店に代わって、伝える・選ばせる・訳すための道具をつくります。打ち合わせはほとんど要りません。記入シートと写真を送っていただくだけで、2週間ほどでお渡しします。</p></div></div>
+    <ul class="tp-g"><li><a href="website.html"><img src="assets/card-kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">ホームページ作成 <span aria-hidden="true">→</span></span><span class="tp-s">会社の仕事と強みを、1ページに。5つの案から選べます。</span><span class="tp-p">1ページ 98,000円（税込）</span></a></li><li><a href="annai.html"><img src="assets/annai/kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">会社案内作成 <span aria-hidden="true">→</span></span><span class="tp-s">手渡せる A4・4ページの会社案内。ホームページと同じ5つの案。</span><span class="tp-p">59,800円（税込）</span></a></li><li><a href="menu.html"><img src="assets/menu/print-c.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">多言語メニュー作成 <span aria-hidden="true">→</span></span><span class="tp-s">日本語メニューの写真を1枚。英語のメニューにしてお返しします。</span><span class="tp-p">英語 39,800円（税込）から</span></a></li><li><a href="hikaku.html"><img src="assets/hikaku/pc-r.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">商品比較サイト作成 <span aria-hidden="true">→</span></span><span class="tp-s">質問に答えるだけで、合う商品が選べるページ。</span><span class="tp-p">98,000円（税込）</span></a></li><li><a href="profile.html"><img src="assets/site/daihyo.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">代表プロフィール <span aria-hidden="true">→</span></span><span class="tp-s">発注する側で8年。仕事の中身を、伝わる形に。</span></a></li><li><a href="price.html"><img src="assets/site/art-asagao.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">料金案内 <span aria-hidden="true">→</span></span><span class="tp-s">すべての料金を、ひとつの表に。前金はいただきません。</span></a></li></ul>
+    <div class="go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="ln" href="price.html">料金案内を見る</a></div>
   </div>
 </section>
-
-<!-- ══════════ WHY ══════════ -->
-<section class="sec s-face sp-night-next" id="why" aria-labelledby="why-h">
-  <div class="byo">
-    <div class="dai sec-h" aria-hidden="true"><span class="dai-n">二</span><span class="dai-t">なぜ必要か</span><span class="dai-l">Why</span></div>
-    <div class="lede">
-      <!-- 2026-10-01 第5周：題箋「なぜ必要か」の直下に同じ問いの h2 が続いていたので、リードの1文目を見出しに上げた（文面は同じ。分けただけ） -->
-      <h2 class="ja-h" id="why-h">応募する人も、お客さまも、<br>まず会社名で検索します。</h2>
-      <p class="ja-b">何も出てこなければ、そこで止まる ── 理<span class="nw nk">由は3つ。</span></p>
-    </div>
-    <div class="reasons">
-      <div class="rs">
-        <p class="n" aria-hidden="true">01</p>
-        <h3>応募の、ひとつ手前で止まる</h3>
-        <p>建築・土木・測量技術者の有効求人倍率は<span class="nw"><b><span class="nw nk">6.05倍</span></b>。</span>全職業の平均<span class="nw nk">1.11倍</span>の、およそ<span class="nw nk">5.5倍</span>です。そのうえ、転職した人の<span class="nw"><b>約<span class="nw nk">6割</span></b>が、</span>入社を決めた会社の採用サイトを見ています。求人票を見て興味を持った方が、会社名で検索して何も出てこず、そこで止まる。<span class="nw nk">応募という行動</span>の、ひとつ手前<span class="nw nk">の話です。</span></p>
-        <p class="src">有効求人倍率は厚生労働省「一般職業紹介状況」令和<span class="nw nk">8年</span>5月・常用（除パート）。採用サイトの閲覧率は株式会社ベイジ「中途採用における採用サイト利用実態調査 <span class="nw nk">2024年度</span>版」（<span class="nw nk">2024年</span>、過去<span class="nw nk">5年</span>以内に転職活動をした社会人 <span class="nw nk">3,317人</span>）。</p>
-      </div>
-      <div class="rs">
-        <p class="n" aria-hidden="true">02</p>
-        <h3>仕事の入口が細る</h3>
-        <p>元請の審査、施主の下調べ、同業からの紹介。どれも会社名で検索するところから始まります。その場で何ができる会社か分からなければ、次の候補に移られます。実績が並んだ<span class="nw nk">1枚</span>が、<span class="nw nk">その先へ</span>進む入口に<span class="nw nk">なります。</span></p>
-        <p class="src">検索の利用は総務省「令和<span class="nw nk">7年</span> 通信利用動向調査（世帯編）」（インターネット利用者の74.8%、60代75.7%）。公式サイトの確認は消費者庁「令和<span class="nw nk">4年度</span> 消費者意識基本調査」（インターネットで予約・購入するとき「公式サイトかどうか確認する」78.0%、n=3,<span class="nw nk">311）。</span></p>
-      </div>
-      <div class="rs">
-        <p class="n" aria-hidden="true">03</p>
-        <h3><span class="nw">AIが参考にする先に、</span>自社が無い</h3>
-        <p>ChatGPTなどのAIで調べる人が増えています。生成AIを使ったことがある人は<span class="nw"><b><span class="nw nk">5割</span></b>を</span>超えました。<span class="nw"><span class="nw nk">1年</span>で</span>約<span class="nw nk">2倍</span>に増えました。<span class="nw nk">AIによる概要</span>は検索で見つかるページを参考に示すので、会社の公式ページはその参照先の候補に<span class="nw nk">なります。</span></p>
-        <p class="src">生成AIの利用経験は総務省「令和<span class="nw nk">8年</span>版 情報通信白書」（20〜69歳のネットモニター調査・年代ごと同数。52.2%、前年26.7%）。<span class="nw nk">AIによる概要</span>が参考にしたページを示すことは Google 検索セントラル「AI 機能とウェブサイト」（<span class="nw nk">2025年</span>12<span class="nw nk">月更新）。</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ WORKS ══════════ -->
-<section class="sec s-ground has-band" id="works" aria-labelledby="works-h">
-  <!-- 2026-09-30 再設計（組み手2）：夜の地に夏秋草図の片身替わりの帯で入る。題箋（三・見本帳）は帯の左の扇に -->
-  <div class="band band-art band-door band-works"><img src="assets/site/art-natsuaki.jpg" width="1600" height="1445" alt="酒井抱一「夏秋草図屏風」の部分。銀地に流れる水" loading="lazy" decoding="async" style="object-position:80% 30%"><canvas class="band-gold" data-art="sunago" data-flow="diag" aria-hidden="true"></canvas>
-    <div class="byo">
-      <div class="dai sec-h" aria-hidden="true"><span class="dai-n">三</span><span class="dai-t">見本帳</span><span class="dai-l">Works</span></div>
-      <h2 class="ja-h" id="works-h">仕事が伝わる、<br>会社の一枚。</h2>
-    </div>
-  </div>
-  <div class="byo works-body">
-    <p class="ja-b works-lead">日本の美意識からとった五つの型です。飾りを削り、時代が変わっても古びないものだけを残<span class="nw nk">しました。</span></p>
-
-    <div class="inds">
-      <input type="radio" name="pv-ind" id="pi-doboku"><input type="radio" name="pv-ind" id="pi-sokuryo"><input type="radio" name="pv-ind" id="pi-kenchiku"><input type="radio" name="pv-ind" id="pi-sekkei"><input type="radio" name="pv-ind" id="pi-setsubi"><input type="radio" name="pv-ind" id="pi-denki"><input type="radio" name="pv-ind" id="pi-tosou"><input type="radio" name="pv-ind" id="pi-zoen"><input type="radio" name="pv-ind" id="pi-kaitai"><input type="radio" name="pv-ind" id="pi-unso"><input type="radio" name="pv-ind" id="pi-nogyo"><input type="radio" name="pv-ind" id="pi-shokudo"><input type="radio" name="pv-ind" id="pi-bar"><input type="radio" name="pv-ind" id="pi-biyo"><input type="radio" name="pv-ind" id="pi-jinja"><input type="radio" name="pv-ind" id="pi-jiin"><input type="radio" name="pv-ind" id="pi-kosho"><input type="radio" name="pv-ind" id="pi-juku">
-      <div class="step step-ind" id="works-pick">
-        <div class="step-h"><h3><span class="nw nk">18業種</span>の見本から</h3><span class="d">御社に近いものをどれでも</span></div>
-        <p class="step-p">下の一覧から、御社に近い業種を<span class="nw nk">押してください。</span>その業種の<span class="nw nk">5案</span><span class="nw nk">が出ます。</span></p>
-        <div class="chips" role="group" aria-label="業種を選ぶ"><label class="chip" for="pi-doboku">土木</label><label class="chip" for="pi-sokuryo">測量</label><label class="chip" for="pi-kenchiku">建築</label><label class="chip" for="pi-sekkei">建築設計</label><label class="chip" for="pi-setsubi">設備</label><label class="chip" for="pi-denki">電気</label><label class="chip" for="pi-tosou">塗装</label><label class="chip" for="pi-zoen">造園</label><label class="chip" for="pi-kaitai">解体</label><label class="chip" for="pi-unso">運送</label><label class="chip" for="pi-nogyo">農業</label><label class="chip" for="pi-shokudo">飲食店</label><label class="chip" for="pi-bar">バー</label><label class="chip" for="pi-biyo">美容室</label><label class="chip" for="pi-jinja">神社</label><label class="chip" for="pi-jiin">寺院</label><label class="chip" for="pi-kosho">古書店</label><label class="chip" for="pi-juku">学習塾</label></div>
-        <p class="chip-live" id="chip-live" aria-live="polite"></p>
-      </div>
-      <!-- 2026-10-01 昼 みつさんの決定（組み手1）：五曲の扇と「〇〇の5案／扇を押すと…」の段は外した。案は窓の上の 01〜05 の札で選ぶ。
-           PC の枠とスマホの枠に同じ見本を映し、下に「デザインの想い」（hp_build.py の mado()・mado.css・mado.js） -->
-      <div class="step step-mado">
-        <div class="mado" id="mado" data-c="kenchiku" data-n="1" data-sp="denki-5 doboku-1 doboku-4 jiin-2 jinja-5 kaitai-1 kenchiku-1 kenchiku-2 kenchiku-3 setsubi-4 sokuryo-4 tosou-5 zoen-3"><div class="mado-tabs" role="group" aria-label="窓に映す案を選ぶ"><button type="button" class="mado-tab" data-n="1" data-c="kenchiku" aria-controls="mado" aria-pressed="true" aria-label="淡（あわい）の見本を窓に映す"><span class="mt-no" aria-hidden="true">01</span><span class="mt-ja">淡</span><span class="mt-yomi" aria-hidden="true">あわい</span></button><button type="button" class="mado-tab" data-n="2" data-c="jiin" aria-controls="mado" aria-pressed="false" aria-label="玄（げん）の見本を窓に映す"><span class="mt-no" aria-hidden="true">02</span><span class="mt-ja">玄</span><span class="mt-yomi" aria-hidden="true">げん</span></button><button type="button" class="mado-tab" data-n="3" data-c="zoen" aria-controls="mado" aria-pressed="false" aria-label="雅（みやび）の見本を窓に映す"><span class="mt-no" aria-hidden="true">03</span><span class="mt-ja">雅</span><span class="mt-yomi" aria-hidden="true">みやび</span></button><button type="button" class="mado-tab" data-n="4" data-c="doboku" aria-controls="mado" aria-pressed="false" aria-label="粋（いき）の見本を窓に映す"><span class="mt-no" aria-hidden="true">04</span><span class="mt-ja">粋</span><span class="mt-yomi" aria-hidden="true">いき</span></button><button type="button" class="mado-tab" data-n="5" data-c="jinja" aria-controls="mado" aria-pressed="false" aria-label="理（り）の見本を窓に映す"><span class="mt-no" aria-hidden="true">05</span><span class="mt-ja">理</span><span class="mt-yomi" aria-hidden="true">り</span></button></div><figure class="mado-stage"><div class="mado-dev"><div class="mado-pc"><div class="mado-bar" aria-hidden="true"><span class="mado-dots"><i></i><i></i><i></i></span><span class="mado-url">morikosha.com/preview/<b>kenchiku-1</b>.html</span></div><div class="mado-sc mado-sc-pc"><img class="mado-ph" src="assets/card-kenchiku-1.jpg" width="1760" height="1156" loading="lazy" decoding="async" alt="淡のデザインで作った建築の見本の、パソコンの画面（画面写真）"></div></div><div class="mado-sp"><div class="mado-sc mado-sc-sp"><img class="mado-ph" src="assets/site/sp-kenchiku-1.jpg" width="540" height="1080" loading="lazy" decoding="async" alt="淡のデザインで作った建築の見本の、スマートフォンの画面（画面写真）"></div></div></div><figcaption class="mado-cap"><span class="mado-t"><b class="mado-ja">淡</b><span class="mado-nm">建築の見本</span></span><span class="mado-hint">窓の中でスクロールして、見本を下まで見られます</span><a class="mado-go" href="preview/kenchiku-1.html" target="_blank" rel="noopener">実物を別のタブで開く <span aria-hidden="true">↗</span></a><span class="mado-live" aria-live="polite"></span></figcaption></figure><section class="omoi" aria-labelledby="omoi-h"><h3 class="omoi-k" id="omoi-h">デザインの想い</h3><div class="omoi-b" data-n="1"><div class="omoi-l"><p class="omoi-ja"><span class="oj-no" aria-hidden="true">01</span><span class="oj-k">淡</span><span class="oj-yomi">あわい</span></p><p class="omoi-e">雨に洗われた白<span class="nw nk">と、雨脚。</span></p></div><div class="omoi-tx"><p class="omoi-d">淡は、色や音がすこしだけ残っている状態を指す言葉です。<span class="nw nk">言い切らない</span>こと、すべてを見せないことを、日本は長く美しいとしてきました。その感覚を、<span class="nw nk">雨上がり</span>の空として一枚の紙にしました。地は雨に洗われた白、扉には斜めの雨脚が二枚だけ。文字は細い明朝で、飾りの罫は一本も引いていません。引かないと決めたので、節の変わり目は余白の広さだけで示しています。<span class="nw nk">5案</span>のなかで、余白をいちばん大きく取っ<span class="nw nk">た型です。</span></p><p class="omoi-m"><b>向いている業種</b>設計事務所や造園業など、丁寧さや情緒を静かに伝えたい会社に向い<span class="nw nk">ています。</span></p></div></div><div class="omoi-b" data-n="2" hidden><div class="omoi-l"><p class="omoi-ja"><span class="oj-no" aria-hidden="true">02</span><span class="oj-k">玄</span><span class="oj-yomi">げん</span></p><p class="omoi-e">写真を、闇<span class="nw nk">に沈めて。</span></p></div><div class="omoi-tx"><p class="omoi-d">玄は黒を指し、同時に、奥が深くて容易には見えないものを指します。<span class="nw nk">幽玄の玄</span>、<span class="nw nk">玄人の玄</span>。日本の美意識では、見せないことが、かえって深く見せることがあります。その考えを、扉の写真に当てました。写真の上に、濃さの変わらない一枚の膜を掛けてあります。<span class="nw nk">濃くしたり</span><span class="nw nk">薄くしたりせず</span>、端から端まで同じ闇に沈めることで、写真は消えずに、静かに<span class="nw nk">奥へ退がります</span>。左に銀の細い軸を一本だけ通しました。本文と小見出しは等幅で組み、機械のような正確さを出しています。黒は一色ではなく、青みを含んだ<span class="nw nk">階調です。</span></p><p class="omoi-m"><b>向いている業種</b>設計事務所・塗装・建築（設計）など、意匠性と静かな凄みで選ばれたい会社に向い<span class="nw nk">ています。</span></p></div></div><div class="omoi-b" data-n="3" hidden><div class="omoi-l"><p class="omoi-ja"><span class="oj-no" aria-hidden="true">03</span><span class="oj-k">雅</span><span class="oj-yomi">みやび</span></p><p class="omoi-e">灯のような墨に、<span class="nw nk">金の細線。</span></p></div><div class="omoi-tx"><p class="omoi-d">雅は、荒々しさを削いだあとに残る美しさを指す言葉です。声を張らず、<span class="nw nk">急がず</span>、細部にだけ心を配る。宮廷の人びとが千年かけて磨いたその感覚を、夜の座敷のしつらえとして組みました。地は蝋燭の灯のような暖かい墨。金は面には使わず、細い線と小さな字にだけ置いています。写真は紙に貼らず、金の細い枠に掛けました。掛軸を床に掛けるのと同じで、断ち落とさないのは<span class="nw nk">5案</span>でこの型だけです。字間をゆったり取ったのは、<span class="nw nk">急がず</span>に読んでいただきたい<span class="nw nk">からです。</span></p><p class="omoi-m"><b>向いている業種</b>創業の古い建設会社・造園・社寺関係など、歴史と格式を前に出したい会社に向い<span class="nw nk">ています。</span></p></div></div><div class="omoi-b" data-n="4" hidden><div class="omoi-l"><p class="omoi-ja"><span class="oj-no" aria-hidden="true">04</span><span class="oj-k">粋</span><span class="oj-yomi">いき</span></p><p class="omoi-e">藍の、細い<span class="nw nk">縦線だけ。</span></p></div><div class="omoi-tx"><p class="omoi-d">粋は、飾りを削って、それでも残るもののことです。九鬼周造は『<span class="nw nk">「いき」の構造</span>』で、いきは横縞より縦縞を、太い縞より細い縞を選ぶと書きました。細いほうが、粋なのです。ですから、この型は細い縦の線だけで組みました。太い字はどこにも使わず、罫はすべて一本の細さにそろえています。色の面を張るのは、足もとの一か所だけ。何を足すかではなく、何を残すかで決めた型です。余計なものを持たない会社に<span class="nw nk">向きます。</span></p><p class="omoi-m"><b>向いている業種</b>電気工事・設備・測量・土木施工など、段取りの正確さと反応の速さで信頼を得る仕事に向い<span class="nw nk">ています。</span></p></div></div><div class="omoi-b" data-n="5" hidden><div class="omoi-l"><p class="omoi-ja"><span class="oj-no" aria-hidden="true">05</span><span class="oj-k">理</span><span class="oj-yomi">り</span></p><p class="omoi-e">一本の筋<span class="nw nk">を、通す。</span></p></div><div class="omoi-tx"><p class="omoi-d">理は、もともと玉（ぎょく）の筋目のことでした。石を磨くと現れる、まっすぐな目。そこから「物事の筋道」を指すようになり、日本語でも「筋を通す」「理にかなう」と使います。ですから、この型は一本の筋で組みました。題字・社名・節見出しを縦に通し、本文と連絡先は横書きのまま読みやすく保ちます。紙の色と、掛軸を思わせる表装。線は一本の細さで通し、色は紙と墨に、落款のひと粒だけ。飾りで目を引くのではなく、決めた筋を最後まで曲げないことで伝え<span class="nw nk">る型です。</span></p><p class="omoi-m"><b>向いている業種</b>代々続く建築・土木・造園の会社や、社寺・石材・表具など、受け継いだ技術を仕事にしている方に向い<span class="nw nk">ています。</span></p></div></div></section></div>
-        <p class="dz-note">五案とも、載せる項目は同じです。会社概要も、事業内容も、採用情報も、すべて入ります。写真も文章も御社のものに入れ替わり、色も御社に合わせて無料でお変えしますので、同じ型を選んだ会社と<span class="nw nk">並べて</span>も、同じサイトには見<span class="nw nk">えません。</span><br><b class="nw">選んでいただくのは、かたちだけ。</b>だから、<span class="nw nk"><span class="nw nk">1ページ</span></span> <span class="nw"><span class="nw nk">98,000円（税込）</span></span>、<span class="nw nk">2週間</span>ほどで<span class="nw nk">お渡し</span><span class="nw nk">できます</span>。</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════ 四 PRICE ══════════
-     2026-09-30 再設計（組み手2）：どの章も同じ型の題箋（漢数字・縦書きの章題・欧文ラベル・金の細罫）で始まる。
-     章の地は 胡粉（s-ground）→ 白（s-face）→ 夜（s-night）を役割で替える。飾りの罫は置かない -->
-<section class="sec s-face" id="price" aria-labelledby="price-h">
-  <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">四</span><h2 class="dai-t" id="price-h">料金</h2><span class="dai-l" aria-hidden="true">Price</span></header>
-    <!-- 2026-10-01 追加の決定4（組み手2）：料金の章を組み直した。版面（扇2〜6）を一枚の屏風に見立て、つくるとき（扇3枚・胡粉の面・金の鉤）とあとから直すとき（扇2枚・白の面）を継ぎ目の罫で並べる。
-         主役の 98,000円 だけを大きく立て、ほかの3つは帳簿のように 名目と金額を1行に揃える。文面・数字・税込の表記は1字も変えていない -->
-    <div class="pr">
-      <div class="pr-face pr-make">
-        <h3 class="pr-h">ホームページをつくるとき</h3>
-        <div class="pr-main"><h4>ホームページ作成</h4><span class="p"><span class="pn">98,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p><span class="nw nk"><span class="nw nk">1ページ</span></span>構成・<span class="nw nk">スマートフォン対応</span>。HTMLデータ一式を<span class="nw nk">お渡し</span>します。<span class="nw nk">買い切り</span>で、月々いただくものはあ<span class="nw nk">りません。</span></p></div>
-        <div class="pr-row"><h4>公開設定の代行<span class="nw">（ご希望の方のみ）</span></h4><span class="p"><span class="pn">50,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>インターネット上に公開するところまで代行します。ご自身でできる場合は要りません。中身は下にご説<span class="nw nk">明します。</span></p></div>
-      </div>
-      <div class="pr-face pr-fix">
-        <h3 class="pr-h">あとから直すとき</h3>
-        <div class="pr-row"><h4>文章の修正</h4><span class="p"><span class="pu"><span class="nw nk">1回</span></span><span class="pn">20,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>レイアウトは<span class="nw nk">そのまま</span>に、文章を<span class="nw nk">差し替え</span>ます。</p></div>
-        <div class="pr-row"><h4>写真の入れ替え</h4><span class="p"><span class="pu"><span class="nw nk">1回</span></span><span class="pn">20,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>お送りいただいた写真に<span class="nw nk">差し替え</span>ます。</p></div>
-        <p class="pr-fine"><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<b><span class="nw"><span class="nw nk">1回</span>に限り無償</span></b>で直します。上の料金は、その期間を過ぎたあとの<span class="nw nk">ものです。</span></p>
-      </div>
-    </div>
-    <div class="pr-notes">
-      <p class="pr-note">すべて税込。制作にあたって、これ以外にいただくものはありません。<b>前金はいただかず、お支払いは完成品をご覧になってから。データは御社のものです。</b>お支払いは銀行振込です。完成品をご覧いただいたあとに請求書をお送りしますので、発行から<span class="nw nk">2週間</span>以内にお振り込み<span class="nw nk">ください。</span></p>
-      <div>
-      <p class="pr-note">公開後は、<span class="nw nk">御社名義</span>でご契約いただくサーバーとドメインの<span class="nw nk">利用料</span>（あわせて年8,000〜20,000円ほど）だけがかかります。当方が受け取るものではあ<span class="nw nk">りません。</span></p>
-      <p class="pr-note">公開したあと<span class="nw nk">7日間</span>は、表示の不具合（崩れ・文字化けなど）を<span class="nw nk">無償で直します</span>。</p>
-      </div>
-    </div>
-    <!-- 2026-10-01 第5周：料金の面の説明と「公開設定の代行とは」が同じ話を2度していたので、説明の2段落と11の手順を1つの開閉に入れた（文面は同じ） -->
-    <details class="daiko daiko-fold">
-      <summary><span class="df-t"><h3 class="vh3">公開設定の代行とは</h3><small class="df-s">中身と、ご自身でなさる場合の流れ<span class="nw">（11の手順）</span></small></span><span class="fold-i" aria-hidden="true"></span></summary>
-      <div class="df-b">
-        <p class="daiko-lead"><span class="nw nk">お渡し</span>するのはHTMLファイルです。ご自身でサーバーに置ける方は、この代行は必要ありません。「やり方が分からない」「触るのが不安」という場合に、インターネット上に公開するところまでをこちらで済<span class="nw nk">ませます。</span></p>
-        <p><b>この一式をこちらで済ませて <span class="nw"><span class="nw nk">50,000円（税込）</span></span>、<span class="nw nk">一度きり</span>です。</b>月々いただくものはありません。サーバーとドメインの<span class="nw nk">利用料</span>は御社のお支払いになります。目安はあわせて年8,000〜20,000円ほどです。<span class="nw nk">御社名義</span>の契約なので、ホームページは御社の手元に<span class="nw nk">残ります。</span></p>
-        <p>ご自身でなさる場合は、<span class="nw nk">おおよそ</span>この<span class="nw nk">流れです。</span></p>
-            <ol class="flow" aria-label="公開までの流れ" style="margin-top:14px">
-              <li>サーバー契約</li><li>独自ドメイン取得</li><li>Whois情報公開代行</li><li>ネームサーバー変更</li><li>DNS<span class="nw nk">反映</span>待ち（最大<span class="nw nk">72時間</span>）</li><li>SSL証明書の発行</li><li>FTP接続</li><li>public_html へ設置</li><li>.htaccess で www と <span class="nw nk">https を統一</span></li><li>Search <span class="nw nk">Console 登録</span></li><li>サイトマップ送信</li>
-            </ol>
-            <p>順番と待ち時間が決まっていて、飛ばすとやり直しになります。<span class="nw nk">反映</span>を待たずにSSLを申し込むと発行に失敗し、置き場所を1階層まちがえるとページは表示さ<span class="nw nk">れません。</span></p>
-      </div>
-    </details>
-  </div>
-</section>
-
-<!-- ══════════ 五 FLOW（ご依頼の流れ） ══════════
-     2026-09-30 再設計（組み手1）：「業種を選ぶ・デザインを選ぶ」が WORKS と2度出ていたので、ここでは 01 に1行でまとめ、WORKS へ戻す。
-     ご記入シート（#dl-sheet）はここ。WORKS で選んだ業種に追従する（site.js の dlFollow）。04 は料金の章にある事実（2週間ほど・前金なし）だけで書いた -->
-<section class="sec s-ground" id="flow" aria-labelledby="flow-h">
-  <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">五</span><h2 class="dai-t" id="flow-h">ご依頼の流れ</h2><span class="dai-l" aria-hidden="true">Flow</span></header>
-    <!-- 2026-10-01 みつさん「レイアウトのバランスが悪い」で組み直した。4列の 番号／所要／題／本文／釦 の段を列をまたいでそろえる（subgrid）。
-         釦は3つとも同じ形。記入例の説明は列の下に全幅の注記として置く。文面は変えていない。#dl-sheet と .dl-n は site.js の dlFollow が使う -->
-    <ol class="fx">
-      <li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><p class="fx-t">所要<b>約<span class="nw nk">10分</span></b></p><h3>見本から、業種とデザインを選ぶ</h3>
-        <div class="fx-p"><p>淡・玄・雅・粋・理の<span class="nw nk">5案</span>から1つ。札を押すと見本の窓に映り、その場で下まで見<span class="nw nk">られます。</span></p></div>
-        <p class="fx-a"><a class="fx-btn" href="#works-pick">見本を見る <span aria-hidden="true">→</span></a></p></li>
-      <li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><p class="fx-t">所要<b>約<span class="nw nk">15分</span>＋<span class="nw nk">写真えらび</span></b></p><h3><span class="nw nk">ご記入シート</span>に記入する</h3>
-        <div class="fx-p"><p class="fx-s">エクセル<span class="nw nk">1枚</span></p><p>業種を選ぶと記入例が出ます。書いて、写真を<span class="nw nk">添えて</span><span class="nw nk">送るだけ。</span></p></div>
-        <p class="fx-a"><a class="fx-btn" id="dl-sheet" href="assets/%E3%81%94%E8%A8%98%E5%85%A5%E3%82%B7%E3%83%BC%E3%83%88.xlsx" download="ご記入シート.xlsx"><span aria-hidden="true">↓</span><span class="dl-n"><span class="nw nk">ご記入シート</span>.xlsx</span></a></p></li>
-      <li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><p class="fx-t">所要<b>すぐ</b></p><h3>書けたシートを送る</h3>
-        <div class="fx-p"><p class="fx-s">メールに添付するだけ</p><p>書けたら、写真といっしょに info@morikosha.com<wbr> へ<span class="nw">送ってください。</span>件名は何でも<span class="nw nk">構いません</span>。<span class="nw nk">2営業日</span>以内のご返信を心がけ<span class="nw nk">ています。</span></p></div>
-        <p class="fx-a"><a class="fx-btn" href="mailto:info@morikosha.com">メールを書く <span aria-hidden="true">→</span></a></p></li>
-      <li class="fx-i"><p class="fx-n" aria-hidden="true">04</p><p class="fx-t">所要<b><span class="nw nk">2週間</span>ほど</b></p><h3>完成品をご覧いただく</h3>
-        <div class="fx-p"><p><span class="nw nk">ご記入シート</span>と写真をいただいてから、<span class="nw nk">2週間</span>ほどで制作いたします。前金はいただかず、お支払いは完成品をご覧にな<span class="nw nk">ってから。</span></p></div>
-        <p class="fx-a" aria-hidden="true"></p></li>
-    </ol>
-    <div class="fx-note">
-      <h4>御社の業種の記入例が、最初から入っています</h4>
-      <p>上で選んだ業種に合わせたシートが開きます。<span class="nw nk">そのまま</span>お使いいただいても、<span class="nw nk">書き換え</span>ていただいても<span class="nw nk">構いません</span>。<span class="nw nk">【必須】</span>以外は空欄で<span class="nw nk">構いません</span>。空欄の項目は掲載<span class="nw nk">しません。</span></p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ PROFILE（参考サイトの COMPANY の形） ══════════
-     2026-10-01 修正役V：左の段は 絵・名前・経歴と資格（開閉 .pf-cv。PC は開いたまま、900px 以下は閉じて始まる）、右の段は 屋号の表・本文・畳んだ3つ。
-     左右の高さを釣り合わせる（絵の下に 1,000px 近い空白ができていた）。文面は1字も変えていない。
-     第3周：松林図の帯を外した。方針第2版（A1）：代表の絵は柴田是真の銀地の秋草（メトロポリタン美術館 CC0）。白の地で開く -->
-<section class="sec s-face" id="profile" aria-labelledby="profile-h">
-  <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">六</span><h2 class="dai-t" id="profile-h">代表プロフィール</h2><span class="dai-l" aria-hidden="true">Profile</span></header>
-    <div class="pf">
-      <div class="pf-l">
-        <figure class="ph"><img src="assets/site/daihyo.jpg" width="790" height="1010" alt="代表 上原光瑛。黒いスーツに腕を組み、木々の緑を背に立つ" loading="lazy" decoding="async" style="object-position:50% 30%"></figure>
-        <p class="pf-name"><b>上原 光瑛</b><small><span class="nw"><span class="nw nk">杜工舎</span> 代表</span><span class="pf-sep">　／　</span><span class="nw">1級土木施工管理技士補</span></small></p>
-        <details class="pf-cv">
-          <summary><h3><span class="ttl">経歴・資格</span></h3><span class="fold-i" aria-hidden="true"></span></summary>
-        <div class="tbl">
-      <h3>経歴</h3>
-      <dl>
-        <div><dt><span class="yr">2018</span>年</dt><dd>埼玉大学 工学部 <span class="nw nk">建設工学科 卒業</span></dd></div>
-        <div><dt><span class="yr">2018</span>年</dt><dd>埼玉県庁 入庁（<span class="nw nk">土木技術職</span>）<small>公園の整備、道路・河川の工事監督と維持管理、令和元年東日本台風の災害復旧に従事</small></dd></div>
-        <div><dt><span class="yr">2024</span>年度</dt><dd>担当した地すべり復旧工事が <span class="nw nk">全建賞</span>（災害枠・<span class="nw nk">都市部門</span>）を<span class="nw nk">受賞</span><span class="nw">（令和<span class="nw nk">6年度</span>）</span></dd></div>
-        <div><dt><span class="yr">2026</span>年</dt><dd>埼玉県庁 退職（<span class="nw nk">8年</span>間勤務）</dd></div>
-        <div><dt><span class="yr">2026</span>年</dt><dd>農業法人 入社（在籍中）</dd></div>
-        <div><dt><span class="yr">2026</span>年</dt><dd><span class="nw nk">杜工舎</span> 開業（さいたま市）</dd></div>
-      </dl>
-    </div>
-        <div class="tbl">
-      <h3>資格・講習</h3>
-      <div>
-        <ul>
-          <li>1級土木施工管理技士補<small>1級土木施工管理技術検定 第一次検定 合格</small></li>
-          <li>準中型自動車免許<small>5t限定</small></li>
-          <li>刈払機取扱作業者<small>安全衛生教育 修了</small></li>
-          <li>チェーンソーによる伐木等の業務<small>特別教育 修了</small></li>
-        </ul>
-        <p class="note">1級土木施工管理技士の第二次検定、ビオトープ管理士2級（計画部門）、土壌医検定2級などの受験を続けています。現場の判断材料を増やすためで、資格そのものを売りにはして<span class="nw nk">いません。</span></p>
-      </div>
-    </div>
-        </details>
-      </div>
-      <div class="pf-r">
-        <div class="info">
-        <dl>
-          <div><dt>屋号</dt><dd><span class="nw nk">杜工舎</span>（もりこうしゃ）</dd></div>
-          <div><dt>代表</dt><dd>上原 光瑛</dd></div>
-          <div><dt>資格</dt><dd>1級土木施工管理技士補</dd></div>
-          <div><dt>E-mail</dt><dd>info@morikosha.com</dd></div>
-          <div><dt>所在地</dt><dd><span class="nw">埼玉県</span><span class="nw">さいたま市大宮区</span><span class="nw nk">高鼻町３丁目</span></dd></div>
-        </dl>
-      </div>
-        <div class="pf-body">
-        <p><span class="nw nk">2018年</span>3月に埼玉大学工学部建設工学科を卒業し、同年4月から<span class="nw nk">8年</span>間、<span class="strong">埼玉県庁の<span class="nw nk">土木技術職</span></span>として、道路・河川・斜面・公園といった社会インフラの工事監督と維持管理、災害復旧に携わ<span class="nw nk">りました。</span></p>
-        <p>仕事は、設計の照査から積算、入札後の現場監督、完成検査まで。担当した工事のひとつに、<span class="strong">令和元年東日本台風</span>で崩れた斜面の地すべり復旧があります。現場の担当として工事を進め、この工事は<span class="strong">令和<span class="nw nk">6年度</span> <span class="nw nk">全建賞</span>（災害枠・<span class="nw nk">都市部門</span>）</span>に選ばれました。発注する側に<span class="nw nk">8年</span>いたので、工事がどう進み、書類とお金のどこで手が止まるかを、体で知っ<span class="nw nk">ています。</span></p>
-        <p><span class="nw nk">2026年</span>3月に県庁を退職し、いまは農業法人に籍を置いて畑に出ています。建設の現場でも、農業の現場でも、同じ言葉を聞きました。「人が来ない」「いい仕事をしているのに、外から見えない」。仕事の中身は確かなのに、それを外から確かめる手立てがない ── 足りないのは腕ではなく、<span class="strong">伝わる形</span>だと考えるようにな<span class="nw nk">りました。</span></p>
-      </div>
-        <details class="tbl tbl-fold">
-      <summary><h3><span class="ttl"><span class="nw nk">杜工舎</span>をはじめた想い</span></h3><span class="fold-i" aria-hidden="true"></span></summary>
-      <div class="pf-body">
-        <p>県庁で<span class="nw nk">8年</span>間、工事を発注し、監督する側にいました。現場で顔を合わせた会社の多くが、若い人が入ってこないという同じ悩みを抱えて<span class="nw nk">いました。</span></p>
-        <p>いま籍を置いている農業も、造園の現場も同じです。人手が足りない。募集をかけても来ない。その現実を、身近で感じ<span class="nw nk">ています。</span></p>
-        <p>仕事や商品・サービスを探している人に届く入口をつくり、社会に喜びが増えることを目指して<span class="nw nk">杜工舎</span>を開業<span class="nw nk">しました。</span></p>
-      </div>
-    </details>
-    <details class="tbl tbl-fold">
-      <summary><h3><span class="ttl">仕事の進め方</span></h3><span class="fold-i" aria-hidden="true"></span></summary>
-      <div>
-        <ol class="ways">
-          <li><h4>事実だけを載せます</h4><p>御社からいただいた情報と、公表されている資料だけで組みます。埋まらない項目は、想像で埋めずに載<span class="nw nk">せません。</span></p></li>
-          <li><h4>分かることと、分からないことを分けます</h4><p>「必ず」「保証します」とは書きません。数字を出すときは、出どころと時点をそばに<span class="nw nk">書きます。</span></p></li>
-          <li><h4>相手の言葉で書きます</h4><p>専門用語を並べず、やることの順番で書きます。読む人は、その業界の外にいる人だ<span class="nw nk">からです。</span></p></li>
-        </ol>
-        <p class="note">値引き、紹介料、補助金を前提にしたご提案はしていません。価格は誰に対しても<span class="nw nk">同じです。</span></p>
-      </div>
-    </details>
-    <details class="tbl tbl-fold">
-      <summary><h3><span class="ttl">いま、つくっているもの</span></h3><span class="fold-i" aria-hidden="true"></span></summary>
-      <div class="labs">
-        <div><h4>覚える<span class="lb" aria-hidden="true">Learn</span></h4><p>資格試験の出題を整理した、練習用のアプリをつくっ<span class="nw nk">ています。</span></p><span class="soon">準備中</span></div>
-        <div><h4>見通す<span class="lb" aria-hidden="true">Foresee</span></h4><p>地図と気象・市場のデータから、これからの傾向を見る画面をつくっ<span class="nw nk">ています。</span></p><span class="soon">準備中</span></div>
-      </div>
-    </details>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ Q&A ══════════ -->
-<section class="sec s-ground sp-night-next" id="faq" aria-labelledby="faq-h">
-  <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">七</span><h2 class="dai-t" id="faq-h">よくあるご質問</h2><span class="dai-l" aria-hidden="true">Q&amp;A</span></header>
-    <div class="faq-kanze" aria-hidden="true"><canvas class="art-layer" data-art="kanze" data-paper data-vert aria-hidden="true"></canvas></div>
-    <div class="qa">
-      <details><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">写真がありません。それでも<span class="nw nk">作れます</span>か？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p><span class="nw nk">作れます</span>。スマートフォンで撮ったもので十分です。現場の様子、重機、完成した構造物、事務所や社屋。このあたりが5〜<span class="nw nk">10枚</span>あれば形になります。きれいに撮る必要はありません。むしろ、実際の現場の写真のほうが伝<span class="nw nk">わります。</span></p><p>ご用意が難しい部分は、サンプルで使っている写真（商用利用できるフリー素材）を<span class="nw nk">そのまま使えます</span>。</p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">文章が苦手です。</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p><span class="nw nk">ご記入シート</span>で業種をお選びいただくと、その業種のサンプルページで実際に使っている文章が、記入欄の右側に表示されます。それを参考に、御社のことに<span class="nw nk">書き換え</span>てご記入ください。各項目には記入のワンポイントアドバイスを<span class="nw nk">添えて</span>います。空欄のままご返送いただいた項目は掲載いた<span class="nw nk">しません。</span></p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">打ち合わせなしで、本当に<span class="nw nk">できます</span>か？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>はい。<span class="nw nk">ご記入シート</span>と写真だけで作れる設計にしています。「何度も訪問してご要望をうかがう」という進め方をしていない、という意味ですので、<span class="nw nk">メールで</span>のご質問はいつでも<span class="nw nk">歓迎です。</span></p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q4</span><span class="qt">毎月の費用はかかりますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>ホームページ制作について、当方にお支払いいただく月々の費用はありません。制作費のお支払いで<span class="nw nk">完了です。</span></p><p>公開後にかかるのは、<span class="nw nk">御社名義</span>でご契約いただくサーバーとドメインの<span class="nw nk">利用料</span>だけです（あわせて年8,000〜20,000円ほど）。これは御社から各社へ直接お支払いいただくもので、当方が受け取るものではあ<span class="nw nk">りません。</span></p><p>文言を直したい、記事を足したい、といった<span class="nw nk">ご相談</span>は、そのつどお受けします。使わなければ費用は発生<span class="nw nk">しません。</span></p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q5</span><span class="qt">他社と同じデザインになりませんか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>同じ型を複数の会社さまにご提供しています。それが、この価格の理由です。ただし、写真・文章・会社情報はすべて御社のものに入れ替わり、配色も御社に合わせて無料で変えられますので、<span class="nw nk">並べて</span>見比べても同じサイトには見<span class="nw nk">えません。</span></p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q6</span><span class="qt">埼玉県外ですが、頼めますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>お受け<span class="nw nk">できます</span>。やり取りはメールとデータで完結しますので、全国どちらからでもご依頼<span class="nw nk">いただけ</span>ます。</p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q7</span><span class="qt">サンプルの文章は変えられますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>変えられます。レイアウトは<span class="nw nk">そのまま</span>に、文章はすべて御社の内容で<span class="nw nk">作ります。</span></p><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。その期間を過ぎたあとは、文章の修正・写真の入れ替えを<span class="nw nk">1回</span><span class="nw nk">20,000円（税込）</span>で<span class="nw nk">承ります。</span></p></div></details>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ CONTACT ══════════ -->
-<section class="char s-night" id="contact" aria-labelledby="contact-h">
-  <div class="contact byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">結</span><h2 class="dai-t" id="contact-h">お問い合わせ</h2><span class="dai-l" aria-hidden="true">Contact</span></header>
-    <div class="contact-in">
-      <p class="contact-lede">ご質問だけでも、<br><span class="nw nk">構いません</span>。</p>
-      <p>制作内容や、<span class="nw nk">写真・原稿</span>の準備について、<span class="nw nk">メールで</span><span class="nw"><span class="nw nk">ご相談</span><span class="nw nk">いただけ</span>ます。</span></p>
-      <p>お問い合わせには、会社名・業種・現在の<span class="nw">ホームページ</span>の有無をお書き添えください。<span class="nw nk">気になる</span>デザインがあれば、その名前も<span class="nw nk">添えて</span><span class="nw nk">いただけ</span>ます。</p>
-      <p class="kane"><span class="kn-u"><span class="nw nk"><span class="nw nk">1ページ</span></span></span><b><span class="kn-n">98,000</span>円<small class="kn-t">（税込）</small></b><small>前金なし・<span class="nw nk">2週間</span>ほど</small></p>
-      <div class="mail">
-        <p class="lb" aria-hidden="true">E-mail</p>
-        <a class="mail-a" href="mailto:info@morikosha.com">info@morikosha.com <span aria-hidden="true">↗</span></a>
-        <button class="copy" type="button" data-copy="info@morikosha.com">アドレスをコピー</button>
-        <small><span class="nw nk">2営業日</span>以内のご返信を心がけ<span class="nw nk">ています。</span><br>お電話を<span class="nw nk">ご希望の場合</span>は、その旨をお書き添え<span class="nw nk">ください。</span></small>
-      </div>
-      <div class="go">
-        <a class="ln" href="#works-pick">見本を見る</a>
-      </div>
-    </div>
-    <!-- 2026-10-01 追加の決定2（組み手2）：春の流れの屏風の絵をやめ、見本のスマホの画面3枚を、扇のように段をずらして並べる（hp_build.py の mihon_contact・mihon.css） -->
-    <figure class="contact-art contact-mihon"><span class="cm-row"><a class="dv dv-sp" style="--i:0" href="preview/kaitai-1.html" target="_blank" rel="noopener" aria-label="淡のデザインで作った解体の見本を新しいタブで開く"><span class="dv-sc"><img src="assets/site/sp-kaitai-1.jpg" width="540" height="1080" loading="lazy" decoding="async" alt=""></span></a><a class="dv dv-sp" style="--i:1" href="preview/sokuryo-4.html" target="_blank" rel="noopener" aria-label="粋のデザインで作った測量の見本を新しいタブで開く"><span class="dv-sc"><img src="assets/site/sp-sokuryo-4.jpg" width="540" height="1080" loading="lazy" decoding="async" alt=""></span></a><a class="dv dv-sp" style="--i:2" href="preview/denki-5.html" target="_blank" rel="noopener" aria-label="理のデザインで作った電気の見本を新しいタブで開く"><span class="dv-sc"><img src="assets/site/sp-denki-5.jpg" width="540" height="1080" loading="lazy" decoding="async" alt=""></span></a></span><figcaption class="dv-cap"><span class="dv-k">見本</span><span class="dv-t">解体・淡／測量・粋／電気・理</span></figcaption></figure>
-  </div>
-</section>
-
+<script>(function(){ /* 前のトップ（今の website.html）にあった印で来たら、その章へ送る（営業メールの #dl-sheet など） */
+var h=location.hash.slice(1),w=["about","why","works","works-pick","price","flow","faq","dl-sheet","service","erabot"];
+if(w.indexOf(h)>=0)location.replace("website.html#"+h);else if(h==="profile")location.replace("profile.html");else if(h==="contact")location.replace("contact.html");})();</script>
 </main>
 
 <footer>
@@ -2490,8 +2548,7 @@ html.hash-ld{scroll-behavior:auto;}
   <p class="copyright">Copyright © Morikosha. <span class="nw">All rights reserved.</span></p></div>
 </footer>
 
-<a class="tab" id="tab" href="#contact">お問い合わせ</a>
-<div class="mcta" id="mcta" inert aria-hidden="true"><a class="f f-hp" href="#price"><span>1ページ 98,000円（税込）</span><span>前金なし・2週間ほど</span></a><a class="b" href="#contact">お問い合わせ <span aria-hidden="true">→</span></a></div>
+<a class="tab" id="tab" href="contact.html">お問い合わせ</a>
 
 <script>
 (function(){
@@ -2527,7 +2584,7 @@ html.hash-ld{scroll-behavior:auto;}
   if('IntersectionObserver' in window){
     /* 2026-10-01 第8周L：本文の黒い「お問い合わせ →」（ABOUT の要点の帯の下など）が見えている間も追従バーを引っ込める（同じ釦が1画面に縦に2つ並んでいた） */
     /* 2026-10-01 修正役V f1：見本の窓（スマホの枠）が見えているあいだも引っ込める（375×667 で枠の下端が追従バーに隠れていた） */
-    var ends = [document.getElementById('contact'), document.querySelector('footer'), document.querySelector('.mado-dev')].concat([].slice.call(document.querySelectorAll('main a.box-ln[href="#contact"]'))).filter(Boolean), seen = new Set();
+    var ends = [document.getElementById('contact'), document.querySelector('footer'), document.querySelector('.mado-dev')].concat([].slice.call(document.querySelectorAll('main a.box-ln[href="contact.html"]'))).filter(Boolean), seen = new Set();
     var eo = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
       atContact = seen.size > 0; tabShow();
