@@ -2433,6 +2433,13 @@ ul.hk-trust a{color:var(--ink);}
 .hk-rep{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:-12px 0;text-underline-offset:4px;}
 
 
+/* 2026-10-28 みつさん「金額の数字だけ大きくて浮いている」：数字は見出し（34px）を上限にそろえ、本文とつり合わせる */
+.pr-main .pn{font-size:clamp(38px,3.2vw,46px)!important;line-height:1!important;}
+.pr-row .pn,.row .pn{font-size:28px!important;}
+.hx-p .kn-n{font-size:30px!important;}
+.keys .kn-n{font-size:30px!important;}
+.mn-band .kn-n,.mp-big-v .kn-n,.mp-big .kn-n{font-size:34px!important;line-height:1.1!important;}
+.pr-all td{font-family:var(--ff-en);font-size:21px;font-variant-numeric:lining-nums tabular-nums;letter-spacing:.02em;}
 /* 2026-10-28 ブラッシュアップ：別ページの章の中の上下の余白を、ホームページ作成のページの刻みにそろえる（詰まって見えた） */
 .pg-sub .sec:not(.hero){padding-bottom:clamp(140px,14vw,220px)!important;}
 .pg-sub .sec .byo>.keys{margin-top:72px!important;}
