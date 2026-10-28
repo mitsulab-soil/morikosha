@@ -2431,6 +2431,18 @@ ul.hk-trust a{color:var(--ink);}
 .hk-rep{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:-12px 0;text-underline-offset:4px;}
 
 
+/* 2026-10-28 ブラッシュアップ：別ページの章の中の上下の余白を、ホームページ作成のページの刻みにそろえる（詰まって見えた） */
+.pg-sub .sec:not(.hero){padding-bottom:clamp(140px,14vw,220px)!important;}
+.pg-sub .sec .byo>.keys{margin-top:72px!important;}
+.pg-sub .sec .byo>.go{margin-top:48px!important;}
+.pg-sub .sec .byo>.go+*{margin-top:clamp(80px,8vw,120px)!important;}
+.pg-sub .sec .byo>h3,.pg-sub .sec .byo>.an-pick{margin-top:clamp(88px,9vw,136px)!important;}
+.pg-sub .sec .byo>.an-pick+h3{margin-top:56px!important;}
+.pg-sub .sec .byo>h3+*{margin-top:28px!important;}
+.pg-sub .sec .byo>.hk-eff,.pg-sub .sec .byo>.hk-trust,.pg-sub .sec .byo>table{margin-top:56px!important;}
+.pg-sub .sec .byo>.mf-cap,.pg-sub .sec .byo>.an-pn,.pg-sub .sec .byo>.an-dots,.pg-sub .sec .byo>.an-swipe,.pg-sub .sec .byo>.an-nav{margin-top:20px!important;}
+/* 上部のタブを固定したので、左の縦書きの題がタブの下に潜らないように */
+.pg-sub .dai{top:calc(var(--hd) + 40px)!important;}
 /* 2026-10-28 みつさん：上部のタブはずっと固定（下へ送っても隠さない） */
 .hd.is-hidden{transform:none!important;}
 /* 2026-10-28 トップ・料金案内 */
@@ -2441,6 +2453,11 @@ ul.hk-trust a{color:var(--ink);}
 .tp-g .tp-s{display:block;margin-top:4px;font-size:15px;color:var(--ink-2);line-height:1.8;}
 .tp-g .tp-p{display:block;margin-top:6px;font-size:16px;}
 .tp-g a:hover img{opacity:.85;}
+.tp-v{grid-column:1 / -1;margin:56px 0 0;border-top:1px solid var(--ink);}
+.tp-v>div{display:grid;grid-template-columns:12em 1fr;gap:8px 32px;padding:22px 0;border-bottom:.5px solid var(--line-2);}
+.tp-v dt{font-size:15px;letter-spacing:.14em;color:var(--gold);}
+.tp-v dd{margin:0;font-size:19px;line-height:1.8;letter-spacing:.04em;}
+@media (max-width:700px){.tp-v>div{grid-template-columns:1fr;}}
 .tp-h{grid-column:1 / -1;margin:56px 0 0;padding-bottom:12px;border-bottom:1px solid var(--ink);font-size:22px;font-weight:500;letter-spacing:.12em;}
 .tp-g.tp-4{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:28px;}
 @media (max-width:1100px){.tp-g.tp-4{grid-template-columns:1fr 1fr;}}
@@ -2460,11 +2477,13 @@ ul.hk-trust a{color:var(--ink);}
 body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/site/washi.svg)!important;background-size:720px 720px!important;}
 .sec.s-face,.s-face{background-position:311px 173px!important;}
 @media print{body,.s-ground,.s-face{background-image:none!important;}}
-.hero-credit{position:absolute;right:clamp(12px,2vw,28px);bottom:clamp(10px,1.6vw,20px);z-index:6;margin:0;padding:3px 10px;font-size:12px;letter-spacing:.08em;color:#1E1F1D;background:rgba(251,250,246,.72);pointer-events:none;}
+.hero-plate .hp-c,#hero-cap{display:none!important;}
+.hero-credit{margin:0;padding:10px clamp(16px,2.4vw,36px) 0;text-align:right;font-size:12px;letter-spacing:.06em;color:#1E1F1D;background:none;}
+.hero-credit[hidden]{display:block;visibility:hidden;}
 
 </style>
 </head>
-<body>
+<body class="pg-sub">
 <a class="skip" href="#main">本文へ移動</a>
 
 <header class="hd" id="hd">
@@ -2508,8 +2527,8 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
   <div class="dots" role="group" aria-label="扉の絵"><button type="button" aria-label="絵1：鈴木松年「老松図屏風」" aria-current="true"></button><span class="num" aria-hidden="true"><span id="hero-num">01</span><span class="num-t"> — 01</span></span></div>
   <p class="hero-plate"><span class="hp-p"><span class="hp-k">多言語メニュー作成</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">英語 48,000円（税込）・2週間ほど</span></span><span class="hp-mis"><a class="hp-mi" href="#menu">メニューの写真を送る <span aria-hidden="true">→</span></a><a class="hp-mi" href="price.html">料金案内 <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
   <div class="hero-deal"><p class="hx-p">英語 48,000円（税込）・2週間ほど</p><div class="hx-go"><a class="box-ln" href="#menu">メニューの写真を送る <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
-  <p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=c.parentNode.querySelector(".hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 </section>
+<p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=document.querySelector(".hero .hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 <section class="sec s-ground" id="menu" aria-labelledby="menu-h">
   <div class="byo">
     <div class="dai sec-h" aria-hidden="true"><span class="dai-n">一</span><span class="dai-t">多言語メニュー作成</span><span class="dai-l">Menu</span></div>
