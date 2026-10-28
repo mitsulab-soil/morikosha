@@ -2052,7 +2052,7 @@ html.hash-ld{scroll-behavior:auto;}
 @media (max-width:620px){.omoi-d,.omoi-m{word-break:normal;line-break:strict;text-wrap:pretty;}}
 
 /* 四 料金：左の面の説明は約26字の行長で自然に流す（短い行がばらばらに切れていた）。公開設定の代行の（ご希望の方のみ）は名目の下に小さく送り、
-   金額を1行目に残す（1280 で 50,000円だけが下の行に落ちていた）。右の面は項目を上から等間隔に並べ、無償の注記を面の下端に寄せる */
+   金額を1行目に残す（1280 で 48,000円だけが下の行に落ちていた）。右の面は項目を上から等間隔に並べ、無償の注記を面の下端に寄せる */
 .pr-main p{max-width:26em;}
 .pr p{text-wrap:wrap;}
 .pr-make .pr-row h4 .nw{display:block;margin-top:2px;font-size:var(--f1);font-weight:400;letter-spacing:.1em;color:var(--ink-2);}
@@ -2454,6 +2454,7 @@ ul.hk-trust a{color:var(--ink);}
 body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/site/washi.svg)!important;background-size:720px 720px!important;}
 .sec.s-face,.s-face{background-position:311px 173px!important;}
 @media print{body,.s-ground,.s-face{background-image:none!important;}}
+.hero-credit{position:absolute;right:clamp(12px,2vw,28px);bottom:clamp(10px,1.6vw,20px);z-index:6;margin:0;padding:3px 10px;font-size:12px;letter-spacing:.08em;color:#1E1F1D;background:rgba(251,250,246,.72);pointer-events:none;}
 
 </style>
 </head>
@@ -2505,6 +2506,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
   <p class="hero-plate"><span class="hp-p"><span class="hp-k">会社のホームページ制作</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v"><span class="nw"><span class="tcy">1</span>ページ <span class="hp-n">98,000</span>円<span class="hp-ty">（税込）</span></span><span class="hp-dot">・</span><span class="nw"><span class="tcy">2</span>週間ほど</span></span></span><span class="hp-mis"><a class="hp-mi" href="#works-pick">見本を見る <span aria-hidden="true">→</span></a><a class="hp-mi" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
   <!-- 2026-10-01 修正役V（第2周）：PC の値段と動線は横組みで読ませる（縦の札は題として残す）。スマホ・タブレットは上の横組みの札がこの役 -->
   <div class="hero-deal"><p class="hx-p"><span class="kn-u"><span class="nw nk"><span class="nw nk">1ページ</span></span></span><span class="kn-n">98,000</span>円<span class="kn-t">（税込）</span><span class="hx-s" aria-hidden="true"></span><span class="nw"><span class="nw nk">2週間</span>ほど</span></p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="#works-pick">見本を見る</a></div></div>
+  <p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=c.parentNode.querySelector(".hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 </section>
 
 <!-- ══════════ 一 ABOUT（#service はここへの受け口） ══════════
@@ -2611,12 +2613,12 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
       <div class="pr-face pr-make">
         <h3 class="pr-h">ホームページをつくるとき</h3>
         <div class="pr-main"><h4>ホームページ作成</h4><span class="p"><span class="pn">98,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p><span class="nw nk"><span class="nw nk">1ページ</span></span>構成・<span class="nw nk">スマートフォン対応</span>。HTMLデータ一式を<span class="nw nk">お渡し</span>します。<span class="nw nk">買い切り</span>で、月々いただくものはあ<span class="nw nk">りません。</span></p></div>
-        <div class="pr-row"><h4>公開設定の代行<span class="nw">（ご希望の方のみ）</span></h4><span class="p"><span class="pn">50,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>インターネット上に公開するところまで代行します。ご自身でできる場合は要りません。中身は下にご説<span class="nw nk">明します。</span></p></div>
+        <div class="pr-row"><h4>公開設定の代行<span class="nw">（ご希望の方のみ）</span></h4><span class="p"><span class="pn">48,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>インターネット上に公開するところまで代行します。ご自身でできる場合は要りません。中身は下にご説<span class="nw nk">明します。</span></p></div>
       </div>
       <div class="pr-face pr-fix">
         <h3 class="pr-h">あとから直すとき</h3>
-        <div class="pr-row"><h4>文章の修正</h4><span class="p"><span class="pu"><span class="nw nk">1回</span></span><span class="pn">20,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>レイアウトは<span class="nw nk">そのまま</span>に、文章を<span class="nw nk">差し替え</span>ます。</p></div>
-        <div class="pr-row"><h4>写真の入れ替え</h4><span class="p"><span class="pu"><span class="nw nk">1回</span></span><span class="pn">20,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>お送りいただいた写真に<span class="nw nk">差し替え</span>ます。</p></div>
+        <div class="pr-row"><h4>文章の修正</h4><span class="p"><span class="pu"><span class="nw nk">1回</span></span><span class="pn">18,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>レイアウトは<span class="nw nk">そのまま</span>に、文章を<span class="nw nk">差し替え</span>ます。</p></div>
+        <div class="pr-row"><h4>写真の入れ替え</h4><span class="p"><span class="pu"><span class="nw nk">1回</span></span><span class="pn">18,000</span><span class="py">円</span><span class="pt">（税込）</span></span><p>お送りいただいた写真に<span class="nw nk">差し替え</span>ます。</p></div>
         <p class="pr-fine"><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<b><span class="nw"><span class="nw nk">1回</span>に限り無償</span></b>で直します。上の料金は、その期間を過ぎたあとの<span class="nw nk">ものです。</span></p>
       </div>
     </div>
@@ -2632,7 +2634,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
       <summary><span class="df-t"><h3 class="vh3">公開設定の代行とは</h3><small class="df-s">中身と、ご自身でなさる場合の流れ<span class="nw">（11の手順）</span></small></span><span class="fold-i" aria-hidden="true"></span></summary>
       <div class="df-b">
         <p class="daiko-lead"><span class="nw nk">お渡し</span>するのはHTMLファイルです。ご自身でサーバーに置ける方は、この代行は必要ありません。「やり方が分からない」「触るのが不安」という場合に、インターネット上に公開するところまでをこちらで済<span class="nw nk">ませます。</span></p>
-        <p><b>この一式をこちらで済ませて <span class="nw"><span class="nw nk">50,000円（税込）</span></span>、<span class="nw nk">一度きり</span>です。</b>月々いただくものはありません。サーバーとドメインの<span class="nw nk">利用料</span>は御社のお支払いになります。目安はあわせて年8,000〜20,000円ほどです。<span class="nw nk">御社名義</span>の契約なので、ホームページは御社の手元に<span class="nw nk">残ります。</span></p>
+        <p><b>この一式をこちらで済ませて <span class="nw"><span class="nw nk">48,000円（税込）</span></span>、<span class="nw nk">一度きり</span>です。</b>月々いただくものはありません。サーバーとドメインの<span class="nw nk">利用料</span>は御社のお支払いになります。目安はあわせて年8,000〜20,000円ほどです。<span class="nw nk">御社名義</span>の契約なので、ホームページは御社の手元に<span class="nw nk">残ります。</span></p>
         <p>ご自身でなさる場合は、<span class="nw nk">おおよそ</span>この<span class="nw nk">流れです。</span></p>
             <ol class="flow" aria-label="公開までの流れ" style="margin-top:14px">
               <li>サーバー契約</li><li>独自ドメイン取得</li><li>Whois情報公開代行</li><li>ネームサーバー変更</li><li>DNS<span class="nw nk">反映</span>待ち（最大<span class="nw nk">72時間</span>）</li><li>SSL証明書の発行</li><li>FTP接続</li><li>public_html へ設置</li><li>.htaccess で www と <span class="nw nk">https を統一</span></li><li>Search <span class="nw nk">Console 登録</span></li><li>サイトマップ送信</li>
@@ -2690,7 +2692,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
       <details><summary><span class="qn" aria-hidden="true">Q4</span><span class="qt">毎月の費用はかかりますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>ホームページ制作について、当方にお支払いいただく月々の費用はありません。制作費のお支払いで<span class="nw nk">完了です。</span></p><p>公開後にかかるのは、<span class="nw nk">御社名義</span>でご契約いただくサーバーとドメインの<span class="nw nk">利用料</span>だけです（あわせて年8,000〜20,000円ほど）。これは御社から各社へ直接お支払いいただくもので、当方が受け取るものではあ<span class="nw nk">りません。</span></p><p>文言を直したい、記事を足したい、といった<span class="nw nk">ご相談</span>は、そのつどお受けします。使わなければ費用は発生<span class="nw nk">しません。</span></p></div></details>
       <details><summary><span class="qn" aria-hidden="true">Q5</span><span class="qt">他社と同じデザインになりませんか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>同じ型を複数の会社さまにご提供しています。それが、この価格の理由です。ただし、写真・文章・会社情報はすべて御社のものに入れ替わり、配色も御社に合わせて無料で変えられますので、<span class="nw nk">並べて</span>見比べても同じサイトには見<span class="nw nk">えません。</span></p></div></details>
       <details><summary><span class="qn" aria-hidden="true">Q6</span><span class="qt">埼玉県外ですが、頼めますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>お受け<span class="nw nk">できます</span>。やり取りはメールとデータで完結しますので、全国どちらからでもご依頼<span class="nw nk">いただけ</span>ます。</p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q7</span><span class="qt">サンプルの文章は変えられますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>変えられます。レイアウトは<span class="nw nk">そのまま</span>に、文章はすべて御社の内容で<span class="nw nk">作ります。</span></p><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。その期間を過ぎたあとは、文章の修正・写真の入れ替えを<span class="nw nk">1回</span><span class="nw nk">20,000円（税込）</span>で<span class="nw nk">承ります。</span></p></div></details>
+      <details><summary><span class="qn" aria-hidden="true">Q7</span><span class="qt">サンプルの文章は変えられますか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>変えられます。レイアウトは<span class="nw nk">そのまま</span>に、文章はすべて御社の内容で<span class="nw nk">作ります。</span></p><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。その期間を過ぎたあとは、文章の修正・写真の入れ替えを<span class="nw nk">1回</span><span class="nw nk">18,000円（税込）</span>で<span class="nw nk">承ります。</span></p></div></details>
     </div>
   </div>
 </section>
