@@ -2513,6 +2513,22 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
 .hero-credit{margin:0;padding:10px clamp(16px,2.4vw,36px) 0;text-align:right;font-size:12px;letter-spacing:.06em;color:#1E1F1D;background:none;}
 .hero-credit[hidden]{display:block;visibility:hidden;}
 
+
+/* 2026-10-28 言語のタブ（日本語・English・한국어） */
+.lang{display:flex;align-items:center;margin-left:auto;margin-right:clamp(12px,1.6vw,28px);border:.5px solid var(--line-2);font-size:13px;letter-spacing:.04em;white-space:nowrap;}
+.hd .nav+.lang{margin-left:clamp(12px,1.6vw,28px);margin-right:0;}
+.lang a{display:block;padding:6px 10px;color:var(--ink);text-decoration:none;line-height:1.2;}
+.lang a+a{border-left:.5px solid var(--line-2);}
+.lang a[aria-current]{background:var(--ink);color:#F3F1EB;}
+@media (max-width:900px){.hd .nav+.lang{margin-left:auto;margin-right:10px;}.lang a{padding:6px 8px;font-size:12px;}}
+/* トップの扉：小さな英語の一行 */
+.pg-top .hero-deal .hx-e{margin:14px 0 0;font-family:var(--ff-en);font-size:clamp(13px,1.05vw,16px);letter-spacing:.08em;color:#E6DDC8;opacity:.9;}
+/* ホームページ作成の扉の札：一行のコンセプトと、中身の要点 */
+.hero-deal .hx-c{margin:0 0 12px;font-family:var(--ff-ja);font-size:clamp(17px,1.4vw,21px);font-weight:500;letter-spacing:.1em;line-height:1.6;}
+.hero-deal .hx-d{margin:12px 0 0;padding-top:10px;border-top:.5px solid var(--gold);font-size:14px;letter-spacing:.06em;line-height:1.8;color:var(--ink-2);}
+/* 英語・韓国語のページ */
+.i18n .tp-v dd small{display:block;font-size:15px;color:var(--ink-2);}
+.i18n .ja-h{word-break:keep-all;}
 </style>
 </head>
 <body>
@@ -2531,6 +2547,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
     <a href="price.html"><span lang="en">Price</span><span class="nj">料金案内</span></a>
     <a href="contact.html"><span lang="en">Contact</span><span class="nj">お問い合わせ</span></a>
   </nav>
+  <div class="lang" aria-label="言語 / Language"><a href="index.html" hreflang="ja" lang="ja" aria-current="true">日本語</a><a href="en.html" hreflang="en" lang="en">English</a><a href="ko.html" hreflang="ko" lang="ko">한국어</a></div>
   <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="メニューを開く"><i></i><i></i><i></i></button>
 </header>
 
@@ -2562,7 +2579,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
   <span class="scroll" aria-hidden="true"><span>scroll</span></span>
   <p class="hero-plate"><span class="hp-p"><span class="hp-k">会社のホームページ制作</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v"><span class="nw"><span class="tcy">1</span>ページ <span class="hp-n">98,000</span>円<span class="hp-ty">（税込）</span></span><span class="hp-dot">・</span><span class="nw"><span class="tcy">2</span>週間ほど</span></span></span><span class="hp-mis"><a class="hp-mi" href="#works-pick">見本を見る <span aria-hidden="true">→</span></a><a class="hp-mi" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
   <!-- 2026-10-01 修正役V（第2周）：PC の値段と動線は横組みで読ませる（縦の札は題として残す）。スマホ・タブレットは上の横組みの札がこの役 -->
-  <div class="hero-deal"><p class="hx-p"><span class="kn-u"><span class="nw nk"><span class="nw nk">1ページ</span></span></span><span class="kn-n">98,000</span>円<span class="kn-t">（税込）</span><span class="hx-s" aria-hidden="true"></span><span class="nw"><span class="nw nk">2週間</span>ほど</span></p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="#works-pick">見本を見る</a></div></div>
+  <div class="hero-deal"><p class="hx-c">現場の仕事と強みを、1ページに凝縮する。</p><p class="hx-p"><span class="kn-u"><span class="nw nk"><span class="nw nk">1ページ</span></span></span><span class="kn-n">98,000</span>円<span class="kn-t">（税込）</span><span class="hx-s" aria-hidden="true"></span><span class="nw"><span class="nw nk">2週間</span>ほど</span></p><p class="hx-d">記入シートと写真を送るだけ・5つの案から選ぶ・前金なしの買い切り</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="#works-pick">見本を見る</a></div></div>
 </section>
 <p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=document.querySelector(".hero .hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 

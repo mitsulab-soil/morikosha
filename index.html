@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>杜工舎（もりこうしゃ）｜人の足りない会社の、もうひとりの裏方</title>
+<link rel="alternate" hreflang="ja" href="https://morikosha.com/">
+<link rel="alternate" hreflang="en" href="https://morikosha.com/en.html">
+<link rel="alternate" hreflang="ko" href="https://morikosha.com/ko.html">
 <meta name="description" content="さいたま市の小さな工房。会社のホームページ・会社案内・多言語メニュー・商品比較サイトを、記入シートと写真から2週間ほどでつくります。">
 <link rel="canonical" href="https://morikosha.com/">
 <meta name="theme-color" content="#F3F1EB">
@@ -2515,6 +2518,22 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
 .hero-credit{margin:0;padding:10px clamp(16px,2.4vw,36px) 0;text-align:right;font-size:12px;letter-spacing:.06em;color:#1E1F1D;background:none;}
 .hero-credit[hidden]{display:block;visibility:hidden;}
 
+
+/* 2026-10-28 言語のタブ（日本語・English・한국어） */
+.lang{display:flex;align-items:center;margin-left:auto;margin-right:clamp(12px,1.6vw,28px);border:.5px solid var(--line-2);font-size:13px;letter-spacing:.04em;white-space:nowrap;}
+.hd .nav+.lang{margin-left:clamp(12px,1.6vw,28px);margin-right:0;}
+.lang a{display:block;padding:6px 10px;color:var(--ink);text-decoration:none;line-height:1.2;}
+.lang a+a{border-left:.5px solid var(--line-2);}
+.lang a[aria-current]{background:var(--ink);color:#F3F1EB;}
+@media (max-width:900px){.hd .nav+.lang{margin-left:auto;margin-right:10px;}.lang a{padding:6px 8px;font-size:12px;}}
+/* トップの扉：小さな英語の一行 */
+.pg-top .hero-deal .hx-e{margin:14px 0 0;font-family:var(--ff-en);font-size:clamp(13px,1.05vw,16px);letter-spacing:.08em;color:#E6DDC8;opacity:.9;}
+/* ホームページ作成の扉の札：一行のコンセプトと、中身の要点 */
+.hero-deal .hx-c{margin:0 0 12px;font-family:var(--ff-ja);font-size:clamp(17px,1.4vw,21px);font-weight:500;letter-spacing:.1em;line-height:1.6;}
+.hero-deal .hx-d{margin:12px 0 0;padding-top:10px;border-top:.5px solid var(--gold);font-size:14px;letter-spacing:.06em;line-height:1.8;color:var(--ink-2);}
+/* 英語・韓国語のページ */
+.i18n .tp-v dd small{display:block;font-size:15px;color:var(--ink-2);}
+.i18n .ja-h{word-break:keep-all;}
 </style>
 </head>
 <body class="pg-sub pg-top">
@@ -2533,6 +2552,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
     <a href="price.html"><span lang="en">Price</span><span class="nj">料金案内</span></a>
     <a href="contact.html"><span lang="en">Contact</span><span class="nj">お問い合わせ</span></a>
   </nav>
+  <div class="lang" aria-label="言語 / Language"><a href="index.html" hreflang="ja" lang="ja" aria-current="true">日本語</a><a href="en.html" hreflang="en" lang="en">English</a><a href="ko.html" hreflang="ko" lang="ko">한국어</a></div>
   <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="メニューを開く"><i></i><i></i><i></i></button>
 </header>
 
@@ -2560,7 +2580,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
   <canvas class="art-layer" data-art="kasumi" aria-hidden="true"></canvas>
   <div class="dots" role="group" aria-label="扉の絵を選ぶ"><button type="button" aria-label="絵1：尾形光琳「八橋図屏風」" aria-current="true"></button><button type="button" aria-label="絵2：鈴木松年「老松図屏風」" aria-current="false"></button><button type="button" aria-label="絵3：酒井抱一「夏秋草図屏風」" aria-current="false"></button><span class="num" aria-hidden="true"><span id="hero-num">01</span><span class="num-t"> — 03</span></span></div>
   <p class="hero-plate"><span class="hp-p"><span class="hp-k">杜工舎</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">人の足りない会社の、<br>もうひとりの裏方。</span></span><span class="hp-mis"><a class="hp-mi" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hp-mi" href="price.html">料金案内 <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
-  <div class="hero-deal"><p class="hx-k">MORIKOSHA</p><p class="hx-p">人の足りない会社の、<br>もうひとりの裏方。</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
+  <div class="hero-deal"><p class="hx-k">MORIKOSHA</p><p class="hx-p">人の足りない会社の、<br>もうひとりの裏方。</p><p class="hx-e" lang="en">One more pair of hands behind the scenes — for companies short on people.</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
 </section>
 <p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=document.querySelector(".hero .hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 <section class="sec s-ground" id="about-all" aria-labelledby="top-h">
