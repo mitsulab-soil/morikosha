@@ -2432,6 +2432,12 @@ ul.hk-trust li::before{content:"";position:absolute;left:0;top:.9em;width:.6em;h
 ul.hk-trust a{color:var(--ink);}
 .hk-rep{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:-12px 0;text-underline-offset:4px;}
 
+/* 2026-10-30 多言語メニュー：5案の札 */
+.mn5{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(10px,1.6vw,22px);}
+.mn5 a{display:block}.mn5 img{display:block;width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2),0 12px 22px -16px rgba(30,31,29,.45);}
+.mn5 p{margin:10px 0 0;font-size:var(--f1);color:var(--ink-2);line-height:1.6;}.mn5 b{font-family:var(--ff-ja);font-size:var(--f4);font-weight:500;color:var(--ink);margin-right:.5em;}
+@media (max-width:620px){.mn5{grid-template-columns:repeat(3,minmax(0,1fr));}}
+
 
 /* 2026-10-28 上部のタブは最初から一番上・白い背景。開いたときに伸び縮みする動きを止める */
 .hd,.hd.is-solid{transition:none!important;transform:none!important;}
