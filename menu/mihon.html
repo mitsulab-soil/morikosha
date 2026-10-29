@@ -3,61 +3,178 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>多言語メニューの見本｜杜工舎</title>
-<meta name="description" content="杜工舎がつくる、日本語と英語のメニューの見本（架空のお店）。">
+<title>多言語メニューの見本・5つのデザイン｜杜工舎</title>
+<meta name="description" content="杜工舎がつくる、日本語と英語を並べたメニューの見本。5つのデザインから選べます（架空のお店）。">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="../assets/site/logo.svg">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@500;900&family=Oswald:wght@500;600&family=Zen+Maru+Gothic:wght@500;700&family=Jost:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap">
 <style>
-:root{--ink:#1E1F1D;--ink-2:#5B5C57;--gold:#A8823F;--ground:#F3F1EB;--line:rgba(30,31,29,.18);
-  --ja:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--en:"Cormorant Garamond","Times New Roman",serif;}
-*{box-sizing:border-box}
-html{background:#E6E3DA}
-body{margin:0;font-variant-numeric:lining-nums;color:var(--ink);font-family:var(--ja);-webkit-font-smoothing:antialiased}
-.bar{max-width:210mm;margin:0 auto;padding:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px}
-.bar a{color:inherit}
-.sheet{width:210mm;max-width:100%;min-height:297mm;margin:0 auto 32px;padding:22mm 20mm;background:var(--ground);box-shadow:0 1px 3px rgba(0,0,0,.12)}
-header{text-align:center;padding-bottom:7mm;border-bottom:1px solid var(--ink)}
-header .en{font-family:var(--en);font-size:34px;font-weight:500;letter-spacing:.08em;margin:0;line-height:1.1}
-header .ja{font-size:15px;letter-spacing:.3em;margin:6px 0 0;color:var(--ink-2)}
-header .sub{font-family:var(--ja);font-size:12px;letter-spacing:.15em;margin:4px 0 0;color:var(--ink-2)}
-h2{break-after:avoid;page-break-after:avoid;display:flex;justify-content:space-between;align-items:baseline;margin:7mm 0 1mm;padding-bottom:5px;border-bottom:1px solid var(--gold);font-family:var(--en);font-weight:500;font-size:22px;letter-spacing:.06em}
-h2 span{font-family:var(--ja);font-weight:400;font-size:13px;letter-spacing:.2em;color:var(--ink-2)}
-.it{display:grid;grid-template-columns:minmax(0,1fr) auto 4.2em;gap:0 14px;align-items:first baseline;break-inside:avoid;page-break-inside:avoid;padding:7px 0;border-bottom:.5px solid var(--line)}
-.it .e{font-family:var(--en);font-size:19px;font-weight:500;line-height:1.25}
-.it .e small{display:block;margin-top:2px;font-size:16px;font-weight:500;line-height:1.35;color:#2A2B27}
-.it .j{white-space:nowrap;font-size:14px;letter-spacing:0;color:var(--ink);text-align:right;line-height:1.5}
-.it .p{font-family:var(--en);font-size:19px;font-weight:500;text-align:right;font-variant-numeric:lining-nums tabular-nums}
-.note{margin-top:6mm;padding-top:3mm;border-top:.5px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.note [lang=en]{font-family:var(--en);font-size:17px;font-weight:500;margin:0}
-.note .nj{font-size:12px;color:var(--ink-2);margin:0}
-.legend{margin:3mm 0 0;text-align:center;padding:2mm 0;border-bottom:.5px solid var(--line);font-family:var(--en);font-size:15px;color:#33342F}
-.legend span{font-family:var(--ja);font-size:11.5px;color:var(--ink-2);margin-left:10px}
-body.big .it .e{font-size:19.5px}body.big .it .e small{font-size:16.5px}body.big .it .p{font-size:19.5px}body.big .it .j{font-size:16px}body.big h2{font-size:24px}body.big .it{padding:2px 0}body.big h2{margin-top:5mm}
-.mark{margin-top:5mm;text-align:right;font-size:11px;color:var(--ink-2)}
-@media (max-width:640px){.sheet{padding:28px 18px;min-height:0}.it{grid-template-columns:1fr auto}.it .j{grid-column:1;grid-row:2;text-align:left}.it .p{grid-row:1;grid-column:2}}
-@media print{html{background:none}.bar{display:none}.sheet{margin:0;box-shadow:none;width:auto;min-height:0;padding:10mm 15mm}.it{padding:5px 0}h2{margin-top:5mm}.note{margin-top:4mm}.mark{margin-top:3mm}@page{size:A4;margin:0}}
+*{box-sizing:border-box}html{background:#E6E3DA}body{margin:0;color:#1E1F1D;font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;-webkit-font-smoothing:antialiased}
+.bar{max-width:210mm;margin:0 auto;padding:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px}.bar a{color:inherit}
+.pick{max-width:210mm;margin:0 auto 18px;padding:0 16px}
+.pick h1{font-size:20px;font-weight:500;letter-spacing:.08em;margin:6px 0 4px}.pick p{margin:0 0 12px;font-size:13.5px;color:#5B5C57;line-height:1.8}
+.tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.tabs label{cursor:pointer;display:block;padding:10px 8px 9px;background:#F6F4EE;border:1px solid rgba(30,31,29,.18);text-align:center;line-height:1.35}
+.tabs label b{display:block;font-size:24px;font-weight:600}.tabs label span{display:block;font-size:11.5px;color:#5B5C57}
+input[name=d]{position:absolute;opacity:0;pointer-events:none}
+#d1:checked~.pick label[for=d1],#d2:checked~.pick label[for=d2],#d3:checked~.pick label[for=d3],#d4:checked~.pick label[for=d4],#d5:checked~.pick label[for=d5]{background:#1E1F1D;color:#F6F4EE;border-color:#1E1F1D}
+#d1:checked~.pick label[for=d1] span,#d2:checked~.pick label[for=d2] span,#d3:checked~.pick label[for=d3] span,#d4:checked~.pick label[for=d4] span,#d5:checked~.pick label[for=d5] span{color:#DAD6CB}
+input[name=d]:focus-visible~.pick .tabs{outline:2px solid #A8823F;outline-offset:3px}
+.aim{display:none;margin:12px 0 0;font-size:13.5px}
+#d1:checked~.pick .a1,#d2:checked~.pick .a2,#d3:checked~.pick .a3,#d4:checked~.pick .a4,#d5:checked~.pick .a5{display:block}
+.sheet{display:none;width:210mm;max-width:100%;min-height:297mm;margin:0 auto 32px;padding:18mm 18mm 14mm;box-shadow:0 1px 3px rgba(0,0,0,.12);position:relative}
+#d1:checked~.s1,#d2:checked~.s2,#d3:checked~.s3,#d4:checked~.s4,#d5:checked~.s5,body.solo .sheet{display:block}
+body.solo{background:none}body.solo .sheet{margin:0;box-shadow:none;width:210mm;min-height:297mm}
+.sheet header{text-align:center;padding-bottom:6mm;margin-bottom:2mm}
+.sheet .sj{margin:0;font-size:30px;letter-spacing:.14em;line-height:1.3}
+.sheet .se{margin:4px 0 0;font-size:19px;letter-spacing:.06em}
+.sheet .sm{margin:6px 0 0;font-size:11px;letter-spacing:.15em;opacity:.7}
+.sheet h2{margin:5mm 0 1mm;padding-bottom:4px;display:flex;align-items:baseline;gap:14px;break-after:avoid}
+.sheet h2 .hj{font-size:19px;font-weight:600;letter-spacing:.12em}.sheet h2 .he{font-size:15px;letter-spacing:.06em;opacity:.8}
+.it{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 14px;padding:4px 0 5px;break-inside:avoid}
+.it .j{font-size:17px;font-weight:600;line-height:1.45}
+.it .e{grid-column:1;font-size:15.5px;line-height:1.3;margin-top:1px}
+.it .e small{font-size:13px;opacity:.78;margin-left:.5em}
+.it .p{grid-column:2;grid-row:1 / span 2;align-self:center;font-size:18px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.note{margin-top:5mm;padding-top:3mm;font-size:12.5px;line-height:1.7}.note p{margin:0}
+.legend{margin:0 0 2mm;text-align:center;font-size:12px;line-height:1.6;opacity:.85}.legend p{margin:0}
+.mark{position:absolute;right:18mm;bottom:8mm;font-size:10px;opacity:.6}
+/* 1 藍：和紙・藍の罫・明朝 */
+.s1{padding-top:13mm}.s1 .it{padding:3px 0 4px}
+.s1{background:#F6F3EA;color:#1D2433;font-family:"Shippori Mincho",serif}
+.s1 header{border-bottom:1.5px solid #2B3F66}.s1 .se,.s1 .e,.s1 .he,.s1 .note .en,.s1 .legend .en{font-family:"Cormorant Garamond",serif;font-weight:600}
+.s1 .se{font-style:italic}.s1 h2{border-bottom:1px solid #2B3F66;color:#2B3F66}.s1 .it{border-bottom:.5px dotted rgba(43,63,102,.45)}
+.s1 .p{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:20px}.s1 .note{border-top:1px solid #2B3F66}
+/* 2 朱：生成り・朱と墨の太字 */
+.s2{background:#F3E9D6;color:#1B1512;font-family:"Zen Antique","Shippori Mincho",serif}
+.s2 header{background:#1B1512;color:#F3E9D6;margin:-18mm -18mm 3mm;padding:10mm 18mm 6mm}.s2 .sj{font-size:36px}
+.s2 .se,.s2 .e,.s2 .he,.s2 .p,.s2 .note .en,.s2 .legend .en{font-family:"Oswald",sans-serif;font-weight:500;letter-spacing:.02em}
+.s2 .se{color:#E2533A;text-transform:uppercase;letter-spacing:.2em;font-size:16px}
+.s2 h2{background:#C8371F;color:#FFF6EA;padding:5px 10px;border:0}.s2 h2 .hj{font-size:21px}
+.s2 .it{border-bottom:1px solid rgba(27,21,18,.25)}.s2 .j{font-size:19px;font-weight:400}.s2 .p{font-size:21px;color:#C8371F}
+.s2 .e small{font-family:"Jost",sans-serif}.s2 .note{border-top:3px double #C8371F}
+/* 3 燈：黒地・黄の灯り・太いゴシック */
+.s3{background:#16130F;color:#F2EBDD;font-family:"Zen Kaku Gothic New",sans-serif}
+.s3 .sj{font-weight:900;font-size:40px;color:#F5C33B;letter-spacing:.1em}
+.s3 .se,.s3 .e,.s3 .he,.s3 .p,.s3 .note .en,.s3 .legend .en{font-family:"Oswald",sans-serif}
+.s3 .se{letter-spacing:.3em;text-transform:uppercase;font-size:15px}
+.s3 header{border-bottom:4px solid #F5C33B}
+.s3 h2{color:#16130F;background:#F5C33B;padding:4px 10px}.s3 h2 .hj{font-weight:900;font-size:21px}
+.s3 .j{font-weight:900;font-size:19px}.s3 .it{border-bottom:1px solid rgba(245,195,59,.25)}
+.s3 .p{font-size:26px;font-weight:600;color:#F5C33B}.s3 .note{border-top:1px solid #F5C33B}
+/* 4 綿：生成り・若草・丸ゴシック */
+.s4{background:#FBF8F1;color:#3B3A33;font-family:"Zen Maru Gothic",sans-serif}
+.s4 .sj{font-weight:700;font-size:30px;color:#5E7A4E;letter-spacing:.2em}
+.s4 .se,.s4 .e,.s4 .he,.s4 .p,.s4 .note .en,.s4 .legend .en{font-family:"Jost",sans-serif;font-weight:400}
+.s4 .se{letter-spacing:.25em;font-size:14px;text-transform:uppercase}
+.s4 header::after{content:"";display:block;width:46px;height:2px;margin:12px auto 0;background:#8FA77E;border-radius:2px}
+.s4 h2{justify-content:center;flex-direction:column;align-items:center;gap:2px;border:0;margin-top:8mm}.s4 h2 .hj{font-weight:700;color:#5E7A4E}
+.s4 h2 .he{font-size:12px;letter-spacing:.3em;text-transform:uppercase}
+.s4 .it{background:#F2EEE2;border-radius:12px;padding:8px 14px;margin:6px 0}.s4 .j{font-weight:700}
+.s4 .p{font-weight:500}.s4 .note{text-align:center}.s4 .mark{right:auto;left:0;width:100%;text-align:center}
+/* 5 銀：紺地・銀の細線・洋の書体 */
+.s5{background:#17223A;color:#E9ECF2;font-family:"Shippori Mincho",serif}
+.s5::before{content:"";position:absolute;inset:7mm;border:1px solid #AEB6C4;pointer-events:none}
+.s5::after{content:"";position:absolute;inset:8.5mm;border:.5px solid rgba(174,182,196,.6);pointer-events:none}
+.s5 .se,.s5 .e,.s5 .he,.s5 .p,.s5 .note .en,.s5 .legend .en{font-family:"Playfair Display",serif}
+.s5 .sj{font-size:28px;letter-spacing:.3em}.s5 .se{font-style:italic;color:#C9CFDA}
+.s5 header{border-bottom:.5px solid #AEB6C4}
+.s5 h2{justify-content:center;gap:16px;border-bottom:.5px solid rgba(174,182,196,.6)}.s5 h2 .he{font-style:italic}
+.s5 .it{border-bottom:.5px solid rgba(174,182,196,.25)}.s5 .p{font-size:17px;color:#D8DDE6}.s5 .note{text-align:center}
+@media (max-width:640px){.tabs{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.tabs label{padding:8px 2px}.tabs label b{font-size:20px}.tabs label span{font-size:10.5px}
+ .sheet{padding:28px 18px 40px;min-height:0}.s2 header{margin:-28px -18px 16px;padding:28px 18px 18px}.s5::before{inset:6px}.s5::after{inset:9px}.mark{right:18px;bottom:12px}}
+@media print{html{background:none}.bar,.pick{display:none}.sheet{margin:0;box-shadow:none;width:210mm;min-height:297mm}@page{size:A4;margin:0}
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style>
 </head>
-
-<body class="big">
-<nav class="bar"><a href="../menu.html">← 杜工舎の多言語メニューへ戻る</a><a href="mihon.pdf" download>PDF で見る</a></nav>
-<main class="sheet"><header><p class="en" lang="en">Soba Restaurant Mori-no-An</p><p class="ja">そば処 もりの庵</p><p class="sub">Menu ・ 見本（架空のお店）</p></header><p class="legend" lang="en">Allergens / Vegetarian: please ask our staff.<span lang="ja">アレルギー・肉や魚の有無は、お店の人にお尋ねください</span></p>
-<h2><span lang="en" style="font:inherit;color:inherit;letter-spacing:inherit">Cold Soba</span><span>冷たいそば</span></h2>
-<div class="it"><span class="e" lang="en">Chilled Soba (Mori)<small>Chilled soba noodles with dipping sauce</small></span><span class="j">もりそば</span><span class="p">¥800</span></div>
-<div class="it"><span class="e" lang="en">Chilled Soba with Nori (Zaru)<small>Chilled soba noodles topped with nori seaweed</small></span><span class="j">ざるそば</span><span class="p">¥900</span></div>
-<div class="it"><span class="e" lang="en">Chilled Soba with Tempura (Ten Zaru)<small>Chilled soba noodles with shrimp and vegetable tempura</small></span><span class="j">天ざるそば</span><span class="p">¥1,500</span></div>
-<div class="it"><span class="e" lang="en">Chilled Soba with Grated Yam (Tororo)<small>Chilled soba noodles with grated yam</small></span><span class="j">とろろそば</span><span class="p">¥1,100</span></div>
-<h2><span lang="en" style="font:inherit;color:inherit;letter-spacing:inherit">Hot Soba</span><span>温かいそば</span></h2>
-<div class="it"><span class="e" lang="en">Hot Soba in Broth (Kake)<small>Soba noodles in hot broth</small></span><span class="j">かけそば</span><span class="p">¥800</span></div>
-<div class="it"><span class="e" lang="en">Hot Tempura Soba<small>Soba noodles in hot broth with shrimp tempura</small></span><span class="j">天ぷらそば</span><span class="p">¥1,400</span></div>
-<div class="it"><span class="e" lang="en">Hot Duck Soba (Kamo Nanban)<small>Soba noodles in hot broth with duck and green onion</small></span><span class="j">鴨南蛮</span><span class="p">¥1,600</span></div>
-<div class="it"><span class="e" lang="en">Hot Soba with Mountain Vegetables (Sansai)<small>Soba noodles in hot broth with wild mountain vegetables</small></span><span class="j">山菜そば</span><span class="p">¥1,100</span></div>
-<h2><span lang="en" style="font:inherit;color:inherit;letter-spacing:inherit">Side Dishes &amp; Drinks</span><span>一品・飲みもの</span></h2>
-<div class="it"><span class="e" lang="en">Vegetable Tempura Platter<small>Assorted seasonal vegetables</small></span><span class="j">野菜天ぷら盛り合わせ</span><span class="p">¥700</span></div>
-<div class="it"><span class="e" lang="en">Buckwheat Dumpling (Sobagaki)<small>Soft buckwheat dumpling</small></span><span class="j">そばがき</span><span class="p">¥650</span></div>
-<div class="it"><span class="e" lang="en">Bottled Beer</span><span class="j">瓶ビール</span><span class="p">¥650</span></div>
-<div class="it"><span class="e" lang="en">Sake (180 ml)</span><span class="j">日本酒（一合）</span><span class="p">¥700</span></div>
-<div class="note"><p lang="en">Large portion: +¥200 · All prices include tax.</p><p class="nj">大盛りは200円増し／価格はすべて税込です</p></div>
-<p class="mark">制作 杜工舎 morikosha.com</p>
-</main></body></html>
+<body>
+<input type="radio" name="d" id="d1" checked><input type="radio" name="d" id="d2"><input type="radio" name="d" id="d3"><input type="radio" name="d" id="d4"><input type="radio" name="d" id="d5">
+<nav class="bar"><a href="../menu.html">← 杜工舎の多言語メニューへ戻る</a><a href="mihon.pdf" download>PDF で見る（藍）</a></nav>
+<div class="pick"><h1>5つのデザインから選べます</h1><p>どれも、日本語の下に英語を並べます。お店の雰囲気に合う1つをお選びください。下の見本のお店は、すべて架空です。</p><div class="tabs" role="group" aria-label="デザインを選ぶ"><label for="d1"><b>藍</b><span>和食</span></label><label for="d2"><b>朱</b><span>居酒屋</span></label><label for="d3"><b>燈</b><span>ラーメン</span></label><label for="d4"><b>綿</b><span>カフェ</span></label><label for="d5"><b>銀</b><span>洋食</span></label></div><p class="aim a1"><b>藍（あい）</b>　白い和紙に藍の罫。品書きの落ち着きをそのまま英語にも。　向いているお店：和食・そば・定食</p><p class="aim a2"><b>朱（しゅ）</b>　生成りに朱と墨の太い字。にぎやかな店の勢いを残す。　向いているお店：居酒屋・焼き鳥・炉端</p><p class="aim a3"><b>燈（とう）</b>　黒地に黄の灯り。遠くからでも読める太い字と大きな値段。　向いているお店：ラーメン・中華・食堂</p><p class="aim a4"><b>綿（わた）</b>　生成りに若草色。丸い字で、やわらかく軽やかに。　向いているお店：カフェ・甘味・パン</p><p class="aim a5"><b>銀（ぎん）</b>　紺の地に銀の細線。品のある洋食店の一枚に。　向いているお店：洋食・ビストロ・ホテルの食堂</p></div>
+<main class="sheet s1" lang="ja">
+<header><p class="sj">そば処 もりの庵</p><p class="se" lang="en">Soba Restaurant Mori-no-An</p><p class="sm">お品書き ・ Menu</p></header>
+<div class="legend"><p>アレルギー・肉や魚の有無は、お店の人にお尋ねください</p><p class="en" lang="en">Allergens / vegetarian: please ask our staff.</p></div>
+<h2><span class="hj">冷たいそば</span><span class="he" lang="en">Cold Soba</span></h2>
+<div class="it"><span class="j">もりそば</span><span class="e" lang="en">Chilled Soba (Mori)<small>Chilled soba noodles with dipping sauce</small></span><span class="p">¥800</span></div>
+<div class="it"><span class="j">ざるそば</span><span class="e" lang="en">Chilled Soba with Nori (Zaru)<small>Topped with nori seaweed</small></span><span class="p">¥900</span></div>
+<div class="it"><span class="j">天ざるそば</span><span class="e" lang="en">Chilled Soba with Tempura<small>With shrimp and vegetable tempura</small></span><span class="p">¥1,500</span></div>
+<div class="it"><span class="j">とろろそば</span><span class="e" lang="en">Chilled Soba with Grated Yam<small>Topped with grated yam</small></span><span class="p">¥1,100</span></div>
+<h2><span class="hj">温かいそば</span><span class="he" lang="en">Hot Soba</span></h2>
+<div class="it"><span class="j">かけそば</span><span class="e" lang="en">Hot Soba in Broth (Kake)<small>Soba noodles in hot broth</small></span><span class="p">¥800</span></div>
+<div class="it"><span class="j">天ぷらそば</span><span class="e" lang="en">Hot Tempura Soba<small>In hot broth with shrimp tempura</small></span><span class="p">¥1,400</span></div>
+<div class="it"><span class="j">鴨南蛮</span><span class="e" lang="en">Hot Duck Soba (Kamo Nanban)<small>In hot broth with duck and green onion</small></span><span class="p">¥1,600</span></div>
+<div class="it"><span class="j">山菜そば</span><span class="e" lang="en">Hot Soba with Mountain Vegetables<small>With wild mountain vegetables</small></span><span class="p">¥1,100</span></div>
+<h2><span class="hj">一品・飲みもの</span><span class="he" lang="en">Sides &amp; Drinks</span></h2>
+<div class="it"><span class="j">野菜天ぷら盛り合わせ</span><span class="e" lang="en">Vegetable Tempura Platter<small>Assorted seasonal vegetables</small></span><span class="p">¥700</span></div>
+<div class="it"><span class="j">そばがき</span><span class="e" lang="en">Buckwheat Dumpling (Sobagaki)<small>Soft buckwheat dumpling</small></span><span class="p">¥650</span></div>
+<div class="it"><span class="j">瓶ビール</span><span class="e" lang="en">Bottled Beer</span><span class="p">¥650</span></div>
+<div class="it"><span class="j">日本酒（一合）</span><span class="e" lang="en">Sake (180 ml)</span><span class="p">¥700</span></div>
+<div class="note"><p>大盛りは200円増し／価格はすべて税込です</p><p class="en" lang="en">Large portion: +¥200 · All prices include tax.</p></div>
+<p class="mark">見本（架空のお店）・制作 杜工舎</p></main>
+<main class="sheet s2" lang="ja">
+<header><p class="sj">炉ばた ひのき屋</p><p class="se" lang="en">Robata Hinoki-ya</p><p class="sm">お品書き ・ Menu</p></header>
+<div class="legend"><p>アレルギー・肉や魚の有無は、お店の人にお尋ねください</p><p class="en" lang="en">Allergens / vegetarian: please ask our staff.</p></div>
+<h2><span class="hj">焼きもの</span><span class="he" lang="en">Grilled Skewers</span></h2>
+<div class="it"><span class="j">ねぎま（2本）</span><span class="e" lang="en">Chicken &amp; Leek Skewers (2)<small>Salt or sweet soy glaze</small></span><span class="p">¥480</span></div>
+<div class="it"><span class="j">つくね（2本）</span><span class="e" lang="en">Chicken Meatball Skewers (2)<small>With egg yolk dip</small></span><span class="p">¥520</span></div>
+<div class="it"><span class="j">厚揚げ焼き</span><span class="e" lang="en">Grilled Thick Tofu<small>With ginger and green onion</small></span><span class="p">¥450</span></div>
+<div class="it"><span class="j">ほっけ焼き</span><span class="e" lang="en">Grilled Atka Mackerel<small>Half fish, lightly salted</small></span><span class="p">¥880</span></div>
+<h2><span class="hj">おつまみ</span><span class="he" lang="en">Small Plates</span></h2>
+<div class="it"><span class="j">枝豆</span><span class="e" lang="en">Edamame<small>Salted green soybeans</small></span><span class="p">¥380</span></div>
+<div class="it"><span class="j">鶏の唐揚げ</span><span class="e" lang="en">Japanese Fried Chicken (Karaage)<small>With lemon</small></span><span class="p">¥680</span></div>
+<div class="it"><span class="j">だし巻き玉子</span><span class="e" lang="en">Rolled Omelette (Dashimaki)<small>Fluffy egg with dashi stock</small></span><span class="p">¥550</span></div>
+<h2><span class="hj">飲みもの</span><span class="he" lang="en">Drinks</span></h2>
+<div class="it"><span class="j">生ビール（中）</span><span class="e" lang="en">Draft Beer (Medium)</span><span class="p">¥600</span></div>
+<div class="it"><span class="j">レモンサワー</span><span class="e" lang="en">Lemon Sour<small>Shochu highball with lemon</small></span><span class="p">¥480</span></div>
+<div class="it"><span class="j">烏龍茶</span><span class="e" lang="en">Oolong Tea<small>Non-alcoholic</small></span><span class="p">¥300</span></div>
+<div class="note"><p>お通し 300円をいただきます／価格はすべて税込です</p><p class="en" lang="en">A small appetizer (¥300) is served to each guest. · All prices include tax.</p></div>
+<p class="mark">見本（架空のお店）・制作 杜工舎</p></main>
+<main class="sheet s3" lang="ja">
+<header><p class="sj">らーめん 灯火</p><p class="se" lang="en">Ramen Tomoshibi</p><p class="sm">お品書き ・ Menu</p></header>
+<div class="legend"><p>アレルギー・肉や魚の有無は、お店の人にお尋ねください</p><p class="en" lang="en">Allergens / vegetarian: please ask our staff.</p></div>
+<h2><span class="hj">らーめん</span><span class="he" lang="en">Ramen</span></h2>
+<div class="it"><span class="j">醤油らーめん</span><span class="e" lang="en">Shoyu Ramen<small>Soy sauce broth, chashu pork, bamboo shoots</small></span><span class="p">¥850</span></div>
+<div class="it"><span class="j">味噌らーめん</span><span class="e" lang="en">Miso Ramen<small>Rich miso broth with bean sprouts and corn</small></span><span class="p">¥950</span></div>
+<div class="it"><span class="j">塩らーめん</span><span class="e" lang="en">Shio Ramen<small>Light salt broth with chicken</small></span><span class="p">¥900</span></div>
+<div class="it"><span class="j">つけ麺</span><span class="e" lang="en">Tsukemen (Dipping Noodles)<small>Thick noodles with a rich dipping broth</small></span><span class="p">¥1,000</span></div>
+<h2><span class="hj">トッピング</span><span class="he" lang="en">Toppings</span></h2>
+<div class="it"><span class="j">味玉</span><span class="e" lang="en">Seasoned Soft-Boiled Egg</span><span class="p">¥150</span></div>
+<div class="it"><span class="j">チャーシュー増し</span><span class="e" lang="en">Extra Chashu Pork<small>3 slices</small></span><span class="p">¥300</span></div>
+<div class="it"><span class="j">のり</span><span class="e" lang="en">Nori Seaweed<small>5 sheets</small></span><span class="p">¥100</span></div>
+<h2><span class="hj">一品</span><span class="he" lang="en">Sides</span></h2>
+<div class="it"><span class="j">焼き餃子（6個）</span><span class="e" lang="en">Pan-Fried Gyoza (6)<small>Pork and cabbage dumplings</small></span><span class="p">¥450</span></div>
+<div class="it"><span class="j">半ライス</span><span class="e" lang="en">Small Rice</span><span class="p">¥150</span></div>
+<div class="note"><p>麺の大盛りは無料です／価格はすべて税込です</p><p class="en" lang="en">Large noodles at no extra charge. · All prices include tax.</p></div>
+<p class="mark">見本（架空のお店）・制作 杜工舎</p></main>
+<main class="sheet s4" lang="ja">
+<header><p class="sj">喫茶 こもれび</p><p class="se" lang="en">Komorebi Café</p><p class="sm">お品書き ・ Menu</p></header>
+<div class="legend"><p>アレルギー・肉や魚の有無は、お店の人にお尋ねください</p><p class="en" lang="en">Allergens / vegetarian: please ask our staff.</p></div>
+<h2><span class="hj">コーヒー・お茶</span><span class="he" lang="en">Coffee &amp; Tea</span></h2>
+<div class="it"><span class="j">ブレンドコーヒー</span><span class="e" lang="en">House Blend Coffee<small>Hot or iced</small></span><span class="p">¥500</span></div>
+<div class="it"><span class="j">カフェラテ</span><span class="e" lang="en">Café Latte<small>Hot or iced</small></span><span class="p">¥580</span></div>
+<div class="it"><span class="j">抹茶ラテ</span><span class="e" lang="en">Matcha Latte<small>Green tea with steamed milk</small></span><span class="p">¥620</span></div>
+<div class="it"><span class="j">ほうじ茶</span><span class="e" lang="en">Hojicha (Roasted Green Tea)</span><span class="p">¥480</span></div>
+<h2><span class="hj">ごはん</span><span class="he" lang="en">Light Meals</span></h2>
+<div class="it"><span class="j">たまごサンド</span><span class="e" lang="en">Egg Salad Sandwich<small>With a small salad</small></span><span class="p">¥750</span></div>
+<div class="it"><span class="j">ナポリタン</span><span class="e" lang="en">Napolitan Spaghetti<small>Japanese-style tomato ketchup pasta</small></span><span class="p">¥900</span></div>
+<h2><span class="hj">甘いもの</span><span class="he" lang="en">Sweets</span></h2>
+<div class="it"><span class="j">自家製プリン</span><span class="e" lang="en">Homemade Custard Pudding<small>Firm, old-fashioned style</small></span><span class="p">¥450</span></div>
+<div class="it"><span class="j">あんみつ</span><span class="e" lang="en">Anmitsu<small>Agar jelly, sweet bean paste and fruit</small></span><span class="p">¥650</span></div>
+<div class="note"><p>ケーキは日替わりです。お尋ねください／価格はすべて税込です</p><p class="en" lang="en">Ask us about today&#x27;s cake. · All prices include tax.</p></div>
+<p class="mark">見本（架空のお店）・制作 杜工舎</p></main>
+<main class="sheet s5" lang="ja">
+<header><p class="sj">洋食 あおば亭</p><p class="se" lang="en">Western Kitchen Aoba-tei</p><p class="sm">お品書き ・ Menu</p></header>
+<div class="legend"><p>アレルギー・肉や魚の有無は、お店の人にお尋ねください</p><p class="en" lang="en">Allergens / vegetarian: please ask our staff.</p></div>
+<h2><span class="hj">お料理</span><span class="he" lang="en">Main Dishes</span></h2>
+<div class="it"><span class="j">オムライス</span><span class="e" lang="en">Omurice<small>Ketchup rice wrapped in a soft omelette</small></span><span class="p">¥1,200</span></div>
+<div class="it"><span class="j">ハンバーグステーキ</span><span class="e" lang="en">Hamburg Steak<small>With demi-glace sauce</small></span><span class="p">¥1,450</span></div>
+<div class="it"><span class="j">海老フライ</span><span class="e" lang="en">Fried Prawns<small>With homemade tartar sauce</small></span><span class="p">¥1,600</span></div>
+<div class="it"><span class="j">ビーフシチュー</span><span class="e" lang="en">Beef Stew<small>Slow-cooked in red wine</small></span><span class="p">¥1,980</span></div>
+<h2><span class="hj">セット</span><span class="he" lang="en">Set</span></h2>
+<div class="it"><span class="j">ライスとスープのセット</span><span class="e" lang="en">Rice &amp; Soup Set<small>Add to any main dish</small></span><span class="p">¥400</span></div>
+<h2><span class="hj">お飲みもの</span><span class="he" lang="en">Drinks</span></h2>
+<div class="it"><span class="j">グラスワイン（赤・白）</span><span class="e" lang="en">Glass of Wine (Red / White)</span><span class="p">¥700</span></div>
+<div class="it"><span class="j">自家製レモネード</span><span class="e" lang="en">Homemade Lemonade</span><span class="p">¥550</span></div>
+<div class="note"><p>価格はすべて税込です</p><p class="en" lang="en">All prices include tax.</p></div>
+<p class="mark">見本（架空のお店）・制作 杜工舎</p></main>
+</body></html>

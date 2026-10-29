@@ -2432,6 +2432,12 @@ ul.hk-trust li::before{content:"";position:absolute;left:0;top:.9em;width:.6em;h
 ul.hk-trust a{color:var(--ink);}
 .hk-rep{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:-12px 0;text-underline-offset:4px;}
 
+/* 2026-10-30 多言語メニュー：5案の札 */
+.mn5{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(10px,1.6vw,22px);}
+.mn5 a{display:block}.mn5 img{display:block;width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2),0 12px 22px -16px rgba(30,31,29,.45);}
+.mn5 p{margin:10px 0 0;font-size:var(--f1);color:var(--ink-2);line-height:1.6;}.mn5 b{font-family:var(--ff-ja);font-size:var(--f4);font-weight:500;color:var(--ink);margin-right:.5em;}
+@media (max-width:620px){.mn5{grid-template-columns:repeat(3,minmax(0,1fr));}}
+
 
 /* 2026-10-28 上部のタブは最初から一番上・白い背景。開いたときに伸び縮みする動きを止める */
 .hd,.hd.is-solid{transition:none!important;transform:none!important;}
@@ -2588,8 +2594,12 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
     
     <div class="ba" aria-label="前と後の見比べ">
       <figure><figcaption><b>前</b>お店から届く、日本語メニューの写真</figcaption><a href="assets/menu/ja-photo.jpg" target="_blank" rel="noopener"><img src="assets/menu/ja-photo.jpg" width="1200" height="900" loading="eager" alt="木の卓に置いた、手書きの日本語の品書きを撮った写真"></a></figure>
-      <figure><figcaption><b>後</b>お返しする、日本語と英語のメニュー</figcaption><a href="menu/mihon.html"><img class="ba-sheet" src="assets/menu/en-sheet.jpg" width="1100" height="1556" loading="eager" alt="日本語と英語を並べたメニュー。料理名・説明・値段が英語で書かれている"></a></figure></div>
+      <figure><figcaption><b>後</b>お返しする、日本語と英語のメニュー</figcaption><a href="menu/mihon.html"><img class="ba-sheet" src="assets/menu/en-sheet.jpg" width="1100" height="1556" loading="eager" alt="日本語の料理名の下に英語を並べたメニュー。説明と値段も入っている"></a></figure></div>
     <p class="mf-cap">上の2枚は、架空のお店でつくった見本です。</p>
+
+    <h3 class="mn-h">デザインは5案から選べます</h3>
+    <p class="mn-add">どの案も、日本語の下に英語を並べます。お店の雰囲気に合う1つをお選びください。</p>
+    <ul class="mn5"><li><a href="menu/mihon.html"><img src="assets/menu/sheet-1.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="デザイン「藍」のメニューの見本"></a><p><b>藍</b>和食・そば</p></li><li><a href="menu/mihon.html"><img src="assets/menu/sheet-2.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="デザイン「朱」のメニューの見本"></a><p><b>朱</b>居酒屋</p></li><li><a href="menu/mihon.html"><img src="assets/menu/sheet-3.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="デザイン「燈」のメニューの見本"></a><p><b>燈</b>ラーメン・食堂</p></li><li><a href="menu/mihon.html"><img src="assets/menu/sheet-4.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="デザイン「綿」のメニューの見本"></a><p><b>綿</b>カフェ</p></li><li><a href="menu/mihon.html"><img src="assets/menu/sheet-5.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="デザイン「銀」のメニューの見本"></a><p><b>銀</b>洋食</p></li></ul>
 
     <h3 class="mn-h">ご依頼の流れ</h3>
     <ol class="fx"><li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><h3>写真を送る</h3><div class="fx-p"><p>日本語メニューの写真を、メールに添えて送ってください。</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><h3>英語メニューが届く</h3><div class="fx-p"><p>メニューの写真をいただいてから、<span class="nw nk">2週間</span>ほどで PDF と印刷用のデータをお送りします。</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><h3>確かめて、お支払い</h3><div class="fx-p"><p><span class="nw nk">お渡し</span>したあと<span class="nw nk">2週間</span>のご確認の期間中は、<span class="nw nk">1回</span>に限り<span class="nw nk">無償で直します</span>。</p><p>前金はいただきません。中身を確かめていただいてからのお支払いです。</p></div></li></ol>
@@ -2621,7 +2631,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
     <h3 class="mn-h">よくある質問</h3>
     <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">手書きのメニューでも大丈夫ですか？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>大丈夫です。読み取った文字は、写真と1行ずつ見比べて確かめます。読みにくい所は、メールでお尋ねします。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">品数が多いときは？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>品数にかかわらず、同じ料金です。</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">あとで値段が変わったら？</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>お渡しから2週間のうちは、1回まで無料で直します。それより後の直しは、1回ごとに18,000円（税込）です（ホームページ作成と同じ）。</p></div></details></div>
 
-    <div class="go"><a class="ln" href="menu/mihon.html">英語メニューの見本を開く</a><a class="ln" href="menu/satsuei.html">写真の撮り方のコツ</a></div>
+    <div class="go"><a class="ln" href="menu/mihon.html">5つのデザインの見本を開く</a><a class="ln" href="menu/satsuei.html">写真の撮り方のコツ</a></div>
   </div>
 </section>
 </main>

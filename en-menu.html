@@ -2432,6 +2432,12 @@ ul.hk-trust li::before{content:"";position:absolute;left:0;top:.9em;width:.6em;h
 ul.hk-trust a{color:var(--ink);}
 .hk-rep{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;margin:-12px 0;text-underline-offset:4px;}
 
+/* 2026-10-30 多言語メニュー：5案の札 */
+.mn5{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(10px,1.6vw,22px);}
+.mn5 a{display:block}.mn5 img{display:block;width:100%;height:auto;box-shadow:0 0 0 .5px var(--line-2),0 12px 22px -16px rgba(30,31,29,.45);}
+.mn5 p{margin:10px 0 0;font-size:var(--f1);color:var(--ink-2);line-height:1.6;}.mn5 b{font-family:var(--ff-ja);font-size:var(--f4);font-weight:500;color:var(--ink);margin-right:.5em;}
+@media (max-width:620px){.mn5{grid-template-columns:repeat(3,minmax(0,1fr));}}
+
 
 /* 2026-10-28 上部のタブは最初から一番上・白い背景。開いたときに伸び縮みする動きを止める */
 .hd,.hd.is-solid{transition:none!important;transform:none!important;}
@@ -2584,8 +2590,12 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
     
     <div class="ba" aria-label="Before and after">
       <figure><figcaption><b>Before</b>The photo of your Japanese menu, as you send it</figcaption><a href="assets/menu/ja-photo.jpg" target="_blank" rel="noopener"><img src="assets/menu/ja-photo.jpg" width="1200" height="900" loading="eager" alt="A photo of a handwritten Japanese menu lying on a wooden table"></a></figure>
-      <figure><figcaption><b>After</b>The Japanese and English menu we send back</figcaption><a href="menu/mihon.html"><img class="ba-sheet" src="assets/menu/en-sheet.jpg" width="1100" height="1556" loading="eager" alt="A menu with Japanese and English side by side. Dish names, descriptions and prices are written in English"></a></figure></div>
+      <figure><figcaption><b>After</b>The Japanese and English menu we send back</figcaption><a href="menu/mihon.html"><img class="ba-sheet" src="assets/menu/en-sheet.jpg" width="1100" height="1556" loading="eager" alt="A menu with English under each Japanese dish name, with descriptions and prices"></a></figure></div>
     <p class="mf-cap">The two images above are a sample made for a fictional restaurant.</p>
+
+    <h3 class="mn-h">Choose from five designs</h3>
+    <p class="mn-add">Every design places the English under the Japanese. Pick the one that suits your restaurant.</p>
+    <ul class="mn5"><li><a href="menu/mihon.html"><img src="assets/menu/sheet-1.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="Menu sample in the Ai design"></a><p><b>Ai</b>Japanese / soba</p></li><li><a href="menu/mihon.html"><img src="assets/menu/sheet-2.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="Menu sample in the Shu design"></a><p><b>Shu</b>Izakaya</p></li><li><a href="menu/mihon.html"><img src="assets/menu/sheet-3.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="Menu sample in the To design"></a><p><b>To</b>Ramen / diner</p></li><li><a href="menu/mihon.html"><img src="assets/menu/sheet-4.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="Menu sample in the Wata design"></a><p><b>Wata</b>Café</p></li><li><a href="menu/mihon.html"><img src="assets/menu/sheet-5.jpg" width="1100" height="1556" loading="lazy" decoding="async" alt="Menu sample in the Gin design"></a><p><b>Gin</b>Western-style</p></li></ul>
 
     <h3 class="mn-h">How to order</h3>
     <ol class="fx"><li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><h3>Send photos</h3><div class="fx-p"><p>Attach photos of your Japanese menu to an email and send it to us.</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><h3>Your English menu arrives</h3><div class="fx-p"><p>About <span class="nw nk">two weeks</span> after we receive your menu photos, we send a PDF and print-ready data.</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><h3>Check it, then pay</h3><div class="fx-p"><p>During the two-week review period after delivery, <span class="nw nk">we</span> revise <span class="nw nk">the PDF</span> free of charge, <span class="nw nk">once</span> only<span class="nw nk">.</span></p><p>No advance payment. You pay after checking the result.</p></div></li></ol>
@@ -2617,7 +2627,7 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
     <h3 class="mn-h">FAQ</h3>
     <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">Is a handwritten menu okay?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Yes. We compare the text we read with your photo, line by line. If something is hard to read, we will ask you by email.</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">What if I have a lot of items?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>The price is the same however many items there are.</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">What if a price changes later?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Within two weeks of delivery, we revise it free of charge, once. After that, each revision is ¥18,000 (tax incl.), the same as for Website.</p></div></details></div>
 
-    <div class="go"><a class="ln" href="menu/mihon.html">Open the English menu sample</a><a class="ln" href="menu/satsuei.html">Tips for photographing your menu</a></div>
+    <div class="go"><a class="ln" href="menu/mihon.html">Open the five design samples</a><a class="ln" href="menu/satsuei.html">Tips for photographing your menu</a></div>
   </div>
 </section>
 </main>
