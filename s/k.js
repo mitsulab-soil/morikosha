@@ -11,6 +11,8 @@
     var m = location.pathname.match(/\/s\/([0-9a-f]{8})\//);
     var dc = me && me.getAttribute('data-c');
     if (!m && dc && /^[0-9a-f]{8}$/.test(dc)) m = [0, dc];
+    // 業種の見本ページ（/preview/…）は、営業メールのリンクの ?c=<8桁> で符号を渡す（2026-11-02）
+    if (!m) { var q = location.search.match(/[?&]c=([0-9a-f]{8})(?:&|$)/); if (q) m = q; }
     if (!m) return;
     var key = 'mk-v-' + m[1], today = new Date().toISOString().slice(0, 10);
     try { if (localStorage.getItem(key) === today) return; localStorage.setItem(key, today); } catch (e) {}
