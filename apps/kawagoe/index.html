@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>川越 見本の宿 周遊ガイド｜杜工舎の見本</title>
+<meta name="description" content="杜工舎の見本：宿から始まる川越の周遊ガイドと、地理院タイルで土地の時間を読む散歩。">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../assets/site/logo.svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="app.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="/s/k.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="mark" aria-hidden="true">宿</span><div><strong>川越 見本の宿</strong><small>周遊ガイド</small></div></div>
+  <div class="tabs" role="tablist" aria-label="ガイドの切り替え">
+    <button role="tab" id="tab-walk" aria-selected="true" aria-controls="walk-view" data-mode="walk">巡る</button>
+    <button role="tab" id="tab-time" aria-selected="false" aria-controls="time-view" data-mode="time" tabindex="-1">時間を読む</button>
+  </div>
+</header>
+
+<div class="note"><span>これは杜工舎の見本です。宿ごとに、名前・おすすめ・コースを入れて作ります。</span><a href="../../apps.html">まち体験アプリについて ↗</a></div>
+
+<main class="layout">
+  <div class="mapwrap">
+    <div id="map" aria-label="川越の地図"></div>
+    <div class="mapbtns">
+      <button id="go-inn" type="button">宿へ戻る</button>
+      <button id="go-here" type="button">現在地</button>
+    </div>
+    <p class="maphint" id="maphint">線は道なりの目安です（OpenStreetMap の道から計算）。</p>
+  </div>
+
+  <section class="panel" id="panel">
+    <div id="walk-view" role="tabpanel" aria-labelledby="tab-walk">
+      <p class="eyebrow">KAWAGOE / FROM THE INN</p>
+      <h1>今日は、どう過ごしますか。</h1>
+      <p class="hint">選ぶと、地図に道順が出ます。</p>
+      <div class="choices" role="group" aria-label="過ごし方">
+        <button data-course="c30" aria-pressed="false"><b>30分の散歩</b><small>蔵の通りと時の鐘を、さっと</small></button>
+        <button data-course="c60" aria-pressed="false"><b>夕食までの1時間</b><small>菓子屋横丁から社の森、川べりまで</small></button>
+        <button data-course="rain" aria-pressed="false"><b>雨の日</b><small>短く歩いて、建物の中を見る</small></button>
+        <button data-course="hist" aria-pressed="false"><b>土地の歴史を歩く</b><small>寺・城・社・川・町を順に</small></button>
+      </div>
+      <div id="course">
+        <p class="eyebrow" id="c-meta"></p>
+        <h2 id="c-title"></h2>
+        <p class="lead" id="c-lead"></p>
+        <div class="voice" id="c-voice"></div>
+        <ol class="stops" id="stops"></ol>
+        <p class="fine">所要時間は歩く速さの目安です。開いている時間や料金は、各施設の公式案内でご確認ください。宿の位置は見本のための仮の位置です。</p>
+      </div>
+    </div>
+
+    <div id="time-view" role="tabpanel" aria-labelledby="tab-time" hidden>
+      <p class="eyebrow">READING THE LAND</p>
+      <h2>同じ場所の、ちがう時間。</h2>
+      <div class="eras" role="group" aria-label="左に出すもの">
+        <span class="lbl">左に出すもの</span>
+        <button data-left="std" aria-pressed="true">いまの地図</button>
+        <button data-left="photo" aria-pressed="false">いまの空中写真</button>
+      </div>
+      <div class="eras" role="group" aria-label="右に出す時代">
+        <span class="lbl">右に出す時代（年の順）</span>
+        <button data-era="old" aria-pressed="true">1961〜69年</button>
+        <button data-era="photo" aria-pressed="false">いまの空中写真</button>
+        <button data-era="usa" aria-pressed="false">1945〜50年＊</button>
+      </div>
+      <p class="warn">＊1945〜50年の写真は、川越の中心部では国土地理院のタイルが提供されていない範囲です（2026年11月4日に確認）。地図を南東へ動かすと、写っている範囲が見えます。</p>
+      <div class="eras" role="group" aria-label="見比べ方">
+        <span class="lbl">見比べ方</span>
+        <button data-cmp="swipe" aria-pressed="true">左右で比べる</button>
+        <button data-cmp="fade" aria-pressed="false">重ねて比べる</button>
+      </div>
+      <label class="slider"><span id="sl-l">← 左</span><input type="range" id="slider" min="0" max="100" value="50" aria-label="比べる位置"><span id="sl-r">右 →</span></label>
+      <h3>昔と比べて見えること</h3>
+      <ol class="qs" id="qs"></ol>
+      <p class="fine">「推定」と書いたものは、写真を見比べた読み取りで、資料で確かめたものではありません。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">地図・写真：<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院</a>（地理院タイル）／ 道順の計算：© OpenStreetMap contributors ／ 制作：<a href="../../apps.html">杜工舎</a></footer>
+<script src="routes.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
