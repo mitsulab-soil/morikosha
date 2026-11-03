@@ -1,0 +1,15 @@
+const menu=document.querySelector('.menu-toggle'),nav=document.querySelector('#nav');
+function closeMenu(){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}
+menu?.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open')){closeMenu();menu.focus();}});
+nav?.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu();});
+const spots={hotel:['01 / START','From the inn, into town.','A walk before breakfast, a detour in the evening. We share ways to enjoy the town, starting from this inn.'],garden:['02 / NATURE','Pause in the garden.','Shadows of trees, flowing water, the turn of the seasons. Small questions that help you notice the scenery in front of you.'],bridge:['03 / HISTORY','From the bridge, into the memory of the land.','Choose “Memory of the land” to overlay a schematic of a former waterway. In real projects, we check the sources before linking past and present.'],atelier:['04 / PEOPLE','Meet the work that supports the town.','Introducing the workshop’s craft and the makers’ thoughts, with a doorway to the shop’s website.']};
+document.querySelectorAll('[data-spot]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-spot]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));const v=spots[b.dataset.spot];['spot-num','spot-title','spot-copy'].forEach((id,i)=>document.getElementById(id).textContent=v[i]);}));
+document.querySelectorAll('button[data-era]').forEach(b=>b.addEventListener('click',()=>{document.querySelector('.map').dataset.era=b.dataset.era;document.querySelectorAll('button[data-era]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.getElementById('era-copy').textContent=b.dataset.era==='past'?'A schematic with a former waterway overlaid. This is an interactive sample using a fictional place; it does not reproduce real history.':'A schematic of the town today. Tap a spot to switch the description.';}));
+document.querySelector('.copy')?.addEventListener('click',async()=>{const status=document.getElementById('copy-status');try{await navigator.clipboard.writeText('info@morikosha.com');status.textContent='Copied.';}catch{status.textContent='Could not copy. Please select the email address above and copy it.';}});
+if(location.hash==='#legal'||location.hash==='#pp'){document.querySelector('.legal')?.setAttribute('open','');requestAnimationFrame(()=>document.querySelector(location.hash)?.scrollIntoView());}
+window.addEventListener('hashchange',()=>{if(['#legal','#pp'].includes(location.hash)){document.querySelector('.legal')?.setAttribute('open','');document.querySelector(location.hash)?.scrollIntoView();}});
+
+// Preserve historic links from sales materials and existing samples.
+const historic={"#works":"en-website.html","#price":"en-price.html","#erabot":"en-hikaku.html","#contact":"en-contact.html"};
+if((location.pathname.endsWith('/en.html'))&&historic[location.hash])location.replace(historic[location.hash]);
