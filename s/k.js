@@ -6,6 +6,7 @@
   // 郵送DMの案内ページ（/dm/…）は URL に符号が無いので、<script data-c="8桁"> で符号を渡す（2026-10-07）
   var me = document.currentScript;
   var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxZeVriDkzYL8Dbl5GKGdU1QBpDAWtEsqmEaz8fanSwPmLkJ9Qtq8pIaD0swHhju8Tv4A/exec';
+  var GC = '';   // 例 'https://morikosha.goatcounter.com/count'（アカウントを作ったら入れる）
   try {
     if (!ENDPOINT) return;
     var m = location.pathname.match(/\/s\/([0-9a-f]{8})\//);
@@ -18,5 +19,10 @@
     var key = 'mk-v-' + m[1], today = new Date().toISOString().slice(0, 10);
     try { if (localStorage.getItem(key) === today) return; localStorage.setItem(key, today); } catch (e) {}
     new Image().src = ENDPOINT + '?c=' + m[1] + '&t=' + Date.now();
+    // 2026-11-04 GoatCounter（無料・Google の設定に頼らない）にも、符号とページの種類だけを送る。GC が空のあいだは送らない
+    if (GC) {
+      var kind = location.pathname.replace(/\/s\/[0-9a-f]{8}\//, '/s/').replace(/\.html$/, '');
+      new Image().src = GC + '?p=' + encodeURIComponent('/c/' + m[1] + kind) + '&t=' + encodeURIComponent(kind) + '&rnd=' + Date.now();
+    }
   } catch (e) {}
 })();
