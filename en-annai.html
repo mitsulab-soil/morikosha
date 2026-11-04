@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Company Brochure: A4, 4 pages, ¥48,000 (tax incl.) | Morikosha</title><link rel="icon" href="/favicon.ico?v=3" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=3">
+<title>Company Brochure: A4, 4 pages, ¥48,000 (tax incl.) | Morikosha</title><link rel="icon" href="/favicon.ico?v=4" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=4">
 <link rel="alternate" hreflang="ja" href="https://morikosha.com/annai.html">
 <link rel="alternate" hreflang="en" href="https://morikosha.com/en-annai.html">
 <meta name="description" content="A 4-page A4 company brochure in your choice of the same five designs as the website.">
@@ -2544,6 +2544,22 @@ html[lang="en"] .dai-t{letter-spacing:.06em!important;}
 html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
 </style>
 <style id="nav-cur">
+/* 2026-11-05 三本線の中に階層 */
+.mnav li.mg{list-style:none;margin:22px 0 4px;padding:0;border:0!important;display:flex;align-items:baseline;gap:12px;font-size:11.5px;letter-spacing:.28em;color:#a8823f}
+.mnav li.mg::after{content:"";flex:1;height:.5px;background:rgba(168,130,63,.45);align-self:center}
+.mnav li.mg .lb{font-family:"Cormorant Garamond",serif;font-size:11px;letter-spacing:.3em;opacity:.8;position:static!important}
+.mnav li.sub>a{padding-left:18px!important;position:relative}
+.mnav li.sub>a::before{content:"";position:absolute;left:2px;top:50%;width:5px;height:5px;border:.5px solid #a8823f;transform:translateY(-50%) rotate(45deg)}
+/* 2026-11-05 言語の切り替えは三本線の中へ */
+.lang{display:none!important}
+.mlang{display:flex;align-items:center;gap:0;margin:6px 0 22px;padding:0 0 18px;border-bottom:.5px solid rgba(168,130,63,.45)}
+.mlang .ml-k{font-size:10.5px;letter-spacing:.32em;color:#a8823f;margin-right:18px;font-family:"Cormorant Garamond",serif}
+.mlang a{position:relative;padding:6px 16px;font-size:13.5px;letter-spacing:.14em;text-decoration:none;color:inherit;opacity:.55;transition:opacity .3s}
+.mlang a+a{border-left:.5px solid rgba(168,130,63,.6)}
+.mlang a:hover{opacity:1}
+.mlang a[aria-current="true"]{opacity:1}
+.mlang a[aria-current="true"]::after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:1.5px;background:linear-gradient(90deg,#b08d3c,#a8382a)}
+
 /* menu-all：タブは三本線の中にしまう */
 .hd .nav{display:none!important;}.hd .menu-btn{display:block!important;}
 .nav a::before{content:"";position:absolute;left:50%;top:-7px;width:6px;height:6px;background:#a8382a;transform:translateX(-50%) rotate(45deg) scale(0);transition:transform .35s cubic-bezier(.2,.8,.2,1.4);}
@@ -2567,15 +2583,18 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
 
 <nav class="mnav" id="mnav" aria-label="Menu">
   <div class="mnav-top"><span class="logo-s"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span></span> <button class="mnav-close" id="mnav-close" type="button">Close ×</button></div>
+  <div class="mlang" aria-label="言語 / Language"><span class="ml-k" aria-hidden="true">LANG</span><a href="annai.html" hreflang="ja" lang="ja">日本語</a><a href="en-annai.html" hreflang="en" lang="en" aria-current="true">English</a></div>
   <ol>
     <li><a href="en.html"><span class="mn-t">Top<small class="mn-s">All of Morikosha</small></span><span class="lb" aria-hidden="true">Top</span></a></li>
-    <li><a href="en-website.html"><span class="mn-t">Website<small class="mn-s">A single page for your company</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
-    <li><a href="en-menu.html"><span class="mn-t">Multilingual menu<small class="mn-s">English menus for shops and inns</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
-    <li><a href="en-annai.html" aria-current="page"><span class="mn-t">Company brochure<small class="mn-s">A4, four pages</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
-    <li><a href="en-hikaku.html"><span class="mn-t">Product comparison site<small class="mn-s">A page that helps people choose by answering questions</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
-    <li><a href="en-profile.html">Profile<span class="lb" aria-hidden="true">Profile</span></a></li>
-    <li><a href="en-price.html"><span class="mn-t">Pricing<small class="mn-s">All prices</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
-    <li><a href="en-contact.html">Contact<span class="lb" aria-hidden="true">Contact</span></a></li>
+    <li class="mg"><span>What we make</span><span class="lb" aria-hidden="true">Services</span></li>
+    <li class="sub"><a href="en-website.html"><span class="mn-t">Website<small class="mn-s">A single page for your company</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
+    <li class="sub"><a href="en-menu.html"><span class="mn-t">Multilingual menu<small class="mn-s">English menus for shops and inns</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
+    <li class="sub"><a href="en-annai.html" aria-current="page"><span class="mn-t">Company brochure<small class="mn-s">A4, four pages</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
+    <li class="sub"><a href="en-hikaku.html"><span class="mn-t">Product comparison site<small class="mn-s">A page that helps people choose by answering questions</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
+    <li class="mg"><span>About Morikosha</span><span class="lb" aria-hidden="true">About</span></li>
+    <li class="sub"><a href="en-profile.html">Profile<span class="lb" aria-hidden="true">Profile</span></a></li>
+    <li class="sub"><a href="en-price.html"><span class="mn-t">Pricing<small class="mn-s">All prices</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
+    <li class="sub"><a href="en-contact.html">Contact<span class="lb" aria-hidden="true">Contact</span></a></li>
   </ol>
   <p class="mnav-mail">MAIL ── <a href="mailto:info@morikosha.com">info@morikosha.com</a></p>
 </nav>
@@ -2593,7 +2612,7 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
   <div class="byo">
     <div class="dai sec-h" aria-hidden="true"><span class="dai-n">01</span><span class="dai-t">Company brochures and pamphlets</span><span class="dai-l">Brochure</span></div>
     <div class="lede"><h2 class="ja-h" id="annai-h">With the same five design options as the website, <br>a company brochure you can place in someone’s hands.</h2>
-      <div class="ja-b"><p>An A4, four-page company brochure (cover / our work / why clients choose us and a greeting / company profile). Choose the closest of the same five design options as in the website sample book (Tan, Gen, Miyabi, Iki, Ri), send us the form and photos, and we will tailor it to your company and deliver it as a PDF. A single booklet to hand over on sales calls or at recruiting interviews.</p><p><a class="btn-s" href="en.html#works">View the website sample book <span aria-hidden="true">→</span></a></p></div></div>
+      <div class="ja-b"><p>An A4, four-page company brochure (cover / our work / why clients choose us and a greeting / company profile). Choose the closest of the same five design options as in the website sample book (Tan, Gen, Miyabi, Iki, Ri), talk to us first, then send your text and photos, and we will tailor it to your company and deliver it as a PDF. A single booklet to hand over on sales calls or at recruiting interviews.</p><p><a class="btn-s" href="en.html#works">View the website sample book <span aria-hidden="true">→</span></a></p></div></div>
     <ul class="keys mn-keys" aria-label="Key points of the company brochure">
       <li><span class="k-l">Pricing</span><span class="k-v"><span class="kn-u">A4, 4 pages</span><span class="kn-n">¥48,000</span><span class="kn-t"> (tax incl.)</span></span><span class="k-s">Includes: your choice of five options, tailoring to your company, and a PDF plus print-ready data. Printing service: <span class="nw">+¥8,000 (tax incl.)</span> per 10 copies.</span></li>
       <li><span class="k-l">Design</span><span class="k-v"><span class="kn-n">5</span> options</span><span class="k-s">Tan, Gen, Miyabi, Iki, Ri — the same options as the website.</span></li>
@@ -2612,7 +2631,7 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
     <p class="mf-cap">Every industry follows the same structure. The examples below are Miyabi, for construction. Click an image to view it larger in a new tab.</p>
     <ol class="an-p"><li><a href="assets/annai/kenchiku-3-p-1.jpg" target="_blank" rel="noopener" aria-label="View page 1 larger (new tab)"><img src="assets/annai/kenchiku-3-p-1.jpg" width="495" height="700" loading="eager" decoding="async" alt="Company brochure sample (Miyabi, construction), page 1"></a></li><li><a href="assets/annai/kenchiku-3-p-2.jpg" target="_blank" rel="noopener" aria-label="View page 2 larger (new tab)"><img src="assets/annai/kenchiku-3-p-2.jpg" width="495" height="700" loading="eager" decoding="async" alt="Company brochure sample (Miyabi, construction), page 2"></a></li><li><a href="assets/annai/kenchiku-3-p-3.jpg" target="_blank" rel="noopener" aria-label="View page 3 larger (new tab)"><img src="assets/annai/kenchiku-3-p-3.jpg" width="495" height="700" loading="eager" decoding="async" alt="Company brochure sample (Miyabi, construction), page 3"></a></li><li><a href="assets/annai/kenchiku-3-p-4.jpg" target="_blank" rel="noopener" aria-label="View page 4 larger (new tab)"><img src="assets/annai/kenchiku-3-p-4.jpg" width="495" height="700" loading="eager" decoding="async" alt="Company brochure sample (Miyabi, construction), page 4"></a></li></ol>
     <h3 class="mn-h">How to order</h3>
-    <ol class="fx fx5"><li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><h3>Form</h3><div class="fx-p"><p>You fill in the company name, what you do, your greeting and so on in the form.</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><h3>Photos</h3><div class="fx-p"><p>You send photos of your sites, your premises and your work in progress.</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><h3>First draft</h3><div class="fx-p"><p>About <span class="nw nk">two weeks</span> after we receive your photos and materials, we send a PDF with your content set into the option you chose.</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">04</p><h3>Revisions</h3><div class="fx-p"><p>During the two-week review period after delivery, <span class="nw nk">we</span> revise <span class="nw nk">the PDF</span> free of charge, <span class="nw nk">once</span> only<span class="nw nk">.</span></p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">05</p><h3>Delivery</h3><div class="fx-p"><p>We deliver a PDF and print-ready data.</p></div></li></ol>
+    <ol class="fx fx5"><li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><h3>Consult &amp; text</h3><div class="fx-p"><p>Start by talking to us by email. Once you order, we send you the items to fill in: company name, what you do, your greeting and so on.</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><h3>Photos</h3><div class="fx-p"><p>You send photos of your sites, your premises and your work in progress.</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><h3>First draft</h3><div class="fx-p"><p>About <span class="nw nk">two weeks</span> after we receive your photos and materials, we send a PDF with your content set into the option you chose.</p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">04</p><h3>Revisions</h3><div class="fx-p"><p>During the two-week review period after delivery, <span class="nw nk">we</span> revise <span class="nw nk">the PDF</span> free of charge, <span class="nw nk">once</span> only<span class="nw nk">.</span></p></div></li><li class="fx-i"><p class="fx-n" aria-hidden="true">05</p><h3>Delivery</h3><div class="fx-p"><p>We deliver a PDF and print-ready data.</p></div></li></ol>
     
     <h3 class="mn-h">FAQ</h3>
     <div class="qa"><details open><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">How long does it take?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>We send the first draft about <span class="nw nk">two weeks</span> after we receive your photos and materials.</p></div></details><details open><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">Can you make revisions?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>During the two-week review period after delivery, <span class="nw nk">we</span> revise <span class="nw nk">the PDF</span> free of charge, <span class="nw nk">once</span> only<span class="nw nk">.</span></p></div></details><details><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">Can you handle printing too?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Yes. It is +¥8,000 (tax incl.) per 10 copies. Payment is due before printing.</p></div></details></div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Website production, ¥98,000 per page (tax incl.) | Morikosha</title><link rel="icon" href="/favicon.ico?v=3" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=3">
+<title>Website production, ¥98,000 per page (tax incl.) | Morikosha</title><link rel="icon" href="/favicon.ico?v=4" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=4">
 <link rel="alternate" hreflang="ja" href="https://morikosha.com/website.html">
 <link rel="alternate" hreflang="en" href="https://morikosha.com/en-website.html">
 <meta name="description" content="A one-page website for construction-related companies, in about two weeks. Choose from five designs. ¥98,000 (tax incl.), one-time payment.">
@@ -2562,6 +2562,22 @@ html[lang="en"] .dai-t{letter-spacing:.06em!important;}
 html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
 </style>
 <style id="nav-cur">
+/* 2026-11-05 三本線の中に階層 */
+.mnav li.mg{list-style:none;margin:22px 0 4px;padding:0;border:0!important;display:flex;align-items:baseline;gap:12px;font-size:11.5px;letter-spacing:.28em;color:#a8823f}
+.mnav li.mg::after{content:"";flex:1;height:.5px;background:rgba(168,130,63,.45);align-self:center}
+.mnav li.mg .lb{font-family:"Cormorant Garamond",serif;font-size:11px;letter-spacing:.3em;opacity:.8;position:static!important}
+.mnav li.sub>a{padding-left:18px!important;position:relative}
+.mnav li.sub>a::before{content:"";position:absolute;left:2px;top:50%;width:5px;height:5px;border:.5px solid #a8823f;transform:translateY(-50%) rotate(45deg)}
+/* 2026-11-05 言語の切り替えは三本線の中へ */
+.lang{display:none!important}
+.mlang{display:flex;align-items:center;gap:0;margin:6px 0 22px;padding:0 0 18px;border-bottom:.5px solid rgba(168,130,63,.45)}
+.mlang .ml-k{font-size:10.5px;letter-spacing:.32em;color:#a8823f;margin-right:18px;font-family:"Cormorant Garamond",serif}
+.mlang a{position:relative;padding:6px 16px;font-size:13.5px;letter-spacing:.14em;text-decoration:none;color:inherit;opacity:.55;transition:opacity .3s}
+.mlang a+a{border-left:.5px solid rgba(168,130,63,.6)}
+.mlang a:hover{opacity:1}
+.mlang a[aria-current="true"]{opacity:1}
+.mlang a[aria-current="true"]::after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:1.5px;background:linear-gradient(90deg,#b08d3c,#a8382a)}
+
 /* menu-all：タブは三本線の中にしまう */
 .hd .nav{display:none!important;}.hd .menu-btn{display:block!important;}
 .nav a::before{content:"";position:absolute;left:50%;top:-7px;width:6px;height:6px;background:#a8382a;transform:translateX(-50%) rotate(45deg) scale(0);transition:transform .35s cubic-bezier(.2,.8,.2,1.4);}
@@ -2585,15 +2601,18 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
 
 <nav class="mnav" id="mnav" aria-label="Menu">
   <div class="mnav-top"><span class="logo-s"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span></span> <button class="mnav-close" id="mnav-close" type="button">Close ×</button></div>
+  <div class="mlang" aria-label="言語 / Language"><span class="ml-k" aria-hidden="true">LANG</span><a href="website.html" hreflang="ja" lang="ja">日本語</a><a href="en-website.html" hreflang="en" lang="en" aria-current="true">English</a></div>
   <ol>
     <li><a href="en.html"><span class="mn-t">Top<small class="mn-s">All of Morikosha</small></span><span class="lb" aria-hidden="true">Top</span></a></li>
-    <li><a href="en-website.html" aria-current="page"><span class="mn-t">Website<small class="mn-s">A single page for your company</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
-    <li><a href="en-menu.html"><span class="mn-t">Multilingual menu<small class="mn-s">English menus for shops and inns</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
-    <li><a href="en-annai.html"><span class="mn-t">Company brochure<small class="mn-s">A4, four pages</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
-    <li><a href="en-hikaku.html"><span class="mn-t">Product comparison site<small class="mn-s">A page that helps people choose by answering questions</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
-    <li><a href="en-profile.html">Profile<span class="lb" aria-hidden="true">Profile</span></a></li>
-    <li><a href="en-price.html"><span class="mn-t">Pricing<small class="mn-s">All prices</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
-    <li><a href="en-contact.html">Contact<span class="lb" aria-hidden="true">Contact</span></a></li>
+    <li class="mg"><span>What we make</span><span class="lb" aria-hidden="true">Services</span></li>
+    <li class="sub"><a href="en-website.html" aria-current="page"><span class="mn-t">Website<small class="mn-s">A single page for your company</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
+    <li class="sub"><a href="en-menu.html"><span class="mn-t">Multilingual menu<small class="mn-s">English menus for shops and inns</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
+    <li class="sub"><a href="en-annai.html"><span class="mn-t">Company brochure<small class="mn-s">A4, four pages</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
+    <li class="sub"><a href="en-hikaku.html"><span class="mn-t">Product comparison site<small class="mn-s">A page that helps people choose by answering questions</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
+    <li class="mg"><span>About Morikosha</span><span class="lb" aria-hidden="true">About</span></li>
+    <li class="sub"><a href="en-profile.html">Profile<span class="lb" aria-hidden="true">Profile</span></a></li>
+    <li class="sub"><a href="en-price.html"><span class="mn-t">Pricing<small class="mn-s">All prices</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
+    <li class="sub"><a href="en-contact.html">Contact<span class="lb" aria-hidden="true">Contact</span></a></li>
   </ol>
   <p class="mnav-mail">MAIL ── <a href="mailto:info@morikosha.com">info@morikosha.com</a></p>
 </nav>
@@ -2608,7 +2627,7 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
   <span class="scroll" aria-hidden="true"><span>scroll</span></span>
   <p class="hero-plate"><span class="hp-p"><span class="hp-k">Company website production</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v"><span class="nw"><span class="tcy">1</span> page · <span class="hp-n">¥98,000</span><span class="hp-ty"> (tax incl.)</span></span><span class="hp-dot">·</span><span class="nw"><span class="tcy">About 2</span> weeks</span></span></span><span class="hp-mis"><a class="hp-mi" href="#works-pick">View samples <span aria-hidden="true">→</span></a><a class="hp-mi" href="en-contact.html">Contact <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
   <!-- 2026-10-01 修正役V（第2周）：PC の値段と動線は横組みで読ませる（縦の札は題として残す）。スマホ・タブレットは上の横組みの札がこの役 -->
-  <div class="hero-deal"><p class="hx-c">Your on-site work and strengths, distilled onto a single page.</p><p class="hx-p"><span class="kn-u"><span class="nw nk"><span class="nw nk">1 page</span></span></span><span class="kn-n">¥98,000</span><span class="kn-t"> (tax incl.)</span><span class="hx-s" aria-hidden="true"></span><span class="nw"><span class="nw nk">About two weeks</span></span></p><p class="hx-d">Just send the form and photos · Choose from five design options · One-time purchase, no advance payment</p><div class="hx-go"><a class="box-ln" href="en-contact.html">Contact <span aria-hidden="true">→</span></a><a class="hx-ln" href="#works-pick">View samples</a></div></div>
+  <div class="hero-deal"><p class="hx-c">Your on-site work and strengths, distilled onto a single page.</p><p class="hx-p"><span class="kn-u"><span class="nw nk"><span class="nw nk">1 page</span></span></span><span class="kn-n">¥98,000</span><span class="kn-t"> (tax incl.)</span><span class="hx-s" aria-hidden="true"></span><span class="nw"><span class="nw nk">About two weeks</span></span></p><p class="hx-d">Start with a consultation · Choose from five design options · One-time purchase, no advance payment</p><div class="hx-go"><a class="box-ln" href="en-contact.html">Contact <span aria-hidden="true">→</span></a><a class="hx-ln" href="#works-pick">View samples</a></div></div>
 </section>
 <p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=document.querySelector(".hero .hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 
@@ -2630,7 +2649,7 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
       <figure class="about-art about-mihon"><span class="dv dv-pc"><span class="dv-bar" aria-hidden="true"><span class="dv-dots"><i></i><i></i><i></i></span></span><span class="dv-sc"><img src="assets/card-kenchiku-3.jpg" width="1760" height="1156" loading="lazy" decoding="async" alt="Computer screen of a construction sample in the Miyabi (Elegant) design"></span></span><span class="dv dv-sp"><span class="dv-sc"><img src="assets/site/sp-kenchiku-3.jpg" width="540" height="1108" decoding="async" alt="Smartphone screen of a construction sample in the Miyabi (Elegant) design"></span></span><figcaption class="dv-cap"><span class="dv-k">Sample</span><span class="dv-t">Made in the Miyabi design:<span class="nw"> construction sample</span><span class="nw"> (on a computer and a smartphone)</span></span><a class="dv-go" href="preview/kenchiku-3.html" target="_blank" rel="noopener">View the real thing <span aria-hidden="true">↗</span></a></figcaption></figure>
     <ul class="keys" aria-label="Key points of website production">
       <li><span class="k-l">Price</span><span class="k-v"><span class="kn-u"><span class="nw nk"><span class="nw nk">1 page</span></span></span><span class="kn-n">¥98,000</span><span class="kn-t"> (tax incl.)</span></span><span class="k-s"><span class="nw"><span class="nw nk">One-time purchase</span></span> · <span class="nw">no monthly fees.</span></span></li>
-      <li><span class="k-l">Delivery</span><span class="k-v"><span class="kn-n">About 2</span> weeks</span><span class="k-s"><span class="nw nk">After we receive the form</span> and <span class="nw">your photos</span></span></li>
+      <li><span class="k-l">Delivery</span><span class="k-v"><span class="kn-n">About 2</span> weeks</span><span class="k-s"><span class="nw nk">After we receive your text</span> and <span class="nw">your photos</span></span></li>
       <li><span class="k-l">Samples</span><span class="k-v"><span class="kn-n">18</span> industry samples</span><span class="k-s"><span class="nw">Civil engineering, </span><span class="nw">surveying, </span><span class="nw">construction, </span><span class="nw">building services, </span><span class="nw">electrical work, </span><span class="nw">landscaping, </span><span class="nw">painting, </span><span class="nw">demolition and more</span></span></li>
     </ul>
     <div class="go about-go"><a class="box-ln" href="en-contact.html">Contact <span aria-hidden="true">→</span></a> <a class="ln" href="#works-pick"><span class="nw nk">See the samples for 24 industries</span></a></div>
@@ -2712,7 +2731,8 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
     <div class="pr">
       <div class="pr-face pr-make">
         <h3 class="pr-h">When building a website</h3>
-        <div class="pr-main"><h4>Website</h4><span class="p"><span class="pn">¥98,000</span><span class="py"></span><span class="pt">(tax incl.)</span></span><p><span class="nw nk"><span class="nw nk">One-page</span></span> layout, <span class="nw nk">smartphone-friendly</span>. We <span class="nw nk">hand over</span> the complete set of HTML files.<span class="nw nk"> A one-time purchase</span>, with no monthly <span class="nw nk">fees.</span></p></div>
+        <div class="pr-main"><h4>New website<span class="nw"> (from the five design options)</span></h4><span class="p"><span class="pn">¥98,000</span><span class="py"></span><span class="pt">(tax incl.)</span></span><p><span class="nw nk"><span class="nw nk">One-page</span></span> layout, <span class="nw nk">smartphone-friendly</span>. We <span class="nw nk">hand over</span> the complete set of HTML files.<span class="nw nk"> A one-time purchase</span>, with no monthly <span class="nw nk">fees.</span></p></div>
+        <div class="pr-main pr-kaishu"><h4>Website renewal<span class="nw"> (we move your current site</span><span class="nw"> to a new design)</span></h4><span class="p"><span class="pn">¥148,000</span><span class="py"></span><span class="pt">(tax incl.)</span></span><p>We keep the text, data and links of your current website <span class="nw nk">as they are</span>, and change only the look. <a href="#kaishu">See what a renewal looks like →</a></p></div>
         <div class="pr-row"><h4>Publishing setup service<span class="nw"> (optional, on request)</span></h4><span class="p"><span class="pn">¥48,000</span><span class="py"></span><span class="pt">(tax incl.)</span></span><p>We handle everything up to putting the site online. Not needed if you can do it yourself. The details are <span class="nw nk">explained below.</span></p></div>
       </div>
       <div class="pr-face pr-fix">
@@ -2723,7 +2743,7 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
       </div>
     </div>
     <div class="pr-notes">
-      <p class="pr-note">All prices include tax. There are no other charges for production.<b> No advance payment; you pay after seeing the finished work. The data is yours.</b> Payment is by bank transfer. We send the invoice after you have seen the finished work; please transfer the payment within <span class="nw nk">two weeks</span> of the invoice date<span class="nw nk">.</span></p>
+      <p class="pr-note"><b>Websites outside the five template designs are quoted on request.</b> All prices include tax. There are no other charges for production.<b> No advance payment; you pay after seeing the finished work. The data is yours.</b> Payment is by bank transfer. We send the invoice after you have seen the finished work; please transfer the payment within <span class="nw nk">two weeks</span> of the invoice date<span class="nw nk">.</span></p>
       <div>
       <p class="pr-note">After launch, the only costs are for the server and domain you <span class="nw nk">contract in your company’s name</span>: <span class="nw nk">usage fees</span> of about ¥8,000–20,000 a year combined. None of this is paid to us.<span class="nw nk"></span></p>
       <p class="pr-note">For <span class="nw nk">seven days</span> after launch, we <span class="nw nk">fix display problems such as broken layouts or garbled text free of charge</span>.</p>
@@ -2745,6 +2765,37 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
   </div>
 </section>
 
+<section class="sec s-ground" id="kaishu" aria-labelledby="kaishu-h">
+  <style>
+  .ks{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;margin-top:28px}
+  .ks figure{margin:0}.ks img{width:100%;display:block;border:1px solid rgba(120,100,70,.35);box-shadow:0 10px 30px rgba(0,0,0,.08)}
+  .ks figcaption{margin-top:10px;font-size:13.5px;line-height:1.7}.ks figcaption b{display:block;font-size:15px;letter-spacing:.06em}
+  .ks-ar{font-size:28px;color:#b5452c}
+  .ks-t{width:100%;border-collapse:collapse;margin-top:34px;font-size:14px}.ks-t th,.ks-t td{border-bottom:1px solid rgba(120,100,70,.3);padding:10px 8px;text-align:left;vertical-align:top}.ks-t th{font-weight:500;white-space:nowrap}
+  .ks-n{font-size:12.5px;margin-top:16px;opacity:.85}
+  @media(max-width:700px){.ks{grid-template-columns:1fr}.ks-ar{transform:rotate(90deg);justify-self:center}}
+  </style>
+  <div class="byo">
+    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">四</span><h2 class="dai-t" id="kaishu-h">What a renewal looks like</h2><span class="dai-l" aria-hidden="true">Renewal</span></header>
+    <div class="lede lede-s"><h3 class="ja-h">Same content,<br>a look for today.</h3>
+      <div class="ja-b"><p>Rather than rebuilding a website made more than 15 years ago from scratch, we <b>carry over</b> its text, company profile, news and links as they are, and move them into a new design. There is nothing for you to rewrite.</p></div></div>
+    <div class="ks">
+      <figure><a href="kaishu/old.html" target="_blank" rel="noopener"><img src="assets/kaishu-before.jpg" width="1280" height="800" alt="Before: a sample of an old table-based website" loading="lazy"></a><figcaption><b>Before</b>Table layout, small text, hard to read on a smartphone. <a href="kaishu/old.html" target="_blank" rel="noopener">Open →</a></figcaption></figure>
+      <span class="ks-ar" aria-hidden="true">→</span>
+      <figure><a href="kaishu/new.html" target="_blank" rel="noopener"><img src="assets/kaishu-after.jpg" width="1280" height="800" alt="After: the same content moved to a new design" loading="lazy"></a><figcaption><b>After</b>The same content, with photos and space to breathe. Smartphone-friendly. <a href="kaishu/new.html" target="_blank" rel="noopener">Open →</a></figcaption></figure>
+    </div>
+    <table class="ks-t"><caption class="vh3" style="text-align:left;margin-bottom:6px">What is carried over (same before and after)</caption>
+      <tr><th>News</th><td>3 items (same dates and text)</td></tr>
+      <tr><th>Greeting</th><td>Full text, unchanged</td></tr>
+      <tr><th>Services</th><td>New builds, renovation, exterior work, seismic retrofit</td></tr>
+      <tr><th>Works</th><td>4 items</td></tr>
+      <tr><th>Company profile</th><td>6 items: name, representative, founded, address, qualifications, license</td></tr>
+      <tr><th>Recruitment &amp; contact</th><td>Text, phone, fax, email, hours</td></tr>
+    </table>
+    <p class="ks-n">* “Morinoki Koumuten” is a fictional company. No real company’s website was used. Photos are the same free stock images as in our samples. Renewal: ¥148,000 (tax incl.), with a choice of five designs. The sample pages are in Japanese.</p>
+  </div>
+</section>
+
 <!-- ══════════ 五 FLOW（ご依頼の流れ） ══════════
      2026-09-30 再設計（組み手1）：「業種を選ぶ・デザインを選ぶ」が WORKS と2度出ていたので、ここでは 01 に1行でまとめ、WORKS へ戻す。
      ご記入シート（#dl-sheet）はここ。WORKS で選んだ業種に追従する（site.js の dlFollow）。04 は料金の章にある事実（2週間ほど・前金なし）だけで書いた -->
@@ -2757,20 +2808,17 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
       <li class="fx-i"><p class="fx-n" aria-hidden="true">01</p><p class="fx-t">Takes <b>about<span class="nw nk"> 10 minutes</span></b></p><h3>Choose an industry and a design from the samples</h3>
         <div class="fx-p"><p>Pick one of the <span class="nw nk">five design options</span>: Tan, Gen, Miyabi, Iki or Ri. Press a tab and it appears in the sample window, where you can view it <span class="nw nk">all the way down on the spot.</span></p></div>
         <p class="fx-a"><a class="fx-btn" href="#works-pick">View the samples <span aria-hidden="true">→</span></a></p></li>
-      <li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><p class="fx-t">Takes <b>about<span class="nw nk"> 15 minutes</span> + <span class="nw nk">choosing photos</span></b></p><h3><span class="nw nk">Fill in the form</span></h3>
-        <div class="fx-p"><p class="fx-s">One Excel <span class="nw nk">sheet</span></p><p>Choose your industry and an example entry appears. Just write, <span class="nw nk">attach</span> your photos, <span class="nw nk">and send.</span></p></div>
-        <p class="fx-a"><a class="fx-btn" id="dl-sheet" href="assets/%E3%81%94%E8%A8%98%E5%85%A5%E3%82%B7%E3%83%BC%E3%83%88.xlsx" download="ご記入シート.xlsx"><span aria-hidden="true">↓</span><span class="dl-n"><span class="nw nk">Form</span>.xlsx</span></a></p></li>
-      <li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><p class="fx-t">Takes <b>a moment</b></p><h3>Send the completed form</h3>
-        <div class="fx-p"><p class="fx-s">Just attach it to an email</p><p>When it is done, please send it with your photos to info@morikosha.com<wbr> <span class="nw">. </span>The subject line can be <span class="nw nk">anything</span>.</p></div>
-        <p class="fx-a"><a class="fx-btn" href="mailto:info@morikosha.com">Write the email <span aria-hidden="true">→</span></a></p></li>
+      <li class="fx-i"><p class="fx-n" aria-hidden="true">02</p><p class="fx-t">Takes <b>a moment</b></p><h3>Talk to us by email</h3>
+        <div class="fx-p"><p class="fx-s">Start with a consultation</p><p>Tell us which design caught your eye, or about your current website, even in a line. We decide together whether it is a new site or a renewal.</p></div>
+        <p class="fx-a"><a class="fx-btn" href="mailto:info@morikosha.com?subject=Website%20inquiry">Write to us <span aria-hidden="true">→</span></a></p></li>
+      <li class="fx-i"><p class="fx-n" aria-hidden="true">03</p><p class="fx-t">Takes <b>about<span class="nw nk"> 15 minutes</span></b></p><h3>Send your text and photos</h3>
+        <div class="fx-p"><p class="fx-s">Once you decide to order</p><p>When you decide to go ahead, we send you the items to fill in. For a renewal, we copy them from your current website.</p></div>
+        <p class="fx-a" aria-hidden="true"></p></li>
       <li class="fx-i"><p class="fx-n" aria-hidden="true">04</p><p class="fx-t">Takes <b><span class="nw nk">about two weeks</span></b></p><h3>Review the finished work</h3>
-        <div class="fx-p"><p>Once we receive your <span class="nw nk">form</span> and photos, we produce the site in <span class="nw nk">about two weeks</span>. No advance payment; you pay after seeing the finished work.<span class="nw nk"></span></p></div>
+        <div class="fx-p"><p>Once we receive your <span class="nw nk">text</span> and photos, we produce the site in <span class="nw nk">about two weeks</span>. No advance payment; you pay after seeing the finished work.<span class="nw nk"></span></p></div>
         <p class="fx-a" aria-hidden="true"></p></li>
     </ol>
-    <div class="fx-note">
-      <h4>Examples for your industry are already filled in</h4>
-      <p>A form tailored to the industry you chose above opens. You may use it <span class="nw nk">as it is</span>, or <span class="nw nk">rewrite it</span> as you wish<span class="nw nk"></span>. <span class="nw nk">Apart from items marked 【Required】</span>, <span class="nw nk">you may leave the rest blank</span>. Blank items are not <span class="nw nk">published.</span></p>
-    </div>
+    <div id="dl-sheet"></div>
   </div>
 </section>
 
@@ -2787,8 +2835,8 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
     <div class="faq-kanze" aria-hidden="true"><canvas class="art-layer" data-art="kanze" data-paper data-vert aria-hidden="true"></canvas></div>
     <div class="qa">
       <details><summary><span class="qn" aria-hidden="true">Q1</span><span class="qt">I have no photos. Can you still <span class="nw nk">make one</span>?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p><span class="nw nk">Yes, we can</span>. Photos taken with a smartphone are enough. The scene on site, heavy machinery, finished structures, your office or building: with 5 to <span class="nw nk">10 photos</span> of these, we can make it work. They do not need to be beautifully shot. In fact, photos of your real sites <span class="nw nk">come across better.</span></p><p>Where preparing photos is difficult, you can use the ones in our samples (free stock images cleared for commercial use) <span class="nw nk">as they are</span>.</p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">I’m not good at writing.</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>When you select your industry in the <span class="nw nk">form</span>, the text actually used on that industry’s sample page appears to the right of each entry field. Use it as a reference and <span class="nw nk">rewrite it</span> for your company. Each item <span class="nw nk">comes with</span> a short writing tip. Items returned blank are not <span class="nw nk">published.</span></p></div></details>
-      <details><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">Can you really <span class="nw nk">do it</span> without a meeting?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Yes. The process is designed so that the <span class="nw nk">form</span> and your photos are all we need. This only means we do not work by visiting you repeatedly to hear your requests, so <span class="nw nk">questions by email</span> are welcome <span class="nw nk">at any time.</span></p></div></details>
+      <details><summary><span class="qn" aria-hidden="true">Q2</span><span class="qt">I’m not good at writing.</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>No need to worry. Once you order, we send you the text used on the sample page for your industry, and you only need to rewrite it for your company. For a renewal, we use the text on your current website as it is.</p></div></details>
+      <details><summary><span class="qn" aria-hidden="true">Q3</span><span class="qt">Can you really <span class="nw nk">do it</span> without a meeting?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Yes. The process is designed so that your text and photos are all we need. This only means we do not work by visiting you repeatedly to hear your requests, so <span class="nw nk">questions by email</span> are welcome <span class="nw nk">at any time.</span></p></div></details>
       <details><summary><span class="qn" aria-hidden="true">Q4</span><span class="qt">Are there monthly fees?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>There are no monthly fees to us for website production. The production fee <span class="nw nk">is all you pay.</span></p><p>After launch, the only costs are those for a server and domain contracted <span class="nw nk">in your company’s name</span>: the <span class="nw nk">usage fees</span> (about ¥8,000–20,000 a year combined). You pay these directly to each provider; <span class="nw nk">we receive none of it.</span></p><p>For requests like fixing wording or adding an article, we take each <span class="nw nk">inquiry</span> as it comes. If you do not use us, <span class="nw nk">no charges arise.</span></p></div></details>
       <details><summary><span class="qn" aria-hidden="true">Q5</span><span class="qt">Won’t my site look the same as other companies’?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>We offer the same designs to several companies. That is the reason for this price. However, photos, text and company information are all replaced with yours, and the color scheme can be changed to match your company at no charge, so even <span class="nw nk">side by side</span>, they won’t <span class="nw nk">look like the same site.</span></p></div></details>
       <details><summary><span class="qn" aria-hidden="true">Q6</span><span class="qt">I’m outside Saitama Prefecture. Can I still order?</span><span class="fold-i" aria-hidden="true"></span></summary><div class="qa-a"><p>Yes, we <span class="nw nk">can</span>. Everything is handled by email and data, so you can <span class="nw nk">order from </span>anywhere in Japan.</p></div></details>

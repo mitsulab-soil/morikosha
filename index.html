@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>杜工舎（もりこうしゃ）｜人の足りない会社の、もうひとりの裏方</title><link rel="icon" href="/favicon.ico?v=3" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=3">
+<title>杜工舎（もりこうしゃ）｜人の足りない会社の、もうひとりの裏方</title><link rel="icon" href="/favicon.ico?v=4" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=4">
 <link rel="alternate" hreflang="ja" href="https://morikosha.com/">
 <link rel="alternate" hreflang="en" href="https://morikosha.com/en.html">
 <meta name="description" content="さいたま市の小さな工房。会社のホームページ・会社案内・多言語メニュー・商品比較サイトを、記入シートと写真から2週間ほどでつくります。">
@@ -2538,6 +2538,22 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
 .hero-deal .hx-d{margin:12px 0 0;padding-top:10px;border-top:.5px solid var(--gold);font-size:14px;letter-spacing:.06em;line-height:1.8;color:var(--ink-2);}
 </style>
 <style id="nav-cur">
+/* 2026-11-05 三本線の中に階層 */
+.mnav li.mg{list-style:none;margin:22px 0 4px;padding:0;border:0!important;display:flex;align-items:baseline;gap:12px;font-size:11.5px;letter-spacing:.28em;color:#a8823f}
+.mnav li.mg::after{content:"";flex:1;height:.5px;background:rgba(168,130,63,.45);align-self:center}
+.mnav li.mg .lb{font-family:"Cormorant Garamond",serif;font-size:11px;letter-spacing:.3em;opacity:.8;position:static!important}
+.mnav li.sub>a{padding-left:18px!important;position:relative}
+.mnav li.sub>a::before{content:"";position:absolute;left:2px;top:50%;width:5px;height:5px;border:.5px solid #a8823f;transform:translateY(-50%) rotate(45deg)}
+/* 2026-11-05 言語の切り替えは三本線の中へ */
+.lang{display:none!important}
+.mlang{display:flex;align-items:center;gap:0;margin:6px 0 22px;padding:0 0 18px;border-bottom:.5px solid rgba(168,130,63,.45)}
+.mlang .ml-k{font-size:10.5px;letter-spacing:.32em;color:#a8823f;margin-right:18px;font-family:"Cormorant Garamond",serif}
+.mlang a{position:relative;padding:6px 16px;font-size:13.5px;letter-spacing:.14em;text-decoration:none;color:inherit;opacity:.55;transition:opacity .3s}
+.mlang a+a{border-left:.5px solid rgba(168,130,63,.6)}
+.mlang a:hover{opacity:1}
+.mlang a[aria-current="true"]{opacity:1}
+.mlang a[aria-current="true"]::after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:1.5px;background:linear-gradient(90deg,#b08d3c,#a8382a)}
+
 /* menu-all：タブは三本線の中にしまう */
 .hd .nav{display:none!important;}.hd .menu-btn{display:block!important;}
 .nav a::before{content:"";position:absolute;left:50%;top:-7px;width:6px;height:6px;background:#a8382a;transform:translateX(-50%) rotate(45deg) scale(0);transition:transform .35s cubic-bezier(.2,.8,.2,1.4);}
@@ -2590,15 +2606,18 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
     <span class="logo-s"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span></span>
     <button class="mnav-close" id="mnav-close" type="button">閉じる ×</button>
   </div>
+  <div class="mlang" aria-label="言語 / Language"><span class="ml-k" aria-hidden="true">LANG</span><a href="index.html" hreflang="ja" lang="ja" aria-current="true">日本語</a><a href="en.html" hreflang="en" lang="en">English</a></div>
   <ol>
     <li><a href="index.html" aria-current="page"><span class="mn-t">トップ<small class="mn-s">杜工舎の全体</small></span><span class="lb" aria-hidden="true">Top</span></a></li>
-    <li><a href="website.html"><span class="mn-t">ホームページ作成<small class="mn-s">会社の1ページ</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
-    <li><a href="menu.html"><span class="mn-t">多言語メニュー作成<small class="mn-s">お店・宿の日本語／英語メニュー</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
-    <li><a href="annai.html"><span class="mn-t">会社案内作成<small class="mn-s">A4・4ページ</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
-    <li><a href="hikaku.html"><span class="mn-t">商品比較サイト作成<small class="mn-s">質問に答えて選べるページ</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
-    <li><a href="profile.html">代表プロフィール<span class="lb" aria-hidden="true">Profile</span></a></li>
-    <li><a href="price.html"><span class="mn-t">料金案内<small class="mn-s">すべての料金</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
-    <li><a href="contact.html">お問い合わせ<span class="lb" aria-hidden="true">Contact</span></a></li>
+    <li class="mg"><span>制作のご依頼</span><span class="lb" aria-hidden="true">Services</span></li>
+    <li class="sub"><a href="website.html"><span class="mn-t">ホームページ作成<small class="mn-s">会社の1ページ</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
+    <li class="sub"><a href="menu.html"><span class="mn-t">多言語メニュー作成<small class="mn-s">お店・宿の日本語／英語メニュー</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
+    <li class="sub"><a href="annai.html"><span class="mn-t">会社案内作成<small class="mn-s">A4・4ページ</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
+    <li class="sub"><a href="hikaku.html"><span class="mn-t">商品比較サイト作成<small class="mn-s">質問に答えて選べるページ</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
+    <li class="mg"><span>杜工舎について</span><span class="lb" aria-hidden="true">About</span></li>
+    <li class="sub"><a href="profile.html">代表プロフィール<span class="lb" aria-hidden="true">Profile</span></a></li>
+    <li class="sub"><a href="price.html"><span class="mn-t">料金案内<small class="mn-s">すべての料金</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
+    <li class="sub"><a href="contact.html">お問い合わせ<span class="lb" aria-hidden="true">Contact</span></a></li>
   </ol>
   <p class="mnav-mail">MAIL ── <a href="mailto:info@morikosha.com">info@morikosha.com</a></p>
 </nav>
@@ -2613,7 +2632,7 @@ n.src='assets/'+d._p[d._i]+'.jpg';},2200);})();</script>
   <div class="hero-ph"><img class="on h1" data-tone="gold" data-cap="尾形光琳「八橋図屏風」" src="assets/site/art-irises.jpg" width="2400" height="1350" alt="尾形光琳「八橋図屏風」" fetchpriority="high"><img class="h2" data-tone="gold" data-cap="鈴木松年「老松図屏風」" src="assets/site/art-pines-gold.jpg" width="2400" height="1350" alt="鈴木松年「老松図屏風」" decoding="async"><img class="h3" data-tone="gold" data-cap="酒井抱一「夏秋草図屏風」" src="assets/site/art-natsuaki.jpg" width="1600" height="1445" alt="酒井抱一「夏秋草図屏風」" decoding="async"></div>
   <canvas class="art-layer" data-art="kasumi" aria-hidden="true"></canvas>
   <p class="hero-plate"><span class="hp-p"><span class="hp-k">杜工舎</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">人の足りない会社の、<br>もうひとりの裏方。</span></span><span class="hp-mis"><a class="hp-mi" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hp-mi" href="price.html">料金案内 <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
-  <div class="hero-deal"><p class="hx-k"><img src="favicon.svg" width="44" height="44" alt="" style="vertical-align:middle;margin-right:14px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))">MORIKOSHA</p><p class="hx-p">人の足りない会社の、<br>もうひとりの裏方。</p><p class="hx-e" lang="en">One more pair of hands behind the scenes — for companies short on people.</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
+  <div class="hero-deal"><p class="hx-k">MORIKOSHA</p><p class="hx-p">人の足りない会社の、<br>もうひとりの裏方。</p><p class="hx-e" lang="en">One more pair of hands behind the scenes — for companies short on people.</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
 </section>
 <p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=document.querySelector(".hero .hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 <section class="sec s-ground" id="about-all" aria-labelledby="top-h">

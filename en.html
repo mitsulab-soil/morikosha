@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Morikosha | One more pair of hands behind the scenes, for companies short on people</title><link rel="icon" href="/favicon.ico?v=3" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=3">
+<title>Morikosha | One more pair of hands behind the scenes, for companies short on people</title><link rel="icon" href="/favicon.ico?v=4" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=4">
 <link rel="alternate" hreflang="ja" href="https://morikosha.com/">
 <link rel="alternate" hreflang="en" href="https://morikosha.com/en.html">
 <meta name="description" content="A small studio in Saitama City. We make company websites, company brochures, multilingual menus and product comparison sites from a form and photos in about two weeks.">
@@ -2546,6 +2546,22 @@ html[lang="en"] .dai-t{letter-spacing:.06em!important;}
 html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
 </style>
 <style id="nav-cur">
+/* 2026-11-05 三本線の中に階層 */
+.mnav li.mg{list-style:none;margin:22px 0 4px;padding:0;border:0!important;display:flex;align-items:baseline;gap:12px;font-size:11.5px;letter-spacing:.28em;color:#a8823f}
+.mnav li.mg::after{content:"";flex:1;height:.5px;background:rgba(168,130,63,.45);align-self:center}
+.mnav li.mg .lb{font-family:"Cormorant Garamond",serif;font-size:11px;letter-spacing:.3em;opacity:.8;position:static!important}
+.mnav li.sub>a{padding-left:18px!important;position:relative}
+.mnav li.sub>a::before{content:"";position:absolute;left:2px;top:50%;width:5px;height:5px;border:.5px solid #a8823f;transform:translateY(-50%) rotate(45deg)}
+/* 2026-11-05 言語の切り替えは三本線の中へ */
+.lang{display:none!important}
+.mlang{display:flex;align-items:center;gap:0;margin:6px 0 22px;padding:0 0 18px;border-bottom:.5px solid rgba(168,130,63,.45)}
+.mlang .ml-k{font-size:10.5px;letter-spacing:.32em;color:#a8823f;margin-right:18px;font-family:"Cormorant Garamond",serif}
+.mlang a{position:relative;padding:6px 16px;font-size:13.5px;letter-spacing:.14em;text-decoration:none;color:inherit;opacity:.55;transition:opacity .3s}
+.mlang a+a{border-left:.5px solid rgba(168,130,63,.6)}
+.mlang a:hover{opacity:1}
+.mlang a[aria-current="true"]{opacity:1}
+.mlang a[aria-current="true"]::after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:1.5px;background:linear-gradient(90deg,#b08d3c,#a8382a)}
+
 /* menu-all：タブは三本線の中にしまう */
 .hd .nav{display:none!important;}.hd .menu-btn{display:block!important;}
 .nav a::before{content:"";position:absolute;left:50%;top:-7px;width:6px;height:6px;background:#a8382a;transform:translateX(-50%) rotate(45deg) scale(0);transition:transform .35s cubic-bezier(.2,.8,.2,1.4);}
@@ -2586,15 +2602,18 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
 
 <nav class="mnav" id="mnav" aria-label="Menu">
   <div class="mnav-top"><span class="logo-s"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span></span> <button class="mnav-close" id="mnav-close" type="button">Close ×</button></div>
+  <div class="mlang" aria-label="言語 / Language"><span class="ml-k" aria-hidden="true">LANG</span><a href="index.html" hreflang="ja" lang="ja">日本語</a><a href="en.html" hreflang="en" lang="en" aria-current="true">English</a></div>
   <ol>
     <li><a href="en.html" aria-current="page"><span class="mn-t">Top<small class="mn-s">All of Morikosha</small></span><span class="lb" aria-hidden="true">Top</span></a></li>
-    <li><a href="en-website.html"><span class="mn-t">Website<small class="mn-s">A single page for your company</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
-    <li><a href="en-menu.html"><span class="mn-t">Multilingual menu<small class="mn-s">English menus for shops and inns</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
-    <li><a href="en-annai.html"><span class="mn-t">Company brochure<small class="mn-s">A4, four pages</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
-    <li><a href="en-hikaku.html"><span class="mn-t">Product comparison site<small class="mn-s">A page that helps people choose by answering questions</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
-    <li><a href="en-profile.html">Profile<span class="lb" aria-hidden="true">Profile</span></a></li>
-    <li><a href="en-price.html"><span class="mn-t">Pricing<small class="mn-s">All prices</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
-    <li><a href="en-contact.html">Contact<span class="lb" aria-hidden="true">Contact</span></a></li>
+    <li class="mg"><span>What we make</span><span class="lb" aria-hidden="true">Services</span></li>
+    <li class="sub"><a href="en-website.html"><span class="mn-t">Website<small class="mn-s">A single page for your company</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
+    <li class="sub"><a href="en-menu.html"><span class="mn-t">Multilingual menu<small class="mn-s">English menus for shops and inns</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
+    <li class="sub"><a href="en-annai.html"><span class="mn-t">Company brochure<small class="mn-s">A4, four pages</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
+    <li class="sub"><a href="en-hikaku.html"><span class="mn-t">Product comparison site<small class="mn-s">A page that helps people choose by answering questions</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
+    <li class="mg"><span>About Morikosha</span><span class="lb" aria-hidden="true">About</span></li>
+    <li class="sub"><a href="en-profile.html">Profile<span class="lb" aria-hidden="true">Profile</span></a></li>
+    <li class="sub"><a href="en-price.html"><span class="mn-t">Pricing<small class="mn-s">All prices</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
+    <li class="sub"><a href="en-contact.html">Contact<span class="lb" aria-hidden="true">Contact</span></a></li>
   </ol>
   <p class="mnav-mail">MAIL ── <a href="mailto:info@morikosha.com">info@morikosha.com</a></p>
 </nav>
@@ -2609,7 +2628,7 @@ n.src='assets/'+d._p[d._i]+'.jpg';},2200);})();</script>
   <div class="hero-ph"><img class="on h1" data-tone="gold" data-cap="Ogata Kōrin, “Irises at Yatsuhashi” screen" src="assets/site/art-irises.jpg" width="2400" height="1350" alt="Ogata Kōrin, “Irises at Yatsuhashi” screen" fetchpriority="high"><img class="h2" data-tone="gold" data-cap="Suzuki Shōnen, “Old Pine” screen" src="assets/site/art-pines-gold.jpg" width="2400" height="1350" alt="Suzuki Shōnen, “Old Pine” screen" decoding="async"><img class="h3" data-tone="gold" data-cap="Sakai Hōitsu, “Summer and Autumn Grasses” screen" src="assets/site/art-natsuaki.jpg" width="1600" height="1445" alt="Sakai Hōitsu, “Summer and Autumn Grasses” screen" decoding="async"></div>
   <canvas class="art-layer" data-art="kasumi" aria-hidden="true"></canvas>
   <p class="hero-plate"><span class="hp-p"><span class="hp-k">Morikosha</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">One more pair of hands behind the scenes,<br> for companies short on people.</span></span><span class="hp-mis"><a class="hp-mi" href="en-contact.html">Contact <span aria-hidden="true">→</span></a><a class="hp-mi" href="en-price.html">Pricing <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
-  <div class="hero-deal"><p class="hx-k"><img src="favicon.svg" width="44" height="44" alt="" style="vertical-align:middle;margin-right:14px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))">MORIKOSHA</p><p class="hx-p">One more pair of hands behind the scenes,<br> for companies short on people.</p><div class="hx-go"><a class="box-ln" href="en-contact.html">Contact <span aria-hidden="true">→</span></a><a class="hx-ln" href="en-price.html">Pricing</a></div></div>
+  <div class="hero-deal"><p class="hx-k">MORIKOSHA</p><p class="hx-p">One more pair of hands behind the scenes,<br> for companies short on people.</p><div class="hx-go"><a class="box-ln" href="en-contact.html">Contact <span aria-hidden="true">→</span></a><a class="hx-ln" href="en-price.html">Pricing</a></div></div>
 </section>
 <p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=document.querySelector(".hero .hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 <section class="sec s-ground" id="about-all" aria-labelledby="top-h">
@@ -2620,7 +2639,7 @@ n.src='assets/'+d._p[d._i]+'.jpg';},2200);})();</script>
     <dl class="tp-v">
       <div><dt>Our aim</dt><dd>To keep good work understood and chosen, even as the number of people shrinks.</dd></div>
       <div><dt>What Morikosha does</dt><dd>For companies and shops with no hands to spare, we build the tools that convey what their work is about.</dd></div>
-      <div><dt>How it works</dt><dd>Almost no meetings are needed. Just send us the form and your photos, and we will deliver in about two weeks.</dd></div>
+      <div><dt>How it works</dt><dd>Almost no meetings are needed. Start with a short email; once you order, send your text and photos, and we will deliver in about two weeks.</dd></div>
     </dl>
     <h3 class="tp-h">What Morikosha can do</h3>
     <ul class="tp-g tp-4"><li><a href="en-website.html"><img src="assets/card-kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Website <span aria-hidden="true">→</span></span><span class="tp-s">Conveys your work and strengths on a single page.</span><span class="tp-p">¥98,000 (tax incl.)</span></a></li><li><a href="en-menu.html"><img src="assets/menu/print-a.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Multilingual menu <span aria-hidden="true">→</span></span><span class="tp-s">Introduces your dishes to guests from overseas.</span><span class="tp-p">English: ¥48,000 (tax incl.)</span></a></li><li><a href="en-annai.html"><img src="assets/annai/kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Company brochure <span aria-hidden="true">→</span></span><span class="tp-s">Presents your company in a book you can hand over.</span><span class="tp-p">¥48,000 (tax incl.)</span></a></li><li><a href="en-hikaku.html"><img src="assets/hikaku/pc-r.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Product comparison site <span aria-hidden="true">→</span></span><span class="tp-s">Presents how to choose a product, in the form of questions.</span><span class="tp-p">¥98,000 (tax incl.)</span></a></li></ul>
