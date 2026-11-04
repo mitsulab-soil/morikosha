@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Profile | Morikosha</title><link rel="icon" href="/favicon.ico?v=3" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=3">
+<title>Profile | Morikosha</title><link rel="icon" href="/favicon.ico?v=4" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png?v=4">
 <link rel="alternate" hreflang="ja" href="https://morikosha.com/profile.html">
 <link rel="alternate" hreflang="en" href="https://morikosha.com/en-profile.html">
 <meta name="description" content="Profile of Mitsuaki Uehara, representative of Morikosha.">
@@ -2544,6 +2544,22 @@ html[lang="en"] .dai-t{letter-spacing:.06em!important;}
 html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
 </style>
 <style id="nav-cur">
+/* 2026-11-05 三本線の中に階層 */
+.mnav li.mg{list-style:none;margin:22px 0 4px;padding:0;border:0!important;display:flex;align-items:baseline;gap:12px;font-size:11.5px;letter-spacing:.28em;color:#a8823f}
+.mnav li.mg::after{content:"";flex:1;height:.5px;background:rgba(168,130,63,.45);align-self:center}
+.mnav li.mg .lb{font-family:"Cormorant Garamond",serif;font-size:11px;letter-spacing:.3em;opacity:.8;position:static!important}
+.mnav li.sub>a{padding-left:18px!important;position:relative}
+.mnav li.sub>a::before{content:"";position:absolute;left:2px;top:50%;width:5px;height:5px;border:.5px solid #a8823f;transform:translateY(-50%) rotate(45deg)}
+/* 2026-11-05 言語の切り替えは三本線の中へ */
+.lang{display:none!important}
+.mlang{display:flex;align-items:center;gap:0;margin:6px 0 22px;padding:0 0 18px;border-bottom:.5px solid rgba(168,130,63,.45)}
+.mlang .ml-k{font-size:10.5px;letter-spacing:.32em;color:#a8823f;margin-right:18px;font-family:"Cormorant Garamond",serif}
+.mlang a{position:relative;padding:6px 16px;font-size:13.5px;letter-spacing:.14em;text-decoration:none;color:inherit;opacity:.55;transition:opacity .3s}
+.mlang a+a{border-left:.5px solid rgba(168,130,63,.6)}
+.mlang a:hover{opacity:1}
+.mlang a[aria-current="true"]{opacity:1}
+.mlang a[aria-current="true"]::after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:1.5px;background:linear-gradient(90deg,#b08d3c,#a8382a)}
+
 /* menu-all：タブは三本線の中にしまう */
 .hd .nav{display:none!important;}.hd .menu-btn{display:block!important;}
 .nav a::before{content:"";position:absolute;left:50%;top:-7px;width:6px;height:6px;background:#a8382a;transform:translateX(-50%) rotate(45deg) scale(0);transition:transform .35s cubic-bezier(.2,.8,.2,1.4);}
@@ -2567,15 +2583,18 @@ html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
 
 <nav class="mnav" id="mnav" aria-label="Menu">
   <div class="mnav-top"><span class="logo-s"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span></span> <button class="mnav-close" id="mnav-close" type="button">Close ×</button></div>
+  <div class="mlang" aria-label="言語 / Language"><span class="ml-k" aria-hidden="true">LANG</span><a href="profile.html" hreflang="ja" lang="ja">日本語</a><a href="en-profile.html" hreflang="en" lang="en" aria-current="true">English</a></div>
   <ol>
     <li><a href="en.html"><span class="mn-t">Top<small class="mn-s">All of Morikosha</small></span><span class="lb" aria-hidden="true">Top</span></a></li>
-    <li><a href="en-website.html"><span class="mn-t">Website<small class="mn-s">A single page for your company</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
-    <li><a href="en-menu.html"><span class="mn-t">Multilingual menu<small class="mn-s">English menus for shops and inns</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
-    <li><a href="en-annai.html"><span class="mn-t">Company brochure<small class="mn-s">A4, four pages</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
-    <li><a href="en-hikaku.html"><span class="mn-t">Product comparison site<small class="mn-s">A page that helps people choose by answering questions</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
-    <li><a href="en-profile.html" aria-current="page">Profile<span class="lb" aria-hidden="true">Profile</span></a></li>
-    <li><a href="en-price.html"><span class="mn-t">Pricing<small class="mn-s">All prices</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
-    <li><a href="en-contact.html">Contact<span class="lb" aria-hidden="true">Contact</span></a></li>
+    <li class="mg"><span>What we make</span><span class="lb" aria-hidden="true">Services</span></li>
+    <li class="sub"><a href="en-website.html"><span class="mn-t">Website<small class="mn-s">A single page for your company</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
+    <li class="sub"><a href="en-menu.html"><span class="mn-t">Multilingual menu<small class="mn-s">English menus for shops and inns</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
+    <li class="sub"><a href="en-annai.html"><span class="mn-t">Company brochure<small class="mn-s">A4, four pages</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
+    <li class="sub"><a href="en-hikaku.html"><span class="mn-t">Product comparison site<small class="mn-s">A page that helps people choose by answering questions</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
+    <li class="mg"><span>About Morikosha</span><span class="lb" aria-hidden="true">About</span></li>
+    <li class="sub"><a href="en-profile.html" aria-current="page">Profile<span class="lb" aria-hidden="true">Profile</span></a></li>
+    <li class="sub"><a href="en-price.html"><span class="mn-t">Pricing<small class="mn-s">All prices</small></span><span class="lb" aria-hidden="true">Price</span></a></li>
+    <li class="sub"><a href="en-contact.html">Contact<span class="lb" aria-hidden="true">Contact</span></a></li>
   </ol>
   <p class="mnav-mail">MAIL ── <a href="mailto:info@morikosha.com">info@morikosha.com</a></p>
 </nav>
