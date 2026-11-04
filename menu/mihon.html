@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>多言語メニューの見本・5つのデザイン｜杜工舎</title>
-<meta name="description" content="杜工舎がつくる、日本語と英語を並べたメニューの見本。5つのデザインから選べます（架空のお店）。">
+<meta name="description" content="杜工舎がつくる、日本語と英語の2か国語を基本にした（言語は足せる）メニューの見本。5つのデザインから選べます（架空のお店）。">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="../assets/site/logo.svg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Zen+Antique&family=Zen+Kaku+Gothic+New:wght@500;900&family=Oswald:wght@500;600&family=Zen+Maru+Gothic:wght@500;700&family=Jost:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap">
@@ -81,6 +81,30 @@ body.solo{background:none}body.solo .sheet{margin:0;box-shadow:none;width:210mm;
 .s5 header{border-bottom:.5px solid #AEB6C4}
 .s5 h2{justify-content:center;gap:16px;border-bottom:.5px solid rgba(174,182,196,.6)}.s5 h2 .he{font-style:italic}
 .s5 .it{border-bottom:.5px solid rgba(174,182,196,.25)}.s5 .p{font-size:17px;color:#D8DDE6}.s5 .note{text-align:center}
+/* 2026-11-05 みつさん「もっと高級感のあるデザインに」：余白を広げ、金の細罫・二重の額・飾りの菱・点の導線 */
+.sheet{padding:22mm 22mm 18mm}
+.sheet header{padding-bottom:8mm;margin-bottom:4mm}
+.sheet .sm{font-size:10px;letter-spacing:.5em;text-transform:uppercase;margin-top:12px}
+.sheet .sm::before,.sheet .sm::after{content:"";display:inline-block;width:34px;height:.5px;background:currentColor;vertical-align:middle;margin:0 12px;opacity:.7}
+.sheet h2{margin-top:8mm;justify-content:center;flex-direction:column;align-items:center;gap:3px;border:0 !important;background:none !important;padding:0 0 3mm !important}
+.sheet h2::after{content:"◆";font-size:7px;letter-spacing:0;opacity:.8;margin-top:3px}
+.sheet h2 .hj{font-size:18px;letter-spacing:.32em;font-weight:500}.sheet h2 .he{font-size:12px;letter-spacing:.32em;text-transform:uppercase;font-style:normal}
+.it{grid-template-columns:auto minmax(12px,1fr) auto;border:0 !important;padding:6px 0 7px;background:none !important;border-radius:0 !important;margin:0 !important}
+.it .j{grid-column:1;font-weight:500;letter-spacing:.06em}
+.it::after{content:"";grid-column:2;grid-row:1;align-self:end;margin-bottom:.45em;border-bottom:1px dotted currentColor;opacity:.35}
+.it .e{grid-column:1 / span 2;font-size:14.5px;letter-spacing:.01em}
+.it .e small{display:block;margin:1px 0 0;font-size:12px;font-style:italic;opacity:.7}
+.it .p{grid-column:3;grid-row:1;align-self:end;font-weight:500 !important}
+.note{text-align:center;border-top:.5px solid currentColor !important;opacity:.85}
+.legend{font-size:11px;letter-spacing:.06em}
+.sheet::before{content:"";position:absolute;inset:8mm;border:.6px solid var(--g);pointer-events:none}
+.sheet::after{content:"";position:absolute;inset:9.6mm;border:.3px solid var(--g);opacity:.55;pointer-events:none}
+.s1{--g:#A8823F}.s1 header{border-bottom:.6px solid #A8823F}.s1 h2,.s1 h2 .he{color:#24365C}.s1 .p{color:#7A5E2A}
+.s2{--g:#B8913F}.s2 header{background:#14100D;margin:-22mm -22mm 4mm;padding:16mm 22mm 9mm;border-bottom:2px solid #B8913F}.s2 .se{color:#D9B66A}.s2 h2 .hj{color:#A42E1A;font-size:20px}.s2 .p{color:#A42E1A}
+.s3{--g:#C9A55A;background:#100E0B}.s3 .sj{color:#D8B46A;font-weight:700}.s3 header{border-bottom:.6px solid #C9A55A}.s3 h2 .hj{color:#D8B46A;font-weight:700}.s3 .j{font-weight:700}.s3 .p{color:#D8B46A;font-size:21px}
+.s4{--g:#9DB08C}.s4 .it{border-radius:0}
+.s2 h2{color:#1B1512 !important}.s3 h2{color:#E9DFC9 !important}
+.s5{--g:#C4B07A}.s5::before{border-color:#C4B07A}.s5 .p{color:#E2CF9B}.s5 h2 .hj{color:#E2CF9B}
 @media (max-width:640px){.tabs{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.tabs label{padding:8px 2px}.tabs label b{font-size:20px}.tabs label span{font-size:10.5px}
  .sheet{padding:28px 18px 40px;min-height:0}.s2 header{margin:-28px -18px 16px;padding:28px 18px 18px}.s5::before{inset:6px}.s5::after{inset:9px}.mark{right:18px;bottom:12px}}
 @media print{html{background:none}.bar,.pick{display:none}.sheet{margin:0;box-shadow:none;width:210mm;min-height:297mm}@page{size:A4;margin:0}
@@ -90,7 +114,7 @@ body.solo{background:none}body.solo .sheet{margin:0;box-shadow:none;width:210mm;
 <body>
 <input type="radio" name="d" id="d1" checked><input type="radio" name="d" id="d2"><input type="radio" name="d" id="d3"><input type="radio" name="d" id="d4"><input type="radio" name="d" id="d5">
 <nav class="bar"><a href="../menu.html">← 杜工舎の多言語メニューへ戻る</a><a href="mihon.pdf" download>PDF で見る（藍）</a></nav>
-<div class="pick"><h1>5つのデザインから選べます</h1><p>どれも、日本語の下に英語を並べます。お店の雰囲気に合う1つをお選びください。下の見本のお店は、すべて架空です。</p><div class="tabs" role="group" aria-label="デザインを選ぶ"><label for="d1"><b>藍</b><span>和食</span></label><label for="d2"><b>朱</b><span>居酒屋</span></label><label for="d3"><b>燈</b><span>ラーメン</span></label><label for="d4"><b>綿</b><span>カフェ</span></label><label for="d5"><b>銀</b><span>洋食</span></label></div><p class="aim a1"><b>藍（あい）</b>　白い和紙に藍の罫。品書きの落ち着きをそのまま英語にも。　向いているお店：和食・そば・定食</p><p class="aim a2"><b>朱（しゅ）</b>　生成りに朱と墨の太い字。にぎやかな店の勢いを残す。　向いているお店：居酒屋・焼き鳥・炉端</p><p class="aim a3"><b>燈（とう）</b>　黒地に黄の灯り。遠くからでも読める太い字と大きな値段。　向いているお店：ラーメン・中華・食堂</p><p class="aim a4"><b>綿（わた）</b>　生成りに若草色。丸い字で、やわらかく軽やかに。　向いているお店：カフェ・甘味・パン</p><p class="aim a5"><b>銀（ぎん）</b>　紺の地に銀の細線。品のある洋食店の一枚に。　向いているお店：洋食・ビストロ・ホテルの食堂</p></div>
+<div class="pick"><h1>5つのデザインから選べます</h1><p>どれも、日本語と英語の2か国語が基本です。中国語（繁体字・簡体字）・韓国語などは、1言語ずつ足せます。お店の雰囲気に合う1つをお選びください。下の見本のお店は、すべて架空です。</p><div class="tabs" role="group" aria-label="デザインを選ぶ"><label for="d1"><b>藍</b><span>和食</span></label><label for="d2"><b>朱</b><span>居酒屋</span></label><label for="d3"><b>燈</b><span>ラーメン</span></label><label for="d4"><b>綿</b><span>カフェ</span></label><label for="d5"><b>銀</b><span>洋食</span></label></div><p class="aim a1"><b>藍（あい）</b>　白い和紙に藍の罫。品書きの落ち着きをそのまま英語にも。　向いているお店：和食・そば・定食</p><p class="aim a2"><b>朱（しゅ）</b>　生成りに朱と墨の太い字。にぎやかな店の勢いを残す。　向いているお店：居酒屋・焼き鳥・炉端</p><p class="aim a3"><b>燈（とう）</b>　黒地に黄の灯り。遠くからでも読める太い字と大きな値段。　向いているお店：ラーメン・中華・食堂</p><p class="aim a4"><b>綿（わた）</b>　生成りに若草色。丸い字で、やわらかく軽やかに。　向いているお店：カフェ・甘味・パン</p><p class="aim a5"><b>銀（ぎん）</b>　紺の地に銀の細線。品のある洋食店の一枚に。　向いているお店：洋食・ビストロ・ホテルの食堂</p></div>
 <main class="sheet s1" lang="ja">
 <header><p class="sj">そば処 もりの庵</p><p class="se" lang="en">Soba Restaurant Mori-no-An</p><p class="sm">お品書き ・ Menu</p></header>
 <div class="legend"><p>アレルギー・肉や魚の有無は、お店の人にお尋ねください</p><p class="en" lang="en">Allergens / vegetarian: please ask our staff.</p></div>
@@ -177,5 +201,4 @@ body.solo{background:none}body.solo .sheet{margin:0;box-shadow:none;width:210mm;
 <div class="it"><span class="j">自家製レモネード</span><span class="e" lang="en">Homemade Lemonade</span><span class="p">¥550</span></div>
 <div class="note"><p>価格はすべて税込です</p><p class="en" lang="en">All prices include tax.</p></div>
 <p class="mark">見本（架空のお店）・制作 杜工舎</p></main>
-<script src="/s/k.js" defer></script>
 </body></html>
