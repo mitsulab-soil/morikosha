@@ -2535,7 +2535,15 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
 .hero-deal .hx-c{margin:0 0 12px;font-family:var(--ff-ja);font-size:clamp(17px,1.4vw,21px);font-weight:500;letter-spacing:.1em;line-height:1.6;}
 .hero-deal .hx-d{margin:12px 0 0;padding-top:10px;border-top:.5px solid var(--gold);font-size:14px;letter-spacing:.06em;line-height:1.8;color:var(--ink-2);}
 </style>
-</head>
+<style id="nav-cur">
+.nav a::before{content:"";position:absolute;left:50%;top:-7px;width:6px;height:6px;background:#a8382a;transform:translateX(-50%) rotate(45deg) scale(0);transition:transform .35s cubic-bezier(.2,.8,.2,1.4);}
+.nav a::after{height:2px!important;bottom:-4px!important;background:linear-gradient(90deg,transparent,#b08d3c 18%,#a8382a 50%,#b08d3c 82%,transparent)!important;transition:width .45s cubic-bezier(.2,.8,.2,1)!important;}
+.nav a.cur,.nav a[aria-current="page"]{opacity:1!important;}
+.nav a.cur::before,.nav a[aria-current="page"]::before{transform:translateX(-50%) rotate(45deg) scale(1);}
+.nav a.cur::after,.nav a[aria-current="page"]::after{width:100%!important;}
+.nav a.cur .nj,.nav a[aria-current="page"] .nj{color:#a8382a!important;font-weight:600;}
+@media (hover:hover){.nav a:hover{opacity:1!important;}.nav a:hover::after{width:60%!important;}.nav a:hover::before{transform:translateX(-50%) rotate(45deg) scale(.7);}}
+</style></head>
 <body class="pg-sub">
 <a class="skip" href="#main">本文へ移動</a>
 

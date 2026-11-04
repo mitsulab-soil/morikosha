@@ -2545,7 +2545,15 @@ html[lang="en"] .pg-top .hero-deal .hx-p{letter-spacing:.02em!important;}
 html[lang="en"] .dai-t{letter-spacing:.06em!important;}
 html[lang="en"] .nav .nj,html[lang="en"] .mnav .lb{display:none!important;}
 </style>
-</head>
+<style id="nav-cur">
+.nav a::before{content:"";position:absolute;left:50%;top:-7px;width:6px;height:6px;background:#a8382a;transform:translateX(-50%) rotate(45deg) scale(0);transition:transform .35s cubic-bezier(.2,.8,.2,1.4);}
+.nav a::after{height:2px!important;bottom:-4px!important;background:linear-gradient(90deg,transparent,#b08d3c 18%,#a8382a 50%,#b08d3c 82%,transparent)!important;transition:width .45s cubic-bezier(.2,.8,.2,1)!important;}
+.nav a.cur,.nav a[aria-current="page"]{opacity:1!important;}
+.nav a.cur::before,.nav a[aria-current="page"]::before{transform:translateX(-50%) rotate(45deg) scale(1);}
+.nav a.cur::after,.nav a[aria-current="page"]::after{width:100%!important;}
+.nav a.cur .nj,.nav a[aria-current="page"] .nj{color:#a8382a!important;font-weight:600;}
+@media (hover:hover){.nav a:hover{opacity:1!important;}.nav a:hover::after{width:60%!important;}.nav a:hover::before{transform:translateX(-50%) rotate(45deg) scale(.7);}}
+</style></head>
 <body class="pg-sub pg-top">
 <a class="skip" href="#main">Skip to main content</a>
 
