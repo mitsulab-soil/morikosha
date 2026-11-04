@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>杜工舎（もりこうしゃ）｜まち体験を、拡張する</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
+<title>杜工舎（もりこうしゃ）｜人の足りない会社の、もうひとりの裏方</title><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="apple-touch-icon" href="/assets/site/apple-touch-icon.png">
 <link rel="alternate" hreflang="ja" href="https://morikosha.com/">
 <link rel="alternate" hreflang="en" href="https://morikosha.com/en.html">
-<meta name="description" content="まち体験を、拡張する。さいたま市の小さな工房。会社のホームページ・会社案内・多言語メニュー・商品比較サイトを、記入シートと写真から2週間ほどでつくります。">
+<meta name="description" content="さいたま市の小さな工房。会社のホームページ・会社案内・多言語メニュー・商品比較サイトを、記入シートと写真から2週間ほどでつくります。">
 <link rel="canonical" href="https://morikosha.com/">
 <meta name="theme-color" content="#F3F1EB">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://morikosha.com/">
 <meta property="og:site_name" content="杜工舎">
-<meta property="og:title" content="杜工舎（もりこうしゃ）｜まち体験を、拡張する">
-<meta property="og:description" content="まち体験を、拡張する。さいたま市の小さな工房。会社のホームページ・会社案内・多言語メニュー・商品比較サイトを、記入シートと写真から2週間ほどでつくります。">
+<meta property="og:title" content="杜工舎（もりこうしゃ）｜人の足りない会社の、もうひとりの裏方">
+<meta property="og:description" content="さいたま市の小さな工房。会社のホームページ・会社案内・多言語メニュー・商品比較サイトを、記入シートと写真から2週間ほどでつくります。">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://morikosha.com/ogp.png">
 <meta property="og:image:width" content="1200">
@@ -2547,7 +2547,24 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
 .nav a.cur::after,.nav a[aria-current="page"]::after{width:100%!important;}
 .nav a.cur .nj,.nav a[aria-current="page"] .nj{color:#a8382a!important;font-weight:600;}
 @media (hover:hover){.nav a:hover{opacity:1!important;}.nav a:hover::after{width:60%!important;}.nav a:hover::before{transform:translateX(-50%) rotate(45deg) scale(.7);}}
-</style></head>
+</style><style id="hero-mz">
+/* 2026-11-05 みつさん「扉は日本画ではなく、HP・会社案内などのイメージ写真を複数合わせて動的に」 */
+.hero .hero-ph,.hero .art-layer,.hero-credit{display:none!important}
+.hero{background:#EDE6D6}
+.hero-mz{position:absolute;inset:0;z-index:1;display:grid;gap:10px;padding:10px;
+  grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));}
+.mz{position:relative;overflow:hidden;background:#D9D0BC;border-radius:2px;box-shadow:0 1px 0 rgba(168,130,63,.35) inset,0 0 0 .5px rgba(168,130,63,.55)}
+.mz img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0;opacity:0;transform:scale(1.06);
+  transition:opacity 1.4s ease,transform 9s linear}
+.mz img.on{opacity:1;transform:scale(1)}
+.hero-mz::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(246,242,234,.0) 0,rgba(246,242,234,0) 55%,rgba(246,242,234,.15) 100%),
+  radial-gradient(ellipse 75% 75% at 20% 80%,rgba(20,18,15,.9) 0,rgba(20,18,15,.62) 50%,rgba(20,18,15,0) 80%),
+  linear-gradient(0deg,rgba(28,26,23,.45) 0,rgba(28,26,23,0) 40%)}
+@media (max-width:700px){.hero-mz{gap:6px;padding:6px;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.mz img{transition:none;transform:none}}
+</style>
+</head>
 <body class="pg-sub pg-top">
 <a class="skip" href="#main">本文へ移動</a>
 
@@ -2576,7 +2593,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
   <ol>
     <li><a href="index.html" aria-current="page"><span class="mn-t">トップ<small class="mn-s">杜工舎の全体</small></span><span class="lb" aria-hidden="true">Top</span></a></li>
     <li><a href="website.html"><span class="mn-t">ホームページ作成<small class="mn-s">会社の1ページ</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
-    <li><a href="menu.html"><span class="mn-t">多言語メニュー作成<small class="mn-s">お店・宿の英語メニュー</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
+    <li><a href="menu.html"><span class="mn-t">多言語メニュー作成<small class="mn-s">お店・宿の日本語／英語メニュー</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
     <li><a href="annai.html"><span class="mn-t">会社案内作成<small class="mn-s">A4・4ページ</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
     <li><a href="hikaku.html"><span class="mn-t">商品比較サイト作成<small class="mn-s">質問に答えて選べるページ</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
     <li><a href="profile.html">代表プロフィール<span class="lb" aria-hidden="true">Profile</span></a></li>
@@ -2587,78 +2604,63 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
 </nav>
 
 <main id="main">
-<section class="hero" id="top" aria-label="杜工舎の扉の絵">
+<section class="hero" id="top" aria-label="杜工舎がつくるもの：ホームページ・会社案内・多言語メニューの見本">
+  <div class="hero-mz" aria-hidden="true"><div class="mz mz-a" data-p="card-kenchiku-1,card-zoen-2,card-shokudo-3,card-jinja-1,card-biyo-4,card-sekkei-2"><img class="on" src="assets/card-kenchiku-1.jpg" alt="" decoding="async" fetchpriority="high"></div><div class="mz mz-d" data-p="card-doboku-3,card-bar-2,card-juku-1,card-tosou-5,card-kosho-3,card-nogyo-2"><img class="on" src="assets/card-doboku-3.jpg" alt="" decoding="async"></div><div class="mz mz-e" data-p="card-setsubi-4,card-jiin-2,card-fudosan-1,card-kaigo-3,card-denki-2"><img class="on" src="assets/card-setsubi-4.jpg" alt="" decoding="async"></div><div class="mz mz-b" data-p="annai/kenchiku-1,annai/shokudo-2,annai/zoen-3,annai/bar-1,annai/jinja-2"><img class="on" src="assets/annai/kenchiku-1.jpg" alt="" decoding="async"></div><div class="mz mz-c" data-p="card-kaitai-2,card-shika-1,card-unso-3,card-seizo-4,card-sokuryo-2"><img class="on" src="assets/card-kaitai-2.jpg" alt="" decoding="async"></div><div class="mz mz-f" data-p="menu/sheet-1,menu/sheet-2,menu/sheet-3,menu/sheet-4,menu/sheet-5"><img class="on" src="assets/menu/sheet-1.jpg" alt="" decoding="async"></div></div><script>(function(){var m=document.querySelector('.hero-mz');if(!m||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var t=[].slice.call(m.querySelectorAll('.mz')),i=0;t.forEach(function(d){d._p=d.dataset.p.split(',');d._i=0;});
+setInterval(function(){if(document.hidden)return;var d=t[i++%t.length];if(d.offsetParent===null)return;d._i=(d._i+1)%d._p.length;
+var o=d.querySelector('img.on'),n=new Image();n.alt='';n.onload=function(){d.appendChild(n);requestAnimationFrame(function(){n.className='on';if(o){o.className='';setTimeout(function(){o.remove()},1500);}});};
+n.src='assets/'+d._p[d._i]+'.jpg';},2200);})();</script>
   <div class="hero-ph"><img class="on h1" data-tone="gold" data-cap="尾形光琳「八橋図屏風」" src="assets/site/art-irises.jpg" width="2400" height="1350" alt="尾形光琳「八橋図屏風」" fetchpriority="high"><img class="h2" data-tone="gold" data-cap="鈴木松年「老松図屏風」" src="assets/site/art-pines-gold.jpg" width="2400" height="1350" alt="鈴木松年「老松図屏風」" decoding="async"><img class="h3" data-tone="gold" data-cap="酒井抱一「夏秋草図屏風」" src="assets/site/art-natsuaki.jpg" width="1600" height="1445" alt="酒井抱一「夏秋草図屏風」" decoding="async"></div>
   <canvas class="art-layer" data-art="kasumi" aria-hidden="true"></canvas>
-  <div class="dots" role="group" aria-label="扉の絵を選ぶ"><button type="button" aria-label="絵1：尾形光琳「八橋図屏風」" aria-current="true"></button><button type="button" aria-label="絵2：鈴木松年「老松図屏風」" aria-current="false"></button><button type="button" aria-label="絵3：酒井抱一「夏秋草図屏風」" aria-current="false"></button><span class="num" aria-hidden="true"><span id="hero-num">01</span><span class="num-t"> — 03</span></span></div>
-  <p class="hero-plate"><span class="hp-p"><span class="hp-k">杜工舎</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">まち体験を、<br>拡張する。</span></span><span class="hp-mis"><a class="hp-mi" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hp-mi" href="price.html">料金案内 <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
-  <div class="hero-deal"><p class="hx-k">MORIKOSHA</p><p class="hx-p">まち体験を、<br>拡張する。</p><p class="hx-e" lang="en">Expanding how people experience the town.</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
+  <p class="hero-plate"><span class="hp-p"><span class="hp-k">杜工舎</span><span class="hp-s" aria-hidden="true">──</span><span class="hp-v">人の足りない会社の、<br>もうひとりの裏方。</span></span><span class="hp-mis"><a class="hp-mi" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hp-mi" href="price.html">料金案内 <span aria-hidden="true">→</span></a></span><span class="hp-c" id="hero-cap"></span></p>
+  <div class="hero-deal"><p class="hx-k">MORIKOSHA</p><p class="hx-p">人の足りない会社の、<br>もうひとりの裏方。</p><p class="hx-e" lang="en">One more pair of hands behind the scenes — for companies short on people.</p><div class="hx-go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="hx-ln" href="price.html">料金案内</a></div></div>
 </section>
 <p class="hero-credit" aria-hidden="true"></p><script>(function(){var c=document.currentScript.previousElementSibling,ph=document.querySelector(".hero .hero-ph");function u(){var o=ph&&ph.querySelector(".on");var t=(o&&o.tagName==="IMG")?(o.getAttribute("data-cap")||""):"";if(c.textContent!==t)c.textContent=t;c.hidden=!t;}u();if(ph)new MutationObserver(u).observe(ph,{subtree:true,attributes:true,attributeFilter:["class"]});})();</script>
 <section class="sec s-ground" id="about-all" aria-labelledby="top-h">
   <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">一</span><span class="dai-t">考え方</span><span class="dai-l" aria-hidden="true">Concept</span></header>
-    <div class="lede lede-s"><h2 class="ja-h" id="top-h">まち体験を、<br>拡張する。</h2>
-      <div class="ja-b"><p>まだ知らない店。<br>いつも通る道に残る歴史。<br>このまちを支えている仕事。</p><p>杜工舎は、まちにある情報を、人の体験へつなぎます。ホームページから、宿の観光ガイド、場所を深く楽しむアプリまで。暮らす人と訪れる人に、まちとの新しい接点をつくります。</p></div></div>
+    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">一</span><span class="dai-t">杜工舎について</span><span class="dai-l" aria-hidden="true">Morikosha</span></header>
+    <div class="lede lede-s"><h2 class="ja-h" id="top-h">人の足りない会社の、<br>もうひとりの裏方。</h2>
+      <div class="ja-b"><p>いい仕事をしているのに、それを伝える人がいない。<br>ホームページを直す時間も、案内を作る手も、外国語で説明する人も足りない。</p>
+      <p>杜工舎は、そうした「本業の外にある仕事」を引き受ける、さいたま市の小さな工房です。社員をひとり増やす代わりに、伝える道具をひとつ置いていきます。</p></div></div>
   </div>
 </section>
-<section class="sec" id="apps" aria-labelledby="apps-h">
+<section class="sec" id="naze" aria-labelledby="naze-h">
   <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">二</span><span class="dai-t">考えを、かたちに</span><span class="dai-l" aria-hidden="true">Applications</span></header>
-    <div class="lede lede-s"><h2 class="ja-h" id="apps-h">まちとの接点を、<br>四つのかたちで。</h2>
-      <div class="ja-b"><p>入口で知り、宿から歩き出し、その場所を深く味わい、土地の時間を読む。まち体験を広げる順に、四つのアプリケーションをつくります。</p></div></div>
+    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">二</span><span class="dai-t">いま起きていること</span><span class="dai-l" aria-hidden="true">Why now</span></header>
+    <div class="lede lede-s"><h2 class="ja-h" id="naze-h">人が減るほど、<br>「伝える仕事」が後回しになる。</h2></div>
     <dl class="tp-v">
-      <div><dt>まちの入口をつくる<br>ホームページ</dt><dd>会社、店舗、宿泊施設、文化施設の情報と魅力を伝える。1ページ 98,000円（税込）。</dd></div>
-      <div><dt>宿からまちへつなぐ<br>観光アプリ</dt><dd>ホテル独自のおすすめ、周辺地図、散歩コースを宿泊者へ届ける。（ご相談）</dd></div>
-      <div><dt>場所を深く楽しむ<br>体験アプリ</dt><dd>寺社、庭園、歴史的建築、公園などの見どころを、音声や動く図解で伝える。歩いて近づくと、GPS で解説が流れる。（ご相談）</dd></div>
-      <div><dt>土地の時間を読む<br>アプリ</dt><dd>古地図、写真、記録を現在の風景と重ね、土地の変化と残っているものを体験する。（ご相談・<a href="time/" target="_blank" rel="noopener">川越の見本</a>）</dd></div>
+      <div><dt>人が採れない</dt><dd>建築・土木・測量技術者の有効求人倍率は6.05倍。求人を出しても、応募が来ない時代です。</dd></div>
+      <div><dt>見られている</dt><dd>転職した人の約6割は、入社を決めた会社の採用サイトを見ています。会社名で調べて何も出てこないと、応募のひとつ手前で止まります。</dd></div>
+      <div><dt>手が回らない</dt><dd>現場と本業で手いっぱいの会社ほど、ホームページや案内は何年も古いまま。それは怠けではなく、人が足りないからです。</dd></div>
     </dl>
   </div>
 </section>
-
-<section class="sec s-ground" id="time" aria-labelledby="time-h">
+<section class="sec s-ground" id="hikiuke" aria-labelledby="hikiuke-h">
   <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">三</span><span class="dai-t">土地の時間を読む散歩</span><span class="dai-l" aria-hidden="true">Reading Time</span></header>
-    <div class="lede lede-s"><h2 class="ja-h" id="time-h">同じ道を、<br>いま・むかし・その間から。</h2>
-      <div class="ja-b"><p>ふつうの観光案内との違いをつくる、杜工舎の中心となる体験です。まちの中で「時間」を動かすと、見慣れた道の見え方が変わります。</p></div></div>
+    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">三</span><span class="dai-t">裏方として引き受けること</span><span class="dai-l" aria-hidden="true">Services</span></header>
+    <div class="lede lede-s"><h2 class="ja-h" id="hikiuke-h">足りない人の代わりに、<br>働き続ける道具を。</h2>
+      <div class="ja-b"><p>どれも買い切りで、月々の費用はかかりません。</p></div></div>
+    <ul class="tp-g tp-4"><li><a href="website.html"><img src="assets/card-kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">ホームページ作成 <span aria-hidden="true">→</span></span><span class="tp-s">求人を見た人が、最後に確かめる場所を。</span><span class="tp-p">98,000円（税込）</span></a></li><li><a href="menu.html"><img src="assets/menu/print-a.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">多言語メニュー作成 <span aria-hidden="true">→</span></span><span class="tp-s">説明する人がいなくても、海外のお客さまに伝わる。</span><span class="tp-p">日本語／英語 48,000円（税込）</span></a></li><li><a href="annai.html"><img src="assets/annai/kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">会社案内作成 <span aria-hidden="true">→</span></span><span class="tp-s">営業に出る人が少なくても、置いてくる一冊を。</span><span class="tp-p">48,000円（税込）</span></a></li><li><a href="hikaku.html"><img src="assets/hikaku/pc-r.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">商品比較サイト作成 <span aria-hidden="true">→</span></span><span class="tp-s">店頭で答える人の代わりに、選び方を案内する。</span><span class="tp-p">98,000円（税込）</span></a></li></ul>
+  </div>
+</section>
+<section class="sec" id="susumekata" aria-labelledby="susume-h">
+  <div class="byo">
+    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">四</span><span class="dai-t">進め方</span><span class="dai-l" aria-hidden="true">How it works</span></header>
+    <div class="lede lede-s"><h2 class="ja-h" id="susume-h">忙しい人の時間を、<br>いちばん使わない進め方で。</h2></div>
     <dl class="tp-v">
-      <div><dt>① 重ねる</dt><dd>現在の地図に、昔の道や水路が重なる。</dd></div>
-      <div><dt>② 比べる</dt><dd>対応する古写真を開き、現在の写真と比べる。</dd></div>
-      <div><dt>③ うつろう</dt><dd>川の流れや土地の使われ方が変わった過程を、短い動きで見る。</dd></div>
-      <div><dt>④ さがす</dt><dd>現在に戻り、「残っているもの」を探す。</dd></div>
+      <div><dt>1　送る</dt><dd>記入シートと写真をメールで送るだけ。打ち合わせはほとんど要りません。</dd></div>
+      <div><dt>2　任せる</dt><dd>文章の整え、デザイン、組み立ては杜工舎が引き受けます。</dd></div>
+      <div><dt>3　受け取る</dt><dd>2週間ほどでお渡しします。お渡しのあとの直しの扱いは、料金案内に書いています。</dd></div>
     </dl>
-    <h3 class="tp-h">技術は、資料に合わせて選びます</h3>
-    <dl class="tp-v">
-      <div><dt>古地図がある</dt><dd>現在の地図との重ね合わせ</dd></div>
-      <div><dt>同じ場所の古写真がある</dt><dd>前後の比較</dd></div>
-      <div><dt>年代ごとの記録がある</dt><dd>時間軸に沿った変化の表示</dd></div>
-      <div><dt>復元資料が十分にある</dt><dd>建物や景観の3D表現</dd></div>
-    </dl>
-    <div class="go"><a class="box-ln" href="time/" target="_blank" rel="noopener">川越の見本を開く（スマホで・GPSと音声つき）</a><a class="ln" href="time/?yado=%E8%A6%8B%E6%9C%AC%E3%81%AE%E5%AE%BF" target="_blank" rel="noopener">宿の名前を入れた例 <span aria-hidden="true">→</span></a></div>
   </div>
 </section>
-<section class="sec" id="now" aria-labelledby="now-h">
+<section class="sec s-ground" id="daihyo" aria-labelledby="daihyo-h">
   <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">四</span><span class="dai-t">いま、ご依頼いただけるもの</span><span class="dai-l" aria-hidden="true">Services</span></header>
-    <h3 class="tp-h" id="now-h">記入シートと写真を送るだけ。2週間ほどでお渡しします。</h3>
-    <ul class="tp-g tp-4"><li><a href="website.html"><img src="assets/card-kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">ホームページ作成 <span aria-hidden="true">→</span></span><span class="tp-s">会社の仕事と強みを、1ページで伝える。</span><span class="tp-p">98,000円（税込）</span></a></li><li><a href="menu.html"><img src="assets/menu/print-a.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">多言語メニュー作成 <span aria-hidden="true">→</span></span><span class="tp-s">お店の料理を、海外のお客さまに伝える。</span><span class="tp-p">日本語／英語 48,000円（税込）</span></a></li><li><a href="annai.html"><img src="assets/annai/kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">会社案内作成 <span aria-hidden="true">→</span></span><span class="tp-s">手渡しの一冊で、会社を伝える。</span><span class="tp-p">48,000円（税込）</span></a></li><li><a href="hikaku.html"><img src="assets/hikaku/pc-r.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">商品比較サイト作成 <span aria-hidden="true">→</span></span><span class="tp-s">商品の選び方を、質問の形で伝える。</span><span class="tp-p">98,000円（税込）</span></a></li></ul>
-    <div class="go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="ln" href="price.html">料金案内を見る</a></div>
-  </div>
-</section>
-<section class="sec" id="vision" aria-labelledby="vision-h">
-  <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">五</span><span class="dai-t">代表の考え</span><span class="dai-l" aria-hidden="true">Vision</span></header>
-    <div class="lede lede-s"><h2 class="ja-h" id="vision-h">まちの骨組みの上に、<br>出来事を。</h2>
-      <div class="ja-b"><p>道や橋、川。県庁で8年間、まちの骨組みを整える土木の仕事に携わってきました。国内や、十の国のまちを歩くうちに、まちの表情を決めているのは、その上で起きている出来事のほうだと気づきました。</p><p>人が店を見つけ、道に迷い、立ち止まり、その土地を少し好きになる。骨組みはもう多くのまちに揃っています。杜工舎は、その上で人とまちが出会うための、情報と体験というもうひとつのインフラをつくります。</p></div></div>
-    <div class="go"><a class="ln" href="profile.html">代表のプロフィール</a></div>
-  </div>
-</section>
-<section class="sec" id="lab" aria-labelledby="lab-h">
-  <div class="byo">
-    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">六</span><span class="dai-t">mitsulab とのつながり</span><span class="dai-l" aria-hidden="true">mitsulab</span></header>
-    <div class="lede lede-s"><h2 class="ja-h" id="lab-h">探究を、<br>まちで使えるかたちに。</h2>
-      <div class="ja-b"><p>mitsulab が探究するのは、世界をどう感じ、どう関わるかという「環世界の拡張」。杜工舎は、その考え方や技術を、店・宿・施設・地域が提供できる具体的なサービスへ実装する事業です。</p><p>mitsulab で生まれた表現や道具が、杜工舎を通じてまちで使われる。現場で分かったことが、mitsulab の探究にも戻る。そうした行き来を大切にしています。</p></div></div>
-    <div class="go"><a class="ln" href="https://mitsulab.jp/" target="_blank" rel="noopener">mitsulab を見る ↗</a></div>
+    <header class="dai sec-h"><span class="dai-n" aria-hidden="true">五</span><span class="dai-t">代表より</span><span class="dai-l" aria-hidden="true">From the founder</span></header>
+    <div class="lede lede-s"><h2 class="ja-h" id="daihyo-h">現場の人の仕事を、<br>見える場所へ。</h2>
+      <div class="ja-b"><p>県庁で8年間、土木の技術職員として公共工事に携わりました。そこで見たのは、確かな腕を持ちながら、それを伝える手が足りない会社の多さです。</p>
+      <p>仕事の中身を、いちばん正しく知っているのはその会社の人です。杜工舎は、その言葉と写真を受け取り、伝わるかたちに整える裏方に徹します。</p></div></div>
+    <div class="go"><a class="box-ln" href="contact.html">お問い合わせ <span aria-hidden="true">→</span></a><a class="ln" href="profile.html">代表プロフィール</a><a class="ln" href="price.html">料金案内を見る</a></div>
   </div>
 </section>
 <script>(function(){ /* 前のトップ（今の website.html）にあった印で来たら、その章へ送る（営業メールの #dl-sheet など） */
