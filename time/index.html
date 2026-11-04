@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>土地の時間を読む散歩 — 川越（見本）｜杜工舎</title>
+<meta name="description" content="同じ道を、いま・むかし・その間から。川越で、古い空中写真といまを重ね、歩きながら音声で解説を聞く見本です。">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+:root{--ink:#2b2420;--paper:#f2e8d0;--red:#a8382a;--gold:#8a6d45;--line:#d8ccb0}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;color:var(--ink);background:var(--paper);display:flex;flex-direction:column}
+header{padding:12px 16px 10px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+header h1{font-size:19px;letter-spacing:.12em;font-weight:700}
+header small{font-size:12px;color:var(--gold);letter-spacing:.08em}
+header a{margin-left:auto;font-size:12px;color:var(--gold)}
+#map{flex:1;min-height:46vh}
+.panel{background:#faf4e4;border-top:1px solid var(--line);padding:12px 16px calc(14px + env(safe-area-inset-bottom));max-height:48vh;overflow:auto}
+.era{display:flex;align-items:center;gap:10px}
+.era label{font-size:13px;white-space:nowrap}
+.era input{flex:1;accent-color:var(--red)}
+.ticks{display:flex;justify-content:space-between;font-size:12px;color:var(--gold);margin:2px 0 10px;padding:0 2px}
+.ticks b{color:var(--red)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+button{font:inherit;font-size:13px;border:1px solid var(--ink);background:#fff;color:var(--ink);padding:8px 12px;border-radius:2px;cursor:pointer}
+button.on{background:var(--ink);color:#fff}
+button.red{border-color:var(--red);background:var(--red);color:#fff}
+#status{font-size:12px;color:var(--gold);margin-bottom:8px;min-height:1.4em}
+ol{list-style:none;padding:0;display:grid;gap:8px}
+li{border:1px solid var(--line);background:#fff;padding:10px 12px;border-radius:2px}
+li.near{border-color:var(--red);box-shadow:0 0 0 2px rgba(168,56,42,.15)}
+li h2{font-size:16px;display:flex;align-items:center;gap:8px}
+li h2 i{font-style:normal;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:13px}
+li h2 span{margin-left:auto;font-size:12px;color:var(--gold);font-weight:400}
+li p{font-size:14px;line-height:1.75;margin-top:6px}
+li .find{font-size:13px;color:var(--red);margin-top:6px}
+li .find::before{content:"さがす　"}
+li button{margin-top:8px;padding:5px 10px;font-size:12px}
+.note{font-size:11px;color:#6b5a45;line-height:1.7;margin-top:12px}
+.leaflet-container{background:#e8dcc0;font-family:inherit}
+.pin{background:var(--red);color:#fff;border:2px solid #fff;border-radius:50%;width:26px;height:26px;display:grid;place-items:center;font-size:13px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.me{width:16px;height:16px;border-radius:50%;background:#2f6fd6;border:3px solid #fff;box-shadow:0 0 0 6px rgba(47,111,214,.25)}
+</style>
+</head>
+<body>
+<header><h1>土地の時間を読む散歩</h1><small id="yado">川越・見本</small><a href="/#time">杜工舎</a></header>
+<div id="map" role="application" aria-label="川越の地図。時間をずらすと、古い空中写真に切り替わります"></div>
+<section class="panel">
+  <div class="era"><label for="t">時間をずらす</label><input id="t" type="range" min="0" max="300" value="300" step="1" aria-valuetext="いま"></div>
+  <div class="ticks"><span data-v="0">1960年代</span><span data-v="150">1970年代</span><span data-v="300">いま</span></div>
+  <div class="btns">
+    <button id="play">うつろいを見る</button>
+    <button id="gps" class="red">歩きながら聞く（GPS）</button>
+    <button id="stop">音声を止める</button>
+  </div>
+  <p id="status">地図の上の時間をずらすと、同じ場所の昔の空中写真に変わります。</p>
+  <ol id="list"></ol>
+  <p class="note">空中写真・地図：国土地理院（地理院タイル。1961〜1969年・1974〜1978年の空中写真、全国最新写真、淡色地図）を加工せずに表示。解説は一般に伝えられている内容をもとにした見本で、年代などは「〜と伝わる」ものを含みます。位置情報は端末の中だけで使い、送信しません。<br>見本・杜工舎 制作</p>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+// 宿ごとの差し替え：?yado=宿の名前 で、題字の下が「〇〇から歩く」になる（宿に渡すQRはこの形）
+const yado=new URLSearchParams(location.search).get('yado');
+if(yado){document.getElementById('yado').textContent=yado.slice(0,30)+'から歩く・見本';document.title=yado.slice(0,30)+'から歩く 土地の時間を読む散歩'}
+const SPOTS=[
+ {n:"時の鐘",la:35.92348,lo:139.48334,
+  t:"江戸のはじめ、寛永のころに川越の城主が建てたのが始まりと伝わる鐘つき堂です。いまの鐘楼は、明治二十六年の大火のあとに建て直されたもの。いまも一日に四回、時を知らせています。",
+  f:"鐘の音が鳴る時刻を、案内の板から探してみましょう。"},
+ {n:"蔵造りの町並み",la:35.92354,lo:139.48293,
+  t:"明治二十六年の大火で、まちの多くが焼けました。商人たちは、燃えにくい土の壁と黒い漆喰の蔵造りで店を建て直します。いま見える重たい屋根と厚い扉は、火に負けないまちをつくった跡です。",
+  f:"店の二階の、分厚い観音開きの扉を探してみましょう。"},
+ {n:"菓子屋横丁",la:35.92509,lo:139.48080,
+  t:"明治のはじめに菓子づくりが始まり、昭和の初めには多くの菓子屋が並んだと伝わる路地です。関東大震災のあと、東京に代わって菓子を作り届けたとも言われます。",
+  f:"石畳の細い路地の、いちばん古そうな看板を探してみましょう。"},
+ {n:"川越城本丸御殿",la:35.92450,lo:139.49150,
+  t:"江戸の終わり、嘉永元年に建てられた御殿です。本丸御殿が残る城は、全国でもごくわずか。大きな唐破風の玄関に、川越が城下町だったころの姿が残っています。",
+  f:"玄関の屋根の、ゆるやかに反った曲線を探してみましょう。"},
+ {n:"喜多院",la:35.91782,lo:139.48891,
+  t:"天海僧正ゆかりの寺です。寛永十五年の川越の大火で焼けたあと、江戸城の御殿の一部がここへ移されたと伝わり、三代将軍家光が生まれた部屋とされる建物が残ります。境内の五百羅漢は、一体ずつ表情が違います。",
+  f:"五百羅漢の中から、笑っている顔を探してみましょう。"},
+ {n:"川越氷川神社",la:35.92714,lo:139.48878,
+  t:"およそ千五百年前にまつられたと伝わる、川越の氏神です。秋の川越まつりは、この神社の祭礼として始まりました。",
+  f:"境内の大きな鳥居の高さを、見上げて確かめてみましょう。"}
+];
+const map=L.map('map',{zoomControl:false,attributionControl:true}).setView([35.9225,139.4860],16);map.fitBounds(SPOTS.map(s=>[s.la,s.lo]),{padding:[30,30]});
+L.control.zoom({position:'topright'}).addTo(map);
+const gsi='<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院</a>';
+const now=L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg',{maxZoom:18,attribution:gsi}).addTo(map);
+const pale=L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',{maxZoom:18,opacity:.35}).addTo(map);
+const y70=L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/gazo1/{z}/{x}/{y}.jpg',{maxNativeZoom:17,maxZoom:18,opacity:0}).addTo(map);
+const y60=L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/ort_old10/{z}/{x}/{y}.png',{maxNativeZoom:17,maxZoom:18,opacity:0}).addTo(map);
+const t=document.getElementById('t'),ticks=[...document.querySelectorAll('.ticks span')];
+function setEra(v){
+  // 0=1960年代 150=1970年代 300=いま。間は重ねて、うつろいとして見せる
+  y60.setOpacity(v<150?1-v/150:0);
+  y70.setOpacity(v<=150?1:Math.max(0,1-(v-150)/150));
+  pale.setOpacity(v>=300?.35:0);
+  const lab=v<75?'1960年代':v<225?'1970年代':'いま';
+  t.setAttribute('aria-valuetext',lab);
+  ticks.forEach(s=>s.innerHTML=s.textContent===lab?'<b>'+lab+'</b>':s.textContent);
+}
+t.addEventListener('input',()=>setEra(+t.value));setEra(300);
+let anim;document.getElementById('play').onclick=e=>{
+  if(anim){cancelAnimationFrame(anim);anim=null;e.target.classList.remove('on');return}
+  e.target.classList.add('on');let v=0,t0=performance.now();
+  const step=ts=>{v=Math.min(300,(ts-t0)/20);t.value=v;setEra(v);if(v<300)anim=requestAnimationFrame(step);else{anim=null;e.target.classList.remove('on')}};
+  anim=requestAnimationFrame(step);
+};
+// 名所の印と一覧
+const list=document.getElementById('list'),items=[];
+SPOTS.forEach((s,i)=>{
+  L.marker([s.la,s.lo],{icon:L.divIcon({className:'',html:'<div class="pin">'+(i+1)+'</div>',iconSize:[26,26]}),title:s.n}).addTo(map).on('click',()=>{items[i].scrollIntoView({behavior:'smooth',block:'nearest'});speak(i)});
+  const li=document.createElement('li');
+  li.innerHTML='<h2><i>'+(i+1)+'</i>'+s.n+'<span></span></h2><p>'+s.t+'</p><p class="find">'+s.f+'</p><button type="button">▶ ここで聞く</button>';
+  li.querySelector('button').onclick=()=>speak(i);
+  list.appendChild(li);items.push(li);
+});
+// 音声（端末の読み上げ）
+let voice;function pickVoice(){const v=speechSynthesis.getVoices().filter(x=>x.lang.startsWith('ja'));voice=v.find(x=>/Kyoko|O-ren|Google/.test(x.name))||v[0];}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+function speak(i){
+  if(!('speechSynthesis' in window)){setStatus('この端末では読み上げが使えません。');return}
+  speechSynthesis.cancel();const s=SPOTS[i];
+  const u=new SpeechSynthesisUtterance(s.n+'。'+s.t+'　'+s.f);u.lang='ja-JP';u.rate=.95;if(voice)u.voice=voice;
+  speechSynthesis.speak(u);setStatus('「'+s.n+'」の解説を読み上げています。');
+}
+document.getElementById('stop').onclick=()=>{if('speechSynthesis' in window)speechSynthesis.cancel();setStatus('音声を止めました。')};
+function setStatus(m){document.getElementById('status').textContent=m}
+// GPS：近づいた名所の解説を自動で
+const R=30,heard=new Set();let me,watch;
+function dist(a,b,c,d){const r=6371e3,p=Math.PI/180,x=(d-b)*p*Math.cos((a+c)/2*p),y=(c-a)*p;return Math.hypot(x,y)*r}
+document.getElementById('gps').onclick=e=>{
+  if(watch!=null){navigator.geolocation.clearWatch(watch);watch=null;e.target.classList.remove('on');setStatus('GPS を止めました。');return}
+  if(!navigator.geolocation){setStatus('この端末では位置情報が使えません。');return}
+  if('speechSynthesis' in window)speechSynthesis.speak(new SpeechSynthesisUtterance(''));// iPhone で読み上げを使えるようにする
+  e.target.classList.add('on');setStatus('位置を探しています…');
+  watch=navigator.geolocation.watchPosition(p=>{
+    const {latitude:la,longitude:lo,accuracy:ac}=p.coords;
+    if(!me)me=L.marker([la,lo],{icon:L.divIcon({className:'',html:'<div class="me"></div>',iconSize:[16,16]}),interactive:false}).addTo(map);else me.setLatLng([la,lo]);
+    let best=-1,bd=1e9;
+    SPOTS.forEach((s,i)=>{const d=dist(la,lo,s.la,s.lo);items[i].querySelector('h2 span').textContent=d<1000?Math.round(d)+' m':(d/1000).toFixed(1)+' km';items[i].classList.toggle('near',d<R);if(d<bd){bd=d;best=i}});
+    if(ac>60){setStatus('位置の精度が低いため（±'+Math.round(ac)+' m）、自動の解説は待っています。');return}
+    if(bd<R&&!heard.has(best)){heard.add(best);speak(best);if(navigator.vibrate)navigator.vibrate(200);items[best].scrollIntoView({behavior:'smooth',block:'nearest'})}
+    else if(bd>=R)setStatus('いちばん近いのは「'+SPOTS[best].n+'」、約'+Math.round(bd)+' m（精度 ±'+Math.round(ac)+' m）。近づくと解説が流れます。');
+  },err=>{setStatus('位置情報を使えませんでした（'+err.message+'）。一覧の「ここで聞く」で聞けます。');e.target.classList.remove('on');watch=null},{enableHighAccuracy:true,maximumAge:5000,timeout:20000});
+};
+</script>
+</body>
+</html>
