@@ -79,15 +79,15 @@ document.querySelectorAll('[data-course]').forEach(function(b){b.onclick=functio
 
 // 宿へ戻る・現在地（押したときだけ許可を求める）
 document.getElementById('go-inn').onclick=function(){map.flyTo(SP.inn,17,{duration:.6});};
-var here=null;
+var here=null;function say(t){var s=document.getElementById('status');s.textContent=t;s.hidden=!t;if(t)setTimeout(function(){s.hidden=true;},6000);}
 document.getElementById('go-here').onclick=function(){
-  if(!navigator.geolocation){alert('この端末では現在地を使えません。');return;}
+  if(!navigator.geolocation){say('この端末では現在地を使えません。');return;}
   navigator.geolocation.getCurrentPosition(function(p){
     var ll=[p.coords.latitude,p.coords.longitude];
     if(here)map.removeLayer(here);
     here=L.circleMarker(ll,{radius:8,color:'#fff',weight:3,fillColor:'#2a6db0',fillOpacity:1}).addTo(map).bindPopup('いまいる場所');
     map.flyTo(ll,16);
-  },function(){alert('現在地を取得できませんでした。');},{timeout:10000});
+  say('');},function(){say('現在地を取得できませんでした（位置情報が許可されていないか、電波が届いていません）。');},{timeout:10000});
 };
 
 // ---- 時間を読む ----
@@ -116,7 +116,7 @@ function setEra(e){
 }
 function setCmp(m){cmp=m;press('data-cmp',m);if(curR)curR.getContainer().style.clip='';labels();clip();}
 document.querySelectorAll('[data-left]').forEach(function(b){b.onclick=function(){setLeft(b.dataset.left);};});
-document.querySelectorAll('[data-era]').forEach(function(b){b.onclick=function(){setEra(b.dataset.era);};});
+document.querySelectorAll('[data-era]').forEach(function(b){b.onclick=function(){setEra(b.dataset.era);if(b.dataset.era==='usa')map.flyTo([35.8755,139.5005],15,{duration:.8});};});
 document.querySelectorAll('[data-cmp]').forEach(function(b){b.onclick=function(){setCmp(b.dataset.cmp);};});
 slider.oninput=clip;map.on('move zoom resize zoomend moveend',clip);
 // スライダーに触れている間は地図を動かさない
@@ -131,21 +131,21 @@ Q.forEach(function(q,i){
   li.querySelector('.qb').onclick=function(){map.flyTo(q.ll,q.z,{duration:.6});m.openPopup();};
   ql.appendChild(li);
 });
-function mkTag(side){var d=document.createElement('div');d.className='eratag';d.style[side]='10px';map.getContainer().appendChild(d);return d;}
+function mkTag(side){var d=document.createElement('div');d.className='eratag';d.style[side]=side==='left'?'54px':'10px';map.getContainer().appendChild(d);return d;}
 
 var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
 function mode(m,focus){
   tabs.forEach(function(b){var on=b.dataset.mode===m;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;if(on&&focus)b.focus();});
   document.getElementById('walk-view').hidden=m!=='walk';document.getElementById('time-view').hidden=m!=='time';
-  document.getElementById('maphint').textContent=m==='time'?'左右の境目はスライダーで動かせます。':'線は道なりの目安です（OpenStreetMap の道から計算）。';
-  if(m==='time'){
+  document.getElementById('maphint').hidden=m==='time';
+  var sl=document.querySelector('.slider');if(m==='time'){document.querySelector('.mapwrap').appendChild(sl);
     map.removeLayer(L_pale);map.removeLayer(walkLayer);qLayer.addTo(map);
     if(!divider){divider=document.createElement('div');divider.className='divider';map.getContainer().appendChild(divider);tag1=mkTag('left');tag2=mkTag('right');}
     setLeft(left);setEra(era);
-    var fq=function(){map.invalidateSize();map.fitBounds(L.latLngBounds(Q.map(function(q){return q.ll;})),{padding:[40,40],animate:false});clip();};setTimeout(fq,60);setTimeout(fq,400);
+    var fq=function(){map.invalidateSize();map.fitBounds(L.latLngBounds(Q.map(function(q){return q.ll;})),{padding:[80,80],animate:false});clip();};setTimeout(fq,60);setTimeout(fq,400);
   }else{
     if(curR){curR.getContainer().style.clip='';map.removeLayer(curR);}if(curL)map.removeLayer(curL);map.removeLayer(qLayer);
-    L_pale.addTo(map);walkLayer.addTo(map);
+    L_pale.addTo(map);walkLayer.addTo(map);document.getElementById('time-view').insertBefore(sl,document.querySelector('#time-view h3'));
     if(divider)divider.style.display=tag1.style.display=tag2.style.display='none';
     setTimeout(function(){map.invalidateSize();},60);
   }
@@ -156,5 +156,6 @@ tabs.forEach(function(b,i){
 });
 var p=new URLSearchParams(location.search);
 showCourse(C[p.get('course')]?p.get('course'):'c30');
+if(C[p.get('course')])setTimeout(function(){var c=document.getElementById('course');if(innerWidth<=820)c.scrollIntoView();else document.getElementById('panel').scrollTop=c.offsetTop-20;},300);
 if(p.get('mode')==='time')mode('time');
 })();

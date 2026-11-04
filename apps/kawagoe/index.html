@@ -30,6 +30,7 @@
       <button id="go-inn" type="button">宿へ戻る</button>
       <button id="go-here" type="button">現在地</button>
     </div>
+    <p class="status" id="status" role="status" hidden></p>
     <p class="maphint" id="maphint">線は道なりの目安です（OpenStreetMap の道から計算）。</p>
   </div>
 
@@ -67,8 +68,8 @@
         <button data-era="old" aria-pressed="true">1961〜69年</button>
         <button data-era="photo" aria-pressed="false">いまの空中写真</button>
         <button data-era="usa" aria-pressed="false">1945〜50年＊</button>
+        <span class="star">＊中心部は写っていません。押すと、写っている南側（中心から約5km）へ地図を動かします。</span>
       </div>
-      <p class="warn">＊1945〜50年の写真は、川越の中心部では国土地理院のタイルが提供されていない範囲です（2026年11月4日に確認）。地図を南東へ動かすと、写っている範囲が見えます。</p>
       <div class="eras" role="group" aria-label="見比べ方">
         <span class="lbl">見比べ方</span>
         <button data-cmp="swipe" aria-pressed="true">左右で比べる</button>
