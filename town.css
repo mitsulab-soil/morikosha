@@ -1,4 +1,4 @@
-/* 杜工舎 2026-11 — mitsulab と同じ作りの白い版（mitsulab＝黒、杜工舎＝白） */
+/* 杜工舎 2026-11 白の版 */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=JetBrains+Mono:wght@500&family=Shippori+Mincho:wght@500;600&display=swap');
 :root{color-scheme:light;--bg:#f7f8f5;--bg2:#eef1ec;--card:#ffffff;--ink:#121a20;--ink-2:#3a4650;--ink-3:#66717b;--mori:#1f6a58;--mori-2:#2f8a72;--mori-3:#d6ebe3;--line:rgba(31,106,88,.26);--line-2:rgba(18,26,32,.12);--serif:"Shippori Mincho","Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;--sans:"Inter","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Noto Sans JP",sans-serif;--latin:"Cormorant Garamond","Times New Roman",serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;--paper:var(--bg);--muted:var(--ink-3);--gold:var(--mori)}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}
@@ -12,7 +12,7 @@ h2{font-family:var(--serif);font-size:clamp(24px,2.6vw,32px);font-weight:500;lin
 h3{font-family:var(--serif);font-size:21px;font-weight:500;line-height:1.5;letter-spacing:.04em}
 em{font-style:normal}small{font-size:12px}p{margin-bottom:1.1em}
 .wrap{max-width:1120px;margin:auto;padding:88px 32px}
-/* 見出しの添え：mitsulab と同じ「斜体のラテン」＋「等幅のキッカー」 */
+/* 見出しの添え：「斜体のラテン」＋「等幅のキッカー」 */
 .eyebrow{font:500 12px/1.6 var(--mono);letter-spacing:.16em;color:var(--mori);margin-bottom:12px;text-transform:uppercase}
 .latin{display:block;font:italic 500 14px/1 var(--latin);letter-spacing:.36em;color:var(--ink-3);text-transform:uppercase;margin-bottom:14px}
 .lede{font-size:17px;line-height:2;color:var(--ink-2)}
@@ -41,7 +41,7 @@ em{font-style:normal}small{font-size:12px}p{margin-bottom:1.1em}
 .link{display:inline-flex;align-items:center;gap:8px;padding:6px 0;font-size:14px;font-weight:600;color:var(--mori);border-bottom:1px solid var(--line)}
 .link:hover{border-color:var(--mori)}
 .pill{display:inline-flex;align-items:center;min-height:36px;padding:0 16px;border:1px solid var(--line);border-radius:999px;color:var(--mori);font-size:13.5px;font-weight:600;background:#fff}
-/* hero：中央のロゴ（mitsulab の扉と同じ組み） */
+/* hero：中央のロゴ（まんなかのロゴ） */
 .hero{text-align:center;max-width:960px;margin:auto;padding:64px 24px 72px}
 .hero-mark{width:min(230px,52vw);margin:0 auto 34px;filter:drop-shadow(0 18px 40px rgba(31,106,88,.20))}
 .hero h1{margin-bottom:16px}
@@ -50,7 +50,7 @@ em{font-style:normal}small{font-size:12px}p{margin-bottom:1.1em}
 .hero-tag{display:inline-block;margin:6px auto 0;font-size:13.5px;color:var(--ink-3)}.hero-tag b{color:var(--ink);font-weight:600}
 /* 章の頭（中央） */
 .sec-head{text-align:center;max-width:720px;margin:0 auto 40px}.sec-head p{color:var(--ink-2)}
-/* card（mitsulab の .dw-c と同じ：細い線・角丸16・中に画像） */
+/* card（細い線・角丸16・中に画像） */
 .card{background:var(--card);border:1px solid var(--line-2);border-radius:16px;padding:28px;box-shadow:0 1px 0 rgba(18,26,32,.03)}
 .card img{border-radius:10px;border:1px solid var(--line-2)}
 .axis-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
