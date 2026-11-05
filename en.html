@@ -2502,8 +2502,9 @@ ul.hk-trust a{color:var(--ink);}
 @media (max-width:700px){.tp-v>div{grid-template-columns:1fr;}}
 .tp-h{grid-column:1 / -1;margin:56px 0 0;padding-bottom:12px;border-bottom:1px solid var(--ink);font-size:22px;font-weight:500;letter-spacing:.12em;}
 .tp-g.tp-4{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:28px;}
-@media (max-width:1100px){.tp-g.tp-4{grid-template-columns:1fr 1fr;}}
-@media (max-width:560px){.tp-g.tp-4{grid-template-columns:1fr;}}
+.tp-g.tp-5{grid-template-columns:repeat(5,minmax(0,1fr));}
+@media (max-width:1100px){.tp-g.tp-4,.tp-g.tp-5{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.tp-g.tp-4,.tp-g.tp-5{grid-template-columns:1fr;}}
 .pr-all{grid-column:1 / -1;margin-top:40px;}
 .pr-all h3{margin:48px 0 0;padding-bottom:10px;border-bottom:1px solid var(--ink);font-size:21px;font-weight:500;letter-spacing:.1em;display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
 .pr-all h3 a{font-size:14px;color:var(--ink);}
@@ -2611,7 +2612,7 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
 <header class="hd is-solid" id="hd">
   <a class="logo-b" href="en.html" aria-label="Morikosha: back to top of page"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
   <a class="logo-s" href="en.html" aria-label="Morikosha: back to top of page"><img class="logo-img" src="assets/site/logo.svg" width="42" height="52" alt=""><span class="j">杜工舎</span><span class="w" aria-hidden="true">MORIKOSHA</span></a>
-  <nav class="nav" aria-label="Page navigation"><a href="en.html" aria-current="page"><span lang="en">Top</span><span class="nj">Top</span></a> <a href="en-website.html"><span lang="en">Website</span><span class="nj">Website</span></a> <a href="en-menu.html"><span lang="en">Menu</span><span class="nj">Multilingual menu</span></a> <a href="en-annai.html"><span lang="en">Brochure</span><span class="nj">Company brochure</span></a> <a href="en-hikaku.html"><span lang="en">Compare</span><span class="nj">Product comparison site</span></a> <a href="en-profile.html"><span lang="en">Profile</span><span class="nj">Profile</span></a> <a href="en-price.html"><span lang="en">Price</span><span class="nj">Pricing</span></a> <a href="en-contact.html"><span lang="en">Contact</span><span class="nj">Contact</span></a></nav>
+  <nav class="nav" aria-label="Page navigation"><a href="en.html" aria-current="page"><span lang="en">Top</span><span class="nj">Top</span></a> <a href="en-website.html"><span lang="en">Website</span><span class="nj">New website</span></a> <a href="en-kaishu.html"><span lang="en">Renewal</span><span class="nj">Website renewal</span></a> <a href="en-menu.html"><span lang="en">Menu</span><span class="nj">Multilingual menu</span></a> <a href="en-annai.html"><span lang="en">Brochure</span><span class="nj">Company brochure</span></a> <a href="en-hikaku.html"><span lang="en">Compare</span><span class="nj">Product comparison site</span></a> <a href="en-profile.html"><span lang="en">Profile</span><span class="nj">Profile</span></a> <a href="en-price.html"><span lang="en">Price</span><span class="nj">Pricing</span></a> <a href="en-contact.html"><span lang="en">Contact</span><span class="nj">Contact</span></a></nav>
   <div class="lang" aria-label="言語 / Language"><a href="index.html" hreflang="ja" lang="ja">日本語</a><a href="en.html" hreflang="en" lang="en" aria-current="true">English</a></div>
   <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><i></i><i></i><i></i></button>
 </header>
@@ -2622,7 +2623,8 @@ body,.sec.s-ground,.sec.s-face,.s-ground,.s-face{background-image:url(assets/sit
   <ol>
     <li><a href="en.html" aria-current="page"><span class="mn-t">Top<small class="mn-s">All of Morikosha</small></span><span class="lb" aria-hidden="true">Top</span></a></li>
     <li class="mg"><span>What we make</span><span class="lb" aria-hidden="true">Services</span></li>
-    <li class="sub"><a href="en-website.html"><span class="mn-t">Website<small class="mn-s">A single page for your company</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
+    <li class="sub"><a href="en-website.html"><span class="mn-t">New website<small class="mn-s">Five designs · ¥98,000</small></span><span class="lb" aria-hidden="true">Website</span></a></li>
+    <li class="sub"><a href="en-kaishu.html"><span class="mn-t">Website renewal<small class="mn-s">Your site in a new design · ¥98,000</small></span><span class="lb" aria-hidden="true">Renewal</span></a></li>
     <li class="sub"><a href="en-menu.html"><span class="mn-t">Multilingual menu<small class="mn-s">English menus for shops and inns</small></span><span class="lb" aria-hidden="true">Menu</span></a></li>
     <li class="sub"><a href="en-annai.html"><span class="mn-t">Company brochure<small class="mn-s">A4, four pages</small></span><span class="lb" aria-hidden="true">Brochure</span></a></li>
     <li class="sub"><a href="en-hikaku.html"><span class="mn-t">Product comparison site<small class="mn-s">A page that helps people choose by answering questions</small></span><span class="lb" aria-hidden="true">Compare</span></a></li>
@@ -2652,14 +2654,17 @@ n.src='assets/'+d._p[d._i]+'.jpg';},2200);})();</script>
   <div class="byo">
     <header class="dai sec-h"><span class="dai-n" aria-hidden="true">1</span><span class="dai-t">About Morikosha</span><span class="dai-l" aria-hidden="true">Morikosha</span></header>
     <div class="lede lede-s"><h2 class="ja-h" id="top-h">One more pair of hands behind the scenes,<br> for companies short on people.</h2>
-      <div class="ja-b"><p>Morikosha is a small studio in Saitama City.</p></div></div>
+      <div class="ja-b"><p>For eight years I worked as a civil engineer at a prefectural government, on public works. On every site there were companies doing excellent work. I wanted more people to know about it.</p>
+      <p>Morikosha is a small studio in Saitama City that grew out of that wish. We listen carefully, not only to what your work is, but to your company's story and the thoughts behind it, and we carry them out into the world. That is the motto we work by.</p>
+      <p>Websites, brochures and menus are how that wish takes shape. A single tool for telling people can make your work far easier to understand.</p>
+      <p style="margin-top:20px;text-align:right">Mitsuaki Uehara, Founder, Morikosha</p></div></div>
     <dl class="tp-v">
-      <div><dt>Our aim</dt><dd>To keep good work understood and chosen, even as the number of people shrinks.</dd></div>
-      <div><dt>What Morikosha does</dt><dd>For companies and shops with no hands to spare, we build the tools that convey what their work is about.</dd></div>
-      <div><dt>How it works</dt><dd>Almost no meetings are needed. Start with a short email; once you order, send your text and photos, and we will deliver in about two weeks.</dd></div>
+      <div><dt>Listen</dt><dd>We hear your story and thoughts carefully, by online meeting, email, phone or a simple form, whichever suits you.</dd></div>
+      <div><dt>Shape</dt><dd>Writing, design and layout are taken care of by Morikosha.</dd></div>
+      <div><dt>Deliver</dt><dd>Delivered in about two weeks. One-time payment, no monthly fees.</dd></div>
     </dl>
     <h3 class="tp-h">What Morikosha can do</h3>
-    <ul class="tp-g tp-4"><li><a href="en-website.html"><img src="assets/card-kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Website <span aria-hidden="true">→</span></span><span class="tp-s">Conveys your work and strengths on a single page.</span><span class="tp-p">¥98,000 (tax incl.)</span></a></li><li><a href="en-menu.html"><img src="assets/menu/print-a.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Multilingual menu <span aria-hidden="true">→</span></span><span class="tp-s">Introduces your dishes to guests from overseas.</span><span class="tp-p">English: ¥48,000 (tax incl.)</span></a></li><li><a href="en-annai.html"><img src="assets/annai/kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Company brochure <span aria-hidden="true">→</span></span><span class="tp-s">Presents your company in a book you can hand over.</span><span class="tp-p">¥48,000 (tax incl.)</span></a></li><li><a href="en-hikaku.html"><img src="assets/hikaku/pc-r.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Product comparison site <span aria-hidden="true">→</span></span><span class="tp-s">Presents how to choose a product, in the form of questions.</span><span class="tp-p">¥98,000 (tax incl.)</span></a></li></ul>
+    <ul class="tp-g tp-4 tp-5"><li><a href="en-website.html"><img src="assets/card-kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">New website <span aria-hidden="true">→</span></span><span class="tp-s">Conveys your work and strengths on a single page.</span><span class="tp-p">¥98,000 (tax incl.)</span></a></li><li><a href="en-kaishu.html"><img src="assets/kaishu-after.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Website renewal <span aria-hidden="true">→</span></span><span class="tp-s">Your current content, in a new design.</span><span class="tp-p">¥98,000 (tax incl.)</span></a></li><li><a href="en-menu.html"><img src="assets/menu/print-a.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Multilingual menu <span aria-hidden="true">→</span></span><span class="tp-s">Introduces your dishes to guests from overseas.</span><span class="tp-p">Japanese / English: ¥48,000 (tax incl.)</span></a></li><li><a href="en-annai.html"><img src="assets/annai/kenchiku-3.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Company brochure <span aria-hidden="true">→</span></span><span class="tp-s">Presents your company in a book you can hand over.</span><span class="tp-p">¥48,000 (tax incl.)</span></a></li><li><a href="en-hikaku.html"><img src="assets/hikaku/pc-r.jpg" alt="" loading="lazy" decoding="async"><span class="tp-t">Product comparison site <span aria-hidden="true">→</span></span><span class="tp-s">Presents how to choose a product, in the form of questions.</span><span class="tp-p">¥98,000 (tax incl.)</span></a></li></ul>
     <div class="go"><a class="box-ln" href="en-contact.html">Contact <span aria-hidden="true">→</span></a><a class="ln" href="en-price.html">See pricing</a></div>
   </div>
 </section>
