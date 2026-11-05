@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>質問に答えて伝える｜杜工舎</title>
+<meta name="description" content="お時間の取りにくい方へ。近いものを選ぶか、自由に書くだけで、御社のストーリーや想いをお聞かせいただけるフォームです。">
+<link rel="icon" href="favicon.svg"><link rel="canonical" href="https://morikosha.com/hearing.html">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ground:#F3F1EB;--face:#FBFAF6;--ink:#1E1F1D;--ink2:#55564F;--gold:#A8823F;--line:#CFC9BA}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;font-size:17px;line-height:1.9;letter-spacing:.04em}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;max-width:720px;margin:auto;padding:18px 16px}
+.top a{color:var(--ink);text-decoration:none;min-height:44px;display:flex;align-items:center}
+.top a:first-child{font-size:20px;letter-spacing:.12em}.top a:last-child{font-size:14px;color:var(--ink2)}
+main{max-width:720px;margin:auto;padding:8px 16px 72px}
+h1{font-weight:500;font-size:clamp(25px,5vw,34px);line-height:1.55;margin:16px 0}
+.pg{height:2px;background:var(--line);margin:8px 0 8px}.pg i{display:block;height:100%;background:var(--gold);transition:width .3s}
+.cnt{font-size:14px;color:var(--ink2);margin:0 0 20px}
+h2{font-weight:500;font-size:clamp(22px,4.4vw,27px);line-height:1.6;margin:0 0 6px}
+.hint{color:var(--ink2);font-size:15px;margin:0 0 20px}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;background:var(--face);border:1px solid var(--line);padding:14px 16px;margin:0 0 10px;cursor:pointer;min-height:52px}
+.opt:has(input:checked){border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.opt input{margin:7px 0 0;accent-color:var(--ink);flex:none;width:17px;height:17px}
+label.f{display:block;font-size:15px;margin:18px 0 6px}
+textarea,input[type=text]{width:100%;font:inherit;font-size:16px;padding:12px;background:#fff;border:1px solid var(--line);color:var(--ink)}
+textarea{min-height:112px}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px;flex-wrap:wrap}
+button,.btn{font:inherit;min-height:48px;padding:10px 22px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.pri{background:var(--ink);color:var(--ground)}
+.lnk{border:0;color:var(--ink2);text-decoration:underline;padding:10px 4px}
+pre{white-space:pre-wrap;word-break:break-word;font:inherit;font-size:16px;background:var(--face);border:1px solid var(--line);padding:18px;margin:0 0 16px}
+.fine{font-size:14px;color:var(--ink2)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.hide{display:none}
+</style></head><body>
+<div class="top"><a href="index.html">杜工舎</a><a href="website.html#flow">ご依頼の流れへ戻る</a></div>
+<main>
+<div id="intro">
+<h1>質問に答えて、伝える。</h1>
+<p>お時間の取りにくい方のためのフォームです。いくつかの質問に、近いものを選ぶか、ご自分の言葉で書くだけで、御社のストーリーや想いをお聞かせいただけます。</p>
+<p>所要は5分ほど。文章を整える必要はありません。答えにくい質問は飛ばせます。お話を足したくなったら、メールやお電話、オンライン打ち合わせでも続けられます。</p>
+<p class="fine">入力の内容は、最後に「メールを作る」を押してご自身で送るまで、どこにも送られません。途中の入力は、この端末の中だけに残ります。共用の端末では、送ったあとに消してください。</p>
+<p><button class="pri" id="start">はじめる</button> <button type="button" class="lnk hide" id="clear">前回の入力を消す</button></p>
+<p class="fine"><a href="hearing-rei.html">お話からどんなホームページができるか、例を見る</a></p>
+</div>
+<form id="app" class="hide" onsubmit="return false">
+<div class="pg"><i id="bar"></i></div><p class="cnt" id="cnt" aria-live="polite"></p>
+<div id="q"></div>
+<div class="nav"><button type="button" id="back">戻る</button><button type="button" class="lnk" id="skip">この質問は飛ばす</button><button type="button" class="pri" id="next">次へ</button></div>
+</form>
+<div id="end" class="hide">
+<h2>ありがとうございます。</h2>
+<p class="hint">この内容をメールでお送りください。直したいところは「戻る」で直せます。いただいた内容をもとに、ご提案の前に確かめたいことをお返事します。</p>
+<pre id="sum" tabindex="0"></pre>
+<div class="nav"><button type="button" id="back2">戻る</button><button type="button" id="copy">文面をコピー</button><a class="btn pri" id="mail">メールを作る</a></div>
+<p class="fine" id="note">メールの画面が開かないときや文面が途中で切れるときは、コピーして info@morikosha.com へお送りください。</p>
+<p><button type="button" class="lnk" id="clear2">この端末の入力を消す</button></p>
+</div>
+</main>
+<script>
+var Q=[
+{k:'ご依頼',t:'今回は、どちらに近いですか？',o:['新しくホームページをつくりたい','いまのホームページを新しくしたい','まだ決めていない。相談して決めたい']},
+{k:'お仕事',t:'どんなお仕事をされていますか？',h:'近いものを選び、下に一言足していただけると助かります。',o:['建設・設備・造園などの現場の仕事','飲食・美容・小売などのお店','士業・医療・介護・教育などの専門の仕事','製造・農業・運送などのものづくりや物流']},
+{k:'始まり',t:'この仕事は、どのように始まりましたか？',o:['親や先代から受け継いだ','修業や前の勤め先での経験から、独立した','地域や身近な人の困りごとから始まった','好きなことや、やりたいことを仕事にした']},
+{k:'大事にしていること',t:'仕事でいちばん大事にしていることは？',o:['手間を惜しまず、丁寧に仕上げること','お客様と長くお付き合いすること','新しい技術や工夫を取り入れること','約束の日に、確かな段取りで届けること']},
+{k:'当たり前にしていること',t:'当たり前にやっているのに、驚かれたり感心されたりすることはありますか？',h:'ご本人には普通のことが、いちばんの魅力になることがあります。下に一言いただけると助かります。',o:['長く続けている習慣や記録がある','確認や準備に、人より手間をかけている','代々の技や、この土地ならではの知識がある','すぐには思いつかない。話しながら探したい']},
+{k:'お客様の声',t:'お客様からよく言われるのは、どんなことですか？',o:['「丁寧で安心できた」','「相談しやすかった」','「仕上がりがきれいだった」','「また頼みたい」「人に紹介したい」']},
+{k:'心に残る仕事',t:'いまも心に残っている仕事は、どれに近いですか？',h:'できれば下に、そのときの様子を一言お聞かせください。いちばん伝わる部分です。',o:['お客様の困りごとを解決できた仕事','何年も、何代も続いているお付き合い','難しくて、やり遂げたことが誇りになった仕事','地域の人に喜んでもらえた仕事']},
+{k:'届けたい相手',t:'ホームページを、いちばん誰に見てほしいですか？',o:['新しいお客様','取引先や元請け、紹介してくれる方','一緒に働いてくれる人','地域の方々']},
+{k:'見たあとに',t:'見た方に、どうしてほしいですか？',o:['電話やメールで問い合わせてほしい','「ちゃんとした会社だ」と安心してほしい','求人に応募してほしい','お店や事務所に来てほしい']},
+{k:'きっかけ',t:'いま、ホームページを考えたきっかけは？',o:['いまのホームページが古くなった','ホームページがなく、名前で調べても出てこない','人を採用したい','新しい仕事や取引先を増やしたい']},
+{k:'写真',t:'使えそうな写真はありますか？',h:'スマートフォンで撮ったもので十分です。',o:['お渡しできる写真がある','これから撮れる','あまりない。相談したい']},
+{k:'デザイン',t:'気になったデザインはありますか？',h:'<a href="website.html#works-pick" target="_blank" rel="noopener">5案の見本を別の画面で見る</a>',o:['01 淡','02 玄','03 雅','04 粋','05 理','相談して決めたい'],nofree:1},
+{k:'続きの伝え方',t:'このあとのやり取りは、どの形がよいですか？',o:['メールで','お電話で','オンライン打ち合わせで','このフォームの内容で進めてよい']},
+{k:'連絡先',t:'最後に、ご連絡先を教えてください。',form:1}
+];
+var A={},i=0,S='morikosha-hearing';
+try{A=JSON.parse(localStorage.getItem(S))||{}}catch(e){}
+function $(x){return document.getElementById(x)}
+if(Object.keys(A).length){$('start').textContent='前回の続きからはじめる';$('clear').classList.remove('hide')}
+$('clear').onclick=function(){A={};try{localStorage.removeItem(S)}catch(e){}$('start').textContent='はじめる';this.classList.add('hide')};
+function save(){try{localStorage.setItem(S,JSON.stringify(A))}catch(e){}}
+function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function show(){
+ var q=Q[i],a=A[q.k]||{},h='';
+ $('bar').style.width=(i+1)/Q.length*100+'%';$('cnt').textContent=(i+1)+' / '+Q.length;
+ h='<h2 tabindex="-1" id="qh">'+q.t+'</h2><p class="hint">'+(q.h||'いちばん近いものを選ぶか、下に自由にお書きください。')+'</p>';
+ if(q.form){h+='<label class="f" for="co">会社名・屋号</label><input type="text" id="co" autocomplete="organization" value="'+esc(a.co)+'"><label class="f" for="na">お名前</label><input type="text" id="na" autocomplete="name" value="'+esc(a.na)+'"><label class="f" for="ct">お電話番号またはメールアドレス</label><input type="text" id="ct" value="'+esc(a.ct)+'"><label class="f" for="wh">ご都合のよい曜日や時間帯（任意）</label><input type="text" id="wh" value="'+esc(a.wh)+'">'+(((A['ご依頼']||{}).c||'').indexOf('いまの')===0?'<label class="f" for="ur">いまのホームページのアドレス</label><input type="text" id="ur" inputmode="url" value="'+esc(a.ur)+'">':'')+'<label class="f" for="fr">そのほか、伝えておきたいこと（任意）</label><textarea id="fr">'+esc(a.free)+'</textarea>';}
+ else{q.o.forEach(function(o){h+='<label class="opt"><input type="radio" name="c" value="'+esc(o)+'"'+(a.c===o?' checked':'')+'><span>'+o+'</span></label>'});
+  if(!q.nofree)h+='<label class="f" for="fr">どれも近くないとき、一言足したいときは、こちらに</label><textarea id="fr" placeholder="話すように書いていただければ十分です。">'+esc(a.free)+'</textarea>';}
+ $('q').innerHTML=h;
+ $('back').style.visibility=i?'visible':'hidden';$('skip').style.visibility=q.form?'hidden':'visible';
+ $('next').textContent=i===Q.length-1?'内容を確かめる':'次へ';
+ $('qh').focus({preventScroll:true});window.scrollTo(0,0);
+}
+function keep(){
+ var q=Q[i],a={},c=document.querySelector('input[name=c]:checked'),f=$('fr');
+ if(c)a.c=c.value;if(f&&f.value.trim())a.free=f.value.trim();
+ if(q.form){a.co=$('co').value.trim();a.na=$('na').value.trim();a.ct=$('ct').value.trim();a.wh=$('wh').value.trim();if($('ur'))a.ur=$('ur').value.trim();}
+ A[q.k]=a;save();
+}
+function text(){
+ var l=['杜工舎 御中','','質問に答えてお送りします。',''];
+ Q.forEach(function(q){var a=A[q.k]||{};
+  if(q.form){if(a.co)l.push('■ 会社名・屋号：'+a.co);if(a.na)l.push('■ お名前：'+a.na);if(a.ct)l.push('■ ご連絡先：'+a.ct);if(a.wh)l.push('■ ご都合：'+a.wh);if(a.ur)l.push('■ いまのホームページ：'+a.ur);if(a.free)l.push('■ 伝えておきたいこと：'+a.free);return}
+  var v=[a.c,a.free].filter(Boolean).join(' ／ ');l.push('■ '+q.k+'：'+(v||'（あとで話します）'));});
+ return l.join('\n');
+}
+function finish(){
+ $('app').classList.add('hide');$('end').classList.remove('hide');
+ var t=text();$('sum').textContent=t;
+ $('mail').href='mailto:info@morikosha.com?subject='+encodeURIComponent('ホームページのご相談（質問への回答）')+'&body='+encodeURIComponent(t);
+ window.scrollTo(0,0);
+}
+$('start').onclick=function(){$('intro').classList.add('hide');$('app').classList.remove('hide');show()};
+$('next').onclick=function(){keep();if(i<Q.length-1){i++;show()}else finish()};
+$('skip').onclick=function(){delete A[Q[i].k];save();i++;show()};
+$('back').onclick=function(){keep();i--;show()};
+$('back2').onclick=function(){$('end').classList.add('hide');$('app').classList.remove('hide');show()};
+$('clear2').onclick=function(){A={};try{localStorage.removeItem(S)}catch(e){}this.textContent='消しました'};
+$('copy').onclick=function(){var b=this,d=function(){b.textContent='コピーしました'},t=text();
+ if(navigator.clipboard)navigator.clipboard.writeText(t).then(d,function(){$('note').textContent='コピーできませんでした。上の文面を選んでコピーしてください。'});
+ else $('note').textContent='上の文面を選んでコピーしてください。'};
+</script>
+</body></html>
