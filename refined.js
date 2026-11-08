@@ -8,3 +8,5 @@ const form=document.getElementById('contact-builder');if(form){form.addEventList
 const legal=()=>{if(['#legal','#pp'].includes(location.hash)){const d=document.getElementById('legal-details');if(d)d.open=true;setTimeout(()=>document.querySelector(location.hash)?.scrollIntoView(),20)}};legal();addEventListener('hashchange',legal);
 if(location.pathname.endsWith('/')||location.pathname.endsWith('index.html')){const h=location.hash;if(['#dl-sheet','#works','#works-pick','#price','#flow','#faq','#service','#erabot'].includes(h))location.replace('website.html'+h)}
 })();
+
+(()=>{const stage=document.querySelector('.mk-showcase');if(!stage)return;const orbit=document.createElement('div');orbit.className='mk-art-orbit';orbit.setAttribute('aria-hidden','true');for(let i=0;i<3;i++){const ring=document.createElement('i');ring.className='mk-art-ring';orbit.append(ring)}stage.prepend(orbit);})();
