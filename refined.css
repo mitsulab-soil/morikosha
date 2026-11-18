@@ -50,3 +50,12 @@ body.mk-shell{background-color:#f4f0e6!important;background-image:url("assets/si
 @media(max-width:900px){.mk-hero{gap:3%}.mk-showcase{padding:24px 12px}.mk-art-orbit{inset:15% 0 20%}}
 @media(max-width:640px){.mk-hero{padding-block:42px 50px}.mk-hero h1{letter-spacing:.04em}.mk-showcase{padding:24px 12px;margin-top:48px}.mk-showcase:before{inset:0}.mk-exhibit-main{animation-name:mk-display-float}.mk-exhibit-object{height:160px}.mk-exhibit-pair{gap:18px;margin-inline:0}.mk-art-orbit{inset:15% 2% 25%;animation-duration:48s}.mk-section{padding-block:72px}.mk-section:before{top:26px}.mk-exhibit-caption{margin-inline:0}}
 @media(prefers-reduced-motion:reduce){.mk-art-orbit,.mk-exhibit-main,.mk-section:before{animation:none!important}.mk-exhibit-main{transform:none}.mk-art-orbit{transform:rotateZ(-20deg)}}
+
+/* 2026-11-18 磨き：冒頭の大見出しと重なる、旧い章の見出し（料金案内・代表プロフィールなど）を最初の章だけ隠す */
+.legacy-content>.sec:first-of-type .dai{display:none!important}
+/* 冒頭の絵（日本画）は切り抜いて、版面に落ち着かせる */
+.mk-subhero figure img[src*="assets/site/art-"]{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;display:block}
+/* 旧い装い（legacy-*.css）の footer の色（暗い地向け）が、明るい地のフッターを薄くしていた */
+.mk-footer{color:var(--ink)!important;background:transparent}
+/* 料金表の金額（最後の列）を割らない */
+.legacy-content table td:last-child{white-space:nowrap;text-align:right;padding-left:12px}
