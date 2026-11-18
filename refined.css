@@ -59,3 +59,202 @@ body.mk-shell{background-color:#f4f0e6!important;background-image:url("assets/si
 .mk-footer{color:var(--ink)!important;background:transparent}
 /* 料金表の金額（最後の列）を割らない */
 .legacy-content table td:last-child{white-space:nowrap;text-align:right;padding-left:12px}
+
+/* ===== 2026-11-18 評価1周目の直し ===== */
+/* 字の床12px（小見出し・見本の札・注記） */
+.mk-eyebrow,.mk-exhibit-label,.mk-exhibit-label *,.mk-exhibit-caption,.mk-browser-bar span,.mk-stage span,.mk-stage b{font-size:12px!important}
+.mk-exhibit-caption{color:var(--ink)!important;line-height:1.8}
+/* 1024〜1199px のナビも12pxを割らない */
+@media(max-width:1199px){.mk-nav a{font-size:12px!important}}
+/* 組版：泣き別れを減らす */
+.mk-shell p,.mk-shell li,.mk-shell dd{text-wrap:pretty;line-break:strict}
+.mk-shell h1,.mk-shell h2,.mk-shell h3{text-wrap:balance}
+.mk-facts dt,.mk-facts dd{word-break:keep-all;overflow-wrap:anywhere}
+/* スマホの押しどころ 44px */
+@media(max-width:760px){
+  .mk-footer a,.legacy-content a:not(.mk-button){display:inline-block;min-height:44px;line-height:44px}
+  .legacy-content p a,.legacy-content td a{line-height:inherit;padding:12px 0;min-height:0}
+  .mk-shell label{min-height:44px;display:flex;align-items:center}
+}
+/* 冒頭の日本画は版面の中で裁つ（縦長の屏風も4:3に） */
+.mk-subhero figure img[src*="assets/site/art-"]{aspect-ratio:4/3!important;object-fit:cover!important;max-height:460px!important;height:auto!important}
+/* 英語の改修ページの表が横にはみ出す */
+.ks-t{table-layout:fixed;width:100%!important}
+.ks-t th,.ks-t td{overflow-wrap:anywhere;white-space:normal!important}
+.legacy-content{overflow-x:clip}
+/* 扉にも日本画を：見本の舞台の奥に、金地の松を淡く敷く */
+.mk-hero .mk-stage{position:relative;isolation:isolate}
+.mk-hero .mk-stage::before{content:"";position:absolute;inset:-6% -8% 8% 4%;z-index:-1;background:url(assets/site/art-pines-gold.webp) center/cover no-repeat;opacity:.22;mix-blend-mode:multiply;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse at 60% 45%,#000 45%,transparent 78%);mask-image:radial-gradient(ellipse at 60% 45%,#000 45%,transparent 78%)}
+.mk-hero-price{margin:18px 0 0;font:500 16px/1.7 var(--serif);letter-spacing:.06em;color:var(--ink)}
+.mk-hero .mk-stage::before{inset:2% -2% 14% 8%;opacity:.16;-webkit-mask-image:radial-gradient(closest-side at 55% 50%,#000 20%,transparent 100%);mask-image:radial-gradient(closest-side at 55% 50%,#000 20%,transparent 100%)}
+
+/* ===== 2026-11-18 評価2周目の直し ===== */
+.mk-renewal-card span{font-size:12px!important;letter-spacing:.14em}
+.mk-renewal-card img[src*="before"]{filter:saturate(.5) brightness(1.03)}
+/* 扉の見本：傾き・浮遊をやめ、正面に静かに置く。松の絵をもう少し見せる */
+.mk-hero .mk-stage *{animation:none!important}
+.mk-hero .mk-stage [class*="exhibit"],.mk-hero .mk-stage figure,.mk-hero .mk-stage img{transform:none!important}
+.mk-hero .mk-art-orbit,.mk-hero .mk-art-ring{opacity:.35}
+.mk-hero .mk-stage::before{opacity:.26}
+.mk-hero-price span{white-space:nowrap}
+.mk-hero-price small{display:block;font:13px/1.8 var(--sans);letter-spacing:.02em;color:var(--muted);margin-top:2px}
+/* 料金の帯：真ん中の列が割れて高さがずれる */
+.mk-facts{align-items:start}
+.mk-facts strong{text-wrap:balance}
+/* 押しどころ */
+.mk-note a,.mk-footer-links a,a[href^="mailto:"]{display:inline-block;padding-block:12px;min-height:44px;box-sizing:border-box}
+.mk-need{margin:28px 0 0;padding:16px 20px;border-left:2px solid var(--line,#cfc6b4);font-size:15px;line-height:1.9}
+/* 新規作成の5案：PCは5列に揃える／スマホは横にめくる */
+@media(min-width:1100px){.mk-designs{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:20px!important}.mk-designs>*{grid-column:auto!important;width:auto!important;margin:0!important}}
+@media(max-width:600px){.mk-designs{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px!important;padding-bottom:10px}.mk-designs>*{flex:0 0 80%;scroll-snap-align:start}}
+.legacy-content button{min-width:44px;min-height:44px}
+.hk-rep{min-width:44px}
+
+/* ===== 2026-11-18 評価3周目の直し ===== */
+/* 版面の左端を1本に：頭の帯・扉・章・奥付をすべて 5.5%（1600px で頭打ち）にそろえる */
+@media(min-width:901px){
+  .mk-hero,.mk-facts,.mk-wrap,.mk-subhero,.mk-cta,.legacy-content .byo{max-width:1600px!important;margin-inline:auto!important;padding-inline:5.5%!important;box-sizing:border-box;width:auto!important}
+  .mk-wrap>.mk-section{padding-inline:0!important;margin-inline:0!important}
+  .legacy-content .sec{padding-inline:0!important}
+  .legacy-content .lede,.legacy-content .ja-h,.legacy-content .dai{margin-left:0!important;padding-left:0!important}
+}
+@media(max-width:900px){.mk-hero,.mk-subhero,.mk-wrap,.legacy-content .byo{padding-inline:6%!important;width:auto!important}}
+main img:not(.mk-stage img){height:auto}
+.mk-design img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%;display:block}
+.mk-selector select{appearance:none;-webkit-appearance:none;border:0;border-bottom:1px solid var(--ink);border-radius:0;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%231c1a17'/%3E%3C/svg%3E") right 4px center no-repeat;padding:10px 26px 10px 2px;font:500 16px/1.4 var(--serif);color:var(--ink);min-height:44px}
+.mk-hero .mk-stage::before{opacity:.32}
+.mk-renewal-card{display:flex;flex-direction:column;justify-content:center}
+.mk-hero-price small{color:#3d3a33!important;font-size:14px!important}
+@media(max-width:600px){.mk-hero .mk-eyebrow{letter-spacing:.08em}}
+
+/* ===== 2026-11-18 評価4周目の直し ===== */
+/* 扉の下に、裁ち落としの日本画の帯（松林図屏風） */
+.mk-artband{margin:0;position:relative;height:clamp(160px,20vw,300px);overflow:hidden;border-block:1px solid var(--rule)}
+.mk-artband img{width:100%;height:100%!important;object-fit:cover;object-position:center 40%;display:block;filter:saturate(.9)}
+.mk-artband figcaption{position:absolute;right:5.5%;bottom:10px;font-size:12px;letter-spacing:.08em;color:#3d3a33;background:rgba(246,244,239,.82);padding:2px 8px}
+.mk-hero{min-height:0!important;padding-bottom:56px!important}
+/* 扉の料金：組を分け、注記の行長を抑える */
+.mk-hero-price{margin-top:30px!important}
+.mk-hero-price small{max-width:34em;word-break:keep-all;overflow-wrap:anywhere;margin-top:6px}
+.mk-hero-price small a{color:inherit;text-underline-offset:3px}
+.mk-facts strong{font:500 21px/1.6 var(--serif)}
+/* 本文の灰を一段濃く */
+.mk-shell main p{color:#3a3732}
+/* 創業の思い：見出しを明朝に、屏風は扇の折り目で裁つ */
+.legacy-content h2,.legacy-content .ja-h{font-family:var(--serif)!important;letter-spacing:.06em}
+.mk-subhero figure img[src*="art-maple"]{aspect-ratio:3/2!important;object-position:30% center!important}
+[id]{scroll-margin-top:96px}
+.mk-heading{align-items:end}
+
+/* ===== 2026-11-18 評価5周目の直し ===== */
+.mk-hero-pricebox{margin-top:34px}
+.mk-hero-price{margin:0!important}
+.mk-hero-notes{display:block;margin-top:8px;font-size:13px!important;line-height:1.9!important;color:#3d3a33!important}
+.mk-hero-notes span{display:block}
+.mk-hero-youi{display:inline-flex;align-items:center;min-height:44px;font-size:14px;color:var(--ink);text-underline-offset:4px}
+/* 扉の見本：ブラウザ風の帯と浮いた影をやめ、墨の細い罫と題箋に */
+.mk-hero .mk-browser-bar{background:transparent!important;border:0!important;justify-content:flex-end}
+.mk-hero .mk-browser-bar>*:not(:last-child){display:none!important}
+.mk-hero .mk-exhibit-main,.mk-hero .mk-stage figure,.mk-hero .mk-stage a,.mk-hero .mk-stage img{box-shadow:none!important}
+.mk-hero .mk-exhibit-main{outline:1px solid #2a2723;outline-offset:0}
+/* 5案の札を縦長に大きく、題字を強く */
+@media(min-width:1100px){.mk-designs{gap:14px!important}.mk-design img{aspect-ratio:4/5!important}.mk-design strong{font-size:clamp(28px,2.4vw,40px)!important}}
+.mk-swipe{display:none;font-size:13px;color:#3d3a33;margin:0 0 10px}
+@media(max-width:600px){.mk-swipe{display:block}}
+.mk-picked{margin:18px 0 0;padding:12px 16px;border-left:2px solid #2a2723;background:#efe9dc;font-size:15px}
+.mk-picked a{color:inherit;display:inline-flex;min-height:44px;align-items:center}
+/* 章の間の大きな空き */
+.mk-faq{padding-bottom:96px!important}
+.mk-faq+*,.mk-wrap+.mk-artband{margin-top:0}
+/* 代表：右の欄を追従させて左右の釣り合いを */
+@media(min-width:901px){.legacy-content .prof-side,.legacy-content .pf-r{position:sticky;top:96px;align-self:start}}
+/* えらぼっとの古い小さな字 */
+.w span,.ft-sns a,.ft-sns-id{font-size:12px!important}
+
+/* ===== 2026-11-18 評価6周目の直し ===== */
+/* 5案の絵：見出しの字を切らない（元の比のまま全体を見せる） */
+.mk-design img{aspect-ratio:auto!important;object-fit:contain!important;height:auto!important}
+/* トップの新規作成の見本：白い霞をやめて墨の罫で */
+.mk-service figure::before,.mk-service figure::after,.mk-service a figure::after{display:none!important}
+.mk-service figure img{-webkit-mask-image:none!important;mask-image:none!important;opacity:1!important;filter:none!important}
+/* 改修の枠：BEFORE/AFTER を枠いっぱいに */
+.mk-renewal-card{align-items:stretch}
+.mk-renewal-card>div{display:flex;flex-direction:column;flex:1}
+.mk-renewal-card img{flex:1;object-fit:cover;object-position:top;height:100%!important;min-height:180px}
+/* 日本画の帯の出典は、絵を覆わず帯の下に小さく */
+.mk-artband{height:auto;overflow:visible}
+.mk-artband img{height:clamp(160px,20vw,300px)!important}
+.mk-artband figcaption{position:static;background:none;text-align:right;padding:6px 5.5% 0;font-size:12px;color:#5a554b}
+/* 代表：左右の列の頭を版面の左端に */
+.legacy-content .pf{margin-left:0!important;padding-left:0!important}
+/* スマホの扉の注記を読みやすく */
+@media(max-width:600px){.mk-hero-notes{font-size:15px!important}.mk-hero-notes span:first-child,.mk-hero-notes span:nth-child(2){font-weight:600}.mk-hero{padding-top:28px!important}}
+.mk-exhibit-heading,.mk-exhibit-heading *{color:#3d3a33!important}
+
+/* ===== 2026-11-18 評価7周目の直し ===== */
+.mk-pick{display:inline-flex;align-items:center;min-height:44px;font-size:14px;color:var(--ink);text-decoration:underline;text-underline-offset:4px;margin-top:4px}
+@media(min-width:1100px){.mk-designs{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:28px 24px!important}}
+@media(max-width:600px){.mk-designs>*{flex-basis:86%}.mk-designs{align-items:start}}
+.mk-designs{display:grid}
+.mk-dcell{display:flex;flex-direction:column;min-width:0}.mk-dcell .mk-design{width:100%!important}
+/* 札と相談リンクを一組に */
+@media(min-width:601px){.mk-designs{grid-auto-flow:row}}
+/* website の料金章：左の列を追従 */
+@media(min-width:901px){#price>div:first-child,.mk-section#price>div:first-of-type{position:sticky;top:110px;align-self:start}}
+/* 代表の組を版面に */
+.legacy-content .byo>.pf{grid-column:1/-1!important;margin-inline:0!important}
+/* トップの見本の札を額装に */
+.mk-service figure{background:#efe9dc;padding:22px}
+.mk-service figure img{outline:1px solid #2a2723}
+/* 扉の上を詰め、下に余白 */
+@media(min-width:901px){.mk-hero{padding-top:40px!important;padding-bottom:72px!important}.mk-hero .mk-exhibit-main img{max-height:40vh;object-fit:cover;object-position:top}}
+.mk-hero-notes{line-height:1.75!important}
+.mk-mailline{margin:14px 0 0;font-size:15px}.mk-mailline a{color:inherit;display:inline-flex;min-height:44px;align-items:center}
+.mk-prof-works{margin:20px 0 0}.mk-prof-works a{color:inherit;display:inline-flex;min-height:44px;align-items:center}
+.mk-subhero{padding-bottom:88px!important}
+.mk-shell :focus-visible{outline:2px solid #1c1a17!important;outline-offset:3px}
+
+/* ===== 2026-11-18 評価8周目の直し ===== */
+.legacy-content .pf>*{margin-inline:0!important}
+.legacy-content .pf-l{padding-right:40px}
+/* 5案：1段目3枚・2段目2枚で版面を埋める（6列の格子） */
+@media(min-width:1100px){.mk-designs{grid-template-columns:repeat(6,minmax(0,1fr))!important}.mk-designs>*{grid-column:span 2!important}.mk-designs>:nth-child(4),.mk-designs>:nth-child(5){grid-column:span 3!important}}
+.mk-pick{margin-top:14px}
+/* 扉の見本3点を同じ額に */
+.mk-hero .mk-stage img,.mk-hero .mk-stage figure>*{box-shadow:none!important;filter:none!important}
+.mk-hero .mk-stage [class*="exhibit"]:not(.mk-exhibit-main):not(.mk-exhibit-label):not(.mk-exhibit-caption):not(.mk-exhibit-heading){outline:1px solid #2a2723;border:0!important}
+.mk-hero-notes{line-height:1.9!important;color:#4a463e!important}
+@media(max-width:600px){.mk-hero-notes span:nth-child(2){font-weight:400}.mk-hero .mk-eyebrow{font-size:12px;margin-bottom:10px!important}}
+/* 用意するものを見出し＋箇条に */
+.mk-need strong{display:block;margin-bottom:.4em}
+.mk-kyujin{display:inline-flex;align-items:center;min-height:44px}
+/* 日本画の帯：出典を版面の右端に */
+.mk-artband figcaption{padding-right:5.5%}
+.mk-subhero figure img[src*="art-zeshin"]{object-position:30% 50%!important}
+.mk-cta-help{margin:10px 0 0;font-size:14px;color:#4a463e}
+.mk-need-list{list-style:none;margin:0 0 .6em;padding:0;display:flex;flex-wrap:wrap;gap:4px 18px}
+.mk-need-list li::before{content:"・"}
+.mk-need p{margin:0}
+
+/* ===== 2026-11-18 評価9周目の直し ===== */
+html{scroll-padding-top:96px}
+@media(max-width:767px){.mn-steps li{font-size:15px!important}.mn-steps li b{display:block}}
+/* 扉の見本：下の2点を上の額と同じ幅・同じ流儀に */
+.mk-hero .mk-stage .mk-exhibit-main{margin-inline:0!important}
+.mk-facts strong.mk-duration{font-size:17px!important}
+.mk-artband img{object-position:30% 55%!important}
+.legacy-content .lede p,.mk-subhero p{max-width:36em}
+.mk-hero .mk-exhibit-pair{margin-inline:0!important;display:grid!important;grid-template-columns:1fr 1fr;gap:20px;width:100%!important}
+.mk-hero .mk-exhibit-pair>a{display:flex;flex-direction:column;margin:0!important}
+.mk-hero .mk-exhibit-object{display:flex!important;align-items:center;justify-content:center;aspect-ratio:4/3;background:#efe9dc;outline:1px solid #2a2723;padding:14px;box-sizing:border-box;width:100%!important;height:auto!important}
+.mk-hero .mk-exhibit-object img{width:auto!important;height:100%!important;max-width:100%;object-fit:contain!important;outline:0!important}
+.mk-hero .mk-exhibit-label{border-top:0!important;margin-top:8px}
+.mk-hero .mk-exhibit-object{aspect-ratio:auto!important;height:168px!important}
+.mk-hero .mk-exhibit-object img{height:140px!important;width:auto!important}
+
+/* ===== 2026-11-18 評価10周目の直し ===== */
+.mk-hero-price span{display:inline-block}
+.mk-subhero figure img{outline:1px solid #2a2723}
+@media(min-width:901px){.legacy-content .lede>:first-child{position:sticky;top:120px;align-self:start}}
+.mk-pick{margin-top:10px}
+.mk-artband figcaption{color:#6b665c}
