@@ -441,7 +441,7 @@ if(window.self!==window.top){b.style.display="none";return;}
 /* 札を押して開くのはスマホ・タブレットだけ。PC では札をボタンにしない（中のリンクと二重になる。3周目 P4） */
 if(window.innerWidth<=1100){b.setAttribute("tabindex","0");b.setAttribute("role","button");b.setAttribute("aria-expanded","false");}
 b.setAttribute("aria-label","見本の札。押すと、見本についての説明と、杜工舎・料金へのリンクを開きます");
-function f(){b.classList.toggle("is-mini",window.scrollY>window.innerHeight*0.6&&!b.classList.contains("is-open"));}
+function f(){b.classList.toggle("is-mini",(window.innerWidth<=1100||window.scrollY>window.innerHeight*0.6)&&!b.classList.contains("is-open"));}
 function t(){if(window.innerWidth<=1100){b.classList.toggle("is-open");b.setAttribute("aria-expanded",b.classList.contains("is-open")?"true":"false");f();}}
 /* 下の電話・メールの帯の高さを測り、札をその上に置く */
 var tb=document.querySelector(".telbar");function th(){if(tb){var r=tb.getBoundingClientRect();document.documentElement.style.setProperty("--telbar-h",(getComputedStyle(tb).display==="none"?0:r.height)+"px");}}th();window.addEventListener("resize",th);
@@ -451,4 +451,4 @@ window.addEventListener("scroll",f,{passive:true});f();
 b.addEventListener("click",function(e){if(e.target.closest("a"))return;t();});
 b.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&!e.target.closest("a")){e.preventDefault();t();}});})();</script>
 <script src="/s/k.js" defer></script>
-<style>.smp-ask{display:none}@media(max-width:760px){.smp-ask{display:flex;align-items:center;justify-content:center;position:fixed;left:0;right:0;bottom:calc(86px + env(safe-area-inset-bottom));min-height:44px;background:#1c1a17;color:#fff;font-size:14px;letter-spacing:.06em;text-decoration:none;z-index:2147483000;border-top:1px solid rgba(255,255,255,.2)}body{padding-bottom:140px!important}.smp-badge{bottom:140px!important;top:auto!important}.nav a{min-height:44px;display:inline-flex;align-items:center}.en,.kicker,.m,th{font-size:12px!important}}</style><a class="smp-ask" href="../contact.html?mihon=jidosha-3">杜工舎に、この案で相談する →</a></body></html>
+<style>.smp-ask{display:none}@media(max-width:760px){.smp-ask{display:flex;align-items:center;justify-content:center;position:fixed;left:0;right:0;bottom:calc(86px + env(safe-area-inset-bottom));min-height:44px;background:#1c1a17;color:#fff;font-size:14px;letter-spacing:.06em;text-decoration:none;z-index:2147483000;border-top:1px solid rgba(255,255,255,.2)}body{padding-bottom:140px!important}.smp-badge{bottom:140px!important;top:auto!important}.nav a{min-height:44px;display:inline-flex;align-items:center}.en,.kicker,.m,th{font-size:12px!important}}</style><a class="smp-ask" href="../contact.html?mihon=jidosha-3">杜工舎に、この案で相談する →</a><style id="smp-fix-1119">@media(max-width:1100px){html body .smp-badge,html body .smp-badge.is-mini{top:68px!important;bottom:auto!important;left:auto!important;right:8px!important}}</style></body></html>

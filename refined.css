@@ -258,3 +258,5 @@ html{scroll-padding-top:96px}
 @media(min-width:901px){.legacy-content .lede>:first-child{position:sticky;top:120px;align-self:start}}
 .mk-pick{margin-top:10px}
 .mk-artband figcaption{color:#6b665c}
+/* 12周目：5案を同じ大きさに（2段目は中央寄せ） */
+@media(min-width:1100px){.mk-designs>*{grid-column:span 2!important}.mk-designs>:nth-child(4){grid-column:2/span 2!important}.mk-designs>:nth-child(5){grid-column:4/span 2!important}}
